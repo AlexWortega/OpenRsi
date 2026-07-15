@@ -161,7 +161,22 @@ export async function solveProblem(opts: {
         resolve();
       }, timeoutMs),
     );
-    await Promise.race([(async () => { await session.prompt(userPrompt); await session.waitForIdle(); })(), timer]);
+    // Optional budget-nudge (default OFF): a harness lever to cut early-stopping
+    // variance. Kept off for the headline run so the RSI loop must EARN budget-usage
+    // improvements itself (as it did in validation). Enable via OPENRSI_MAX_NUDGES.
+    const maxNudges = Number(process.env.OPENRSI_MAX_NUDGES ?? 0);
+    const run = async () => {
+      await session.prompt(userPrompt);
+      await session.waitForIdle();
+      for (let n = 0; n < maxNudges && !timedOut && evalsUsed < budget; n++) {
+        log(`nudge ${n + 1}: ${evalsUsed}/${budget} evals used, continuing`);
+        await session.prompt(
+          `You still have ${budget - evalsUsed} submit call(s) left. Do NOT stop — take your current best solution and improve it further, then submit again.`,
+        );
+        await session.waitForIdle();
+      }
+    };
+    await Promise.race([run(), timer]);
     if (timedOut) error = `solve timed out after ${timeoutMs / 1000}s`;
   } catch (e: any) {
     error = e?.message || String(e);

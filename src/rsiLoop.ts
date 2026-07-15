@@ -17,7 +17,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AleEvalServer } from "./ale/evalServer.js";
 import { Board, type GenRecord } from "./board.js";
-import { loadScaffold, saveScaffold, type Scaffold } from "./inner/scaffold.js";
+import { loadScaffold, type Scaffold } from "./inner/scaffold.js";
 import { solveProblem, type SolveResult } from "./inner/solve.js";
 import { proposeImprovement, type AttemptRecord } from "./outer/improve.js";
 import { assertKey, modelSlug, tierModel } from "./provider.js";
@@ -138,12 +138,14 @@ async function main() {
       });
 
       if (accepted) {
+        const prevFitness = championFitness;
         champion = candidate;
         championResults = candResults;
         championFitness = candFitness;
-        saveScaffold(champion); // persist new champion as the active scaffold
+        // Persist champion to the run dir; keep agent/inner/scaffold.json as the pristine baseline.
+        writeFileSync(join(RUN_DIR, "champion_scaffold.json"), JSON.stringify(champion, null, 2) + "\n");
         stagnation = 0;
-        console.error(`[rsi] gen${gen}: ACCEPTED new champion fitness=${candFitness.toFixed(1)} (was ${championFitness.toFixed(1)})`);
+        console.error(`[rsi] gen${gen}: ACCEPTED new champion fitness=${candFitness.toFixed(1)} (was ${prevFitness.toFixed(1)})`);
         const NOTIFY = process.env.HOME + "/.claude/skills/ml-intern/scripts/notify.sh";
         try {
           const { execFileSync } = await import("node:child_process");

@@ -57,7 +57,12 @@ export async function solveProblem(opts: {
 }): Promise<SolveResult> {
   const { evalServer, problemId, scaffold, model } = opts;
   const lang = scaffold.language;
-  const budget = scaffold.max_public_evals;
+  // Dynamic budget: a high hard ceiling + convergence-based early stop (stop after
+  // `patience` consecutive non-improving submits). Easy problems converge early,
+  // hard ones get more evals. Override cap/patience via env.
+  const budget = Number(process.env.OPENRSI_EVAL_CAP || Math.max(scaffold.max_public_evals, 12));
+  const patience = Number(process.env.OPENRSI_PATIENCE || 4);
+  let sinceImprove = 0;
 
   const { sessionId, problem } = await evalServer.openSession({
     problemId,
@@ -80,14 +85,10 @@ export async function solveProblem(opts: {
       code: Type.String({ description: "Complete source code (a single file) in " + lang }),
     }),
     async execute(_id, { code }) {
-      if (evalsUsed >= budget) {
+      if (evalsUsed >= budget || sinceImprove >= patience) {
+        const why = evalsUsed >= budget ? `hard cap ${budget} reached` : `converged (${sinceImprove} submits with no improvement)`;
         return {
-          content: [
-            {
-              type: "text" as const,
-              text: `BUDGET EXHAUSTED (${budget}/${budget}). Do not submit again — reply with your final summary.`,
-            },
-          ],
+          content: [{ type: "text" as const, text: `STOP: ${why}. Do not submit again — reply with your final summary.` }],
           details: undefined,
         };
       }
@@ -108,6 +109,9 @@ export async function solveProblem(opts: {
       if (valid && (best.code === null || betterScore(score, best.score, scoreType))) {
         best.code = code;
         best.score = score;
+        sinceImprove = 0;
+      } else {
+        sinceImprove++;
       }
       return {
         content: [{ type: "text" as const, text: fmtFeedback(r, evalsUsed, budget) }],
@@ -168,14 +172,15 @@ export async function solveProblem(opts: {
     // Optional budget-nudge (default OFF): a harness lever to cut early-stopping
     // variance. Kept off for the headline run so the RSI loop must EARN budget-usage
     // improvements itself (as it did in validation). Enable via OPENRSI_MAX_NUDGES.
-    const maxNudges = Number(process.env.OPENRSI_MAX_NUDGES ?? 0);
+    // Dynamic: keep nudging until the hard cap OR convergence (patience) — not a fixed count.
+    const maxNudges = Number(process.env.OPENRSI_MAX_NUDGES || budget);
     const run = async () => {
       await session.prompt(userPrompt);
       await session.waitForIdle();
-      for (let n = 0; n < maxNudges && !timedOut && evalsUsed < budget; n++) {
-        log(`nudge ${n + 1}: ${evalsUsed}/${budget} evals used, continuing`);
+      for (let n = 0; n < maxNudges && !timedOut && evalsUsed < budget && sinceImprove < patience; n++) {
+        log(`nudge ${n + 1}: ${evalsUsed} evals, sinceImprove=${sinceImprove}/${patience}, continuing`);
         await session.prompt(
-          `You still have ${budget - evalsUsed} submit call(s) left. Do NOT stop — take your current best solution and improve it further, then submit again.`,
+          `Keep going — you have budget left and your score can still improve. Take your best solution, make it stronger (deeper local search / better time usage / fix any failing cases), and submit again.`,
         );
         await session.waitForIdle();
       }

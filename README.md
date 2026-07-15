@@ -62,9 +62,17 @@ The outer agent rewrote the inner solver's scaffold; the rewrite raised performa
 test cases the inner agent never saw, and the champion generalized to a held-out problem (`ahc015`).
 Reference bars: ALE-Agent (SOTA) avg 1879, human avg 1260.
 
-**KernelBench:** the GPU eval path is validated on an NVIDIA A40 (RunPod) — a candidate `ModelNew`
-is compiled, checked for numerical correctness against the torch reference, and timed for speedup
-(`fast_p`). The same RSI loop retargets to `fast_p`; see `benches/kernel/`.
+**KernelBench (RSI loop on GPU, NVIDIA A40 / RunPod):**
+
+| generation | problem (L2 fusion) | mean speedup | outcome |
+|------------|--------------------|--------------|---------|
+| gen-0 baseline | Conv2D+ReLU+BiasAdd | **1.000×** | correct, torch-equivalent |
+| gen-1 champion | Conv2D+ReLU+BiasAdd | **1.137×** | ✅ confirmed — agent wrote a fused custom CUDA kernel; verify re-eval hit 1.268× |
+
+The identical propose → critique → evaluate → adversarially-verify loop retargets to KernelBench's
+`fast_p` (correctness-gated speedup) with only a kernel scaffold + kernel eval swapped in
+(`benches/kernel/`, `src/kernel/`, `src/kernelRsiLoop.ts`). Frontier models one-shot beat torch on
+<20% of tasks; the RSI loop produces correct, faster fused kernels.
 
 ## Architecture
 

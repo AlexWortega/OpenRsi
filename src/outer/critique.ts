@@ -13,7 +13,7 @@ import type { Scaffold } from "../inner/scaffold.js";
 import type { SolveResult } from "../inner/solve.js";
 import { proposeImprovement, type AttemptRecord, type ProposeResult } from "./improve.js";
 
-const ANGLES = [
+const ALE_ANGLES = [
   "search strategy: stronger simulated annealing / local search, better neighbourhoods, restarts",
   "domain knowledge: concrete problem-specific AHC heuristics and construction ideas",
   "time & eval-budget management: use the full time limit and the full submit budget",
@@ -32,7 +32,12 @@ export async function proposeVariants(opts: {
   feedback: string;
   count: number;
   genOffset: number;
+  /** Benchmark-specific angles (defaults to ALE-Bench). */
+  angles?: string[];
+  outerSystem?: string;
+  metricLabel?: string;
 }): Promise<ProposeResult[]> {
+  const angles = opts.angles ?? ALE_ANGLES;
   const jobs = Array.from({ length: opts.count }, (_, k) =>
     proposeImprovement({
       model: opts.model,
@@ -40,8 +45,10 @@ export async function proposeVariants(opts: {
       championResults: opts.championResults,
       championFitness: opts.championFitness,
       history: opts.history,
-      variantHint: ANGLES[(opts.genOffset + k) % ANGLES.length],
+      variantHint: angles[(opts.genOffset + k) % angles.length],
       feedback: opts.feedback,
+      outerSystem: opts.outerSystem,
+      metricLabel: opts.metricLabel,
     }).catch(() => null),
   );
   const res = await Promise.all(jobs);

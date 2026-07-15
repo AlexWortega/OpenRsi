@@ -57,9 +57,14 @@ export async function proposeImprovement(opts: {
   variantHint?: string;
   /** Free-form human guidance (from FEEDBACK.md); the outer agent must honour it. */
   feedback?: string;
+  /** Benchmark-specific outer system prompt (defaults to the ALE-Bench one). */
+  outerSystem?: string;
+  /** Metric label shown in prompts (default "private performance"). */
+  metricLabel?: string;
 }): Promise<ProposeResult> {
   const { model, champion, championResults, championFitness, history } = opts;
   const cap = opts.maxEvalCap ?? 10;
+  const metricLabel = opts.metricLabel ?? "private performance";
 
   const captured: {
     scaffold: Scaffold | null;
@@ -108,7 +113,7 @@ export async function proposeImprovement(opts: {
         .join("\n")
     : "(none yet)";
 
-  const sys = `You are an expert AI systems researcher running a recursive-self-improvement loop. You improve the CODE of an inner "solver" agent that competes on AtCoder Heuristic Contest optimization problems. The solver's behaviour is fully determined by its SCAFFOLD: a system prompt, a list of domain-knowledge tips, and a public-eval budget.
+  const sys = opts.outerSystem ?? `You are an expert AI systems researcher running a recursive-self-improvement loop. You improve the CODE of an inner "solver" agent that competes on AtCoder Heuristic Contest optimization problems. The solver's behaviour is fully determined by its SCAFFOLD: a system prompt, a list of domain-knowledge tips, and a public-eval budget.
 
 Your job: propose ONE targeted rewrite of the scaffold that will raise the solver's mean PRIVATE performance (score on hidden test cases, 0..3500). You cannot see the private cases; overfitting to the public score will NOT survive selection, so propose changes that improve genuine solution quality and generalization.
 
@@ -132,7 +137,7 @@ without a concrete mechanism and expected size is a guess, not a hypothesis.`;
     ? `\n## Human feedback (HIGH PRIORITY — follow this)\n${opts.feedback.trim()}\n`
     : "";
 
-  const user = `${feedbackBlock}${hintBlock}## Champion scaffold (v${champion.version}) — mean private performance = ${championFitness.toFixed(0)}
+  const user = `${feedbackBlock}${hintBlock}## Champion scaffold (v${champion.version}) — mean ${metricLabel} = ${championFitness.toFixed(0)}
 max_public_evals=${champion.max_public_evals}
 system_prompt:
 """

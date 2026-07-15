@@ -26,6 +26,12 @@ export interface AttemptRecord {
 export interface ProposeResult {
   candidate: Scaffold | null;
   rationale: string;
+  // Think-first protocol (from the autoresearch skill): every hypothesis must state its
+  // causal mechanism, an expected numeric move, and a falsification condition.
+  mechanism: string;
+  expectedDelta: string;
+  falsification: string;
+  hint: string;
   cost: number;
 }
 
@@ -55,15 +61,24 @@ export async function proposeImprovement(opts: {
   const { model, champion, championResults, championFitness, history } = opts;
   const cap = opts.maxEvalCap ?? 10;
 
-  const captured: { scaffold: Scaffold | null; rationale: string } = { scaffold: null, rationale: "" };
+  const captured: {
+    scaffold: Scaffold | null;
+    rationale: string;
+    mechanism: string;
+    expectedDelta: string;
+    falsification: string;
+  } = { scaffold: null, rationale: "", mechanism: "", expectedDelta: "", falsification: "" };
 
   const proposeTool = defineTool({
     name: "propose_scaffold",
     label: "propose_scaffold",
     description:
-      "Submit ONE improved scaffold for the inner solver. Provide the FULL new scaffold (all fields). It will be evaluated on held-out private cases and kept only if mean performance improves.",
+      "Submit ONE improved scaffold for the inner solver. Provide the FULL new scaffold plus the think-first fields. It will be peer-critiqued, then (if it survives) evaluated on held-out private cases and kept only if mean performance improves.",
     parameters: Type.Object({
-      rationale: Type.String({ description: "One-paragraph causal mechanism: why this raises private performance." }),
+      mechanism: Type.String({ description: "Causal path A->B->C->metric: WHY this raises private performance." }),
+      expected_delta: Type.String({ description: "Numeric estimate + direction, e.g. '+150 performance, ~12% relative'." }),
+      falsification: Type.String({ description: "What result would disprove the mechanism." }),
+      rationale: Type.String({ description: "One-paragraph summary of the change." }),
       system_prompt: Type.String({ description: "The full new solver system prompt." }),
       domain_knowledge: Type.Array(Type.String(), { description: "Bullet tips appended to the prompt. Grow/refine these." }),
       max_public_evals: Type.Integer({ description: `Public-eval budget per problem (1..${cap}).`, minimum: 1, maximum: cap }),
@@ -77,6 +92,9 @@ export async function proposeImprovement(opts: {
         domain_knowledge: args.domain_knowledge,
       };
       captured.rationale = args.rationale;
+      captured.mechanism = args.mechanism;
+      captured.expectedDelta = args.expected_delta;
+      captured.falsification = args.falsification;
       return {
         content: [{ type: "text" as const, text: "Scaffold proposal recorded. Reply DONE." }],
         details: undefined,
@@ -100,7 +118,12 @@ High-leverage directions to consider (pick what the results motivate, don't do a
 - Eval-budget usage: the solver often stops early — instruct it to use its whole budget to refine.
 - Robustness: guarantee always-valid output (avoid WA/RE/TLE that zero a case).
 - Domain knowledge: add concrete, correct AHC heuristics as tips.
-Make a focused, mechanistically-justified change — not a vague rewrite.`;
+Make a focused, mechanistically-justified change — not a vague rewrite.
+
+Think-first protocol (required): before proposing, answer three questions and pass them in the tool —
+(1) mechanism: the causal path from your change to higher performance; (2) expected_delta: a numeric
+estimate + direction; (3) falsification: what result would prove the mechanism wrong. A proposal
+without a concrete mechanism and expected size is a guess, not a hypothesis.`;
 
   const hintBlock = opts.variantHint
     ? `\n## Angle for THIS variant\nFocus your rewrite primarily on: **${opts.variantHint}**. Other variants this round cover other angles.\n`
@@ -152,6 +175,10 @@ Propose ONE improved scaffold now via the propose_scaffold tool (include ALL fie
   return {
     candidate: captured.scaffold,
     rationale: captured.scaffold ? captured.rationale : "(no proposal captured)",
+    mechanism: captured.mechanism,
+    expectedDelta: captured.expectedDelta,
+    falsification: captured.falsification,
+    hint: opts.variantHint ?? "",
     cost: stats?.cost ?? 0,
   };
 }

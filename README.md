@@ -29,6 +29,25 @@ outer agent (Opus 4.8)  ──proposes a scaffold rewrite──▶  candidate sc
 - **The mutable artifact** is `agent/inner/scaffold.json` — system prompt + domain-knowledge tips +
   eval budget. This is what the RSI loop evolves (kept as data → safe to rewrite, schema intact).
 
+### Generational loop (adapted from the autoresearch skill)
+
+Each generation runs a **propose → critique → evaluate → verify → keep** cycle so eval budget is
+spent only on the most promising, non-duplicate hypotheses:
+
+1. **Propose (parallel).** N outer agents concurrently propose diverse variants, each covering a
+   distinct angle (search strategy, domain knowledge, time management, robustness, algorithmic
+   reframe, tuning). Every proposal must pass the **think-first protocol** — a causal *mechanism*, an
+   *expected numeric delta*, and a *falsification condition* — or it isn't a hypothesis.
+2. **Peer-critique before compute.** A panel of critic agents scores every proposal (quality 0–10 +
+   keep vote) *before any benchmark eval*. Only the top survivors are evaluated; weak/duplicate
+   proposals are pruned for free.
+3. **Evaluate survivors** on the benchmark (the only place GPU/CPU compute is spent).
+4. **Adversarially verify.** A candidate that beats the champion is re-evaluated on a fresh solve;
+   it's crowned only if the averaged score still wins — guarding against inner-agent variance.
+5. **Keep & share.** The champion, leaderboard, shared board, and every proposal (survived or pruned)
+   are checkpointed each generation. The loop runs for `OPENRSI_GENERATIONS` with no early stop by
+   default.
+
 ## Results
 
 **ALE-Bench (multi-problem RSI run, mean private performance over ahc008/ahc011/ahc016):**

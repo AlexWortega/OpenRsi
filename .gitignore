@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+runs/**/transcripts/
+runs/**/*.log
+*.pyc
+__pycache__/
+.venv/
+benches/ale/.ale_cache/
+benches/**/workdir/
+.DS_Store

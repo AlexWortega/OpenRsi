@@ -1,0 +1,23 @@
+{
+  "name": "openrsi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AIDE²-style recursive self-improvement on the pi agent skeleton, targeting ALE-Bench / KernelBench.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "smoke": "node --enable-source-maps dist/smoke.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "0.80.7",
+    "@earendil-works/pi-ai": "0.80.7",
+    "@earendil-works/pi-coding-agent": "0.80.7",
+    "typebox": "1.1.38"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -47,6 +47,10 @@ export async function proposeImprovement(opts: {
   championFitness: number;
   history: AttemptRecord[];
   maxEvalCap?: number;
+  /** A distinct "angle" for this variant so a generation explores diverse rewrites. */
+  variantHint?: string;
+  /** Free-form human guidance (from FEEDBACK.md); the outer agent must honour it. */
+  feedback?: string;
 }): Promise<ProposeResult> {
   const { model, champion, championResults, championFitness, history } = opts;
   const cap = opts.maxEvalCap ?? 10;
@@ -98,7 +102,14 @@ High-leverage directions to consider (pick what the results motivate, don't do a
 - Domain knowledge: add concrete, correct AHC heuristics as tips.
 Make a focused, mechanistically-justified change — not a vague rewrite.`;
 
-  const user = `## Champion scaffold (v${champion.version}) — mean private performance = ${championFitness.toFixed(0)}
+  const hintBlock = opts.variantHint
+    ? `\n## Angle for THIS variant\nFocus your rewrite primarily on: **${opts.variantHint}**. Other variants this round cover other angles.\n`
+    : "";
+  const feedbackBlock = opts.feedback?.trim()
+    ? `\n## Human feedback (HIGH PRIORITY — follow this)\n${opts.feedback.trim()}\n`
+    : "";
+
+  const user = `${feedbackBlock}${hintBlock}## Champion scaffold (v${champion.version}) — mean private performance = ${championFitness.toFixed(0)}
 max_public_evals=${champion.max_public_evals}
 system_prompt:
 """

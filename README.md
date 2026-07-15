@@ -83,6 +83,24 @@ OPENRSI_PROBLEMS=ahc008,ahc011,ahc016 OPENRSI_HELDOUT=ahc015 OPENRSI_GENERATIONS
 Models default to `claude-sonnet-5` (inner) / `claude-opus-4.8` (outer) via OpenRouter; override with
 `OPENRSI_INNER_MODEL` / `OPENRSI_OUTER_MODEL`.
 
+Run knobs: `OPENRSI_GENERATIONS` (default 12), `OPENRSI_VARIANTS` (proposals per generation, default
+3), `OPENRSI_STAGNATION` (early-stop after N no-improvement gens; default off), `OPENRSI_PROBLEMS`,
+`OPENRSI_HELDOUT`.
+
+## Inspecting variants & giving feedback (human-in-the-loop)
+
+Each generation proposes several **diverse variants** (different angles: search strategy, domain
+knowledge, time management, robustness, …), evaluates all of them, and keeps the best. Every variant
+is saved in full so you can review the search:
+
+- `runs/<name>/variants/gen<G>_v<K>.json` — the complete proposed scaffold + its per-problem results.
+- `runs/<name>/VARIANTS.md` — a one-line index of every variant and its fitness.
+- `runs/<name>/leaderboard.md`, `board.jsonl`, `FINDINGS.md` — the running RSI curve.
+
+To **steer** the run, write guidance into `runs/<name>/FEEDBACK.md`. The outer agent re-reads it at
+the start of every generation and treats it as high-priority instruction (e.g. "focus on ahc011,
+its scores are lowest" or "try tabu search instead of SA").
+
 ## Next levers
 
 Explicit AIDE draft/improve/debug tree search · per-genre domain-knowledge routing · a scratch bash

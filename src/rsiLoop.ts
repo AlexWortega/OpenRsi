@@ -12,7 +12,7 @@
  *   OPENRSI_STAGNATION  default 3
  *   OPENRSI_NUM_WORKERS default 12
  */
-import { writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AleEvalServer } from "./ale/evalServer.js";
@@ -21,6 +21,26 @@ import { loadScaffold, type Scaffold } from "./inner/scaffold.js";
 import { solveProblem, type SolveResult } from "./inner/solve.js";
 import { proposeImprovement, type AttemptRecord } from "./outer/improve.js";
 import { assertKey, modelSlug, tierModel } from "./provider.js";
+
+/** Distinct rewrite angles so each generation explores diverse variants. */
+const VARIANT_ANGLES = [
+  "search strategy: stronger simulated annealing / local search, better neighbourhoods, restarts",
+  "domain knowledge: concrete problem-specific AHC heuristics and construction ideas",
+  "time & eval-budget management: use the full time limit and the full submit budget",
+  "output robustness: guarantee always-valid output, avoid WA/RE/TLE that zero a case",
+  "algorithmic reframe: a different high-level approach to the objective",
+  "parameter tuning: temperature schedule, move-type mix, data structures for O(1) delta eval",
+];
+
+/** Human guidance: re-read each generation so the user can steer the run live. */
+function readFeedback(runDir: string): string {
+  const p = join(runDir, "FEEDBACK.md");
+  try {
+    return existsSync(p) ? readFileSync(p, "utf8") : "";
+  } catch {
+    return "";
+  }
+}
 
 const RUN_DIR = process.env.OPENRSI_RUN_DIR || fileURLToPath(new URL("../runs/openrsi", import.meta.url));
 
@@ -63,14 +83,18 @@ async function main() {
   // Distinguish "unset" (use default) from "set empty" (no held-out).
   const heldoutRaw = process.env.OPENRSI_HELDOUT ?? "ahc015";
   const heldout = heldoutRaw.split(",").map((s) => s.trim()).filter(Boolean);
-  const generations = Number(process.env.OPENRSI_GENERATIONS || 6);
-  const stagnationLimit = Number(process.env.OPENRSI_STAGNATION || 3);
+  const generations = Number(process.env.OPENRSI_GENERATIONS || 12);
+  // Default: run ALL generations (no early stop). Set OPENRSI_STAGNATION to enable early stop.
+  const stagnationLimit = Number(process.env.OPENRSI_STAGNATION || 9999);
+  const numVariants = Number(process.env.OPENRSI_VARIANTS || 3);
   const numWorkers = Number(process.env.OPENRSI_NUM_WORKERS || 12);
+  const variantsDir = join(RUN_DIR, "variants");
+  mkdirSync(variantsDir, { recursive: true });
 
   const innerModel = tierModel("inner");
   const outerModel = tierModel("outer");
   console.error(
-    `[rsi] inner=${modelSlug("inner")} outer=${modelSlug("outer")} problems=${problems.join(",")} heldout=${heldout.join(",")} gens=${generations}`,
+    `[rsi] inner=${modelSlug("inner")} outer=${modelSlug("outer")} problems=${problems.join(",")} heldout=${heldout.join(",")} gens=${generations} variants/gen=${numVariants}`,
   );
 
   const board = new Board(RUN_DIR);
@@ -103,61 +127,78 @@ async function main() {
 
     for (let gen = 1; gen <= generations; gen++) {
       t0 = Date.now();
-      const prop = await proposeImprovement({
-        model: outerModel,
-        champion,
-        championResults,
-        championFitness,
-        history,
-      });
-      totalCost += prop.cost;
-      if (!prop.candidate) {
-        console.error(`[rsi] gen${gen}: no candidate proposed; skipping`);
-        stagnation++;
-        if (stagnation >= stagnationLimit) break;
-        continue;
-      }
-      const candidate = prop.candidate;
-      const candResults = await evalScaffold(server, candidate, problems, innerModel, numWorkers);
-      const candFitness = meanPerformance(candResults);
-      const candCost = candResults.reduce((a, r) => a + r.cost, 0) + prop.cost;
-      totalCost += candResults.reduce((a, r) => a + r.cost, 0);
-      const accepted = candFitness > championFitness;
+      const feedback = readFeedback(RUN_DIR);
+      if (feedback.trim()) console.error(`[rsi] gen${gen}: applying human feedback (${feedback.trim().length} chars)`);
 
-      history.push({ gen, rationale: prop.rationale, fitness: candFitness, accepted });
+      // Propose + evaluate several diverse variants this generation; keep the best.
+      type Variant = { candidate: Scaffold; rationale: string; hint: string; results: SolveResult[]; fitness: number };
+      const variants: Variant[] = [];
+      for (let k = 0; k < numVariants; k++) {
+        const hint = VARIANT_ANGLES[(gen - 1 + k) % VARIANT_ANGLES.length];
+        const prop = await proposeImprovement({
+          model: outerModel,
+          champion,
+          championResults,
+          championFitness,
+          history,
+          variantHint: hint,
+          feedback,
+        });
+        totalCost += prop.cost;
+        if (!prop.candidate) {
+          console.error(`[rsi] gen${gen} variant${k}: no candidate proposed`);
+          continue;
+        }
+        const results = await evalScaffold(server, prop.candidate, problems, innerModel, numWorkers);
+        const fitness = meanPerformance(results);
+        totalCost += results.reduce((a, r) => a + r.cost, 0);
+        const v: Variant = { candidate: prop.candidate, rationale: prop.rationale, hint, results, fitness };
+        variants.push(v);
+        // Persist the FULL variant scaffold + result so the user can view every option.
+        writeFileSync(
+          join(variantsDir, `gen${gen}_v${k}.json`),
+          JSON.stringify({ gen, variant: k, hint, fitness, rationale: prop.rationale, perProblem: toPerProblem(results), scaffold: prop.candidate }, null, 2) + "\n",
+        );
+        appendFileSync(
+          join(RUN_DIR, "VARIANTS.md"),
+          `- gen${gen} v${k} [${hint.split(":")[0]}]: fitness=${fitness.toFixed(1)} — ${prop.rationale.slice(0, 120)} (variants/gen${gen}_v${k}.json)\n`,
+        );
+        console.error(`[rsi] gen${gen} v${k} [${hint.split(":")[0]}]: fitness=${fitness.toFixed(1)}`);
+      }
+
+      if (!variants.length) { stagnation++; if (stagnation >= stagnationLimit) break; continue; }
+      const best = variants.reduce((a, b) => (b.fitness > a.fitness ? b : a));
+      const accepted = best.fitness > championFitness;
+      history.push({ gen, rationale: best.rationale, fitness: best.fitness, accepted });
       board.append({
         gen,
-        scaffoldVersion: candidate.version,
-        fitness: candFitness,
+        scaffoldVersion: best.candidate.version,
+        fitness: best.fitness,
         accepted,
         champion: accepted,
-        rationale: prop.rationale,
-        perProblem: toPerProblem(candResults),
-        cost: candCost,
+        rationale: `[best of ${variants.length}] ${best.rationale}`,
+        perProblem: toPerProblem(best.results),
+        cost: variants.reduce((a, v) => a + v.results.reduce((s, r) => s + r.cost, 0), 0),
         seconds: Math.round((Date.now() - t0) / 1000),
       });
 
       if (accepted) {
         const prevFitness = championFitness;
-        champion = candidate;
-        championResults = candResults;
-        championFitness = candFitness;
-        // Persist champion to the run dir; keep agent/inner/scaffold.json as the pristine baseline.
+        champion = best.candidate;
+        championResults = best.results;
+        championFitness = best.fitness;
         writeFileSync(join(RUN_DIR, "champion_scaffold.json"), JSON.stringify(champion, null, 2) + "\n");
         stagnation = 0;
-        console.error(`[rsi] gen${gen}: ACCEPTED new champion fitness=${candFitness.toFixed(1)} (was ${prevFitness.toFixed(1)})`);
+        console.error(`[rsi] gen${gen}: ACCEPTED champion fitness=${best.fitness.toFixed(1)} (was ${prevFitness.toFixed(1)}) via [${best.hint.split(":")[0]}]`);
         const NOTIFY = process.env.HOME + "/.claude/skills/ml-intern/scripts/notify.sh";
         try {
           const { execFileSync } = await import("node:child_process");
-          execFileSync("bash", [NOTIFY, "experiment_kept", `OpenRSI gen${gen} champion fitness=${candFitness.toFixed(0)}`], { stdio: "ignore" });
+          execFileSync("bash", [NOTIFY, "experiment_kept", `OpenRSI gen${gen} champion fitness=${best.fitness.toFixed(0)}`], { stdio: "ignore" });
         } catch { /* notify optional */ }
       } else {
         stagnation++;
-        console.error(`[rsi] gen${gen}: rejected (fitness ${candFitness.toFixed(1)} <= champion ${championFitness.toFixed(1)}) stagnation=${stagnation}`);
-        if (stagnation >= stagnationLimit) {
-          console.error(`[rsi] stagnation limit reached at gen${gen}; stopping.`);
-          break;
-        }
+        console.error(`[rsi] gen${gen}: no variant beat champion ${championFitness.toFixed(1)} (best ${best.fitness.toFixed(1)}); continuing`);
+        if (stagnation >= stagnationLimit) { console.error(`[rsi] stagnation limit; stopping.`); break; }
       }
     }
 

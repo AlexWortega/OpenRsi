@@ -29,6 +29,15 @@ outer agent (Opus 4.8)  ──proposes a scaffold rewrite──▶  candidate sc
 - **The mutable artifact** is `agent/inner/scaffold.json` — system prompt + domain-knowledge tips +
   eval budget. This is what the RSI loop evolves (kept as data → safe to rewrite, schema intact).
 
+### Agent memory (a claude-mem analog for the solver)
+
+Each solver session ends by **reflecting** itself into 1–2 durable, tagged observations ("a greedy
+wall-build baseline scored 1096; SA improved it", "RUNTIME_ERROR from wrong output length — validate
+line count"), stored per-benchmark in `agent/memory/<benchmark>.jsonl`. On the next problem those
+observations are **recalled** (ranked by same-problem match + fitness + recency) and injected into the
+prompt. So knowledge compounds across problems, generations, and runs — orthogonally to the scaffold
+rewrites the outer loop makes. Toggle with `OPENRSI_MEMORY=off`; see `src/memory/memory.ts`.
+
 ### Generational loop (adapted from the autoresearch skill)
 
 Each generation runs a **propose → critique → evaluate → verify → keep** cycle so eval budget is

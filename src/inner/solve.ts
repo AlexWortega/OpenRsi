@@ -10,6 +10,9 @@ import { createAgentSession, defineTool, SessionManager } from "@earendil-works/
 import type { Model } from "@earendil-works/pi-ai";
 import { AleEvalServer, betterScore, type AleEvalResult } from "../ale/evalServer.js";
 import { composeSystemPrompt, type Scaffold } from "./scaffold.js";
+import { recall, reflectAndStore } from "../memory/memory.js";
+
+const MEMORY_ON = (process.env.OPENRSI_MEMORY ?? "on") !== "off";
 
 export interface SolveResult {
   problemId: string;
@@ -125,12 +128,13 @@ export async function solveProblem(opts: {
     `Begin: write a correct baseline, submit it, then improve until the budget is spent.`,
   ].join("\n");
 
+  const memoryBlock = MEMORY_ON ? recall("ale", problemId) : "";
   const { session } = await createAgentSession({
     model,
     thinkingLevel: opts.thinkingLevel ?? "low",
     customTools: [submit],
     noTools: "builtin",
-    systemPrompt: composeSystemPrompt(scaffold),
+    systemPrompt: composeSystemPrompt(scaffold) + memoryBlock,
     sessionManager: SessionManager.inMemory(process.cwd()),
   } as any);
 
@@ -206,6 +210,14 @@ export async function solveProblem(opts: {
   }
 
   await evalServer.closeSession(sessionId);
+
+  // Reflect the session into durable memory (best-effort; recalled on future problems).
+  if (MEMORY_ON && finalCode) {
+    const score = performance ?? (best.code ? best.score : 0);
+    const transcript = `Score type ${scoreType}. Used ${evalsUsed} submissions; best valid=${best.code !== null}. ` +
+      `Final private judge=${privateJudge ?? "n/a"} performance=${performance ?? "n/a"}.\nBest solution (excerpt):\n${finalCode.slice(0, 900)}`;
+    await reflectAndStore({ model, benchmark: "ale", problemId, score: Number(score) || 0, transcript }).catch(() => {});
+  }
 
   return {
     problemId,

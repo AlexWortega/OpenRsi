@@ -9,4 +9,5 @@ __pycache__/
 .venv/
 benches/ale/.ale_cache/
 benches/**/workdir/
+agent/memory/*.jsonl
 .DS_Store

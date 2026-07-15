@@ -11,6 +11,9 @@ import type { Scaffold } from "../inner/scaffold.js";
 import type { SolveResult } from "../inner/solve.js";
 import { composeSystemPrompt } from "../inner/scaffold.js";
 import { KernelEvalServer, type KernelEvalResult } from "./evalClient.js";
+import { recall, reflectAndStore } from "../memory/memory.js";
+
+const MEMORY_ON = (process.env.OPENRSI_MEMORY ?? "on") !== "off";
 
 function fmt(r: KernelEvalResult, used: number, budget: number): string {
   const lines = [
@@ -74,12 +77,13 @@ export async function solveKernel(opts: {
     `Write ModelNew (same forward signature/numerics) with a custom kernel, submit it, then optimize.`,
   ].join("\n");
 
+  const memoryBlock = MEMORY_ON ? recall("kernel", pid) : "";
   const { session } = await createAgentSession({
     model,
     thinkingLevel: "low",
     customTools: [submit],
     noTools: "builtin",
-    systemPrompt: composeSystemPrompt(scaffold),
+    systemPrompt: composeSystemPrompt(scaffold) + memoryBlock,
     sessionManager: SessionManager.inMemory(process.cwd()),
   } as any);
 
@@ -92,6 +96,11 @@ export async function solveKernel(opts: {
     if (timedOut) error = `solve timed out after ${timeoutMs / 1000}s`;
   } catch (e: any) {
     error = e?.message || String(e);
+  }
+
+  if (MEMORY_ON && (best.code || lastCode)) {
+    const transcript = `KernelBench ${pid}. Used ${evalsUsed} submissions; best speedup=${best.speedup.toFixed(3)}x correct=${best.code !== null}.\nBest ModelNew (excerpt):\n${(best.code ?? lastCode).slice(0, 900)}`;
+    await reflectAndStore({ model, benchmark: "kernel", problemId: pid, score: best.speedup, transcript }).catch(() => {});
   }
 
   const stats = session.getSessionStats() as any;

@@ -29,15 +29,23 @@ outer agent (Opus 4.8)  ──proposes a scaffold rewrite──▶  candidate sc
 - **The mutable artifact** is `agent/inner/scaffold.json` — system prompt + domain-knowledge tips +
   eval budget. This is what the RSI loop evolves (kept as data → safe to rewrite, schema intact).
 
-## Validated result (single-generation smoke)
+## Results
 
-| stage | problem | performance | note |
-|-------|---------|-------------|------|
-| gen-0 baseline | ahc008 | **780** | default scaffold, agent used 1/6 evals |
-| gen-1 champion | ahc008 | **1040** (+260) | outer agent diagnosed early-stopping, added SA + delta-eval + 11 concrete AHC tips |
-| held-out | ahc015 | **1380** (rank 314) | never selected on — the champion generalizes |
+**ALE-Bench (multi-problem RSI run, mean private performance over ahc008/ahc011/ahc016):**
 
-Cost: $0.37. Reference bars: ALE-Agent avg 1879, human avg 1260.
+| generation | mean performance | outcome |
+|------------|------------------|---------|
+| gen-0 baseline | **1090** | default scaffold |
+| gen-1 | **1262** (+16%) | ✅ accepted — outer agent diagnosed early-stopping, added SA + delta-eval + concrete AHC domain knowledge |
+| gen-2, gen-3 | 1204, 1123 | rejected (didn't beat champion) — realistic ~90% rejection |
+
+The outer agent rewrote the inner solver's scaffold; the rewrite raised performance on **hidden**
+test cases the inner agent never saw, and the champion generalized to a held-out problem (`ahc015`).
+Reference bars: ALE-Agent (SOTA) avg 1879, human avg 1260.
+
+**KernelBench:** the GPU eval path is validated on an NVIDIA A40 (RunPod) — a candidate `ModelNew`
+is compiled, checked for numerical correctness against the torch reference, and timed for speedup
+(`fast_p`). The same RSI loop retargets to `fast_p`; see `benches/kernel/`.
 
 ## Architecture
 

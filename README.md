@@ -59,11 +59,22 @@ spent only on the most promising, non-duplicate hypotheses:
 
 ## Results
 
-### 🏆 KernelBench-Mega — new record on RTX PRO 6000: 18.45× (beats published SOTA 14.4×)
+We run OpenRSI two ways on two benchmarks:
 
-On the **Kimi-Linear W4A16 whole-block decode megakernel** (`kernelbench.com/mega`, single fused
-kernel launch, correctness cosine ≥ 0.98, geomean decode speedup over context 2048/8192/16384), the
-OpenRSI agent (Opus 4.8) iterated to a **new high on the RTX PRO 6000**:
+- **Main runs** — the strongest model (**Opus 4.8**) driving the loop hard to set the best score we
+  can. These are the headline numbers / records.
+- **Neighbor runs** — the *same* OpenRSI harness (same task, same GPU/CPU, same time budget, fresh
+  from scratch) run with *other models* (GLM-5.2, Kimi-2.7-code, GPT-5.6-sol) purely to compare how
+  different models do inside our loop. No model gets a head start.
+
+Two benchmarks: **KernelBench-Mega** (write a single fused GPU megakernel; scored by decode speedup)
+and **ALE-Bench** (AtCoder Heuristic Contest optimization; scored by AtCoder performance 0–3500).
+
+### 🏆 Main — KernelBench-Mega: new record 18.45× on RTX PRO 6000 (beats published SOTA 14.4×)
+
+Task: **Kimi-Linear W4A16 whole-block decode megakernel** (`kernelbench.com/mega`) — one fused kernel
+launch, correctness cosine ≥ 0.98, geomean decode speedup over context 2048/8192/16384. The Opus 4.8
+agent iterated to a **new high on the RTX PRO 6000**:
 
 | attempt | geomean speedup | PASS | note |
 |---------|-----------------|------|------|
@@ -71,34 +82,37 @@ OpenRSI agent (Opus 4.8) iterated to a **new high on the RTX PRO 6000**:
 | #4 | 14.53× | ✓ | already beats the published SOTA (claude-opus-4-8 = 14.399×) |
 | **#5** | **18.45×** | ✓ | **target (18×) exceeded** |
 
-Published board (native harness) on RTX PRO 6000: opus-4-8 14.40×, glm-5.2 11.14×, gpt-5.5 4.34×.
-Record kernel + full write-up in [`mega_results/`](mega_results/). Runner: `src/mega/run.ts`.
+Record kernel + write-up in [`mega_results/`](mega_results/) (`opus_18.45x_RECORD.py`). Runner:
+`src/mega/run.ts`. (Naming: "kimi" = the Kimi-Linear *architecture / problem*, not the model.)
 
-### KernelBench-Mega — model comparison (same harness, same GPU, fresh 3h each)
+### 🏆 Main — ALE-Bench: 1625.5 (above human average 1260)
 
-| model | geomean | PASS |
-|-------|---------|------|
-| Opus 4.8 | **18.45×** | ✓ |
-| Kimi-2.7-code | _running_ | — |
-| GLM-5.2 | _running_ | — |
+Opus 4.8 with a deep dynamic eval budget reaches mean performance **1625.5** across
+ahc008/011/015/016 (per-problem ahc011=**1878**, ahc015=**1791** already exceed the 1790 goal). Here
+the outer RSI *rewrites* plateaued at the baseline — a well-tuned prompt is hard to beat by rewriting,
+so the deep-budget baseline is the strong result. Reference: ALE-Agent (SOTA) 1879.
 
-### ALE-Bench (AtCoder Heuristic Contests, mean AtCoder performance; higher is better)
+### Neighbor models — same harness, same task, fresh 3h/run (comparison)
 
-The RSI loop reached a strong baseline via deep dynamic-budget solving; scaffold rewrites plateaued
-at the baseline (a strong prompt is hard to beat by rewriting). Reference bars: ALE-Agent (SOTA) 1879,
-human avg 1260.
+Published KernelBench-Mega board (their native harness, RTX PRO 6000) for context:
+opus-4-8 **14.40×**, glm-5.2 11.14×, gpt-5.5 4.34×.
 
-| model | mean performance | note |
-|-------|------------------|------|
-| Opus 4.8 (deep budget) | **1625.5** | above human avg; per-problem ahc011=1878, ahc015=1791 exceed 1790 |
-| gpt-5.6-sol (low effort) | ~1545 baseline | ~3× cheaper; competitive per-problem (ahc015=1968) |
+| bench | model | our result | status |
+|-------|-------|-----------|--------|
+| Mega | Opus 4.8 (main) | **18.45×** ✓ | done — record |
+| Mega | GLM-5.2 | _running_ | writing kernel (prototypes the int4 GEMV in isolation first) |
+| Mega | Kimi-2.7-code | _running_ | writing kernel |
+| ALE | Opus 4.8 (main) | **1625.5** | done |
+| ALE | GPT-5.6-sol (low effort) | ~1545 baseline, **~3× cheaper** | running (per-problem ahc015=1968) |
 
-### Earlier validation (single-generation, standard KernelBench L2 fusion)
+_(Neighbor numbers fill in as their 3h runs finish; the harness benchmarks each solution and records
+the best per model.)_
 
-The identical propose → critique → evaluate → adversarially-verify loop on a Conv2D+ReLU+BiasAdd
-fusion: gen-0 baseline 1.000× → gen-1 champion **1.137×** (agent wrote a fused custom CUDA kernel,
-verify re-eval 1.268×). And on ALE-Bench a smoke run lifted ahc008 780 → 1040 (+260) with held-out
-ahc015 = 1380, confirming the RSI mechanism end-to-end before the large runs above.
+### Earlier validation (small runs that confirmed the RSI mechanism end-to-end)
+
+Standard KernelBench L2 fusion (Conv2D+ReLU+BiasAdd): gen-0 1.000× → gen-1 **1.137×** (agent wrote a
+fused custom CUDA kernel; verify re-eval 1.268×). ALE-Bench smoke: ahc008 780 → **1040** (+260),
+held-out ahc015 = 1380 — the outer agent's scaffold rewrite raised a hidden-case score and generalized.
 
 ## Architecture
 

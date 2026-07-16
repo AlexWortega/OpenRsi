@@ -155,6 +155,10 @@ async function main() {
     const ev = await evalDir(nodeDir);
     const node: MegaNode = { id: nextId++, kind, parentId: parent?.id ?? null, code, passed: ev.passed, geomean: ev.geomean, feedback: ev.checkTail + "\n" + ev.benchTail };
     nodes.push(node);
+    // Persist the best-so-far solution to baseDir after EVERY node, so a hard
+    // wall-clock kill (timeout) still leaves a measurable result.
+    const cur = bestNode();
+    if (cur?.code) writeFileSync(join(baseDir, "solution.py"), cur.code);
     const stats = session.getSessionStats() as any;
     log(`node#${node.id} ${kind}${parent ? "<-#" + parent.id : ""}: PASS=${node.passed} geomean=${node.geomean.toFixed(3)}x cost=$${(stats?.cost ?? 0).toFixed(2)}`);
     writeFileSync(join(runDir, `node${node.id}_${kind}.json`), JSON.stringify({ id: node.id, kind, parentId: node.parentId, passed: node.passed, geomean: node.geomean, feedbackTail: node.feedback.slice(-600) }, null, 2) + "\n");

@@ -24,6 +24,7 @@ async function main() {
   assertKey();
   const problems = (process.env.OPENRSI_PROBLEMS || ALL_LITE.join(",")).split(",").map((s) => s.trim()).filter(Boolean);
   const k = Number(process.env.OPENRSI_BEST_OF || 3);
+  const lite = (process.env.OPENRSI_LITE ?? "true") !== "false"; // OPENRSI_LITE=false -> Full seeds
   const numWorkers = Number(process.env.OPENRSI_NUM_WORKERS || 12);
   const scaffold = loadScaffold();
   const model = tierModel("inner");
@@ -42,7 +43,7 @@ async function main() {
       let bestCode = "";
       let pcost = 0;
       for (let i = 0; i < k; i++) {
-        const r = await solveProblem({ evalServer: server, problemId, scaffold, model, numWorkers, lite: true });
+        const r = await solveProblem({ evalServer: server, problemId, scaffold, model, numWorkers, lite });
         const perf = r.performance ?? 0;
         samples.push(perf);
         pcost += r.cost;

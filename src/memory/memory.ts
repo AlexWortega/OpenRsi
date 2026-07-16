@@ -22,6 +22,7 @@ export interface MemoryItem {
   tags: string[];
   observation: string;
   score: number; // solver fitness at the time (perf / speedup) — weights recall
+  genre?: string; // problem genre — same-genre observations are preferred on recall
 }
 
 const MEMORY_DIR =
@@ -54,13 +55,14 @@ function appendMemory(m: MemoryItem): void {
 }
 
 /** Recall the most relevant observations for a problem; returns a promptable block. */
-export function recall(benchmark: string, problemId: string, k = 6): string {
+export function recall(benchmark: string, problemId: string, k = 6, genre?: string): string {
   const all = loadMemory(benchmark);
   if (!all.length) return "";
   const now = all.reduce((a, m) => Math.max(a, m.ts), 0) || 1;
   const scored = all.map((m) => {
     let s = 0;
     if (m.problemId === problemId) s += 5; // past attempts on THIS problem are gold
+    if (genre && m.genre && m.genre === genre) s += 2; // same-genre insights transfer
     s += Math.min(3, m.score / 500); // higher-fitness sessions weigh more
     s += 2 * (m.ts / now); // recency
     return { m, s };
@@ -78,6 +80,7 @@ export async function reflectAndStore(opts: {
   problemId: string;
   score: number;
   transcript: string; // compact summary: what was tried + the result
+  genre?: string;
 }): Promise<void> {
   const captured: { items: { observation: string; tags: string[] }[] } = { items: [] };
   const remember = defineTool({
@@ -121,6 +124,6 @@ export async function reflectAndStore(opts: {
   }
   const ts = Date.now();
   for (const it of captured.items) {
-    appendMemory({ ts, benchmark: opts.benchmark, problemId: opts.problemId, tags: it.tags || [], observation: it.observation, score: opts.score });
+    appendMemory({ ts, benchmark: opts.benchmark, problemId: opts.problemId, tags: it.tags || [], observation: it.observation, score: opts.score, genre: opts.genre });
   }
 }

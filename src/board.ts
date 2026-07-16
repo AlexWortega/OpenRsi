@@ -8,13 +8,19 @@ import { join } from "node:path";
 export interface GenRecord {
   gen: number;
   scaffoldVersion: number;
-  fitness: number; // mean private performance over the problem set
+  fitness: number; // primary fitness (ALE: mean perf; kernel: fast_p)
   accepted: boolean;
   champion: boolean;
   rationale: string;
   perProblem: { problemId: string; performance: number | null; rank: number | null; valid: boolean; evalsUsed: number }[];
   cost: number;
   seconds: number;
+  /** Optional KernelBench fast_p sweep for this gen's champion results. */
+  fastP?: { p: number; value: number }[];
+  /** Optional grok-build goal-plan verdict for this generation. */
+  goal?: { achieved: boolean; onTrack: boolean; holding: number[]; failing: number[]; steer?: string };
+  /** Metric label for the leaderboard header (default "fitness"). */
+  metricLabel?: string;
 }
 
 export class Board {
@@ -34,15 +40,17 @@ export class Board {
 
   private writeLeaderboard(): void {
     const rows = [...this.records].sort((a, b) => b.fitness - a.fitness);
+    const hasFastP = this.records.some((r) => r.fastP?.length);
+    const label = this.records.find((r) => r.metricLabel)?.metricLabel ?? "fitness";
     const lines = [
-      "# OpenRSI leaderboard (ALE-Bench Lite, mean private performance)",
+      `# OpenRSI leaderboard (${label})`,
       "",
-      "| rank | gen | scaffold.v | fitness | accepted | champion | cost | secs |",
-      "|------|-----|-----------|---------|----------|----------|------|------|",
-      ...rows.map(
-        (r, i) =>
-          `| ${i + 1} | ${r.gen} | ${r.scaffoldVersion} | ${r.fitness.toFixed(1)} | ${r.accepted ? "yes" : "no"} | ${r.champion ? "★" : ""} | $${r.cost.toFixed(2)} | ${r.seconds} |`,
-      ),
+      `| rank | gen | scaffold.v | ${label} |${hasFastP ? " fast_p |" : ""} accepted | champion | cost | secs |`,
+      `|------|-----|-----------|---------|${hasFastP ? "--------|" : ""}----------|----------|------|------|`,
+      ...rows.map((r, i) => {
+        const fp = hasFastP ? ` ${(r.fastP ?? []).map((s) => `${s.p}:${s.value.toFixed(2)}`).join(" ") || "-"} |` : "";
+        return `| ${i + 1} | ${r.gen} | ${r.scaffoldVersion} | ${r.fitness.toFixed(3)} |${fp} ${r.accepted ? "yes" : "no"} | ${r.champion ? "★" : ""} | $${r.cost.toFixed(2)} | ${r.seconds} |`;
+      }),
     ];
     writeFileSync(join(this.dir, "leaderboard.md"), lines.join("\n") + "\n");
   }
@@ -57,18 +65,22 @@ export class Board {
       gen0 ? `Baseline (gen-0) fitness: ${gen0.fitness.toFixed(1)}` : "",
       champ ? `Current champion: gen${champ.gen} scaffold.v${champ.scaffoldVersion} fitness=${champ.fitness.toFixed(1)}` : "",
       gen0 && champ ? `RSI delta: ${(champ.fitness - gen0.fitness >= 0 ? "+" : "")}${(champ.fitness - gen0.fitness).toFixed(1)} over baseline` : "",
+      champ && champ.goal ? `Goal: achieved=${champ.goal.achieved} onTrack=${champ.goal.onTrack} holding=[${champ.goal.holding.join(",")}] failing=[${champ.goal.failing.join(",")}]` : "",
+      champ?.goal?.steer ? `Steer: ${champ.goal.steer.slice(0, 200)}` : "",
       "",
       "## Generation log",
       ...this.records.map(
         (r) =>
-          `- gen${r.gen} v${r.scaffoldVersion}: fitness=${r.fitness.toFixed(1)} ${r.accepted ? "ACCEPTED" : "rejected"}${r.champion ? " ★champion" : ""} — ${r.rationale.slice(0, 140)}`,
+          `- gen${r.gen} v${r.scaffoldVersion}: fitness=${r.fitness.toFixed(3)} ${r.accepted ? "ACCEPTED" : "rejected"}${r.champion ? " ★champion" : ""}${r.goal ? ` [goal ${r.goal.achieved ? "ACHIEVED" : r.goal.onTrack ? "on-track" : "off-track"}]` : ""} — ${r.rationale.slice(0, 140)}`,
       ),
       "",
-      "## Next levers (climb on stagnation)",
-      "- Explicit AIDE tree search (draft/improve/debug nodes) instead of single-agent refinement.",
-      "- Per-problem specialization: route domain knowledge by problem genre.",
-      "- Give the inner agent a scratch bash tool to test locally before submit.",
-      "- Multi-candidate per generation + pick best (widen the outer search).",
+      "## Levers (shipped)",
+      "- Explicit AIDE draft/improve/debug tree search (OPENRSI_SOLVER=aide).",
+      "- Per-genre domain-knowledge routing (scaffold.domain_knowledge_by_genre).",
+      "- Scratch bash shell for the inner agent (OPENRSI_SCRATCH=on).",
+      "- Multi-candidate generations (OPENRSI_INNER_CANDIDATES best-of-N at the draft root).",
+      "- grok-build goal plan + direction checker (goal_plan.json + per-gen verdict above).",
+      "- KernelBench fast_p fitness on the RTX PRO 6000 (OPENRSI_KB_FITNESS=fast_p).",
     ];
     writeFileSync(join(this.dir, "FINDINGS.md"), lines.filter((l) => l !== "").join("\n") + "\n");
   }

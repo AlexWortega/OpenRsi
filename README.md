@@ -97,16 +97,18 @@ so the deep-budget baseline is the strong result. Reference: ALE-Agent (SOTA) 18
 Published KernelBench-Mega board (their native harness, RTX PRO 6000) for context:
 opus-4-8 **14.40×**, glm-5.2 11.14×, gpt-5.5 4.34×.
 
-| bench | model | our result | status |
-|-------|-------|-----------|--------|
-| Mega | Opus 4.8 (main) | **18.45×** ✓ | done — record |
-| Mega | GLM-5.2 | _running_ | writing kernel (prototypes the int4 GEMV in isolation first) |
-| Mega | Kimi-2.7-code | _running_ | writing kernel |
-| ALE | Opus 4.8 (main) | **1625.5** | done |
-| ALE | GPT-5.6-sol (low effort) | ~1545 baseline, **~3× cheaper** | running (per-problem ahc015=1968) |
+| bench | model | our result | outcome |
+|-------|-------|-----------|---------|
+| Mega | Opus 4.8 (main) | **18.45×** ✓ | record — beats SOTA 14.4× |
+| Mega | GLM-5.2 | ✗ FAIL | tried to `import reference` (cheat) — caught by the authenticity check |
+| Mega | Kimi-2.7-code | ✗ FAIL | numerically incorrect kernel (cosine ≈ 0) |
+| ALE | Opus 4.8 (main) | **1625.5** | above human avg 1260 |
+| ALE | GPT-5.6-sol (low effort) | **1544.8**, ~**3× cheaper** | competitive baseline (ahc015=1968); RSI rewrites plateau, same as Opus |
 
-_(Neighbor numbers fill in as their 3h runs finish; the harness benchmarks each solution and records
-the best per model.)_
+**Comparison takeaway.** On the hard mega task only the strong main model (Opus) produced a correct,
+record-setting kernel; the neighbor models either got the numerics wrong (Kimi) or tried to shortcut
+the harness (GLM, caught). On ALE the cheaper GPT-5.6-sol at low effort reaches ~95% of Opus's score
+for ~1/3 the cost — a good quality/price point when a record isn't required.
 
 ### Earlier validation (small runs that confirmed the RSI mechanism end-to-end)
 
@@ -168,7 +170,32 @@ To **steer** the run, write guidance into `runs/<name>/FEEDBACK.md`. The outer a
 the start of every generation and treats it as high-priority instruction (e.g. "focus on ahc011,
 its scores are lowest" or "try tabu search instead of SA").
 
-## Next levers
+## Levers (shipped)
 
-Explicit AIDE draft/improve/debug tree search · per-genre domain-knowledge routing · a scratch bash
-tool for the inner agent · multi-candidate generations · **KernelBench on the V100s** (`fast_p`).
+The "next levers" are now implemented and toggle-able (all default to the previous behavior so the
+headline runs are unchanged unless a flag is set):
+
+- **Explicit AIDE draft/improve/debug tree search** — `OPENRSI_SOLVER=aide` swaps the single-agent
+  "nudge" inner loop for an explicit search tree (`src/inner/aideTree.ts`): best-of-N parallel
+  **drafts** at the root, **debug** on a buggy best node, **improve** on a valid one. `nudge` (the
+  original validated path) stays the default.
+- **Per-genre domain-knowledge routing** — each problem is classified into a genre (`src/genre.ts`);
+  only the matching `domain_knowledge_by_genre` tips are injected, and same-genre memory is preferred
+  on recall. The outer loop can grow per-genre buckets. Disable with `OPENRSI_GENRE=off`.
+- **Scratch bash tool for the inner agent** — `OPENRSI_SCRATCH=on` gives the solver a private temp
+  dir with pi's built-in bash/read/write/edit, so it compiles & tests locally (free) before spending
+  a budgeted `submit`.
+- **Multi-candidate generations** — `OPENRSI_INNER_CANDIDATES` (default 3 in AIDE mode) best-of-N
+  drafts at the root, on top of the existing parallel-hypothesis outer search.
+- **grok-build goal plan + direction checker** — at gen-0 the objective is converted into 3–5 gating
+  criteria (`runs/<name>/goal_plan.json`, adopted from `xai-org/grok-build`'s `goal_planner_prompt`);
+  each generation a checker reports `achieved` / `onTrack` + a **steer** that is fed into the
+  proposer as auto-feedback. `OPENRSI_GOAL_STOP=on` lets the loop stop once all criteria hold.
+- **KernelBench `fast_p`** — the kernel loop selects on `fast_p@1.0` (fraction of problems that are
+  correct **and** ≥ torch), with a p-sweep {0, 0.5, 1, 2} on the board; target hardware is the **RTX
+  PRO 6000** (the 18.45× machine). `OPENRSI_KB_FITNESS=mean` reverts to mean speedup;
+  `OPENRSI_KB_FASTP_P` sets the threshold.
+
+New env knobs: `OPENRSI_SOLVER` (nudge|aide), `OPENRSI_SCRATCH` (off|on), `OPENRSI_INNER_CANDIDATES`,
+`OPENRSI_GENRE` (on|off), `OPENRSI_GOAL_STOP` (off|on), `OPENRSI_KB_FITNESS` (fast_p|mean),
+`OPENRSI_KB_FASTP_P`, `OPENRSI_AIDE_EPSILON`, `OPENRSI_NODE_TIMEOUT_S`.

@@ -18,7 +18,9 @@ import urllib.request
 BASE = "https://rest.runpod.io/v1"
 KEY = os.environ["RUNPOD_API_KEY"]
 IMAGE = os.environ.get("RUNPOD_IMAGE", "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04")
-GPU = os.environ.get("RUNPOD_GPU", "NVIDIA L40S")
+# KernelBench fast_p target = the RTX PRO 6000 (Blackwell) — the same class of card as
+# the 18.45x mega record. Override with RUNPOD_GPU for other hardware.
+GPU = os.environ.get("RUNPOD_GPU", "NVIDIA RTX PRO 6000 Blackwell Workstation Edition")
 
 
 def api(path: str, method="GET", body=None):

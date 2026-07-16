@@ -74,6 +74,9 @@ export async function proposeImprovement(opts: {
     falsification: string;
   } = { scaffold: null, rationale: "", mechanism: "", expectedDelta: "", falsification: "" };
 
+  // Preserve any existing per-genre knowledge unless the proposer overrides a bucket.
+  const genreKeys = Object.keys(champion.domain_knowledge_by_genre ?? {});
+
   const proposeTool = defineTool({
     name: "propose_scaffold",
     label: "propose_scaffold",
@@ -85,16 +88,24 @@ export async function proposeImprovement(opts: {
       falsification: Type.String({ description: "What result would disprove the mechanism." }),
       rationale: Type.String({ description: "One-paragraph summary of the change." }),
       system_prompt: Type.String({ description: "The full new solver system prompt." }),
-      domain_knowledge: Type.Array(Type.String(), { description: "Bullet tips appended to the prompt. Grow/refine these." }),
+      domain_knowledge: Type.Array(Type.String(), { description: "General bullet tips appended for EVERY problem. Grow/refine these." }),
+      domain_knowledge_by_genre: Type.Optional(
+        Type.Record(Type.String(), Type.Array(Type.String()), {
+          description: `Optional per-genre tips (injected only for matching problems). Keys are genres${genreKeys.length ? " (existing: " + genreKeys.join(", ") + ")" : ""}. Omit to leave existing buckets unchanged.`,
+        }),
+      ),
       max_public_evals: Type.Integer({ description: `Public-eval budget per problem (1..${cap}).`, minimum: 1, maximum: cap }),
     }),
     async execute(_id, args) {
+      // Merge: proposer-provided buckets override same-named ones; others are kept.
+      const byGenre = { ...(champion.domain_knowledge_by_genre ?? {}), ...((args as any).domain_knowledge_by_genre ?? {}) };
       captured.scaffold = {
         version: champion.version + 1,
         language: champion.language,
         max_public_evals: args.max_public_evals,
         system_prompt: args.system_prompt,
         domain_knowledge: args.domain_knowledge,
+        ...(Object.keys(byGenre).length ? { domain_knowledge_by_genre: byGenre } : {}),
       };
       captured.rationale = args.rationale;
       captured.mechanism = args.mechanism;

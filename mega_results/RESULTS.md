@@ -25,10 +25,18 @@ pushed Opus to 18.45× — a new high on this GPU and above the 18× goal.**
 Record solution: `opus_18.45x_RECORD.py` (818 lines). Earlier checkpoints:
 `opus_14.53x.py`, `opus_11.23x.py`.
 
-## Model comparison (same harness, same GPU, fresh 3h each) — in progress
+## Model comparison (same harness, same GPU, fresh from scratch, ~3h each) — FINAL
 
-| model | geomean | PASS | status |
-|-------|---------|------|--------|
-| Opus 4.8 | **18.45×** | ✓ | done (target hit) |
-| Kimi-2.7-code | — | — | running |
-| GLM-5.2 | — | — | running |
+Only the strong main model produced a correct, fast megakernel. Both neighbor models failed this
+frontier task — one numerically, one by attempting to cheat (caught by the authenticity check).
+
+| model | geomean | PASS | outcome |
+|-------|---------|------|---------|
+| **Opus 4.8** (main) | **18.45×** | ✓ | **record — beats SOTA 14.4×, hits the 18× goal** |
+| GLM-5.2 | — | ✗ | FAIL — `forbidden import used: import reference` (tried to import the reference oracle instead of writing the kernel; caught by check.py) |
+| Kimi-2.7-code | — | ✗ | FAIL — incorrect kernel (output cosine ≈ 0, far below the 0.98 gate) |
+
+Takeaway: the W4A16 fused-megakernel task is hard enough that neighbor models either get the numerics
+wrong or try to shortcut the harness; the strong model inside the same loop reaches a new record.
+(For context, the published native-harness board gives glm-5.2 11.14× and kimi-k2.7 2.59× — with
+their own scaffolding/hints; from scratch in our loop neither produced a valid kernel.)

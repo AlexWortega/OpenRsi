@@ -22,6 +22,7 @@ import { solveProblem, type SolveResult } from "./inner/solve.js";
 import { type AttemptRecord } from "./outer/improve.js";
 import { critiquePanel, proposeVariants } from "./outer/critique.js";
 import { assertKey, modelSlug, tierModel } from "./provider.js";
+import { checkGoalProgress, formatVerdict, writeGoalPlan, type GoalPlan, type GoalVerdict } from "./goal/plan.js";
 
 /** Human guidance: re-read each generation so the user can steer the run live. */
 function readFeedback(runDir: string): string {
@@ -94,13 +95,35 @@ async function main() {
   const server = new AleEvalServer();
   await server.start();
 
+  const goalStop = (process.env.OPENRSI_GOAL_STOP ?? "off") === "on";
+
   let totalCost = 0;
   try {
+    // ---- goal plan (grok-build): define gating criteria ONCE, from a real statement ----
+    let goalPlan: GoalPlan | null = null;
+    try {
+      const probe = await server.openSession({ problemId: problems[0], lite: true });
+      goalPlan = await writeGoalPlan({
+        model: outerModel,
+        objective: `Maximize mean AtCoder private performance across [${problems.join(", ")}]`,
+        metric: "mean private performance (0..3500)",
+        taskText: probe.problem.statement ?? problems.join(", "),
+      });
+      await server.closeSession(probe.sessionId);
+      writeFileSync(join(RUN_DIR, "goal_plan.json"), JSON.stringify(goalPlan, null, 2) + "\n");
+      console.error(`[rsi] goal plan: ${goalPlan.criteria.length} gating criteria written to goal_plan.json`);
+    } catch (e: any) {
+      console.error(`[rsi] goal plan skipped: ${e?.message || e}`);
+    }
+    const fitnessHistory: number[] = [];
+
     // ---- gen 0: baseline (default scaffold) ----
     let champion = loadScaffold();
     let t0 = Date.now();
     let championResults = await evalScaffold(server, champion, problems, innerModel, numWorkers);
     let championFitness = meanPerformance(championResults);
+    const baselineFitness = championFitness;
+    fitnessHistory.push(championFitness);
     totalCost += championResults.reduce((a, r) => a + r.cost, 0);
     board.append({
       gen: 0,
@@ -120,8 +143,20 @@ async function main() {
 
     for (let gen = 1; gen <= generations; gen++) {
       t0 = Date.now();
-      const feedback = readFeedback(RUN_DIR);
-      if (feedback.trim()) console.error(`[rsi] gen${gen}: applying human feedback (${feedback.trim().length} chars)`);
+      const humanFeedback = readFeedback(RUN_DIR);
+      if (humanFeedback.trim()) console.error(`[rsi] gen${gen}: applying human feedback (${humanFeedback.trim().length} chars)`);
+
+      // 0) GOAL CHECK (grok-build): is the champion achieving the goal / going the right way?
+      let goalVerdict: GoalVerdict | undefined;
+      if (goalPlan) {
+        goalVerdict = await checkGoalProgress({
+          model: outerModel, plan: goalPlan, baselineFitness, championFitness, fitnessHistory,
+          perProblem: championResults.map((r) => ({ problemId: r.problemId, fitness: r.performance, valid: r.bestValid })),
+        });
+        console.error(`[rsi] gen${gen}: goal ${formatVerdict(goalVerdict)} steer="${goalVerdict.steer.slice(0, 80)}"`);
+      }
+      // Steer feeds the parallel-hypothesis proposer as auto-feedback (alongside human feedback).
+      const feedback = [humanFeedback.trim(), goalVerdict ? `Goal-checker steer: ${goalVerdict.steer}` : ""].filter(Boolean).join("\n\n");
 
       // 1) PROPOSE many diverse variants in parallel (LLM only, cheap).
       const proposals = await proposeVariants({
@@ -181,11 +216,14 @@ async function main() {
         perProblem: toPerProblem(best.results),
         cost: evals.reduce((a, e) => a + e.results.reduce((s, r) => s + r.cost, 0), 0),
         seconds: Math.round((Date.now() - t0) / 1000),
+        goal: goalVerdict,
+        metricLabel: "mean private performance",
       });
 
       if (accepted) {
         const prevFitness = championFitness;
         champion = best.candidate; championResults = best.results; championFitness = recordedFitness;
+        fitnessHistory.push(recordedFitness);
         writeFileSync(join(RUN_DIR, "champion_scaffold.json"), JSON.stringify(champion, null, 2) + "\n");
         stagnation = 0;
         console.error(`[rsi] gen${gen}: ACCEPTED champion fitness=${recordedFitness.toFixed(1)} (was ${prevFitness.toFixed(1)})`);
@@ -199,6 +237,8 @@ async function main() {
         console.error(`[rsi] gen${gen}: champion holds ${championFitness.toFixed(1)} (best ${best.fitness.toFixed(1)}); continuing`);
         if (stagnation >= stagnationLimit) { console.error(`[rsi] stagnation limit; stopping.`); break; }
       }
+
+      if (goalStop && goalVerdict?.achieved) { console.error(`[rsi] gen${gen}: goal ACHIEVED — stopping early (OPENRSI_GOAL_STOP=on).`); break; }
     }
 
     // ---- final verification on held-out problems ----

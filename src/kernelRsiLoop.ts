@@ -17,6 +17,8 @@ import { critiquePanel, proposeVariants } from "./outer/critique.js";
 import { assertKey, modelSlug, tierModel } from "./provider.js";
 import { KernelEvalServer } from "./kernel/evalClient.js";
 import { solveKernel } from "./kernel/solve.js";
+import { fastPSweep, formatSweep, kernelFitness } from "./kernel/fastp.js";
+import { checkGoalProgress, formatVerdict, writeGoalPlan, type GoalPlan, type GoalVerdict } from "./goal/plan.js";
 
 const RUN_DIR = process.env.OPENRSI_RUN_DIR || fileURLToPath(new URL("../runs/kernel", import.meta.url));
 const SCAFFOLD = process.env.OPENRSI_KB_SCAFFOLD || fileURLToPath(new URL("../agent/kernel/scaffold.json", import.meta.url));
@@ -40,9 +42,10 @@ function parseProblem(s: string): { level: number; problemId: number } {
   const [l, p] = s.split(":").map((x) => parseInt(x.trim(), 10));
   return { level: l, problemId: p };
 }
-function meanPerf(rs: SolveResult[]): number {
-  return rs.length ? rs.reduce((a, r) => a + (r.performance ?? 0), 0) / rs.length : 0;
-}
+// Fitness = fast_p (fraction correct AND speedup >= p; default p=1.0) unless
+// OPENRSI_KB_FITNESS=mean. See src/kernel/fastp.ts.
+const meanPerf = kernelFitness;
+const meanSpeedup = (rs: SolveResult[]): number => (rs.length ? rs.reduce((a, r) => a + (r.performance ?? 0), 0) / rs.length : 0);
 function toPerProblem(rs: SolveResult[]) {
   return rs.map((r) => ({ problemId: r.problemId, performance: r.performance, rank: r.rank, valid: r.bestValid, evalsUsed: r.evalsUsed }));
 }
@@ -83,26 +86,61 @@ async function main() {
   const server = new KernelEvalServer();
   await server.start();
 
+  const metricLabel = (process.env.OPENRSI_KB_FITNESS ?? "fast_p").toLowerCase() === "mean" ? "mean speedup" : `fast_p@${process.env.OPENRSI_KB_FASTP_P || "1.0"}`;
+  const goalStop = (process.env.OPENRSI_GOAL_STOP ?? "off") === "on";
+
   let totalCost = 0;
   try {
     let champion = loadScaffold(SCAFFOLD);
+
+    // ---- goal plan (grok-build): gating criteria from the first reference kernel ----
+    let goalPlan: GoalPlan | null = null;
+    try {
+      const first = parseProblem(problems[0]);
+      const probe = await server.openSession(first.level, first.problemId);
+      goalPlan = await writeGoalPlan({
+        model: outerModel,
+        objective: `Maximize ${metricLabel} across KernelBench problems [${problems.join(", ")}] (correct kernels only)`,
+        metric: metricLabel,
+        taskText: probe.ref_src,
+      });
+      writeFileSync(join(RUN_DIR, "goal_plan.json"), JSON.stringify(goalPlan, null, 2) + "\n");
+      console.error(`[kb-rsi] goal plan: ${goalPlan.criteria.length} gating criteria`);
+    } catch (e: any) {
+      console.error(`[kb-rsi] goal plan skipped: ${e?.message || e}`);
+    }
+    const fitnessHistory: number[] = [];
+
     let t0 = Date.now();
     let championResults = await evalScaffold(server, champion, problems, innerModel);
     let championFitness = meanPerf(championResults);
+    const baselineFitness = championFitness;
+    fitnessHistory.push(championFitness);
     totalCost += championResults.reduce((a, r) => a + r.cost, 0);
-    board.append({ gen: 0, scaffoldVersion: 0, fitness: championFitness, accepted: true, champion: true, rationale: "baseline CUDA scaffold (no RSI)", perProblem: toPerProblem(championResults), cost: championResults.reduce((a, r) => a + r.cost, 0), seconds: Math.round((Date.now() - t0) / 1000) });
-    console.error(`[kb-rsi] gen0 baseline mean speedup=${championFitness.toFixed(3)}`);
+    board.append({ gen: 0, scaffoldVersion: 0, fitness: championFitness, accepted: true, champion: true, rationale: "baseline CUDA scaffold (no RSI)", perProblem: toPerProblem(championResults), cost: championResults.reduce((a, r) => a + r.cost, 0), seconds: Math.round((Date.now() - t0) / 1000), fastP: fastPSweep(championResults), metricLabel });
+    console.error(`[kb-rsi] gen0 baseline ${metricLabel}=${championFitness.toFixed(3)} (${formatSweep(championResults)}, meanSpeedup=${meanSpeedup(championResults).toFixed(3)}x)`);
 
     const history: AttemptRecord[] = [];
     let stagnation = 0;
 
     for (let gen = 1; gen <= generations; gen++) {
       t0 = Date.now();
-      const feedback = readFeedback(RUN_DIR);
+      const humanFeedback = readFeedback(RUN_DIR);
+
+      let goalVerdict: GoalVerdict | undefined;
+      if (goalPlan) {
+        goalVerdict = await checkGoalProgress({
+          model: outerModel, plan: goalPlan, baselineFitness, championFitness, fitnessHistory,
+          perProblem: championResults.map((r) => ({ problemId: r.problemId, fitness: r.performance, valid: r.bestValid })),
+        });
+        console.error(`[kb-rsi] gen${gen}: goal ${formatVerdict(goalVerdict)} steer="${goalVerdict.steer.slice(0, 80)}"`);
+      }
+      const feedback = [humanFeedback.trim(), goalVerdict ? `Goal-checker steer: ${goalVerdict.steer}` : ""].filter(Boolean).join("\n\n");
+
       const proposals = await proposeVariants({
         model: outerModel, champion, championResults, championFitness, history, feedback,
         count: numProposals, genOffset: gen - 1, angles: KERNEL_ANGLES,
-        outerSystem: KERNEL_OUTER_SYSTEM, metricLabel: "speedup",
+        outerSystem: KERNEL_OUTER_SYSTEM, metricLabel,
       });
       totalCost += proposals.reduce((a, p) => a + p.cost, 0);
       const survivors = await critiquePanel({ model: outerModel, proposals, championFitness, history, critics: numCritics, survivors: numSurvivors });
@@ -126,36 +164,46 @@ async function main() {
 
       let accepted = best.fitness > championFitness;
       let recorded = best.fitness;
+      let recordedResults = best.results;
       if (accepted) {
         const verify = await evalScaffold(server, best.candidate, problems, innerModel);
         totalCost += verify.reduce((a, r) => a + r.cost, 0);
         recorded = (best.fitness + meanPerf(verify)) / 2;
+        recordedResults = meanPerf(verify) >= best.fitness ? best.results : verify;
         accepted = recorded > championFitness;
         console.error(`[kb-rsi] gen${gen}: verify avg=${recorded.toFixed(3)} vs champ ${championFitness.toFixed(3)} -> ${accepted ? "CONFIRMED" : "rejected"}`);
       }
 
       history.push({ gen, rationale: best.rationale, fitness: recorded, accepted });
-      board.append({ gen, scaffoldVersion: best.candidate.version, fitness: recorded, accepted, champion: accepted, rationale: `[survived critique] ${best.rationale}`, perProblem: toPerProblem(best.results), cost: evals.reduce((a, e) => a + e.results.reduce((s, r) => s + r.cost, 0), 0), seconds: Math.round((Date.now() - t0) / 1000) });
+      board.append({ gen, scaffoldVersion: best.candidate.version, fitness: recorded, accepted, champion: accepted, rationale: `[survived critique] ${best.rationale}`, perProblem: toPerProblem(best.results), cost: evals.reduce((a, e) => a + e.results.reduce((s, r) => s + r.cost, 0), 0), seconds: Math.round((Date.now() - t0) / 1000), fastP: fastPSweep(recordedResults), goal: goalVerdict, metricLabel });
 
       if (accepted) {
         const prev = championFitness;
         champion = best.candidate; championResults = best.results; championFitness = recorded;
+        fitnessHistory.push(recorded);
         writeFileSync(join(RUN_DIR, "champion_scaffold.json"), JSON.stringify(champion, null, 2) + "\n");
         stagnation = 0;
-        console.error(`[kb-rsi] gen${gen}: ACCEPTED champion speedup=${recorded.toFixed(3)} (was ${prev.toFixed(3)})`);
+        console.error(`[kb-rsi] gen${gen}: ACCEPTED champion ${metricLabel}=${recorded.toFixed(3)} (was ${prev.toFixed(3)}; ${formatSweep(best.results)})`);
       } else {
         stagnation++;
         console.error(`[kb-rsi] gen${gen}: champion holds ${championFitness.toFixed(3)} (best ${best.fitness.toFixed(3)})`);
         if (stagnation >= stagnationLimit) break;
       }
+
+      if (goalStop && goalVerdict?.achieved) { console.error(`[kb-rsi] gen${gen}: goal ACHIEVED — stopping early (OPENRSI_GOAL_STOP=on).`); break; }
     }
 
     let heldResults: SolveResult[] = [];
     if (heldout.length) heldResults = await evalScaffold(server, champion, heldout, innerModel);
     const lines = [
       "# OpenRSI KernelBench results", "",
-      `Champion scaffold v${champion.version}, mean speedup on [${problems.join(", ")}]: **${championFitness.toFixed(3)}x**`, "",
-      "## Held-out verification", heldResults.map((r) => `- ${r.problemId}: speedup=${(r.performance ?? 0).toFixed(3)}x correct=${r.bestValid}`).join("\n") || "(none)", "",
+      `Champion scaffold v${champion.version} on [${problems.join(", ")}]:`,
+      `- **${metricLabel} = ${championFitness.toFixed(3)}** (fitness the loop selected on)`,
+      `- fast_p sweep: ${formatSweep(championResults)}`,
+      `- mean speedup: ${meanSpeedup(championResults).toFixed(3)}x`, "",
+      "## Held-out verification",
+      heldResults.length ? `fast_p sweep: ${formatSweep(heldResults)}` : "(none)",
+      ...heldResults.map((r) => `- ${r.problemId}: speedup=${(r.performance ?? 0).toFixed(3)}x correct=${r.bestValid}`), "",
       `Total OpenRouter cost: $${totalCost.toFixed(2)}`, "",
       "## Champion domain knowledge", ...champion.domain_knowledge.map((d) => `- ${d}`),
     ];

@@ -59,29 +59,46 @@ spent only on the most promising, non-duplicate hypotheses:
 
 ## Results
 
-**ALE-Bench (multi-problem RSI run, mean private performance over ahc008/ahc011/ahc016):**
+### 🏆 KernelBench-Mega — new record on RTX PRO 6000: 18.45× (beats published SOTA 14.4×)
 
-| generation | mean performance | outcome |
-|------------|------------------|---------|
-| gen-0 baseline | **1090** | default scaffold |
-| gen-1 | **1262** (+16%) | ✅ accepted — outer agent diagnosed early-stopping, added SA + delta-eval + concrete AHC domain knowledge |
-| gen-2, gen-3 | 1204, 1123 | rejected (didn't beat champion) — realistic ~90% rejection |
+On the **Kimi-Linear W4A16 whole-block decode megakernel** (`kernelbench.com/mega`, single fused
+kernel launch, correctness cosine ≥ 0.98, geomean decode speedup over context 2048/8192/16384), the
+OpenRSI agent (Opus 4.8) iterated to a **new high on the RTX PRO 6000**:
 
-The outer agent rewrote the inner solver's scaffold; the rewrite raised performance on **hidden**
-test cases the inner agent never saw, and the champion generalized to a held-out problem (`ahc015`).
-Reference bars: ALE-Agent (SOTA) avg 1879, human avg 1260.
+| attempt | geomean speedup | PASS | note |
+|---------|-----------------|------|------|
+| #1 | 11.23× | ✓ | first correct fused megakernel, from scratch |
+| #4 | 14.53× | ✓ | already beats the published SOTA (claude-opus-4-8 = 14.399×) |
+| **#5** | **18.45×** | ✓ | **target (18×) exceeded** |
 
-**KernelBench (RSI loop on GPU, NVIDIA A40 / RunPod):**
+Published board (native harness) on RTX PRO 6000: opus-4-8 14.40×, glm-5.2 11.14×, gpt-5.5 4.34×.
+Record kernel + full write-up in [`mega_results/`](mega_results/). Runner: `src/mega/run.ts`.
 
-| generation | problem (L2 fusion) | mean speedup | outcome |
-|------------|--------------------|--------------|---------|
-| gen-0 baseline | Conv2D+ReLU+BiasAdd | **1.000×** | correct, torch-equivalent |
-| gen-1 champion | Conv2D+ReLU+BiasAdd | **1.137×** | ✅ confirmed — agent wrote a fused custom CUDA kernel; verify re-eval hit 1.268× |
+### KernelBench-Mega — model comparison (same harness, same GPU, fresh 3h each)
 
-The identical propose → critique → evaluate → adversarially-verify loop retargets to KernelBench's
-`fast_p` (correctness-gated speedup) with only a kernel scaffold + kernel eval swapped in
-(`benches/kernel/`, `src/kernel/`, `src/kernelRsiLoop.ts`). Frontier models one-shot beat torch on
-<20% of tasks; the RSI loop produces correct, faster fused kernels.
+| model | geomean | PASS |
+|-------|---------|------|
+| Opus 4.8 | **18.45×** | ✓ |
+| Kimi-2.7-code | _running_ | — |
+| GLM-5.2 | _running_ | — |
+
+### ALE-Bench (AtCoder Heuristic Contests, mean AtCoder performance; higher is better)
+
+The RSI loop reached a strong baseline via deep dynamic-budget solving; scaffold rewrites plateaued
+at the baseline (a strong prompt is hard to beat by rewriting). Reference bars: ALE-Agent (SOTA) 1879,
+human avg 1260.
+
+| model | mean performance | note |
+|-------|------------------|------|
+| Opus 4.8 (deep budget) | **1625.5** | above human avg; per-problem ahc011=1878, ahc015=1791 exceed 1790 |
+| gpt-5.6-sol (low effort) | ~1545 baseline | ~3× cheaper; competitive per-problem (ahc015=1968) |
+
+### Earlier validation (single-generation, standard KernelBench L2 fusion)
+
+The identical propose → critique → evaluate → adversarially-verify loop on a Conv2D+ReLU+BiasAdd
+fusion: gen-0 baseline 1.000× → gen-1 champion **1.137×** (agent wrote a fused custom CUDA kernel,
+verify re-eval 1.268×). And on ALE-Bench a smoke run lifted ahc008 780 → 1040 (+260) with held-out
+ahc015 = 1380, confirming the RSI mechanism end-to-end before the large runs above.
 
 ## Architecture
 

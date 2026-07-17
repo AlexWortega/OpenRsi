@@ -92,6 +92,16 @@ ahc008/011/015/016 (per-problem ahc011=**1878**, ahc015=**1791** already exceed 
 the outer RSI *rewrites* plateaued at the baseline — a well-tuned prompt is hard to beat by rewriting,
 so the deep-budget baseline is the strong result. Reference: ALE-Agent (SOTA) 1879.
 
+### ALE-Bench **Full** (all 40 problems, Full seeds, Opus)
+
+Running the agent over the *complete* 40-problem benchmark (not just the 10-problem Lite subset)
+gives mean **1432.9** — above the human average (1260) but below both our Lite number (1625) and
+ALE-Agent's SOTA (1879). The agent is strong on most problems (11 scored 2100–3218: ahc006=3218,
+ahc041=2783, ahc012=2614, …) but **~8 problems fail on the harder Full seeds** (7 zeros + ahc020=−70):
+solutions that score well on Lite (e.g. ahc011 Lite=1878) TLE / go invalid on Full, and repeated
+sampling doesn't fix systematic TLE. Closing that gap needs per-problem tuning for the tighter Full
+time limits, not just more samples. Full table + analysis: [`full40_RESULTS.md`](full40_RESULTS.md).
+
 ### Neighbor models — same harness, same task, fresh 3h/run (comparison)
 
 Published KernelBench-Mega board (their native harness, RTX PRO 6000) for context:

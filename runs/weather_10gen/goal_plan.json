@@ -1,0 +1,26 @@
+{
+  "objective": "Maximize persistence skill of a 72h z500/t850 WeatherBench-2 forecast model built under a fixed compute budget",
+  "metric": "persistence skill score (1 - mean(rmse/persistence); >0 beats persistence)",
+  "criteria": [
+    {
+      "id": 1,
+      "outcome": "A complete model.py exists defining train_and_predict(Xtr,Ytr,Xte,meta,time_budget_s,device) that runs end-to-end and returns finite predictions of the correct shape.",
+      "observe": "Read model.py; run/submit it and confirm no errors and predictions pass the finite check."
+    },
+    {
+      "id": 2,
+      "outcome": "The model achieves a positive persistence skill score (>0, i.e. it beats the 72h persistence baseline) on submission.",
+      "observe": "Submit the model and read the reported skill score; confirm it is > 0."
+    },
+    {
+      "id": 3,
+      "outcome": "At least one submit-improve iteration was performed and the best model's skill was reported clearly, keeping the highest-scoring version.",
+      "observe": "Check submission history shows >=2 submits with the best skill retained and stated explicitly."
+    },
+    {
+      "id": 4,
+      "outcome": "Training respects the fixed compute budget without overrunning time_budget_s.",
+      "observe": "Inspect model.py for time.time() deadline checks and confirm submission logs show no time-overrun penalty."
+    }
+  ]
+}

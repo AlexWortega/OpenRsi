@@ -1,0 +1,8 @@
+{
+  "id": 0,
+  "kind": "draft",
+  "parentId": null,
+  "passed": true,
+  "geomean": 2.0022,
+  "feedbackTail": "=1.0000 cache=1.0000 OK\nseed 0 ctx 8192: out=1.0000 S=1.0000 cache=1.0000 OK\nseed 1 ctx 2048: out=0.9999 S=1.0000 cache=1.0000 OK\nseed 1 ctx 8192: out=0.9999 S=1.0000 cache=1.0000 OK\nseed 2 ctx 2048: out=0.9999 S=1.0000 cache=1.0000 OK\nseed 2 ctx 8192: out=1.0000 S=1.0000 cache=1.0000 OK\nPASS\n\nshape ctx=2048: solution 4.769 ms/tok (210 tok/s) | baseline 8.546 ms/tok | speedup 1.79x\nshape ctx=8192: solution 4.322 ms/tok (231 tok/s) | baseline 9.255 ms/tok | speedup 2.14x\nshape ctx=16384: solution 4.868 ms/tok (205 tok/s) | baseline 10.183 ms/tok | speedup 2.09x\npeak_fraction: 2.0022\nRESULT: OK\n"
+}

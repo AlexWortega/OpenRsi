@@ -1,0 +1,26 @@
+{
+  "objective": "Maximize geomean decode speedup of a fused single-launch Kimi-Linear W4A16 megakernel vs baseline.py, correct within cosine 0.98",
+  "metric": "geomean decode speedup (peak_fraction from benchmark.py)",
+  "criteria": [
+    {
+      "id": 1,
+      "outcome": "solution.py exposes a Model class with the same step(hidden, state) -> (hidden, state) interface and identical buffer/parameter names as reference.py, loading the reference weights unchanged.",
+      "observe": "Read solution.py and reference.py; run check.py to confirm it loads reference weights and runs without interface errors."
+    },
+    {
+      "id": 2,
+      "outcome": "Decode output (next-token hidden + updated state) matches reference.py by cosine similarity >= 0.98 across the checked seeds and context lengths.",
+      "observe": "Run check.py and confirm all correctness cases report cosine >= 0.98."
+    },
+    {
+      "id": 3,
+      "outcome": "The timed decode step is a SINGLE GPU kernel launch fusing the entire per-token forward (KDA+MLA layers, all int4 dequant-GEMVs, conv, KDA state update, MLA latent attention, MoE router+experts, RMSNorms, residuals), with a self-written fused int4 dequant-GEMV and no prebuilt quantized/model/attention/MoE kernels imported.",
+      "observe": "Read solution.py to verify one launch and hand-written kernel; check imports for banned libs (bitsandbytes, torchao, marlin, gptq/awq, exllama, transformers, fla, flash_mla, vllm, sglang, reference.py, baseline.py); optionally profile to confirm single launch."
+    },
+    {
+      "id": 4,
+      "outcome": "geomean decode speedup vs baseline.py > 1.0 (faster than baseline), geomean over context lengths 2048, 8192, 16384.",
+      "observe": "Run benchmark.py and read the reported geomean peak_fraction/speedup; confirm > 1.0."
+    }
+  ]
+}

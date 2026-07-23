@@ -78,6 +78,9 @@ async function main() {
   const baselineFitness = championFitness;
   totalCost += championResults.reduce((a, r) => a + r.cost, 0);
   board.append({ gen: 0, scaffoldVersion: 0, fitness: championFitness, accepted: true, champion: true, rationale: "baseline mega scaffold (no RSI)", perProblem: toPerProblem(championResults), cost: championResults.reduce((a, r) => a + r.cost, 0), seconds: Math.round((Date.now() - t0) / 1000), metricLabel: "geomean speedup" });
+  // Persist the gen-0 kernel to the run dir so a PASSing solve's solution.py is NOT lost
+  // when its temp workdir is cleaned (also covers GENERATIONS=0 single-solve runs).
+  if (championResults[0]?.bestCode) writeFileSync(join(RUN_DIR, "solution_v0.py"), championResults[0].bestCode);
   console.error(`[mega-rsi] gen0 baseline geomean=${championFitness.toFixed(3)}x`);
 
   const history: AttemptRecord[] = [];

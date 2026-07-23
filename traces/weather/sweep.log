@@ -1,0 +1,71 @@
+[sweep] inner=anthropic/claude-sonnet-5 seeds=5 trainS=120 gpus=3,2
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu2] baseline_v0 seed1: skill=0.2963 (z500=664.1 t850=2.786)
+[sweep gpu3] baseline_v0 seed0: skill=0.3004 (z500=654.2 t850=2.795)
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu3] baseline_v0 seed3: skill=0.2715 (z500=677.5 t850=2.928)
+[sweep gpu2] baseline_v0 seed2: skill=0.3425 (z500=608.4 t850=2.656)
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu3] baseline_v0 seed4: skill=0.3531 (z500=601.5 t850=2.600)
+[wb-solve] tool submit
+[sweep gpu2] champion seed0: skill=0.3037 (z500=652.8 t850=2.776)
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu2] champion seed2: skill=0.3029 (z500=654.7 t850=2.774)
+[wb-solve] tool submit
+[sweep gpu3] champion seed1: skill=0.3563 (z500=591.6 t850=2.617)
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu3] champion seed4: skill=0.3330 (z500=626.5 t850=2.653)
+[sweep gpu2] champion seed3: skill=0.3315 (z500=626.7 t850=2.665)
+
+# WeatherBench-2 seed sweep — de-noised baseline vs champion
+
+5 seeds/scaffold, fixed 120s compute, inner=anthropic/claude-sonnet-5
+
+## baseline_v0
+- skill: **0.3127 ± 0.0341**  (min 0.2715, max 0.3531, n=5)
+- z500 RMSE: 641.1 ± 34.1   t850 RMSE: 2.753 ± 0.129
+- raw skills: 0.296, 0.300, 0.271, 0.342, 0.353
+
+## champion
+- skill: **0.3255 ± 0.0225**  (min 0.3029, max 0.3563, n=5)
+- z500 RMSE: 630.5 ± 25.6   t850 RMSE: 2.697 ± 0.073
+- raw skills: 0.304, 0.303, 0.356, 0.333, 0.332
+
+## Verdict
+Δ(champion − baseline) skill = **+0.0127**  (pooled sd ≈ 0.0289, ~0.44σ)
+→ delta is within ~1 pooled sd — not clearly above the noise; needs more seeds/compute.
+
+[sweep] DONE

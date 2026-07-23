@@ -11,7 +11,9 @@ import { join } from "node:path";
 
 export interface WeatherEvalResult {
   ok: boolean;
-  skill: number; // persistence skill score: 1 - mean(rmse_ch/pers_ch); >0 beats persistence
+  skill: number; // persistence skill score: 1 - mean(rmse_ch/pers_ch); >0 beats persistence (mean over repeats)
+  skill_std?: number; // std of skill across repeats (#2: repeated validation)
+  repeats?: number;
   rmse_z500: number;
   rmse_t850: number;
   pers_z500: number;

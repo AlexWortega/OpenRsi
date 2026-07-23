@@ -39,9 +39,11 @@ export interface AideNode {
   kind: NodeKind;
   parentId: number | null;
   code: string;
-  valid: boolean;
+  valid: boolean; // AIDE: !is_buggy
   score: number;
-  feedback: string;
+  feedback: string; // AIDE: analysis / exec output
+  plan: string; // short natural-language design (leading comment/docstring proxy)
+  debugDepth: number; // AIDE: consecutive-debug counter; capped by max_debug_depth
 }
 
 export interface AideTreeResult {
@@ -123,33 +125,62 @@ export async function generateSolution(opts: {
   return { code: captured.code, cost };
 }
 
-/** Grow an AIDE search tree. Returns the best (valid, else last) solution found. */
+/** A short plan proxy: leading comment/docstring, else the first code line. */
+function planOf(code: string): string {
+  const lines = code.split("\n").map((l) => l.trim()).filter(Boolean);
+  const lead = lines.find((l) => l.startsWith("#") || l.startsWith("//") || l.startsWith('"""') || l.startsWith("/*"));
+  return (lead ?? lines[0] ?? "").replace(/^[#/*"\s]+/, "").slice(0, 160);
+}
+
+/**
+ * Journal summary (AIDE `generate_summary`): the memory of prior GOOD attempts fed to
+ * every draft/improve/debug so the model builds on the whole tree, not just its parent.
+ */
+function generateSummary(nodes: AideNode[]): string {
+  const good = nodes.filter((n) => n.valid).sort((a, b) => b.score - a.score).slice(0, 6);
+  if (!good.length) return "";
+  const lines = good.map((n) => `- (score ${n.score.toFixed(3)}) ${n.plan || "attempt #" + n.id}${n.feedback ? " — " + n.feedback.replace(/\s+/g, " ").slice(0, 120) : ""}`);
+  return `\n\n## Prior working attempts (memory — build on the best, don't repeat these)\n${lines.join("\n")}`;
+}
+
+/**
+ * Grow an AIDE search tree with the wecoai/aideml policy: draft until `num_drafts`,
+ * then with prob `debug_prob` debug a still-fixable buggy leaf (depth < `max_debug_depth`),
+ * else greedily improve the best good node. Journal memory of prior good nodes is fed
+ * into every generation. Returns the best (valid, else last) solution found.
+ */
 export async function solveAideTree(opts: {
   budget: number;
   draftN: number;
   patience: number;
-  epsilon?: number; // explore probability when the best node is already valid
-  /** Produce code for a node given its kind and (for improve/debug) the parent node. */
-  generate: (kind: NodeKind, parent: AideNode | null) => Promise<{ code: string; cost: number }>;
+  numDrafts?: number; // AIDE search.num_drafts
+  debugProb?: number; // AIDE search.debug_prob
+  maxDebugDepth?: number; // AIDE search.max_debug_depth
+  /** Produce code for a node given its kind, parent, and the journal memory string. */
+  generate: (kind: NodeKind, parent: AideNode | null, memory: string) => Promise<{ code: string; cost: number }>;
   /** Score a node's code (compile/correctness/quality). */
   evalFn: (code: string) => Promise<AideEval>;
   log?: (m: string) => void;
 }): Promise<AideTreeResult> {
   const { budget, patience } = opts;
-  const epsilon = opts.epsilon ?? Number(process.env.OPENRSI_AIDE_EPSILON || 0.3);
+  const numDrafts = opts.numDrafts ?? Number(process.env.OPENRSI_AIDE_NUM_DRAFTS || Math.max(1, opts.draftN));
+  const debugProb = opts.debugProb ?? Number(process.env.OPENRSI_AIDE_DEBUG_PROB || 0.5);
+  const maxDebugDepth = opts.maxDebugDepth ?? Number(process.env.OPENRSI_AIDE_MAX_DEBUG_DEPTH || 3);
   const nodes: AideNode[] = [];
   let evalsUsed = 0;
   let cost = 0;
   let nextId = 0;
 
-  const bestNode = (): AideNode | null => {
-    const valid = nodes.filter((n) => n.valid);
-    if (valid.length) return valid.reduce((a, b) => (b.score > a.score ? b : a));
-    return nodes.length ? nodes.reduce((a, b) => (b.score > a.score ? b : a)) : null;
+  const bestGood = (): AideNode | null => {
+    const good = nodes.filter((n) => n.valid);
+    return good.length ? good.reduce((a, b) => (b.score > a.score ? b : a)) : null;
   };
+  const bestNode = (): AideNode | null => bestGood() ?? (nodes.length ? nodes.reduce((a, b) => (b.score > a.score ? b : a)) : null);
+  const isLeaf = (n: AideNode) => !nodes.some((c) => c.parentId === n.id);
+  const draftCount = () => nodes.filter((n) => n.kind === "draft").length;
 
   const makeNode = async (kind: NodeKind, parent: AideNode | null): Promise<AideNode> => {
-    const g = await opts.generate(kind, parent);
+    const g = await opts.generate(kind, parent, generateSummary(nodes));
     cost += g.cost;
     let ev: AideEval;
     try {
@@ -158,32 +189,33 @@ export async function solveAideTree(opts: {
       ev = { valid: false, score: 0, feedback: `eval error: ${e?.message || e}`, error: String(e?.message || e) };
     }
     evalsUsed++;
-    const node: AideNode = { id: nextId++, kind, parentId: parent?.id ?? null, code: g.code, valid: ev.valid, score: ev.score, feedback: ev.feedback };
+    const debugDepth = kind === "debug" && parent ? parent.debugDepth + 1 : 0;
+    const node: AideNode = { id: nextId++, kind, parentId: parent?.id ?? null, code: g.code, valid: ev.valid, score: ev.score, feedback: ev.feedback, plan: planOf(g.code), debugDepth };
     nodes.push(node);
-    opts.log?.(`node#${node.id} ${kind}${parent ? "<-#" + parent.id : ""}: valid=${node.valid} score=${node.score.toFixed(3)} (${evalsUsed}/${budget})`);
+    opts.log?.(`node#${node.id} ${kind}${parent ? "<-#" + parent.id : ""}${debugDepth ? " d" + debugDepth : ""}: valid=${node.valid} score=${node.score.toFixed(3)} (${evalsUsed}/${budget})`);
     return node;
   };
 
   // ---- draft phase: best-of-N parallel roots ----
-  const draftCount = Math.min(Math.max(1, opts.draftN), budget);
-  await Promise.all(Array.from({ length: draftCount }, () => makeNode("draft", null)));
+  const initialDrafts = Math.min(Math.max(1, opts.draftN), budget);
+  await Promise.all(Array.from({ length: initialDrafts }, () => makeNode("draft", null)));
 
-  // ---- search phase ----
+  // ---- AIDE search policy ----
   let prevBest = bestNode()?.score ?? 0;
   let sinceImprove = 0;
   while (evalsUsed < budget && sinceImprove < patience) {
-    const best = bestNode();
     let kind: NodeKind;
     let parent: AideNode | null;
-    if (!best || !best.valid) {
-      kind = "debug";
-      parent = best;
-    } else if (Math.random() < epsilon) {
-      kind = "draft";
-      parent = null;
+    if (draftCount() < numDrafts) {
+      kind = "draft"; parent = null;
     } else {
-      kind = "improve";
-      parent = best;
+      const debuggable = nodes.filter((n) => !n.valid && isLeaf(n) && n.debugDepth < maxDebugDepth);
+      if (debuggable.length && Math.random() < debugProb) {
+        kind = "debug"; parent = debuggable[Math.floor(Math.random() * debuggable.length)];
+      } else {
+        const good = bestGood();
+        if (good) { kind = "improve"; parent = good; } else { kind = "draft"; parent = null; }
+      }
     }
     await makeNode(kind, parent);
     const curBest = bestNode()?.score ?? 0;
@@ -191,12 +223,5 @@ export async function solveAideTree(opts: {
   }
 
   const best = bestNode();
-  return {
-    bestCode: best?.code ?? "",
-    bestValid: best?.valid ?? false,
-    bestScore: best?.score ?? 0,
-    nodes,
-    evalsUsed,
-    cost,
-  };
+  return { bestCode: best?.code ?? "", bestValid: best?.valid ?? false, bestScore: best?.score ?? 0, nodes, evalsUsed, cost };
 }

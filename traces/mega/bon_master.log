@@ -1,0 +1,10 @@
+[Tue Jul 21 14:36:43 UTC 2026] BoN start: N=4, 3600s each, 2 concurrent on GPU0
+[Tue Jul 21 15:53:34 UTC 2026] batch 1 done
+[Tue Jul 21 16:55:36 UTC 2026] batch 2 done
+=== BoN RESULTS ===
+solve 1: geomean=0.000x PASS=false
+solve 2: geomean=0.000x PASS=true
+solve 3: geomean=0.000x PASS=false
+solve 4: geomean=6.116x PASS=true
+BON_BEST solve=4 geomean=6.116x
+[Tue Jul 21 16:55:36 UTC 2026] BON_ALL_DONE

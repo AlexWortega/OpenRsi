@@ -1,0 +1,109 @@
+[wb-rsi] inner=anthropic/claude-sonnet-5 outer=anthropic/claude-opus-4.8 gens=6 propose=4 survivors=2 trainBudget=120s
+[wb-rsi] goal plan: 5 gating criteria
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v0: skill=0.3130 valid=true evals=4 $0.101 judge=z500=640.9 t850=2.752
+[wb-rsi] gen0 baseline skill=0.3130
+[wb-rsi] gen1: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="All gating criteria hold: model.py defines a working train_and_predict producing"
+[wb-rsi] gen1: proposed 4, 2 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-rsi] eval v1: skill=0.3227 valid=true evals=4 $0.119 judge=z500=629.8 t850=2.722
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v1: skill=0.2846 valid=true evals=4 $0.136 judge=z500=668.1 t850=2.863
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v1: skill=0.3551 valid=true evals=4 $0.131 judge=z500=594.4 t850=2.614
+[wb-rsi] gen1: verify avg=0.3389 vs champ 0.3130 -> CONFIRMED
+[wb-rsi] gen1: ACCEPTED champion skill=0.3389 (was 0.3130)
+[wb-rsi] gen2: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="The champion model on wb2_72h is valid with fitness 0.3227, exceeding the persis"
+[wb-rsi] gen2: proposed 4, 2 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.2771 valid=true evals=4 $0.113 judge=z500=673.0 t850=2.902
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.3197 valid=true evals=4 $0.127 judge=z500=635.9 t850=2.720
+[wb-rsi] gen2: champion holds 0.3389 (best 0.3197)
+[wb-rsi] gen3: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="All gating criteria hold: model.py defines a working train_and_predict that retu"
+[wb-rsi] gen3: proposed 4, 1 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.2935 valid=true evals=4 $0.124 judge=z500=658.8 t850=2.832
+[wb-rsi] gen3: champion holds 0.3389 (best 0.2935)
+[wb-rsi] gen4: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="All criteria hold: model.py defines train_and_predict with correct end-to-end be"
+[wb-rsi] gen4: proposed 4, 1 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.3182 valid=true evals=4 $0.120 judge=z500=636.2 t850=2.731
+[wb-rsi] gen4: champion holds 0.3389 (best 0.3182)
+[wb-rsi] gen5: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="All gating criteria hold: model.py defines a working train_and_predict producing"
+[wb-rsi] gen5: proposed 4, 1 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.3460 valid=true evals=4 $0.140 judge=z500=613.1 t850=2.607
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.2899 valid=true evals=4 $0.141 judge=z500=666.0 t850=2.829
+[wb-rsi] gen5: verify avg=0.3179 vs champ 0.3389 -> rejected
+[wb-rsi] gen5: champion holds 0.3389 (best 0.3460)
+[wb-rsi] gen6: goal achieved=true onTrack=true holding=[1,2,3,4,5] failing=[] steer="Champion model (wb2_72h, fitness=0.3227, valid) satisfies all gating criteria: t"
+[wb-rsi] gen6: proposed 4, 1 survived critique
+[wb-solve] tool submit
+[wb-solve] tool submit
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[improve] WATCHDOG timeout after 240s — aborting
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.3507 valid=true evals=4 $0.146 judge=z500=599.6 t850=2.628
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v2: skill=0.3126 valid=true evals=4 $0.122 judge=z500=640.7 t850=2.756
+[wb-rsi] gen6: verify avg=0.3317 vs champ 0.3389 -> rejected
+[wb-rsi] gen6: champion holds 0.3389 (best 0.3507)
+[wb-rsi] DONE champion skill=0.3389 (baseline 0.3130) cost=$2.84

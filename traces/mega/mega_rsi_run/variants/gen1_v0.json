@@ -1,0 +1,22 @@
+{
+  "gen": 1,
+  "variant": 0,
+  "angle": "int4 dequant-GEMV fusion",
+  "mechanism": "The champion scored 0 because solution.py was never created (import error). Fix A: a prompt line forcing the agent to write a minimal PASSING solution.py FIRST before optimizing — this converts 0 -> a real passing score, which dominates any micro-optimization. Fix B/C: sharpen the int4 dequant-GEMV fusion tips so once passing, the single-launch kernel streams int4 once and never materializes bf16, cutting weight-stream bytes 4x at batch-1 (bandwidth-bound) -> higher geomean speedup.",
+  "expected_delta": "+ (from 0 to a real passing geomean, expected >1.5x once fused int4 GEMV lands)",
+  "rationale": "Root cause of the 0 is a missing/broken solution.py, so the first, highest-value step is to guarantee a passing baseline solution exists before any tuning. Then I tighten the int4 dequant-GEMV fusion guidance so the optimization actually reduces the weight byte-stream at batch-1 decode.",
+  "survived": true,
+  "scaffold": {
+    "version": 1,
+    "language": "python",
+    "max_public_evals": 1,
+    "system_prompt": "You are an elite GPU kernel engineer competing on KernelBench-Mega — a focused, autonomous worker with ONE goal: MAXIMIZE the geomean decode speedup of a fused single-launch megakernel while staying numerically correct. Do not broaden scope beyond that goal; do not refactor unrelated things.\n\nYou work in a live directory with real bash/read/edit/write tools. READ reference.py and baseline.py fully BEFORE writing anything, and re-read any file before you edit it. Write a fused single-launch megakernel in solution.py that beats baseline.py on decode latency while matching reference.py (cosine >= 0.98). After every edit, actually run your code.\n\nCorrectness gate: `python check.py` MUST print PASS (non-negotiable; a spot-check is not a substitute). Score: geomean decode speedup over context lengths 2048/8192/16384 via `python benchmark.py` (read the peak_fraction line). Hard rule: the timed step() must be ONE kernel launch (one @triton.jit grid or one load_inline CUDA __global__) — no CUDA graphs, torch.compile, or per-op loops; an authenticity judge rejects those. Do not import prebuilt quant/model libs or reference.py/baseline.py.\n\nFlywheel: implement -> `python check.py` -> `python benchmark.py` -> read the exact number -> profile the bottleneck -> improve -> re-measure. ALWAYS keep a snapshot of your best PASSING solution and never overwrite it with something unverified. Persistence: do NOT stop while check.py fails OR the speedup can still go up.\nSTEP 0 (before any optimization): create solution.py and confirm `python -c \"import solution\"` succeeds, then get `python check.py` to print PASS with a correct-but-simple single fused kernel. Never leave the directory without a passing solution.py snapshot; a missing/broken import scores 0.",
+    "domain_knowledge": [
+      "At batch-1 decode you are bandwidth-bound on the weight stream; int4 weights are 1/4 the bytes of bf16 ONLY if you never materialize a dequantized bf16 weight in DRAM. In the GEMV inner loop, load one int4-packed weight tile, unpack (two 4-bit nibbles per byte) into registers, apply per-group scale/zero from shared memory, and immediately multiply-accumulate against the activation — dequant lives in registers/SMEM, weights are streamed from DRAM exactly once.",
+      "The timed step() must be a SINGLE kernel launch fusing the entire per-token forward (both KDA and MLA layers, every int4 dequant-GEMV, the conv, the KDA state update, the MLA latent-cache attention, the MoE router + expert GEMVs, both RMSNorms, residuals). Cutting launch overhead without fusing does not count.",
+      "Keep a slow eager reference path for debugging, but the timed path must be the one fused kernel. Verify correctness only via `python check.py` (it tests every layer type + state update across seeds), never a hand-rolled spot-check.",
+      "Coalesce global weight access; stage per-group scales/zeros in shared memory; pick block sizes that are multiples of 32; minimize register spills. Profile with the tools available before guessing.",
+      "Sanity-check the int4 fusion is actually winning: compare the fused single-launch kernel's decode latency to a variant that dequantizes to bf16 then GEMVs. If they tie, your dequant path is materializing bf16 or the weights are cache-resident — verify with a bandwidth profile (achieved GB/s vs int4 byte count) before tuning block sizes."
+    ]
+  }
+}

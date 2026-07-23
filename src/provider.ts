@@ -24,16 +24,27 @@ export function modelSlug(tier: Tier): string {
 
 /** Build a pi `Model` for the given OpenRouter slug (defaults per tier). */
 export function buildModel(slug: string): Model<any> {
-  // getBuiltinModel is statically typed to known ids; our slug is dynamic -> cast.
-  const model = (getBuiltinModel as unknown as (p: string, id: string) => Model<any>)(
-    "openrouter",
-    slug,
-  );
-  if (!model) {
-    throw new Error(
-      `OpenRouter model "${slug}" not found in pi-ai catalog. Check the slug against the catalog.`,
-    );
+  const factory = getBuiltinModel as unknown as (p: string, id: string) => Model<any> | null;
+  let model: Model<any> | null = null;
+  try {
+    model = factory("openrouter", slug);
+  } catch {
+    model = null;
   }
+  if (!model) {
+    // Slug not in pi-ai's static catalog (e.g. a newly-listed OpenRouter model like
+    // poolside/laguna-s-2.1). Build it by cloning a known OpenRouter model and
+    // overriding `id` — the id is the slug sent to OpenRouter, so any live model works.
+    const base = factory("openrouter", "anthropic/claude-sonnet-5");
+    if (!base) throw new Error(`cannot build OpenRouter model "${slug}" (no base model available)`);
+    const reasoning = (process.env.OPENRSI_MODEL_REASONING ?? "off") === "on";
+    model = { ...(base as any), id: slug, name: slug, reasoning } as Model<any>;
+    process.stderr.write(`[provider] built non-catalog OpenRouter model "${slug}" (reasoning=${reasoning})\n`);
+  }
+  // Bound per-turn output (any model) so a slow/verbose model can't burn a whole turn on
+  // one giant dump — capping maxTokens forces it to commit + run tools incrementally.
+  const maxTok = Number(process.env.OPENRSI_MODEL_MAX_TOKENS || 0);
+  if (maxTok > 0) (model as any).maxTokens = maxTok;
   return model;
 }
 

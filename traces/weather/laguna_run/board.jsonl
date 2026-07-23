@@ -1,0 +1,1 @@
+{"gen":0,"scaffoldVersion":0,"fitness":0,"accepted":true,"champion":true,"rationale":"baseline weather scaffold (no RSI)","perProblem":[{"problemId":"wb2_72h","performance":0,"rank":null,"valid":false,"evalsUsed":0}],"cost":0,"seconds":2416,"metricLabel":"persistence skill"}

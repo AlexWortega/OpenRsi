@@ -102,7 +102,7 @@ async function runAide(c: KCommon): Promise<KInner> {
   const evalCache = new Map<string, KernelEvalResult>();
   let evalsUsed = 0;
 
-  const generate = async (kind: string, parent: AideNode | null) => {
+  const generate = async (kind: string, parent: AideNode | null, memory: string) => {
     let user: string;
     if (kind === "draft" || !parent) {
       user = `# KernelBench ${c.pid}\n\n${c.refBlock}\n\nWrite a complete Python file defining ModelNew (same forward signature/numerics as Model) with a custom CUDA/Triton kernel. Correctness is a hard gate; then maximize speedup.`;
@@ -111,7 +111,7 @@ async function runAide(c: KCommon): Promise<KInner> {
     } else {
       user = `# KernelBench ${c.pid}\n\n${c.refBlock}\n\nHere is the current best CORRECT ModelNew (speedup ${parent.score.toFixed(3)}x):\n\n\`\`\`python\n${parent.code}\n\`\`\`\n\nEval feedback:\n${parent.feedback}\n\nProduce a FASTER version (better fusion, coalesced access, shared memory, block/grid tuning) that stays correct.`;
     }
-    return generateSolution({ model: c.model, language: "python", systemPrompt: c.systemPrompt, userPrompt: user, log: c.log });
+    return generateSolution({ model: c.model, language: "python", systemPrompt: c.systemPrompt, userPrompt: user + memory, log: c.log });
   };
 
   const evalFn = async (code: string) => {

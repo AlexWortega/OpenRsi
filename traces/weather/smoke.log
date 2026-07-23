@@ -1,0 +1,9 @@
+[wb-rsi] inner=anthropic/claude-sonnet-5 outer=anthropic/claude-opus-4.8 gens=0 propose=5 survivors=2 trainBudget=45s
+[wb-rsi] goal plan: 4 gating criteria
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-rsi] eval v0: skill=0.2651 valid=true evals=4 $0.110 judge=z500=687.2 t850=2.938
+[wb-rsi] gen0 baseline skill=0.2651
+[wb-rsi] DONE champion skill=0.2651 (baseline 0.2651) cost=$0.11

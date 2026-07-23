@@ -1,0 +1,24 @@
+{
+  "gen": 6,
+  "variant": 2,
+  "angle": "target & normalization",
+  "mechanism": "Normalizing the target by the residual's own per-channel std (not the input std) gives both z500/t850 residual channels unit variance → the weighted-MSE gradient is balanced across variables → neither channel is under-fit → higher averaged cos(lat) skill. Near-zero final-layer init makes the net start AT persistence (pred≈0 residual) → every gradient step only adds skill above baseline, avoiding early-training divergence that wastes budget → faster convergence to >0.32 within the deadline.",
+  "expected_delta": "+0.005 to +0.02 mean skill (0.3227 -> ~0.33-0.34)",
+  "rationale": "Two bounded edits on the target & normalization angle: compute per-channel residual std from (Ytr-Xtr), normalize the target to unit variance for a balanced loss, and invert at inference; plus initialize the final conv near zero so the model departs from persistence smoothly. Both preserve the residual + circular-padding structure and only tighten target conditioning.",
+  "survived": false,
+  "scaffold": {
+    "version": 2,
+    "language": "python",
+    "max_public_evals": 4,
+    "system_prompt": "You are an elite ML researcher building a data-driven weather forecasting model for WeatherBench-2 (ERA5, 64x32 grid) — a focused, autonomous worker with ONE goal: MAXIMIZE the persistence skill score of a 72h z500/t850 forecast under a FIXED per-model compute budget. Do not broaden scope.\n\nProcess:\n1. Write a complete model.py defining train_and_predict(Xtr,Ytr,Xte,meta,time_budget_s,device). Predict the RESIDUAL (Y-X) rather than Y directly — persistence is a strong 72h baseline, so learn the change. Normalize inputs with meta['mean']/['std'].\n2. Use the FULL compute budget: size the model and batch so training fills time_budget_s (check time.time() and stop just before the deadline). A bigger/deeper net that fits the budget usually beats a tiny one.\n3. Longitude is periodic — use circular padding on the lon axis. Latitude is not; the metric weights by cos(lat), so mid-latitude accuracy matters most.\n4. Submit, read the skill + per-variable RMSE, then improve: architecture (conv depth/width, U-Net, residual blocks), optimizer/schedule, loss (area-weighted MSE), data augmentation (lon roll), and budget usage.\n5. Keep your best-scoring model; only submit changes you believe raise skill. Persist until the budget of submits is spent.\n\nRules: only numpy + torch. Respect time_budget_s exactly (overrunning is penalized). Predictions must be finite. Report your best skill clearly.",
+    "domain_knowledge": [
+      "Predict the residual (Y - X) not the absolute field, and normalize the TARGET by its OWN per-channel std: rstd = std(Ytr-Xtr) per channel over train, train on target/rstd (unit variance), then multiply the network output by rstd at inference. Residual std is much smaller than input std, so this both conditions the loss and balances the two channels' gradients.",
+      "Longitude (size 64) is periodic — use padding_mode='circular' on the lon axis; zero-pad or reflect latitude.",
+      "The score is cos(lat)-weighted RMSE averaged over z500 and t850. MATCH the training loss to the metric: compute per-pixel squared error in std-normalized residual space, multiply by cos(lat) weights broadcast over the lat axis (normalize weights to mean 1 so LR stays comparable), and average the two channels equally so neither dominates. Optimizing the exact weighted objective, not plain MSE, directly lifts skill.",
+      "Fill the fixed compute budget: pick model size + batch so training runs until just before time_budget_s; underusing the budget leaves skill on the table.",
+      "Add a small spatial-gradient regularizer to the loss: penalize the L2 difference between adjacent-pixel finite differences (use circular diff on lon, forward diff on lat) of prediction vs target, weighted ~0.05-0.2 of the main term. The 72h residual field is smooth, so this suppresses high-frequency CNN noise and improves weighted RMSE without over-smoothing large-scale structure. Tune the weight; drop it if skill drops.",
+      "Balance channels adaptively: if one variable (e.g., t850) has higher residual RMSE, upweight its loss term slightly (inverse-RMSE weighting from a quick validation split) rather than fixed 50/50. Keep weights bounded (e.g., 0.3-0.7) to avoid destabilizing the better channel.",
+      "Initialize the final output conv near zero (weight *= 1e-2 or nn.init.zeros_ on its weight+bias) so the model starts exactly at persistence (predicted residual ≈ 0) and only learns the tendency on top of a strong baseline. This prevents early large-error steps that waste the compute budget and makes skill monotonically improve from >0."
+    ]
+  }
+}

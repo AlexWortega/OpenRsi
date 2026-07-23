@@ -1,0 +1,73 @@
+[sweep] inner=anthropic/claude-sonnet-5 seeds=3 trainS=120 gpus=3,2 mode=recon-AB
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool submit
+[sweep gpu2] submit_only seed1: skill=0.3166 (z500=640.0 t850=2.727)
+[sweep gpu3] submit_only seed0: skill=0.3129 (z500=640.3 t850=2.755)
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[sweep gpu2] submit_only seed2: skill=0.3432 (z500=607.8 t850=2.653)
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:1986809) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool submit
+(node:1986809) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool edit
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool submit
+[wb-solve] tool submit
+[wb-solve] tool bash
+[sweep gpu2] full_coding_agent seed1: skill=0.2638 (z500=693.5 t850=2.920)
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[sweep gpu3] full_coding_agent seed0: skill=0.3665 (z500=580.7 t850=2.582)
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool edit
+(node:1986809) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+[wb-solve] tool submit
+[sweep gpu2] full_coding_agent seed2: skill=0.2744 (z500=679.8 t850=2.894)
+[sweep] FATAL: TypeError: Cannot read properties of undefined (reading 'skill')
+    at main (file:///mnt/storage/openrsi/repo/dist/weather/seedSweep.js:82:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

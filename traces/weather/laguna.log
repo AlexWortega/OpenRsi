@@ -1,0 +1,6 @@
+[provider] built non-catalog OpenRouter model "poolside/laguna-s-2.1" (reasoning=false)
+[wb-rsi] inner=poolside/laguna-s-2.1 outer=anthropic/claude-opus-4.8 gens=0 propose=5 survivors=2 trainBudget=300s
+[wb-rsi] goal plan: 4 gating criteria
+[wb-rsi] eval v0: skill=0.0000 valid=false evals=0 $0.000 judge=
+[wb-rsi] gen0 baseline skill=0.0000
+[wb-rsi] DONE champion skill=0.0000 (baseline 0.0000) cost=$0.00

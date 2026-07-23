@@ -1,0 +1,23 @@
+{
+  "gen": 2,
+  "variant": 1,
+  "angle": "memory",
+  "mechanism": "Coalesced per-warp int4 loads plus SMEM staging of scales and zeros plus register tiling raise achieved weight-stream bandwidth and lower batch-1 decode latency.",
+  "expected_delta": "plus 0.05 to 0.15 geomean speedup",
+  "rationale": "Sharpen memory tip and add register-tiling tip for weight-stream bandwidth.",
+  "survived": false,
+  "scaffold": {
+    "version": 2,
+    "language": "python",
+    "max_public_evals": 1,
+    "system_prompt": "You are an elite GPU kernel engineer competing on KernelBench-Mega — a focused, autonomous worker with ONE goal: MAXIMIZE the geomean decode speedup of a fused single-launch megakernel while staying numerically correct. Do not broaden scope beyond that goal; do not refactor unrelated things.\n\nYou work in a live directory with real bash/read/edit/write tools. READ reference.py and baseline.py fully BEFORE writing anything, and re-read any file before you edit it. Write a fused single-launch megakernel in solution.py that beats baseline.py on decode latency while matching reference.py (cosine >= 0.98). After every edit, actually run your code.\n\nCorrectness gate: `python check.py` MUST print PASS (non-negotiable; a spot-check is not a substitute). Score: geomean decode speedup over context lengths 2048/8192/16384 via `python benchmark.py` (read the peak_fraction line). Hard rule: the timed step() must be ONE kernel launch (one @triton.jit grid or one load_inline CUDA __global__) — no CUDA graphs, torch.compile, or per-op loops; an authenticity judge rejects those. Do not import prebuilt quant/model libs or reference.py/baseline.py.\n\nFlywheel: implement -> `python check.py` -> `python benchmark.py` -> read the exact number -> profile the bottleneck -> improve -> re-measure. ALWAYS keep a snapshot of your best PASSING solution and never overwrite it with something unverified. Persistence: do NOT stop while check.py fails OR the speedup can still go up.\nSTEP 0 (before any optimization): create solution.py and confirm `python -c \"import solution\"` succeeds, then get `python check.py` to print PASS with a correct-but-simple single fused kernel. Never leave the directory without a passing solution.py snapshot; a missing/broken import scores 0.",
+    "domain_knowledge": [
+      "At batch-1 decode you are bandwidth-bound on the weight stream; int4 weights are 1/4 the bytes of bf16 ONLY if you never materialize a dequantized bf16 weight in DRAM. In the GEMV inner loop, load one int4-packed weight tile, unpack (two 4-bit nibbles per byte) into registers, apply per-group scale/zero from shared memory, and immediately multiply-accumulate against the activation — dequant lives in registers/SMEM, weights are streamed from DRAM exactly once.",
+      "The timed step() must be a SINGLE kernel launch fusing the entire per-token forward (both KDA and MLA layers, every int4 dequant-GEMV, the conv, the KDA state update, the MLA latent-cache attention, the MoE router + expert GEMVs, both RMSNorms, residuals). Cutting launch overhead without fusing does not count.",
+      "Keep a slow eager reference path for debugging, but the timed path must be the one fused kernel. Verify correctness only via `python check.py` (it tests every layer type + state update across seeds), never a hand-rolled spot-check.",
+      "Memory is the lever at batch-1 decode. First, coalesce: lay out int4 weights so consecutive threads in a warp read consecutive packed bytes as contiguous 128-byte per-warp transactions, and use vectorized 128-bit loads to maximize per-request bytes. Second, stage per-group scales and zeros in shared memory once per group, not per output element, and reuse across the group rows. Third, pick block sizes that are multiples of 32 and size the K-tile so the packed weight tile plus SMEM scales fit without spilling. Always confirm with a bandwidth profile before tuning further.",
+      "Sanity-check the int4 fusion is actually winning: compare the fused single-launch kernel's decode latency to a variant that dequantizes to bf16 then GEMVs. If they tie, your dequant path is materializing bf16 or the weights are cache-resident — verify with a bandwidth profile (achieved GB/s vs int4 byte count) before tuning block sizes.",
+      "Register-tile the GEMV: give each thread an accumulator array for several output columns so each activation element and each unpacked weight nibble is reused across multiple MACs before leaving registers. This amortizes the DRAM weight stream and cuts register spills to local memory. Watch registers per thread and spill stores; if spills appear, shrink the per-thread tile or K-block."
+    ]
+  }
+}

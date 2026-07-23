@@ -186,7 +186,7 @@ async function runAide(c: Common): Promise<InnerResult> {
 
   const normalize = (abs: number) => (/min/i.test(c.scoreType) ? -abs : abs);
 
-  const generate = async (kind: string, parent: AideNode | null) => {
+  const generate = async (kind: string, parent: AideNode | null, memory: string) => {
     let user: string;
     if (kind === "draft" || !parent) {
       user = `${c.statement}\n\nWrite a CORRECT baseline that always emits valid output within the time limit, then make it as strong as you can (local search / simulated annealing under a precise wall-clock timer). Output format must be exact.`;
@@ -195,7 +195,7 @@ async function runAide(c: Common): Promise<InnerResult> {
     } else {
       user = `${c.statement}\n\nHere is the current best VALID solution (normalized score ${parent.score.toFixed(2)}):\n\n\`\`\`${c.lang}\n${parent.code}\n\`\`\`\n\nEval feedback:\n${parent.feedback}\n\nProduce a STRONGER version that raises the score (deeper local search, better time usage, better neighbourhoods) while staying valid. Keep what works.`;
     }
-    return generateSolution({ model: c.model, language: c.lang, systemPrompt: c.systemPrompt, userPrompt: user, log: c.log });
+    return generateSolution({ model: c.model, language: c.lang, systemPrompt: c.systemPrompt, userPrompt: user + memory, log: c.log });
   };
 
   const evalFn = async (code: string) => {

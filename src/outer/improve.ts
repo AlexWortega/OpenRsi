@@ -65,6 +65,11 @@ export async function proposeImprovement(opts: {
   const { model, champion, championResults, championFitness, history } = opts;
   const cap = opts.maxEvalCap ?? 10;
   const metricLabel = opts.metricLabel ?? "private performance";
+  // SkillOpt #1: bounded edits (add/delete/replace) with a textual "learning rate"
+  // (max edits per step) instead of a full scaffold rewrite — smaller, incremental
+  // steps clear the keep-if-better gate more often than a high-variance rewrite.
+  const editMode = (process.env.OPENRSI_EDIT_MODE ?? "bounded").toLowerCase();
+  const editLR = Number(process.env.OPENRSI_EDIT_LR || 3);
 
   const captured: {
     scaffold: Scaffold | null;
@@ -118,6 +123,52 @@ export async function proposeImprovement(opts: {
     },
   });
 
+  // SkillOpt-style bounded edit tool: apply <= editLR small ops to the champion scaffold.
+  const editsTool = defineTool({
+    name: "apply_edits",
+    label: "apply_edits",
+    description: `Improve the champion scaffold with AT MOST ${editLR} small, bounded edits (add/delete/replace a domain-knowledge tip, or append one line to the system prompt). A small, targeted step is more likely to survive the keep-if-better gate than a full rewrite. Provide the think-first fields too.`,
+    parameters: Type.Object({
+      mechanism: Type.String({ description: `Causal path A->B->C->metric: WHY these edits raise ${metricLabel}.` }),
+      expected_delta: Type.String({ description: "Numeric estimate + direction." }),
+      falsification: Type.String({ description: "What result would disprove the mechanism." }),
+      rationale: Type.String({ description: "One-paragraph summary of the change." }),
+      edits: Type.Array(
+        Type.Union([
+          Type.Object({ op: Type.Literal("add_tip"), text: Type.String({ description: "New domain-knowledge tip to append." }) }),
+          Type.Object({ op: Type.Literal("delete_tip"), index: Type.Integer({ description: "Index of the tip to remove." }) }),
+          Type.Object({ op: Type.Literal("replace_tip"), index: Type.Integer(), text: Type.String({ description: "Replacement text for the tip at index." }) }),
+          Type.Object({ op: Type.Literal("prompt_append"), text: Type.String({ description: "One line/paragraph to append to the system prompt." }) }),
+        ]),
+        { minItems: 1, maxItems: editLR, description: `1..${editLR} bounded edits (the textual learning rate).` },
+      ),
+    }),
+    async execute(_id, args) {
+      const dk = [...champion.domain_knowledge];
+      for (const e of args.edits as any[]) if (e.op === "replace_tip" && dk[e.index] !== undefined) dk[e.index] = e.text;
+      const dels = (args.edits as any[]).filter((e) => e.op === "delete_tip").map((e) => e.index).sort((a, b) => b - a);
+      for (const i of dels) if (i >= 0 && i < dk.length) dk.splice(i, 1);
+      for (const e of args.edits as any[]) if (e.op === "add_tip") dk.push(e.text);
+      let sysPrompt = champion.system_prompt;
+      for (const e of args.edits as any[]) if (e.op === "prompt_append") sysPrompt += "\n" + e.text;
+      captured.scaffold = {
+        version: champion.version + 1,
+        language: champion.language,
+        max_public_evals: champion.max_public_evals,
+        system_prompt: sysPrompt,
+        domain_knowledge: dk,
+        ...(champion.domain_knowledge_by_genre ? { domain_knowledge_by_genre: champion.domain_knowledge_by_genre } : {}),
+      };
+      captured.rationale = args.rationale;
+      captured.mechanism = args.mechanism;
+      captured.expectedDelta = args.expected_delta;
+      captured.falsification = args.falsification;
+      return { content: [{ type: "text" as const, text: `Applied ${(args.edits as any[]).length} edit(s). Reply DONE.` }], details: undefined };
+    },
+  });
+
+  const tool = editMode === "rewrite" ? proposeTool : editsTool;
+
   const histTxt = history.length
     ? history
         .map((h) => `- gen${h.gen}: fitness=${h.fitness.toFixed(0)} ${h.accepted ? "ACCEPTED" : "rejected"} — ${h.rationale}`)
@@ -154,8 +205,8 @@ system_prompt:
 """
 ${champion.system_prompt}
 """
-domain_knowledge:
-${champion.domain_knowledge.map((d) => `- ${d}`).join("\n")}
+domain_knowledge (indexed — reference these indices for delete/replace):
+${champion.domain_knowledge.map((d, i) => `[${i}] ${d}`).join("\n")}
 
 ## Champion's per-problem results
 ${resultsDigest(championResults)}
@@ -163,12 +214,14 @@ ${resultsDigest(championResults)}
 ## History of attempts
 ${histTxt}
 
-Propose ONE improved scaffold now via the propose_scaffold tool (include ALL fields), then reply DONE.`;
+${editMode === "rewrite"
+  ? `Propose ONE improved scaffold now via the propose_scaffold tool (include ALL fields), then reply DONE.`
+  : `Propose AT MOST ${editLR} small, bounded edits via the apply_edits tool (add/delete/replace an indexed tip, or append one line to the prompt) — a small targeted step, SkillOpt-style, not a rewrite. Then reply DONE.`}`;
 
   const { session } = await createAgentSession({
     model,
     thinkingLevel: "medium",
-    customTools: [proposeTool],
+    customTools: [tool],
     noTools: "builtin",
     systemPrompt: sys,
     sessionManager: SessionManager.inMemory(process.cwd()),

@@ -1,0 +1,6 @@
+- gen1 v0 [int4 dequant-GEMV fusion] critique=6.3 SURVIVED: Root cause of the 0 is a missing/broken solution.py, so the first, highest-value step is to guarante
+- gen1 v1 [single-launch fusion] critique=pruned: The champion never produced solution.py, so the first priority is a correct single-launch megakernel
+- gen1 v2 [memory] critique=pruned: Keep the scaffold's structure but make the memory tip concrete and add an ordering line so the agent
+- gen2 v0 [single-launch fusion] critique=7.0 SURVIVED: A speedup below 1 means the fused kernel is under-parallelized, not just launch-bound. I add guidanc
+- gen2 v1 [memory] critique=pruned: Sharpen memory tip and add register-tiling tip for weight-stream bandwidth.
+- gen2 v2 [launch config] critique=pruned: Sharpen launch-config guidance for the decode step so all SMs stay busy and DRAM bandwidth is satura

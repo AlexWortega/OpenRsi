@@ -1,0 +1,169 @@
+[sweep] inner=anthropic/claude-sonnet-5 seeds=4 trainS=120 gpus=3,2
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool submit
+[sweep gpu2] baseline_v0 seed1: skill=0.2568 (z500=699.7 t850=2.950) ERR=solve timed out after 1440s
+[sweep gpu3] baseline_v0 seed0: skill=0.1699 (z500=774.4 t850=3.326) ERR=solve timed out after 1440s
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool submit
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[sweep gpu3] baseline_v0 seed3: skill=0.2453 (z500=696.2 t850=3.058) ERR=solve timed out after 1440s
+[sweep gpu2] baseline_v0 seed2: skill=0.2525 (z500=702.6 t850=2.972) ERR=solve timed out after 1440s
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool edit
+[wb-solve] tool bash
+[wb-solve] tool edit
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[sweep gpu2] champion seed1: skill=0.0000 () ERR=solve timed out after 1440s
+[wb-solve] tool bash
+[sweep gpu3] champion seed0: skill=0.2491 (z500=705.5 t850=2.987) ERR=solve timed out after 1440s
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+(node:3445233) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+[wb-solve] tool bash
+[wb-solve] tool write
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool edit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool submit
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[wb-solve] tool bash
+[sweep gpu2] champion seed2: skill=0.2342 (z500=714.0 t850=3.070) ERR=solve timed out after 1440s
+[sweep gpu3] champion seed3: skill=0.2291 (z500=719.3 t850=3.088) ERR=solve timed out after 1440s
+
+# WeatherBench-2 seed sweep — de-noised baseline vs champion
+
+4 seeds/scaffold, fixed 120s compute, inner=anthropic/claude-sonnet-5
+
+## baseline_v0
+- skill: **0.2311 ± 0.0411**  (min 0.1699, max 0.2568, n=4)
+- z500 RMSE: 718.2 ± 37.5   t850 RMSE: 3.076 ± 0.173
+- raw skills: 0.257, 0.170, 0.245, 0.252
+
+## champion
+- skill: **0.1781 ± 0.1190**  (min 0.0000, max 0.2491, n=4)
+- z500 RMSE: 712.9 ± 7.0   t850 RMSE: 3.048 ± 0.054
+- raw skills: 0.000, 0.249, 0.234, 0.229
+
+## Verdict
+Δ(champion − baseline) skill = **-0.0530**  (pooled sd ≈ 0.0890, ~-0.60σ)
+→ delta is within ~1 pooled sd — not clearly above the noise; needs more seeds/compute.
+
+[sweep] DONE

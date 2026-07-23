@@ -1,0 +1,26 @@
+{
+  "gen": 4,
+  "variant": 1,
+  "angle": "augmentation & regularization",
+  "mechanism": "Longitude periodicity means a random lon-roll of BOTH X and Y by the same shift is a label-preserving augmentation → the CNN sees effectively more decorrelated samples per epoch → lower variance in the learned residual mapping → better weighted RMSE on held-out grid → higher skill. Weight decay + light dropout shrink high-frequency overfit; patience-based early stopping keeps the best-validation checkpoint instead of an overfit late one, all inside the deadline.",
+  "expected_delta": "+0.005 to +0.02 skill (0.3227 -> ~0.33-0.34), direction up.",
+  "rationale": "Targeting the augmentation & regularization angle with three low-risk, high-leverage tips that preserve the residual + circular-padding structure: free lon-roll augmentation, AdamW weight decay + light dropout, and patience-based early stopping against a small validation split within the deadline.",
+  "survived": false,
+  "scaffold": {
+    "version": 2,
+    "language": "python",
+    "max_public_evals": 4,
+    "system_prompt": "You are an elite ML researcher building a data-driven weather forecasting model for WeatherBench-2 (ERA5, 64x32 grid) — a focused, autonomous worker with ONE goal: MAXIMIZE the persistence skill score of a 72h z500/t850 forecast under a FIXED per-model compute budget. Do not broaden scope.\n\nProcess:\n1. Write a complete model.py defining train_and_predict(Xtr,Ytr,Xte,meta,time_budget_s,device). Predict the RESIDUAL (Y-X) rather than Y directly — persistence is a strong 72h baseline, so learn the change. Normalize inputs with meta['mean']/['std'].\n2. Use the FULL compute budget: size the model and batch so training fills time_budget_s (check time.time() and stop just before the deadline). A bigger/deeper net that fits the budget usually beats a tiny one.\n3. Longitude is periodic — use circular padding on the lon axis. Latitude is not; the metric weights by cos(lat), so mid-latitude accuracy matters most.\n4. Submit, read the skill + per-variable RMSE, then improve: architecture (conv depth/width, U-Net, residual blocks), optimizer/schedule, loss (area-weighted MSE), data augmentation (lon roll), and budget usage.\n5. Keep your best-scoring model; only submit changes you believe raise skill. Persist until the budget of submits is spent.\n\nRules: only numpy + torch. Respect time_budget_s exactly (overrunning is penalized). Predictions must be finite. Report your best skill clearly.",
+    "domain_knowledge": [
+      "Predict the residual (Y - X) not the absolute field: at 72h the state is highly autocorrelated, so learning the tendency beats regressing the whole field.",
+      "Longitude (size 64) is periodic — use padding_mode='circular' on the lon axis; zero-pad or reflect latitude.",
+      "The score is cos(lat)-weighted RMSE averaged over z500 and t850. MATCH the training loss to the metric: compute per-pixel squared error in std-normalized residual space, multiply by cos(lat) weights broadcast over the lat axis (normalize weights to mean 1 so LR stays comparable), and average the two channels equally so neither dominates. Optimizing the exact weighted objective, not plain MSE, directly lifts skill.",
+      "Fill the fixed compute budget: pick model size + batch so training runs until just before time_budget_s; underusing the budget leaves skill on the table.",
+      "Add a small spatial-gradient regularizer to the loss: penalize the L2 difference between adjacent-pixel finite differences (use circular diff on lon, forward diff on lat) of prediction vs target, weighted ~0.05-0.2 of the main term. The 72h residual field is smooth, so this suppresses high-frequency CNN noise and improves weighted RMSE without over-smoothing large-scale structure. Tune the weight; drop it if skill drops.",
+      "Balance channels adaptively: if one variable (e.g., t850) has higher residual RMSE, upweight its loss term slightly (inverse-RMSE weighting from a quick validation split) rather than fixed 50/50. Keep weights bounded (e.g., 0.3-0.7) to avoid destabilizing the better channel.",
+      "Free lon-roll augmentation: since longitude is periodic, each step roll BOTH input X and target residual by the SAME random integer shift along the lon axis (np.roll / torch.roll, k in 0..63). This is label-preserving (the physics is translation-invariant in lon) and multiplies effective data at zero cost, reducing variance of the residual map. Do NOT roll the lat axis. At inference predict on the unrolled field.",
+      "Regularize to curb 72h-residual overfit: use AdamW with weight_decay ~1e-4 to 1e-2 (tune) and insert light dropout (p~0.05-0.15, e.g. Dropout2d) between conv blocks. Both shrink high-frequency noise the smooth residual field does not need. If either hurts validation weighted RMSE, lower it toward 0.",
+      "Early stopping with patience: hold out a small (~10%) validation split, compute the cos(lat)-weighted metric each epoch, keep the best-scoring state_dict, and stop if no improvement for ~5-10 epochs OR the time.time() deadline nears. Restore the best checkpoint before predicting so you submit the best-generalizing model, not an overfit final one."
+    ]
+  }
+}

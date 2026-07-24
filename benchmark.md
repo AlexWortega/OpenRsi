@@ -115,6 +115,29 @@ All strong numbers are **gen-0 baselines**; RSI rewrites got rejected → same p
 5. **Model tool-calling validity matters**: laguna's tools work (smoke ✅) but 73s/trivial-call
    latency + one-giant-turn (128k maxTokens) behavior made it hang until `maxTokens` was capped.
 
+## ⚠ Reproducibility / authenticity audit (2026-07-24)
+
+Applied the autoresearch skill's **verify-before-trust** discipline to the saved mega
+kernels (clean-room re-import + bench `check.py`). Result: **the two headline numbers are
+not backed by a reproducible artifact**, because save-on-PASS persisted only `solution.py`
+and dropped the sidecar the kernel actually lived in:
+
+| model | saved geomean | saved artifact | clean-room re-verify | status |
+|-------|:-------------:|----------------|----------------------|--------|
+| Opus 4.8 | 8.503× (board valid, $53.52, 7.5 h) | `import mega` | `check.py` → `FAIL: No module named 'mega'` | **kernel LOST — number unbacked** |
+| gpt-5.6-sol | 0.765× | `load_inline('kimi_mega_v1', CUDA…)` (embedded) | `FAIL` — stale JIT build-cache collision | **reproducible after JIT-cache isolation** |
+
+Root cause: `solveMega` returned `bestCode = solution.py` only and `rmSync`'d the workdir on
+PASS, deleting sidecar modules. The bench's authenticity judge (`scripts/megakernel_evidence.py`)
+was **never run** by our harness. **None of the section-1 mega numbers were authenticity-verified.**
+
+**Fix shipped this session** (`src/mega/solveMega.ts`, `src/megaRsiLoop.ts`, `src/board.ts`):
+capture the FULL artifact set (`collectArtifacts` — every agent `.py`, incl. sidecars) →
+`SolveResult.artifacts` → written to `runs/*/solution_v0/`; run the authenticity judge as a
+verify gate (`OPENRSI_MEGA_JUDGE=…/scripts/megakernel_evidence.py`) exposing `verified`; board
+gets a `verified` field. **Every future mega number is reproducible + judge-checked.** TODO:
+per-workdir `TORCH_EXTENSIONS_DIR` so `load_inline` cache collisions can't corrupt verification.
+
 ## Known harness gaps (surfaced this session, fixable)
 - No **hard cost cap** (`$X and run`) — laguna mega overshot $20 → **$28.14**.
 - `solveWeather` has **no nudge loop** → a model that doesn't tool-call on turn 1 yields a $0/0-eval

@@ -10,7 +10,7 @@
  *     node --env-file=.env dist/megaRsiLoop.js
  */
 import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Board } from "./board.js";
 import { loadScaffold, type Scaffold } from "./inner/scaffold.js";
@@ -38,6 +38,19 @@ const MEGA_ANGLES = [
   "correctness-first robustness: reach check.py PASS reliably before optimizing; keep the best passing snapshot",
   "profiling discipline: profile the bottleneck (ncu/nsys/torch.profiler) before changing the kernel",
 ];
+
+// Persist the FULL artifact set of a solve (solution.py + every sidecar module) into
+// `outDir/`, preserving relative paths, so a PASSing kernel is reproducible after its
+// temp workdir is cleaned. Falls back to writing bestCode when no artifact map exists.
+function saveArtifacts(outDir: string, r?: SolveResult): void {
+  if (!r) return;
+  const arts = r.artifacts && Object.keys(r.artifacts).length ? r.artifacts : (r.bestCode ? { "solution.py": r.bestCode } : {});
+  for (const [rel, contents] of Object.entries(arts)) {
+    const dest = join(outDir, rel);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, contents);
+  }
+}
 
 function meanPerf(rs: SolveResult[]): number {
   return rs.length ? rs.reduce((a, r) => a + (r.performance ?? 0), 0) / rs.length : 0;
@@ -77,9 +90,13 @@ async function main() {
   let championFitness = meanPerf(championResults);
   const baselineFitness = championFitness;
   totalCost += championResults.reduce((a, r) => a + r.cost, 0);
-  board.append({ gen: 0, scaffoldVersion: 0, fitness: championFitness, accepted: true, champion: true, rationale: "baseline mega scaffold (no RSI)", perProblem: toPerProblem(championResults), cost: championResults.reduce((a, r) => a + r.cost, 0), seconds: Math.round((Date.now() - t0) / 1000), metricLabel: "geomean speedup" });
-  // Persist the gen-0 kernel to the run dir so a PASSing solve's solution.py is NOT lost
-  // when its temp workdir is cleaned (also covers GENERATIONS=0 single-solve runs).
+  board.append({ gen: 0, scaffoldVersion: 0, fitness: championFitness, accepted: true, champion: true, rationale: "baseline mega scaffold (no RSI)", perProblem: toPerProblem(championResults), verified: championResults[0]?.verified ?? null, cost: championResults.reduce((a, r) => a + r.cost, 0), seconds: Math.round((Date.now() - t0) / 1000), metricLabel: "geomean speedup" });
+  // Persist the gen-0 kernel to the run dir so a PASSing solve is NOT lost when its temp
+  // workdir is cleaned (also covers GENERATIONS=0 single-solve runs). Save the FULL
+  // artifact set (solution.py + every sidecar like mega.py) into solution_v0/ so the
+  // kernel is reproducible — saving solution.py alone left an unloadable `import mega`
+  // stub and voided the Opus 8.5x record.
+  saveArtifacts(join(RUN_DIR, "solution_v0"), championResults[0]);
   if (championResults[0]?.bestCode) writeFileSync(join(RUN_DIR, "solution_v0.py"), championResults[0].bestCode);
   console.error(`[mega-rsi] gen0 baseline geomean=${championFitness.toFixed(3)}x`);
 
@@ -125,12 +142,13 @@ async function main() {
     }
 
     history.push({ gen, rationale: best.rationale, fitness: recorded, accepted });
-    board.append({ gen, scaffoldVersion: best.candidate.version, fitness: recorded, accepted, champion: accepted, rationale: `[survived critique] ${best.rationale}`, perProblem: toPerProblem(best.results), cost: evals.reduce((a, e) => a + e.results.reduce((s, r) => s + r.cost, 0), 0), seconds: Math.round((Date.now() - t0) / 1000), metricLabel: "geomean speedup" });
+    board.append({ gen, scaffoldVersion: best.candidate.version, fitness: recorded, accepted, champion: accepted, rationale: `[survived critique] ${best.rationale}`, perProblem: toPerProblem(best.results), verified: best.results[0]?.verified ?? null, cost: evals.reduce((a, e) => a + e.results.reduce((s, r) => s + r.cost, 0), 0), seconds: Math.round((Date.now() - t0) / 1000), metricLabel: "geomean speedup" });
 
     if (accepted) {
       const prev = championFitness;
       champion = best.candidate; championResults = best.results; championFitness = recorded;
       writeFileSync(join(RUN_DIR, "champion_scaffold.json"), JSON.stringify(champion, null, 2) + "\n");
+      saveArtifacts(join(RUN_DIR, "champion_solution"), best.results[0]);
       if (best.results[0]?.bestCode) writeFileSync(join(RUN_DIR, "champion_solution.py"), best.results[0].bestCode);
       stagnation = 0;
       console.error(`[mega-rsi] gen${gen}: ACCEPTED champion geomean=${recorded.toFixed(3)}x (was ${prev.toFixed(3)}x)`);

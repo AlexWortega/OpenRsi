@@ -43,6 +43,14 @@ export interface SolveResult {
   genre?: string;
   solver?: string;
   error?: string;
+  // Full artifact set the inner agent wrote (relpath -> contents), NOT just the
+  // solution.py entry point. Sidecar modules (e.g. a `mega.py` holding the real
+  // fused kernel) live here, so a PASSing kernel is reproducible after the temp
+  // workdir is cleaned. Without this the saved solution.py is an unloadable stub.
+  artifacts?: Record<string, string>;
+  // Authenticity-judge verdict (mega): did the saved kernel survive re-import +
+  // check.py + megakernel_evidence.py. A metric is not trusted unless verified.
+  verified?: boolean;
 }
 
 function fmtFeedback(r: AleEvalResult, used: number, budget: number): string {

@@ -21,6 +21,8 @@ export interface GenRecord {
   goal?: { achieved: boolean; onTrack: boolean; holding: number[]; failing: number[]; steer?: string };
   /** Metric label for the leaderboard header (default "fitness"). */
   metricLabel?: string;
+  /** Authenticity-judge verdict for the champion kernel (mega): true/false/null=unknown. */
+  verified?: boolean | null;
 }
 
 export class Board {

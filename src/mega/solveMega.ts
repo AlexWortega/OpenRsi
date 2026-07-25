@@ -103,8 +103,12 @@ export async function solveMega(opts: {
   rmSync(join(dir, "solution.py"), { force: true });
   rmSync(join(dir, "framework.txt"), { force: true });
 
+  // PLAIN mode: a bare Opus coding agent with NO OpenRSI self-improvement — no evolved
+  // scaffold (domain knowledge / strategy), no accumulated memory, no strategy coaching
+  // in the nudge. Isolates what the SI machinery adds over just letting the agent code.
+  const PLAIN = process.env.OPENRSI_MEGA_PLAIN === "1";
   const prompt = readFileSync(join(baseDir, "PROMPT.txt"), "utf8");
-  const mem = MEMORY_ON ? recall("mega", "02_kimi_linear_decode", 6) : "";
+  const mem = !PLAIN && MEMORY_ON ? recall("mega", "02_kimi_linear_decode", 6) : "";
   const t0 = Date.now();
   const log = (m: string) => process.stderr.write(`[mega-solve ${new Date().toISOString().slice(11, 19)}] ${m}\n`);
 
@@ -112,7 +116,9 @@ export async function solveMega(opts: {
     model,
     thinkingLevel: (process.env.OPENRSI_MEGA_THINK as "low" | "medium" | "high") || "high",
     cwd: dir, // full pi coding agent operates here
-    systemPrompt: composeSystemPrompt(scaffold) + mem,
+    systemPrompt: PLAIN
+      ? "You are an expert GPU kernel engineer and autonomous coding agent. Solve the task in this working directory: make it numerically correct first, then as fast as you can. Iterate on your own — edit code, run the checks, read the output, and keep improving until you are satisfied."
+      : composeSystemPrompt(scaffold) + mem,
     sessionManager: SessionManager.inMemory(dir),
   } as any);
   session.subscribe((e: any) => { if (e.type === "tool_execution_start") log(`tool ${e.toolName ?? e.name ?? "?"}`); });
@@ -130,7 +136,9 @@ export async function solveMega(opts: {
     await session.waitForIdle();
     while (!timedOut && Date.now() < deadline) {
       if (costCap > 0 && curCost() >= costCap) { log(`COST CAP $${costCap} reached ($${curCost().toFixed(2)}) — stopping`); break; }
-      await session.prompt(`Keep going (${mins()} min left). Work in SMALL FAST steps: if you don't yet PASS, make the SIMPLEST change to reach \`python check.py\` PASS and snapshot it (cp solution.py best_solution.py). If you DO pass, make ONE focused optimization, run \`python check.py\` then \`python benchmark.py\`, read peak_fraction, and repeat. Keep this turn SHORT — one small edit + one run, not a big rewrite. Never lose your best passing snapshot.`);
+      await session.prompt(PLAIN
+        ? `Keep going (${mins()} min left). Continue on your own until \`python check.py\` PASSes and the kernel is as fast as you can make it, then stop.`
+        : `Keep going (${mins()} min left). Work in SMALL FAST steps: if you don't yet PASS, make the SIMPLEST change to reach \`python check.py\` PASS and snapshot it (cp solution.py best_solution.py). If you DO pass, make ONE focused optimization, run \`python check.py\` then \`python benchmark.py\`, read peak_fraction, and repeat. Keep this turn SHORT — one small edit + one run, not a big rewrite. Never lose your best passing snapshot.`);
       await session.waitForIdle();
     }
   })();

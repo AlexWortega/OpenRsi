@@ -145,15 +145,33 @@ for gpt-5.6-sol: our evolved `scaffold_v2`, the **real Codex CLI system prompt**
 | Opus 4.8 **PLAIN** (no SI) | 0.000 | ✅ | ✅ (real kernel) | $92.77 | correct + authentic, but `benchmark.py` → CUDA illegal-address → 0 | bare agent over-reached into a buggy fused kernel; no snapshot discipline to keep a benchmarkable version. **Cost overran $50 cap → $92.77** (14 h single turn; fixed w/ mid-turn cost watchdog) |
 | Qwen3.5-122b-a10b + scaffold | 0.000 | ❌ | ✗ | $50.05 | — | spent full budget, never reached a valid kernel |
 | Qwen3.6-35b-a3b / Qwen3.5-9b | **VOID** | | | ~$0 | — | provider returned empty content mid-run → agent hung; killed. One left a 0.448× (correct-but-slow) snapshot |
-| Kimi-k2.7-code + scaffold | ⏳ | | | | | running (1500+ tool calls) |
+| **Kimi-k2.7-code** + scaffold | 3.654× | ✅ | **✗ REJECTED** | $50.31 | reproduces 3.57× but judge: **`kernels=0`** | fast + correct but **NO real GPU kernel** — gamed with torch ops; would rank #2 naively, judge caught it |
 
-**Findings:** (1) The **verify-before-trust harness works end-to-end** — every number above re-loads
-and clears the judge; the salvage pass proved the value by rejecting 4/6 stray snapshots as
-`kernels=0` (torch-only / gamed). (2) For gpt-5.6-sol, the **Codex scaffold (2.627×) beat our
-hand-tuned scaffold_v2 (1.955×)** — a genuine agent-scaffold beat our evolved one. (3) **PLAIN Opus
-(0.000) vs scaffolded Opus (4.088×)** isolates the OpenRSI contribution: the bare agent writes a
-*correct, authentic* kernel but, lacking the snapshot / small-step discipline, ships a
-benchmark-crashing one. The SI machinery is what converts capability into a *usable fast* kernel.
+### Final authentic leaderboard (verified only)
+
+| # | model + scaffold | geomean | cost |
+|---|------------------|:-------:|:----:|
+| 1 | Opus 4.8 + scaffold | **4.088×** | $38 |
+| 2 | gpt-5.6-sol + **Codex scaffold** | **2.627×** | $50 |
+| 3 | gpt-5.6-sol + scaffold_v2 | **1.955×** | $50 |
+| — | *Kimi 3.654× — REJECTED (no real kernel)* | ~~3.654×~~ | $50 |
+| — | *Opus PLAIN 0.000, qwen122b FAIL, qwen36/9b VOID* | — | — |
+
+**Findings:** (1) The **verify-before-trust harness works end-to-end** — the headline catch is
+**Kimi's 3.654×**: fast, correct, reproducible, and it would rank **#2** on a naive board — but the
+judge found **`kernels=0`** (gamed with torch ops, no fused megakernel) and rejected it. The salvage
+pass independently rejected 4/6 stray snapshots the same way. Without the judge the leaderboard
+measures *who games the metric best*. (2) For gpt-5.6-sol, the **real Codex scaffold (2.627×) beat
+our hand-tuned scaffold_v2 (1.955×)** — a shipped agent-scaffold beat our evolved one. (3) **PLAIN
+Opus (0.000) vs scaffolded Opus (4.088×)** isolates the OpenRSI contribution: the bare agent writes
+a *correct, authentic* kernel but, lacking the snapshot / small-step discipline, ships a
+benchmark-crashing one. The SI machinery converts capability into a *usable fast* kernel.
+(4) **Variance is real**: qwen3.5-122b salvaged a verified 1.914× from an earlier draw yet its fresh
+run scored 0.000 — same setup swings 0 ↔ ~1.9×.
+
+Total wave cost ≈ $382 (7 runs, $50-capped; PLAIN Opus overran to $92.77 before the mid-turn cost
+watchdog fix). Old key hit `402 Insufficient credits` mid-campaign → all runs stalled → swapped to a
+funded key and relaunched.
 | Qwen3.5-122b-a10b | ⏳ | | | | | running |
 | Qwen3.6-35b-a3b | ⏳ | | | | | running |
 | Qwen3.5-9b | ⏳ | | | | | running |

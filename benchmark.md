@@ -124,8 +124,40 @@ and dropped the sidecar the kernel actually lived in:
 
 | model | saved geomean | saved artifact | clean-room re-verify | status |
 |-------|:-------------:|----------------|----------------------|--------|
-| Opus 4.8 | 8.503× (board valid, $53.52, 7.5 h) | `import mega` | `check.py` → `FAIL: No module named 'mega'` | **kernel LOST — number unbacked** |
-| gpt-5.6-sol | 0.765× | `load_inline('kimi_mega_v1', CUDA…)` (embedded) | `FAIL` — stale JIT build-cache collision | **reproducible after JIT-cache isolation** |
+| Opus 4.8 *(old)* | 8.503× (board valid, $53.52, 7.5 h) | `import mega` | `check.py` → `FAIL: No module named 'mega'` | **kernel LOST — number unbacked** |
+| gpt-5.6-sol *(old)* | 0.765× | `load_inline('kimi_mega_v1', CUDA…)` (embedded) | `FAIL` — stale JIT build-cache collision | **reproducible after JIT-cache isolation** |
+
+### Verified re-run leaderboard (fixed harness: full artifact capture + authenticity judge)
+
+Re-ran all models on the fixed harness (`collectArtifacts` + `runJudge`, cost-cap $50).
+A number counts only if the saved artifact set **re-loads, re-passes `check.py`, and clears
+the authenticity judge** (≥1 real kernel, no graph/compile/codegen/obfuscation tripwire).
+
+Model = the coding agent; scaffold = the system prompt it runs under. Three regimes tested
+for gpt-5.6-sol: our evolved `scaffold_v2`, the **real Codex CLI system prompt** (from
+`openai/codex`), and PLAIN (bare agent, no OpenRSI SI). Opus tested scaffolded vs PLAIN.
+
+| model + scaffold | geomean | valid | **verified** | cost | reproducible? | notes |
+|------------------|:-------:|:-----:|:------------:|:----:|:-------------:|-------|
+| **Opus 4.8** + scaffold | **4.088×** | ✅ | ✅ | $38.01 | ✅ re-ran `check.py` on saved artifacts → PASS | triton, self-contained; **half the old unbacked 8.5×** — the honest number |
+| **gpt-5.6-sol + Codex scaffold** | **2.627×** | ✅ | ✅ | $50.16 | ✅ re-bench → **2.86×** | triton; the real Codex CLI prompt — **beat our own scaffold_v2** |
+| gpt-5.6-sol + scaffold_v2 | 1.955× | ✅ | ✅ | $50.38 | ✅ (sidecar `candidate_fast.py` captured) | our evolved universal scaffold; **vs old unbacked 0.765×** |
+| Opus 4.8 **PLAIN** (no SI) | 0.000 | ✅ | ✅ (real kernel) | $92.77 | correct + authentic, but `benchmark.py` → CUDA illegal-address → 0 | bare agent over-reached into a buggy fused kernel; no snapshot discipline to keep a benchmarkable version. **Cost overran $50 cap → $92.77** (14 h single turn; fixed w/ mid-turn cost watchdog) |
+| Qwen3.5-122b-a10b + scaffold | 0.000 | ❌ | ✗ | $50.05 | — | spent full budget, never reached a valid kernel |
+| Qwen3.6-35b-a3b / Qwen3.5-9b | **VOID** | | | ~$0 | — | provider returned empty content mid-run → agent hung; killed. One left a 0.448× (correct-but-slow) snapshot |
+| Kimi-k2.7-code + scaffold | ⏳ | | | | | running (1500+ tool calls) |
+
+**Findings:** (1) The **verify-before-trust harness works end-to-end** — every number above re-loads
+and clears the judge; the salvage pass proved the value by rejecting 4/6 stray snapshots as
+`kernels=0` (torch-only / gamed). (2) For gpt-5.6-sol, the **Codex scaffold (2.627×) beat our
+hand-tuned scaffold_v2 (1.955×)** — a genuine agent-scaffold beat our evolved one. (3) **PLAIN Opus
+(0.000) vs scaffolded Opus (4.088×)** isolates the OpenRSI contribution: the bare agent writes a
+*correct, authentic* kernel but, lacking the snapshot / small-step discipline, ships a
+benchmark-crashing one. The SI machinery is what converts capability into a *usable fast* kernel.
+| Qwen3.5-122b-a10b | ⏳ | | | | | running |
+| Qwen3.6-35b-a3b | ⏳ | | | | | running |
+| Qwen3.5-9b | ⏳ | | | | | running |
+| gpt-5.6-sol (v2+keenable) | ⏳ | | | | | running |
 
 Root cause: `solveMega` returned `bestCode = solution.py` only and `rmSync`'d the workdir on
 PASS, deleting sidecar modules. The bench's authenticity judge (`scripts/megakernel_evidence.py`)

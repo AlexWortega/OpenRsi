@@ -130,6 +130,13 @@ export async function solveMega(opts: {
   const hardTimer = new Promise<void>((res) => setTimeout(() => { timedOut = true; log(`WATCHDOG: hard cap ${solveS}s reached — aborting`); session.abort().catch(() => {}); res(); }, solveS * 1000 + 30000));
   const costCap = Number(process.env.OPENRSI_MEGA_COST_CAP || 0); // $ runaway guard (0 = off)
   const curCost = () => ((session.getSessionStats() as any)?.cost ?? 0);
+  // HARD cost cap: poll cost DURING a turn (not only between turns) and abort the moment
+  // the cap is exceeded. The between-turns check alone lets one long turn overshoot ~2x
+  // (a 14h PLAIN-mode turn blew a $50 cap to $92.77). 30s poll ⇒ overshoot bounded to
+  // one model step, not one full turn.
+  const costPoller = costCap > 0 ? setInterval(() => {
+    if (curCost() >= costCap) { timedOut = true; log(`COST WATCHDOG: $${costCap} exceeded ($${curCost().toFixed(2)}) mid-turn — aborting`); session.abort().catch(() => {}); }
+  }, 30000) : null;
   const runLoop = (async () => {
     const mins = () => Math.max(0, Math.round((deadline - Date.now()) / 60000));
     await session.prompt(prompt + `\n\nBegin: read reference.py and baseline.py first, then implement solution.py, run \`python check.py\`, run \`python benchmark.py\`, and iterate. You have ~${mins()} min.`);
@@ -146,6 +153,8 @@ export async function solveMega(opts: {
     await Promise.race([runLoop, hardTimer]);
   } catch (e: any) {
     log(`error: ${e?.message || e}`);
+  } finally {
+    if (costPoller) clearInterval(costPoller);
   }
 
   // Prefer the agent's best PASSING snapshot if it kept one. At a hard-cap abort the

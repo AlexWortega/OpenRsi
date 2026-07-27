@@ -121,7 +121,8 @@ export async function solveMega(opts: {
       : composeSystemPrompt(scaffold) + mem,
     sessionManager: SessionManager.inMemory(dir),
   } as any);
-  session.subscribe((e: any) => { if (e.type === "tool_execution_start") log(`tool ${e.toolName ?? e.name ?? "?"}`); });
+  let lastActivity = Date.now();
+  session.subscribe((e: any) => { lastActivity = Date.now(); if (e.type === "tool_execution_start") log(`tool ${e.toolName ?? e.name ?? "?"}`); });
 
   // HARD wall-clock cap: abort the session at the deadline regardless of how long a
   // single agent turn runs (the between-turns deadline check alone lets one long turn
@@ -137,6 +138,13 @@ export async function solveMega(opts: {
   const costPoller = costCap > 0 ? setInterval(() => {
     if (curCost() >= costCap) { timedOut = true; log(`COST WATCHDOG: $${costCap} exceeded ($${curCost().toFixed(2)}) mid-turn — aborting`); session.abort().catch(() => {}); }
   }, 30000) : null;
+  // STALL watchdog: OpenRouter streams occasionally hang open and the SDK never times
+  // them out — the run then sleeps for hours with no activity (3 such silent hangs this
+  // campaign). Abort if no session event fires for STALL_MIN minutes (default 25).
+  const stallMs = Number(process.env.OPENRSI_MEGA_STALL_MIN || 25) * 60000;
+  const stallPoller = setInterval(() => {
+    if (Date.now() - lastActivity > stallMs) { timedOut = true; log(`STALL WATCHDOG: no activity ${Math.round(stallMs / 60000)}min — aborting hung stream`); session.abort().catch(() => {}); }
+  }, 60000);
   const runLoop = (async () => {
     const mins = () => Math.max(0, Math.round((deadline - Date.now()) / 60000));
     await session.prompt(prompt + `\n\nBegin: read reference.py and baseline.py first, then implement solution.py, run \`python check.py\`, run \`python benchmark.py\`, and iterate. You have ~${mins()} min.`);
@@ -155,6 +163,7 @@ export async function solveMega(opts: {
     log(`error: ${e?.message || e}`);
   } finally {
     if (costPoller) clearInterval(costPoller);
+    clearInterval(stallPoller);
   }
 
   // Prefer the agent's best PASSING snapshot if it kept one. At a hard-cap abort the

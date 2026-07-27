@@ -102,6 +102,14 @@ export async function solveMega(opts: {
   cpSync(baseDir, dir, { recursive: true, filter: (s) => !s.includes("__pycache__") });
   rmSync(join(dir, "solution.py"), { force: true });
   rmSync(join(dir, "framework.txt"), { force: true });
+  // SEED: start from a prior solution (+ its sidecars) instead of a blank slate, so the
+  // agent CONTINUES/FIXES an existing kernel rather than re-solving from scratch. Used to
+  // let a bare agent fix a correct-but-benchmark-crashing kernel (its own earlier output).
+  const seedDir = process.env.OPENRSI_MEGA_SEED || "";
+  if (seedDir && existsSync(seedDir)) {
+    for (const f of readdirSync(seedDir)) if (f.endsWith(".py")) cpSync(join(seedDir, f), join(dir, f));
+    process.stderr.write(`[mega-solve] seeded workdir from ${seedDir}: ${readdirSync(seedDir).filter((f) => f.endsWith(".py")).join(", ")}\n`);
+  }
 
   // PLAIN mode: a bare Opus coding agent with NO OpenRSI self-improvement — no evolved
   // scaffold (domain knowledge / strategy), no accumulated memory, no strategy coaching
@@ -147,7 +155,10 @@ export async function solveMega(opts: {
   }, 60000);
   const runLoop = (async () => {
     const mins = () => Math.max(0, Math.round((deadline - Date.now()) / 60000));
-    await session.prompt(prompt + `\n\nBegin: read reference.py and baseline.py first, then implement solution.py, run \`python check.py\`, run \`python benchmark.py\`, and iterate. You have ~${mins()} min.`);
+    const begin = seedDir && existsSync(seedDir)
+      ? `\n\nBegin: a solution.py (and its helper modules) ALREADY EXISTS in this directory from a prior attempt. Run \`python check.py\` and \`python benchmark.py\` FIRST to see its current state, diagnose any failure (e.g. a crash under benchmark), FIX it so both pass, then optimize. Do NOT rewrite from scratch. You have ~${mins()} min.`
+      : `\n\nBegin: read reference.py and baseline.py first, then implement solution.py, run \`python check.py\`, run \`python benchmark.py\`, and iterate. You have ~${mins()} min.`;
+    await session.prompt(prompt + begin);
     await session.waitForIdle();
     while (!timedOut && Date.now() < deadline) {
       if (costCap > 0 && curCost() >= costCap) { log(`COST CAP $${costCap} reached ($${curCost().toFixed(2)}) — stopping`); break; }

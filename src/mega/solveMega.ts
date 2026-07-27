@@ -75,19 +75,24 @@ async function evalDir(dir: string): Promise<{ passed: boolean; geomean: number;
 // A kernel is authentic iff it has >=1 real kernel and trips NO hidden-launch wire
 // and no forbidden import. Returns undefined when no judge is configured (unknown,
 // NOT asserted true). Also writes the evidence bundle to the dir for the record.
-async function runJudge(dir: string): Promise<boolean | undefined> {
-  if (!JUDGE || !existsSync(JUDGE)) return undefined;
+async function runJudge(dir: string): Promise<{ ok: boolean | undefined; reason: string }> {
+  if (!JUDGE || !existsSync(JUDGE)) return { ok: undefined, reason: "judge not configured" };
   const r = await sh(PY, [JUDGE, "."], dir, EVAL_TIMEOUT_MS);
   const jsonStart = r.out.indexOf("{");
-  if (jsonStart < 0) return undefined; // couldn't get evidence -> unknown
+  if (jsonStart < 0) return { ok: undefined, reason: "no evidence emitted" };
   try {
     const ev = JSON.parse(r.out.slice(jsonStart));
     const tw = ev.tripwires || {};
     const kernels = ev.kernel_count?.total ?? 0;
-    const forbidden = (ev.forbidden_import_hits || []).length > 0;
-    const hiddenLaunch = !!(tw.graph || tw.compile || tw.codegen || tw.obfuscation);
-    return kernels >= 1 && !hiddenLaunch && !forbidden;
-  } catch { return undefined; }
+    const forbidden = (ev.forbidden_import_hits || []) as string[];
+    const wires = Object.entries(tw).filter(([k, v]) => k !== "detail" && v).map(([k]) => k);
+    const ok = kernels >= 1 && wires.length === 0 && forbidden.length === 0;
+    const reason = ok ? `authentic (${kernels} real kernels)`
+      : kernels < 1 ? "NO real GPU kernel (kernels=0) — pure torch ops, not a fused kernel"
+      : wires.length ? `hidden-launch tripwire: ${wires.join(",")} (torch.compile / CUDAGraph / codegen)`
+      : `forbidden import: ${forbidden.join(",")}`;
+    return { ok, reason };
+  } catch { return { ok: undefined, reason: "evidence parse error" }; }
 }
 
 export async function solveMega(opts: {
@@ -158,14 +163,28 @@ export async function solveMega(opts: {
     const begin = seedDir && existsSync(seedDir)
       ? `\n\nBegin: a solution.py (and its helper modules) ALREADY EXISTS in this directory from a prior attempt. Run \`python check.py\` and \`python benchmark.py\` FIRST to see its current state, diagnose any failure (e.g. a crash under benchmark), FIX it so both pass, then optimize. Do NOT rewrite from scratch. You have ~${mins()} min.`
       : `\n\nBegin: read reference.py and baseline.py first, then implement solution.py, run \`python check.py\`, run \`python benchmark.py\`, and iterate. You have ~${mins()} min.`;
-    await session.prompt(prompt + begin);
+    // Authenticity is part of the objective, stated up front: a gamed kernel scores 0.
+    const authRule = ` IMPORTANT: the speedup ONLY counts if the kernel is a GENUINE fused GPU kernel — an authenticity judge scores it ZERO if it uses torch.compile, CUDAGraph, hidden per-op launches, or a pure-torch fallback (no real kernel). benchmark.py alone does NOT tell you this; a fast torch trick still scores 0.`;
+    await session.prompt(prompt + begin + authRule);
     await session.waitForIdle();
+    let authWarn = "";
     while (!timedOut && Date.now() < deadline) {
       if (costCap > 0 && curCost() >= costCap) { log(`COST CAP $${costCap} reached ($${curCost().toFixed(2)}) — stopping`); break; }
-      await session.prompt(PLAIN
+      await session.prompt((PLAIN
         ? `Keep going (${mins()} min left). Continue on your own until \`python check.py\` PASSes and the kernel is as fast as you can make it, then stop.`
-        : `Keep going (${mins()} min left). Work in SMALL FAST steps: if you don't yet PASS, make the SIMPLEST change to reach \`python check.py\` PASS and snapshot it (cp solution.py best_solution.py). If you DO pass, make ONE focused optimization, run \`python check.py\` then \`python benchmark.py\`, read peak_fraction, and repeat. Keep this turn SHORT — one small edit + one run, not a big rewrite. Never lose your best passing snapshot.`);
+        : `Keep going (${mins()} min left). Work in SMALL FAST steps: if you don't yet PASS, make the SIMPLEST change to reach \`python check.py\` PASS and snapshot it (cp solution.py best_solution.py). If you DO pass, make ONE focused optimization, run \`python check.py\` then \`python benchmark.py\`, read peak_fraction, and repeat. Keep this turn SHORT — one small edit + one run, not a big rewrite. Never lose your best passing snapshot.`) + authWarn);
       await session.waitForIdle();
+      // In-loop anti-gaming gate: the judge is STATIC (reads source, no GPU) so it is
+      // cheap to run every turn. If the current solution.py is a gamed/torch-only kernel,
+      // escalate a warning into the next nudge — the agent otherwise sees a fast
+      // benchmark.py and wrongly believes it won.
+      if (JUDGE && existsSync(join(dir, "solution.py"))) {
+        const v = await runJudge(dir);
+        authWarn = v.ok === false
+          ? `\n\n⚠ AUTHENTICITY — YOUR CURRENT solution.py SCORES 0: the judge REJECTED it — ${v.reason}. A fast benchmark.py means nothing if the kernel is not genuine. Replace it with a REAL fused GPU kernel (Triton @triton.jit or raw CUDA), no torch.compile / CUDAGraph / hidden launches.`
+          : "";
+        if (v.ok === false) log(`in-loop judge: solution.py REJECTED — ${v.reason}`);
+      }
     }
   })();
   try {
@@ -195,10 +214,17 @@ export async function solveMega(opts: {
   const sidecars = Object.keys(artifacts).filter((f) => f !== "solution.py");
   if (ev.passed && sidecars.length) log(`captured ${sidecars.length} sidecar artifact(s): ${sidecars.join(", ")}`);
   // Verify-before-trust: run the authenticity judge on the passing kernel.
-  const verified = ev.passed ? await runJudge(dir) : false;
-  if (verified === false && ev.passed && JUDGE) log(`AUTHENTICITY JUDGE REJECTED — geomean ${ev.geomean.toFixed(3)}x NOT trusted`);
+  const judged = ev.passed ? await runJudge(dir) : { ok: false as boolean | undefined, reason: "FAIL" };
+  const verified = judged.ok;         // true | false | undefined(no judge)
+  const gamed = verified === false;   // judge ran and REJECTED -> gaming
+  // ANTI-GAMING SCORE GATE: a gamed kernel games benchmark.py but is not a real fused
+  // kernel — it is worth ZERO, exactly like a correctness fail. This is what stops the
+  // leaderboard/RSI/BoN from ever selecting a CUDAGraph/torch trick (the old 18x class).
+  const scored = ev.passed && !gamed;
+  const perf = scored ? ev.geomean : 0;
+  if (gamed) log(`AUTHENTICITY JUDGE REJECTED — ${judged.reason} — geomean ${ev.geomean.toFixed(3)}x SCORED 0`);
   const stats = session.getSessionStats() as any;
-  log(`v${scaffold.version}: PASS=${ev.passed} verified=${verified} geomean=${ev.geomean.toFixed(3)}x ${Math.round((Date.now() - t0) / 60000)}min $${(stats?.cost ?? 0).toFixed(2)}`);
+  log(`v${scaffold.version}: PASS=${ev.passed} verified=${verified} scored=${perf.toFixed(3)}x (raw ${ev.geomean.toFixed(3)}x) ${Math.round((Date.now() - t0) / 60000)}min $${(stats?.cost ?? 0).toFixed(2)}`);
 
   if (MEMORY_ON && code) {
     await reflectAndStore({ model, benchmark: "mega", problemId: "02_kimi_linear_decode", score: ev.geomean, transcript: `Scaffold v${scaffold.version}: PASS=${ev.passed} geomean=${ev.geomean.toFixed(3)}x.\nsolution.py (excerpt):\n${code.slice(0, 900)}` }).catch(() => {});
@@ -213,17 +239,17 @@ export async function solveMega(opts: {
     problemId: "mega_kimi",
     scoreType: "speedup",
     evalsUsed: 1,
-    bestPublicScore: ev.passed ? ev.geomean : null,
-    bestValid: ev.passed,
-    performance: ev.passed ? ev.geomean : 0,
+    bestPublicScore: scored ? ev.geomean : null,
+    bestValid: scored,
+    performance: perf,
     rank: null,
-    privateScore: ev.passed ? ev.geomean : null,
-    privateJudge: ev.passed ? `geomean=${ev.geomean.toFixed(3)}x${verified === undefined ? "" : verified ? " (authentic)" : " (JUDGE REJECTED)"}` : "FAIL",
+    privateScore: scored ? ev.geomean : null,
+    privateJudge: ev.passed ? `geomean=${ev.geomean.toFixed(3)}x${verified === undefined ? "" : verified ? " (authentic)" : ` (REJECTED: ${judged.reason} → scored 0)`}` : "FAIL",
     bestCode: code,
     artifacts,
     verified: verified === true,
     cost: stats?.cost ?? 0,
     solver: "mega",
-    error: ev.passed ? undefined : ev.tail.slice(-200),
+    error: !ev.passed ? ev.tail.slice(-200) : gamed ? `authenticity judge REJECTED (scored 0): ${judged.reason}` : undefined,
   };
 }

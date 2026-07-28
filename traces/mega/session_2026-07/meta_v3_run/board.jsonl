@@ -1,0 +1,1 @@
+{"gen":0,"scaffoldVersion":0,"fitness":11.7867,"accepted":true,"champion":true,"rationale":"baseline mega scaffold (no RSI)","perProblem":[{"problemId":"mega_kimi","performance":11.7867,"rank":null,"valid":true,"evalsUsed":1}],"verified":true,"cost":35.11511599999997,"seconds":20100,"metricLabel":"geomean speedup"}

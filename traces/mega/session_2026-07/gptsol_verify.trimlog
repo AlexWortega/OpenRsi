@@ -1,0 +1,81 @@
+[mega-rsi] model=openai/gpt-5.6-sol gens=0 propose=4 survivors=2 editMode=bounded solveS=172800
+[mega-solve 22:25:40] tool read
+[mega-solve 22:25:40] tool read
+[mega-solve 22:25:40] tool bash
+[mega-solve 22:25:43] tool read
+[mega-solve 22:25:43] tool read
+[mega-solve 22:25:43] tool read
+[mega-solve 22:25:43] tool bash
+[mega-solve 22:26:17] tool bash
+[mega-solve 22:27:49] tool read
+[mega-solve 22:30:52] tool write
+[mega-solve 22:30:53] tool bash
+[mega-solve 22:37:39] tool bash
+[mega-solve 22:37:44] tool bash
+[mega-solve 22:37:54] tool edit
+[mega-solve 22:37:55] tool bash
+[mega-solve 22:45:38] tool bash
+[mega-solve 22:50:13] tool bash
+[mega-solve 22:50:16] tool bash
+[mega-solve 22:50:33] tool edit
+[mega-solve 22:50:43] tool edit
+[mega-solve 22:50:45] tool bash
+[mega-solve 22:56:58] tool bash
+[mega-solve 22:57:00] tool bash
+[mega-solve 23:02:15] tool bash
+[mega-solve 23:07:13] tool bash
+[mega-solve 23:12:37] tool bash
+[mega-solve 23:17:38] tool bash
+[mega-solve 23:21:06] tool bash
+[mega-solve 23:24:44] tool bash
+[mega-solve 23:30:38] tool bash
+[mega-solve 23:37:01] tool bash
+[mega-solve 23:41:09] tool bash
+[mega-solve 23:46:16] tool bash
+[mega-solve 23:51:37] tool bash
+[mega-solve 23:55:16] tool bash
+[mega-solve 23:55:18] tool bash
+[mega-solve 23:55:23] tool bash
+[mega-solve 23:55:28] tool edit
+[mega-solve 23:55:32] tool bash
+...[trimmed]...
+[mega-solve 17:37:19] tool edit
+[mega-solve 17:37:26] tool bash
+[mega-solve 17:40:18] tool bash
+[mega-solve 17:40:29] tool edit
+[mega-solve 17:40:36] tool bash
+[mega-solve 17:43:32] tool bash
+[mega-solve 17:43:44] tool edit
+[mega-solve 17:43:51] tool bash
+[mega-solve 17:46:32] tool bash
+[mega-solve 17:46:43] tool edit
+[mega-solve 17:46:51] tool bash
+[mega-solve 17:49:27] tool bash
+[mega-solve 17:49:39] tool edit
+[mega-solve 17:49:45] tool bash
+[mega-solve 17:52:28] tool bash
+[mega-solve 17:52:40] tool edit
+[mega-solve 17:52:53] tool bash
+[mega-solve 17:55:39] tool bash
+[mega-solve 17:55:54] tool edit
+[mega-solve 17:56:16] tool bash
+[mega-solve 17:59:01] tool bash
+[mega-solve 17:59:12] tool edit
+[mega-solve 17:59:18] tool bash
+[mega-solve 18:02:10] tool bash
+[mega-solve 18:02:24] tool edit
+[mega-solve 18:02:33] tool bash
+[mega-solve 18:05:20] tool bash
+[mega-solve 18:05:35] tool edit
+[mega-solve 18:05:44] tool bash
+[mega-solve 18:08:29] tool bash
+[mega-solve 18:08:44] tool edit
+[mega-solve 18:08:52] tool bash
+[mega-solve 18:11:33] tool bash
+[mega-solve 18:11:40] COST CAP $50 reached ($50.38) — stopping
+[mega-solve 18:15:18] used best_solution.py snapshot: PASS geomean=1.955x
+[mega-solve 18:15:18] captured 2 sidecar artifact(s): best_solution.py, candidate_fast.py
+[mega-solve 18:15:19] v0: PASS=true verified=true geomean=1.955x 1190min $50.38
+[mega-rsi] eval v0: geomean=1.955x PASS=true $50.38
+[mega-rsi] gen0 baseline geomean=1.955x
+[mega-rsi] DONE champion geomean=1.955x (baseline 1.955x) cost=$50.38

@@ -1,0 +1,81 @@
+[mega-rsi] model=moonshotai/kimi-k2.7-code gens=0 propose=4 survivors=2 editMode=bounded solveS=172800
+[mega-solve 22:25:27] tool bash
+[mega-solve 22:25:27] tool read
+[mega-solve 22:26:00] tool read
+[mega-solve 22:26:00] tool read
+[mega-solve 22:26:00] tool read
+[mega-solve 22:26:01] tool read
+[mega-solve 22:26:01] tool read
+[mega-solve 22:26:01] tool read
+[mega-solve 22:26:50] tool bash
+[mega-solve 22:26:52] tool bash
+[mega-solve 22:27:32] tool bash
+[mega-solve 22:27:36] tool bash
+[mega-solve 22:27:39] tool bash
+[mega-solve 22:30:47] tool bash
+[mega-solve 22:30:56] tool bash
+[mega-solve 22:30:59] tool bash
+[mega-solve 22:31:06] tool bash
+[mega-solve 22:31:11] tool bash
+[mega-solve 22:31:19] tool bash
+[mega-solve 22:31:24] tool bash
+[mega-solve 22:31:38] tool bash
+[mega-solve 22:31:50] tool bash
+[mega-solve 22:32:04] tool bash
+[mega-solve 22:32:09] tool read
+[mega-solve 22:33:30] tool write
+[mega-solve 22:33:30] tool bash
+[mega-solve 22:35:35] tool bash
+[mega-solve 22:38:24] tool bash
+[mega-solve 22:51:33] tool bash
+[mega-solve 22:53:28] tool bash
+[mega-solve 22:53:34] tool bash
+[mega-solve 22:53:42] tool bash
+[mega-solve 22:54:06] tool bash
+[mega-solve 22:54:21] tool bash
+[mega-solve 22:54:36] tool bash
+[mega-solve 22:54:45] tool bash
+[mega-solve 22:54:55] tool bash
+[mega-solve 22:55:08] tool bash
+[mega-solve 22:55:36] tool bash
+...[trimmed]...
+[mega-solve 20:51:23] tool bash
+[mega-solve 20:52:11] tool bash
+[mega-solve 20:52:14] tool bash
+[mega-solve 20:52:37] tool bash
+[mega-solve 20:52:41] tool bash
+[mega-solve 20:53:32] tool bash
+[mega-solve 20:54:27] tool bash
+[mega-solve 20:56:58] tool bash
+[mega-solve 20:57:04] tool bash
+[mega-solve 20:58:52] tool bash
+[mega-solve 20:59:20] tool bash
+[mega-solve 21:01:09] tool bash
+[mega-solve 21:02:44] tool bash
+[mega-solve 21:02:56] tool bash
+[mega-solve 21:03:00] tool bash
+[mega-solve 21:03:03] tool bash
+[mega-solve 21:03:24] tool bash
+[mega-solve 21:04:16] tool bash
+[mega-solve 21:05:14] tool bash
+[mega-solve 21:05:24] tool bash
+[mega-solve 21:05:27] tool bash
+[mega-solve 21:05:47] tool bash
+[mega-solve 21:05:50] tool bash
+[mega-solve 21:06:42] tool bash
+[mega-solve 21:07:44] tool bash
+[mega-solve 21:07:47] tool bash
+[mega-solve 21:08:07] tool bash
+[mega-solve 21:08:10] tool bash
+[mega-solve 21:09:08] tool bash
+[mega-solve 21:09:10] tool bash
+[mega-solve 21:09:14] tool bash
+[mega-solve 21:09:35] tool bash
+[mega-solve 21:10:25] tool bash
+[mega-solve 21:11:25] COST CAP $50 reached ($50.31) — stopping
+[mega-solve 21:13:32] captured 4 sidecar artifact(s): best_solution.py, ext_test.py, kernel_body.py, kernels.py
+[mega-solve 21:13:33] AUTHENTICITY JUDGE REJECTED — geomean 3.654x NOT trusted
+[mega-solve 21:13:33] v0: PASS=true verified=false geomean=3.654x 1368min $50.31
+[mega-rsi] eval v0: geomean=3.654x PASS=true $50.31
+[mega-rsi] gen0 baseline geomean=3.654x
+[mega-rsi] DONE champion geomean=3.654x (baseline 3.654x) cost=$50.31

@@ -127,6 +127,30 @@ and dropped the sidecar the kernel actually lived in:
 | Opus 4.8 *(old)* | 8.503× (board valid, $53.52, 7.5 h) | `import mega` | `check.py` → `FAIL: No module named 'mega'` | **kernel LOST — number unbacked** |
 | gpt-5.6-sol *(old)* | 0.765× | `load_inline('kimi_mega_v1', CUDA…)` (embedded) | `FAIL` — stale JIT build-cache collision | **reproducible after JIT-cache isolation** |
 
+### Seed-chain fusion push — the real ceiling (median-scored, verified)
+
+Pushing an authentic single-fused megakernel as high as it honestly goes, by **chaining**:
+each run is SEEDED with the prior run's kernel (`OPENRSI_MEGA_SEED`) so the agent keeps
+optimizing a working kernel instead of re-deriving from scratch, under `scaffold_v3` (targets
+launch-collapse). All numbers **median-of-4 benchmark, judge-verified**.
+
+| stage | median geomean | how |
+|-------|:--------------:|-----|
+| Opus 4.8 + scaffold (from scratch) | 4.09× | single solve |
+| opus_fix (seeded, PLAIN) | 7.4× | seeded from a round-1 kernel, iterated |
+| meta gen0 (seed + scaffold_v3) | 11.5× | first RSI generation, seeded |
+| **chain (seed 11.8×, 3→1 focus)** | **13.68×** | seeded from 11.5×, $75 |
+
+**The honest ceiling this campaign ≈ 13.7×** (median; spread 12.5–15.0), authentic (3 real
+kernels, no graph/compile trick). **NOT the ~20× target, and NOT the 16.729× the run first
+recorded** — that was the top of the ~30% benchmark noise (the same kernel re-benched at 11.9–15.0).
+This exposed a measurement-variance gap: single-shot scoring records a lucky draw, so the harness
+now **medians `OPENRSI_MEGA_BENCH_REPEATS` (default 3)** runs. Still >3× the honest 4× we started
+from, all verified — and the 18–19× "record" remains a CUDAGraph fake, out of reach *because* it
+was never a real fused kernel.
+
+---
+
 ### Verified re-run leaderboard (fixed harness: full artifact capture + authenticity judge)
 
 Re-ran all models on the fixed harness (`collectArtifacts` + `runJudge`, cost-cap $50).

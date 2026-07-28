@@ -55,15 +55,29 @@ function sh(cmd: string, args: string[], cwd: string, timeoutMs: number): Promis
   });
 }
 
+// benchmark.py on this task swings ~30% run-to-run (measured 11.76 / 13.50 / 15.35 on
+// the SAME kernel), so a single measurement records a lucky/unlucky draw — a recorded
+// 16.7x reproduced at 11.9x. Score the MEDIAN of N repeats to de-noise: the recorded
+// number then matches a stable re-measurement. OPENRSI_MEGA_BENCH_REPEATS (default 3).
+const BENCH_REPEATS = Math.max(1, Number(process.env.OPENRSI_MEGA_BENCH_REPEATS || 3));
 async function evalDir(dir: string): Promise<{ passed: boolean; geomean: number; tail: string }> {
   const chk = await sh(PY, ["check.py"], dir, EVAL_TIMEOUT_MS);
   const passed = chk.code === 0 && /(^|\n)\s*PASS\s*(\n|$)/.test(chk.out);
   let geomean = 0;
   let tail = chk.out.slice(-500);
   if (passed) {
-    const bench = await sh(PY, ["benchmark.py"], dir, EVAL_TIMEOUT_MS);
-    geomean = parseFloat(bench.out.match(/peak_fraction:\s*([\d.]+)/)?.[1] ?? "0");
-    tail = bench.out.slice(-500);
+    const vals: number[] = [];
+    let lastOut = "";
+    for (let i = 0; i < BENCH_REPEATS; i++) {
+      const bench = await sh(PY, ["benchmark.py"], dir, EVAL_TIMEOUT_MS);
+      lastOut = bench.out;
+      const v = parseFloat(bench.out.match(/peak_fraction:\s*([\d.]+)/)?.[1] ?? "0");
+      if (v > 0) vals.push(v);
+    }
+    vals.sort((a, b) => a - b);
+    const mid = Math.floor(vals.length / 2);
+    geomean = vals.length === 0 ? 0 : vals.length % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2; // median
+    tail = `bench x${vals.length}: [${vals.map((v) => v.toFixed(2)).join(", ")}] median=${geomean.toFixed(3)}\n` + lastOut.slice(-360);
   }
   return { passed, geomean, tail };
 }

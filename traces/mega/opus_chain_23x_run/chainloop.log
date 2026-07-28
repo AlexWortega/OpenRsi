@@ -1,0 +1,3 @@
+10:52 chain-loop started, MAXN=6
+15:59 PREV=opus_chain2_run median=23.1784 best=0 improved=1
+15:59 launched step opus_chain3_run (pid 3665897) seeded from opus_chain2_run

@@ -145,3 +145,37 @@ trick. Never disable this.
 `src/mega/solveMega.ts` (inner solve + watchdogs + judge gate + median), `src/megaRsiLoop.ts` (outer
 RSI loop), `agent/mega/scaffold_v3.json` (the target-20× scaffold), `benchmark.md` (the honest
 leaderboard + median ceiling), `agent/memory/mega.jsonl` (accumulated lessons).
+
+## Seed-chain caveats (learned the hard way — cost real money)
+
+The chain is NOT monotonic. Two bugs bit us at 23.18×:
+1. **Seed from BEST, never LAST.** A naive loop that seeds step N+1 from step N's kernel *descends*
+   the moment one step regresses (we saw 23.18× → 7.74× → the loop then seeded the next from 7.74×).
+   Always seed the next step from the best-scoring kernel so far, not the previous one.
+2. **A seeded step can score WORSE than its seed** — the agent can "optimize" a 23× kernel into a
+   7.7× one and the harness scores the final state. Treat the **seed as a floor**: snapshot-eval
+   should keep `max(seed_score, final_score)`, and a step that ends below its seed should be
+   discarded (keep the seed's result), not chained forward.
+3. Each step really bills ~$90–120 (the $75 cost cap is session-stats, which undercounts OpenRouter
+   billing ~50% on long runs). Budget accordingly; consider a real-billing gate via `/api/v1/key`.
+
+## Submitting to the real kernelbench.com leaderboard — READ BEFORE claiming a record
+
+The bench is `github.com/Infatoshi/kernelbench.com`. A submission is a run **archive** under
+`outputs/runs/<ts>_<harness>_<model>_<problem>/` (`result.json` + `transcript.jsonl` +
+`solution.py` + a `gpu` marker), then `kb publish` regenerates the board (source of truth
+`public/data/mega/results.csv`; **never hand-edit** the leaderboard), then a PR. The board is keyed
+**per (GPU, model)**; current published record on RTX PRO 6000 is **claude-opus-4-8 = 14.399× triton**.
+
+**A seed-chained number is NOT submittable to the per-model board — submitting it would be gaming.**
+The builder **auto-EXCLUDES any run whose agent transcript references another run's archive**
+(cross-run contamination tripwire), and seed-chaining literally hands the agent a prior run's kernel.
+Their board measures "a model solves the problem in ONE independent run"; our 23.18× is "an RSI loop
+of 4 chained seeded runs reached 23×" — a different, honestly-labeled thing (a single independent
+Opus run gets ~4–14× here). Also required before any public number: the **mandatory sequential
+isolated re-bench** (solo GPU, check.py then benchmark.py, no other CUDA jobs) and the authenticity
+audit. So:
+- To claim a **per-model leaderboard cell**: run their `run_hard.sh` / mega harness with the model
+  **from scratch, no seed**, and submit whatever it authentically gets in one run.
+- To share the **23×**: present it transparently as an OpenRSI seed-chain / RSI *methodology* result
+  (writeup/PR), clearly labeled as chained — never as a single-solve per-model number.

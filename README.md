@@ -10,6 +10,27 @@ cases the inner agent never sees — improves. That private-score selection is t
 in the [Weco RSI blog](https://www.weco.ai/blog/first-evidence-of-recursive-self-improvement),
 made the loop "cheat less": public-score gaming does not survive.
 
+## 🏆 Record — KernelBench-Mega, 23.18× (authentic, verified)
+
+On `02_kimi_linear_decode` (Kimi-Linear W4A16 fused decode megakernel), RTX PRO 6000 Blackwell,
+`claude-opus-4-8`, the OpenRSI **seed-chain** reached a **median-of-3 `peak_fraction` of 23.18×** —
+correct (`check.py` PASS incl. numeric stress) and **authentic** (the bench's `megakernel_evidence.py`
+judge: 3 real kernels, no CUDAGraph/torch.compile/codegen tripwire). It clears the published record
+for that cell (14.399× on the same GPU). Honest trajectory, every step median-scored + judge-verified:
+
+**4.09× → 7.4× → 11.5× → 13.7× → 23.18×** — each run **seeded** with the prior kernel (`OPENRSI_MEGA_SEED`).
+
+- **Record log / artifacts:** [`traces/mega/opus_chain_23x_run/`](traces/mega/opus_chain_23x_run/)
+  (`board.jsonl`, `RESULTS.md`, `solution_v0/` kernel, run + chain logs); headline kernel in
+  [`mega_results/opus_23.18x_solution.py`](mega_results/opus_23.18x_solution.py); full campaign in
+  [`benchmark.md`](benchmark.md) and [`traces/mega/session_2026-07/`](traces/mega/session_2026-07/).
+- **Honest caveat:** this is an **RSI seed-chain** result (a loop of runs, each handed the prior
+  kernel), **not a single independent solve** — so it is *not* eligible for the per-model
+  kernelbench.com leaderboard (their cross-run contamination tripwire excludes seeded runs by design;
+  a from-scratch Opus run lands ~4–14×). See [`docs/mega_23x_submission_ask.md`](docs/mega_23x_submission_ask.md).
+  The famous 18–19× "record" is a CUDAGraph fake (per the bench's own authenticity doc); 23.18× here
+  is the real, reproducible, single-fusion number that fake never was.
+
 ```
 outer agent (Opus 4.8)  ──proposes a scaffold rewrite──▶  candidate scaffold
         ▲                                                        │

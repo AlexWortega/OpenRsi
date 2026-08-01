@@ -1,0 +1,72 @@
+/**
+ * Research-proof solver — a long-running pi coding agent attacking two
+ * research-level math problems with a USD budget cap. Modeled on the
+ * mlxfast M5-oracle runner (same pi scaffold, memory, nudge loop).
+ *
+ *   OPENRSI_PROOFS_BUDGET_USD=100 OPENRSI_MLXFAST_THINKING=medium \
+ *   node --env-file=.env dist/proofs/run.js
+ */
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { createAgentSession, SessionManager } from "@earendil-works/pi-coding-agent";
+import { assertKey, modelSlug, tierModel } from "../provider.js";
+import { recall, reflectAndStore } from "../memory/memory.js";
+
+const SYS = `You are a research mathematician working autonomously on two research-level problems. Your goal is real mathematical progress with COMPLETE INTELLECTUAL HONESTY: a claimed proof must actually be a proof; anything less is reported as partial progress with the gap stated precisely.
+
+Ground rules:
+- These problems were recently solved in a document by another lab ("Ten Advances in Mathematics and Theoretical Computer Science", cdn.openai.com/pdf/ten-proofs-oai.pdf). That document and any copy, mirror, summary, or discussion of its proofs are STRICTLY OFF-LIMITS: do not fetch, search for, or read it or secondary sources describing its arguments. The experiment measures YOUR independent reasoning. Classical literature that predates it (textbooks, arXiv papers on prior bounds, standard techniques) is fair game — cite what you use.
+- You have bash/read/write/edit in your working directory, plus \`keenable search "<query>" -p\` for literature search (respect the off-limits rule above). Use bash aggressively for experiments: small-case verification (n=2,3 bodies; small-k colorings), numeric sanity checks, SAT/ILP-style searches, symbolic computation via python3/sympy.
+- Work in visible files: NOTES_<problem>.md for your evolving attack log (hypotheses, failed routes, lemmas), proof_ehrhart.md and proof_ramsey.md for the current best write-up, STATUS.md with an honest one-page assessment of both problems (status: PROVED / PARTIAL / OPEN, what is rigorous, what is missing).
+- Self-verify adversarially: after drafting any lemma or proof, attack it as a hostile referee — check every inequality's direction, every compactness/measurability assumption, every "clearly". Numeric checks in bash where possible. A refereed gap demotes the claim to PARTIAL immediately.
+- Budget discipline: you have a fixed USD budget for this whole run. Prefer cheap concrete progress (a fully rigorous partial result, a verified construction for small parameters, a reduction) over expensive wandering. Update STATUS.md at every milestone so the run's value survives an abrupt stop.
+
+The two problems:
+
+PROBLEM 1 (Ehrhart volume conjecture, general case). Let K be a full-dimensional compact convex body in R^n with barycenter at the origin. Suppose the interior of K contains no lattice point of Z^n other than 0. Prove that vol(K) <= (n+1)^n / n!. (Sharp: the simplex (n+1)*conv{0,e_1,...,e_n} - (1,...,1) achieves it. Known classical results: Ehrhart proved n=2 and the simplex case in all n; Milman-Pajor gives vol(K) <= 4^n. Any improvement of 4^n toward (n+1)^n/n!, or a new proof of a nontrivial special case (e.g. all n=3 bodies), counts as valuable partial progress.)
+
+PROBLEM 2 (Superexponential multicolor Ramsey lower bound). Let R_k(3) be the least N such that every k-coloring of the edges of K_N contains a monochromatic triangle. Prove R_k(3) >= (c k^{1/3} / log k)^k for an absolute constant c > 0 and all k >= 2 — or any superexponential lower bound R_k(3) >= k^{ck}. (Classical: constructions give R_k(3) >= c^k (Schur-type, c about 3.199); upper bound R_k(3) <= 3 k!. The open gap was whether growth is superexponential. Equivalent formulation: Shannon capacity of graphs with independence number 2 is unbounded. A construction with any exponent growing in k — even k^{c k / log k} — is major partial progress.)
+
+Attack strategy guidance: treat the two problems independently; interleave when stuck. For Ramsey, think product/tensor constructions of triangle-free colorings and their amplification, capacity arguments, and recursive palettes. For Ehrhart, think symmetrization, covering/lattice-point counting, log-concavity, and transference between K and its polar. Always look for the cheapest rigorous statement that advances the state of the art you can actually prove.`;
+
+async function main() {
+    assertKey();
+    const dir = process.env.OPENRSI_PROOFS_DIR || "/home/alexw/OpenRsi/runs/proofs_sol";
+    mkdirSync(dir, { recursive: true });
+    const budget = Number(process.env.OPENRSI_PROOFS_BUDGET_USD || 100);
+    const model = tierModel("outer");
+    console.error(`[proofs] model=openrouter:${modelSlug("outer")} dir=${dir} budget=$${budget}`);
+    const mem = recall("proofs", "ehrhart-ramsey", 8);
+    // pi has no systemPrompt option; project instructions load from AGENTS.md in cwd.
+    writeFileSync(join(dir, "AGENTS.md"), SYS + mem);
+    const { session } = await createAgentSession({
+        model,
+        thinkingLevel: (process.env.OPENRSI_MLXFAST_THINKING || "medium"),
+        cwd: dir,
+        sessionManager: SessionManager.inMemory(dir),
+    });
+    session.subscribe((e) => {
+        if (e.type === "tool_execution_start")
+            process.stderr.write(`[proofs ${new Date().toISOString().slice(11, 19)}] tool ${e.toolName ?? e.name ?? "?"}\n`);
+    });
+    const cost = () => (session.getSessionStats()?.cost ?? 0);
+    await session.prompt(SYS + mem + `
+
+---
+
+Begin. First set up your files (STATUS.md, NOTES_ehrhart.md, NOTES_ramsey.md), restate both problems in your own words, and list for each the 3 most promising attack routes with expected difficulty. Then start with whichever problem you judge more tractable and pursue the cheapest rigorous partial result first. Remember: no peeking at the ten-proofs document or coverage of it; adversarial self-refereeing; STATUS.md always current.`);
+    await session.waitForIdle();
+    let round = 0;
+    while (cost() < budget) {
+        round++;
+        const spent = cost().toFixed(2);
+        console.error(`[proofs] nudge ${round}, spent $${spent} of $${budget}`);
+        await session.prompt(`Keep going ($${spent} of $${budget} spent so far — pace yourself accordingly). Re-referee your latest claims adversarially before building on them. If a route has stalled for two nudges, bank what is rigorous into the proof files and switch routes or problems. Keep STATUS.md honest and current; run bash checks for anything checkable.`);
+        await session.waitForIdle();
+    }
+    const stats = session.getSessionStats();
+    console.error(`[proofs] DONE after ${round} rounds, cost=$${(stats?.cost ?? 0).toFixed(2)}`);
+    await reflectAndStore({ model, benchmark: "proofs", problemId: "ehrhart-ramsey", score: 0, transcript: `Autonomous research run ($${budget} budget) on the Ehrhart volume conjecture and superexponential R_k(3) lower bounds in ${dir}. The score field is a placeholder, NOT an outcome; base lessons only on what STATUS.md actually records as proved/partial.` }).catch(() => { });
+    process.exit(0);
+}
+main().catch((e) => { console.error("[proofs] FATAL", e?.stack || e); process.exit(1); });

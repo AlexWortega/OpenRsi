@@ -38,7 +38,7 @@ max_{α(G)≤2} α(G^⊠k) = R_k(r+1)−1.
 |---|---|---|---|
 | `ramsey_sol/` | openai/gpt-5.6-sol | $25.14 | PARTIAL; 4 new universal capacity obstructions (shift complements ≤4, generalized ≤10, Kneser <3, 3-torsion), ~6 more families banked |
 | `ramsey_fable/` | anthropic/claude-fable-5 | **$104.69 (4x overrun: one 8h round, budget checked only between rounds)** | PARTIAL, but **two new theorems**: **L₄ ≤ 64** (no triangle-free locally-4 coloring of K₆₅; rigidity theorem for K₁₆ + 303 kissat UNSAT cases with drat-trim-verified DRAT certificates + FKR 2004) — first strict failure of L_s ≤ 1+sL_{s−1}, so 50 ≤ L₄ ≤ 64; and the **cyclic⇒Schur ceiling lemma** — cyclic 5-color route capped at base 322^{1/5} ≈ 3.1735 < 3.19963 (closed), and beating classical base cyclically for k=6,7 is EQUIVALENT to improving Schur records S(6)≥536 / S(7)≥1680 |
-| `ramsey_oracle/` | worker gpt-5.6-sol + oracle gpt-5.6-sol-pro (`scripts/ask_pro.py`) | $16.19 (+$20 round 2 in progress) | PARTIAL; 5 oracle calls; universal permanent bound per(M) ≥ n!/C^n (C<5.38), anchored palettes killed via R(3,3)=6, fractional-cylinder lemma caps varying-domain families at Q^r |
+| `ramsey_oracle/` | worker gpt-5.6-sol + oracle gpt-5.6-sol-pro (`scripts/ask_pro.py`) | $37.59 total (2 segments, 9 oracle calls) | PARTIAL; 5 oracle calls; universal permanent bound per(M) ≥ n!/C^n (C<5.38), anchored palettes killed via R(3,3)=6, fractional-cylinder lemma caps varying-domain families at Q^r; round 2 added a tensor fitting-rank obstruction and killed GQ-Tanner quotients and separated-permutation candidates |
 
 Goal ladder for round 3+: (a) base > 3.199 record → (b) provably growing base →
 (c) superexponential. None reached yet; the durable output is theorems that

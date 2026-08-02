@@ -1,0 +1,172 @@
+I cannot honestly provide either requested resolution: the permutation-family problem is asymptotically equivalent to the unresolved question of whether multicolor triangle Ramsey numbers have a universal exponential upper bound. The equivalence is stronger than the one-way implication stated in the update.
+
+## 1. Constant-composition blow-up lemma
+
+For a triangle-free graph \(H\), let \(s_H(m)\) be the maximum size of a family
+\[
+C\subseteq V(H)^m
+\]
+such that every distinct \(x,y\in C\) satisfy \(x_i y_i\in E(H)\) for some coordinate \(i\).
+
+### Lemma
+Let \(H\) have \(q\) vertices, and let \(C\subseteq V(H)^m\) be \(H\)-separated. Then there is a triangle-free graph \(J\) on exactly \(m\) vertices and a \(J\)-separated permutation family \(\mathcal F\subseteq S_m\) with
+\[
+|\mathcal F|
+\ge
+\frac{|C|}{\binom{m+q-1}{q-1}}
+\ge
+\frac{|C|}{(m+1)^q}.
+\]
+
+### Proof
+Every word \(x\in V(H)^m\) has a composition vector
+\[
+r(x)=(r_v(x))_{v\in V(H)},\qquad
+r_v(x)=|\{i:x_i=v\}|.
+\]
+There are at most \(\binom{m+q-1}{q-1}\) possible compositions. Hence some subfamily \(C'\subseteq C\) has constant composition \(r=(r_v)\) and
+\[
+|C'|\ge |C|/\binom{m+q-1}{q-1}.
+\]
+
+Define the blow-up
+\[
+V(J)=\{(v,a):v\in V(H),\ 1\le a\le r_v\},
+\]
+and put
+\[
+(v,a)(w,b)\in E(J)\quad\Longleftrightarrow\quad vw\in E(H).
+\]
+There are no edges within a clone class. Any triangle in \(J\) would therefore project to a triangle in \(H\), so \(J\) is triangle-free. Also
+\[
+|V(J)|=\sum_v r_v=m.
+\]
+
+For \(x\in C'\), define
+\[
+\pi_x(i)=\bigl(x_i,\;|\{j\le i:x_j=x_i\}|\bigr).
+\]
+Because \(x\) has composition \(r\), this is a bijection from \([m]\) to \(V(J)\), hence a permutation after fixing an arbitrary labeling of \(V(J)\) by \([m]\).
+
+If \(x\ne y\), choose \(i\) with \(x_i y_i\in E(H)\). Then \(\pi_x(i)\pi_y(i)\in E(J)\). Thus \(\{\pi_x:x\in C'\}\) is \(J\)-separated. ∎
+
+This construction is directly implementable: group codewords by their symbol-count vector, create one clone per occurrence count, and label the \(a\)-th occurrence of each symbol by clone \(a\).
+
+---
+
+## 2. Exact asymptotic equivalence
+
+Define
+\[
+P(n)=
+\max_{\substack{J\text{ triangle-free}\\ |V(J)|=n}}
+\max\{|\mathcal F|:\mathcal F\subseteq S_n
+\text{ is }J\text{-separated}\}.
+\]
+Also define the separated capacity
+\[
+\Theta_{\rm sep}(H)=\sup_{m\ge1}s_H(m)^{1/m}.
+\]
+
+### Theorem
+\[
+\boxed{
+\limsup_{n\to\infty}P(n)^{1/n}
+=
+\sup_{H\text{ finite triangle-free}}\Theta_{\rm sep}(H).
+}
+\]
+
+### Proof
+A \(J\)-separated permutation family is, after forgetting that its words are permutations, a \(J\)-separated subset of \(V(J)^n\). Hence
+\[
+P(n)^{1/n}\le
+\sup_H\Theta_{\rm sep}(H).
+\]
+
+Conversely, fix a finite triangle-free \(H\) with \(q\) vertices. Applying the lemma to a maximum \(H\)-separated code in length \(m\),
+\[
+P(m)\ge
+\frac{s_H(m)}{(m+1)^q}.
+\]
+Taking \(m\)-th roots and then the limsup gives
+\[
+\limsup_m P(m)^{1/m}\ge\Theta_{\rm sep}(H),
+\]
+because \((m+1)^{q/m}\to1\). Now take the supremum over \(H\). ∎
+
+Using the exact strong-power formulation from the brief,
+\[
+R_k(3)-1=\max_{H\text{ triangle-free}}s_H(k).
+\]
+Therefore
+\[
+\boxed{
+\sup_H\Theta_{\rm sep}(H)
+=
+\sup_{k\ge1}(R_k(3)-1)^{1/k}.
+}
+\]
+Indeed, the left side is at most the right side because \(s_H(k)\le R_k(3)-1\). Conversely, a graph attaining \(R_k(3)-1\) in power \(k\) has capacity at least \((R_k(3)-1)^{1/k}\).
+
+Consequently:
+
+* A universal bound \(P(n)\le C^n\) is equivalent to
+  \[
+  R_k(3)\le C^k+1\qquad\text{for every }k.
+  \]
+* Conversely, any universal exponential Ramsey upper bound immediately gives the same permutation-family upper bound.
+* Thus permutation balance does not asymptotically make the zero-error problem easier: after allowing triangle-free blow-ups, arbitrary separated codes can be made into permutations with only a subexponential loss.
+
+---
+
+## 3. The proposed fractional bad-clique cover cannot prove an exponential bound
+
+Call \(Q\subseteq S_n\) a bad clique if every pair \(\pi,\sigma\in Q\) is coordinatewise equal-or-nonadjacent in \(H\).
+
+For each coordinate \(i\), define
+\[
+A_i=\{\pi(i):\pi\in Q\}.
+\]
+Then \(A_i\) is independent in \(H\): if \(u,v\in A_i\) were adjacent, permutations taking values \(u,v\) at position \(i\) would not be a bad pair. Hence
+\[
+|Q|\le\prod_{i=1}^n|A_i|\le\alpha(H)^n.
+\]
+
+Now suppose bad cliques \(Q\) have nonnegative weights \(w_Q\) and fractionally cover \(S_n\):
+\[
+\sum_{Q\ni\pi}w_Q\ge1
+\qquad\forall\pi\in S_n.
+\]
+Summing over \(\pi\),
+\[
+n!
+\le
+\sum_Q w_Q|Q|
+\le
+\alpha(H)^n\sum_Qw_Q.
+\]
+Thus every such cover has total weight at least
+\[
+\boxed{
+\sum_Qw_Q\ge \frac{n!}{\alpha(H)^n}.
+}
+\]
+
+There are triangle-free graphs with \(\alpha(H)=o(n)\); an elementary random construction gives, for example,
+\[
+\alpha(H)=O(n^{2/3}\log n).
+\]
+For these graphs,
+\[
+\frac{n!}{\alpha(H)^n}
+\ge
+\left(\frac{c\,n^{1/3}}{\log n}\right)^n,
+\]
+which is superexponential. Therefore no fractional cover by bad cliques—or by coordinate cylinders contained in bad cliques—can have universal exponential total weight.
+
+So the natural fractional-cover hope in the update is ruled out, not merely unfinished.
+
+## Conclusion
+
+The maximum separated permutation-family question is not presently a tractable specialization: via constant-composition blow-ups, a universal exponential upper bound is equivalent to the longstanding universal exponential upper bound for \(R_k(3)\). The most natural proposed proof mechanism, an exponential-weight fractional cover by bad cliques or independent-coordinate cylinders, is impossible for triangle-free graphs with sublinear independence number. I do not have a valid universal exponential proof or a superexponential explicit construction.

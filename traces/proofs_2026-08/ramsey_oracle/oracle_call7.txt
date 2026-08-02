@@ -1,0 +1,214 @@
+## Candidate: balanced generalized-quadrangle Tanner codes
+
+This is one concrete, falsifiable candidate. The pivotal rigidity lemma below is unproved; everything else is explicit.
+
+### 1. Objects and coloring rule
+
+#### The triangle-free coordinate graph
+
+Let  
+\[
+q=2^{2s+1}\qquad (s\ge 0),
+\]
+and let \(\mathcal Q_q=W(q)\) be the classical symplectic generalized quadrangle of order \((q,q)\), equipped with its standard involutory Tits polarity
+\[
+\pi_q:P_q\longleftrightarrow L_q.
+\]
+Its incidence table is directly computable over \(\mathbb F_q\); \(\pi_q\) uses the field automorphism \(x\mapsto x^{2^{s+1}}\). We have
+\[
+|P_q|=|L_q|=n_q=(q+1)(q^2+1).
+\]
+
+Define a simple graph \(H_q\) on \(P_q\) by
+\[
+x\sim_{H_q}y
+\quad\Longleftrightarrow\quad
+x\ne y\ \text{ and }\ x\mathrel I\pi_q(y).
+\]
+
+**Exact triangle-free proof.** If distinct \(x,y,z\) formed a triangle, then the incidence graph of \(\mathcal Q_q\) would contain the six-cycle
+\[
+x-\pi_q(y)-z-\pi_q(x)-y-\pi_q(z)-x.
+\]
+The three point vertices and three line vertices are distinct because \(\pi_q\) is bijective. Generalized-quadrangle incidence graphs have girth eight, contradiction.
+
+#### The Tanner graphs
+
+Start with the Tutte–Coxeter graph \(T_2\), viewed as a cubic bipartite graph with \(15\) vertices on each side and \(45\) edges.
+
+For \(q_s=2^{2s+1}\), define \(T_{q_s}\) recursively by taking six successive \(2\)-lifts from \(T_{q_{s-1}}\). At each lift, order all edge signings lexicographically and choose the first signing whose new eigenvalues have absolute value at most \(2\sqrt2\). Existence follows from the standard interlacing-polynomial theorem for bipartite Ramanujan \(2\)-lifts. This is a deterministic finite algorithm, independent of any Ramsey search.
+
+Write
+\[
+T_q=(A_q,B_q,E_q).
+\]
+Then
+\[
+|A_q|=|B_q|=15(q/2)^3,\qquad
+K_q:=|E_q|=\frac{45}{8}q^3.
+\]
+
+#### Configurations
+
+A configuration is a labeling
+\[
+f:E_q\to P_q
+\]
+satisfying:
+
+1. **Collinear-star constraint:** at every \(v\in A_q\cup B_q\), the three labels on the incident edges are distinct and lie on one line of \(\mathcal Q_q\).
+
+2. **Equitable type constraint:** for all \(p,p'\in P_q\),
+   \[
+   \bigl||f^{-1}(p)|-|f^{-1}(p')|\bigr|\le 1.
+   \]
+
+Let \(\mathscr X_q\) be the set of all such configurations.
+
+Let
+\[
+G_q=\operatorname{Aut}(\mathcal Q_q,\pi_q)
+\]
+act by postcomposition. Define \(C_q\subseteq\mathscr X_q\) to contain the lexicographically least configuration from each \(G_q\)-orbit. This quotient removes global geometric symmetries and costs only \(q^{O(1)}\), since \(|G_q|=q^{O(1)}\).
+
+Regard every \(f\in C_q\) as a word in \(P_q^{E_q}\).
+
+For distinct \(f,g\in C_q\), choose the least edge \(e\in E_q\) such that
+\[
+f(e)\sim_{H_q}g(e),
+\]
+and color \(\{f,g\}\) by \(e\).
+
+Because \(H_q\) is triangle-free, three configurations cannot have all three pairwise edges colored by the same \(e\). Thus this is a triangle-free \(K_q\)-coloring whenever every pair has such a coordinate.
+
+---
+
+### 2. Required asymptotics
+
+At one cubic check, the number of ordered legal triples is exactly
+\[
+n_q(q+1)q(q-1)=q^{6+o(1)},
+\]
+whereas the total number of ordered triples is \(n_q^3=q^{9+o(1)}\). Thus one check has density \(q^{-3+o(1)}\).
+
+There are \(2K_q/3\) checks and \(n_q^{K_q}=q^{(3+o(1))K_q}\) unrestricted edge-labelings. The Bethe/first-moment prediction is therefore
+\[
+|\mathscr X_q|
+=
+q^{(3+o(1))K_q}
+\left(q^{-3+o(1)}\right)^{2K_q/3}
+=
+q^{(1+o(1))K_q}.
+\]
+Conditioning on equitable type costs only \(\exp(O(K_q))=q^{o(K_q)}\), since \(K_q=\Theta(n_q)\).
+
+Hence any bound
+\[
+|C_q|\ge q^{cK_q}
+\]
+with absolute \(c>0\) gives
+\[
+|C_q|
+\ge K_q^{(c/3+o(1))K_q},
+\]
+because \(K_q=\Theta(q^3)\). This is exactly the desired growing base.
+
+---
+
+### 3. Pivotal lemma and proof program
+
+#### Balanced GQ–Tanner rigidity lemma
+
+There is an absolute \(c>0\) such that, for every \(q=2^{2s+1}\):
+
+1. \[
+   |\mathscr X_q/G_q|\ge q^{cK_q};
+   \]
+
+2. if \(f,g\in\mathscr X_q\) satisfy
+   \[
+   f(e)\not\sim_{H_q}g(e)
+   \qquad\text{for every }e\in E_q,
+   \]
+   then
+   \[
+   g=\sigma\circ f
+   \quad\text{for some }\sigma\in G_q.
+   \]
+
+Part 2 implies that distinct canonical orbit representatives are separated in some coordinate.
+
+This is not an arbitrary-capacity restatement: \(\mathscr X_q\) is the full solution set of one fixed arity-three incidence constraint on one fixed explicit expander tower. No codeword subset is selected by greedy separation.
+
+#### Specific proof strategy
+
+**Entropy part.**
+
+Let
+\[
+S(p_1,p_2,p_3)=1
+\]
+when \(p_1,p_2,p_3\) are distinct collinear points. All one- and two-coordinate marginals of \(S\) are explicit and uniform. Flattenings of \(S\) reduce to the point-line incidence matrix of \(W(q)\), whose singular values are explicitly known.
+
+The intended proof is:
+
+1. Compute the exact second moment of the partition function on a random \(2\)-lift, organized by joint point types.
+2. Use the incidence spectrum to show that the uniform joint type is the unique maximizer, with every nonuniform type losing \(q^{\Omega(K_q)}\).
+3. Iterate this estimate along the six-lifts-per-level tower, using the selected Ramanujan signing to control the nontrivial Fourier modes.
+4. Extract equitable configurations by taking the corresponding multivariate coefficient. Since each point occurs \(O(1)\) times on average, Stirling’s formula loses only \(\exp(O(K_q))\), negligible on the \(K_q\log q\) scale.
+
+**Rigidity part.**
+
+For a purported bad pair \(f,g\), every Tanner check gives two ordered collinear triples
+\[
+(f(e_1),f(e_2),f(e_3)),
+\qquad
+(g(e_1),g(e_2),g(e_3)),
+\]
+with all three diagonal pairs nonadjacent in the polarity graph.
+
+The proof should proceed through the following finite-geometry classification.
+
+1. **Local phase classification.** Classify, modulo \(G_q\), pairs of ordered collinear triples with the three forbidden diagonal incidences. Using the generalized-quadrangle unique-projection axiom and absence of six-cycles, show that every such pair determines a partial polarity-preserving collineation on the union of their radius-two incidence neighborhoods. The ambiguity is the stabilizer of the first ordered triple.
+
+2. **Transition consistency.** If two Tanner checks share edge \(e\), their local phases agree on \(f(e)\mapsto g(e)\). Classify incompatible transitions explicitly. Every incompatible transition forces all labels in a fixed positive-radius Tanner neighborhood into one proper geometric set: a line pencil, a perp set, or a proper subquadrangle.
+
+3. **Defect amplification.** Ramanujan expansion implies that a nonempty set of incompatible transitions expands to a positive proportion of checks. The incidence spectrum of \(W(q)\) then implies that a positive proportion of all edge labels lie in one of the proper geometric sets above.
+
+4. **Use equitability.** Each such proper set contains \(O(q^2)\) of the \(n_q=\Theta(q^3)\) points. Equitable type permits only \(O(1/q)\) of all labels there, contradicting the positive proportion from Step 3.
+
+5. Therefore all local phases synchronize to one global \(\sigma\in G_q\), and connectedness gives \(g=\sigma\circ f\).
+
+The decisive work is the local phase table and the quantitative defect-amplification inequality. Both depend on the rank-two incidence geometry and are not generic graph-capacity assertions.
+
+---
+
+### 4. Smallest discriminating test
+
+Use \(q=2\).
+
+- \(\mathcal Q_2\) is the doily \(GQ(2,2)\), with \(15\) points and \(15\) lines.
+- \(T_2\) is the Tutte–Coxeter graph, with \(45\) edges.
+- Every check constraint says that its three labels are exactly the three points of one doily line.
+- Equitability says that every point occurs exactly three times.
+
+Construct a SAT instance with variables
+\[
+f_e,g_e\in P_2,\qquad e\in E(T_2),
+\]
+and constraints:
+
+1. each incident triple of \(f\), and separately of \(g\), is one of the \(15\cdot 3!=90\) ordered line triples;
+2. every point appears exactly three times in each configuration;
+3. for every \(e\),
+   \[
+   f_e\not\sim_{H_2}g_e;
+   \]
+4. for every \(\sigma\in G_2\),
+   \[
+   g\ne \sigma\circ f.
+   \]
+
+A satisfying assignment immediately falsifies the rigidity mechanism as stated. The instance has only \(90\) point-valued variables; \(G_2\) can be enumerated from the incidence table. Before full SAT, enumerate the \(90^2\) pairs of legal local triples and their transition orbits—failure of the proposed local-phase classification already kills the proof strategy.
+
+This route is neither a fixed seed nor an iid word construction: \(q\), the coordinate graph, the Tanner graph, and the achieved predicted base all grow, while the expander constraints correlate all coordinates.

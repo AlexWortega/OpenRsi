@@ -1,0 +1,127 @@
+I do not have a defensible new growing-base candidate. The following general obstruction is materially stronger than the fractional-cylinder bound for algebraically presented local channels and survives arbitrary cross-coordinate correlation.
+
+## Tensor fitting-rank obstruction
+
+Let \(H_i=(V_i,E_i)\), \(1\le i\le m\), be triangle-free graphs. Let \(X\) be any family equipped with arbitrary maps
+\[
+\phi_i:X\to V_i
+\]
+such that every distinct \(x,y\in X\) is separated:
+\[
+\exists i\qquad \phi_i(x)\phi_i(y)\in E_i. \tag{1}
+\]
+No product, independence, linearity, or uniformity of \(X\) is assumed.
+
+For a field \(\mathbb F\), suppose that for each \(i\) there is a matrix
+\[
+B_i\in \mathbb F^{V_i\times V_i}
+\]
+satisfying
+\[
+B_i(v,v)\ne0\quad(v\in V_i),\qquad
+B_i(u,v)=0\quad(uv\in E_i). \tag{2}
+\]
+Then
+\[
+\boxed{|X|\le \prod_{i=1}^m \operatorname{rank}_{\mathbb F}(B_i).} \tag{3}
+\]
+
+### Proof
+
+Pull \(B_i\) back to \(X\):
+\[
+M_i(x,y)=B_i(\phi_i(x),\phi_i(y)).
+\]
+If \(r_i=\operatorname{rank}B_i\), write
+\[
+M_i(x,y)=\sum_{a=1}^{r_i}p_{i,a}(x)q_{i,a}(y).
+\]
+Define the entrywise product
+\[
+M(x,y)=\prod_{i=1}^m M_i(x,y).
+\]
+Expanding the product expresses \(M\) as a sum of at most \(\prod_i r_i\) rank-one matrices, so
+\[
+\operatorname{rank}M\le\prod_i r_i. \tag{4}
+\]
+For \(x\ne y\), condition (1) supplies an \(i\) for which (2) gives \(M_i(x,y)=0\); hence \(M(x,y)=0\). Meanwhile
+\[
+M(x,x)=\prod_i B_i(\phi_i(x),\phi_i(x))\ne0.
+\]
+Thus \(M\) is a nonsingular diagonal \(|X|\times |X|\) matrix. Therefore
+\[
+|X|=\operatorname{rank}M\le\prod_i r_i.
+\]
+This proves (3). ∎
+
+Triangle-freeness is needed only to turn (1) into a triangle-free first-separating-coordinate coloring; the rank bound itself is stronger and does not use it.
+
+## Low-degree algebraic certificate
+
+Suppose \(V_i\subseteq\mathbb F_q^{d_i}\), and there is a polynomial
+\[
+P_i(U,V)\in\mathbb F_q[U_1,\dots,U_{d_i},V_1,\dots,V_{d_i}]
+\]
+such that
+\[
+P_i(v,v)\ne0,\qquad P_i(u,v)=0\quad\text{whenever }uv\in E_i. \tag{5}
+\]
+Writing
+\[
+P_i(U,V)=\sum_{\alpha,\beta}c^{(i)}_{\alpha,\beta}U^\alpha V^\beta,
+\]
+the evaluation matrix \(B_i(u,v)=P_i(u,v)\) satisfies
+\[
+\operatorname{rank} B_i
+ \le \operatorname{rank}\!\big(c^{(i)}_{\alpha,\beta}\big)
+ \le \min\{\,\#\alpha,\#\beta\,\}. \tag{6}
+\]
+Hence correlation among coordinates cannot recover entropy discarded by a sparse polynomial certificate.
+
+A particularly immediate case is an edge predicate
+\[
+uv\in E_i\Longrightarrow R_i(u,v)\ne0,\qquad R_i(v,v)=0.
+\]
+Fermat’s identity gives
+\[
+P_i(u,v)=1-R_i(u,v)^{q-1}. \tag{7}
+\]
+If \(R_i\) is bilinear on \(\mathbb F_q^{d_i}\), then
+\[
+\operatorname{rank}B_i
+ \le 1+\binom{d_i+q-2}{q-1}. \tag{8}
+\]
+For \(q=2\), this sharpens to
+\[
+\operatorname{rank}B_i\le 1+\operatorname{rank}(R_i)\le d_i+1, \tag{9}
+\]
+because \(P_i=1+R_i\).
+
+Consequently, any \(m\)-coordinate proposal using such binary bilinear local predicates obeys
+\[
+|X|^{1/m}\le
+\left(\prod_{i=1}^m(d_i+1)\right)^{1/m}. \tag{10}
+\]
+In particular, polylogarithmic \(d_i\) cannot yield a polynomially growing achieved base, regardless of how globally correlated \(X\) is.
+
+## Immediate kill test
+
+For the smallest proposed parameter:
+
+```text
+for u,v in V_i:
+    B_i[u,v] = P_i(u,v)
+verify B_i[v,v] != 0 for every v
+verify B_i[u,v] == 0 for every edge uv of H_i
+r_i = exact_rank(B_i over the chosen field)
+
+if claimed_N > product_i r_i:
+    KILL
+```
+
+For a homogeneous \(m\)-coordinate construction, the sharp certificate-based criterion is simply
+\[
+\boxed{\text{claimed achieved base } |X|^{1/m}>\operatorname{rank}B
+\quad\Longrightarrow\quad\text{impossible}.}
+\]
+Thus every algebraic candidate must first demonstrate that all available fitting matrices have rank at least its claimed base; a counting or rigidity lemma cannot overcome a smaller rank certificate.

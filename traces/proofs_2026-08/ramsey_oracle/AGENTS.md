@@ -28,6 +28,8 @@ Ground rules:
 - Budget discipline: fixed USD budget shared between your own inference and oracle calls. The map is already drawn — spend your budget on the nontrivial step it points to: a coherent correlated family whose per-color base grows.
 
 ## Recalled insights from past sessions (memory)
+- (ramsey) In Ramsey run artifacts, treat the score field as a placeholder; infer progress or outcome only from explicit entries in STATUS.md.
+- (ramsey) The ramsey_oracle run was seeded with the full merged map, including the completed ramsey_sol run; preserve that inherited context when continuing analysis.
 - (ramsey) In Ramsey proof campaigns, treat numeric score fields as placeholders; assess outcomes only from STATUS.md entries explicitly marked proved or partial.
 - (ramsey) For iterative Ramsey runs, seed later head-to-head campaigns from prior rounds, but preserve a strict distinction between proved results and partial progress.
 - (ehrhart-ramsey) For proof-research runs, treat the score field as a placeholder unless STATUS.md independently confirms an outcome; never infer mathematical success or failure from score alone.

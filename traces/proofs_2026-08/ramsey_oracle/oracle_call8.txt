@@ -1,0 +1,265 @@
+## Verdict
+
+Quotienting by the full collineation group does absorb the 30 offending doily collineations, but it does **not** repair the prescribed \(q=2\) construction: the balanced configuration space is empty. There is a much smaller structural formulation of that emptiness, independent of the polarity and of any quotient.
+
+This does not prove asymptotic impossibility for \(q\ge 8\), because the reduction below uses the special fact that every \(q=2\) line has exactly three points. It does, however, replace the opaque 7155-variable UNSAT instance by a transparent finite obstruction.
+
+---
+
+## 1. Exact \(q=2\) reduction to six equidistant perfect matchings
+
+Let \(Q=GQ(2,2)\) be represented by:
+
+- points: the 15 duads \(\binom{[6]}2\);
+- lines: the 15 synthemes, i.e. partitions of \([6]\) into three duads.
+
+Let \(X\) be its incidence graph, the Tutte–Coxeter graph. Thus \(X\) has 30 vertices and 45 edges.
+
+A balanced Tanner configuration is a map
+\[
+f:E(X)\longrightarrow \binom{[6]}2
+\]
+such that:
+
+1. at every \(v\in V(X)\), the three labels on \(E(v)\) form a syntheme;
+2. every duad occurs exactly \(45/15=3\) times.
+
+For \(i\in[6]\), define
+\[
+M_i=\{e\in E(X):i\in f(e)\}.
+\]
+
+### Lemma 1
+Each \(M_i\) is a perfect matching of \(X\), and
+\[
+|M_i\cap M_j|=3\qquad(i\ne j).
+\]
+
+### Proof
+At every vertex, its three labels form a partition of \([6]\) into three pairs. Hence exactly one incident label contains \(i\), so exactly one incident edge belongs to \(M_i\). Thus \(M_i\) is a perfect matching.
+
+Moreover,
+\[
+M_i\cap M_j=\{e:f(e)=\{i,j\}\}.
+\]
+Equitability says that the label \(\{i,j\}\) occurs exactly three times. ∎
+
+The converse is also exact.
+
+### Lemma 2
+Suppose \(M_1,\dots,M_6\) are perfect matchings of \(X\) satisfying
+\[
+|M_i\cap M_j|=3\qquad(i\ne j).
+\]
+Then every edge belongs to exactly two of the \(M_i\), and assigning to an edge the pair of indices of its two containing matchings produces a balanced Tanner configuration.
+
+### Proof
+Put
+\[
+r_e=\bigl|\{i:e\in M_i\}\bigr|.
+\]
+Since each perfect matching has 15 edges,
+\[
+\sum_e r_e=6\cdot15=90.
+\]
+The pairwise-intersection hypothesis gives
+\[
+\sum_e \binom{r_e}{2}
+ =\sum_{1\le i<j\le6}|M_i\cap M_j|
+ =15\cdot3=45.
+\]
+Consequently
+\[
+\begin{aligned}
+\sum_e(r_e-2)^2
+&=\sum_e r_e^2-4\sum_e r_e+4|E(X)|\\
+&=\left(2\sum_e\binom{r_e}{2}+\sum_e r_e\right)-360+180\\
+&=(90+90)-360+180=0.
+\end{aligned}
+\]
+Thus \(r_e=2\) for every edge.
+
+At a vertex, each of the six perfect matchings chooses one incident edge, while each of the three incident edges is chosen exactly twice. Therefore those three edges partition \([6]\) into three pairs, i.e. their labels form a syntheme. Finally, label \(\{i,j\}\) occurs on precisely \(M_i\cap M_j\), hence three times. ∎
+
+Therefore:
+
+### Proposition 3
+Let \(\mathcal P(X)\) be the set of perfect matchings of \(X\), and define a graph \(J_X\) on \(\mathcal P(X)\) by
+\[
+M\sim M' \iff |M\cap M'|=3.
+\]
+Then
+\[
+\{\text{balanced }q=2\text{ Tanner configurations}\}\ne\varnothing
+\quad\Longleftrightarrow\quad
+\omega(J_X)\ge6.
+\]
+
+The previously reported Tanner-CSP UNSAT is therefore equivalent to the finite statement
+\[
+\omega(J_X)\le5.
+\]
+
+This is the appropriate small certificate to retain, rather than the original 7155-variable CNF.
+
+---
+
+## 2. Exact implementation
+
+A perfect matching of \(X\) is a bijection from the 15 duads to the 15 synthemes, assigning each duad to a syntheme containing it. Thus all perfect matchings can be enumerated by a 15-row, degree-three exact-cover search.
+
+A matching can be stored as a tuple
+\[
+(a_0,\dots,a_{14}),
+\]
+where \(a_p\) is the chosen incident syntheme for source duad \(p\). For two such matchings,
+\[
+|M\cap M'|=\bigl|\{p:a_p=a'_p\}\bigr|.
+\]
+
+The following is the complete search structure.
+
+```python
+from itertools import combinations
+
+V = tuple(range(6))
+DUADS = tuple(combinations(V, 2))
+
+def synthemes(rem=V):
+    rem = tuple(rem)
+    if not rem:
+        yield ()
+        return
+    a = rem[0]
+    for j in range(1, len(rem)):
+        b = rem[j]
+        rest = rem[1:j] + rem[j+1:]
+        for tail in synthemes(rest):
+            yield tuple(sorted(((a, b),) + tail))
+
+SYNTHEMES = tuple(sorted(set(synthemes())))
+assert len(DUADS) == len(SYNTHEMES) == 15
+
+INC = [
+    tuple(j for j, S in enumerate(SYNTHEMES) if p in S)
+    for p in DUADS
+]
+assert all(len(x) == 3 for x in INC)
+
+# Enumerate perfect matchings of the Tutte-Coxeter graph.
+PM = []
+assignment = [-1] * 15
+
+def enumerate_pm(unassigned, used_mask):
+    if not unassigned:
+        PM.append(tuple(assignment))
+        return
+
+    # Minimum-remaining-values branching.
+    p = min(
+        unassigned,
+        key=lambda r: sum(not ((used_mask >> s) & 1) for s in INC[r])
+    )
+    nxt = unassigned - {p}
+
+    for s in INC[p]:
+        if not ((used_mask >> s) & 1):
+            assignment[p] = s
+            enumerate_pm(nxt, used_mask | (1 << s))
+            assignment[p] = -1
+
+enumerate_pm(set(range(15)), 0)
+
+n = len(PM)
+ADJ = [0] * n
+
+for i in range(n):
+    for j in range(i + 1, n):
+        if sum(x == y for x, y in zip(PM[i], PM[j])) == 3:
+            ADJ[i] |= 1 << j
+            ADJ[j] |= 1 << i
+
+def clique_at_least_six(cand, depth=0):
+    need = 6 - depth
+    while cand.bit_count() >= need:
+        bit = cand & -cand
+        v = bit.bit_length() - 1
+        cand ^= bit
+
+        if depth + 1 == 6:
+            return True
+        if clique_at_least_six(cand & ADJ[v], depth + 1):
+            return True
+
+    return False
+
+assert not clique_at_least_six((1 << n) - 1)
+```
+
+For a formally archived computer-assisted proof, the last clique instance should additionally be emitted as:
+
+- one Boolean variable per perfect matching;
+- incompatibility clauses \(\neg x_M\lor\neg x_{M'}\) whenever \(|M\cap M'|\ne3\);
+- a cardinality constraint \(\sum_M x_M\ge6\);
+
+and solved with DRAT/LRAT proof logging. This is far smaller and more independently auditable than the original Tanner CNF.
+
+---
+
+## 3. Consequence for the full-collineation quotient
+
+In the duad/syntheme model,
+\[
+\operatorname{Aut}(Q)\cong S_6.
+\]
+Postcomposition by a full collineation merely permutes the six indices of
+\[
+(M_1,\dots,M_6).
+\]
+Thus quotienting corresponds to identifying ordered six-cliques of \(J_X\) under the natural \(S_6\)-action.
+
+Since \(J_X\) has no six-clique, there is nothing to quotient:
+\[
+\Omega_{q=2}/\operatorname{Aut}(Q)=\varnothing.
+\]
+
+Hence the full-collineation quotient repairs the earlier **bad-map identification failure**, but it cannot repair the simultaneous **abundance failure** at the first parameter.
+
+---
+
+## 4. What remains at \(q\ge8\)
+
+This is only a finite structural obstruction. It does not extend directly to \(q\ge8\), because an incident Tanner triple is then merely a three-subset of a \((q+1)\)-point line; the six-perfect-matching decomposition disappears.
+
+If \(\Omega_q\) denotes the balanced configuration set and \(\Gamma_q\) the full collineation group, then abundance alone would survive quotienting:
+\[
+|\Omega_q/\Gamma_q|\ge \frac{|\Omega_q|}{|\Gamma_q|}.
+\]
+For \(W(3,q)\),
+\[
+|\Gamma_q|
+\le |\operatorname{P\Gamma Sp}(4,q)|
+=|\operatorname{Aut}(\mathbb F_q)|\,
+  \frac{q^4(q^2-1)(q^4-1)}{\gcd(2,q-1)}.
+\]
+For \(q=8\), this is
+\[
+3\cdot8^4(8^2-1)(8^4-1)=3{,}170{,}119{,}680.
+\]
+Thus group size is not itself an asymptotic abundance obstruction when the Tanner graph is sufficiently large.
+
+The unresolved and much stronger condition is full-orbit rigidity:
+\[
+g\text{ coordinatewise bad with }f
+\quad\Longrightarrow\quad
+g=\gamma f\text{ for some }\gamma\in\Gamma_q.
+\]
+A necessary consequence is that every bad mate must preserve all full-collineation invariants of the coordinate word, including:
+
+- the equality partition \(f(e)=f(e')\);
+- the pairwise collinearity matrix of \(f(e),f(e')\);
+- all incidence counts of coordinate tuples.
+
+This gives a sharp \(q=8\) falsification test, but no such pair is currently supplied.
+
+**Bottom line:** full-group quotienting is logically valid and absorbs the known 30 maps, but it does not repair the construction at \(q=2\); the exact obstruction is the absence of six perfect matchings of the Tutte–Coxeter graph with all pairwise intersections equal to three. No rigorous abundance or full-orbit rigidity route remains for \(q\ge8\).

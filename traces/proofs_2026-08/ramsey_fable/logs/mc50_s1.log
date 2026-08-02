@@ -1,0 +1,12 @@
+N=50 seed=1 edges=1225 tris=19600 init_conflicts=1540
+step=2000000 conf=485 best=399 80s
+step=4000000 conf=418 best=320 158s
+step=6000000 conf=384 best=320 236s
+step=8000000 conf=385 best=320 313s
+step=10000000 conf=421 best=320 389s
+step=12000000 conf=394 best=320 469s
+step=14000000 conf=416 best=320 572s
+step=16000000 conf=368 best=320 656s
+step=18000000 conf=409 best=320 737s
+step=20000000 conf=379 best=319 823s
+step=22000000 conf=394 best=319 902s

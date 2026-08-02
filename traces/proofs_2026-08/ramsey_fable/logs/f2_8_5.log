@@ -1,0 +1,4 @@
+/home/alexw/OpenRsi/runs/ramsey_fable/experiments/sat_f2d.py:2: SyntaxWarning: invalid escape sequence '\ '
+  """SAT: can F_2^d \ {0} be partitioned into k sum-free sets?
+d=8 k=5 n=255 lines=10795 vars=1275 clauses=56780
+fixed e_1..e_6 to color 0

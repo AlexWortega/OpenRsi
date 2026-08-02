@@ -1,0 +1,7 @@
+base case OK: every locally-2 triangle-free K_5 is globally 2-colored
+profile list complete: [(6, 6, 4, 0), (6, 6, 2, 2), (6, 4, 4, 2), (4, 4, 4, 4)]
+profile (6, 6, 4, 0): REFUTED nodes=640869449
+profile (6, 6, 2, 2): REFUTED nodes=1074420382
+profile (6, 4, 4, 2): REFUTED nodes=2485866614
+profile (4, 4, 4, 4): REFUTED nodes=120414601
+THEOREM VERIFIED: no triangle-free locally-3 K_16 uses 4 global colors

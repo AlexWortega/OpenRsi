@@ -1,0 +1,13 @@
+N=62 seed=1 edges=1891 tris=37820 init_conflicts=2895
+step=2000001 conf=1080 best=803 120s
+step=4000001 conf=941 best=803 232s
+step=6000001 conf=940 best=775 337s
+step=8000001 conf=850 best=706 444s
+step=10000001 conf=835 best=686 581s
+step=12000001 conf=836 best=686 699s
+step=14000001 conf=822 best=686 812s
+step=16000001 conf=816 best=686 925s
+step=18000001 conf=779 best=686 1024s
+step=20000001 conf=777 best=684 1122s
+step=22000001 conf=769 best=681 1218s
+step=24000001 conf=795 best=681 1315s

@@ -1,0 +1,4 @@
+/home/alexw/OpenRsi/runs/ramsey_fable/experiments/sat_local4_z5zb.py:2: SyntaxWarning: invalid escape sequence '\{'
+  """Structured SAT for a locally-4 triangle-free coloring of K_{5b} with 5 global colors.
+b=12 N=60 vars=480 clauses=11730
+UNSAT (0.0s)

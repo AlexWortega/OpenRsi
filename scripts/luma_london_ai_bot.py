@@ -41,6 +41,9 @@ LONDON_TZ = ZoneInfo("Europe/London")
 
 STATE_FILE = os.environ.get("STATE_FILE", "/data/state.json")
 POLL_HOURS = float(os.environ.get("POLL_HOURS", "6"))
+HEARTBEAT_FILE = os.environ.get("HEARTBEAT_FILE", "/data/heartbeat")
+RETRY_MINUTES = 10          # пауза после неудачного цикла
+MAX_CONSECUTIVE_FAILURES = 6  # потом exit(1) — docker перезапустит процесс
 
 WEEKDAYS_RU = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 MONTHS_RU = ["янв", "фев", "мар", "апр", "мая", "июн",
@@ -191,6 +194,25 @@ def prune_state(state: dict) -> None:
     }
 
 
+def touch_heartbeat() -> None:
+    try:
+        os.makedirs(os.path.dirname(HEARTBEAT_FILE) or ".", exist_ok=True)
+        with open(HEARTBEAT_FILE, "w") as f:
+            f.write(datetime.now(timezone.utc).isoformat())
+    except OSError as e:
+        log(f"heartbeat write failed: {e!r}")
+
+
+def healthcheck() -> None:
+    """Для docker HEALTHCHECK: heartbeat не старше 2× периода опроса."""
+    max_age = POLL_HOURS * 3600 * 2 + 300
+    try:
+        age = time.time() - os.path.getmtime(HEARTBEAT_FILE)
+    except OSError:
+        sys.exit(1)
+    sys.exit(0 if age < max_age else 1)
+
+
 def run_cycle(force_digest: bool = False) -> None:
     state = load_state()
     events = fetch_events()
@@ -213,18 +235,27 @@ def main() -> None:
     mode = sys.argv[1] if len(sys.argv) > 1 else "--once"
     if mode == "--loop":
         log(f"loop mode: polling every {POLL_HOURS}h, state={STATE_FILE}")
+        failures = 0
         while True:
+            touch_heartbeat()
             try:
                 run_cycle()
-            except Exception as e:  # переживаем сетевые сбои, docker нас не перезапускает зря
-                log(f"cycle failed: {e!r}")
-            time.sleep(POLL_HOURS * 3600)
+                failures = 0
+                time.sleep(POLL_HOURS * 3600)
+            except Exception as e:
+                failures += 1
+                log(f"cycle failed ({failures}/{MAX_CONSECUTIVE_FAILURES}): {e!r}")
+                if failures >= MAX_CONSECUTIVE_FAILURES:
+                    sys.exit(1)  # docker --restart перезапустит с чистым процессом
+                time.sleep(RETRY_MINUTES * 60)
+    elif mode == "--health":
+        healthcheck()
     elif mode == "--digest":
         run_cycle(force_digest=True)
     elif mode == "--once":
         run_cycle()
     else:
-        sys.exit(f"unknown mode {mode}; use --once | --digest | --loop")
+        sys.exit(f"unknown mode {mode}; use --once | --digest | --loop | --health")
 
 
 if __name__ == "__main__":

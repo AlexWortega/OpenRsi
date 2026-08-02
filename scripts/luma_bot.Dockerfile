@@ -7,4 +7,6 @@ FROM python:3.12-slim
 ENV TZ=Europe/London PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY luma_london_ai_bot.py .
+HEALTHCHECK --interval=5m --timeout=10s --retries=3 \
+  CMD ["python", "luma_london_ai_bot.py", "--health"]
 CMD ["python", "luma_london_ai_bot.py", "--loop"]

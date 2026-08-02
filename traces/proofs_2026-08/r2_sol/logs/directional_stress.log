@@ -1,0 +1,1 @@
+{"evaluated": 3001, "best": {"kind": "sharp", "volume": 10.666666666666664, "best_score": 3.999999999999999, "direction": [0.0, 1.0, 1.0], "rho": 1.0}, "sharp": {"kind": "sharp", "volume": 10.666666666666664, "best_score": 3.999999999999999, "direction": [0.0, 1.0, 1.0], "rho": 1.0}, "out": "experiments/directional_stress.json"}

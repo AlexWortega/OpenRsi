@@ -118,7 +118,7 @@ class Bridge:
         if t == "header":
             self.budget = rec.get("budget")
             if self.run is None:
-                self.init_run(rec.get("model", "?"), "proofs2", rich=True)
+                self.init_run(rec.get("model", "?"), rec.get("variant", "proofs2"), rich=True)
                 self.span("user_msg", "run header", {
                     "text": f"model={rec.get('model')} budget=${rec.get('budget')}",
                     "budget_usd": rec.get("budget"), "run_dir": self.run_dir,

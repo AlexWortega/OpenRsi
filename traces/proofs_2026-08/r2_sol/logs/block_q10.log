@@ -1,0 +1,2 @@
+{"sat": true, "seed_colors": 5, "dimension": 7, "output_colors": 10, "states": 35, "state_triples": 3385, "seconds": 0.020343303680419922}
+wrote experiments/block_q10.json

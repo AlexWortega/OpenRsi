@@ -20,8 +20,8 @@ project **rsi-proffer**).
 | run | model | budget | result |
 |---|---|---|---|
 | `proofs_sol/` (round 1) | openai/gpt-5.6-sol | $100 | 77 rounds, $100.24 — both problems PARTIAL, honest gaps stated; all verifiers pass |
-| `proofs_code_r2` (round 2) | openai/gpt-5.6-sol | $50 total | in progress |
-| `proofs_code_fable` (round 2) | anthropic/claude-fable-5 | $50 total | in progress |
+| `r2_sol/` (round 2) | openai/gpt-5.6-sol | $50 total | 21+5 rounds, $50.71 — both PARTIAL; ~10 Ramsey seed families banked (all fixed base ≤2.63), HNF tetrahedra enumerations, integer-simplex pigeonhole |
+| `r2_fable/` (round 2) | anthropic/claude-fable-5 | $46 (killed hung at $29.17) | Ehrhart n=3 reduction to 1-D concave Lemma A′ (64/27, numerically supported, proof not closed); F_2^6 SAT sweeps |
 
 Round-2 runs are seeded from round 1's artifacts and target its precisely
 stated gaps; their archives (work files + `events.jsonl`) land here after
@@ -31,3 +31,8 @@ Round-1 highlights (see `proofs_sol/STATUS.md`): structured-class Ehrhart
 bounds via section/entropy lifting; proof that iid product codes and basic
 LLL cannot beat base 2 for the Ramsey capacity route; exact capacity identity
 max_{α(G)≤2} α(G^⊠k) = R_k(r+1)−1.
+
+Round-3 head-to-head (Ramsey ONLY, $25 each, identical merged seeds from all
+prior campaigns): `ramsey_sol` vs `ramsey_fable`, runner `agent/proofs/run3.js`
+— goal ladder: base > 3.199 record → provably growing base → superexponential.
+Full event streams (`events.jsonl.gz`) archived per run.

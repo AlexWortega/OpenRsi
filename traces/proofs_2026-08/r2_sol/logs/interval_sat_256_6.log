@@ -1,0 +1,2 @@
+{"sat": true, "N": 256, "k": 6, "seconds": 0.1443493366241455, "clauses": 198391}
+wrote experiments/interval_256_6.json

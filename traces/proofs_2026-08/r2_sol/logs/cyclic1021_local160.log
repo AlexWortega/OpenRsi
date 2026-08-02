@@ -1,0 +1,2 @@
+{"sat": true, "p": 1021, "k": 8, "target": 160, "seconds": 0.9396531581878662, "vars": 19396, "clauses": 1581527}
+wrote 160 experiments/cyclic1021_local160.json

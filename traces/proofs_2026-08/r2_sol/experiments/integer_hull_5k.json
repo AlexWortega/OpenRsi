@@ -1,0 +1,1005 @@
+{
+  "samples": 5000,
+  "top": [
+    {
+      "volume": 5.746771103593285,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.412048268741092,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.364150707425034,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.146205806700073,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.089139721754512,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.055870923222172,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 5.028481668076537,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.957067176296727,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.894595456380273,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.867573095999118,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.830247333914411,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.796084715616698,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.7759402528235935,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.744467101546107,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.721339213238541,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.637611106255324,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.60823128719107,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.602069960202312,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.5707060469059755,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.5681882545250465,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.532300755159918,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.512146833612606,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.504247386568145,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.498090950134013,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.482061678453949,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.472684449880656,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.393894954914352,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.391013336750127,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.386303989858449,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.355376214882703,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.337002547454458,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.322496020562727,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.3194966762285825,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.3106188985069265,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.302943339502134,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.295060073107702,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.294866809224602,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.273789536019555,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.271745307282243,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.261140067946743,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.231461460694275,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.225349931123927,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.2151574905627625,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.186963254209504,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.18542131638726,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.183633437847525,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.177374582736744,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.17002935402316,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.165721934438135,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.160250258543363,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.158179553336627,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.154240258555649,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.149087915233455,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.131036862501979,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.1277984908447864,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.11893485552055,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.105482662038821,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.099000484573128,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.091521106913461,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.090512187845549,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.089855254014359,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.075645183128673,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.068962370560949,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.065977311176033,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.049657686435425,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.031306312589797,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.02655076401657,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.0212717936708025,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.011767228837971,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.007530626296169,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.003197891614513,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 4.002818756615238,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9925544855969637,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9876172481297143,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.973867096428038,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9735433550818193,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.972644925494815,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.970952519702845,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.969524199993794,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.966120620703422,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.952443862587371,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.947240153211276,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9465010579472213,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9451385062378503,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.938227365474995,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9348636633063747,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.929242672576552,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9189938518988727,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.913099309275438,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9098313430804117,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9055966907295128,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.9027118421164153,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.894368630921766,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.879333505156273,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8748772011834927,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.871945498271949,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8652567424254802,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.863419845589906,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8585347845906677,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.851852851940226,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8499501829064786,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8460526906632473,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.834169102039579,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.826285446449045,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.822378347253277,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.817603087097015,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8085782645914246,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.806721979721463,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.8020230636768737,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7967242129292345,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.794958408810418,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.794188773188929,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.787042733326712,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7868964415845205,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.786207402686672,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7838522467796842,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7803244126668942,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7769509488860016,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7753920076897387,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7726306069174838,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7705898683232104,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7690242178402635,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7663360399694894,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7661188456874557,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7646668140987227,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7528028619028553,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7482636056027094,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7478570353262155,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7333900593326184,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.733058319720819,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.732818823014212,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.729972616608694,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.729259150854181,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.728892022801799,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.728540015656429,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.724403483633673,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7227927128549103,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.720087700025379,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7184401336795583,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7163681400489685,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7102311647078854,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.7047236789767317,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.701949088118266,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.700849435231095,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6992304902061,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.697211857421023,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.69606346098292,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6948722393228786,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6926938462180843,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.690571197048472,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.690124671844973,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.689610899170311,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.689268983651716,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.687716673336216,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.684833972685853,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6807738655243734,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6754929387283233,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6576710901965788,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6527808523537564,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6488956159558397,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.647816528927186,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6446952282968788,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6420109281695634,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6391993363302104,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6378605893227998,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.632003969629419,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.622780748380227,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.6164293277986848,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.616187665166274,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.615758340977073,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.614249371215858,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5990906796409172,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5923718057341434,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5895867007369184,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.585648469507561,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.58417813447832,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5836384685228895,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.581457149269838,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.580995754276181,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5783879466682555,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5777848229336855,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5761485724025746,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5751128047056393,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5741714000408527,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5712865258584734,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.570904440673436,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.56679545128722,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5664899309398854,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5605621946891755,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5602510906571196,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5602418914511094,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.557479775914175,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.555911898237253,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.55015591065796,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.540516401685854,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.540029764127203,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.537627602180657,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5360869938712445,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5358374276601654,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    },
+    {
+      "volume": 3.5233182188524785,
+      "integer_hull_ratio": 0,
+      "lattice_points": 2
+    }
+  ]
+}

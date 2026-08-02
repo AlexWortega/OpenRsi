@@ -1,0 +1,161 @@
+The stationary data justify abandoning the proposed automaton ansatz as a next route, but they do **not** justify a theorem that stationary automata have base at most \(2\), or even bounded base. The Grötsch case already rules out such a claim: the feasible \(q=3\) value \(W=11>2^3\) shows that the natural \(2^q\) conjecture is false.
+
+I therefore cannot honestly supply the requested universal stationary obstruction. What can be proved is the following narrower structural rejection, followed by a genuinely different explicit construction to test.
+
+## 1. What the stationary condition really imposes
+
+Let \(H\) be the triangle-free distinguishability graph on state set \(S\), let \(A\subseteq S\times S\), and let
+\[
+\mathcal C_q(A)=\{(x_0,\dots,x_{q-1}): A(x_i,x_{i+1})=1\},
+\]
+with indices modulo \(q\). Put
+\[
+K_H=\{(u,v):u=v\text{ or }uv\notin E(H)\}.
+\]
+Define the bad-pair automaton on \(K_H\) by
+\[
+(u,v)\longrightarrow (u',v')
+\quad\Longleftrightarrow\quad
+A(u,u')=A(v,v')=1
+\quad\text{and}\quad
+(u',v')\in K_H.
+\]
+
+Then:
+
+**Exact synchronization criterion.**
+\(\mathcal C_q(A)\) is a code if and only if every length-\(q\) closed walk in the bad-pair automaton is diagonal, i.e. has \(u_i=v_i\) for every \(i\).
+
+This explains the C5 observations. Branching in \(A\) produces rectangles
+\[
+u\to a,\quad u\to b,\quad v\to c,\quad v\to d,
+\]
+and whenever the corresponding state pairs remain in \(K_H\), the product automaton acquires off-diagonal cycles. The complete transition matrix on a single \(H\)-edge avoids this because \(K_H\) restricted to that edge consists only of the diagonal, giving exactly \(2^q\). The C5 exhaustive computation says that every attempted larger recurrent component creates enough compatible rectangles to close an off-diagonal \(q\)-cycle for \(q\le 6\), and likewise for the tested directed class through \(q=8\). It is a genuine rejection of C5, not evidence for a template-independent \(2^q\) theorem.
+
+There is also no separate “short repeating layered” escape:
+
+**Phase-lift lemma.**
+A \(p\)-periodic layered automaton with state sets \(S_0,\dots,S_{p-1}\) and transitions
+\[
+A_i\subseteq S_i\times S_{i+1\bmod p}
+\]
+is exactly a stationary automaton on
+\[
+S'=\bigsqcup_{i=0}^{p-1}\{i\}\times S_i,
+\]
+with transitions
+\[
+(i,u)\to(i+1\bmod p,v)\iff (u,v)\in A_i.
+\]
+Closed walks of length \(pn\) correspond, up to the choice of starting phase, to the layered length-\(pn\) cycles, and the bad-pair automaton is the corresponding phase lift.
+
+Thus a bounded-period layered pattern is not a new mechanism. Unless one has an explicit family of growing recurrent components and a proof excluding off-diagonal product cycles, the proposal has merely relocated the original zero-error problem.
+
+## 2. Different explicit construction: anchored-palette triangle-free process
+
+The most concrete genuinely different experiment I recommend is a local-palette construction on a factorial-size, explicitly generated vertex family. It does not use word selection or automata.
+
+Fix integers \(r\ge2\) and \(g\ge r+1\). Let
+\[
+U=\{3,4,\dots,g\},
+\]
+and let the vertices be
+\[
+V_{r,g}
+=
+\bigl\{(a,B):a\in\{1,2\},\ B\in\tbinom{U}{r-1}\bigr\}.
+\]
+Associate to \(v=(a,B)\) the palette
+\[
+P_v=\{0,a\}\cup B.
+\]
+Hence every palette has size \(r+1\), the global palette is \(\{0,1,\dots,g\}\), and
+\[
+N=2\binom{g-2}{r-1}.
+\]
+Taking \(g=\lfloor r^2\rfloor\) gives
+\[
+\log N=(1+o(1))r\log r,
+\]
+which is exactly the desired factorial scale in the local parameter.
+
+The edge-coloring is produced by the following deterministic process.
+
+### Algorithm
+
+Order vertices lexicographically and edges lexicographically. Maintain graphs \(G_c\) for colors \(c\in\{0,\dots,g\}\), initially empty.
+
+For an uncolored edge \(uv\), define
+\[
+L(uv)=P_u\cap P_v.
+\]
+A color \(c\in L(uv)\) is currently legal if \(u\) and \(v\) have no common neighbor in \(G_c\). Assign the least legal color. If no legal color exists, mark \(uv\) as a failure edge.
+
+This is immediately implementable with bitsets for the color neighborhoods. At every stage every \(G_c\) is triangle-free. Therefore zero failure edges give a valid locally-\((r+1)\) coloring on all \(N\) vertices.
+
+There is useful structure absent from a generic CSP:
+
+* If the anchors differ and \(B\cap C=\varnothing\), then
+  \[
+  P_{(1,B)}\cap P_{(2,C)}=\{0\},
+  \]
+  so the edge is forced to color \(0\).
+
+* The graph of these forced color-\(0\) edges is bipartite between anchor types, hence triangle-free.
+
+* If the anchors agree, the common anchor is always available.
+
+* Every nonanchor color \(x\in U\) is supported only on vertices whose \((r-1)\)-set contains \(x\).
+
+Thus failures can only arise from interaction between the anchor graphs and the sparse random-looking intersections \(B\cap C\), not from an uncontrolled collection of empty lists.
+
+### First falsification parameters
+
+Do not begin with \(g=r^2\). Test:
+
+\[
+(r,g)=(3,7),(4,10),(5,14),(6,19),(7,24).
+\]
+
+Use these variants, in order:
+
+1. lexicographic edge order, least legal color;
+2. smallest-current-\(|E(G_c)|\) legal color;
+3. edge order by increasing \(|L(uv)|\);
+4. randomized order among legal colors, with \(10^3\) restarts.
+
+Record:
+
+* number and list size of the first failure edge;
+* for each failed \(uv\), the witnesses \(w_c\) with
+  \[
+  uw_c,vw_c\in E(G_c),\qquad c\in L(uv);
+  \]
+* whether deleting one endpoint of each failure leaves at least
+  \[
+  \exp(\Omega(r\log r))
+  \]
+  vertices.
+
+The third statistic matters: the process may still yield a factorial-size induced coloring after deterministic pruning.
+
+## 3. The exact proof target—and the main danger
+
+The appropriate non-tautological statement would be an analysis of this fixed algorithm:
+
+> For some absolute \(C,c>0\), with \(g=\lfloor Cr^2\rfloor\), the smallest-current-load version of the algorithm has a failure-edge graph with a vertex cover of size at most
+> \[
+> N-\exp(c r\log r).
+> \]
+
+Deleting that cover gives a locally-\((r+1)\) seed with \(g=O(r^2)\) and factorially many vertices.
+
+This is not an existence lemma: the vertex family, palette assignment, edge order, legal-color rule, and deletion certificate are all explicit. Nevertheless, the asserted failure bound is substantial and presently unproved.
+
+There is also an immediate obstruction to check. For a fixed anchor \(a\), three vertices
+\[
+(a,B_1),(a,B_2),(a,B_3)
+\]
+with pairwise disjoint \(B_i\) have pairwise palette intersection exactly \(\{0,a\}\). The induced triangle must therefore be colored with two colors, which is possible, but dense collections of such triples may force incompatible choices. Consequently, if the first failures are overwhelmingly inside one anchor class with lists \(\{0,a\}\), this construction should be killed quickly rather than subjected to a larger search.
+
+In summary: the C5 computation rejects C5 and the unrestricted full-cycle-language mechanism there; it does not support a universal stationary upper bound. Bounded-period layers are merely phase-lifted stationary automata. The anchored-palette process above is the cleanest different implementable next experiment I see: it starts with \(r^{(1+o(1))r}\) explicit vertices, uses \(O(r^2)\) global colors and \(r+1\) local colors, preserves triangle-freeness by construction, and has a sharply identifiable failure mode.

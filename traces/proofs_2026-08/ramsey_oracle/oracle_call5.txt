@@ -1,0 +1,348 @@
+## Theorem
+
+Let \(H\) be any triangle-free graph on \(n\) vertices, and let
+
+\[
+M_{uv}=\mathbf 1[u=v\ \text{or}\ uv\notin E(H)].
+\]
+
+Then
+
+\[
+\boxed{\operatorname{per}(M)\ge \frac{n!}{C^n}},
+\qquad
+C=\frac52\left(\frac53\right)^{3/2}
+=\frac{25\sqrt{15}}{18}<5.38.
+\]
+
+Consequently,
+
+\[
+\left(\frac{n!}{\operatorname{per}(M)}\right)^{1/n}<5.38
+\]
+
+for every triangle-free \(H\). Thus the permanent-quotient guarantee can never have growing base, and in particular no family can satisfy
+
+\[
+\operatorname{per}(M)\le \frac{n!}{n^{cn}}
+\]
+
+for any fixed \(c>0\) and all sufficiently large \(n\).
+
+The proof has two ingredients.
+
+---
+
+## 1. A dense bipartite support has a large regular factor
+
+### Lemma 1
+
+Let \(G=(L,R;E)\) be bipartite with \(|L|=|R|=m\). Suppose every vertex has at most \(a\) nonneighbors on the other side, where
+
+\[
+a\le \frac{4m}{9}.
+\]
+
+Then \(G\) contains a spanning \(r\)-regular subgraph with
+
+\[
+r=m-2a.
+\]
+
+### Proof
+
+By the integral max-flow criterion, an \(r\)-factor exists if and only if, for every \(X\subseteq L\) and \(Y\subseteq R\),
+
+\[
+e(X,R\setminus Y)\ge r(|X|-|Y|).
+\tag{1}
+\]
+
+Write \(x=|X|\), \(y=|Y|\). There is nothing to prove when \(x\le y\), so assume \(x>y\).
+
+The rectangle \(X\times(R\setminus Y)\) contains \(x(m-y)\) pairs. Its number of nonedges is at most both \(ax\) and \(a(m-y)\). Therefore
+
+\[
+e(X,R\setminus Y)
+\ge x(m-y)-\min\{ax,a(m-y)\}.
+\tag{2}
+\]
+
+First suppose \(x\le m-y\). Then (2) gives
+
+\[
+e(X,R\setminus Y)\ge x(m-y-a).
+\]
+
+Subtracting \(r(x-y)=(m-2a)(x-y)\) yields
+
+\[
+x(a-y)+(m-2a)y.
+\tag{3}
+\]
+
+If \(y\le a\), this is nonnegative. If \(y>a\), then \(a-y<0\) and \(x\le m-y\), so (3) is at least
+
+\[
+(m-y)(a-y)+(m-2a)y
+= y^2-3ay+am.
+\tag{4}
+\]
+
+The discriminant of the quadratic in (4) is
+
+\[
+9a^2-4am\le 0
+\]
+
+because \(a\le 4m/9\). Hence (4) is nonnegative.
+
+Now suppose \(x\ge m-y\). From (2),
+
+\[
+e(X,R\setminus Y)\ge (m-y)(x-a).
+\]
+
+After subtracting \(r(x-y)\), the result is
+
+\[
+x(2a-y)+(m-a)y-am.
+\tag{5}
+\]
+
+If \(y\le2a\), expression (5) is increasing in \(x\), so using \(x\ge m-y\) gives again
+
+\[
+(5)\ge y^2-3ay+am\ge0.
+\]
+
+If \(y\ge2a\), expression (5) is decreasing in \(x\), so using \(x\le m\) gives
+
+\[
+(5)\ge a(m-y)\ge0.
+\]
+
+Thus (1) always holds, proving the existence of the \(r\)-factor. ∎
+
+### Corollary 2
+
+Let \(A\) be an \(m\times m\) \(0\)-\(1\) matrix with at most \(a\le4m/9\) zeros in every row and column. Then
+
+\[
+\operatorname{per}(A)
+\ge m!\left(1-\frac{2a}{m}\right)^m.
+\tag{6}
+\]
+
+Indeed, Lemma 1 gives an \(r\)-regular support matrix \(B\le A\), \(r=m-2a\). Since \(B/r\) is doubly stochastic, van der Waerden gives
+
+\[
+\operatorname{per}(B/r)\ge \frac{m!}{m^m}.
+\]
+
+Therefore
+
+\[
+\operatorname{per}(A)\ge\operatorname{per}(B)
+\ge r^m\frac{m!}{m^m}
+=m!\left(1-\frac{2a}{m}\right)^m.
+\]
+
+---
+
+## 2. Recursively peel independent neighborhoods
+
+Fix
+
+\[
+\beta=\frac25.
+\]
+
+Start with \(H_0=H\), on a residual vertex set of size \(m_0=n\).
+
+As long as the current induced graph \(H_i\), of order \(m_i\), has a vertex \(v_i\) with
+
+\[
+d_{H_i}(v_i)>\beta m_i,
+\]
+
+remove the block
+
+\[
+B_i=N_{H_i}(v_i),
+\qquad b_i=|B_i|.
+\]
+
+Because \(H_i\) is triangle-free, \(B_i\) is independent. Hence every entry of \(M\) in \(B_i\times B_i\) equals \(1\). The residual size becomes
+
+\[
+m_{i+1}=m_i-b_i.
+\]
+
+Eventually this terminates with a residual set \(T\) of size \(t\), whose induced graph satisfies
+
+\[
+\Delta(H[T])\le\beta t=\frac{2t}{5}.
+\]
+
+For the reflexive nonadjacency matrix \(M_T\), every row and column has at most \(2t/5\) zeros. Corollary 2 applies because \(2/5<4/9\), giving
+
+\[
+\operatorname{per}(M_T)
+\ge t!\left(1-\frac45\right)^t
+=\frac{t!}{5^t}.
+\tag{7}
+\]
+
+Restricting to permutations that preserve every block \(B_i\) and preserve \(T\), we obtain
+
+\[
+\operatorname{per}(M)
+\ge
+\left(\prod_i b_i!\right)\operatorname{per}(M_T)
+\ge
+\left(\prod_i b_i!\right)\frac{t!}{5^t}.
+\tag{8}
+\]
+
+It remains to compare this product of factorials with \(n!\).
+
+---
+
+## 3. Entropy estimate for the peeled block sizes
+
+Let
+
+\[
+p_i=\frac{b_i}{n},
+\qquad
+p_*=\frac tn.
+\]
+
+Then
+
+\[
+\frac{n!}{\left(\prod_i b_i!\right)t!}
+\le
+\exp\!\left(nH(p_1,p_2,\dots,p_*)\right),
+\tag{9}
+\]
+
+where \(H\) is Shannon entropy with natural logarithms.
+
+Set
+
+\[
+x_i=\frac{b_i}{m_i}.
+\]
+
+By construction \(x_i>\beta=2/5\). The entropy chain rule gives
+
+\[
+H(p_1,p_2,\dots,p_*)
+=
+\sum_i \frac{m_i}{n}h(x_i),
+\tag{10}
+\]
+
+where
+
+\[
+h(x)=-x\log x-(1-x)\log(1-x).
+\]
+
+The function \(h(x)/x\) is strictly decreasing on \((0,1)\), since
+
+\[
+\frac{d}{dx}\frac{h(x)}x
+=\frac{\log(1-x)}{x^2}<0.
+\]
+
+Thus, for every \(x_i\ge2/5\),
+
+\[
+h(x_i)\le F x_i,
+\qquad
+F=\frac{h(2/5)}{2/5}.
+\]
+
+Since \((m_i/n)x_i=b_i/n\),
+
+\[
+H(p_1,p_2,\dots,p_*)
+\le
+F\sum_i\frac{b_i}{n}
+=F(1-p_*).
+\tag{11}
+\]
+
+A direct calculation gives
+
+\[
+F
+=
+-\log\frac25-\frac32\log\frac35
+=
+\log\left[\frac52\left(\frac53\right)^{3/2}\right]
+=\log C.
+\tag{12}
+\]
+
+Also \(C>5\), so \(\log5<\log C=F\). Combining (8)–(12),
+
+\[
+\begin{aligned}
+\log\frac{n!}{\operatorname{per}(M)}
+&\le
+nH(p_1,p_2,\dots,p_*)+t\log5\\
+&\le
+nF(1-p_*)+np_*\log5\\
+&\le nF.
+\end{aligned}
+\]
+
+Therefore
+
+\[
+\operatorname{per}(M)\ge n!e^{-nF}
+=\frac{n!}{C^n},
+\]
+
+as claimed.
+
+---
+
+## Consequences for the permutation-orbit construction
+
+For the bad-pair degree
+
+\[
+D=\operatorname{per}(M),
+\]
+
+the quotient used by the transitive greedy argument always satisfies
+
+\[
+\frac{n!}{D}\le C^n,
+\qquad C<5.38.
+\]
+
+Hence its achieved base is universally bounded:
+
+\[
+\left(\frac{n!}{D}\right)^{1/n}<5.38.
+\]
+
+In particular, an explicit classical or pseudorandom triangle-free family cannot make \(D\) smaller by \(n^{\Omega(n)}\); the universal lower bound rules this out.
+
+This conclusion applies specifically to the permanent/degree quotient \(n!/D\). It does not prove that every separated subset of the permutation space has size at most \(C^n\): the bad-pair graph could conceivably have an independent set much larger than its elementary degree bound. Such an improvement would require additional structure beyond the permanent mechanism.
+
+For scale, balanced \(H=K_{\lfloor n/2\rfloor,\lceil n/2\rceil}\) has
+
+\[
+D=\lfloor n/2\rfloor!\,\lceil n/2\rceil!,
+\qquad
+\frac{n!}{D}=\binom{n}{\lfloor n/2\rfloor}\sim \frac{2^n}{\sqrt{\pi n/2}},
+\]
+
+so any optimal universal constant in this type of theorem is at least \(2\).

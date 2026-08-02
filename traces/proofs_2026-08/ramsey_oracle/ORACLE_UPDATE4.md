@@ -1,0 +1,7 @@
+# Final focused question: permutation-orbit permanent mechanism
+
+For a triangle-free graph H on n vertices, let M be its reflexive nonadjacency matrix: M_uv=1 iff u=v or uv is not an H-edge. Consider all permutations pi:[n]->V(H). Two are separated when some coordinate i has pi(i)~_H sigma(i). The bad-pair graph is transitive, and every permutation has exactly D=per(M) bad partners, so greedy gives a separated family of size at least n!/D. Coloring pairs by a separating coordinate is an n-color triangle-free coloring.
+
+Thus a family with `per(M) <= n!/n^{c n}` would directly give `R_n(3)>=n^{c n}`. Exact code in `experiments/permutation_orbit_capacity.cpp` found bases `(n!/D)^(1/n)=1.560,1.468,1.370` for C5 and Mycielski orders 5,11,23; 30 random maximal triangle-free H at n=20 peaked at 1.592. This is worse than binary but only finite evidence.
+
+Analyze this mechanism rigorously. Is there an elementary permanent lower bound for every triangle-free H forcing `per(M)>=n!/C^n` (which kills growing base), perhaps via row densities/independent neighborhoods/entropy? Or can an explicit classical triangle-free pseudorandom H make per(M) smaller by `n^{Omega(n)}`? Give an actual proof either way, not a desired lemma. If only conditional estimates are possible, state exactly what graph parameter bound would suffice and whether classical pre-forbidden-document constructions meet it. Do not use or mention forbidden material.

@@ -1,0 +1,239 @@
+## 1. Matching number at most five does **not** make the family too small
+
+Fix an anchor \(a\). Put
+
+\[
+U=[g]\setminus\{0,a\},\qquad n=|U|=g-2,\qquad k=r-1,
+\]
+
+so the vertices over \(a\) are indexed by \(B\in\binom Uk\), with palette
+
+\[
+P(a,B)=\{0,a\}\cup B.
+\]
+
+Let \(\mathcal F_a\subseteq\binom Uk\) be the retained family. The six-disjoint-sets argument proves the necessary condition
+
+\[
+\nu(\mathcal F_a)\le 5.
+\]
+
+For \(g=\lfloor r^2\rfloor\), this condition costs only a polynomial factor.
+
+### Exact large-\(n\) matching bound
+
+The large-\(n\) Erdős matching theorem states that, if
+
+\[
+n\ge (2s+1)k-s,
+\]
+
+then every \(\mathcal F\subseteq\binom{[n]}k\) with \(\nu(\mathcal F)\le s\) satisfies
+
+\[
+|\mathcal F|
+\le
+\binom nk-\binom{n-s}k.
+\]
+
+For \(s=5\), \(n=r^2-2\), and \(k=r-1\), the hypothesis is
+
+\[
+r^2-2\ge 11(r-1)-5,
+\]
+
+which holds for every \(r\ge 10\). Hence
+
+\[
+|\mathcal F_a|
+\le
+M_r:=
+\binom{r^2-2}{r-1}
+-
+\binom{r^2-7}{r-1}.
+\]
+
+This is attained by choosing a fixed \(5\)-set \(S\subset U\) and taking
+
+\[
+\mathcal F_S=\{B\in\textstyle\binom Uk:B\cap S\neq\varnothing\}.
+\]
+
+Indeed, six pairwise-disjoint members would require six distinct elements of \(S\).
+
+Moreover,
+
+\[
+\frac{M_r}{\binom nk}
+=
+1-\frac{\binom{n-5}k}{\binom nk}
+=
+1-\prod_{j=0}^{4}\left(1-\frac{k}{n-j}\right)
+=
+\frac5r+O(r^{-2}).
+\]
+
+Consequently,
+
+\[
+\log M_r
+=
+r\log r+r+O(\log r).
+\]
+
+Multiplying by the \(\Theta(g)=\Theta(r^2)\) choices of anchor changes only the \(O(\log r)\) term. Since every palette has size \(r+1\), the matching-number restriction still permits
+
+\[
+\log N=(1+o(1))\,r\log r.
+\]
+
+Thus:
+
+> **Quantitative verdict:** the matching-number obstruction does not kill the anchored-palette route on cardinality grounds. It removes only a \(\Theta(1/r)\) fraction from the full family.
+
+---
+
+## 2. The Erdős-matching extremizer is nevertheless impossible
+
+Matching number controls only sunflowers with empty core. Nonempty cores give stronger Ramsey obstructions.
+
+### Link-matching/Ramsey lemma
+
+For \(C\subseteq U\), define the link
+
+\[
+\mathcal L_{\mathcal F}(C)
+=
+\{B\setminus C:B\in\mathcal F,\ C\subseteq B\}.
+\]
+
+If a legal triangle-free coloring exists over the fixed anchor \(a\), then necessarily
+
+\[
+\boxed{\quad
+\nu\bigl(\mathcal L_{\mathcal F}(C)\bigr)
+\le R_{|C|+2}(3)-1
+\quad}
+\tag{1}
+\]
+
+for every \(C\subseteq U\).
+
+#### Proof
+
+Suppose instead that \(q=R_{|C|+2}(3)\) members of the link are pairwise disjoint. Write them as \(Q_1,\dots,Q_q\), and let
+
+\[
+B_i=C\cup Q_i.
+\]
+
+Then \(B_i\cap B_j=C\) for \(i\ne j\). Hence
+
+\[
+P(a,B_i)\cap P(a,B_j)=\{0,a\}\cup C.
+\]
+
+Every edge among these \(q\) vertices must therefore receive one of exactly \(|C|+2\) colors. By the definition of \(R_{|C|+2}(3)\), the induced \(K_q\) contains a monochromatic triangle, a contradiction. ∎
+
+The original six-set obstruction is exactly the case \(C=\varnothing\), because \(R_2(3)=6\).
+
+### Failure of the maximum matching family
+
+Take the extremal family
+
+\[
+\mathcal F_S=\{B:B\cap S\neq\varnothing\},\qquad |S|=5.
+\]
+
+Fix \(x\in S\). If
+
+\[
+r^2-7\ge 17(r-2),
+\]
+
+we can choose pairwise-disjoint \((r-2)\)-sets
+
+\[
+Q_1,\dots,Q_{17}\subseteq U\setminus S
+\]
+
+and set \(B_i=\{x\}\cup Q_i\). The inequality holds for every \(r\ge16\). Then
+
+\[
+B_i\cap B_j=\{x\},
+\]
+
+so all edges among the corresponding 17 vertices have only the three legal colors
+
+\[
+\{0,a,x\}.
+\]
+
+Since \(R_3(3)=17\), this is impossible.
+
+Therefore the exact maximum-size matching salvage is not colorable for \(r\ge16\).
+
+More generally, every admissible retained family must satisfy the entire hierarchy (1), not merely its \(C=\varnothing\) instance.
+
+---
+
+## 3. Even the full link-matching hierarchy does not force small families
+
+The hierarchy above is a genuine obstruction, but it still does not settle the route quantitatively.
+
+Let
+
+\[
+t=\lceil \log_2 n\rceil
+\]
+
+and fix \(T\subset U\) with \(|T|=t\). Consider
+
+\[
+\mathcal F_T=\{B\in\textstyle\binom Uk:T\subseteq B\}.
+\]
+
+Then
+
+\[
+|\mathcal F_T|=\binom{n-t}{k-t}
+\]
+
+and, because \(t=O(\log r)\),
+
+\[
+\log |\mathcal F_T|
+=
+(1-o(1))\,r\log r.
+\]
+
+Moreover, \(\mathcal F_T\) satisfies every necessary condition (1):
+
+* If \(T\nsubseteq C\), every member of \(\mathcal L_{\mathcal F_T}(C)\) contains the fixed nonempty set \(T\setminus C\), so its matching number is at most one.
+* If \(T\subseteq C\), its matching number is at most \(n\).
+* The standard first-difference coloring of binary strings gives
+  \[
+  R_m(3)>2^m.
+  \]
+  Hence, for \(|C|\ge t\),
+  \[
+  R_{|C|+2}(3)>2^{t+2}>n.
+  \]
+
+Thus a common core of only \(O(\log r)\) colors evades all sunflower/link-matching Ramsey obstructions while losing only \(o(r\log r)\) entropy.
+
+This does **not** give a coloring. It shows precisely why matching and sunflower accounting alone cannot finish the problem: after concentrating the family around a logarithmic core, one still needs a genuinely correlated rule using the varying petal colors to cover every edge while keeping each color class triangle-free.
+
+## Final verdict
+
+I do not have a viable construction with such a rule, so I do not propose another candidate.
+
+The sharp lesson is:
+
+> The matching-number condition is quantitatively harmless but structurally far too weak. A legal anchored family must satisfy the link constraints  
+> \[
+> \nu(\mathcal L_{\mathcal F}(C))<R_{|C|+2}(3)
+> \]
+> for every core \(C\). These constraints kill the Erdős-matching extremizers, yet logarithmic-core families of size \(\exp((1-o(1))r\log r)\) satisfy all of them. Therefore further set-family pruning, without an explicit edge-coloring mechanism, cannot constitute a salvage.
+
+The stationary-automaton experiments likewise provide no rigorous asymptotic obstruction, but there is currently no proved synchronization mechanism to replace the failed finite searches. Hence neither experimental route presently supplies a defensible growing-base construction.

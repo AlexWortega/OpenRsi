@@ -1,0 +1,8 @@
+enumerated 1048576 automata
+q=2 feasible=294064 bestW=4 rows 3 3 0 0 0
+q=3 feasible=482057 bestW=8 rows 3 3 0 0 0
+q=4 feasible=232170 bestW=16 rows 3 3 0 0 0
+q=5 feasible=417606 bestW=32 rows 3 3 0 0 0
+q=6 feasible=222380 bestW=64 rows 3 3 0 0 0
+q=7 feasible=393325 bestW=128 rows 3 3 0 0 0
+q=8 feasible=218560 bestW=256 rows 3 3 0 0 0

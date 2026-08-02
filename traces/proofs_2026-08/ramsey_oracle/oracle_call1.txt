@@ -1,0 +1,352 @@
+I would concentrate on one mechanism in two levels of rigidity: a stationary finite-state code, and a more flexible cyclic branching-program version. Both turn exponentially many highly correlated closed walks in a polynomial-size automaton into codewords. The decisive pairwise-separation condition is an exact transfer-matrix identity, so small instances are directly falsifiable without enumerating all codewords.
+
+## Common triangle-free template
+
+Let \(d\ge 3\), and set
+\[
+n=n(d):=\min\{m\ge d^{12}:m d\text{ is even}\}.
+\]
+
+Choose a simple \(d\)-regular triangle-free graph \(H_d\) on \([n]\). As a useful but nonessential sieve, require
+\[
+\alpha(H_d)\le \left\lceil \frac{4n\log d}{d}\right\rceil.
+\tag{1}
+\]
+This forces \(\chi_f(H_d)\ge d/(4\log d+o(1))\), which is only a necessary plausibility check, not a capacity lower bound.
+
+For a completely finite definition, \(H_d\) can be taken as the lexicographically first adjacency matrix satisfying regularity, triangle-freeness, and (1). If proving existence of (1) in exactly this range is inconvenient, enlarge \(n\) to \(d^{20}\); the pivotal code lemma below is overwhelmingly the hard part.
+
+Write
+\[
+u\sim_H v
+\]
+for adjacency in \(H=H_d\), and define the bad-pair set
+\[
+P_H:=\{(u,v)\in V(H)^2:u\not\sim_H v\}.
+\]
+Thus \(P_H\) includes all diagonal pairs.
+
+The complement \(G=\overline H\) satisfies \(\alpha(G)\le 2\), solely because \(H\) is triangle-free.
+
+---
+
+# Proposal 1: stationary closed-walk automaton
+
+## Finite CSP
+
+Choose:
+
+- a directed simple graph \(D_d\) on the state set \(V(H_d)\), with adjacency matrix \(A\in\{0,1\}^{n\times n}\);
+- an integer
+  \[
+  1\le q=q_d\le n^2\le 2d^{24}.
+  \]
+
+Define the bad synchronized product \(B=B(H,A)\), indexed by \(P_H\), by
+\[
+B_{(u,v),(u',v')}
+=
+A_{u,u'}A_{v,v'}
+\mathbf 1_{\{u'\not\sim_H v'\}}.
+\tag{2}
+\]
+
+The CSP constraints are
+\[
+\operatorname{tr}(B^q)=\operatorname{tr}(A^q)
+\tag{3}
+\]
+and
+\[
+\operatorname{tr}(A^q)\ge d^{q/100}.
+\tag{4}
+\]
+
+One can define the candidate canonically as the lexicographically first pair \((A,q)\) satisfying (3)–(4).
+
+## Vertex set and coloring rule
+
+Let
+\[
+\mathcal C_d=
+\left\{
+(x_0,\ldots,x_{q-1})\in V(H)^q:
+A_{x_r,x_{r+1}}=1\ \text{for every }r\pmod q
+\right\}.
+\]
+These are indexed closed \(D_d\)-walks of length \(q\). Exactly
+\[
+|\mathcal C_d|=\operatorname{tr}(A^q).
+\]
+
+For distinct \(x,y\in\mathcal C_d\), color \(\{x,y\}\) by
+\[
+c(x,y):=\min\{r\in\{0,\ldots,q-1\}:x_r\sim_H y_r\}.
+\tag{5}
+\]
+
+### Why the color always exists
+
+The quantity \(\operatorname{tr}(B^q)\) counts ordered pairs \((x,y)\in\mathcal C_d^2\) such that
+\[
+x_r\not\sim_H y_r\qquad\text{for every }r.
+\]
+Every diagonal pair \((x,x)\) is counted, giving at least \(|\mathcal C_d|=\operatorname{tr}(A^q)\) such pairs. Equality (3) says these are the only ones. Hence distinct \(x,y\) have an \(H\)-adjacent coordinate.
+
+### Why the coloring is triangle-free
+
+If \(x,y,z\) formed a monochromatic triangle of color \(r\), then
+\[
+x_r\sim_H y_r,\qquad y_r\sim_H z_r,\qquad z_r\sim_H x_r,
+\]
+contradicting triangle-freeness of \(H\).
+
+Thus
+\[
+R_q(3)-1\ge \operatorname{tr}(A^q)\ge d^{q/100}.
+\tag{6}
+\]
+
+## Parameter accounting
+
+Since
+\[
+q\le 2d^{24},
+\]
+the achieved per-color base is at least \(d^{1/100}\) at a witness power polynomial in \(d\). This directly satisfies the effective-capacity criterion with, for example, \(a=1/100\) and \(D=25\). At the witness values,
+\[
+d\ge (q/2)^{1/24},
+\]
+so, up to an absolute factor,
+\[
+R_q(3)\ge q^{q/2400}.
+\]
+Multiplication and padding then give \(R_k(3)\ge k^{c k}\) for an absolute \(c>0\).
+
+The particular exponents \(12,24,100\) are deliberately conservative. Any fixed positive exponent in (4), with polynomial \(n,q\), suffices.
+
+## Exact pivotal lemma
+
+> **Stationary bad-pair synchronization lemma.**  
+> For every sufficiently large \(d\), there exist a \(d\)-regular triangle-free graph \(H_d\) on at most \(d^{O(1)}\) vertices, a directed graph \(D_d\) on \(V(H_d)\), and \(q_d\le d^{O(1)}\), such that, with \(A_d\) and \(B_d\) defined above,
+> \[
+> \operatorname{tr}(B_d^{q_d})=\operatorname{tr}(A_d^{q_d})
+> \]
+> and
+> \[
+> \operatorname{tr}(A_d^{q_d})\ge d^{\varepsilon q_d}
+> \]
+> for some absolute \(\varepsilon>0\).
+
+This lemma is exactly sufficient; no inference from chromatic number is involved.
+
+A stronger, more structural version would prove that every directed cycle in the bad product \(B_d\) lies on the diagonal \(\{(u,u)\}\). That would imply the trace equality for every \(q\). It may, however, be too restrictive; the selected-power identity (3) is the correct initial target.
+
+## Why this is not an ordinary fixed-seed product
+
+The number of states is only polynomial in \(d\), while the number of codewords is \(d^{\Omega(q)}\). A disjoint-cycle representation of an arbitrary code of that size would need exponentially many states. Thus the construction requires genuine path sharing, merging, and branching in \(D_d\).
+
+The correlation is also explicit: all codewords are closed walks in one automaton. Sampling paths independently and applying a first-moment argument would run directly into the base-\(2\) obstruction; that is not a viable proof strategy here. A proof must establish a deterministic synchronization property in the product automaton.
+
+---
+
+# Proposal 2: cyclic polynomial-width branching program
+
+This is a more flexible version to use if stationarity is immediately falsified.
+
+## Finite CSP
+
+Use the same \(H_d\) and choose:
+
+- an integer \(q\le n^2\);
+- directed transition matrices
+  \[
+  A_0,\ldots,A_{q-1}\in\{0,1\}^{n\times n}.
+  \]
+
+Indices are modulo \(q\). Define
+\[
+W:=\operatorname{tr}(A_0A_1\cdots A_{q-1}).
+\tag{7}
+\]
+
+For each layer \(r\), define a matrix \(B_r\), indexed by \(P_H\), by
+\[
+(B_r)_{(u,v),(u',v')}
+=
+(A_r)_{u,u'}(A_r)_{v,v'}
+\mathbf 1_{\{u'\not\sim_H v'\}}.
+\tag{8}
+\]
+Set
+\[
+W_{\mathrm{bad}}
+:=
+\operatorname{tr}(B_0B_1\cdots B_{q-1}).
+\tag{9}
+\]
+
+The CSP constraints are
+\[
+W_{\mathrm{bad}}=W
+\tag{10}
+\]
+and
+\[
+W\ge d^{q/100}.
+\tag{11}
+\]
+
+Again, choose the lexicographically first feasible tuple.
+
+## Vertex set and coloring
+
+Let
+\[
+\mathcal C_d=
+\left\{
+(x_0,\ldots,x_{q-1}):
+(A_r)_{x_r,x_{r+1}}=1
+\text{ for every }r\pmod q
+\right\}.
+\]
+Then \(|\mathcal C_d|=W\).
+
+Color distinct \(x,y\in\mathcal C_d\) by the least coordinate \(r\) for which \(x_r\sim_H y_r\). The proof is identical: \(W_{\mathrm{bad}}\) counts all ordered coordinatewise-bad pairs, while the \(W\) diagonal pairs are always present. Equality (10) says there are no distinct bad pairs.
+
+## Exact pivotal lemma
+
+> **Polynomial-width cyclic synchronization lemma.**  
+> There are absolute \(\varepsilon,D>0\) such that for every sufficiently large \(d\), one can choose:
+> - a polynomial-size triangle-free graph \(H_d\);
+> - \(q_d\le d^D\);
+> - \(q_d\) width-\(|V(H_d)|\) Boolean transition matrices \(A_{d,r}\);
+> 
+> for which
+> \[
+> \operatorname{tr}\!\left(\prod_r B_{d,r}\right)
+> =
+> \operatorname{tr}\!\left(\prod_r A_{d,r}\right)
+> \]
+> and
+> \[
+> \operatorname{tr}\!\left(\prod_r A_{d,r}\right)
+> \ge d^{\varepsilon q_d}.
+> \]
+
+This also yields \(R_k(3)\ge k^{c k}\) by the same accounting.
+
+## Why this relaxation may matter
+
+Stationarity forces both code growth and pair synchronization through one transition relation. The layered version can assign different roles to coordinates—for example:
+
+- expansion layers that create many path choices;
+- synchronization layers that destroy off-diagonal bad pairs;
+- sparse reset layers that force cyclic closure.
+
+The width remains polynomial in \(d\), so the CSP cannot encode an arbitrary \(d^{\Omega(q)}\)-vertex Ramsey coloring by assigning one private state to each codeword.
+
+The principal circularity risk is nevertheless larger here: if polynomial width were dropped, any finite code could be represented as disjoint cyclic paths, making the formulation tautological. The width bound and the fixed coordinate template \(H_d\) are essential.
+
+---
+
+# Immediate falsification tests
+
+These should be run before attempting asymptotic proofs.
+
+## 1. Exact transfer-matrix verification
+
+For any candidate, compute using exact integer arithmetic:
+
+- stationary:
+  \[
+  W=\operatorname{tr}(A^q),\qquad
+  W_{\mathrm{bad}}=\operatorname{tr}(B^q);
+  \]
+- layered:
+  \[
+  W=\operatorname{tr}\prod_r A_r,\qquad
+  W_{\mathrm{bad}}=\operatorname{tr}\prod_r B_r.
+  \]
+
+Always \(W_{\mathrm{bad}}\ge W\). Any claimed solution with \(W_{\mathrm{bad}}<W\) has an indexing error.
+
+For small instances, explicitly enumerate closed paths and verify that the excess
+\[
+W_{\mathrm{bad}}-W
+\]
+is exactly the number of ordered distinct coordinatewise-bad pairs.
+
+## 2. Universal Ramsey sanity bounds
+
+Regardless of \(H\) or automaton:
+
+- \(q=1\): \(W\le 2\);
+- \(q=2\): \(W\le 5\);
+- \(q=3\): \(W\le 16\).
+
+A violation means the product matrix or cycle count is wrong.
+
+Also compute
+\[
+W^{1/q}\le \chi_f(H).
+\tag{12}
+\]
+If \(H\) is bipartite, necessarily \(W^{1/q}\le 2\). This immediately rejects accidentally bipartite template graphs.
+
+## 3. Small stationary search
+
+Use all triangle-free graphs \(H\) of orders \(5\)–\(16\), beginning with odd cycles and small cubic graphs. For each:
+
+1. initialize \(D\) as a sparse directed expander or random regular digraph;
+2. find a non-diagonal closed walk in \(B\);
+3. add a no-good constraint deleting at least one participating arc pair;
+4. reoptimize \(\operatorname{tr}(A^q)\).
+
+Test \(q=2,\ldots,10\). The key quantities are:
+
+\[
+\beta(H,q):=
+\max_A
+\left\{\operatorname{tr}(A^q)^{1/q}:
+\operatorname{tr}(B^q)=\operatorname{tr}(A^q)
+\right\}.
+\]
+
+Immediate negative evidence would be:
+
+- \(\beta(H,q)\le 2+o(1)\) for every nonbipartite \(H\) tested;
+- every \(D\) with spectral radius \(>2+\delta\) creates an off-diagonal bad cycle of bounded length;
+- stationary solutions are always block decompositions of fixed finite codes.
+
+A first positive benchmark is any verified
+\[
+\beta(H,q)>3.199.
+\]
+
+## 4. Layered search
+
+For fixed \(H,q\), alternately optimize the \(A_r\):
+
+- maximize \(W\);
+- locate a distinct coordinatewise-bad pair of cycles;
+- add a cut forbidding that pair;
+- repeat.
+
+Start with widths \(5\)–\(20\) and \(q=4\)–\(10\). A useful restriction for the first pass is bounded row and column degree in each \(A_r\), since then both code growth and product-graph verification are tractable.
+
+If the layered construction substantially outperforms the stationary one, inspect whether the layers have a repeated short pattern. Such a pattern would be the likely source of a provable family.
+
+## 5. Product-automaton structural test
+
+For stationary \(D\), compute all strongly connected components of \(B\). Every off-diagonal SCC containing a closed walk of length \(q\) is a certificate of failure.
+
+For a robust all-length candidate, demand that every cyclic SCC of \(B\) is diagonal. If computationally this forces \(\rho(A)\le 2\) in all small cases, abandon the all-length strengthening but retain the selected-\(q\) trace identity.
+
+---
+
+# Main proof hazard
+
+The preliminary choice of a high-chromatic or small-independence triangle-free \(H_d\) does not imply either pivotal lemma. It only prevents an obvious fractional-chromatic bottleneck. The actual theorem needed is the bad-pair synchronization statement for exponentially many shared-state paths.
+
+Likewise, a solution for one fixed \(d\) is merely a fixed base. Progress requires feasible instances for unbounded \(d\), with both width and witness length polynomial in \(d\), and a uniform positive exponent in the closed-path count.

@@ -1,0 +1,172 @@
+## Verdict
+
+I do not have a general proof excluding \(r^{\Omega(r)}\) families when the state graphs \(H_x\) may have polynomially many vertices and unbounded fractional chromatic number, nor an explicit factorial construction.
+
+There is, however, a sharp general packing lemma showing that **varying the domains contributes no multiplicative domain-count entropy at all**. Any superexponential family must be paid for entirely by polynomially growing fractional chromatic numbers of the state graphs.
+
+## Fractional-cylinder packing lemma
+
+Let \(U\) be finite. For each \(x\in U\), let \(H_x\) be a finite simple graph. Let \(\mathcal F\) be a family of partial assignments
+\[
+f=(B_f,h_f),\qquad B_f\subseteq U,\quad |B_f|=r,\quad h_f(x)\in V(H_x).
+\]
+Assume that every two distinct \(f,g\in\mathcal F\) are separated:
+\[
+\exists x\in B_f\cap B_g
+   \quad\text{such that}\quad
+   h_f(x)h_g(x)\in E(H_x).
+\tag{1}
+\]
+
+For each \(x\), let \(S_x\) be the set of states actually used at \(x\), and put
+\[
+q_x=\chi_f\bigl(H_x[S_x]\bigr).
+\]
+
+Then
+\[
+\boxed{\displaystyle
+\sum_{f\in\mathcal F}\prod_{x\in B_f}\frac1{q_x}\le 1.
+}
+\tag{2}
+\]
+
+In particular, if \(q_x\le Q\) for every \(x\), then
+\[
+\boxed{|\mathcal F|\le Q^r.}
+\tag{3}
+\]
+
+Thus there is no factor such as \(\binom{|U|}{r}\): changing domains cannot by itself create factorial entropy.
+
+### Proof
+
+For each \(x\), choose an optimal fractional coloring of \(H_x[S_x]\). Thus there are nonnegative weights \(w_{x,I}\), indexed by independent sets \(I\) of \(H_x[S_x]\), such that
+\[
+\sum_I w_{x,I}=q_x,
+\qquad
+\sum_{I\ni v}w_{x,I}\ge 1
+\quad\text{for every }v\in S_x.
+\]
+
+Independently for every \(x\), sample an independent set \(I_x\) with
+\[
+\Pr(I_x=I)=\frac{w_{x,I}}{q_x}.
+\]
+Consequently,
+\[
+\Pr(v\in I_x)\ge \frac1{q_x}
+\quad\text{for every }v\in S_x.
+\tag{4}
+\]
+
+For \(f=(B_f,h_f)\), define the cylinder event
+\[
+E_f=\{h_f(x)\in I_x\text{ for every }x\in B_f\}.
+\]
+Independence across coordinates and (4) give
+\[
+\Pr(E_f)\ge \prod_{x\in B_f}\frac1{q_x}.
+\tag{5}
+\]
+
+The events \(E_f\) are pairwise disjoint. Indeed, if \(f\ne g\), choose \(x\) as in (1). Were both \(E_f\) and \(E_g\) to occur, the independent set \(I_x\) would contain the adjacent vertices \(h_f(x)\) and \(h_g(x)\), impossible.
+
+Therefore
+\[
+1\ge \sum_{f\in\mathcal F}\Pr(E_f)
+ \ge \sum_{f\in\mathcal F}\prod_{x\in B_f}\frac1{q_x},
+\]
+proving (2) and hence (3). \(\square\)
+
+## Consequences
+
+### 1. Binary and bipartite states are completely settled
+
+If every \(H_x\) is bipartite, then \(q_x\le2\), so
+\[
+|\mathcal F|\le2^r.
+\]
+This includes the binary mechanism. The bound is sharp: on one fixed domain \(B\), take \(H_x=K_2\) and all \(2^r\) Boolean assignments.
+
+More generally, bounded fractional chromatic number gives only \(C^r\), regardless of \(|U|\) or the number of possible domains.
+
+### 2. A factorial family forces large fractional chromatic number
+
+Let \(Q=\max_xq_x\). From (3),
+\[
+Q\ge |\mathcal F|^{1/r}.
+\]
+Hence:
+
+- If \(|\mathcal F|\ge r^{cr}\), then some used state graph has
+  \[
+  \chi_f(H_x[S_x])\ge r^c.
+  \]
+- If \(|\mathcal F|\ge r!\), then, using \(r!\ge(r/e)^r\),
+  \[
+  \chi_f(H_x[S_x])\ge r/e
+  \]
+  for at least one \(x\).
+
+The weighted form is stronger: some individual object \(f\) must satisfy
+\[
+\prod_{x\in B_f}q_x\ge|\mathcal F|.
+\tag{6}
+\]
+Thus a factorial family needs fractional chromatic number of geometric mean \(\Omega(r)\) along at least one domain.
+
+### 3. Necessary state-space size
+
+Every triangle-free graph \(H\) on \(n\) vertices satisfies the elementary bound
+\[
+\chi_f(H)\le\chi(H)\le \left\lceil 2\sqrt{2n}\right\rceil.
+\tag{7}
+\]
+
+For completeness: every induced \(s\)-vertex triangle-free graph has an independent set of size at least \(\sqrt{s/2}\). If its maximum degree is at least \(\sqrt{s/2}\), a neighborhood supplies such an independent set; otherwise greedy selection supplies at least \(s/(\Delta+1)\ge\sqrt{s/2}\). Repeatedly removing such independent sets uses at most \(2\sqrt{2n}\) colors.
+
+Combining (3) and (7), if every state graph has at most \(n\) vertices, then
+\[
+|\mathcal F|
+ \le \left\lceil2\sqrt{2n}\right\rceil^r.
+\tag{8}
+\]
+
+Therefore:
+
+- \(|\mathcal F|\ge r^{cr}\) requires
+  \[
+  n\ge \frac{(r^c-1)^2}{8}
+  \]
+  somewhere.
+- \(|\mathcal F|\ge r!\) requires a state graph with
+  \[
+  n\ge \frac{(r/e-1)^2}{8}=\Omega(r^2).
+  \]
+- In particular, state graphs of size \(o(r^2)\) cannot support \(r!\) objects.
+
+This still does not exclude \(r^{\Omega(r)}\) under unrestricted polynomial state size.
+
+## Why this does not close the polynomial-state case
+
+Triangle-free graphs can have unbounded fractional chromatic number. Classical triangle-free Ramsey graphs on \(n\) vertices with
+\[
+\alpha(H)=O(\sqrt{n\log n})
+\]
+satisfy
+\[
+\chi_f(H)\ge\frac{n}{\alpha(H)}
+ =\Omega\!\left(\sqrt{\frac n{\log n}}\right).
+\]
+Thus polynomial-size state graphs can have polynomial \(q_x\), and the packing bound (3) genuinely permits \(r^{\Theta(r)}\).
+
+Crucially, large \(\chi_f(H_x)\) supplies only the packing budget; it does not construct separated assignments. Even on a fixed domain, producing \(r^{\Omega(r)}\) separated words is exactly the difficult OR-power code problem. Varying domains does not evade that difficulty through domain counting, by (2).
+
+Hence the rigorous conclusion is:
+
+\[
+\boxed{\text{Domain variation itself cannot create factorial entropy.}}
+\]
+
+Any successful factorial construction in this mechanism must use state graphs with polynomially growing fractional chromatic number and must convert that fractional complexity into an actual correlated separation code. The packing argument alone cannot rule that out, and I do not have such a conversion.

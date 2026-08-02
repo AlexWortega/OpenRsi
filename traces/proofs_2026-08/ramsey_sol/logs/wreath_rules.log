@@ -1,0 +1,6 @@
+2 topbit (True, 3, None)
+2 depth (False, 2, ((0,), 2, 4, 6))
+2 depthtype (True, 3, None)
+3 topbit (True, 7, None)
+3 depth (False, 3, ((2, 'swap'), 2, 16, 18))
+3 depthtype (False, 5, ((0, 2), 12, 36, 40))

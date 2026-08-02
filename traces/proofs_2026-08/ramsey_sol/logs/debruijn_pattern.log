@@ -1,0 +1,8 @@
+2 (4, 5, 2, 2.0, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+3 (8, 13, 3, 2.6666666666666665, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+4 (16, 29, 7, 2.2857142857142856, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+5 (32, 61, 13, 2.4615384615384617, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+6 (64, 125, 28, 2.2857142857142856, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+7 (128, 253, 55, 2.327272727272727, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+8 (256, 509, 114, 2.245614035087719, 'Optimization terminated successfully. (HiGHS Status 7: Optimal)')
+9 (512, 1021, 224, 2.2857142857142856, 'Time limit reached. (HiGHS Status 13: Time limit reached)')

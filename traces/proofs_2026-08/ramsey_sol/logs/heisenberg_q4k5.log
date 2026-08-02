@@ -1,0 +1,18 @@
+{"q": 4, "order": 64, "orbits": 35, "constraints": 519, "one_state": 0}
+best 31 iter 0
+best 28 iter 1
+best 24 iter 2
+best 19 iter 3
+best 16 iter 4
+best 15 iter 5
+best 11 iter 6
+best 10 iter 7
+best 9 iter 8
+best 6 iter 11
+best 5 iter 13
+best 4 iter 15
+best 3 iter 20
+best 2 iter 23
+best 1 iter 28
+best 0 iter 40062
+{"q": 4, "k": 5, "order": 64, "best": 0, "iterations": 40063}

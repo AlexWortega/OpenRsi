@@ -64,3 +64,15 @@ obstruction), and naive univariate polynomial moments (finite-difference
 extrapolation kills degree <= q-2) — each killed by an exact low-weight
 witness in the tested model. Final verdict unchanged: a fundamentally
 different polynomial-size sparse column model is required. Total CVP spend ~$75.
+
+`cvp_ideate/` — run6 idea-search harness ($30.70): Fable-5 ideation oracle +
+web literature scouts + IDEAS.md population (15 lines, mutate-before-bury) +
+40% construction quarantine. PARTIAL, but the architecture delivered: 2 ideate
+rounds produced 9 new mechanism lines (incl. RS error-budget shell I12,
+Sidon shielding I13, Pfaffian+BCH I14, expander bundling I15 — still open);
+Construction A (exact-cover quotient) wounded with a precise mutation path;
+Construction B (odd-cyclic tensor fold) yielded a genuinely new proved coding
+lemma — mixed-word bound delta_fold >= 1+ceil((delta^2-1)/ell) for any odd
+group acting freely off the pointed coordinate — plus a residual-lineage
+propagation theorem (14,773 verified recurrence transitions). Population
+handed off open for a future segment.

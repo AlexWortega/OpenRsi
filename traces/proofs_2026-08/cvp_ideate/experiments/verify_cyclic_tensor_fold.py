@@ -229,6 +229,7 @@ def main() -> None:
     collapses = [r for r in all_reports if r["fold_d"] < theorem_bound(r)]
     pure_collapses = [r for r in all_reports if r["best_pure"] < theorem_bound(r)]
     ratio_collapses = [r for r in natural_reports if r["fold_d"] < r["rep_d"] ** 2]
+    assert len(ratio_collapses) == 37
     print(f"checked {len(all_reports)} exact cyclic folds with ell=3 "
           f"({len(natural_reports)} natural invariant codes)")
     print(f"mixed-word failures of 1+ceil((d_rep^2-1)/ell): {len(collapses)}")

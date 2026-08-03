@@ -3,9 +3,11 @@
 
 U = {*} disjoint (Ru copies of the regular right G-set).
 V = {*} disjoint (Rv copies of the regular (G,H)-biset GxH).
-The balanced product U x_G V spends G and retains a fresh right H-action.
-We enumerate quotient classes, verify that H is free off the classes [u,*],
-and count the fixed cross sector.  This is the smallest concrete test of the
+The balanced product U x_G V spends G and retains a fresh independent right
+H-action.  In this specific product bitorsor, right H cannot be compensated by
+left G on [*,v].  We enumerate quotient classes, verify that H is free off the
+classes [u,*], and count the fixed cross sector.  No count is claimed for
+arbitrary bitorsors where left/right actions may overlap.  This is the smallest concrete test of the
 symmetry-renewal mechanism suggested by the classical biset literature.
 """
 from __future__ import annotations

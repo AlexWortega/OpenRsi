@@ -1,0 +1,6 @@
+checked 400 exact cyclic-closure assemblies
+distribution (case, original_d, closure_d, fold_d): count
+('NO', 5, 1, 1) 200
+('YES', 3, 1, 1) 200
+{'best_YES_fold': 1, 'best_NO_fold': 1, 'NO/YES_using_uniform_best_thresholds': 1.0}
+{'max_YES_fold': 1, 'NO_at_or_below_max_YES': 200, 'NO_total': 200}

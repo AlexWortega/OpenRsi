@@ -33,7 +33,7 @@ is an explicit integer basis of `Λ_H`: its columns lie in the kernel modulo two
 
 For a 3-dimensional matching instance `U⊆T_1×T_2×T_3`, with `|T_i|=q`, let `A∈F_2^{3q×|U|}` be the element-triple incidence matrix and let `t` be the all-one syndrome. If `Ax=t`, then every element has a positive odd number of selected incident triples. Therefore the total selected incidence is at least `3q`. Every selected triple contributes exactly three, so `3|x|≥3q`. If `|x|≤q`, equality holds: every element has selected degree exactly one and `x` is a perfect matching. Conversely every perfect matching is a weight-`q` solution.
 
-This gives exact NP-hardness but only a `q` versus `q+1` lower bound.
+This gives exact NP-hardness and at least a `q` versus `q+1` lower bound. Parity sharpens the next possible weight: summing all syndrome rows gives `3|x|≡3q (mod 2)`, so if weight `q` is impossible then every fiber point has weight at least `q+2`. Later deliberately weaker `Q` versus `Q+1` diagnostics should not be read as excluding stronger base information.
 
 ## Relative-quotient proposal and its affine-closure obstruction
 
@@ -117,7 +117,7 @@ This still does not yield polynomial-size amplification. The missing issue is no
 
 which is at least of order `ell L²`: the symmetry preparation spends more than the fold saves. Iteration additionally requires a large residual free action after each quotient. A useful construction must obtain the symmetry intrinsically (for example from a lift/balanced product) without paying its whole order as fresh padding, preserve an invariant sparse YES word, and keep the generator explicit.
 
-### Residual-lineage iteration cannot give a fixed polynomial gap
+### Residual-lineage propagation of a `Q` versus `Q+1` certificate has vanishing exponent
 
 The most natural attempt to replenish symmetry uses the residual action after each diagonal quotient. The following theorem rules out that family under an explicit lineage hypothesis.
 
@@ -133,7 +133,7 @@ Assume every quotient orbit represented by a pair having at least one endpoint i
 * `s_i` for its supported weight inside `P_i`;
 * `b_i` for the NO threshold propagated only by (OF).
 
-Start with `a_0=Q`, `s_0=1`, and `b_0=Q+1`. Since invariant moving support is a union of free orbits, `g_i | (a_i-s_i)`. Exact orbit counting and (OF) give
+Start with `a_0=Q`, `s_0=1`, and `b_0=Q+1`, and assume the initial YES word has nonempty moving support. Thus `Q>1`; freeness and invariance imply `g_0 | Q-1`, hence `Q≥4`. Since invariant moving support is a union of free orbits, `g_i | (a_i-s_i)`. Exact orbit counting and the following fixed-set extension of (OF) give the recurrences below. If an odd group fixes `P` pointwise and acts freely off `P`, symmetrization of a pointed tensor word with `r≥1` supported fixed pair-coordinates gives `|S|=r+g(|F(W)|-r)≤1+g(|F(W)|-1)`, hence the same lower bound `1+ceil((delta²-1)/g)`.
 
 \[
 \begin{aligned}
@@ -161,11 +161,11 @@ If the certified ratio `Γ_k=b_k/a_k` is at least one, then
 \tag{RN}
 \]
 
-Consequently no fixed exponent `c>0` is certified once `Q>3/(c ln 3)`. If `N_k` is polynomial in an input size for which `Q` grows polynomially, the certified ratio is `N_k^{o(1)}`.
+Consequently this OF-only propagation does not certify a fixed exponent `c>0` once `Q>3/(c ln 3)`. If `Q→∞` with input size—for example `Q≥m^alpha` for fixed `alpha>0`—the certified exponent is `o(1)`. This does not cover a stronger base gap, extra soundness beyond `b_i`, or fresh actions that remobilize inherited sectors.
 
 #### Proof
 
-At the first step, `(a_0-s_0)/g_0=(Q-1)/g_0` is a positive integer, so (R) gives `s_1≥3`. Thereafter `s_{i+1}≥s_i²`, proving the fixed-support and length bounds.
+At the first step, the nonempty-moving-support assumption makes `(a_0-s_0)/g_0=(Q-1)/g_0` a positive integer, so (R) gives `s_1≥3`. Thereafter `s_{i+1}≥s_i²`, proving the fixed-support and length bounds.
 
 For real `y≥x≥1`, put `φ_g(x)=1+(x²-1)/g`. Direct cross-multiplication gives
 
@@ -260,43 +260,103 @@ If an odd group `G` acts freely on the moving coordinates and preserves `D`, dia
 \tag{ROF}
 \]
 
-An invariant moving-minimum pointed word attains the orbit-count value. `experiments/verify_reduced_orbit_fold.py` exactly enumerates 100 arbitrary reduced tensor codes and 100 invariant folded codes, checking (RT) and (ROF) against all mixed image words.
+An invariant moving-minimum pointed word attains the orbit-count value. `experiments/verify_reduced_orbit_fold.py` exactly enumerates the spans of 100 deterministic randomly generated small reduced tensor codes and 100 invariant folded codes, checking (RT) and (ROF) against all mixed image words.
 
 This lemma removes the specific fixed star-cross sectors behind the residual-lineage theorem. It still does not provide a polynomial-gap iteration: one must construct fresh commuting actions on the moving sector, preserve an invariant sparse affine witness, and show the reduced/folded image can be represented as an explicit binary syndrome instance at every level with useful length recurrence. The biset experiment below addresses only the coordinate action.
 
-Classical biset composition provides such a coordinate-level renewal mechanism. For an `(H,G)`-biset `U` and `(G,K)`-biset `V`, the balanced quotient `U×_G V` retains the fresh right `K`-action. However, in the pointed construction where both factors have a fixed star, every class `[u,*]` is fixed by `K`. For regular cyclic moving actions, if `U` has `R_U` moving regular `G`-orbits, these form exactly `1+R_U` fixed quotient classes (including `[*,*]`); all other classes can carry a free fresh action. `experiments/verify_pointed_biset_cross.py` checks this exact count on 54 small products. Thus bisets evade residual lineage but do not automatically remove the pointed cross-sector growth. No compatible code/affine-class distance theorem is proved here. Gauge-fixing or projecting those sectors would require a new soundness argument against mixed tensors.
+Classical biset composition provides such a coordinate-level renewal mechanism. For an `(H,G)`-biset `U` and `(G,K)`-biset `V`, the balanced quotient `U×_G V` retains the fresh right `K`-action. In the specific tested model `U={*}⊔R_U(G_regular)` and `V={*}⊔R_V(G_regular×K_regular)`, every `[u,*]` is fixed by `K`, whereas `[*,v]` moves freely because the independent right-`K` coordinate cannot be compensated by left `G`. There are exactly `1+R_U` fixed classes; all others have a free fresh action. `experiments/verify_pointed_biset_cross.py` checks this on 54 products. This count is not asserted for arbitrary bitorsors: generally `[*,v]` can have a nontrivial stabilizer. No compatible code/affine-class distance theorem is proved here.
 
 ### Explicit residual reduced-fold assembly and exponent accounting
 
-The reduced product is functorial. If `(1,0)∉D`, let `C` be the moving projection of `D` and let `φ:C→F_2` be its star form, so `D={(φ(u),u):u∈C}`. Then
+The reduced product is functorial. Assume the star functional on `D` is nonzero and `(1,0)∉D`. Then moving projection is injective; let `C` be its image and `φ:C→F_2` its star form, so `D={(φ(u),u):u∈C}`. Then
 
 \[
 R(D)=\{((\phi\otimes\phi)(M),M):M\in C\otimes C\}.
 \]
 
-If a free odd abelian action preserves `C` and `φ`, the residual action on diagonal moving-pair orbits, `h[u,v]=[u,hv]`, is free and preserves the folded code. Thus one group action can be reused indefinitely after cross-sector deletion.
+If a free odd abelian action preserves `C` and `φ`, the residual action on diagonal moving-pair orbits, `h[u,v]=[u,hv]`, is well-defined, free, and preserves the folded code. If current moving pointed distance is at least one, (ROF) makes the next full pointed distance at least two, so a corner-only word remains absent and the graph representation iterates.
 
 `experiments/verify_reduced_fold_3dm.py` implements this end to end. For a small exact 3DM YES instance with moving distance 3 and a NO odd-cover instance with moving distance 5, one-time `Z_3` installation gives distances 9 and 15. Two reduced residual folds give exact mixed-word minima `(27,75)` and `(243,1875)`. The ratios are exactly `(5/3)^2` and `(5/3)^4`; moving lengths grow from 24 to 192 to 12288.
 
-More generally, when an invariant moving-minimum word attains the orbit lower bound, one fold has idealized recurrences
+More generally, suppose `n>d>0`, and both YES and NO moving minimum words are invariant and attain the orbit bounds with exact divisibility. Then one fold has exact recurrences
 
 \[
-n'=n^2/g,\qquad d'=d^2/g,\qquad b'=b^2/g
+n'=n^2/g,\qquad d'=d^2/g,\qquad b'=b^2/g.
 \]
 
-(up to integer rounding), where `d,b` are YES/NO moving distances. Therefore
+Therefore
 
 \[
 \frac{\log(b'/d')}{\log(n'/d')}
  =\frac{\log(b/d)}{\log(n/d)}.
 \]
 
-The polynomial approximation exponent relative to overhead above the YES baseline is conserved, not amplified. For an additive base gap and a dictionary whose spare-coordinate overhead grows, this exponent tends to zero. This accounting is distinct from the earlier fixed-cross theorem: reduced products remove fixed-cross growth, but do not improve the base exponent.
+The exponent normalized by the overhead ratio `n/d` is conserved, not amplified. It is not automatically the standard rank exponent `log(b/d)/log n`. It tends to zero whenever `log(b/d)=o(log(n/d))`, including a growing YES distance with fixed additive gap under ordinary overhead growth. This is distinct from the fixed-cross theorem.
 
 A possible escape is to use a non-invariant YES word, allowing group order larger than YES distance so orbit cancellations compress completeness more than naive invariant replication. Exact tests do not support the simplest version. In `verify_superbudget_3dm.py`, cyclic sheets each contain an independent pointed 3DM witness, so base minima remain 3 (YES) and 5 (NO) for `ell=3,5,7,11`. Every reduced orbit fold has exact distance 9 and 25 respectively—the full square, despite lower bounds as small as 1 and 3. Two broader cyclic searches likewise found no nontrivial `ell>d>1` example attaining the orbit floor. These are finite observations, not a no-go theorem.
 
-For a base ratio `(q+2)/(q+1)`, after `k` ideal squarings the ratio is `(1+1/(q+1))^{2^k}`. Achieving a polynomial factor in final rank requires `2^k=Ω(q log N)` after accounting for the rank recurrence. Thus the number and size of folds cannot be omitted from the proof.
+For reduced moving weights with a weak `q` versus `q+1` base certificate, after `k` ideal squarings the ratio is `(1+1/q)^{2^k}`. Achieving a polynomial factor in final rank requires `2^k=Ω(q log N)` after accounting for rank. The stronger 3DM parity fact gives at least `q` versus `q+2`, changing constants but not this qualitative accounting.
+
+### Cyclic correlation catalysts
+
+Let `A≤F_2^{Z_ell}` be a cyclic code with invariant star form `psi:A→F_2` (in the implemented family, `psi` is coordinate parity). Define its correlation image pointed code
+
+\[
+B_A=\operatorname{span}\{(\psi(a)\psi(b),\ c_{a,b}):a,b\in A\},
+\qquad
+c_{a,b}(h)=\sum_i a_i b_{i+h}.
+\]
+
+For any pointed outer code `D={(phi(u),u):u∈C}` of moving distance `d`, form the pointed product with moving code `C⊗A`, and then take the reduced tensor square and fold only the diagonal cyclic phase. Reassociating tensor factors shows that the output pointed code is
+
+\[
+R(D)\otimes_{\rm pointed} B_A
+\]
+
+on moving coordinates `(C⊗C)⊗B_{A,\rm mov}`. Consequently, if `a'=delta_*(B_A)-1`, its moving pointed distance is exactly
+
+\[
+a'd^2.
+\tag{CAT}
+\]
+
+This follows from the same pointed tensor slicing theorem and covers every mixed word; it is not a pure-tensor heuristic.
+
+A concrete catalyst uses `ell=15` and the dimension-three cyclic ideal generated by
+
+\[
+(x^4+x+1)(x^4+x^3+1)(x^4+x^3+x^2+x+1).
+\]
+
+Exact enumeration gives odd moving distance five both for `A` and `B_A`. Thus (CAT) equals `5d²`. `verify_cyclic_catalyst.py` checks the identity on 100 deterministic random small outer codes. Coupling it to fixed 3DM instances gives YES moving distance `15→45` and NO `25→125`, so the ratio squares exactly; `verify_cyclic_ideal_3dm.py` enumerates all mixed output words.
+
+The structured catalyst is a real compression mechanism: `verify_cyclic_ideal_superbudget.py` exhausts 116 small cyclic ideals through length 31. All 94 nontrivial cases with `ell>d>1` have correlation distance below `d²`; examples with `(ell,d,a')=(31,11,11)` compress `121` to `11`. None of these finite examples reaches the generic orbit lower bound.
+
+This still does not solve the parameter problem. More generally, any tensor catalyst whose output moving block has length `L` and pointed moving distance `a≤L` gives
+
+\[
+n'=Ln^2,
+\qquad d'=ad^2,
+\qquad b'=ab^2.
+\]
+
+Its standard rank exponent cannot increase:
+
+\[
+\frac{\log(b'/d')}{\log n'}
+ =\frac{2\log(b/d)}{2\log n+\log L}
+ \le\frac{\log(b/d)}{\log n}.
+\tag{CE}
+\]
+
+Thus even a growing catalyst family of this pure tensor-product form cannot repair a vanishing base rank exponent; its internal distance `a` cancels from the approximation ratio. `verify_catalyst_exponent_bound.py` checks 17,151,060 finite parameter tuples, while (CE) is the proof. Escaping requires a nonuniform operation whose NO and YES distances receive different catalyst factors, or whose coordinate growth is submultiplicative relative to the squared outer space.
+
+Directly closing a 3DM code under cyclic shifts is not such a family. In `verify_cyclic_closure_3dm.py`, all 400 tested YES/NO embeddings acquire moving distance one before and after folding. Tensoring with a separate catalyst is the tested mutation that preserves the instance gap.
+
+The first asymmetric mutation—formula-oblivious sparse hashing of reduced pair coordinates—also fails in finite tests. `verify_asymmetric_hash_fold.py` checks 866 valid maps against ten planted YES and ten exact NO 3DM instances. The best uniform tested rank exponent is 0.0962, below the unfurled 0.2447; most maps give ratio one. No theorem about arbitrary or code-dependent dense folds is claimed.
+
+Finally, `verify_reduced_fold_cvp.py` applies the syndrome-to-lattice basis construction to the level-one folded finite examples. It produces explicit rank-192 integer bases with systematic determinant `2^187`; exact affine enumeration gives squared Euclidean distances 27 and 75, hence Euclidean distance ratio `sqrt(75/27)=5/3`. This is a finite end-to-end consistency check only.
 
 ## Honest conclusion
 
-No polynomial-gap binary NCP reduction has been obtained, so the conditional lattice transfer does not establish CVP hardness within any fixed polynomial factor. The exact-cover quotient is wounded by illegal affine combinations of legal witnesses. The cyclic fold has encouraging tiny exact data but lacks the central mixed-word theorem and viable asymptotic parameter recurrence.
+No polynomial-gap binary NCP reduction has been obtained, so the conditional lattice transfer does not establish CVP hardness within any fixed polynomial factor. The exact-cover quotient is wounded by illegal affine combinations of legal witnesses. The orbit and reduced folds have proved mixed-word bounds, but no viable asymptotic parameter construction yielding a fixed polynomial gap.

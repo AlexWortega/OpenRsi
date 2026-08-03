@@ -84,6 +84,7 @@ def main():
   for label,T in [('YES',Y),('NO',N)]:
    rows,d=cyclic_code(q,T,l);fr=fold(rows,m,l);dp=pd(fr);lo=(d*d+l-1)//l
    assert dp>=lo
+   assert dp==d*d  # exact deterministic outcome claimed in STATUS/proof
    print({'ell':l,'case':label,'base_dim':len(rows),'d':d,
           'fold_dim':len(fr),'dprime':dp,'lower':lo,'ratio_to_square':f'{dp}/{d*d}'})
  print('All super-budget 3DM folds enumerated exactly.')

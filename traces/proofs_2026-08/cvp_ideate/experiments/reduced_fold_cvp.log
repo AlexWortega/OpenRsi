@@ -1,0 +1,3 @@
+{'case': 'YES', 'rank': 192, 'code_dim': 5, 'check_rank': 187, 'target_syndrome_bits': 27, 'squared_CVP_distance': 27, 'basis_columns': 192, 'determinant_bit_length': 188}
+{'case': 'NO', 'rank': 192, 'code_dim': 5, 'check_rank': 187, 'target_syndrome_bits': 75, 'squared_CVP_distance': 75, 'basis_columns': 192, 'determinant_bit_length': 188}
+Explicit rank-192 integer CVP bases have exact distance ratio 5/3.

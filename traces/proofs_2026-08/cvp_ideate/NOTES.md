@@ -64,7 +64,7 @@ An invariant pointed minimum word attains equality. This upgrades mixed-word sou
 
 1. a symmetry-replenishing recurrence where the free group order is comparable to current block length without paying that factor in padding;
 2. an invariant sparse YES minimum word at every level;
-3. exact iteration accounting. Amplifying `(q+2)/(q+1)` needs exponent `2^k = Omega(q log N)`, hence `k=Theta(log q + log log N)` squarings, not a casual logarithmic claim.
+3. exact iteration accounting. For reduced moving weights, amplifying weak base `q` versus `q+1` needs exponent `2^k = Omega(q log N)` (parity gives `q+2`, changing constants), hence `k=Theta(log q + log log N)` ideal squarings.
 
 ## Milestone 4 — converge on fold parameter wall
 
@@ -94,6 +94,40 @@ Implemented top experiment 1 end to end in `verify_reduced_fold_3dm.py`. A small
 This validates the full assembly and exact ratio squaring, while confirming severe length growth.
 
 Implemented top experiment 2 in three increasingly instance-relevant scripts. `verify_noninvariant_superbudget.py` exhausts cyclic orbit-span codes through `ell=11`; `verify_noninvariant_random_codes.py` adds unpointed cyclic generators; `verify_superbudget_3dm.py` gives each cyclic sheet an independent pointed 3DM witness so completeness does not pay group order. In the 3DM tests (`ell=3,5,7,11`), YES distance 3 folded to 9 and NO distance 5 folded to 25 in every case—the full square, with no orbit compression, even when proved floors were 1 and 3. The broader searches found no nontrivial `ell>d>1` floor-attaining case. This wounds but does not prove impossible the non-invariant completeness crack.
+
+## Milestone 7 — final hostile referee and corrections
+
+A final CONVERGE referee accepted the two main one-step lemmas but found missing hypotheses and scope errors. Corrected all of them in `proof_cvp.md` and scripts:
+
+* added nonzero star-functional/pointedness assumptions;
+* added the fixed-set extension of the orbit-fold lemma used in residual recurrence;
+* required nonempty initial moving support (`Q>=4`) in the residual theorem;
+* narrowed its title/scope to OF-only `Q` versus `Q+1` propagation;
+* recorded the parity-sharper 3DM base `q` versus at least `q+2`;
+* restricted the biset fixed-class count to the exact independent product-biset model tested;
+* made functorial induction and absence of corner-only words explicit;
+* rephrased conserved exponent as overhead-normalized, with exact divisibility and both minima invariant;
+* corrected reduced moving-weight notation from `(q+2)/(q+1)` to `(q+1)/q` (parity changes constants);
+* added exact assertions for the deterministic counts/outcomes claimed by scripts.
+
+All nine new verifiers pass after these corrections.
+
+## Milestone 8 — harvest, quarantine check, and cyclic catalyst construction
+
+Harvested first: no experiment PID or unfinished log exists; only the run's trace tailer is active. Oracle spend remained `$13.80965`. Since total spend was `$23.94`, non-oracle spend was only `$10.13`; exact dollar attribution within that amount was unavailable, so I conservatively treated the 40% quarantine as binding. Every subsequent action in this milestone was a construction attempt, implementation, or exact soundness attack; no oracle call was made.
+
+Implemented four new construction scripts:
+
+1. `verify_cyclic_ideal_superbudget.py`: 116 exact binary cyclic ideals through odd length 31. All 94 nontrivial `ell>d>1` cases compress correlation distance below `d^2`; best recorded `(31,11,11)` compresses 121 to 11. No floor hit.
+2. `verify_cyclic_closure_3dm.py`: direct cyclic closure of 3DM. Exact soundness attack on 400 assemblies kills it: every YES and NO transformed code has moving/folded distance 1.
+3. Mutation `verify_cyclic_ideal_3dm.py`: retain 3DM and tensor with a separate length-15 cyclic catalyst. Exact mixed minima YES `15→45`, NO `25→125`; ratio squares.
+4. `verify_cyclic_catalyst.py`: 100 arbitrary small outer codes verify exact catalyst distance `5d²` for all mixed words. This admits a clean product-code proof now added to `proof_cvp.md`.
+
+Parameter attack began with `verify_catalyst_parameters.py` and was then generalized. For any pure tensor catalyst of output length `L` applying one common distance multiplier `a`, standard rank exponent changes to `2log(b/d)/(2log n+log L)` and cannot increase. `verify_catalyst_exponent_bound.py` checks 17,151,060 tuples; the algebraic identity is the proof. This kills pure tensor catalysts as gap amplifiers, including growing families. Per protocol, `IDEAS.md` records the required mutation: asymmetric YES/NO catalyst factors or submultiplicative coordinate growth.
+
+Also implemented `verify_reduced_fold_cvp.py`, taking the level-1 folded finite codes all the way to explicit rank-192 integer lattice bases. Exact checks give squared distances 27 and 75 and Euclidean ratio `5/3`; each basis has systematic determinant/index `2^187`. This validates the conditional transfer on the actual constructed matrices without claiming asymptotic hardness.
+
+Per the catalyst autopsy, immediately tested the required asymmetric mutation rather than burying it. `verify_asymmetric_hash_fold.py` exactly evaluates 866 valid formula-oblivious sparse hash folds on ten YES and ten NO reduced 3DM squares. Best uniform exponent is 0.0962 versus unfurled 0.2447; most folds collapse the ratio. The exact tested family is wounded/killed with autopsy and the next code-dependent mutation recorded in `IDEAS.md`.
 
 ## Budget quarantine
 

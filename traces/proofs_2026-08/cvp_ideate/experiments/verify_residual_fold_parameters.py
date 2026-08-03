@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Exact arithmetic checks for the residual-lineage orbit-fold no-go theorem.
 
-Notation Q is the pointed YES weight (for BMT, Q=q+1 after homogenization),
-NO starts at Q+1, and s is supported weight on coordinates fixed by the current
+Notation Q is an abstract pointed YES weight with nonempty invariant moving
+support.  The deliberately weak propagated NO certificate starts at Q+1, and s is supported weight on coordinates fixed by the current
 group.  This checks every generated odd-divisor sequence with exact Fractions.
 It is a finite verifier; the quantified proof is in proof_cvp.md.
 """
@@ -62,14 +62,14 @@ def main() -> None:
     total = 0
     surviving = 0
     samples = []
-    # Q-1 must have an odd divisor at the first step.  This includes the
-    # homogenized BMT values Q=q+1 whenever q has an odd divisor.
+    # Q-1 must have an odd divisor at the first step; Q>=4 enforces nonempty
+    # moving support in the recurrence model.
     for Q in range(4, 61):
         checked, states = explore(Q, 4)
         total += checked
         surviving += len(states)
         samples.extend((Q, s) for s in states[:2])
-    assert total > 100
+    assert total == 14773
     print(f"checked {total} exact residual-fold transitions; terminal states={surviving}")
     for Q, (a, s, b, gs) in samples[:12]:
         print({"Q": Q, "groups": gs, "a": a, "s": s, "b": b,

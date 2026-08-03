@@ -1,0 +1,685 @@
+I restricted the search to material published or posted before 2024 and prioritized primary sources.
+
+## Ranked findings
+
+### 1. **Composable bisets: quotient one symmetry while retaining a genuinely fresh commuting symmetry**
+
+**Source.** Serge Bouc, *Biset Functors for Finite Groups*, Lecture Notes in Mathematics 1990, Springer, 2010; see also Bouc’s notes “Bisets and associated functors.” ([link.springer.com](https://link.springer.com/book/10.1007/978-3-642-11297-3?utm_source=openai))
+
+**Exact construction.** Let \(U\) be an \((H,G)\)-biset and \(V\) a \((G,K)\)-biset. Thus \(U\) has commuting left \(H\)- and right \(G\)-actions, while \(V\) has commuting left \(G\)- and right \(K\)-actions. Define
+
+\[
+U\times_G V=(U\times V)/{\sim},\qquad
+(ug,v)\sim (u,gv).
+\]
+
+Equivalently, quotient \(U\times V\) by
+
+\[
+(u,v)\cdot g=(ug,g^{-1}v).
+\]
+
+The quotient remains an \((H,K)\)-biset:
+
+\[
+h\,[u,v]\,k=[hu,vk].
+\]
+
+Composition is associative:
+
+\[
+(U\times_G V)\times_K W
+\cong U\times_G(V\times_K W),\qquad
+[[u,v],w]\longmapsto [u,[v,w]].
+\]
+
+If the anti-diagonal \(G\)-action is free, then
+
+\[
+|U\times_G V|=\frac{|U||V|}{|G|}.
+\]
+
+More generally, for the residual \(K\)-action one has the exact fixed-point formula
+
+\[
+\bigl|\operatorname{Fix}_{U\times_GV}(k)\bigr|
+ =
+ \frac1{|G|}
+ \sum_{g\in G}
+ \bigl|\{u:ug=u\}\bigr|\,
+ \bigl|\{v:gvk=v\}\bigr|.
+\tag{B1}
+\]
+
+In particular, if the right \(G\)-action on \(U\) is free,
+
+\[
+\bigl|\operatorname{Fix}_{U\times_GV}(k)\bigr|
+ =
+ \frac{|U|}{|G|}\,|\operatorname{Fix}_V(k)|.
+\tag{B2}
+\]
+
+Hence a free right \(K\)-action on \(V\) remains free after quotienting by \(G\).
+
+For a chain of bisets
+
+\[
+U_0\; {}_{G_0}\!-\!{}_{G_1},\quad
+U_1\; {}_{G_1}\!-\!{}_{G_2},\quad\dots,\quad
+U_t\; {}_{G_t}\!-\!{}_{G_{t+1}},
+\]
+
+with all middle quotient actions free,
+
+\[
+\left|U_0\times_{G_1}U_1\times_{G_2}\cdots\times_{G_t}U_t\right|
+ =
+ \frac{\prod_{i=0}^{t}|U_i|}
+      {\prod_{i=1}^{t}|G_i|}.
+\tag{B3}
+\]
+
+**Why this is the highest-leverage match.** This is exactly a classical mechanism for “spending” \(G_i\) in a diagonal quotient while retaining \(G_{i+1}\) as a fresh action on **all** quotient coordinates. The next action is not a subgroup of \((G_i\times G_i)/\operatorname{diag}G_i\), so it lies outside the residual-lineage hypothesis in the supplied no-go theorem. Formula (B2) proves that freeness is renewed rather than inherited only on old moving sectors.
+
+**Distinguished coset and invariant word.** A distinguished coordinate can be an orbit \([u_*,v_*]\), or a distinguished coset in a transitive biset. A \(K\)-invariant binary word is a union of residual \(K\)-orbits. If the residual action is free, its moving weight is necessarily a multiple of \(|K|\). Thus the biset construction solves the **symmetry renewal** issue but does not itself solve the sparse-invariant-word issue.
+
+**How to adapt/verify.**
+
+1. Choose explicit permutation bisets \(U_i\) and enumerate the quotient tuples.
+2. Verify (B1) directly for every \(k\).
+3. Linearize to permutation modules \(\mathbb F_2[U_i]\).
+4. Search for equivariant boundary maps and small \(G_{t+1}\)-invariant cycles supported on only a few residual orbits.
+5. The decisive hostile experiment is whether cross sectors that were fixed under the old residual action are moved by the new right action.
+
+---
+
+### 2. **Lifted products over group algebras: quotient-sized chain complexes without expanding a full tensor**
+
+**Source.** Pavel Panteleev and Gleb Kalachev, “Asymptotically Good Quantum and Locally Testable Classical LDPC Codes,” arXiv 2021; STOC 2022. ([arxiv.org](https://arxiv.org/abs/2111.03654?utm_source=openai))
+
+**Exact construction.** Put \(R=\mathbb F_qG\). Let \(A,B\) be free chain complexes over \(R\), with \(A\) a right \(G\)-complex and \(B\) a left \(G\)-complex. If \(\widetilde A_{G,i}\) and \(\widetilde B_{G,j}\) are bases over \(R\), then the ordinary \(\mathbb F_q\)-basis of \(A\otimes_G B\) is
+
+\[
+a\cdot g\cdot b,
+\qquad
+a\in\widetilde A_{G,i},\quad
+g\in G,\quad
+b\in\widetilde B_{G,j}.
+\]
+
+The boundary is
+
+\[
+\partial(a\cdot g\cdot b)
+ =
+ (\partial_Aa)\cdot g\cdot b
+ +
+ (-1)^i a\cdot g\cdot(\partial_Bb).
+\tag{LP1}
+\]
+
+Consequently, if \(a_i=\operatorname{rank}_R A_i\) and \(b_j=\operatorname{rank}_R B_j\), then
+
+\[
+\dim_{\mathbb F_q}(A\otimes_G B)_n
+ =
+ |G|\sum_{i+j=n}a_i b_j.
+\tag{LP2}
+\]
+
+This should be compared with an unbalanced tensor of the expanded \(\mathbb F_q\)-complexes, whose corresponding scale is \(|G|^2\sum a_i b_j\).
+
+For two-term complexes represented by matrices over \(R\), the lifted-product boundary matrices are the group-algebra Kronecker blocks
+
+\[
+M_1=
+\begin{bmatrix}
+\partial_A\otimes I & I\otimes\partial_B
+\end{bmatrix},
+\qquad
+M_2=
+\begin{bmatrix}
+I\otimes\partial_B\\
+\partial_A\otimes I
+\end{bmatrix},
+\tag{LP3}
+\]
+
+with signs/transposes chosen according to the chain-complex convention. Expanding each \(R\)-entry via the regular representation gives the binary or \(q\)-ary matrix. ([arxiv.org](https://arxiv.org/pdf/2012.09271))
+
+**Distance theorem for mixed words.** Their main theorem constructs, for every field \(\mathbb F_q\) and every target rate \(R_0\in(0,1)\), explicit qLDPC families
+
+\[
+[[n,k,d]]_q,\qquad k>R_0n,\qquad d=\Theta(n).
+\tag{LP4}
+\]
+
+The distance quantifies over every nontrivial homology representative, not merely pure tensors. Their product-expansion argument explicitly analyzes arbitrary local matrices/rows in a product code and is therefore relevant to the “mixed tensor word” requirement. ([arxiv.org](https://arxiv.org/pdf/2111.03654))
+
+**Action and fixed points.** Translation on the middle coordinate,
+
+\[
+h:(a,g,b)\longmapsto(a,hg,b)
+\]
+
+is fixed-point-free for \(h\ne 1\), whenever it preserves the chosen equivariant matrices. With \(r_n=\sum_{i+j=n}a_i b_j\),
+
+\[
+|\operatorname{Fix}(h)|=
+\begin{cases}
+|G|r_n,&h=1,\\
+0,&h\ne1.
+\end{cases}
+\]
+
+Appending a fixed star changes this to \(1+|G|r_n\) coordinates and one fixed coordinate for every nonidentity \(h\).
+
+**Why relevant.** This is the strongest known pre-2024 answer to the “code-dependent structured compression of a tensor” part: it retains one group coordinate rather than two, and its distance theorem covers arbitrary homological combinations.
+
+**Limitation.** The theorem does not identify a pointed sparse \(G\)-invariant witness or prove an orbit-parity image theorem. The asymptotically good families use expansion rather than a distinguished affine coset.
+
+**Verification path.** Implement matrices in \(\mathbb F_2G\) as sparse dictionaries \(G\to\mathbb F_2\), build (LP3), and compare exhaustive minimum distances with the fully expanded product for groups of orders \(3,5,7\). Then impose a candidate invariant cycle and test whether it survives a second, commuting biset action.
+
+---
+
+### 3. **Balanced products of chain complexes: the explicit diagonal quotient and residual-action interface**
+
+**Source.** Nikolas P. Breuckmann and Jens N. Eberhardt, “Balanced Product Quantum Codes,” *IEEE Transactions on Information Theory* 67(10), 2021, 6653–6674. ([discovery.ucl.ac.uk](https://discovery.ucl.ac.uk/id/eprint/10133213/?utm_source=openai))
+
+**Exact coordinate construction.** Let \(H\) act on the right of bases \(X_i\) of \(C_i\) and on the left of bases \(Y_j\) of \(D_j\). The balanced coordinate set is
+
+\[
+X_i\times_HY_j
+ =
+ \{[x,y]\},
+\qquad
+[xh,y]=[x,hy].
+\tag{BP1}
+\]
+
+Equivalently,
+
+\[
+[x,y]=\{(xh,h^{-1}y):h\in H\}.
+\]
+
+The degree-\(n\) chain basis is
+
+\[
+(C\otimes_HD)_n
+ =
+ \bigoplus_{i+j=n}\mathbb F_2[X_i\times_HY_j],
+\]
+
+and the boundary is
+
+\[
+\partial[x,y]
+ =
+ \sum_{x'\in\partial x}[x',y]
+ +
+ \sum_{y'\in\partial y}[x,y'].
+\tag{BP2}
+\]
+
+Algebraically,
+
+\[
+C\otimes_HD
+ =
+ C\otimes_{\mathbb F_2[H]}D.
+\tag{BP3}
+\]
+
+If the anti-diagonal \(H\)-action is free, then
+
+\[
+|(X\times_HY)_n|
+ =
+ \frac1{|H|}
+ \sum_{i+j=n}|X_i||Y_j|.
+\tag{BP4}
+\]
+
+For odd \(|H|\), the paper proves the balanced Künneth formula
+
+\[
+H_n(C\otimes_HD)
+ \cong
+ \bigoplus_{i+j=n}H_i(C)\otimes_HH_j(D).
+\tag{BP5}
+\]
+
+These formulas are explicit in the paper. ([arxiv.org](https://arxiv.org/pdf/2012.09271))
+
+**Concrete distance theorem.** For their cyclic balanced product \(C(X,L)\otimes_{\mathbb Z_\ell}C(C_\ell)\), Corollary 23 gives
+
+\[
+N=3|X_1|,
+\]
+
+\[
+K\ge \left(\frac{2k_L}{s}-1\right)\frac{|X_1|}{\ell},
+\]
+
+\[
+D_Z\ge |X_1|\min\{\alpha_{\rm ho}/2,\alpha_{\rm ho}\beta_{\rm ho}/4\},
+\]
+
+and
+
+\[
+D_X\ge
+\min\left\{
+\alpha_{\rm co}|X_1|,
+\frac{\alpha_{\rm co}|X_1|}{2},
+\frac{\ell\alpha_{\rm co}}{4s},
+\frac{\ell\alpha_{\rm co}\beta_{\rm co}}{4s}
+\right\}.
+\tag{BP6}
+\]
+
+The distance is over all representatives in the relevant homology/cohomology classes. ([arxiv.org](https://arxiv.org/pdf/2012.09271))
+
+**Why relevant.** This supplies the exact linearization of the diagonal coordinate quotient in the proof. More importantly, combining it with the biset machinery in Find 1 gives the natural mutation
+
+\[
+C_0\otimes_{G_1}C_1\otimes_{G_2}\cdots\otimes_{G_t}C_t,
+\]
+
+where each factor is a bimodule complex. The next symmetry can be an independent commuting action, rather than residual lineage.
+
+**Invariant word.** If \(z_i\) are invariant cycles and their external tensor survives the balancing relations, then
+
+\[
+[z_0\otimes\cdots\otimes z_t]
+\]
+
+is an invariant cycle. Its orbit support must be counted after quotienting; for free middle actions its pure-tensor support is
+
+\[
+\frac{\prod_i |\operatorname{supp}z_i|}
+     {\prod_{i=1}^t|G_i|}
+\]
+
+provided the action on that support is free. Mixed cycles can be lighter, so a product-expansion or projection theorem remains necessary.
+
+---
+
+### 4. **Voltage and permutation lifts: a fresh deck action at every stage**
+
+**Source.** Jonathan L. Gross and Thomas W. Tucker, “Generating All Graph Coverings by Permutation Voltage Assignments,” *Discrete Mathematics* 18, 1977; ordinary voltage constructions were developed further in their classical graph-covering work. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/0012365X77901315?utm_source=openai))
+
+**Exact construction.** For a directed base graph \(B\) and a voltage assignment
+
+\[
+\alpha:D(B)\to\Gamma,\qquad
+\alpha(e^{-1})=\alpha(e)^{-1},
+\]
+
+the derived graph has
+
+\[
+V(B^\alpha)=V(B)\times\Gamma
+\]
+
+and lifted dart
+
+\[
+(e,g):(u,g)\longrightarrow(v,g\alpha(e))
+\quad\text{for }e:u\to v.
+\tag{V1}
+\]
+
+Left translation
+
+\[
+h\cdot(v,g)=(v,hg)
+\tag{V2}
+\]
+
+is a deck action. It is free:
+
+\[
+|\operatorname{Fix}(h)|=
+\begin{cases}
+|V(B)||\Gamma|,&h=1,\\
+0,&h\ne1.
+\end{cases}
+\tag{V3}
+\]
+
+The quotient is the base graph. For permutation voltages \(\alpha(e)\in S_m\), replace the group coordinate by \(i\in[m]\) and use
+
+\[
+(e,i):(u,i)\longrightarrow(v,\alpha(e)i).
+\tag{V4}
+\]
+
+Gross–Tucker’s permutation-voltage theorem represents every finite graph covering in this manner.
+
+A tower of regular voltage lifts with groups \(\Gamma_0,\ldots,\Gamma_{t-1}\) has exact size recurrence
+
+\[
+n_{i+1}=|\Gamma_i|\,n_i,
+\qquad
+n_t=n_0\prod_{i<t}|\Gamma_i|.
+\tag{V5}
+\]
+
+**Why relevant.** The deck group at stage \(i+1\) is newly installed by the next voltage assignment; it need not descend from the previous diagonal quotient. Thus it is outside the lineage assumption. If Tanner checks are lifted equivariantly, the lifted code inherits the deck action.
+
+**Main caveat.** Ordinary graph lifting expands length rather than folding it. It is useful only if paired with a balanced quotient or group-algebra product that spends the new deck group. A fixed star can be adjoined, but every invariant moving support is still a union of deck orbits.
+
+**Verification path.** Use a small base Tanner graph, cyclic voltage groups \(\mathbb Z_3,\mathbb Z_5\), and build a tower
+
+\[
+B_0\leftarrow B_1\leftarrow B_2.
+\]
+
+Form a balanced product that quotients the first deck group and check whether the second deck group moves every nonstar quotient sector.
+
+---
+
+### 5. **Explicit abelian lifts and large quasi-cyclic symmetry**
+
+**Source.** Fernando Granha Jeronimo, Tushant Mittal, Ryan O’Donnell, Pedro Paredes, and Madhur Tulsiani, “Explicit Abelian Lifts and Quantum LDPC Codes,” arXiv:2112.01647, 2021. ([arxiv.org](https://arxiv.org/abs/2112.01647?utm_source=openai))
+
+**Exact lift action.** An \((H,\ell)\)-lift replaces each base vertex \(v\) by
+
+\[
+(v,i),\qquad i\in[\ell],
+\]
+
+and an edge \(e=uv\), labelled by \(h_e\in H\leq S_\ell\), by the matching
+
+\[
+(u,i)\sim(v,h_e i).
+\tag{AL1}
+\]
+
+For the regular cyclic action \(H=\mathbb Z_\ell\),
+
+\[
+a\cdot(v,i)=(v,i+a)
+\tag{AL2}
+\]
+
+is free, so each nonidentity element has zero fixed lifted vertices.
+
+The length recurrence is simply
+
+\[
+N_{\rm lift}=\ell N_{\rm base}.
+\tag{AL3}
+\]
+
+**Precise code consequences.** Their Corollary 1.5 gives deterministic polynomial-time constructions of:
+
+- good quasi-cyclic LDPC codes of block length \(N\) with circulant size up to \(N/\operatorname{polylog}N\), including size \(\Theta(N/\log N)\);
+- quantum LDPC codes with
+  \[
+  d=\Omega(N/\log N),\qquad k=\Omega(\log N);
+  \]
+- for every constant \(\alpha>0\), quantum LDPC codes with
+  \[
+  d=\Omega(N^{1-\alpha}),\qquad k=\Theta(N^\alpha).
+  \]
+
+([arxiv.org](https://arxiv.org/pdf/2112.01647))
+
+**Why relevant.** This is an explicit source of extremely large cyclic coordinate symmetries without naively copying each base coordinate by a separately designed repetition gadget. It can feed either a balanced product or an orbit quotient.
+
+**Invariant-word arithmetic.** For an \(\ell_0\)-quasi-cyclic code of length \(\ell_0m\), the generating shift has \(\ell_0\) disjoint cycles of length \(m\). Therefore:
+
+\[
+|\operatorname{Fix}_{\rm coordinates}(T^r)|=
+\begin{cases}
+\ell_0m,&r\equiv0\pmod m,\\
+0,&r\not\equiv0\pmod m,
+\end{cases}
+\]
+
+and every word invariant under the full shift has weight divisible by \(m\). Thus these constructions supply symmetry, but a sparse invariant witness requires \(m\) itself to be acceptable or requires invariance under a proper subgroup.
+
+---
+
+### 6. **Cyclic/quasi-cyclic product codes: exact serialization and exact mixed-word distance**
+
+**Source.** Alexander Zeh and San Ling, “Spectral Analysis of Quasi-Cyclic Product Codes,” arXiv:1512.06690, 2015; extending Burton–Weldon’s cyclic product construction. ([arxiv.org](https://arxiv.org/abs/1512.06690?utm_source=openai))
+
+**Exact construction.** Let
+
+\[
+A=[n_A,k_A,d_A]_q,\qquad
+B=[n_B,k_B,d_B]_q
+\]
+
+be respectively \(\ell_A\)- and \(\ell_B\)-quasi-cyclic, with \(\gcd(n_A,n_B)=1\). A product word is an \(n_B\times n_A\) matrix \(M=(m_{i,j})\) such that every row is in \(A\) and every column is in \(B\).
+
+Choose \(a,b\in\mathbb Z\) satisfying
+
+\[
+a n_A+b n_B=1.
+\]
+
+The Chinese-remainder serialization is
+
+\[
+c(X)=
+\sum_{i=0}^{n_B-1}\sum_{j=0}^{n_A-1}
+m_{i,j}X^{\mu(i,j)}
+\pmod{X^{n_An_B}-1},
+\]
+
+where
+
+\[
+\mu(i,j)
+ =
+ i\,a n_A+j\,b n_B
+ \pmod{n_An_B}.
+\tag{QC1}
+\]
+
+This satisfies \(\mu(i,j)\equiv i\pmod{n_B}\) and \(\mu(i,j)\equiv j\pmod{n_A}\). The resulting code is \(\ell_A\ell_B\)-quasi-cyclic with exact parameters
+
+\[
+[n_An_B,\ k_Ak_B,\ d_Ad_B]_q.
+\tag{QC2}
+\]
+
+([arxiv.org](https://arxiv.org/pdf/1512.06690))
+
+**Why the distance statement is useful.** The proof of \(d=d_Ad_B\) is for an arbitrary nonzero product-code matrix, not only a rank-one or pure tensor word: a nonzero row has at least \(d_A\) nonzero columns, and each such nonzero column has weight at least \(d_B\).
+
+**Symmetry count.** The quasi-cyclic shift by \(\ell_A\ell_B\) has order
+
+\[
+m_Am_B
+ =
+ \frac{n_An_B}{\ell_A\ell_B}.
+\]
+
+It has no fixed coordinate under a nonidentity power that generates a nonzero translation. A word invariant under the generating shift has weight divisible by \(m_Am_B\).
+
+**Relevance and limitation.** This is an exact mixed-word distance theorem with a single cyclic coordinate index, but serialization is only a permutation of \(n_An_B\) coordinates—it does not compress length. It is most promising as an automorphism-rich factor inside a balanced product.
+
+---
+
+### 7. **Projection/gauge-fixing theorems for selected tensor-chain sectors**
+
+**Source.** Weilei Zeng and Leonid P. Pryadko, “Minimal Distances for Certain Quantum Product Codes and Tensor Products of Chain Complexes,” 2020. ([arxiv.org](https://arxiv.org/abs/2007.12152?utm_source=openai))
+
+**Exact relevant construction.** For chain complexes \(\mathcal A,\mathcal B\), the degree-\(j\) tensor space decomposes as
+
+\[
+(\mathcal A\otimes\mathcal B)_j
+ =
+ \bigoplus_r \mathcal A_r\otimes\mathcal B_{j-r}.
+\]
+
+They study projection to a single sector
+
+\[
+I=\mathcal A_i\otimes\mathcal B_{j-i}
+\tag{ZP1}
+\]
+
+followed by puncturing the check matrices to \(I\) and gauge-fixing the resulting subsystem code. Their construction shows that the gauge-fixed stabilizer code has the same relevant \(Z\)-distance as the projected subsystem code.
+
+In the terminal-boundary cases they obtain the exact product formula
+
+\[
+d_Z\bigl(\mathcal Q^{(i,j-i)}\bigr)
+ =
+ d_i(\mathcal A)\,d_{j-i}(\mathcal B)
+\tag{ZP2}
+\]
+
+when \(\mathcal B_{j-i}\) is at the end of \(\mathcal B\); the same formula holds when \(\mathcal A_i\) is terminal. More generally, if one factor has only one nontrivial boundary operator, their theorem gives exact tensor-product homological distances. ([arxiv.org](https://arxiv.org/abs/2007.12152))
+
+**Why relevant to star-cross deletion.** This is the closest explicit pre-2024 theorem I found to deleting all but a selected tensor sector while retaining a distance product. It is not ordinary coordinate puncturing: projection is accompanied by a subsystem interpretation and gauge fixing. That extra quotient structure is exactly what prevents arbitrary deleted-sector cancellations.
+
+**How to adapt.**
+
+- Model the retained \((*,*)\) or moving-moving block as the selected subspace \(I\).
+- Treat deleted star-cross sectors as gauge degrees of freedom rather than merely erasing coordinates.
+- Check whether the pointed affine class corresponds to a nonzero logical component under the projection.
+- The theorem applies directly only in terminal/one-boundary cases; a general pointed multi-sector analogue would need a new projection lemma.
+
+---
+
+### 8. **Rectangular puncturing/shortening of ordinary product codes: exact theorem, but star-cross retention is nonrectangular**
+
+**Classical source.** Standard product-code theory, as used explicitly in the Burton–Weldon/Zeh–Ling product construction above. ([arxiv.org](https://arxiv.org/pdf/1512.06690))
+
+Let \(C\leq\mathbb F^X\), \(D\leq\mathbb F^Y\), and let \(S\subseteq X\), \(T\subseteq Y\).
+
+Define coordinate restriction by \(\rho_S\) and shortening by
+
+\[
+\operatorname{Short}_S(C)
+ =
+ \{\rho_S(c):c\in C,\ \operatorname{supp}(c)\subseteq S\}.
+\]
+
+Then the exact rectangular identities are
+
+\[
+\rho_{S\times T}(C\otimes D)
+ =
+ \rho_S(C)\otimes\rho_T(D),
+\tag{P1}
+\]
+
+and
+
+\[
+\operatorname{Short}_{S\times T}(C\otimes D)
+ =
+ \operatorname{Short}_S(C)\otimes
+ \operatorname{Short}_T(D).
+\tag{P2}
+\]
+
+Hence, whenever the factors are nonzero,
+
+\[
+d\!\left(\rho_{S\times T}(C\otimes D)\right)
+ =
+ d(\rho_S C)\,d(\rho_T D),
+\tag{P3}
+\]
+
+and
+
+\[
+d\!\left(\operatorname{Short}_{S\times T}(C\otimes D)\right)
+ =
+ d(\operatorname{Short}_S C)\,
+ d(\operatorname{Short}_T D).
+\tag{P4}
+\]
+
+These hold for every mixed tensor-code word.
+
+**But:** retaining
+
+\[
+((X\setminus P)\times(Y\setminus Q))\;\cup\;(P\times Q)
+\tag{P5}
+\]
+
+while deleting the two cross rectangles
+
+\[
+P\times(Y\setminus Q),
+\qquad
+(X\setminus P)\times Q
+\]
+
+is not rectangular. The image generally couples the two retained diagonal blocks, so (P1)–(P4) do not imply a product-distance theorem.
+
+For plain puncturing of any deleted set \(E\),
+
+\[
+d(\operatorname{Punct}_E C)\ge d(C)-|E|,
+\tag{P6}
+\]
+
+and the same elementary inequality holds for pointed or relative distance if the distinguished coordinate is not deleted. Shortening cannot lower distance, but may remove the designated affine class entirely.
+
+**Search conclusion on the requested star-cross theorem.** I did not find a classical theorem asserting an exact multiplicative distance after arbitrary deletion of the two star-cross sectors while retaining both the corner and moving-moving blocks. Zeng–Pryadko’s sector projection plus gauge fixing is the closest precise result. Without gauge conditions, arbitrary cross-sector cancellation appears to prevent a universal multiplicative statement.
+
+---
+
+## What is genuinely outside the supplied no-go assumptions?
+
+### Clearly outside
+
+1. **Chains of bimodules/bisets**
+   \[
+   U_0\times_{G_1}U_1\times_{G_2}\cdots
+   \]
+   with fresh right \(G_{i+1}\)-actions. The next action is not residual lineage from \(G_i\times G_i\).
+
+2. **New voltage/deck groups installed after each quotient.** These are independent extension data, not subgroups of the old residual action.
+
+3. **Gauge-fixed projection of selected tensor-chain sectors.** Deleted sectors are converted into gauge degrees of freedom rather than remaining fixed inherited coordinate sectors.
+
+### Not by themselves outside enough
+
+- A single cyclic or quasi-cyclic shift supplies large symmetry but forces invariant moving weight to be an orbit multiple.
+- Ordinary cyclic product serialization preserves the full \(n_An_B\) length.
+- A tower of graph lifts expands by \(\prod |G_i|\) unless each fresh deck group is subsequently spent through a balanced quotient.
+- Balanced or lifted products alone do not guarantee a pointed sparse invariant YES word.
+
+## Best concrete next experiment
+
+Use a three-stage bimodule chain
+
+\[
+C_0\otimes_{\mathbb F_2G_1}
+C_1\otimes_{\mathbb F_2G_2}C_2,
+\]
+
+where:
+
+- \(C_1\) is a \((G_1,G_2)\)-bimodule complex from a voltage lift;
+- \(G_1,G_2\) are small odd cyclic groups initially;
+- the left and right actions are both free and commute;
+- a candidate YES cycle is supported on one or two right-\(G_2\) orbits;
+- all words in the final affine fiber are exhaustively enumerated.
+
+The first diagnostics should be:
+
+\[
+N=
+\frac{|X_0||X_1||X_2|}{|G_1||G_2|},
+\]
+
+the fixed-point table from (B1), the exact minimum pointed/relative distance over all mixed words, and whether the new \(G_2\)-action moves the old star-cross lineage sectors. This directly tests the only mechanism found that both compresses an intermediate product and renews a free symmetry globally.
+[ask_pro] mode=scout model=openai/gpt-5.6-sol:online cost=$1.27470375 time=367.3s
+

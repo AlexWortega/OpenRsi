@@ -1,0 +1,379 @@
+## (B) Parameter theorem for residual-only odd-group orbit folding
+
+The following rules out the natural family in which each new symmetry is inherited from the residual action after the preceding diagonal quotient. It permits arbitrary odd group orders and arbitrary semiregular actions at different levels. The essential assumption is that inherited fixed cross sectors are never remobilized by an unrelated new symmetry.
+
+### Model
+
+At level \(i\), let:
+
+- \(X_i\) be the coordinate set, with distinguished coordinate \(*\);
+- \(G_i\) be a nontrivial finite group of odd order \(g_i\);
+- \(P_i=\operatorname{Fix}_{X_i}(G_i)\), with \(*\in P_i\);
+- \(G_i\) act freely on \(X_i\setminus P_i\);
+- \(D_i\leq \mathbb F_2^{X_i}\) be \(G_i\)-invariant.
+
+Define the diagonal orbit fold
+\[
+D_{i+1}=F_i(D_i\otimes D_i)
+   \leq \mathbb F_2^{(X_i\times X_i)/G_i}.
+\]
+
+Assume the following residual-lineage condition:
+
+1. Every quotient coordinate represented by
+   \[
+   (P_i\times P_i)\cup
+   (P_i\times(X_i\setminus P_i))\cup
+   ((X_i\setminus P_i)\times P_i)
+   \tag{RL}
+   \]
+   is fixed by the next action \(G_{i+1}\).
+2. The propagated YES word defined below is \(G_{i+1}\)-invariant.
+3. Apart from the inherited fixed coordinates, the next action may be chosen arbitrarily, subject only to being free off its fixed set.
+
+Condition (RL) holds for the usual residual construction when \(G_i\) is odd abelian: the action of
+\[
+(G_i\times G_i)/\operatorname{diag}G_i
+\]
+fixes every cross-sector orbit pointwise. It continues to hold after restricting to any residual subgroup. The theorem below therefore includes arbitrary choices of residual subgroups and group orders at every level.
+
+Let \(x_0\in D_0\) be an invariant pointed YES word and define
+\[
+x_{i+1}=F_i(x_i\otimes x_i).
+\]
+Write
+\[
+a_i=|x_i|,
+\qquad
+s_i=|\operatorname{supp}(x_i)\cap P_i|.
+\]
+
+Assume initially
+\[
+a_0=q,\qquad s_0=1,
+\tag{Base-YES}
+\]
+and that the base NO pointed distance is at least
+\[
+b_0=q+1.
+\tag{Base-NO}
+\]
+
+The soundness threshold is propagated solely by the universal mixed-word symmetrization bound:
+\[
+b_{i+1}
+ =
+1+\left\lceil\frac{b_i^2-1}{g_i}\right\rceil.
+\tag{S}
+\]
+
+This is the strongest integer threshold furnished by that bound.
+
+---
+
+## Theorem
+
+Under the assumptions above, for every \(k\geq 1\):
+
+1. The supported fixed sector satisfies
+   \[
+   s_k\geq 3^{\,2^{k-1}}.
+   \tag{1}
+   \]
+2. Consequently, if
+   \[
+   N_k=|X_k|
+   \]
+   is the final ambient code length—and hence the lattice rank in the syndrome-to-CVP transfer—then
+   \[
+   N_k\geq 3^{\,2^{k-1}}.
+   \tag{2}
+   \]
+3. Let
+   \[
+   \Gamma_k=\frac{b_k}{a_k}
+   \]
+   be the approximation factor certified by the propagated YES word and the mixed-word lower bound. If \(\Gamma_k\geq1\), then
+   \[
+   \Gamma_k
+   \leq
+   \left(1+\frac3q\right)^{2^{k-1}}
+   \leq
+   \exp\!\left(\frac{3\cdot 2^{k-1}}q\right)
+   \leq
+   N_k^{\,3/(q\ln 3)}.
+   \tag{3}
+   \]
+
+In particular, for every fixed \(c>0\), once
+\[
+q>\frac{3}{c\ln 3},
+\]
+this family cannot certify a Hamming gap \(N_k^c\). The corresponding Euclidean CVP factor is smaller still, being the square root.
+
+If \(N_k\) is required to remain polynomial in an input size polynomially related to \(q\), then
+\[
+\Gamma_k=1+o(1).
+\]
+
+---
+
+## Proof
+
+### 1. Pointed tensor distance
+
+For any pointed binary code \(D\), let
+\[
+\delta_*(D)=\min\{|z|:z\in D,\ z_*=1\}.
+\]
+Then
+\[
+\delta_*(D\otimes D)=\delta_*(D)^2.
+\tag{4}
+\]
+
+Indeed, regard a word \(W\in D\otimes D\) as a matrix whose rows and columns belong to \(D\). If \(W_{*,*}=1\), its distinguished row has at least \(\delta_*(D)\) nonzero entries. For every column \(j\) with \(W_{*,j}=1\), that column is a pointed word of \(D\), hence has weight at least \(\delta_*(D)\). Therefore
+\[
+|W|\geq\delta_*(D)^2.
+\]
+Equality is attained by \(x\otimes x\) for a pointed minimum word \(x\).
+
+### 2. Mixed-word fold bound with multiple fixed coordinates
+
+Let \(G\) have odd order \(g\), fix \(P\), and act freely on \(X\setminus P\). For \(W\in D\otimes D\) with \(W_{*,*}=1\), set
+\[
+S=\sum_{h\in G}hW.
+\]
+On every fixed quotient coordinate, \(S\) equals the corresponding folded bit because \(g\) is odd. On every free orbit, \(S\) is constant with value equal to the orbit parity.
+
+If the folded word has \(u\) supported fixed singleton orbits and \(v\) supported free orbits, then
+\[
+|F(W)|=u+v,\qquad |S|=u+gv.
+\]
+Because the distinguished orbit is a supported fixed orbit, \(u\geq1\), and hence
+\[
+|S|=u+gv
+   \leq 1+g(u+v-1)
+   =1+g(|F(W)|-1).
+\]
+Together with (4),
+\[
+|F(W)|
+\geq
+1+\frac{\delta_*(D)^2-1}{g}.
+\]
+Taking the integer ceiling proves recurrence (S).
+
+### 3. Exact YES-word recurrence
+
+Since \(x_i\) is invariant, its support outside \(P_i\) is a union of free \(G_i\)-orbits. Thus
+\[
+g_i\mid a_i-s_i.
+\tag{5}
+\]
+
+Every supported pair in \(P_i\times P_i\) is a singleton orbit. Every other supported pair lies in a free diagonal orbit of size \(g_i\). Since \(g_i\) is odd, every supported orbit folds to one. Therefore
+\[
+a_{i+1}
+=
+s_i^2+\frac{a_i^2-s_i^2}{g_i}.
+\tag{6}
+\]
+
+By (RL), all supported fixed-fixed and fixed-free cross-sector quotient coordinates are fixed at the next level. Hence
+\[
+s_{i+1}
+\geq
+s_i^2+
+\frac{2s_i(a_i-s_i)}{g_i}.
+\tag{7}
+\]
+
+Initially \(a_0=q>s_0=1\). By (5),
+\[
+t_0:=\frac{q-1}{g_0}\geq1,
+\]
+so
+\[
+s_1\geq1+2t_0\geq3.
+\tag{8}
+\]
+Thereafter (7) gives
+\[
+s_{i+1}\geq s_i^2.
+\]
+Iterating from \(s_1\geq3\) proves
+\[
+s_k\geq3^{2^{k-1}}.
+\]
+Since \(N_k\geq a_k\geq s_k\), this proves (1) and (2).
+
+### 4. One-step ratio inequality after the first fold
+
+Define
+\[
+\phi_g(z)=1+\frac{z^2-1}{g}.
+\]
+For \(y\geq x\geq1\),
+\[
+\frac{\phi_g(y)}{\phi_g(x)}
+\leq
+\left(\frac yx\right)^2.
+\tag{9}
+\]
+Indeed,
+\[
+\frac{g-1+y^2}{g-1+x^2}\leq\frac{y^2}{x^2}
+\]
+is equivalent to
+\[
+x^2(g-1)\leq y^2(g-1).
+\]
+
+Equation (6) can be rewritten as
+\[
+a_{i+1}
+=
+\phi_{g_i}(a_i)+
+(s_i^2-1)\left(1-\frac1{g_i}\right).
+\tag{10}
+\]
+For \(i\geq1\), we have \(s_i\geq3\), and \(g_i\geq3\) is odd. Thus the surplus in (10) satisfies
+\[
+(s_i^2-1)\left(1-\frac1{g_i}\right)
+\geq
+8\cdot\frac23
+>1.
+\tag{11}
+\]
+
+Suppose \(b_i\geq a_i\), and put \(\Gamma_i=b_i/a_i\). From (S),
+\[
+b_{i+1}
+\leq \phi_{g_i}(b_i)+1.
+\]
+By (9),
+\[
+\phi_{g_i}(b_i)
+\leq
+\Gamma_i^2\phi_{g_i}(a_i).
+\]
+Since \(\Gamma_i\geq1\), equations (10)–(11) imply
+\[
+\begin{aligned}
+b_{i+1}
+&\leq \Gamma_i^2\phi_{g_i}(a_i)+1\\
+&\leq \Gamma_i^2
+ \left[
+ \phi_{g_i}(a_i)+
+ (s_i^2-1)\left(1-\frac1{g_i}\right)
+ \right]\\
+&=\Gamma_i^2 a_{i+1}.
+\end{aligned}
+\]
+Therefore
+\[
+\Gamma_{i+1}\leq\Gamma_i^2
+\qquad(i\geq1).
+\tag{12}
+\]
+
+If \(b_i<a_i\), then the certified soundness threshold is already below the YES witness weight. The surplus (11) also prevents this certificate from recovering at later levels, so such a branch cannot yield a nontrivial final gap.
+
+### 5. First-fold rounding loss
+
+At level zero, \(s_0=1\), so there is no fixed-sector surplus. Write
+\[
+t=\frac{q-1}{g_0}\geq1.
+\]
+By (6),
+\[
+a_1
+=
+1+\frac{q^2-1}{g_0}
+=
+1+t(q+1).
+\]
+Moreover,
+\[
+\begin{aligned}
+b_1
+&=
+1+\left\lceil\frac{(q+1)^2-1}{g_0}\right\rceil\\
+&=
+a_1+\left\lceil\frac{2q+1}{g_0}\right\rceil.
+\end{aligned}
+\]
+Since \(q=g_0t+1\),
+\[
+\frac{2q+1}{g_0}=2t+\frac3{g_0}.
+\]
+As \(g_0\geq3\) is odd,
+\[
+\left\lceil\frac{2q+1}{g_0}\right\rceil=2t+1.
+\]
+Consequently
+\[
+\Gamma_1
+=
+1+\frac{2t+1}{1+t(q+1)}
+\leq
+1+\frac3q.
+\tag{13}
+\]
+The final inequality follows from
+\[
+q(2t+1)\leq3(1+t(q+1)),
+\]
+whose right side minus left side equals
+\[
+t(q+3)-(q-3)\geq6.
+\]
+
+Combining (12) and (13),
+\[
+\Gamma_k
+\leq
+\Gamma_1^{2^{k-1}}
+\leq
+\left(1+\frac3q\right)^{2^{k-1}}
+\leq
+\exp\!\left(\frac{3\cdot2^{k-1}}q\right).
+\]
+Finally, (2) gives
+\[
+2^{k-1}\leq\frac{\ln N_k}{\ln3},
+\]
+which yields
+\[
+\Gamma_k\leq N_k^{3/(q\ln3)}.
+\]
+This proves the theorem. ∎
+
+---
+
+## Exact recurrence for implementation
+
+The minimal parameter evolution can be checked with:
+
+```text
+a = q
+s = 1
+b = q + 1
+
+for g in group_orders:
+    assert g >= 3 and g % 2 == 1
+    assert (a - s) % g == 0
+
+    a_next = s*s + (a*a - s*s)//g
+    s_next_lower = s*s + 2*s*((a - s)//g)
+    b_next = 1 + ceil_div(b*b - 1, g)
+
+    a, s, b = a_next, s_next_lower, b_next
+```
+
+Any additional fixed coordinates only increase the actual \(s_i\) and therefore strengthen the obstruction.
+
+Thus residual diagonal quotients cannot supply enough rounds at polynomial ambient rank: the fixed part of the propagated sparse YES word itself grows doubly exponentially in the number of squarings. Escaping the theorem requires either remobilizing inherited cross sectors by genuinely new symmetries or proving an additional selective NO-distance jump not supplied by symmetrization.
+[ask_pro] mode=converge model=openai/gpt-5.6-sol-pro cost=$1.908394 time=490.5s
+

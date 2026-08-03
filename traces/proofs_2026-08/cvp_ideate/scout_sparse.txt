@@ -1,0 +1,690 @@
+## Bottom line
+
+The strongest classical route is a **two-layer construction**:
+
+1. **Global exact-consistency layer:** the Berlekamp–McEliece–van Tilborg incidence reduction from exact matching to binary syndrome decoding. It uses only one column per allowed combinatorial object, not one per complete assignment, and its soundness is a global counting argument.
+2. **Relative-distance layer:** nested codes or chain complexes \(B\subseteq C\) with large
+   \[
+   d(C/B):=\min\{\lvert z\rvert:z\in C\setminus B\}.
+   \]
+   Legal-witness differences can lie in \(B\), while spurious differences must lie in \(C\setminus B\). This avoids the fatal fact that an ordinary high-girth kernel cannot contain many sparse legal witnesses in one syndrome.
+
+Classical product codes rigorously amplify distance for **all mixed tensor words**, but incur explicit tensor-length growth. I found no pre-2024 theorem giving the desired code-dependent dense folding while preserving Hamming weight of every mixed tensor combination.
+
+One off-limits search hit was discarded unread and was not used.
+
+---
+
+# Ranked literature finds
+
+## 1. Exact-cover incidence matrices give global Boolean consistency directly
+
+**Berlekamp, McEliece, van Tilborg, 1978, IEEE Transactions on Information Theory 24(3), “On the inherent intractability of certain coding problems.”**
+
+### Exact construction
+
+Given a 3-dimensional matching instance
+\[
+U\subseteq T_1\times T_2\times T_3,\qquad |T_1|=|T_2|=|T_3|=q,
+\]
+form the binary incidence matrix
+\[
+A\in\mathbb F_2^{3q\times |U|}.
+\]
+The column for \(u=(a,b,c)\) has exactly three ones: at the rows for \(a,b,c\). Set
+\[
+t=\mathbf 1_{3q},\qquad w=q.
+\]
+
+Then
+\[
+\exists x\in\mathbb F_2^{|U|},\quad Ax=t,\quad |x|\le q
+\]
+if and only if the 3DM instance has a perfect matching.
+
+The soundness proof is unusually useful here. If \(Ax=\mathbf1\), every one of the \(3q\) rows has an odd, hence positive, number of selected incident columns. Thus the total number of selected incidences is at least \(3q\). But every selected column contributes exactly three incidences, so \(3|x|\ge3q\). If \(|x|\le q\), equality holds everywhere: \(|x|=q\), and every row is covered exactly once. Hence the selected columns form a perfect matching. ([authors.library.caltech.edu](https://authors.library.caltech.edu/records/aw9vs-ann16?utm_source=openai))
+
+### Why it is relevant
+
+- It is already a polynomial-size binary dictionary with a designated syndrome.
+- Columns represent allowed triples, not full assignments.
+- The soundness is global and survives arbitrary overlap patterns; it is not a bounded-local-marginal test.
+- Composing with the classical polynomial reduction \(3\mathrm{SAT}\to3\mathrm{DM}\) gives a deterministic exact reduction to syndrome decoding.
+
+### Quantitative parameters
+
+- rows: \(3q\);
+- columns: \(|U|\), polynomial in the source instance;
+- column weight: exactly \(3\);
+- YES witness weight: exactly \(q\);
+- NO optimum: at least \(q+1\), so only an additive-one gap.
+
+### Limitation
+
+Multiple perfect matchings \(x,x'\) produce
+\[
+A(x+x')=0,\qquad |x+x'|\le 2q.
+\]
+Thus the kernel necessarily has girth at most \(2q\) whenever two legal witnesses exist. An ordinary high-distance outer kernel cannot simply be imposed without destroying completeness.
+
+### Verification/adaptation
+
+Implement the matrix directly and exhaustively test all supports of size at most \(q\) for \(q\le 8\). This is the best small experiment for checking whether a proposed amplification gadget preserves the exact counting proof.
+
+**Leverage:** highest for the consistency layer, but it supplies no polynomial gap by itself.  
+**PCP dependence:** none.
+
+---
+
+## 2. Relative distance of nested codes is the correct invariant when many legal witnesses must coexist
+
+**Tillich and Zémor, 2009 ISIT; expanded 2014, IEEE Transactions on Information Theory 60(2), “Quantum LDPC Codes with Positive Rate and Minimum Distance Proportional to the Square Root of the Blocklength.”**
+
+### Exact construction
+
+For a full-rank binary parity-check matrix
+\[
+H\in\mathbb F_2^{(n-k)\times n}
+\]
+of an \([n,k,d]\) code, Tillich–Zémor construct two sparse commuting matrices \(H_X,H_Z\) with:
+
+\[
+N=n^2+(n-k)^2,\qquad K=k^2,\qquad D=d.
+\]
+
+If the row and column weights of \(H\) are \(\Delta\) and \(t\), the product checks have row weight \(t+\Delta\), with column weights \(t\) or \(\Delta\). More generally, from two chain complexes they prove
+\[
+D\ge
+\min\{d_1,d_2,d_1^T,d_2^T\},
+\]
+where the four quantities are distances of the two input cycle codes and their transpose codes. The protected distance is precisely the minimum weight in a quotient such as
+\[
+C_X/C_Z^\perp,
+\]
+not the minimum weight of the whole kernel. ([arxiv.org](https://arxiv.org/abs/0903.0566))
+
+### Why it is relevant
+
+Suppose a feasible affine fiber is \(x_0+C\), while legal witnesses form \(x_0+B\), where \(B\subseteq C\). If
+\[
+d(C/B)=D,
+\]
+then every spurious witness \(x\in x_0+(C\setminus B)\) satisfies
+\[
+|x|\ge D-|x_0|.
+\]
+
+This is exactly the generalization needed for many legal sparse witnesses:
+
+- legal differences are allowed to be short elements of \(B\);
+- only differences outside \(B\) need a large lower bound.
+
+Ordinary code distance corresponds to \(B=\{0\}\) and is therefore too rigid.
+
+### Smallest useful instance
+
+Use the full-rank parity-check matrix of the binary Hamming \([7,4,3]\) code:
+
+\[
+N=7^2+3^2=58,\qquad K=4^2=16,\qquad D=3.
+\]
+
+The resulting \(58\)-coordinate quotient code is small enough for exact enumeration of all relative coset leaders.
+
+### Adaptation target
+
+The key missing construction is a linear map from the matching reduction such that:
+
+1. differences of perfect matchings land in \(B\);
+2. every nonmatching feasible representation lands outside \(B\);
+3. \(d(C/B)\) is polynomially larger than the YES baseline.
+
+That is a much sharper target than “append a high-distance code.”
+
+**Leverage:** highest candidate for the soundness layer.  
+**PCP dependence:** none; the theorem is homological/coding-theoretic.
+
+---
+
+## 3. BCH, Reed–Solomon, and Goppa parity checks give explicit finite-field nullspace properties
+
+**Hocquenghem 1959; Bose–Ray-Chaudhuri 1960; Reed–Solomon 1960; Goppa 1970.**
+
+### Exact finite-field sparse-recovery statement
+
+For any matrix \(H\), let
+\[
+d=\min\{|z|:z\ne0,\ Hz=0\}.
+\]
+If \(Hx_0=t\) and \(|x_0|=s\), then every other solution \(x\ne x_0\) obeys
+\[
+|x|\ge d-s,
+\]
+because \(x+x_0\in\ker H\setminus\{0\}\) and
+\[
+d\le |x+x_0|\le |x|+s.
+\]
+
+Consequently:
+
+- \(d>2s\) makes \(x_0\) the unique \(s\)-sparse representation;
+- \(d\ge (\gamma+1)s\) gives a \(\gamma\)-factor lower bound on every alternative representation.
+
+This is the exact finite-field analogue of the spark/nullspace uniqueness criterion.
+
+### Explicit matrices
+
+#### Vandermonde/Reed–Solomon shell
+
+Let \(q=2^m\), choose distinct \(a_1,\ldots,a_n\in\mathbb F_q\), and use
+\[
+H_{j,i}=a_i^j,\qquad 0\le j<2t.
+\]
+Every \(2t\) columns are independent over \(\mathbb F_q\). Expanding field elements in an \(\mathbb F_2\)-basis gives a binary matrix with
+
+\[
+2tm\ \text{rows},\qquad n\le 2^m,\qquad d\ge2t+1.
+\]
+
+#### Primitive binary BCH shell
+
+For \(n=2^m-1\), the primitive designed-distance-\(2t+1\) BCH code has
+
+\[
+[n,k,d],\qquad k\ge n-mt,\qquad d\ge2t+1.
+\]
+
+A standard extension-field parity check uses odd powers
+\[
+1,\alpha^i,\alpha^{3i},\ldots,\alpha^{(2t-1)i},
+\]
+and expands to at most \(mt\) binary rows. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S1071579725000784?utm_source=openai))
+
+#### Binary Goppa shell
+
+A degree-\(t\) binary Goppa code with \(n\le2^m\) has
+\[
+k\ge n-mt,\qquad d\ge2t+1,
+\]
+again yielding an \(mt\times n\)-scale binary parity check. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Binary_Goppa_code?utm_source=openai))
+
+### Critical obstruction
+
+If two legal representations \(x_1,x_2\) of the same syndrome both have weight \(s\), then
+\[
+d\le |x_1+x_2|\le2s.
+\]
+Therefore no ordinary kernel-distance construction can give a superconstant alternative-representation gap while retaining multiple \(s\)-sparse legal witnesses. This is why the quotient formulation in Find 2 is necessary.
+
+### Smallest implementable candidate
+
+A primitive BCH instance with
+\[
+m=6,\quad n=63,\quad t=3
+\]
+has at most \(18\) check rows and designed distance \(7\). A planted witness of weight \(2\) has every alternative representation of weight at least \(5\).
+
+**Leverage:** excellent outer shell after canonicalization or quotienting.  
+**PCP dependence:** none.
+
+---
+
+## 4. Product codes amplify distance for every mixed tensor word
+
+**Peter Elias, 1954, IRE Transactions on Information Theory, “Error-Free Coding.”**
+
+### Exact theorem
+
+For linear codes
+\[
+C_1=[n_1,k_1,d_1],\qquad C_2=[n_2,k_2,d_2],
+\]
+the product code consists of \(n_1\times n_2\) arrays whose rows lie in \(C_1\) and columns lie in \(C_2\). It has parameters
+\[
+C_1\otimes C_2
+=
+[n_1n_2,\ k_1k_2,\ d_1d_2].
+\]
+
+The lower bound covers every codeword, not only pure tensors: a nonzero array has at least \(d_2\) nonzero rows or columns, each of weight at least \(d_1\). A pure tensor of minimum-weight codewords attains \(d_1d_2\). ([sciencedirect.com](https://www.sciencedirect.com/topics/mathematics/product-code?utm_source=openai))
+
+For the \(r\)-fold product:
+\[
+[n^r,k^r,d^r].
+\]
+
+If a base parity-check matrix has column weight \(w\), standard row/column product checks have column weight at most \(rw\).
+
+### Why it is relevant
+
+This is the cleanest classical theorem answering the “arbitrary mixed tensor words” requirement. No rank-one assumption appears in the distance proof.
+
+Applied to a pointed coset with planted weight \(s\), the formal ratio becomes roughly
+\[
+\frac{d^r-s^r}{s^r}\approx (d/s)^r-1.
+\]
+
+### Limitation
+
+The output length is \(n^r\). For growing \(r\), explicit expansion destroys a fixed polynomial approximation exponent. No classical theorem found here compresses the product code to polynomial length while preserving the weight of all mixed codewords.
+
+### Small candidate
+
+Tensor the Hamming \([7,4,3]\) code with itself:
+\[
+[49,16,9].
+\]
+A parity-check description using row and column checks has \(42\) raw check rows and column weight at most \(6\). Exhaustive enumeration over \(2^{16}\) codewords verifies mixed-word distance exactly.
+
+**Leverage:** definitive amplification theorem, but output growth is the bottleneck.  
+**PCP dependence:** none.
+
+---
+
+## 5. Bitmasked expander matrices give exact sparse recovery over any field
+
+**Mahdi Cheraghchi and João Ribeiro, 2019, arXiv:1901.02852, “Simple Codes and Sparse Recovery with Fast Decoding.”**
+
+### Exact construction
+
+Let \(W\) be the adjacency matrix of a layered unbalanced expander and let
+\[
+B\in\mathbb F_2^{\lceil\log N\rceil\times N}
+\]
+have as column \(j\) the binary representation of \(j\). Form the stacked matrix
+\[
+H=
+\begin{bmatrix}
+W\\
+W\otimes B
+\end{bmatrix},
+\]
+where \(W\otimes B\) denotes bitmasking: each incidence in \(W\) is accompanied by the index bits of its incident left vertex.
+
+They obtain exact, for-all recovery of every \(K\)-sparse vector over any field using
+
+\[
+O(K\log^2N)
+\]
+measurements and recovery time
+\[
+O(K\log K\log N).
+\]
+
+Each column has \(D\) ordinary incidences and at most \(D\log N\) bitmasked incidences, so column weight is
+\[
+O(D\log N).
+\]
+With near-optimal expanders, this is \(O(\log^2N)\). ([arxiv.org](https://arxiv.org/abs/1901.02852))
+
+### Why it is relevant
+
+- It is a polynomial-size, sparse, globally indexed dictionary.
+- Bitmask rows distinguish columns without complete-assignment fingerprints.
+- Recovery works over finite fields, not only over the reals.
+- The construction supplies an algorithm, not just an existential distance bound.
+
+### Limitation
+
+Exact \(K\)-sparse recovery is essentially the statement
+\[
+d(\ker H)>2K.
+\]
+It provides uniqueness, not a gap between \(K\) and \(K N^c\). It also runs into the two-legal-witness obstruction unless legal differences are explicitly quotiented out.
+
+### Verification
+
+For \(N=64\) or \(256\), choose a small layered hash family, build the bitmasked matrix, and exhaustively enumerate all vectors of weight at most \(2K\). Then replace selected columns by matching-gadget columns and test which short nullvectors reappear.
+
+**Leverage:** strongest implementable sparse anti-cancellation shell.  
+**PCP dependence:** none.
+
+---
+
+## 6. Expander/Tanner parity checks give sparse matrices with linear kernel girth
+
+**Sipser and Spielman, 1996, IEEE Transactions on Information Theory 42(6), “Expander Codes.”**
+
+### Exact elementary distance criterion
+
+Let \(G=(L,R,E)\) be left \(D\)-regular, with \(|L|=N\), and let \(H\) be its \(R\times L\) incidence matrix. Suppose every \(S\subseteq L\) with \(|S|\le K\) satisfies
+\[
+|\Gamma(S)|>(D/2)|S|.
+\]
+
+Then
+\[
+d(\ker H)>K.
+\]
+
+Indeed, if \(S\) were the support of a nonzero codeword, every check in \(\Gamma(S)\) would meet \(S\) at least twice. Hence
+\[
+D|S|\ge2|\Gamma(S)|,
+\]
+contradicting the expansion inequality.
+
+The matrix has:
+
+- \(N\) columns;
+- \(|R|\) rows;
+- column weight \(D\);
+- rate at least \(1-|R|/N\);
+- linear distance if the expansion property holds through \(K=\alpha N\).
+
+Sipser–Spielman also supply linear-time decoding under stronger expansion assumptions; the classical bit-flipping threshold uses expansion exceeding \(3/4\) in the parity-check case. ([cs.yale.edu](https://www.cs.yale.edu/homes/spielman/Research/expanders.html?utm_source=openai))
+
+### Relevance
+
+This gives sparse global coupling with constant or polylogarithmic column weight and linear girth. It is far less vulnerable to bounded local cube relations than truth-table interfaces.
+
+### Limitation
+
+Expansion proves distance of the whole kernel. It does not distinguish legal short kernel elements from spurious ones. A relative or quotient expander code is needed for the present application.
+
+### Adaptation
+
+Use a nested pair of Tanner codes \(B\subseteq C\), with local subcodes chosen so that intended matching exchanges lie in \(B\). Then attempt to prove a relative-distance statement for \(C/B\) by expansion.
+
+**Leverage:** practical sparse shell; relative-distance extension is the open step.  
+**PCP dependence:** none.
+
+---
+
+## 7. Ramanujan-complex systoles provide sparse global holonomy barriers
+
+**Tali Kaufman, David Kazhdan, Alexander Lubotzky, 2014 preprint; later GAFA, “Isoperimetric Inequalities for Ramanujan Complexes and Topological Expanders.”**
+
+### Precise result relevant here
+
+They construct explicit bounded-degree high-dimensional complexes with a constant \(c>0\) such that every nontrivial \(\mathbb F_2\)-homology representative has support at least
+\[
+c\,|X(1)|.
+\]
+Equivalently, the associated sparse boundary matrices have linear \(\mathbb F_2\) systole. Their bounded-degree coboundary-expansion conclusion for an infinite subfamily is conditional on a congruence-subgroup conjecture, but the linear systolic bounds are a principal unconditional theorem of the paper. ([arxiv.org](https://arxiv.org/abs/1409.1397?utm_source=openai))
+
+### Why it is relevant
+
+This is the cleanest classical mechanism for odd holonomy:
+
+- boundaries are “gauge-trivial” legal differences;
+- a globally nontrivial cycle or cocycle cannot be represented with small support;
+- all boundary matrices have bounded row and column weight.
+
+Thus a short local pseudoassignment that carries nontrivial global holonomy can, in principle, be forced into a linear-size homology class.
+
+### Limitation
+
+The theorem does not construct the map from a SAT instance into a designated homology class. Completeness requires a sparse representative exactly when the formula is satisfiable, while soundness must show every inconsistent representation lands in a nontrivial class. That reduction is the missing component.
+
+### Verification
+
+Before using arithmetic Ramanujan complexes, prototype on:
+
+- toric complexes, to validate the boundary/coboundary bookkeeping;
+- small quotients of buildings, using sparse linear algebra to enumerate \(H_1\), \(H^1\), and coset leaders.
+
+**Leverage:** strongest machinery specifically against holonomy.  
+**PCP dependence:** no PCP theorem, though converting local constraint violations into cochain expansion can become PCP-like if implemented through agreement testing.
+
+---
+
+## 8. Reed–Solomon decoding hardness shows that a single global polynomial can encode consistency
+
+**Guruswami and Vardy, 2005, IEEE Transactions on Information Theory 51(7), “Maximum-Likelihood Decoding of Reed–Solomon Codes is NP-hard.”**
+
+**Gandikota, Ghazi, Grigorescu, 2016, “NP-Hardness of Reed-Solomon Decoding, and the Prouhet–Tarry–Escott Problem.”**
+
+### Exact machinery
+
+A Reed–Solomon code evaluates one polynomial \(f\), \(\deg f<K\), at \(N\) field points:
+\[
+\operatorname{RS}_{N,K}
+=
+\{(f(a_1),\ldots,f(a_N)):\deg f<K\}.
+\]
+It has
+\[
+[N,K,N-K+1]_q.
+\]
+
+Guruswami–Vardy prove maximum-likelihood decoding is NP-hard even for this fixed algebraic family and even with unlimited preprocessing of the code family. ([arxiv.org](https://arxiv.org/abs/cs/0405005?utm_source=openai))
+
+Gandikota–Ghazi–Grigorescu sharpen the hard radius: for \(K=O(N)\), it is NP-hard to decode beyond
+\[
+N-K-c\frac{\log N}{\log\log N}
+\]
+errors for an absolute \(c>0\); they also obtain a related quasipolynomial-reduction result with an \(N-K-c\log N\) threshold. ([arxiv.org](https://arxiv.org/abs/1611.03069?utm_source=openai))
+
+### Why it is relevant
+
+The witness is one global polynomial, so consistency is not communicated through bounded local marginals. The sparse object is the disagreement/error set between the received word and that global polynomial.
+
+Given a parity-check matrix \(H_{\rm RS}\), nearest-codeword decoding converts directly to a syndrome:
+\[
+t=H_{\rm RS}y,\qquad H_{\rm RS}e=t,
+\]
+where \(e=y-c\).
+
+### Limitation for the binary target
+
+The native problem is \(q\)-ary symbol weight. Binary expansion does not preserve symbol Hamming weight exactly: one nonzero field symbol can expand to several bits. A faithful binary reduction needs a symbol gadget or one-hot encoding, and must prevent selecting multiple values for one coordinate. That is precisely where new short linear trades may enter.
+
+It also yields hardness, not an \(N^c\) approximation gap.
+
+**Leverage:** strong evidence that global algebraic witnesses are viable; binary symbolization remains hazardous.  
+**PCP dependence:** none in the exact NP-hardness theorem.
+
+---
+
+## 9. Kautz–Singleton superimposed matrices give optimal support isolation, but not XOR soundness
+
+**Kautz and Singleton, 1964, IEEE Transactions on Information Theory 10, “Nonrandom Binary Superimposed Codes.”**
+
+### Exact construction
+
+Start with a \(q\)-ary code \(C\) of:
+
+- length \(L\);
+- size \(M\);
+- minimum distance \(d\).
+
+Replace each symbol \(a\in\mathbb F_q\) by its unit vector \(e_a\in\{0,1\}^q\). The resulting binary matrix has:
+
+\[
+qL\ \text{rows},\qquad M\ \text{columns},
+\]
+column weight \(L\), and pairwise column intersection at most \(L-d\).
+
+It is \(t\)-disjunct whenever
+\[
+L>t(L-d).
+\]
+
+For an \([L,k,L-k+1]_q\) Reed–Solomon code:
+\[
+M=q^k,\qquad L-d=k-1,
+\]
+so the condition becomes
+\[
+L>t(k-1).
+\]
+([oamonitor.ireland.openaire.eu](https://oamonitor.ireland.openaire.eu/rpo/rcsi/search/publication?pid=10.1109%2Ftit.1964.1053689&utm_source=openai))
+
+### Smallest clean example
+
+Take
+\[
+q=7,\quad L=7,\quad k=2.
+\]
+This gives a \(49\times49\) binary matrix that is \(6\)-disjunct because
+\[
+7>6(2-1).
+\]
+
+### Why it is relevant
+
+Disjunctness gives a private row for every selected column against any competing set of at most \(t\) columns. It is highly effective for:
+
+- nonnegative representations;
+- Boolean OR;
+- support identification;
+- selector/index gadgets.
+
+### Fatal limitation
+
+Disjunctness is not a finite-field nullspace property. XOR can cancel the isolating rows in ways that OR cannot. Therefore a superimposed matrix is not, by itself, a sound binary syndrome-decoding dictionary.
+
+### Adaptation
+
+Use it only as an auxiliary selector layer, combined with:
+
+- count rows over integers;
+- a BCH/expander linear shell;
+- or bitmask rows.
+
+The \(49\times49\) example is an ideal hostile test: enumerate its binary kernel and explicitly locate the shortest XOR dependencies despite its strong disjunctness.
+
+**Leverage:** useful component, not a standalone solution.  
+**PCP dependence:** none.
+
+---
+
+## 10. Algebraic-geometric codes supply explicit long global codes beyond Reed–Solomon length
+
+**Tsfasman, Vlăduţ, Zink, 1982; Voss and Høholdt, 1997, IEEE Transactions on Information Theory 43(1), “An Explicit Construction of a Sequence of Codes Attaining the Tsfasman–Vlăduţ–Zink Bound.”**
+
+### Exact AG-code theorem
+
+Let \(X/\mathbb F_q\) be a smooth projective curve of genus \(g\), let
+\[
+D=P_1+\cdots+P_n
+\]
+be distinct rational points, and let \(G\) be a divisor disjoint from \(D\), with
+\[
+2g-2<\deg G<n.
+\]
+The evaluation code
+\[
+C_L(D,G)
+\]
+has
+\[
+\text{length }n,\qquad
+\dim C_L(D,G)=\deg G+1-g,\qquad
+d\ge n-\deg G.
+\]
+
+For square \(q\), towers with
+\[
+\frac{n}{g}\to\sqrt q-1
+\]
+yield asymptotic rate and relative distance satisfying
+\[
+R+\delta\ge1-\frac1{\sqrt q-1}.
+\]
+
+Voss–Høholdt give an explicit construction from the Garcia–Stichtenoth tower, including initial generator matrices and a polynomial construction procedure. ([researchgate.net](https://www.researchgate.net/publication/3079208_An_explicit_construction_of_a_sequence_of_codes_attaining_the_Tsfasman-Vladut-Zink_bound_The_first_steps?utm_source=openai))
+
+### Why it is relevant
+
+- A single rational function provides genuinely global algebraic consistency.
+- Length is not restricted to the field size as in ordinary Reed–Solomon codes.
+- AG codes can be used as outer codes in concatenation or product amplification.
+
+If the outer alphabet is \(\mathbb F_{2^{k_0}}\) and the inner binary code is \([n_0,k_0,d_0]\), concatenation gives
+\[
+[nn_0,\ kk_0,\ \ge dd_0]_2.
+\]
+
+### Limitation
+
+Standard AG generator and parity-check matrices are dense. The code distance controls differences between global functions, but does not automatically provide sparse structured representations of a designated target. Binary concatenation also introduces the same symbol-gadget concerns as Reed–Solomon decoding.
+
+**Leverage:** strong outer-code machinery; unlikely to be the consistency gadget itself.  
+**PCP dependence:** none.
+
+---
+
+# Important synthesis: what can and cannot be combined
+
+## The key relative-distance lemma
+
+The natural target is not an ordinary code but a nested pair
+\[
+B\subseteq C\subseteq\mathbb F_2^N.
+\]
+
+Suppose for a fixed target:
+
+- every feasible representation is in \(x_0+C\);
+- all legal representations are in \(x_0+B\);
+- every illegal representation is in \(x_0+(C\setminus B)\).
+
+Then, writing
+\[
+D=d(C/B)=\min_{z\in C\setminus B}|z|,
+\]
+every illegal representation \(x\) satisfies
+\[
+|x|\ge D-|x_0|.
+\]
+
+This framework simultaneously allows:
+
+- many sparse legal witnesses;
+- short legal exchange relations;
+- large lower bounds only for genuinely spurious directions.
+
+CSS distance, systolic distance, and boundary/coboundary codes are all instances of this invariant.
+
+## Stress tests from the brief
+
+| Requirement | Classical machinery that actually addresses it |
+|---|---|
+| All-eight clause core / cube trades | BMT exact-cover incidence counting; no local truth tables |
+| Odd permutation holonomy | Homology/coboundary quotient distance; Ramanujan-complex systoles |
+| Arbitrary mixed tensor words | Elias product-code distance theorem |
+| Sparse global column model | BMT columns, expander/bitmasked matrices |
+| Multiple YES witnesses | Requires relative distance \(d(C/B)\), not ordinary girth |
+| Polynomial output accounting | BMT and expander shells are polynomial; explicit tensor powers are the unresolved blowup |
+| Code-dependent dense folding | Subspace designs are only a near miss; no Hamming-preserving theorem found |
+
+---
+
+# Smallest recommended experiments
+
+1. **Exact-cover core:** build \(A\in\mathbb F_2^{3q\times |U|}\) for \(q=4,\ldots,8\); enumerate all coset leaders and short kernel vectors.
+2. **Ordinary high-girth shell:** use the \(18\times63\)-scale BCH construction with designed distance \(7\); test planted witnesses of weight \(2\).
+3. **Relative-distance shell:** construct the Tillich–Zémor product from the \([7,4,3]\) Hamming code, giving \([[58,16,3]]\); enumerate \(C_X/C_Z^\perp\).
+4. **Mixed-word amplification:** enumerate the complete \([49,16,9]\) Hamming product code.
+5. **Disjunct-versus-XOR falsification:** build the \(49\times49\), \(6\)-disjunct Kautz–Singleton matrix and compute its actual binary spark.
+6. **Bitmasked shell:** take \(N=64,K=3\), use a small layered hash family, stack \(W\) with its index bitmask, and enumerate all nullvectors through weight \(6\).
+7. **Combined prototype:** map differences of exact matchings into the boundary subspace \(B\) of the \(58\)-coordinate product complex, then check whether nonmatching solutions necessarily leave \(B\).
+
+---
+
+# PCP screen and near-misses
+
+- The Dumer–Micciancio–Sudan approximation-hardness machinery ultimately invokes Håstad-type gap hardness and is therefore essentially PCP-based for the relevant soundness amplification. It does obtain strong coding gaps, but it is inadmissible under the stated restriction. ([intra.ece.ucr.edu](https://intra.ece.ucr.edu/~dumer/ieee49-1-03-np.pdf))
+- Explicit subspace designs of Guruswami–Kopparty bound
+  \[
+  \sum_i\dim(W\cap H_i)
+  \]
+  for every low-dimensional subspace \(W\). This is useful for rank condensation and list decoding, but it does **not** preserve Hamming weight of arbitrary mixed tensor words. It could support a fold only after proving that all dangerous low-weight tensors lie in a controlled low-dimensional family. ([researchwithrutgers.org](https://www.researchwithrutgers.org/en/publications/explicit-subspace-designs-2/?utm_source=openai))
+- The Panteleev–Kalachev lifted-product literature gives nearly linear or linear quotient distances with sparse boundary maps, but the smallest constructions are technically much heavier, and the strongest classical local-testability statements are close in spirit to PCP soundness. The Tillich–Zémor and systolic constructions are cleaner first experiments.
+
+## Overall assessment
+
+No classical pre-2024 result in this search directly supplies the requested deterministic \(N^c\) binary syndrome-decoding gap. The most credible surviving program is:
+
+\[
+\boxed{\text{BMT exact-cover consistency}}
+\quad+\quad
+\boxed{\text{large relative distance }d(C/B)}
+\quad+\quad
+\boxed{\text{fixed-order product amplification}}.
+\]
+
+The central unsolved interface is to place **all legal matching exchanges in \(B\)** while forcing **every parity-superposed nonmatching solution into \(C\setminus B\)**, without recreating bounded-local interfaces.
+[ask_pro] mode=scout model=openai/gpt-5.6-sol:online cost=$1.3513825 time=447.4s
+

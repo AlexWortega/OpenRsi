@@ -1,0 +1,161 @@
+# Ideation Round 2 — Explicit Three-Stage Assemblies
+
+**Compliance note.** No use of, search for, or recall of the prohibited document or derivatives. Everything below is built from the attached proved lemmas ((OF), (RT), (ROF), residual-lineage no-go, biset cross-sector count) plus pre-2024 classical machinery.
+
+---
+
+## Part 0 — Shared one-step lemmas (proved here, needed by every assembly)
+
+Fix a pointed code `D ⊆ F₂e* ⊕ F₂^V` with `(1,0) ∉ D`. Let
+
+- `C = {u ∈ F₂^V : ∃α, (α,u) ∈ D}` (moving span), `k = dim C`, `n = |V|`,
+- `φ : C → F₂`, `φ(u) = α` — the **star form**, well-defined and linear because `(1,0) ∉ D`,
+- `d = min{|u| : φ(u) = 1}` (so `δ*(D) = 1 + d`).
+
+**Lemma L1 (star-form propagation / explicit checks for the reduced tensor).**
+`R(D) = {((φ⊗φ)(M), M) : M ∈ C⊗C}`, i.e. `R(D) ≅ C⊗C` with corner bit the linear functional `φ⊗φ`. Consequently, if `H` is a parity check for `C`, then `R(D)` is exactly cut out by the checks `[H⊗I; I⊗H]` on the moving block plus the affine corner condition `(φ⊗φ)(M) = 1` for the pointed fiber.
+*Proof.* The map `(α,u),(β,v) ↦ (αβ, u⊗v)` is bilinear over `F₂` and every word of `D` is `(φ(u),u)` for `u ∈ C`; so the span of generators is the span over all of `C×C`, which is `C⊗C` in the moving block with corner determined linearly by `φ⊗φ`. Distance is the proved (RT). ∎
+
+**Lemma L2 (fold = invariant subcode; explicit folded checks).** Let odd abelian `G` (order `ℓ`) act freely on `V`, preserve `C`, with `φ∘g = φ`. Let `F` be the diagonal orbit-parity fold on `V×V`, `ι` the orbit-indicator lift (`ι(c) = Σ_O c_O 𝟙_O`). Then:
+
+(a) `ι(F(W)) = Σ_{g∈G} gW` for `W ∈ C⊗C`; hence `image(F) = {c : ι(c) ∈ C⊗C}` and an **explicit parity check for the folded code is** `Ĥ = [(H⊗I)ι ; (I⊗H)ι]` (column for orbit `O` is `(H⊗I)𝟙_O`), with folded star form `λ̂(c) = Σ_O c_O·(φ_aφ_b)|_O`. No Gaussian elimination is needed at any level.
+
+(b) **Residual freeness/equivariance:** `ρ_g[u,v] := [u, gv]` is a well-defined action of `G` on `(V×V)/ΔG`, **free on every folded moving coordinate** (`[u,gv]=[u,v] ⇒ ∃h: hu=u ⇒ h=e ⇒ g=e`), it preserves `image(F)` (`F((1⊗g)W) = ρ_g F(W)` by abelianness), fixes `λ̂`, and fixes `F(x⊗x)` whenever `x` is `G`-invariant (`ρ_g F(x⊗x) = F(x⊗gx) = F(x⊗x)`).
+
+*This is the affirmative half of the round's key question: reduced pointed tensoring **is** functorial/equivariant enough. There are no cross sectors to reintroduce (they were deleted), the residual action is free everywhere off the star, and the group order is paid at most once, at the base.*
+
+**Lemma L3 (balanced product = subgroup fold).** For the anti-diagonal `Γ = {(g,g⁻¹)}` (or any graph `Γ_ψ = {(g,ψ(g))}`, `ψ ∈ Aut(G)`), `Γ` is odd, free on `V×V`, and preserves `C⊗C`; so the proved (ROF) applies verbatim: the reduced balanced product `C ⊗_{F₂G} C` has pointed distance `≥ 1 + ⌈d²/ℓ⌉`. Balanced products over the group algebra are therefore *special cases* of the already-proved fold lemma — no new soundness lemma is owed.
+
+**C1 — Conserved-exponent accounting (near-theorem; the sharpened q vs q+1 check).** Suppose one level = reduced tensor + parity fold by any odd group `Λ` of order `L` acting freely on all moving coordinates, with the YES word invariant. Then *exactly*:
+
+```
+n' = n²/L,   d' = d²/L,   b'_cert = b²/L (up to ceilings).
+```
+
+Hence `n'/d' = (n/d)²` and `b'/d' = (b/d)²`: the point `(log(b/d), log(n/d))` **doubles**, so the exponent
+
+```
+β = log(b₀/d₀) / log(n₀/d₀)
+```
+
+is **conserved by every schedule** (heterogeneous groups, `Γ_ψ` twists, full `G×G` spends — all obey the same three exact recurrences). For the BMT base, `b₀/d₀ = (q+1)/q` and `n₀/d₀ = |U|/q = 1 + s/q` (`s` = spare triples), so `β ≈ 1/s`. A base with `s = O(1)` is poly-solvable (enumerate complements of size `s`), so **for any NP-hard base, β = o(1): no invariant-YES fold ladder alone certifies a fixed polynomial exponent.** This subsumes the residual-lineage no-go in the reduced setting and tells us exactly which two anchors an assembly must break: (i) YES equality `d' = d²/L` via invariance (break: non-invariant YES, `L > d` allowed — Sketch 3), or (ii) the certified NO bound `b²/L` being tight (break: prove/observe super-certified NO minima — probed by Sketch 1; or non-group folds — Sketch 5).
+
+---
+
+## Sketch 1 — Self-renewing residual ladder over one odd abelian group (**Z₃, implement today**)
+
+**Trick.** Pay the symmetry once at the base (3 disjoint shifted copies of a 3DM instance), then iterate: reduce (L1) → fold by the current diagonal (L2a) → renew via the residual action (L2b), which is free on *every* folded moving coordinate because the cross sectors no longer exist. One `Z₃` powers infinitely many levels.
+
+**Coordinates/actions.** Base: `V₀ = U × Z₃` (triples × copy index), `G = Z₃` copy shift, free. Level `i+1` moving coordinates = `ΔG`-orbits of `V_i × V_i`; action `ρ_g[u,v] = [u,gv]`.
+
+**Matrices.** Base checks `H₀ = A ⊕ A ⊕ A` (block diagonal), star form `φ₀ = e_iᵀA` on one copy (any row with `t_i = 1`). Recurrence: `H_{i+1} = [(H_i⊗I)ι_i ; (I⊗H_i)ι_i]`, `λ_{i+1} = (φ_i⊗φ_i)∘ι_i` (L2a). Syndrome instance at level `i`: checks `[H_i; λ_i]`, target `(0,…,0,1)`.
+
+**YES/target word.** `y₀ = M ⊔ M ⊔ M` (invariant matching, weight `3q`); `y_{i+1} = F(y_i⊗y_i)`, weight `w_{i+1} = w_i²/3`.
+
+**Recurrences.** `n_{i+1} = n_i²/3`, `d_{i+1} = d_i²/3`, `b_{i+1} = 1+⌈(b_i²−?)/3⌉` per (ROF); `K_{i+1} = dim(C_i⊗C_i)^{ΔG} ≈ k_i²/3 + O(k_i)` (measured, not assumed).
+
+**Fresh-action invariant.** The *free frame*: a permutation `ρ_i` with (odd order, zero fixed moving points, `Ĥρ = ПĤ`, `λ̂ρ = λ̂`, `ρ(y_i)=y_i`) — verify all five at every level.
+
+**Pre-checks.** *Mixed tensors:* soundness is (RT)+(ROF), which are proved for all mixed words — pass. *Invariant YES weight:* group order paid once at base (`×3` on both `n₀` and `d₀` and `b₀`; ratio untouched) — the replication-padding wall is avoided; the residual-lineage no-go does not apply (its fixed cross-sector hypothesis is vacuous here, `s_i ≡ 1`). *Base-gap accounting:* honestly inside C1; certified exponent `β ≈ 1/s` — subpolynomial. Its scientific value is (a) first end-to-end explicit iterated assembly, validating the functoriality answer, and (b) measuring whether **true** NO folded minima on real NO instances exceed the certified `b²/3` (super-certified soundness would be the first empirical breach of C1's anchor (ii)).
+
+**Smallest test today.** `q=3`, `|U|=6`, YES and NO variants; two full levels (`n₂ = 3·(3·36)²/3²`-scale; level-1 exact enumeration, level-2 by ILP/branch-and-bound on a ≤ few-thousand-column code). Record `(N_i, K_i, d_i^{true}, b_i^{true}, b_i^{cert})`.
+
+**Likely death.** C1: certified exponent `o(1)`; and true NO minima probably track `b²/3` on symmetric NO instances (a symmetric NO instance is the universal adversary).
+
+---
+
+## Sketch 2 — Biset conveyor: heterogeneous chain over `Z₃ × Z₅` (**Z₁₅, implement today**)
+
+**Trick.** Moving coordinates form a free `(Z₃, Z₅)`-bimodule (`V₀ = U × Z₁₅`); level 1 spends `Z₃` via the anti-diagonal balanced-product fold (L3), leaving `Z₅` and residual `Z₃` as genuinely fresh commuting frames; level 2 spends `Z₅`; later levels run on residuals (L2b). This is the bimodule-code (not merely coordinate-biset) version of `U ×_G V`, and the spent group is *inside* the product, not a post-hoc quotient.
+
+**Matrices.** Same L1/L2 recurrences; the level-1 fold matrix is indexed by `Γ = {(g,g⁻¹)} ≤ Z₃×Z₃` orbits. Base checks `H₀ = A⊗I_{15}`-style block circulants (quasi-cyclic).
+
+**YES/target.** `y₀ = M × 𝟙_{Z₁₅}` invariant under both groups; `d₀ = 15q`; thresholds scale by 15 on both sides, ratio preserved.
+
+**Recurrences.** `n_{i+1} = n_i²/ℓ_i`, `d_{i+1} = d_i²/ℓ_i`, `b` per (ROF), with schedule `ℓ₀=3, ℓ₁=5, ℓ_{i≥2} ∈ {3,5}` from residuals. Budget constraint `∏ℓ_i`-invariance is honest: joint freeness plus YES invariance needs `15 | d₀` — paid once.
+
+**Fresh-action invariant.** Pair of commuting free frames `(ρ^{(3)}, ρ^{(5)})`; certify commutation and zero joint fixed points on moving coordinates each level.
+
+**Pre-checks.** *Mixed tensors:* pass — L3 reduces the balanced product to the proved fold lemma; nothing new owed. *Invariant YES:* one-time `×15`, no per-level payment; the pointed-biset cross-sector accumulation from `verify_pointed_biset_cross.py` is dodged because the reduction deletes star-cross sectors *before* the balanced quotient (`1 + R_U` fixed classes never enter). *Base-gap:* C1 applies exactly (heterogeneous schedules conserve `β`); value is testing whether the recurrences hold under heterogeneous spending and whether spend-large-early scheduling matches the `S(d)=ln d` optimum, i.e. calibrating C1 empirically.
+
+**Smallest test.** `q=3` instance × `Z₁₅`; one `Z₃`-fold level exactly, one `Z₅`-fold level by ILP.
+
+**Likely death.** C1 conservation — this assembly cannot beat Sketch 1's exponent; it exists to confirm that *no schedule freedom* helps, closing that branch cleanly.
+
+---
+
+## Sketch 3 — Super-budget fold with non-invariant YES witness (**Z₅/Z₁₁, implement today**) — the identified crack in C1
+
+**Trick.** (ROF)'s NO lower bound needs only: odd group, free on moving coordinates, code-invariant. It does **not** need the YES word invariant, and it does not need `ℓ ≤ d`. Take `ℓ ≫ d` (e.g. `ℓ ≈ n`): soundness is still certified at `1+⌈b²/ℓ⌉`, length crashes to `n²/ℓ`, and the *only* open question is completeness — does the YES fiber contain a folded word near the floor `⌈d²/ℓ⌉` rather than near `d²`? Completeness is existential (the reduction needn't compute the witness), so autocorrelation-style cancellation designs are admissible: a fiber word whose tensor support hits orbits with even multiplicity folds to zero there.
+
+**Coordinates/actions.** `V = U × Z_ℓ` with `ℓ` prime, `ℓ ∤ d` deliberately (or a native `Z_ℓ`-symmetric instance with non-invariant matchings); everything else as in Sketch 1 with `ℓ` huge relative to `d`.
+
+**Matrices/YES/recurrences.** Same L1/L2 machinery; `d_{i+1} ∈ [⌈d_i²/ℓ⌉, d_i²]` is now an *empirical unknown* — the entire assembly lives or dies on where it lands. If `d' ≈ d²/ℓ^{1−ε}` is achievable with `ℓ_i ≈ n_i`, then `n'/d'` stops squaring, C1's conserved `β` breaks, and `k = O(log(q log N))` levels give ratio `(1+1/q)^{2^k} ≥ N^c` at polynomial length. Note the base regime is favorable: 3DM has `n₀ = O(q) ≪ d₀²`, exactly where the C1 potential argument goes vacuous once `L > d` is allowed.
+
+**One exact finite conjecture (test today).** For `G = Z₁₁` acting on `V = Z₁₁` and `D = span{(1, gx) : g}` with `x` the `(11,5,2)` biplane difference set: the difference-multiset parity computation gives `|F(x⊗x)| = 1` (only `c=0` is odd since `λ=2`), far below `⌈25/11⌉ = 3` — which by (RT) *forces* the invariant span to contain a pointed word of moving weight `≤ 3`. **Conjecture C2:** for instance-derived `D` (true pointed distance `d` anchored by the instance), the folded YES minimum with `ℓ > d²` satisfies `min ≤ C·d²/ℓ^{ε}` for some `ε > 0` infinitely often. The biplane example shows autocorrelation cancellation and true distance fight each other; the experiment measures who wins on codes whose `d` is pinned by an NP-hard fiber rather than by a designed support.
+
+**Pre-checks.** *Mixed tensors:* pass — NO soundness is the proved (ROF), which never uses YES invariance. *Invariant YES:* deliberately violated — that is the point; no group order is paid in YES weight at all. *Base-gap:* this is the only assembly whose accounting is **not** conserved by C1; the `q` vs `q+1` gap still only squares per level (both fibers obey the `≥ …²/ℓ` floor), but length can now shrink far below `n²/d`, which is what the exponent needs.
+
+**Smallest test.** `ℓ ∈ {5,7,11}`, `V = Z_ℓ` and `V = U×Z_ℓ` with `q=3` matchings; exhaustively enumerate the folded YES fiber minimum and compare to `⌈d²/ℓ⌉` and to `d²`. Include the biplane steering case.
+
+**Likely death.** The run's own data whispers it: phase-replicated (i.e. non-invariant-minimum) codes "retained `δ²`" — no compression without invariance. Most probable outcome: folded YES minimum concentrates near `min(d², GV(K,N))` and never near `d²/ℓ`, killing the crack and effectively promoting C1 to an unconditional wall for all group-fold assemblies.
+
+---
+
+## Sketch 4 — Isotypic two-channel code (semisimple character sector over F₄)
+
+**Trick.** For odd `ℓ`, `F₂[G]` is semisimple, so `C⊗C` splits canonically as invariants ⊕ nontrivial isotypics; the fold keeps only the trivial channel. Keep a second channel: append the `χ`-twisted component (over `F₄` for `Z₃`, `F₁₆` for `Z₅`, expressed in `F₂` coordinates) as extra coordinates with their own weight. Invariant YES words have *zero* `χ`-component (free weight!), while a NO word must be heavy in the trivial channel **or** carry visible anti-invariant mass, potentially doubling the certified NO bound.
+
+**Matrices.** Trivial channel as in L2; `χ`-channel columns are `Σ_g χ(g)·(coordinate g·v)` over `F₄`, flattened to `F₂` via a basis; checks are the `F₄`-semilinear images of `[H⊗I; I⊗H]`.
+
+**Recurrences.** `n' = n²/ℓ + 2n²/ℓ` (channels), `d' = d²/ℓ` (YES pays nothing in channel 2), NO bound `≥ 1+⌈b²/ℓ⌉ + (χ-mass term to be proved)`.
+
+**Pre-checks.** *Mixed tensors:* trivial channel inherits (ROF); the `χ`-channel bonus needs a **new** twisted-symmetrization lemma (`S_χ = Σχ(g)⁻¹gW`) — not proved here, honestly flagged. *Invariant YES:* pass, even better than Sketch 1 (zero cost in channel 2). *Base-gap:* fails the universal-adversary check and I state it plainly: a **symmetric NO instance** (disjoint shifted copies of a NO instance) has invariant near-minimum words with zero `χ`-component, so the bonus term is 0 exactly when it matters. The channel helps only if NP-hard families with *certifiably asymmetric NO minima* exist — no such certificate is known. C1's conserved `β` therefore re-attaches.
+
+**Smallest test.** `Z₃/F₄` on the Sketch-1 base: enumerate `χ`-mass of all NO fiber minima across symmetric and generic NO instances; measure how often the bonus is nonzero.
+
+**Likely death.** Symmetric adversary zeroes channel 2; assembly reduces to Sketch 1 plus dead weight.
+
+---
+
+## Sketch 5 — Instance-derived non-group design fold (transversal/rectangle-spreading partitions)
+
+**Trick.** Drop groups entirely: fold `V×V` by an explicit partition into parts of size `ℓ` built from the instance (parts aligned with the YES matching's rectangle `S×S` so the YES word compresses, while chosen as transversal designs — Sidon-type in the grid — against all *other* rectangles so adversary rectangles hit `≈ b²` distinct parts). This attacks C1's anchor (ii) by replacing the symmetrization certificate with a combinatorial-design certificate; it is the "dense tiny folds preserved distance" thread from I07 that was left open rather than killed.
+
+**Matrices.** `Ĥ = [(H⊗I)ι_P ; (I⊗H)ι_P]` fails here — `ι_P(F_P(W)) ≠ ` any symmetrization, so image characterization must be recomputed by elimination (poly time, but unstructured; honest cost).
+
+**Needed lemma (stated, not proved).** **D1:** there is a poly-constructible partition `P` (parts of size `ℓ`) such that every *mixed* word of `R(D_NO)` of weight `≥ b²` has `≥ b²/ℓ^{1−ε}` odd parts. Without a group there is **no** generic lower bound (a word can be even on every part), so D1 carries the whole soundness burden.
+
+**Pre-checks.** *Mixed tensors:* **not covered** — the proved lemmas are all symmetrization-based; the slicing structure of reduced-tensor words (every pointed word has ≥ d rows that are pointed words of `D`) is the only handle, and mixed words are precisely where naive designs die; honest red flag. *Invariant YES:* no group, no payment — pass vacuously. *Base-gap:* if D1 held with `ℓ ≫ d`, C1 breaks the same way as Sketch 3; but D1 must dodge the fact that NO fibers also contain `b×b` rectangles (`u'⊗u'`), which any YES-compressing partition also risks compressing — the partition must be built from YES-side structure that provably cannot align with *any* NO-fiber rectangle, and the affine-closure data (32/120 instances with illegal covers in the legal hull) warns that YES-side structure leaks to illegal words.
+
+**Smallest test.** Tiny `q=3` instances: exhaustively search all matching-aligned partitions with `ℓ ∈ {3,5}` on `n² ≤ 400` grids; for each, enumerate **all** mixed folded words and record the true NO minimum vs `b²/ℓ`.
+
+**Likely death.** Mixed words: a low-rank mixed combination even on every part; or the D1/rectangle conflict above. But the search is cheap and the open thread deserves one exhaustive burial or a surprise.
+
+---
+
+## Sketch 6 — Harvest-and-relift voltage conveyor (spend `G×G`, re-lift with instance voltages)
+
+**Trick.** Spend the entire `G×G` (order `ℓ²`, free, odd — proved admissible by (ROF) since it is a free odd group on `V×V`) for maximal one-level compression, then *re-install* symmetry by a voltage lift with instance-derived voltages `α: columns → Z_ℓ` chosen so every perfect matching has zero holonomy (`Σ_{τ∈M} α(τ) = 0`), letting the YES word survive on a single sheet at weight `×1` while the lift multiplies length by `ℓ` and — for good voltages, as in quasi-cyclic lifts — can *increase* NO distance.
+
+**Pre-checks.** *Mixed tensors:* fold half passes ((ROF) with `Λ = G×G`); the lift half needs a new distance-of-lift lemma (lifted kernel-sector words are not controlled by base distance) — not proved. *Invariant YES:* the sheet-supported YES word is *not* invariant under the fresh deck action, pushing the next level into Sketch 3's unresolved completeness question. *Base-gap / map check — this dies on a proved obstruction and I flag it as the pre-check outcome:* requiring zero holonomy on **every** perfect matching forces `α` to annihilate the span of all legal differences; by the proved affine-closure data (32/120 instances have an illegal odd cover *inside the affine hull of the matchings*), those illegal covers automatically inherit zero holonomy. The voltage cannot separate exactly the words we need separated. This is the fold-side reincarnation of the I10/I11 autopsy, and it is instructive: **voltage freshness and affine closure are the same enemy in two costumes.**
+
+**Smallest test (only if resurrected).** A YES-unique instance family (unique matching ⇒ trivial legal-difference span) — but deterministic uniqueness is itself flagged dangerous/unproved in I10.
+
+**Likely death.** Already wounded at pre-check by affine closure; recorded for the map, not for the queue.
+
+---
+
+## Answer to the round's key question
+
+**Yes on functoriality, no on free lunch.** L1+L2 prove that reduced pointed tensoring composes cleanly along fresh commuting actions: explicit check recurrence with no elimination, residual action free on *all* moving coordinates (no cross sectors exist to be reintroduced), YES invariance propagates, and the group order is paid exactly once at the base. But the new conserved-exponent accounting C1 shows that this clean composition *conserves* `β = log(b₀/d₀)/log(n₀/d₀)`, which is `o(1)` for every NP-hard base. So composition is a solved sub-problem, and the frontier moves to breaking one of C1's two equality anchors.
+
+## Top two experiments
+
+1. **Sketch 3 (super-budget fold, `Z₅/Z₇/Z₁₁`, incl. biplane steering).** It is the *only* assembly whose accounting is not conserved by C1, its soundness is already fully proved, its open question is a finite enumeration implementable today, and either outcome is decisive: a completeness signal opens a polynomial-gap pipeline; a null result upgrades C1 to a de facto wall for all group-fold assemblies.
+
+2. **Sketch 1 (residual ladder, `Z₃`).** Cheapest full pipeline; validates L1/L2 end-to-end (the machinery every other sketch reuses), produces the first two-level explicit syndrome instances, and measures true NO minima against certified `b²/ℓ` on symmetric vs generic NO instances — the only empirical probe of C1's anchor (ii) available without new theory.
+
+(Sketch 2 runs as a cheap rider on Sketch 1's code path; Sketch 5 is a background exhaustive search; Sketches 4 and 6 are recorded with their pre-check wounds for the obstruction map.)
+[ask_pro] mode=ideate model=anthropic/claude-fable-5 cost=$3.02595 time=809.4s
+

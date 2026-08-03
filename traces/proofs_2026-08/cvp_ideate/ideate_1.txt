@@ -1,0 +1,164 @@
+**Compliance note.** No search for, recollection of, or contact with the prohibited document or any derivative was made in preparing this. Every cited tool is classical: Berlekamp–McEliece–van Tilborg 1978, Elias product codes, Bose–Chowla 1962, Kautz–Singleton 1964, Tillich–Zémor 2009, Hastings distance balancing 2016, Evra–Kaufman–Zémor 2020, Breuckmann–Eberhardt / Panteleev–Kalachev balanced & lifted products 2020–21, Guruswami–Vardy 2005, FKT/Pfaffian, ABNNR/AEL.
+
+**Two meta-facts used throughout (derived, not assumed).**
+
+- **The F2-multiplicity wall.** Any row added to an incidence dictionary is a linear functional of the selection vector, so it sees coverage only mod 2. Consequently *no row set whatsoever* can separate "each element covered exactly once" from "each element covered an odd number of times"; the BMT counting argument (`3|x| = Σ cov_e ≥ 3q`, equality iff matching) is the *unique* multiplicity detector, and it yields only `q` vs `q+1`. Even the information-theoretically maximal row set — a basis of the annihilator of the matching-difference span — leaves the fiber equal to the affine span of matchings, which generically contains odd-XORs of matchings of weight `q+1`. Therefore the polynomial gap cannot come from more/cleverer rows; it must come from the **weight geometry of the columns**: quotient/relative metrics, folds, or filling volume. All sketches below respect this.
+- **Everything funnels to one interface.** The completeness/soundness tension ("target must be matching-independent" vs "spurious combinations must be heavy") always reappears as: *find an efficiently generated subspace `B` containing all legal witness differences but no illegal fiber difference.* Sketches differ in what they do **after** that interface (or in how they evade needing it fully).
+
+---
+
+## S1 — BMT incidence + exchange boundary + distance-balanced relative quotient
+
+**(1) Core trick.** Realize the 3DM fiber as the level-1 space of an explicit 3-term chain complex: `F2^g →∂2 F2^m →A F2^{3q}`, where `∂2`'s columns are bounded local matching exchanges. Legal witness differences are (conjecturally) boundaries; illegal kernel words are nontrivial relative classes. Then amplify the *relative* (quotient/systolic) distance `d(ker A / im ∂2)` by iterated distance balancing (Hastings/EKZ) against a fixed `[n0,k0,d0]` code — the classical operation that multiplies one-sided systolic distance at multiplicative length cost. Crucially, syndrome decoding *automatically* minimizes over `B = im ∂2` because `B ⊆ ker A`: the coset-leader weight is the decoding optimum, so many coexisting sparse legal witnesses are free — this steps around the ordinary-girth obstruction.
+
+**Concrete dictionary (base level, before balancing).**
+- Columns: `m = |U|` triple columns, plus `g` exchange generators recorded in `∂2` (for every two triple-pairs `{u,v} ≠ {u',v'}` with `u∩v = u'∩v' = ∅` and `u∪v = u'∪v'` as 6-element sets, the weight-4 kernel word `e_u+e_v+e_{u'}+e_{v'}`; optionally 3↔3 exchanges on 9 elements). `g ≤ O(m²)`.
+- Rows: `3q` element-incidence rows `A`. Target `t = 1^{3q}`.
+- YES witness: matching indicator, weight `q`. NO invariant (base): weight `≥ q+1` (BMT counting).
+- Balanced level `k`: `N_k = O((m+g)·n0^k)` columns, `3q·n0^k`-ish rows, target `t⊗e1`-lift. Gap accounting: intended NO bound `(q+1)·b^k` vs YES `(q+1)·a^k`; `k = Θ(log N)` gives `N^{c}` iff `b > a`, with `N_k = poly(N)` for fixed `n0`.
+
+**(2) Obstruction check.**
+- *Local finite-difference trades (O1):* columns are triples and kernel exchanges, not degree-`d` signatures of Boolean views; there is no independently flippable cube — a triple column is not a polynomial function of local bits. Outside O1's assumptions.
+- *Odd holonomy (O2):* no scope hierarchy, no marginal-consistency rows; orbit-sum pseudoassignments have no host equations. The analogue risk is a `q+1` odd cover, which is charged by the balancing claim, not by locality.
+- *Marginal rectangles (O3):* no unary marginals of joint tables anywhere; rows are incidence + boundary maps. Outside assumptions.
+- *Integer affine repairs (O4):* GF(2) throughout; no slack counts, no scaled residuals. The lattice lift is applied only at the very end via the exact transfer lemma.
+- *Complete-assignment fingerprints (O5):* dictionary has `poly(q)` columns, none indexed by complete assignments; the fingerprint dependence theorems don't apply.
+- *Arbitrary mixed tensor words (O6):* distance balancing is not a tensor power; its systolic lower bounds (classical) quantify over *all* chain words, not pure products. But the *pointed/relative* version needed here is exactly the unproved lemma — honestly flagged, not assumed.
+- *Output-rank accounting (O7):* length grows by `n0` per round, `k = Θ(log N)` rounds ⇒ polynomial. The genuine danger: uniform balancing multiplies the YES class too (`a ≥ d0`), collapsing the ratio. The construction therefore needs *sector-asymmetric* balancing: only the quotient `C/B` sector is balanced, with `B`'s generators given cheap absorbers. This is inside the accounting check, stated honestly: unresolved.
+
+**(3) Smallest experiment (today).** `q = 3`, 9 elements, 10–14 triples chosen so both YES and NO instances exist. Build `A`, enumerate `ker A` (dimension ≲ 12), matchings, `B` = span of 2↔2 exchanges. Compute: (i) does `B` contain all matching differences? (ii) `d(C/B)` by coset enumeration; (iii) balance once with `[3,1,3]` and `[7,4,3]`, recompute exact min fiber weights for YES and NO, and per-coset leaders.
+
+**(4) Most likely death / cheating witness.** A NO fiber vector of weight `q+1` (one element covered thrice) whose difference from a reference solution lies **inside** the exchange span `B` — then its balanced lift stays light and the gap never opens. Secondary death: matching differences requiring alternating cycles of unbounded length escape `B` (exchange graph disconnectivity), breaking completeness after quotient.
+
+**Mutation evading that witness.** Filter `B`: keep only exchange generators verified (locally, by the 6-element pattern) to preserve exact-multiplicity coverage, and pad the instance by composing with a fixed high-girth tripartite design so that all odd covers of weight `≤ q + T` are matchings ("odd-cover girth" padding). This attacks the cheat's existence rather than its cost.
+
+**Status: promising — top pick #1.**
+
+---
+
+## S2 — Filling-volume (cosystolic-expansion) encoding of exact-cover defects
+
+**(1) Core trick.** Charge defects by *isoperimetry* rather than minimum class weight. Build the instance 2-complex (`2-cells` = exchange generators, `1-cells` = triples, `0-cells` = elements) and glue it along its 1-skeleton into a fixed cosystolic expander (LSV/Ramanujan-type or a good lifted-product complex). A spurious kernel word is a 1-cycle not filled by instance 2-cells; in the glued complex it must be filled through the expander, and coboundary/cosystolic expansion makes the minimal filling *area* — which the decoder pays as weight on 2-cell columns — linear in the ambient size, even when the cycle itself is short. Filling volume can exceed systole; that is the mechanism difference from S1.
+
+**Concrete dictionary.**
+- Variables: `x ∈ F2^m` (triples), `z ∈ F2^{c2}` (2-cells of glued complex `Y*`).
+- Rows: `A x = 1^{3q}` (3q rows) and `Jx + ∂2^{Y*} z = 0` (`c1(Y*)` rows), where `J` embeds triple 1-cells into `Y*`'s 1-chains.
+- YES: matching + filling of its class by instance 2-cells, weight `q + O(q)`. Intended NO invariant: any fiber `(x,z)` with `x` not a matching needs `|z| ≥ FillArea ≥ Θ(n_{Y*}^{α})`, with `n_{Y*} = q^{1+c}`. Dimensions: `m + c2` columns, `3q + c1` rows. Gap: `q^{1+c'} / q`.
+
+**(2) Obstruction check.** O1: no polynomial view signatures; columns are cells. O2: this design *uses* holonomy for soundness rather than being attacked by it; the inherited odd-holonomy cheats need marginal-consistency equations that don't exist here. O3: no marginals. O4: GF(2) only. O5: `poly` cells, no assignment columns. O6: no tensor product; expansion bounds quantify over all chains. O7: the honest failure point — a chain map is linear, so it sees only coverage parity; a clean all-odd cover of weight `q+1` produces the *same chain* as a matching, `z = 0`, and pays nothing. Unless the gluing acts on the quotient `C/B` (at which point S2 partially collapses into S1's interface lemma), the accounting fails. Stated honestly: this sketch's independence from S1 rests on filling area charging classes that are *trivial but far from their fillings*, which the systolic route cannot do.
+
+**(3) Smallest experiment.** Instance from S1's `q=3`; `Y*` = 2-complex of the hypergraph product of `[7,4,3]` Hamming with itself (explicit `∂2`, `∂1`). Implement `J` on the 12 triple edges, enumerate all fibers exactly (ILP or brute force ≤ 2^30 with symmetry), and measure: min `|z|` over spurious `x`, vs `z=0` matchings.
+
+**(4) Most likely death.** The clean odd-cover tautology above: `Φ(all-odd cover) = Φ(matching)` at chain level, `z = 0`, gap `= 1/q`.
+
+**Mutation.** Route the *exchange generators* (not the triples) through the expander: 2-cells of the instance complex are glued cells of `Y*`, so filling a legal exchange is cheap by construction while filling a spurious kernel word requires a 2-chain that no bounded set of glued cells provides — i.e., use `Y*` to make `d(C/B)`-type classes expensive **via area**. (This is the S1 interface again, but with a different, possibly stronger, cost functional.)
+
+**Status: wounded but alive; run only after S1's experiment fixes the `B`-classification data.**
+
+---
+
+## S3 — Pointed balanced-product fold (code-dependent dense structured folding)
+
+**(1) Core trick.** The pointed tensor lemma squares the YES/NO pointed-distance *ratio* per squaring, but length squares too (O7 kills it). Balanced products (classical, 2020–21) quotient `D ⊗ D` by a free group symmetry of order `ℓ`, dividing length by `ℓ` while — in the known constructions — preserving distance up to the group order. Pad the 3DM instance to carry a free `Z_ℓ` symmetry (rotated disjoint copies), then iterate: fold `D_{i+1} = D_i ⊗_{Z_ℓ} D_i`. If the fold divides both the YES pointed weight and the all-words lower bound by `Θ(ℓ)`, the **ratio** `(1 + 1/(q+1))` squares each round at near-constant length growth; `k ≈ log q + O(log log N)` rounds give `N^c`. This is precisely the "code-dependent dense structured fold" the obstruction map leaves open.
+
+**Concrete dictionary.**
+- Base: homogenized BMT coset `D = span{(c,0): c ∈ ker A} + span{(t,1)} ⊆ F2^{L}`, `L = m+1`, pointed at `*`; `δ_*(D) = q+1` (YES) vs `≥ q+2` (NO).
+- Padding: `ℓ` rotated copies, free `Z_ℓ` on non-star coordinates.
+- Fold `F`: orbit-sum of coordinate pairs under diagonal `Z_ℓ`, star-pair kept as the new point. New length `≈ (ℓL)²/ℓ`.
+- YES witness: fold of `x_yes^{⊗2}`, intended weight `≈ (q+1)²·ℓ` (orbit accounting). Intended NO invariant: every word of the folded code with new-point bit 1 has weight `≥ (q+2)²·ℓ/κ`. Gap per round: ratio squared up to constant `κκ'`.
+
+**(2) Obstruction check.** O1: no local Boolean-view columns; the base already survives to `q` vs `q+1` by counting. O2: no scope equations. O3: no marginals. O4: GF(2). O5: no assignment-indexed columns. O6: **the crux** — folded-code words are images of *arbitrary mixed* tensor words; the sampling no-go covers only fixed code-oblivious coordinate samples, and the balanced product is a code-dependent dense structured quotient, explicitly outside that theorem. The needed pointed-distance statement for balanced products is unproved and is the named lemma below. O7: per-round length `L²/ℓ` with `ℓ = Θ(L)` is `Θ(L)`; sustaining a group of order `Θ(L_i)` each round needs symmetry-replenishing padding — a real parameter-engineering hole, flagged; if only bounded group order is sustainable, length grows as `L_0^{O(1)} · const^k`, still polynomial for `k = O(log log)` rounds — insufficient alone, sufficient stacked on any constant-factor base gap from S1.
+
+**(3) Smallest experiment.** Base `D` with `dim D ≤ 4`, `L ≤ 12`; pad with `ℓ = 3` (`Z_3`); build the folded generator explicitly (orbit sums of pairwise products of generator rows — computable without expanding the tensor); enumerate all `≤ 2^16` folded words; compare exact pointed distance to `δ_*(D)²/3` and check the YES fold didn't cancel.
+
+**(4) Most likely death.** Orbit cancellation: a mixed word whose `Z_ℓ`-orbit sums collide, giving a folded word of weight far below `δ²/ℓ`; dually, the YES pure square may partially cancel under orbit summing, destroying completeness. (Prior experiments already saw "orbit XOR collapses tiny examples".)
+
+**Mutation.** Take `ℓ` odd so `F2[Z_ℓ]` is semisimple; split the fold along the idempotents and *discard the trivial-character component* (where all cancellations of full orbits live), keeping the components where the group norm element acts invertibly. This is a twisted balanced product; cancellation of a full free orbit is algebraically impossible in the nontrivial components.
+
+**Status: promising — top pick #2 (the experiment is a one-day script).**
+
+---
+
+## S4 — Global Lagrange dictionary with error budget (RS/interpolation route)
+
+**(1) Core trick.** Give each element `e` a field point `β_e ∈ GF(2^s)` and each triple `u = (a,b,c)` the unique degree-`≤ 3q−1` polynomial `L_u` with `L_u(β_e) = [e ∈ u]`. Column of `u` = binary (simplex-concatenated) evaluations of `L_u` at `n ≫ 3q` points; target = evaluations of the constant polynomial `1`, plus per-bit error columns. Any matching gives `Σ_{u∈M} L_u ≡ 1` *identically* — completeness is uniform across matchings with zero error cost, killing the canonical-target problem. A selection whose coverage parity has a defect makes `Σ L_u − 1` a nonzero polynomial of degree `< 3q`, hence nonzero on `≥ n − 3q + 1` points: error cost `≥ n − 3q = N^{Θ(1)}`.
+
+**Concrete dictionary.** Rows: `n·s` (trace-binary evaluations). Columns: `m` triple columns + `n·s` error (identity) columns. Target: binary expansion of `(1,…,1)` evaluations. YES weight: `q·w_in` (`w_in` = inner simplex weight), zero errors. Intended NO invariant: `≥ min(q+1)·w_in` (clean covers) vs `n − 3q` (defect covers). Dimensions: `n = q^{1+c}`, `s = O(log q)`.
+
+**(2) Obstruction check.** O1: a support-3 trade among binary columns lifts to an `F`-linear relation among RS symbols; MDS independence of any `≤ n − 3q` columns blocks it — outside O1's flippable-cube assumptions (columns are global evaluations, full degree in the selection). O2: no scopes. O3: no marginals — the simplex inner code is equidistant, so no unary interface exists. O4: GF(2)/field only. O5: `m ≤ q³` columns, no assignment indexing. O6: no tensor stage. O7: **fails here** — the Lagrange rows are `V·A` for an invertible interpolation operator `V`, i.e., linearly equivalent to coverage rows (the F2-multiplicity wall): a clean all-odd cover of weight `q+1` has *zero* defect polynomial and zero error cost. The `n − 3q` charge only hits selections that don't even satisfy parity coverage — a set the base BMT rows already exclude for free.
+
+**(3) Smallest experiment.** `q = 3`, `GF(32)`, `n = 20`: build the `100 × (m + 100)` matrix, solve exact min-weight by ILP for YES/NO; verify the tautology numerically (that every all-odd cover has zero error cost) — worth doing to certify the wall and calibrate the error-budget machinery for reuse.
+
+**(4) Most likely death.** Exactly the clean odd-cover witness at weight `(q+1)·w_in`: ratio `1 + 1/q`.
+
+**Mutation.** Use S4 not as the gap source but as the *shell* for a quotient base: replace the coverage condition by S1's balanced quotient system and use the Lagrange/error-budget layer to charge the *defect classes* (which are not parity-invisible) at `n − deg` per defect — i.e., interpolate on class labels, not on elements. This is the only mutation consistent with the wall.
+
+**Status: wounded (core is a proven tautology); keep only as shell machinery.**
+
+---
+
+## S5 — Signed-Sidon (Bose–Chowla `B_h`) shielding of defect columns (additive combinatorics → CVP side)
+
+**(1) Core trick.** Any integer-affine repair uses coefficients of bounded `ℓ1`. Assign *defect-absorbing* columns integer signatures from an explicit Bose–Chowla `B_{2h}` set (size `M` in `[p^{2h}]`, poly-bit for `h = N^{c}` since bit-length `2h log p` is polynomial): every nonzero integer relation among signatures has `ℓ1 > 2h`, hence `ℓ2² > 4h²/M = N^{Θ(1)}` after normalization. YES witnesses touch no defect column (signature sum 0, target 0 on that row — matching-independent); any NO solution engaging defect columns cannot cancel the Sidon row cheaply.
+
+**(2) Obstruction check.** O1: signatures are arbitrary per column, i.e., a full-degree/global assignment of values — explicitly outside the bounded-degree signature theorem ("does not cover genuinely global/high-degree sparse columns"). O2: no scopes. O3: no marginals. O4: this is the obstruction the design targets: the universal affine extrapolation bound says combos cost `(Σ|λ_i|)R`; `B_{2h}` forces `Σ|λ_i| > 2h`, so the extrapolated point is `N^c`-far — *inside* the obstruction's own fine print, used offensively. However, the obstruction's `ℓ2` accounting bites back: a relation can spread `ℓ1 = 2h` over `M` columns at `ℓ2² ≈ 4h²/M`, so the guarantee degrades by `M`; need `h² ≫ M·gap`, feasible but tight. O5: poly columns, no assignment indexing. O6: no tensor. O7: honest failure — same as S2/S4: NO solutions that *avoid* defect columns entirely (clean odd covers) pay nothing; also the mandatory return to *binary* syndrome decoding forces binary expansion of the Sidon row, and carry columns are affine slacks, re-entering O4's kill zone.
+
+**(3) Smallest experiment.** `p = 3`, `h = 2`: Bose–Chowla `B_4` set of size 3 in `Z_{80}`; attach signatures to the defect/slack columns of the all-eight-clause CRT core from `prior/`; verify by exhaustive enumeration that the known squared-cost-8 repair now violates the Sidon row and that the cheapest exact repair has cost `≥ h²/M`.
+
+**(4) Most likely death.** Clean-fiber avoidance (never touches shielded columns), plus carry-slack repairs once binarized.
+
+**Mutation.** Make defect columns unavoidable: use S1's quotient so that in NO instances *every* fiber vector decomposes as (legal part) + (defect class rep), with the defect class's absorbers being exactly the shielded columns. I.e., S5 is a soundness *amplifier conditional on the S1 interface*, not an independent mechanism — recorded as such.
+
+**Status: conditional/auxiliary; test the tiny experiment, then shelve pending S1.**
+
+---
+
+## S6 — Parity-of-witnesses canonicalization + BCH shell (counting-complexity raid)
+
+**(1) Core trick.** The "canonicalize-then-shell" route fails because selecting one legal witness is SAT-hard — but *parity aggregates* of the witness set are sometimes polynomial: for planar-matching encodings, `y = ⊕_M x_M` and all its linear-functional refinements are computable via Pfaffians (FKT) mod 2. If `#witnesses` is odd, `y` is a fiber element, and `x_M − y ∈ span(matching differences)` for every `M`; shell rows `H_BCH·x = H_BCH·y` then pin the fiber to the BCH coset of `y`, whose kernel distance `> 2K` supplies anti-cancellation — *provided* the shell is applied modulo the legal-difference span.
+
+**(2) Obstruction check.** O1: no view signatures. O2/O3: no scopes/marginals. O4: GF(2). O5: `y` is a poly-computable vector, not an assignment-indexed dictionary; outside the fingerprint model. O6: no tensor. O7: two honest failures: (a) `|y|` is uncontrolled (up to `N`), inflating the YES baseline through the shell coset; (b) `H_BCH(x_M − y) ≠ 0` in general, so completeness needs the shell to annihilate the legal-difference span — the S1 interface yet again. Also parity: even witness count makes `y` useless, and deterministic isolation is open (Valiant–Vazirani is randomized).
+
+**(3) Smallest experiment.** 4×4 grid graph: compute `y` by Pfaffian mod 2; enumerate all perfect matchings; test empirically whether `x_M − y` lies in the span of length-4/6 alternating-cycle exchanges (quotient hypothesis on a planar toy) and measure `|y|`.
+
+**(4) Most likely death.** Non-planarity of any parity-faithful 3SAT→matching encoding (mod-2 counting for the needed instance class is ⊕P-hard), plus the even-count hole.
+
+**Mutation.** Use pairs of derived instances `(F, F ⊕ forced-clause)` so at least one has odd count, and reduce with a disjunction-of-two-targets syndrome trick (two candidate targets, decoder may hit either; NO bound must hold for both) — evades the even-count witness specifically.
+
+**Status: speculative; one-afternoon toy test, low prior.**
+
+---
+
+## S7 — Expander bundling (ABNNR) of the *pair* `B ⊆ C` with locality asymmetry
+
+**(1) Core trick.** AEL/ABNNR amplification saturates absolute relative distance and flattens ratios — for a single code. But here the object is a pair: `B` is generated by *local* exchange moves (support ≤ 8, geometrically clustered if triples are laid out on a bounded-degree graph where exchange partners are neighbors), while illegal classes are *global*. Bundle coordinates along expander neighborhoods: `B`-coset leaders stay within `O(1)` bundles per generator, so quotient-legal moves stay cheap, while spread illegal words touch `min(w·deg, n)` bundles — the amplification acts on the *quotient* metric asymmetrically.
+
+**(2) Obstruction check.** O1–O5: as in S1 (same dictionary, re-metrized). O6: no tensor. O7: the known saturation warning applies directly and is the likely killer: matchings are themselves global (weight `q`, spread), so the YES witness also saturates bundles; the asymmetry exists only between *differences* (local) and *defect classes* (global), which helps coset leaders, not the baseline. Honest: partially inside the flattening obstruction as stated in the literature digest.
+
+**(3) Smallest experiment.** S1's `q=3` pair `(B, C)`; bundle the 12 triple coordinates by neighborhoods of a 3-regular graph; recompute exact bundled coset-leader weights for all cosets; compare ratio before/after.
+
+**(4) Most likely death.** Ratio flattening: bundled YES weight ≈ bundled NO weight as both saturate.
+
+**Mutation.** Two-metric bundling: bundle only coordinates incident to potential defect patterns (elements of degree ≥ 2 in `U`), leaving a matching-supporting sub-dictionary unbundled — targets the saturation witness directly.
+
+**Status: likely dead but the cheapest experiment on this list (~50 lines); run once for calibration.**
+
+---
+
+# Top two selections
+
+## Pick 1: S1 (incidence + exchange quotient + sector-asymmetric distance balancing)
+
+**Unproved soundness lemma L1 (exact finite-dimensional form).** *Fix a 3DM instance `(q, U)`. Let `A ∈ F2^{3q×m}` be its incidence matrix, `∂2 ∈ F2^{m×g}` the matrix of all 2↔2 and 3↔3 exchange kernel words, `t = 1^{3q}`. Let `DB_k(A, ∂2, t; C0)` denote `k` rounds of the explicit distance-balancing product of the complex `F2^g → F2^m → F2^{3q}` with a fixed code `C0 = [n0,k0,d0]`, applied only to the quotient sector (exchange generators carried with weight-`≤ w0` absorbers), producing `(H_k, t_k)` with `N_k ≤ (m+g)·n0^k` columns. Claim: there are constants `1 ≤ a < b ≤ d0` independent of `(q,U,k)` such that (i) if `U` has a perfect matching, `min{|x| : H_k x = t_k} ≤ (q+1)·a^k`; (ii) if `U` has none, `min{|x| : H_k x = t_k} ≥ (q+1)·b^k`.*
+
+**Why this is not the target theorem restated.** For each fixed `(q, U, C0, k)` both clauses are finite minimum-weight computations on one explicit matrix — falsifiable by enumeration at `q = 3, k = 1`; neither clause mentions satisfiability gaps, reductions, or any NP quantifier. Clause (ii) is a *relative-distance statement about a balanced product of one explicit complex* — a coding-theory claim of the same species as the (proved) systolic distance-balancing theorems, extended to (a) the pointed/inhomogeneous fiber and (b) sector asymmetry. Hardness enters only through BMT's classical NP-hardness of exact 3DM feasibility, which is orthogonal to L1. The place it may simply be false — clean `q+1` odd covers whose class is balanced-light — is identified in advance and is the first thing the `q=3` experiment measures.
+
+## Pick 2: S3 (pointed balanced-product fold with twisted components)
+
+**Unproved soundness lemma L3 (exact finite-dimensional form).** *Let `D ⊆ F2^L` be a linear code with a distinguished coordinate `*`, invariant under a free action of `Z_ℓ` (`ℓ` odd) on the non-star coordinates. Let `F` be the orbit-sum fold of coordinate pairs under the diagonal action, restricted to the nontrivial idempotent components of `F2[Z_ℓ]`, star-pair distinguished. Claim: there are absolute constants `κ, κ'` such that (i) `δ_*(F(D ⊗ D)) ≥ δ_*(D)² / (κ ℓ)` — over ALL mixed tensor words, and (ii) for some pointed minimum word `x` of `D`, `|F(x ⊗ x)| ≤ κ' δ_*(D)² / ℓ`.*
+
+**Why this is not the target theorem restated.** L3 quantifies over one fold of one finite code; it contains no reduction, no 3SAT, no gap-hardness content — it is a pointed-distance analogue of the classical balanced-product distance bounds, and it is decidable by exhaustive enumeration for `dim D ≤ 4, ℓ = 3` (the day-one experiment). If true, chaining it `k = Θ(log q + log log N)` times on the BMT base (whose `q+1` vs `q+2` pointed gap is already proved) mechanically yields the `N^c` Hamming gap, and the proved mod-2 lattice lift converts it to `N^{c/2}` Euclidean CVP. The known no-go (fixed code-oblivious coordinate samples) explicitly does not cover this fold: it is code-dependent, dense, and structured, which is precisely the opening the obstruction map leaves.
+
+**Shared risk register for the two picks.** S1 dies if exchange spans absorb defect classes (test 1), S3 dies if orbit collisions break clause (i) or (ii) at `ℓ = 3` (test 2). Both tests are exact, small, and implementable today; each produces either a certified counterexample (extending the obstruction map) or the first surviving base for the amplification ladder.
+[ask_pro] mode=ideate model=anthropic/claude-fable-5 cost=$2.95116 time=830.6s
+

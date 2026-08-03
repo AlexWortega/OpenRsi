@@ -1,0 +1,10 @@
+NO seed 100101 single distance 5
+{'ell': 3, 'case': 'YES', 'base_dim': 3, 'd': 3, 'fold_dim': 3, 'dprime': 9, 'lower': 3, 'ratio_to_square': '9/9'}
+{'ell': 3, 'case': 'NO', 'base_dim': 3, 'd': 5, 'fold_dim': 3, 'dprime': 25, 'lower': 9, 'ratio_to_square': '25/25'}
+{'ell': 5, 'case': 'YES', 'base_dim': 5, 'd': 3, 'fold_dim': 5, 'dprime': 9, 'lower': 2, 'ratio_to_square': '9/9'}
+{'ell': 5, 'case': 'NO', 'base_dim': 5, 'd': 5, 'fold_dim': 5, 'dprime': 25, 'lower': 5, 'ratio_to_square': '25/25'}
+{'ell': 7, 'case': 'YES', 'base_dim': 7, 'd': 3, 'fold_dim': 7, 'dprime': 9, 'lower': 2, 'ratio_to_square': '9/9'}
+{'ell': 7, 'case': 'NO', 'base_dim': 7, 'd': 5, 'fold_dim': 7, 'dprime': 25, 'lower': 4, 'ratio_to_square': '25/25'}
+{'ell': 11, 'case': 'YES', 'base_dim': 11, 'd': 3, 'fold_dim': 11, 'dprime': 9, 'lower': 1, 'ratio_to_square': '9/9'}
+{'ell': 11, 'case': 'NO', 'base_dim': 11, 'd': 5, 'fold_dim': 11, 'dprime': 25, 'lower': 3, 'ratio_to_square': '25/25'}
+All super-budget 3DM folds enumerated exactly.

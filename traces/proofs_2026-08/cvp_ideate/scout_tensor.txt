@@ -1,0 +1,763 @@
+## Bottom line
+
+The strongest classical machinery is still the **full tensor/direct product**: it exactly multiplies pointed distance and is sound against **every mixed tensor combination**. But its block length becomes \(n^r\), so a constant base ratio \(\gamma>1\) amplified to \(\gamma^r\) yields only
+
+\[
+\gamma^r=N^{\log_n\gamma},
+\]
+
+whose exponent tends to \(0\) with \(n\). None of the polynomial-length alternatives below simultaneously provides:
+
+1. a superlinear weight transform,
+2. preservation or compounding of a nearby-coset ratio,
+3. and soundness for all mixed linear combinations.
+
+The closest surviving ingredients are **code-dependent quotient/rank-condensing maps** and **lossless-expander maps**, but their guarantees concern rank, injectivity, or approximately linear support growth—not multiplicative pointed-distance growth.
+
+I rank the relevant machinery as follows.
+
+---
+
+## 1. Pointed tensor products: exact multiplication, including mixed tensors
+
+**Source.** Ilya Dumer, Daniele Micciancio, Madhu Sudan, 2003, *IEEE Transactions on Information Theory* 49(1), “Hardness of Approximating the Minimum Distance of a Linear Code.”
+
+Let \(D\le \mathbb F_2^n\) and let \(\pi:D\to\mathbb F_2\) be the distinguished linear functional. Define
+
+\[
+p(D,\pi)=\min\{\operatorname{wt}(x):x\in D,\ \pi(x)=1\}.
+\]
+
+For pointed codes \((D,\pi)\), \((E,\rho)\),
+
+\[
+p(D\otimes E,\pi\otimes\rho)
+=
+p(D,\pi)\,p(E,\rho).
+\]
+
+### Exact mixed-word proof
+
+For arbitrary \(T\in D\otimes E\) satisfying \((\pi\otimes\rho)(T)=1\), put
+
+\[
+x=(\operatorname{id}\otimes\rho)(T)\in D.
+\]
+
+Then \(\pi(x)=1\), so \(x\) has at least \(p(D,\pi)\) nonzero coordinates. For each such coordinate, the corresponding \(E\)-slice of \(T\) has \(\rho\)-value \(1\), hence weight at least \(p(E,\rho)\). The slices are disjoint, giving the lower bound. A pure tensor of two pointed minimizers attains equality.
+
+This is the pointed analogue of the classical product-code theorem
+
+\[
+d(A_1\otimes A_2)=d(A_1)d(A_2),
+\]
+
+proved by Dumer–Micciancio–Sudan for the full space
+\(\{A_2^{T}XA_1:X\in\mathbb F_q^{k_2\times k_1}\}\), not merely for rank-one tensors. Thus the proof explicitly covers arbitrary mixed \(X\). ([people.seas.harvard.edu](https://people.seas.harvard.edu/~madhusudan/papers/1999/dms-journ.pdf))
+
+### Generator and parameters
+
+If \(G\) is a \(k\times n\) generator, then \(G^{\otimes r}\) generates the \(r\)-fold product:
+
+\[
+n_r=n^r,\qquad k_r=k^r,\qquad p_r=p^r.
+\]
+
+If the distinguished bit is an actual coordinate, its \(r\)-fold tensor coordinate is again an actual distinguished coordinate.
+
+### Ratio behavior
+
+A promise
+
+\[
+p_Y\le t,\qquad p_N>\gamma t
+\]
+
+becomes
+
+\[
+p_Y^{(r)}\le t^r,\qquad p_N^{(r)}>(\gamma t)^r.
+\]
+
+So the YES/NO ratio is exactly \(\gamma^r\). This is the only construction in the search that cleanly compounds the ratio while controlling all mixed combinations.
+
+### Limitation
+
+For output length \(N=n^r\),
+
+\[
+\gamma^r=N^{\log_n\gamma}.
+\]
+
+A constant \(\gamma\) therefore gives exponent \(o(1)\). Constant \(r\) is polynomial length but gives only constant amplification; \(r=\Theta(\log n)\) gives quasipolynomial length.
+
+### Verification experiment
+
+For small \(k,n\):
+
+1. enumerate all \(2^{k^2}\) coefficient matrices \(X\);
+2. form \(G^T XG\);
+3. retain those with \((\pi\otimes\pi)(X)=1\);
+4. verify the minimum weight is \(p(D,\pi)^2\).
+
+This directly tests hostile mixed tensors rather than only pure powers.
+
+---
+
+## 2. Dumer–Micciancio–Sudan locally dense affine cosets
+
+**Source.** Dumer, Micciancio, Sudan, 2003, same paper.
+
+They define a \(\rho\)-dense family \(A_k[l_k,m_k,d_k]_q\) by the existence of a center \(v_k\) such that
+
+\[
+r_k<\rho d_k
+\]
+
+and
+
+\[
+|A_k\cap B(v_k,r_k)|\ge q^k.
+\]
+
+For every fixed finite field and every \(\rho>1/2\), they construct polynomial-length such families by concatenating twice-extended Reed–Solomon codes over an extension field with equidistant Hadamard codes. Their algorithmic version outputs, in polynomial time, \(A,v,r\) with
+
+\[
+r<\rho d(A)
+\]
+
+and, with probability at least \(1-q^{-s}\),
+
+\[
+|A\cap B(v,r)|\ge q^k.
+\]
+
+Thus the affine coset \(v+A\) contains \(q^k\) words of weight at most \(r\), while differences between any two such words lie in \(A\) and have weight at least \(d(A)>r/\rho\). ([people.seas.harvard.edu](https://people.seas.harvard.edu/~madhusudan/papers/1999/dms-journ.pdf))
+
+### Their composition gadget
+
+Given an NCP instance \((C,u,t)\), a dense code \(A\), and a linear map \(T\), they form
+
+\[
+C'=
+[
+\underbrace{A,\ldots,A}_{a\text{ copies}},
+\underbrace{ATC,\ldots,ATC}_{b\text{ copies}}
+]
+\]
+
+and
+
+\[
+u'=
+[
+\underbrace{v,\ldots,v}_{a},
+\underbrace{u,\ldots,u}_{b}
+],
+\]
+
+with
+
+\[
+b=\left\lceil\frac rt\right\rceil,\qquad
+a=\left\lceil\frac{bt}{\varepsilon r}\right\rceil,\qquad
+t'=ar+bt.
+\]
+
+For every coefficient vector \(z\),
+
+\[
+d(zC',u')
+=
+a\,d(zA,v)+b\,d(zATC,u).
+\]
+
+This identity is the key soundness fact: the same \(z\) controls every block, so arbitrary superpositions cannot optimize the dense-code and original-instance blocks independently. In a NO instance,
+
+\[
+d(zC',u')\ge b\,d(zATC,u)\ge b\,d(C,u).
+\]
+
+([people.seas.harvard.edu](https://people.seas.harvard.edu/~madhusudan/papers/1999/dms-journ.pdf))
+
+### Relevance
+
+This is the closest classical construction to a **polynomial-size global algebraic dictionary with many sparse affine witnesses and exact mixed-combination soundness**.
+
+### Why it does not solve ratio compounding
+
+- The dense center is obtained probabilistically; the paper explicitly notes the absence of a deterministic procedure for finding a guaranteed dense center.
+- The construction bridges NCP to a relatively-near regime but loses a constant in the ratio.
+- It does not iterate a nonlinear weight transform; the total distance is an affine combination \(a\,d_A+b\,d_C\).
+
+### Adaptation to test
+
+Replace the random \(T\) by candidate deterministic rank condensers or subspace-design maps and test whether
+
+\[
+T(A\cap B(v,r))
+\]
+
+covers the required message space. This isolates the exact missing deterministic ingredient.
+
+---
+
+## 3. Alon–Edmonds–Luby expander distance amplification
+
+**Source.** Noga Alon, Jeff Edmonds, Michael Luby, 1995, FOCS, “Linear Time Erasure Codes with Nearly Optimal Recovery.”
+
+Let \(G(L,R,E)\) be a \(d\)-regular bipartite spectral expander with normalized second singular value \(\lambda\). Let \(C_1\) be an outer code of relative distance \(\delta_1\), and let \(C_0\) be a length-\(d\) inner code of relative distance \(\delta_0\), with outer alphabet identified with \(C_0\).
+
+Encode each outer symbol by \(C_0\), distribute its \(d\) coordinates along incident edges, and collect incident edge symbols at right vertices. For any two outer words \(f,g\),
+
+\[
+\Delta\!\left(f^{\mathrm{AEL}},g^{\mathrm{AEL}}\right)
+\ge
+\delta_0-\frac{\lambda}{\Delta(f,g)}.
+\]
+
+Consequently,
+
+\[
+\delta(C^{\mathrm{AEL}})
+\ge
+\delta_0-\frac{\lambda}{\delta_1}.
+\]
+
+This theorem is stated explicitly in the pre-2024 treatment of AEL codes. ([par.nsf.gov](https://par.nsf.gov/servlets/purl/10548624?utm_source=openai))
+
+### Parameters
+
+- Folded length: \(|R|=n\), alphabet \(q_0^d\).
+- Unfolded length: \(nd\), alphabet \(q_0\).
+- The map is linear whenever both constituent encoders are linear.
+
+### Mixed-combination soundness
+
+The theorem applies to every difference of two codewords, hence every nonzero linear combination of generator rows. There is no rank-one assumption.
+
+### Pointed-ratio behavior
+
+The induced lower transform is
+
+\[
+F(\delta)=\delta_0-\frac{\lambda}{\delta}.
+\]
+
+This amplifies a sufficiently large vanishing relative distance to a constant, but it is a saturating transform. If both YES and NO pointed distances lie above the spectral threshold, both are driven toward \(\delta_0\), so their ratio tends toward \(1\), not toward a power.
+
+Moreover, the theorem gives a strong NO lower bound but not a matching small YES upper bound: a low-weight outer word may be spread across many right blocks.
+
+### Verdict
+
+**Excellent absolute-distance amplifier; poor nearby-coset-ratio amplifier.**
+
+### Verification experiment
+
+For a small regular bipartite graph, enumerate all outer differences and plot
+
+\[
+\Delta_{\rm out}
+\mapsto
+\Delta_{\rm AEL}.
+\]
+
+In particular, compare two close weights \(\delta\) and \(\gamma\delta\). The experiment should reveal the flattening of their ratio.
+
+---
+
+## 4. Equidistant concatenation and simplex/Hadamard inner codes
+
+**Source.** Classical concatenation; the exact equidistant specialization is used by Dumer–Micciancio–Sudan.
+
+If
+
+\[
+A=[\ell,m,d]_{q^c},\qquad B=[n,c,t]_q,
+\]
+
+then the concatenated code has parameters
+
+\[
+A\circ B=[n\ell,cm,\ge dt]_q.
+\]
+
+For the \(q\)-ary simplex/Hadamard code
+
+\[
+H=[q^c-1,c,q^c-q^{c-1}]_q,
+\]
+
+every nonzero inner message has exactly the same weight
+
+\[
+t=q^c-q^{c-1}.
+\]
+
+Therefore, for every outer word \(x\),
+
+\[
+\operatorname{wt}(x\circ H)
+=
+t\,\operatorname{wt}_{\rm symbol}(x).
+\]
+
+Dumer–Micciancio–Sudan use this exact equality to preserve both minimum distance and affine-ball density. ([people.seas.harvard.edu](https://people.seas.harvard.edu/~madhusudan/papers/1999/dms-journ.pdf))
+
+### Pointed consequence
+
+For a pointed outer code measured in symbol Hamming weight,
+
+\[
+p(A\circ H)=t\,p_{\rm symbol}(A).
+\]
+
+Hence every YES/NO ratio is preserved exactly:
+
+\[
+\frac{p_N'}{p_Y'}=\frac{p_N}{p_Y}.
+\]
+
+It is sound against all mixed combinations because the map is linear and the weight identity holds for every word.
+
+### Binary block version
+
+Partition a binary word into \(c\)-bit blocks and apply the binary simplex code
+
+\[
+[2^c-1,c,2^{c-1}].
+\]
+
+Then
+
+\[
+\operatorname{wt}(\operatorname{Enc}(x))
+=
+2^{c-1}\cdot
+\#\{\text{nonzero input blocks}\}.
+\]
+
+Since
+
+\[
+\frac{\operatorname{wt}(x)}c
+\le
+\#\{\text{nonzero blocks}\}
+\le
+\operatorname{wt}(x),
+\]
+
+the original bit-weight ratio can lose a factor as large as \(c\).
+
+### Verdict
+
+**Perfect ratio preservation in symbol weight, but no compounding.** The binary length \(2^c-1\) is polynomial only for \(c=O(\log n)\).
+
+---
+
+## 5. Lossless-expanders as sparse linear support amplifiers
+
+**Sources.** Berinde, Gilbert, Indyk, Karloff, Strauss, 2008, Allerton/arXiv, “Combining Geometry and Combinatorics”; Cheraghchi and Ribeiro, 2019–2023, *SIAM Journal on Discrete Mathematics*, “Simple Codes and Sparse Recovery with Fast Decoding.”
+
+Let \(A\in\mathbb F^{m\times n}\) be the adjacency matrix of a left-\(d\)-regular \((k,\varepsilon)\)-lossless expander:
+
+\[
+|\Gamma(S)|\ge (1-\varepsilon)d|S|
+\quad
+\text{for all }|S|\le k.
+\]
+
+The number \(U(S)\) of unique neighbors satisfies
+
+\[
+U(S)\ge (1-2\varepsilon)d|S|.
+\]
+
+Indeed, every non-unique neighbor consumes at least two of the \(d|S|\) incident edges.
+
+Therefore, over **any field**, for every \(x\) with \(|\operatorname{supp}x|\le k\),
+
+\[
+(1-2\varepsilon)d\,\operatorname{wt}(x)
+\le
+\operatorname{wt}(Ax)
+\le
+d\,\operatorname{wt}(x).
+\]
+
+Every unique-neighbor output is a single nonzero input coefficient, so it cannot cancel. This is the finite-field Hamming analogue of the expander RIP-1 estimate. Berinde et al. prove the corresponding \(\ell_1\) inequality; Cheraghchi–Ribeiro give exact for-all sparse recovery over arbitrary fields with \(O(K\log^2N)\) measurements and \(O(K\log K\log N)\) recovery time. ([arxiv.org](https://arxiv.org/abs/0804.4666))
+
+### Pointed-ratio behavior
+
+If every relevant pointed word has weight at most \(k\),
+
+\[
+\frac{p_N'}{p_Y'}
+\ge
+(1-2\varepsilon)\frac{p_N}{p_Y}.
+\]
+
+Thus the ratio is preserved up to a constant, not compounded.
+
+One can append the systematic part:
+
+\[
+L(x)=(x,Ax),
+\]
+
+giving
+
+\[
+\bigl(1+(1-2\varepsilon)d\bigr)\operatorname{wt}(x)
+\le
+\operatorname{wt}(Lx)
+\le
+(1+d)\operatorname{wt}(x)
+\]
+
+for \(k\)-sparse \(x\).
+
+### Failure mode
+
+For support larger than \(k\), parity cancellations can make \(Ax\) very light or zero. A multiscale stack of expanders can cover all dyadic support sizes, but each scale still yields a nearly linear weight transform.
+
+### Verdict
+
+**Best sparse, polynomial-size, cancellation-resistant linear image; fundamentally linear in input weight.**
+
+---
+
+## 6. Subspace designs and rank condensers
+
+**Sources.**
+
+- Venkatesan Guruswami and Swastik Kopparty, 2013 FOCS / 2016 *Combinatorica*, “Explicit Subspace Designs.”
+- Michael Forbes and Venkatesan Guruswami, 2015 APPROX/RANDOM, “Dimension Expanders via Rank Condensers.”
+
+Guruswami–Kopparty prove that for \(q>m\), \(s\le \varepsilon m/4\), there is an explicit collection
+
+\[
+H_1,\ldots,H_M\le\mathbb F_q^m
+\]
+
+with
+
+\[
+M=q^{\Omega(\varepsilon m/s)},
+\qquad
+\operatorname{codim}H_i\le\varepsilon m,
+\]
+
+such that for every \(s\)-dimensional \(W\),
+
+\[
+\sum_{i=1}^{M}\dim(W\cap H_i)
+\le
+\frac{2s}{\varepsilon}.
+\]
+
+Their more precise theorem gives, for \(s\le t\le m<q\), \(M=\Omega(q^r/(rt))\) subspaces of codimension \(rt\) forming a strong
+
+\[
+\left(
+s,\frac{(m-1)s}{r(t-s+1)}
+\right)
+\]
+
+subspace design. ([math.utoronto.ca](https://www.math.utoronto.ca/swastik/subspace-designs.pdf))
+
+Choose quotient maps
+
+\[
+A_i:\mathbb F_q^m\to \mathbb F_q^{\operatorname{codim}H_i},
+\qquad
+\ker A_i=H_i.
+\]
+
+For every nonzero \(x\), applying the \(s=1\) guarantee shows that at most \(2/\varepsilon\) maps annihilate \(x\). Hence the stacked block encoding
+
+\[
+x\longmapsto(A_1x,\ldots,A_Mx)
+\]
+
+has block Hamming weight at least
+
+\[
+M-\frac2\varepsilon.
+\]
+
+For an entire \(s\)-dimensional space of mixed combinations, the total rank loss is bounded by the strong-design inequality. Forbes–Guruswami formulate this as seeded rank condensation and derive constant-degree dimension expanders. ([arxiv.org](https://arxiv.org/abs/1411.7455))
+
+### Relevance to tensor folding
+
+This is precisely machinery for choosing many small linear projections such that **no low-dimensional mixed subspace is killed by too many projections**. A code-dependent version can first choose a basis of the relevant tensor subspace and then apply these quotient maps to its coefficient space.
+
+### Why it does not preserve pointed Hamming ratio
+
+The guarantee distinguishes only zero from nonzero, or full rank from rank loss. Two input words of weights \(1\) and \(n/2\) can both survive exactly \(M-O(1)\) quotient maps. Thus the encoding largely equalizes their block weights:
+
+\[
+p_Y',p_N'\approx M.
+\]
+
+Flattening the surviving blocks into binary coordinates does not recover the original support dependence.
+
+Also, \(M=q^{\Omega(\varepsilon m/s)}\) is polynomial only when \(m/s=O(\log n)\).
+
+### Verdict
+
+**Most promising classical machinery for sound code-dependent folding of mixed subspaces, but missing a rank-to-Hamming theorem.**
+
+---
+
+## 7. BCH parity checks and exact finite-field sparse recovery
+
+**Sources.** Hocquenghem 1959; Bose–Ray-Chaudhuri 1960; modern explicit sparse-recovery treatment by Cheraghchi–Ribeiro.
+
+If \(H\) is a parity-check matrix of a code with distance \(d>2K\), then
+
+\[
+Hx=Hy,\quad
+\operatorname{wt}(x),\operatorname{wt}(y)\le K
+\]
+
+implies \(x=y\), because \(x-y\in\ker H\) has weight at most \(2K<d\).
+
+A primitive binary BCH code of length
+
+\[
+N=2^m-1
+\]
+
+and designed distance \(2K+1\) has redundancy at most
+
+\[
+r\le mK=O(K\log N).
+\]
+
+Thus its parity-check matrix gives a deterministic, for-all, finite-field sparse measurement scheme with \(O(K\log N)\) measurements. Cheraghchi–Ribeiro give related constructions with fast syndrome decoding over arbitrary fields. ([arxiv.org](https://arxiv.org/abs/1901.02852))
+
+### Relevance
+
+This is a polynomial-size global algebraic dictionary with exact soundness:
+
+\[
+Hx=0,\quad \operatorname{wt}(x)\le 2K
+\quad\Longrightarrow\quad
+x=0.
+\]
+
+It defeats every mixed sparse combination, not merely Boolean or nonnegative ones.
+
+### Why it does not amplify output weight
+
+The theorem says only that \(Hx\neq0\). It does not imply
+
+\[
+\operatorname{wt}(Hx)\gg1.
+\]
+
+A weight-\(K\) vector may have a syndrome of Hamming weight one. Encoding the syndrome with a simplex code turns every nonzero syndrome into a fixed large weight, which again equalizes YES and NO cases rather than preserving their ratio.
+
+### Verdict
+
+**Excellent sparse-integrality certificate; not a Hamming-weight amplifier.**
+
+---
+
+## 8. Tanner and Sipser–Spielman expander codes
+
+**Sources.** Michael Sipser and Daniel Spielman, 1996, *IEEE Transactions on Information Theory* 42(6), “Expander Codes”; Gilles Zémor, 2001.
+
+Given a \(d\)-regular expander and a local code \(C_0\) of rate \(\rho_0\) and relative distance \(\delta_0\), define the global Tanner code as all edge labelings whose restriction to each vertex neighborhood belongs to \(C_0\).
+
+With normalized spectral parameter \(\lambda\), the standard distance and rate bounds are
+
+\[
+\rho\ge 2\rho_0-1,
+\qquad
+\delta\ge\delta_0(\delta_0-\lambda).
+\]
+
+([cs.yale.edu](https://www.cs.yale.edu/homes/spielman/Research/expanders.html?utm_source=openai))
+
+### Mixed-combination soundness
+
+The Tanner code itself is linear, so the distance theorem covers every mixed global codeword. The proof uses local distance and expansion to show that a nonzero edge support cannot remain confined.
+
+### Why it is not a generic image of \(D\)
+
+This construction defines a **subcode by local constraints**. To use a given arbitrary code \(D\) as the local code, the graph degree must equal the length of \(D\). For growing \(D\), this either produces large degree/alphabet or loses the constant-degree expansion regime.
+
+A distinguished affine coset at one local vertex also does not propagate automatically: a low-weight global word can localize around the distinguished region unless additional global consistency is imposed.
+
+### Verdict
+
+**Strong global soundness for a code defined by constraints, but not a black-box linear image of an arbitrary pointed code.**
+
+---
+
+## 9. Exterior powers and Grassmann codes
+
+**Source.** Dmitrii Nogin, 1996, in *Arithmetic, Geometry, and Coding Theory*, “Codes Associated to Grassmannians.”
+
+Nogin evaluates linear forms on the Plücker embedding of the Grassmannian \(G(\ell,m)\subseteq \mathbb P(\bigwedge^\ell\mathbb F_q^m)\). The resulting Grassmann code has
+
+\[
+n=\binom{m}{\ell}_q,
+\qquad
+k=\binom{m}{\ell},
+\qquad
+d=q^{\ell(m-\ell)}.
+\]
+
+The minimum-distance statement applies to every element of the full exterior-power coefficient space, including nondecomposable mixed elements. ([researchgate.net](https://www.researchgate.net/publication/245681409_Codes_associated_to_Grassmannians?utm_source=openai))
+
+### Relevance
+
+Exterior powers convert rank/independence into linear coordinates. Once one works in \(\bigwedge^\ell D\), the Grassmann evaluation code gives a large Hamming distance against arbitrary mixed exterior tensors.
+
+### Obstacles
+
+1. The map
+   \[
+   (x_1,\ldots,x_\ell)\mapsto x_1\wedge\cdots\wedge x_\ell
+   \]
+   is multilinear, not linear in one input word.
+2. For \(\ell\ge2\),
+   \[
+   x\wedge x=0,
+   \]
+   so there is no pure-power amplification of a single binary witness.
+3. Linearizing requires the whole space
+   \[
+   \bigwedge^\ell D,
+   \quad
+   \dim=\binom{k}{\ell},
+   \]
+   with arbitrary nondecomposable mixed elements.
+4. The evaluation length \(\binom m\ell_q\) is generally exponential in \(m\), even when \(\ell\) is fixed and \(q=2\).
+
+### Pointed ratio
+
+A condition \(\pi(x)=1\) has no canonical linear lift selecting decomposable exterior tensors that contain one pointed factor. The full exterior code has excellent distance, but completeness no longer tracks the original affine coset.
+
+### Verdict
+
+**Genuine mixed-combination soundness after an exterior lift, but the lift is nonlinear for witnesses and the standard evaluation is too long.**
+
+---
+
+## 10. Symmetric and Schur powers
+
+**Source.** Hugues Randriambololona, 2013, arXiv:1305.4840, “An Upper Bound of Singleton Type for Componentwise Products of Linear Codes.”
+
+For codes \(C_1,\ldots,C_t\le\mathbb F_q^n\), their Schur product is
+
+\[
+C_1*\cdots*C_t
+=
+\operatorname{span}\{c_1*\cdots*c_t:c_i\in C_i\}.
+\]
+
+The product-Singleton bound is
+
+\[
+d(C_1*\cdots*C_t)
+\le
+\max\!\left\{
+t-1,\,
+n+t-\sum_{i=1}^t\dim C_i
+\right\},
+\]
+
+under the standard nonzero/full-support hypotheses. Thus increasing Schur powers generally trades distance for dimension rather than amplifying distance. ([doi.org](https://doi.org/10.48550/arXiv.1305.4840?utm_source=openai))
+
+### Binary obstruction
+
+Over \(\mathbb F_2\),
+
+\[
+x_i^t=x_i
+\]
+
+for every coordinate, so
+
+\[
+x^{*t}=x.
+\]
+
+Pure Schur powers do not change the witness weight at all. The linear span of mixed products can only introduce additional words.
+
+For an abstract symmetric tensor power,
+
+\[
+\dim\operatorname{Sym}^t(D)
+=
+\binom{k+t-1}{t},
+\]
+
+which is polynomial for fixed \(t\), but the map \(x\mapsto x^{\otimes t}\) is degree \(t\), not linear. Once linearized, arbitrary mixed symmetric tensors appear, and there is no general Hamming-distance theorem analogous to the full tensor-product theorem.
+
+### Verdict
+
+**No amplification in characteristic two for pure words; mixed closure is adverse.**
+
+---
+
+## Matroid-girth products: negative search result
+
+For a parity-check representation \(H\), the code distance of \(\ker H\) is the girth of the represented column matroid. Thus a polynomial-size multiplicative-girth construction would directly address the need.
+
+However:
+
+- matroid direct sums give the **minimum**, not the product, of component girths;
+- the representable operation corresponding to product-code multiplication is essentially the full Kronecker/tensor construction above, with multiplied ground-set size;
+- I did not find a pre-2024 representable-matroid product operation that, from an arbitrary represented pointed code, produces a polynomial-size representation with multiplicative girth and a distinguished-coset completeness theorem.
+
+So the matroid reformulation does not expose an additional classical compression theorem beyond tensor products.
+
+---
+
+## Comparative conclusion
+
+| Machinery | All mixed combinations? | Output size | Pointed-ratio effect |
+|---|---:|---:|---|
+| Full tensor product | **Yes** | \(n^r\) | **Exact \(\gamma^r\)** |
+| DMS dense-coset composition | **Yes** | Polynomial | Constant-loss bridge, no compounding |
+| AEL amplification | **Yes** | Linear over larger alphabet | Saturates/flattens ratio |
+| Equidistant concatenation | **Yes** | Multiplied by inner length | Exact preservation |
+| Lossless-expander image | For sparse inputs | \(O(k\operatorname{polylog}n)\) | Linear preservation |
+| Rank condensers/designs | **Yes for low-dimensional spans** | Polynomial only in restricted regimes | Equalizes nonzero words |
+| BCH/sparse recovery | For \(2K\)-sparse differences | \(O(K\log n)\) | Injectivity only |
+| Tanner codes | **Yes** | Linear | Defines a new subcode, not an image |
+| Exterior powers | Yes after lift | Usually exponential | Pointed completeness lost |
+| Schur/symmetric powers | Mixed closure adverse | Fixed or polynomial | No binary pure amplification |
+
+### Most actionable next experiment
+
+The best classical hybrid to test is:
+
+1. form \(D^{\otimes r}\) implicitly;
+2. represent a chosen low-rank or low-dimensional family of tensor coefficient matrices;
+3. apply a **code-dependent family of quotient maps** inspired by subspace designs;
+4. inside every surviving quotient block, use a simplex code to turn “nonzero” into fixed Hamming weight;
+5. exhaustively test whether any mixed pointed tensor survives in too few blocks.
+
+The exact missing lemma would need to strengthen rank condensation from
+
+\[
+A_i(T)\neq0\text{ for many }i
+\]
+
+to a support-sensitive statement such as
+
+\[
+\#\{i:A_i(T)\neq0\}
+\ge
+\operatorname{wt}_{\rm tensor}(T)^{1+\Omega(1)}
+\]
+
+or at least a multiplicative separation between the two pointed-distance regimes. None of the classical theorems found supplies that norm-versus-rank bridge.
+[ask_pro] mode=scout model=openai/gpt-5.6-sol:online cost=$1.33500525 time=413.5s
+

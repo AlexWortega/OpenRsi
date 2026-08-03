@@ -1,0 +1,6 @@
+('YES', 3, [{'level': 0, 'length': 25, 'dim': 4, 'moving_d': 9}, {'level': 1, 'length': 193, 'dim': 6, 'moving_d': 27}, {'level': 2, 'length': 12289, 'dim': 18, 'moving_d': 243}])
+('NO', 5, [{'level': 0, 'length': 25, 'dim': 4, 'moving_d': 15}, {'level': 1, 'length': 193, 'dim': 6, 'moving_d': 75}, {'level': 2, 'length': 12289, 'dim': 18, 'moving_d': 1875}])
+{'level': 0, 'exact_NO/YES': '5/3', 'rank_proxy_length': 25}
+{'level': 1, 'exact_NO/YES': '25/9', 'rank_proxy_length': 193}
+{'level': 2, 'exact_NO/YES': '625/81', 'rank_proxy_length': 12289}
+End-to-end two-level reduced Z3 assembly passes exact enumeration.

@@ -1,0 +1,343 @@
+## Verdict
+
+No. Exact GF(2) pseudoassignments in the all-singletons/all-pairs full-intersection hierarchy do **not** imply global satisfiability, even for a Boolean width-6 CNF.
+
+A compact counterexample first appears naturally as a ternary CSP on the Petersen graph. Its pseudoassignment is especially simple: in every group, select every assignment satisfying the complete vertex equations represented by that group. All coefficients are \(1\in\mathbb F_2\).
+
+---
+
+## 1. The unsatisfiable ternary CSP
+
+Let \(G=(V,E)\) be the Petersen graph with \(V=\{0,\dots,9\}\) and edges
+
+\[
+\begin{aligned}
+E=\{&(0,1),(1,2),(2,3),(3,4),(0,4),\\
+&(0,5),(1,6),(2,7),(3,8),(4,9),\\
+&(5,7),(7,9),(6,9),(6,8),(5,8)\}.
+\end{aligned}
+\]
+
+It is simple, cubic, and has girth \(5\).
+
+Orient every edge from its smaller endpoint to its larger endpoint. For each edge \(e\), introduce a variable
+
+\[
+x_e\in\mathbb F_3.
+\]
+
+For each vertex \(v\), impose the ternary constraint
+
+\[
+C_v:\qquad
+\sum_{\substack{e=(v,w)\\v<w}}x_e
+-
+\sum_{\substack{e=(u,v)\\u<v}}x_e
+=b_v
+\pmod 3,
+\]
+
+where
+
+\[
+b_0=1,\qquad b_v=0\quad(v\ne0).
+\]
+
+Each constraint has arity \(3\).
+
+### Unsatisfiability
+
+Summing all ten equations, every edge variable appears once with coefficient \(+1\) and once with coefficient \(-1\). Hence the left side is zero, while
+
+\[
+\sum_{v\in V}b_v=1.
+\]
+
+Thus the CSP is unsatisfiable.
+
+---
+
+## 2. The all-pairs hierarchy
+
+Let
+
+\[
+\mathcal G=\bigl\{\{v\}:v\in V\bigr\}
+\cup
+\bigl\{\{v,w\}:v,w\in V,\ v<w\bigr\}.
+\]
+
+There are
+
+\[
+10+\binom{10}{2}=55
+\]
+
+groups.
+
+For \(Q\in\mathcal G\), let
+
+\[
+U_Q=\{e\in E:e\text{ is incident to some }v\in Q\}.
+\]
+
+A column of group \(Q\) is an assignment
+
+\[
+a:U_Q\to\mathbb F_3
+\]
+
+satisfying every equation \(C_v\) with \(v\in Q\).
+
+The target has:
+
+* odd coverage in every group;
+* for every pair \(Q,R\in\mathcal G\), equality of the two GF(2) marginals on all assignments to
+  \[
+  W_{Q,R}=U_Q\cap U_R.
+  \]
+
+This is exactly the specified hierarchy.
+
+---
+
+## 3. Explicit pseudoassignment
+
+For every group \(Q\), put coefficient
+
+\[
+\mu_Q(a)=1
+\]
+
+on **every** column \(a\) of that group. Thus the pseudoassignment is simply the all-ones vector on the hierarchy’s columns.
+
+The number of selected columns is:
+
+* \(3^{3-1}=9\) for a singleton group;
+* \(3^{5-2}=27\) for an adjacent vertex pair;
+* \(3^{6-2}=81\) for a nonadjacent vertex pair.
+
+The Petersen graph has \(15\) adjacent and \(30\) nonadjacent vertex pairs, so the total support weight is
+
+\[
+10\cdot9+15\cdot27+30\cdot81
+=2925.
+\]
+
+### Coverage equations
+
+Each group has \(3^k\) columns for some \(k\ge0\). Therefore its selected-column count is odd. Hence every coverage equation equals \(1\in\mathbb F_2\).
+
+It remains to prove all full-intersection marginal equalities.
+
+---
+
+## 4. Exact marginal proof
+
+For a vertex \(v\), let \(r_v\in\mathbb F_3^E\) be its signed incidence row. Thus \(C_v\) is \(r_vx=b_v\).
+
+### Support lemma
+
+For all \(Q,R\subseteq V\) with \(1\le |Q|,|R|\le2\), writing \(W=U_Q\cap U_R\),
+
+\[
+\left\{
+r\in\operatorname{span}_{\mathbb F_3}\{r_v:v\in Q\}:
+\operatorname{supp}(r)\subseteq W
+\right\}
+=
+\operatorname{span}_{\mathbb F_3}\{r_v:v\in Q\cap R\}.
+\tag{1}
+\]
+
+#### Proof when \(Q\cap R\neq\varnothing\)
+
+The only nontrivial case is
+
+\[
+Q=\{v,a\},\qquad R=\{v,b\},
+\]
+
+with \(a\ne b\). Every edge incident to \(v\) belongs to \(W\), so \(r_v\) is supported in \(W\).
+
+Consider a combination \(\alpha r_v+\beta r_a\) with \(\beta\ne0\). Because \(a\notin R\), an edge incident to \(a\) lies in \(W\) only if its other endpoint belongs to \(R=\{v,b\}\). The cubic vertex \(a\) has three distinct neighbors, at most two of which are \(v,b\). Hence \(a\) has an incident edge outside \(W\). That edge is not incident to \(v\), so its coefficient cannot be cancelled by \(\alpha r_v\). Thus \(\beta=0\) is necessary.
+
+Therefore the supported combinations are exactly multiples of \(r_v\).
+
+#### Proof when \(Q\cap R=\varnothing\)
+
+If only one row from \(Q\) has a nonzero coefficient, its vertex has at most two neighbors in \(R\), but degree three, so some incident edge lies outside \(W\).
+
+Now suppose \(Q=\{u,v\}\) and both coefficients are nonzero.
+
+If \(u,v\) are nonadjacent, each has three incident edges and only two possible neighbors in \(R\), so again an outside edge survives.
+
+If \(u,v\) are adjacent, their internal edge must cancel; otherwise it itself lies outside \(W\). After cancellation, both remaining edges at \(u\) and both remaining edges at \(v\) would have to go to the two vertices of \(R\). This produces a \(K_{2,2}\), hence a \(4\)-cycle, contradicting the Petersen graph’s girth \(5\).
+
+Thus no nonzero combination is supported in \(W\). This proves (1).
+
+---
+
+### Projection characterization
+
+Let \(S_Q\subseteq\mathbb F_3^{U_Q}\) be the affine solution space for the equations indexed by \(Q\).
+
+For \(W\subseteq U_Q\), the projection of \(S_Q\) to \(W\) is characterized by precisely those linear combinations of the equations in \(Q\) whose support lies in \(W\). By (1), for \(W=U_Q\cap U_R\), those combinations are exactly the equations indexed by \(Q\cap R\).
+
+Consequently,
+
+\[
+\operatorname{proj}_{W}(S_Q)
+=
+\left\{
+w\in\mathbb F_3^W:
+r_vw=b_v\text{ for all }v\in Q\cap R
+\right\}
+=
+\operatorname{proj}_{W}(S_R).
+\tag{2}
+\]
+
+For any \(w\) in this common projection, the number of extensions to \(S_Q\) is a power of \(3\), because every nonempty fiber of a linear projection of an affine \(\mathbb F_3\)-space has cardinality \(3^d\). Hence the number of extensions is odd. If \(w\) is outside the projection, it has zero extensions.
+
+Therefore the GF(2) marginal of the all-ones table on \(S_Q\) is exactly the indicator of \(\operatorname{proj}_W(S_Q)\). Equation (2) proves that the marginals from \(Q\) and \(R\) agree on every assignment to \(W\).
+
+Thus the hierarchy has an exact GF(2) pseudoassignment although the CSP is unsatisfiable.
+
+---
+
+## 5. Direct Boolean bounded-arity version
+
+Encode each trit by two bits:
+
+\[
+0\mapsto00,\qquad 1\mapsto01,\qquad 2\mapsto10.
+\]
+
+For each vertex \(v\), its equation becomes a Boolean relation \(R_v\subseteq\{0,1\}^6\) containing exactly the nine encodings of its \(\mathbb F_3\)-solutions. This gives an unsatisfiable Boolean CSP with:
+
+* \(30\) Boolean variables;
+* \(10\) constraints;
+* arity \(6\).
+
+The same pseudoassignment and proof apply verbatim under the trit-to-bit bijection.
+
+### Literal CNF with clauses as the hierarchy constraints
+
+It can also be converted to an ordinary width-6 CNF while preserving the counterexample for the hierarchy over individual clauses.
+
+For every vertex \(v\) and every forbidden string
+
+\[
+u\in\{0,1\}^6\setminus R_v,
+\]
+
+include the width-6 clause that is false exactly on \(u\):
+
+\[
+D_{v,u}
+=
+\bigvee_{i=1}^{6}
+\begin{cases}
+z_i,&u_i=0,\\
+\neg z_i,&u_i=1.
+\end{cases}
+\]
+
+There are \(64-9=55\) clauses per vertex and \(550\) clauses total. Their conjunction at vertex \(v\) is exactly \(R_v\), so the CNF is unsatisfiable.
+
+For a hierarchy group consisting of one or two clauses, let \(T\subseteq V\) be the set of their associated Petersen vertices. Put coefficient \(1\) exactly on those legal group views that satisfy the **complete equations** \(C_v\) for every \(v\in T\), and coefficient \(0\) on the other legal views.
+
+These selected views are valid columns because satisfying the complete vertex equation implies satisfying every selected clause associated with that vertex. Their counts are again \(9,27,\) or \(81\), hence odd. Pairwise marginals depend only on the associated vertex sets \(T\), so the preceding support and projection proof applies unchanged.
+
+Therefore exactness fails even for the all-pairs hierarchy built from individual width-6 CNF clauses.
+
+For reference, this expanded CNF hierarchy has
+
+\[
+K=550+\binom{550}{2}=151525
+\]
+
+groups. The displayed pseudoassignment has support
+
+\[
+550\cdot9
++
+10\binom{55}{2}\cdot9
++
+55^2(15\cdot27+30\cdot81)
+=
+8{,}714{,}475.
+\]
+
+No minimality among all CNF counterexamples is claimed. The 10-constraint Petersen CSP is the smallest clean instance of this cubic girth-\(\ge5\) construction.
+
+---
+
+## 6. Consequence for residual coding
+
+Residual coding cannot repair this hierarchy: the counterexample has **zero residual**. Any linear code applied to the hierarchy equations also maps its residual to zero.
+
+Conditionally, if one did have a hierarchy matrix
+
+\[
+A\in\mathbb F_2^{R\times L},\qquad t\in\mathbb F_2^R
+\]
+
+with the impossible property
+
+\[
+Ax=t\text{ is feasible}
+\quad\Longleftrightarrow\quad
+\text{the original instance is satisfiable},
+\]
+
+then residual coding would indeed yield a polynomial NCP gap.
+
+Let \(E:\mathbb F_2^R\to\mathbb F_2^{RT}\) repeat each residual coordinate \(T\) times. Form
+
+\[
+B=\begin{bmatrix}EA&I_{RT}\end{bmatrix},
+\qquad
+t'=Et.
+\]
+
+A witness \((x,y)\) satisfies \(B(x,y)=t'\) exactly when
+
+\[
+y=E(t+Ax).
+\]
+
+Hence:
+
+* in a YES instance, a canonical hierarchy witness of weight \(K\) gives \(y=0\), so the NCP optimum is at most \(K\);
+* in a NO instance with no exact hierarchy solution, \(t+Ax\ne0\) for every \(x\), so
+  \[
+  |y|=|E(t+Ax)|\ge T.
+  \]
+
+Thus the gap would be at least \(T/K\), with final column count
+
+\[
+N=L+RT.
+\]
+
+For example, if \(L,R,K\le n^a\), taking \(T=n^{2a}\) gives
+
+\[
+\frac{\mathrm{OPT}_{NO}}{\mathrm{OPT}_{YES}}\ge n^a,
+\qquad
+N\le 2n^{3a},
+\]
+
+and therefore an \(N^c\) gap for any fixed \(c<1/3\), for sufficiently large \(n\).
+
+So the YES baseline and output size do **not** by themselves prevent polynomial amplification. The fatal issue is exactness: the Petersen pseudoassignment has residual zero, so in the coded instance it gives the witness
+
+\[
+(x,0)
+\]
+
+of weight \(2925\) in an unsatisfiable CSP instance, or weight \(8{,}714{,}475\) in the explicit width-6 CNF expansion, independently of \(T\).
+
+More fundamentally, universal exactness of a polynomial-size GF(2) linear hierarchy would make satisfiability decidable by Gaussian elimination. The explicit counterexample shows exactly where that hoped-for characterization fails.

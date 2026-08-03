@@ -1,0 +1,530 @@
+## Conclusion
+
+The strongest elementary compression that remains an ordinary explicit code is **puncturing the tensor code to a polynomial-size list of tensor coordinates**, computed without ever materializing \(r^q\) tensor generators. This includes expander-sampled coordinates, recursively pruned tensors, and canonical-monomial versions of symmetric powers.
+
+It has a decisive obstruction:
+
+> For any fixed list of \(m\) sampled tensor coordinates, preserving a factor \(R>1\) between pointed distances \(K+1\) and \(K+2\), uniformly even for one-dimensional homogenized codes, requires
+> \[
+> m\ \ge\ \left(\frac{N}{K+1}\right)^{\,\left\lfloor K+2-\frac{K+1}{R}\right\rfloor}.
+> \]
+> Thus, whenever \(N/(K+1)\ge 1+\varepsilon\), even a factor \(2\) requires \(m=(1+\varepsilon)^{\Omega(K)}\). If \(K\gg\log N\), polynomial-size sampling cannot retain even a fixed factor \(>1\), independently of the tensor order \(q\).
+
+The obstruction already uses one-dimensional codes, so it is not caused by overlooking arbitrary tensor-code combinations. For higher-dimensional codes, arbitrary combinations introduce additional failures; an explicit \(3\)-coordinate, \(q=2\) example is given below.
+
+This rules out coordinate sampling, expander sampling, monomial pruning, and recursively pruned tensor coordinates as universal tensor-compression lemmas. It does not rule out arbitrary dense linear foldings, but such foldings can distinguish Hamming layers using dense elementary-symmetric functionals, so no information-theoretic lower bound for all linear maps is possible without an additional explicitness/locality hypothesis.
+
+---
+
+# 1. Exact sampled-tensor construction
+
+Let
+\[
+D=\operatorname{rowspan}(G)\le \mathbb F_2^L,
+\qquad
+G\in\mathbb F_2^{r\times L},
+\]
+where \(G\) has full row rank. Let \(*\in[L]\) be distinguished.
+
+Choose an ordered list, with repetitions allowed,
+\[
+S=(\alpha_1,\ldots,\alpha_m),\qquad
+\alpha_j=(\alpha_{j,1},\ldots,\alpha_{j,q})\in[L]^q.
+\]
+Require some index \(j_*\) to satisfy
+\[
+\alpha_{j_*}=(*,\ldots,*).
+\]
+
+Define
+\[
+P_S(D^{\otimes q})
+ =
+ \left\{
+ \bigl(W_{\alpha_1},\ldots,W_{\alpha_m}\bigr):
+ W\in D^{\otimes q}
+ \right\}
+ \le \mathbb F_2^m.
+\]
+
+The naive tensor generator has \(r^q\) rows, but the punctured code has an explicit polynomial-time generator.
+
+For \(h=1,\ldots,q\), define
+\[
+A_h\in\mathbb F_2^{r\times m},
+\qquad
+(A_h)_{a,j}=G_{a,\alpha_{j,h}}.
+\]
+Starting with
+\[
+B_0=(1,\ldots,1)\in\mathbb F_2^{1\times m},
+\]
+recursively let \(B_h\) be any row basis of
+\[
+\operatorname{span}
+\left\{
+b\odot (A_h)_{a,\bullet}:
+b\text{ a row of }B_{h-1},\ a\in[r]
+\right\},
+\]
+where \(\odot\) denotes coordinatewise multiplication.
+
+### Proposition 1
+
+\[
+\operatorname{rowspan}(B_q)=P_S(D^{\otimes q}).
+\]
+
+### Proof
+
+A rank-one tensor word
+\[
+x_1\otimes\cdots\otimes x_h,\qquad x_i\in D,
+\]
+restricted to the sampled prefix coordinates
+\[
+(\alpha_{j,1},\ldots,\alpha_{j,h}),\qquad j\in[m],
+\]
+has \(j\)-th coordinate
+\[
+\prod_{i=1}^h (x_i)_{\alpha_{j,i}}.
+\]
+Thus adjoining the \(h\)-th tensor factor takes coordinatewise products with rows of \(A_h\). Rank-one tensors span \(D^{\otimes h}\), giving the recurrence. ∎
+
+At every stage \(B_h\) has at most \(m\) rows. Naive Gaussian elimination gives an actual explicit generator
+\[
+B_q\in\mathbb F_2^{R\times m},\qquad R\le m,
+\]
+in time polynomial in \(q,r,m\), for example \(O(qrm^3)\).
+
+The distinguished output coordinate is \(j_*\).
+
+---
+
+# 2. Exact completeness and desired soundness
+
+For \(x\in D\), let
+\[
+A(x)=\{i\in[L]:x_i=1\}.
+\]
+The pure tensor \(x^{\otimes q}\) restricts to the word whose \(j\)-th coordinate is
+\[
+\prod_{h=1}^q x_{\alpha_{j,h}}.
+\]
+Consequently,
+\[
+\left|P_S(x^{\otimes q})\right|
+=
+f_S(A(x)),
+\]
+where
+\[
+f_S(A)
+:=
+\left|\left\{
+j\in[m]:
+\alpha_{j,h}\in A\text{ for every }h
+\right\}\right|.
+\]
+
+In particular, if \(x_*=1\), then the output distinguished coordinate is \(1\), and
+\[
+\delta_*\bigl(P_S(D^{\otimes q})\bigr)
+\le f_S(A(x)).
+\]
+
+Thus for a YES word of pointed weight \(K+1\), completeness is exactly
+\[
+\delta_*\bigl(P_S(D^{\otimes q})\bigr)
+\le f_S(A)
+\quad\text{for some }A\ni *,\ |A|=K+1.
+\]
+
+The required soundness statement would be
+\[
+\min_{\substack{W\in D^{\otimes q}\\W_{(*,\ldots,*)}=1}}
+\left|\bigl(W_{\alpha_1},\ldots,W_{\alpha_m}\bigr)\right|
+\ge B.
+\tag{1}
+\]
+This quantifies over every linear combination of tensor generators, not merely over \(x^{\otimes q}\) or rank-one tensors.
+
+No bound comparable to \(\delta_*(D)^q\) holds for polynomial \(m\). The following theorem already disproves it for one-dimensional \(D\), where there are no hidden tensor combinations.
+
+---
+
+# 3. Sampling lower bound
+
+Write
+\[
+[L]=\{*\}\sqcup U,\qquad |U|=N.
+\]
+For \(Z\subseteq U\), define
+\[
+v_Z=\mathbf 1_{\{*\}\cup Z},
+\qquad
+D_Z=\operatorname{span}\{v_Z\}.
+\]
+Then
+\[
+\delta_*(D_Z)=|Z|+1.
+\]
+These are themselves homogenized affine instances: take \(C=\{0\}\) and \(t=\mathbf 1_Z\).
+
+For a sampled tuple \(\alpha_j\), define its nonstar support
+\[
+T_j=\{\alpha_{j,h}\in U:1\le h\le q\}\subseteq U.
+\]
+Repeated symbols are included only once. For the one-dimensional code \(D_Z\),
+\[
+P_S(D_Z^{\otimes q})
+=
+\operatorname{span}\{w_Z\},
+\]
+where
+\[
+(w_Z)_j=1\quad\Longleftrightarrow\quad T_j\subseteq Z.
+\]
+Hence its pointed distance is exactly
+\[
+f(Z):=\left|\{j:T_j\subseteq Z\}\right|.
+\tag{2}
+\]
+
+Set
+\[
+d=K+1.
+\]
+Thus the YES layer consists of \(|X|=d-1=K\), while the NO layer consists of \(|Y|=d=K+1\). Define
+\[
+C_d=\max_{\substack{X\subseteq U\\|X|=d-1}} f(X),
+\qquad
+B_d=\min_{\substack{Y\subseteq U\\|Y|=d}} f(Y).
+\]
+
+## Theorem 2: sparse-monomial obstruction
+
+Let \(1\le s\le d\). If
+\[
+m\left(\frac dN\right)^s<1,
+\tag{3}
+\]
+then
+\[
+\frac{B_d}{C_d}
+\le
+\frac{d}{d-s+1}.
+\tag{4}
+\]
+
+### Proof
+
+Choose \(Y\) uniformly among all \(d\)-subsets of \(U\). For any fixed \(T\subseteq U\) of size \(t\ge s\),
+\[
+\Pr[T\subseteq Y]
+=
+\frac{(d)_t}{(N)_t}
+=
+\prod_{i=0}^{t-1}\frac{d-i}{N-i}
+\le
+\left(\frac dN\right)^t
+\le
+\left(\frac dN\right)^s.
+\]
+By a union bound over the \(m\) sampled coordinates,
+\[
+\Pr[\exists j:\ |T_j|\ge s,\ T_j\subseteq Y]
+\le
+m\left(\frac dN\right)^s<1.
+\]
+Therefore there exists a \(d\)-set \(Y\) such that every sampled coordinate counted by \(f(Y)\) has
+\[
+|T_j|\le s-1.
+\tag{5}
+\]
+
+For each \(y\in Y\), put \(X_y=Y\setminus\{y\}\). A sampled coordinate \(j\) with \(T_j\subseteq Y\) is counted in \(f(X_y)\) exactly when \(y\notin T_j\), hence for exactly \(d-|T_j|\) choices of \(y\). Therefore
+\[
+\sum_{y\in Y} f(X_y)
+=
+\sum_{\substack{j\\T_j\subseteq Y}}(d-|T_j|).
+\]
+By (5),
+\[
+\sum_{y\in Y} f(X_y)
+\ge
+(d-s+1)f(Y).
+\]
+On the other hand, each \(X_y\) has size \(d-1\), so
+\[
+\sum_{y\in Y}f(X_y)\le dC_d.
+\]
+Thus
+\[
+f(Y)\le\frac{d}{d-s+1}C_d.
+\]
+Since \(B_d\le f(Y)\), this proves (4). ∎
+
+## Exact size lower bound for a target ratio
+
+Suppose one wants
+\[
+B_d>R\,C_d
+\qquad (R>1).
+\]
+Let
+\[
+s_R=
+\left\lfloor d+1-\frac dR\right\rfloor.
+\]
+Then
+\[
+\frac{d}{d-s_R+1}\le R.
+\]
+Theorem 2 implies the necessary condition
+\[
+m\ge
+\left(\frac Nd\right)^{s_R}.
+\tag{6}
+\]
+
+Substituting \(d=K+1\),
+\[
+\boxed{
+m\ge
+\left(\frac{N}{K+1}\right)^{
+\left\lfloor K+2-\frac{K+1}{R}\right\rfloor
+}.
+}
+\tag{7}
+\]
+
+Examples:
+
+* For \(R=2\),
+  \[
+  m\ge
+  \left(\frac{N}{K+1}\right)^{\lfloor (K+2)/2\rfloor}.
+  \]
+* If \(N/(K+1)\ge1+\varepsilon\), a factor \(2\) requires
+  \[
+  m\ge(1+\varepsilon)^{\Omega(K)}.
+  \]
+* For \(R=(K+1)^c\),
+  \[
+  s_R=K+1-O(K^{1-c}),
+  \]
+  so
+  \[
+  m\ge
+  \left(\frac{N}{K+1}\right)^{K+1-O(K^{1-c})}.
+  \]
+* If \(m\le N^C\) and \(N/(K+1)\ge1+\varepsilon\), choose
+  \[
+  s=
+  \left\lfloor
+  \frac{C\log N}{\log(N/(K+1))}
+  \right\rfloor+1
+  =O_{\varepsilon,C}(\log N).
+  \]
+  When \(K\gg\log N\), Theorem 2 gives
+  \[
+  \frac{B_d}{C_d}
+  \le
+  1+O\!\left(\frac{\log N}{K}\right).
+  \]
+
+Crucially, \(q\) does not appear in this bound. Increasing tensor order merely permits sampled tuples with larger supports. A polynomial list has too few large supports to hit every \((K+1)\)-set; an adversarial NO support avoids them.
+
+This applies verbatim to:
+
+* expander-selected tensor coordinates;
+* any fixed coordinate puncturing;
+* recursively pruning tensor coordinates;
+* selecting polynomially many canonical tensor monomials;
+* polynomial-size sampled versions of symmetric-monomial coordinates.
+
+The theorem is uniform over all sampled lists, including lists with repeated output coordinates.
+
+---
+
+# 4. Arbitrary combinations make soundness worse
+
+The preceding obstruction uses \(D_Z\) of dimension one, so it already examines every codeword of the compressed tensor code. In higher dimension, analyzing only \(x^{\otimes q}\) is additionally unsound.
+
+Consider
+\[
+G=
+\begin{pmatrix}
+1&1&0\\
+1&0&1
+\end{pmatrix},
+\qquad *=0.
+\]
+Let the rows be
+\[
+a=(1,1,0),\qquad b=(1,0,1).
+\]
+Then
+\[
+D=\operatorname{span}\{a,b\},
+\qquad
+\delta_*(D)=2.
+\]
+
+Take \(q=2\) and retain the canonical upper-triangular coordinates
+\[
+S=((0,0),(0,1),(0,2),(1,1),(1,2),(2,2)).
+\]
+A pure square of a pointed weight-two word has sampled weight three:
+\[
+P_S(a\otimes a)=(1,1,0,1,0,0),
+\]
+\[
+P_S(b\otimes b)=(1,0,1,0,0,1).
+\]
+This suggests the symmetric-monomial value
+\[
+\binom{2+2-1}{2}=3.
+\]
+
+But the mixed rank-one tensor \(b\otimes a\) is also pointed and gives
+\[
+P_S(b\otimes a)=(1,1,0,0,0,0),
+\]
+of weight \(2\). Therefore
+\[
+\delta_*\bigl(P_S(D^{\otimes2})\bigr)\le2<3.
+\]
+
+Thus even before considering sums of rank-one tensors, identifying or selecting one ordering per multiset destroys the expected symmetric-power soundness. General sums can cause further cancellations.
+
+A “symmetric power” that excludes \(b\otimes a\) is no longer a puncturing of the full tensor code. In characteristic two, one must then specify carefully whether one means invariants, coinvariants, divided powers, or the span of pure powers; none inherits the elementary row/column proof of
+\[
+\delta_*(D^{\otimes q})=\delta_*(D)^q.
+\]
+
+---
+
+# 5. Exhaustive soundness test for small cases
+
+For any concrete \(G,S,q\), first construct \(B_q\) by the Schur-product recurrence above and row-reduce it to rank \(R\). Then compute
+\[
+\Delta_S(D)
+=
+\min_{\substack{u\in\mathbb F_2^R\\(uB_q)_{j_*}=1}}
+|uB_q|.
+\]
+
+An exhaustive algorithm is:
+
+1. Construct \(A_1,\ldots,A_q\).
+2. Compute \(B_q\) by repeated Schur products and Gaussian elimination.
+3. Enumerate all \(u\in\mathbb F_2^R\).
+4. Retain those with \((uB_q)_{j_*}=1\).
+5. Return the minimum popcount of \(uB_q\).
+
+The running time is
+\[
+O(qrm^3+2^R Rm),
+\qquad R\le m.
+\]
+This checks arbitrary linear combinations exactly, rather than only pure tensors.
+
+For exhaustive search over coordinate samples in tiny parameters, enumerate all subsets
+\[
+S\subseteq[L]^q
+\]
+containing \((*,\ldots,*)\), construct \(B_q\), and compute \(\Delta_S(D)\). The \(L=3,r=2,q=2\) example above is the first natural test for any claimed symmetric-coordinate soundness bound.
+
+---
+
+# 6. Why this is not a lower bound against all linear foldings
+
+A completely arbitrary output coordinate is a linear functional on the ambient tensor space, not necessarily a tensor coordinate. On a pure tensor \(v_Z^{\otimes q}\), such a functional becomes a degree-\(\le q\) polynomial in the indicator variables of \(Z\).
+
+For example, when \(q=d\), the functional
+\[
+\Phi(v_Z^{\otimes d})
+=
+\sum_{1\le i_1<\cdots<i_d\le N}
+\prod_{h=1}^d (v_Z)_{i_h}
+\]
+equals the elementary symmetric polynomial
+\[
+\binom{|Z|}{d}\pmod 2.
+\]
+Hence
+\[
+\Phi(v_Z^{\otimes d})=
+\begin{cases}
+0,&|Z|=d-1,\\
+1,&|Z|=d.
+\end{cases}
+\]
+Repeating this functional many times would create an arbitrarily large gap on the one-dimensional layer family.
+
+Therefore no information-theoretic theorem can rule out every dense linear folding merely from output length. The real obstacles are:
+
+1. producing an ordinary explicit generator for its image without expanding \(r^q\) tensor rows; and
+2. proving soundness against all tensors in \(D^{\otimes q}\), not only pure powers \(v_Z^{\otimes q}\).
+
+The sampled-tensor construction solves the first problem exactly but fails the second by Theorem 2. Dense layer-separating functionals solve neither problem for general \(D\).
+
+Also, Theorem 2 assumes a universal sampling rule for a parameter class. A compressor allowed to tailor dense functionals after solving the nearest-codeword instance is not information-theoretically excluded; excluding that would require a computational hardness assumption rather than a counting argument.
+
+---
+
+# 7. Can the base reduction have \(K=O(\log n)\) or constant YES distance?
+
+There is a precise algorithmic obstruction at constant \(K\).
+
+Given an explicit generator
+\[
+G\in\mathbb F_2^{r\times L}
+\]
+and distinguished coordinate \(*\), the predicate
+\[
+\delta_*(D)\le k
+\]
+can be decided by enumerating every set
+\[
+S\subseteq[L]\setminus\{*\},
+\qquad |S|\le k-1,
+\]
+and checking by Gaussian elimination whether there exists \(u\in\mathbb F_2^r\) satisfying
+\[
+(uG)_*=1,
+\qquad
+(uG)_i=0
+\quad
+\text{for every }i\notin S\cup\{*\}.
+\tag{8}
+\]
+Coordinates in \(S\) are unconstrained. If (8) is feasible, there is a pointed word supported inside \(S\cup\{*\}\).
+
+The running time is
+\[
+\left(\sum_{j=0}^{k-1}\binom{L-1}{j}\right)\operatorname{poly}(L,r)
+\le L^{k-1}\operatorname{poly}(L,r).
+\tag{9}
+\]
+
+Consequences:
+
+* If the YES threshold \(k\) is an absolute constant, the pointed nearest-codeword decision problem is polynomial-time decidable. A SAT reduction with YES distance at most constant and NO distance larger than that would therefore imply \(P=NP\).
+* Encoding the assignment in generator coefficients does not evade this. Gaussian elimination in (8) existentially quantifies over all coefficient vectors at once; the algorithm enumerates supports, not assignments.
+* If \(k=O(\log n)\) and \(L=\operatorname{poly}(n)\), the algorithm takes
+  \[
+  \exp(O((\log n)^2))
+  \]
+  time. Thus such a reduction would place NP in quasipolynomial time. This is not an unconditional contradiction.
+* Accordingly, \(K=O(\log n)\) is not ruled out by linear algebra alone, but constant pointed YES distance is ruled out unless \(P=NP\).
+
+---
+
+## Final assessment
+
+The sampled-tensor/Schur-product construction is the strongest direct polynomial implementation of tensor-coordinate compression. Its generator is explicit and polynomial-size, and completeness is exact. Nevertheless, Theorem 2 gives a sharp obstruction: in the parameter regime relevant to the additive \(K+1\) versus \(K+2\) gap, retaining even a constant multiplicative separation uniformly requires exponentially many sampled coordinates. Symmetric-coordinate and recursive-pruning variants are included, and arbitrary tensor-code combinations only worsen soundness.
+
+Any remaining viable approach must use genuinely dense, structured linear functionals and prove a new soundness theorem against all tensor combinations. Coordinate sampling or monomial pruning cannot provide the desired polynomial amplification.

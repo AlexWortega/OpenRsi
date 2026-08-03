@@ -1,0 +1,224 @@
+I do not have a code-dependent folding or sparse low-degree NCP construction that survives the listed attacks. The narrowest new result I can justify is the following extension of the affine-parallelogram obstruction from degree \(1\) to every bounded degree.
+
+## Theorem: finite-difference obstruction for polynomial local signatures
+
+Let \(R\) be any commutative ring, \(A\) an \(R\)-module, and
+\[
+g:\{0,1\}^{k}\to A
+\]
+be the restriction of a polynomial map of total degree at most \(d<k\). Thus
+\[
+g(x)=\sum_{\substack{T\subseteq[k]\\ |T|\le d}} c_T\prod_{i\in T}x_i,
+\qquad c_T\in A.
+\]
+
+Fix a Boolean view \(u\in\{0,1\}^{k}\), and choose any set \(J\subseteq[k]\) of \(d+1\) coordinates. For \(S\subseteq J\), let \(u^S\) be obtained from \(u\) by flipping precisely the coordinates in \(S\). Then
+\[
+\sum_{S\subseteq J}(-1)^{|S|}g(u^S)=0.
+\]
+Consequently,
+\[
+\boxed{
+g(u)=
+\sum_{\varnothing\ne S\subseteq J}
+(-1)^{|S|+1}g(u^S).
+}
+\tag{1}
+\]
+
+Hence a forbidden local column \(g(u)\) is represented exactly by \(2^{d+1}-1\) other cube vertices, with coefficients all \(\pm1\).
+
+### Proof
+
+Introduce flip variables \(z_i\in\{0,1\}\), \(i\in J\), and substitute
+\[
+x_i=
+\begin{cases}
+u_i,&i\notin J,\\
+u_i+(1-2u_i)z_i,&i\in J.
+\end{cases}
+\]
+The resulting \(A\)-valued polynomial \(h(z)\) has total degree at most \(d\). The alternating sum
+\[
+\sum_{S\subseteq J}(-1)^{|S|}h(1_S)
+\]
+is the coefficient of \(\prod_{i\in J}z_i\), equivalently the iterated finite difference
+\[
+\left(\prod_{i\in J}\Delta_i\right)h(0).
+\]
+Because \(|J|=d+1\), that coefficient is zero. Since \(h(1_S)=g(u^S)\), this proves the identity. The proof is integral, so it remains valid modulo every integer and in every characteristic. ∎
+
+## Exact matrix formulation
+
+Let
+\[
+s(k,d)=\sum_{j=0}^{d}\binom{k}{j}.
+\]
+Define the universal degree-\(d\) monomial matrix
+\[
+M_{k,d}\in\mathbb Z^{s(k,d)\times 2^k},
+\qquad
+(M_{k,d})_{T,x}=\prod_{i\in T}x_i,
+\]
+with rows indexed by \(T\subseteq[k]\), \(|T|\le d\), and columns indexed by \(x\in\{0,1\}^k\).
+
+Every \(r\)-row degree-\(d\) signature matrix is of the form
+\[
+G=A M_{k,d}
+\]
+for some \(A\in R^{r\times s(k,d)}\). If \(\lambda\in\mathbb Z^{2^k}\) is supported on the chosen \((d+1)\)-subcube and
+\[
+\lambda_{u^S}=(-1)^{|S|},
+\]
+then
+\[
+M_{k,d}\lambda=0,
+\qquad
+G\lambda=A(M_{k,d}\lambda)=0.
+\tag{2}
+\]
+Thus arbitrary stacking, row scaling, dense linear combinations of rows, and reduction modulo any integer cannot remove the relation.
+
+For integer NCP/CVP coefficients, the replacement in (1) has squared coefficient norm
+\[
+\sum_{\varnothing\ne S\subseteq J}1=2^{d+1}-1.
+\]
+Over \(\mathbb F_2\), every sign becomes \(1\), giving an exact representation of support at most \(2^{d+1}-1\). Any collisions only lower the support.
+
+## Smallest genuinely new hostile test: \(k=3,d=2\)
+
+Order columns as
+\[
+000,100,010,001,110,101,011,111
+\]
+and rows as
+\[
+1,x_1,x_2,x_3,x_1x_2,x_1x_3,x_2x_3.
+\]
+Then
+\[
+M_{3,2}=
+\begin{pmatrix}
+1&1&1&1&1&1&1&1\\
+0&1&0&0&1&1&0&1\\
+0&0&1&0&1&0&1&1\\
+0&0&0&1&0&1&1&1\\
+0&0&0&0&1&0&0&1\\
+0&0&0&0&0&1&0&1\\
+0&0&0&0&0&0&1&1
+\end{pmatrix}.
+\]
+The exact integral identity is
+\[
+M_{3,2}[:,000]
+=
+M[:,100]+M[:,010]+M[:,001]
+-M[:,110]-M[:,101]-M[:,011]
++M[:,111].
+\tag{3}
+\]
+Equivalently,
+\[
+M_{3,2}
+\begin{pmatrix}
+1\\-1\\-1\\-1\\1\\1\\1\\-1
+\end{pmatrix}
+=0.
+\]
+Modulo \(2\), all eight columns sum to zero.
+
+This is the smallest new test beyond the affine parallelogram: degree \(2\) requires a \(3\)-dimensional cube. It is exhaustive for every degree-\(2\) signature on three bits, because every such signature factors through \(M_{3,2}\).
+
+Minimal verification code is:
+
+```python
+import numpy as np
+
+M = np.array([
+ [1,1,1,1,1,1,1,1],
+ [0,1,0,0,1,1,0,1],
+ [0,0,1,0,1,0,1,1],
+ [0,0,0,1,0,1,1,1],
+ [0,0,0,0,1,0,0,1],
+ [0,0,0,0,0,1,0,1],
+ [0,0,0,0,0,0,1,1],
+], dtype=object)
+
+repair = np.array([1,1,1,-1,-1,-1,1], dtype=object)
+assert np.array_equal(M[:,0], M[:,1:] @ repair)
+
+kernel = np.array([1,-1,-1,-1,1,1,1,-1], dtype=object)
+assert np.all(M @ kernel == 0)
+
+for p in [2,3,5,7]:
+    assert np.all((M @ kernel) % p == 0)
+```
+
+## All-eight-clause core
+
+Suppose each clause-view column for a three-variable clause consists of:
+
+1. a clause-coverage coordinate equal to \(1\), and
+2. any collection of degree-\(\le2\) signatures of its local view,
+
+possibly followed by arbitrary linear row mixing.
+
+Fix a global assignment \(a\in\{0,1\}^3\). Seven of the eight clauses admit view \(a\); the clause \(C_a\) forbidding \(a\) does not. For \(C_a\), replace its unavailable view \(a\) by all seven legal views using (3), translated by XOR with \(a\).
+
+The coefficients sum to
+\[
+3-3+1=1,
+\]
+so clause coverage is preserved. Every degree-\(\le2\) consistency signature is preserved by the theorem. Thus:
+
+- over \(\mathbb F_2\), select all seven legal views of \(C_a\);
+- over \(\mathbb Z\), use coefficients \(+1,+1,+1,-1,-1,-1,+1\).
+
+Together with one legal view for each of the other seven clauses, this gives an exact clause-side witness with:
+
+- binary support at most \(7+7=14\);
+- integer squared coefficient norm \(7+7=14\),
+
+versus \(8\) for the counterfactual witness that were allowed to use the forbidden view. The penalty is only \(6\), irrespective of residual-row scaling or dense linear recombination.
+
+Therefore replacing affine signatures by quadratic signatures does not repair the all-eight obstruction.
+
+## Arbitrary linear combinations and tensoring
+
+The obstruction is an equality in the source module, not merely a collision under selected tests. Therefore every subsequent linear operation preserves it. If \(F\) is any linear folding,
+\[
+F(g(u))
+=
+\sum_{\varnothing\ne S\subseteq J}
+(-1)^{|S|+1}F(g(u^S)).
+\]
+
+Likewise, for tensor order \(q\),
+\[
+g(u)^{\otimes q}
+=
+\sum_{S_1,\ldots,S_q\ne\varnothing}
+\left(\prod_{h=1}^q(-1)^{|S_h|+1}\right)
+g(u^{S_1})\otimes\cdots\otimes g(u^{S_q}).
+\tag{4}
+\]
+This uses \((2^{d+1}-1)^q\) mixed tensors before cancellations. Every dense linear folding of the tensor space preserves (4). Thus a folding cannot make the forbidden pure tensor algebraically distinguishable from all mixed legal tensors; its soundness must come entirely from proving that every such mixed representation remains norm-expensive.
+
+This directly addresses arbitrary tensor combinations, rather than only pure powers.
+
+The theorem does **not** claim that every fold of
+\[
+D=\operatorname{span}\{(1,1,0),(1,0,1)\}
+\]
+loses pointed distance; the full tensor of that code indeed has pointed distance \(4\). It says that any proposed low-degree local encoding feeding such a tensor scheme already carries the exact mixed relation (4). Consequently, success on the isolated \(D\) test is insufficient: the smallest additional hostile test is \(M_{3,2}\), followed by its tensor square and arbitrary mixed enumeration.
+
+## Odd three-color holonomy
+
+Raising the local signature degree all the way to the full local truth table avoids the finite-difference relation only when degree reaches the number of independently flippable bits. That does not defeat the odd-holonomy witness: its three tree colorings define exact full marginals, not merely matching low-degree moments. Hence every function of a depth-\(d<n\) local view—including every full-degree polynomial signature—has the same consistent marginal under restriction. Applying further linear rows to those signatures preserves the witness of support at most \(3K\).
+
+Thus the two possibilities are both blocked for bounded local views:
+
+- degree below full local degree: the finite-difference replacement above;
+- full local degree inside a subcycle-depth hierarchy: the existing three-color holonomy pseudoassignment.
+
+This theorem rules out the specific proposed escape “use nonlinear but bounded-degree local evaluations, then apply arbitrary linear mixing or dense tensor folding.” It does not rule out a genuinely global code-dependent folding or a low-degree construction whose columns are not local Boolean-view evaluations.

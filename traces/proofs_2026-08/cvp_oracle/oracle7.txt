@@ -1,0 +1,153 @@
+## A. Phase-cocycle classification under copy-stable local transformations
+
+Let \(G=\mathbb Z/q\mathbb Z\). Consider a phase lift satisfying the following assumptions.
+
+### Transformation assumptions
+
+1. **One-hot canonical completeness.**  
+   A satisfying Boolean assignment selects exactly one variable-value column and one legal-view column per transformed clause. For an incidence \(e=(j,r)\), the selected phases must satisfy
+   \[
+   y_{i(j,r),b_{i(j,r)}}=z_j+\alpha_{j,b|C_j,r}\qquad\text{in }G.
+   \]
+
+2. **Copy-stable locality.**  
+   There is a bipartite type multigraph
+   \[
+   U=(L\sqcup R,E),
+   \]
+   where \(L\) consists of variable-interface types, including the Boolean value, and \(R\) consists of legal clause-view types. Every port is an edge \(e=(\ell,\rho)\in E\) with a fixed label
+   \[
+   \alpha_e\in G.
+   \]
+   Copying a clause gadget or renaming variables preserves these labels. Thus \(\alpha_e\) cannot depend on unrelated parts of the input formula.
+
+3. **Cycle realization.**  
+   Every closed alternating walk in \(U\),
+   \[
+   W=\ell_0,\rho_0,\ell_1,\rho_1,\ldots,\ell_{k-1},\rho_{k-1},\ell_0,
+   \]
+   can be realized as the selected incidence cycle of some satisfiable transformed 3CNF and some satisfying assignment. Unused clause ports may be attached to fresh variables pinned to the required values.
+
+4. **Universal assignment completeness.**  
+   Every satisfying assignment of every formula produced under assumption 3 has a phase lift.
+
+Selectors are allowed only if they admit a **local single-valued section**: after fixing a legal view, the selected interface type at a port is determined by that port’s variable type and Boolean value, not by the surrounding cycle. Such selector labels are included in \(L\) and \(R\).
+
+### Theorem
+
+Under assumptions 1–4, every phase system is a coboundary. On each connected component of \(U\), there exist
+\[
+\beta_\ell\in G\quad(\ell\in L),\qquad
+\gamma_\rho\in G\quad(\rho\in R)
+\]
+such that every edge \(e=(\ell,\rho)\) satisfies
+\[
+\boxed{\alpha_e=\beta_\ell-\gamma_\rho.}
+\]
+
+Consequently the phase lift is gauge-equivalent to the zero-phase lift:
+\[
+y'_\ell=y_\ell-\beta_\ell,\qquad
+z'_\rho=z_\rho-\gamma_\rho,
+\]
+giving
+\[
+y'_\ell=z'_\rho.
+\]
+
+### Proof
+
+For the realized alternating cycle \(W\), let \(e_k=(\ell_k,\rho_k)\) and \(f_k=(\ell_{k+1},\rho_k)\), with indices modulo \(k\). The lift equations at \(\rho_k\) give
+\[
+y_{\ell_k}-z_{\rho_k}=\alpha_{e_k},
+\qquad
+y_{\ell_{k+1}}-z_{\rho_k}=\alpha_{f_k}.
+\]
+Subtracting and summing around the cycle,
+\[
+0=\sum_{k=0}^{k-1}(y_{\ell_k}-y_{\ell_{k+1}})
+ =\sum_{k=0}^{k-1}\bigl(\alpha_{e_k}-\alpha_{f_k}\bigr).
+\]
+Thus every alternating cycle has zero holonomy.
+
+Choose a spanning forest of \(U\). In each component fix \(\beta_{\ell_0}=0\). Propagate potentials along tree edges by
+\[
+\gamma_\rho=\beta_\ell-\alpha_{(\ell,\rho)},
+\qquad
+\beta_{\ell'}=\alpha_{(\ell',\rho)}+\gamma_\rho.
+\]
+Zero holonomy on each fundamental cycle implies that these values are independent of the chosen tree path and satisfy
+\[
+\alpha_{(\ell,\rho)}=\beta_\ell-\gamma_\rho
+\]
+on every non-tree edge as well.
+
+### Exact restoration of the three-column trade
+
+Assume a clause has forbidden view \(u\in\{0,1\}^3\). Choose distinct coordinates \(p,q\), and define the three legal views
+\[
+a=u\oplus e_p,\qquad
+b=u\oplus e_q,\qquad
+c=u\oplus e_p\oplus e_q.
+\]
+For each legal view \(v\), choose clause phase \(z_v=\gamma_{\rho_v}\). Its port \(r\) then appears at phase
+\[
+z_v+\alpha_{(\ell_{r,v_r},\rho_v)}
+ =\gamma_{\rho_v}+\beta_{\ell_{r,v_r}}-\gamma_{\rho_v}
+ =\beta_{\ell_{r,v_r}}.
+\]
+Over \(\mathbb F_2\), at each port the two columns carrying the flipped value cancel, while the remaining column carries \(u_r\). The clause-coverage coordinate occurs three times and hence once. Therefore
+\[
+\boxed{\partial Y(a,\gamma_{\rho_a})
++\partial Y(b,\gamma_{\rho_b})
++\partial Y(c,\gamma_{\rho_c})
+=\partial Y(u,\gamma_{\rho_u}).}
+\]
+Thus the forbidden boundary has a legal support-three representation, independently of \(q\).
+
+For the all-eight-clause core, fix any assignment \(u\). Seven clauses use their honest columns; the unique clause forbidden by \(u\) uses the three columns above. Hence the exact witness weight is
+\[
+3+7+3=13=K+2,\qquad K=3+8=11.
+\]
+No \(q^{\Omega(1)}\) trade lower bound is possible.
+
+### Selector and odd-orbit attacks
+
+If selectors allow arbitrary occurrence phase triples, choose in each of \(a,b,c\) the selector whose three interfaces equal the corresponding variable-side interfaces. The same support-three identity holds.
+
+More generally, selector choices must be tested under arbitrary GF(2) superposition, not one choice at a time. For a clause \(j\), let \(A_j\) have one column for every legal tuple
+\[
+(v,s,z),
+\]
+including all selector and phase rows, and let \(d_j(u)\) be the forbidden variable-side boundary plus the clause-coverage bit. The relevant quantity is exactly
+\[
+d_{\mathrm{sel}}(u)=
+\min\bigl\{|x|:A_jx=d_j(u)\text{ over }\mathbb F_2\bigr\}.
+\]
+A candidate is already dead if \(d_{\mathrm{sel}}(u)\le 5\); restricting the search to pure selector choices is unsound.
+
+Odd group sums also survive every single-valued interface selector. On the odd 3-color holonomy instance, sum the three locally consistent colorings related by the \(\mathbb Z/3\mathbb Z\) color rotation. Since \(3=1\) in \(\mathbb F_2\), every coverage row has odd mass. Shared-variable marginals agree, and their phase and selector labels depend only on the shared Boolean interface, so incidence rows cancel exactly. The resulting support is at most three per local object, independent of \(q\).
+
+### Falsifiable test
+
+Given the finite table \((U,\alpha)\):
+
+1. Compute a spanning forest \(T\).
+2. For every non-tree edge, compute the alternating holonomy of its fundamental cycle:
+   \[
+   h_C=\sum_k\bigl(\alpha_{e_k}-\alpha_{f_k}\bigr)\pmod q.
+   \]
+3. If some \(h_C\ne0\), instantiate the cycle-realizing satisfiable formula. Its lift equations are inconsistent because summing them gives \(0=h_C\). Completeness is falsified.
+4. If all \(h_C=0\), compute \(\beta,\gamma\) by tree propagation and verify
+   \[
+   \alpha_e=\beta_\ell-\gamma_\rho
+   \]
+   for every edge.
+5. Build the \(q=2\) all-eight-clause matrix and verify the explicit weight-13 witness above.
+6. Independently enumerate all selector subsets of support at most five and test
+   \[
+   A_jx=d_j(u)
+   \]
+   for every forbidden \(u\). Then run the same linear check on the \(n=3\) odd-holonomy instance using all odd selector-orbit sums.
+
+Therefore, within copy-stable local transformations, nonzero phase holonomy and universal SAT completeness are incompatible. A selector can evade the theorem only by making its choice globally cycle-dependent; arbitrary or GF(2)-superposed local selector freedom immediately restores the recorded constant-support trades.

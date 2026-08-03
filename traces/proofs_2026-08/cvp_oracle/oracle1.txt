@@ -1,0 +1,772 @@
+## Verdict
+
+Route 3 is the only one of the three that yields a useful, fully explicit object to test. It gives a clean exact reduction, and an outer error-correcting code can amplify any **nonzero residual** to polynomial weight.
+
+However, the construction has a decisive binary-superposition failure: over \(\mathbb F_2\), three satisfying local views can simulate the unique falsifying view of a 3-clause. Consequently, an unsatisfiable formula with one unavoidable violated clause has syndrome optimum only \(K+2\), versus \(K\) in the satisfiable case. Applying a linear code to the syndrome cannot repair this, because the cheating vector has residual exactly zero.
+
+I therefore do **not** have an unconditional polynomial-gap reduction from the stated ingredients. Below I give:
+
+1. the exact base construction;
+2. an explicit counterexample to its soundness amplification;
+3. a precise polynomial-size connected-view hierarchy;
+4. the exact unproved lemma that would make that hierarchy work;
+5. complete conditional parameter accounting;
+6. the exact lift to Euclidean CVP.
+
+The sole unproved soundness statement is isolated and explicitly marked. It is plausibly false and should be attacked computationally before any proof effort.
+
+---
+
+# 1. Exact one-hot syndrome reduction
+
+Let \(F\) be a 3CNF with variables \(x_1,\dots,x_n\) and clauses \(C_1,\dots,C_m\). For clarity, first assume every clause contains three distinct variables and is non-tautological. Each clause then has exactly seven satisfying assignments to its three underlying variable bits.
+
+All linear algebra is over \(\mathbb F_2\).
+
+For clause \(C_j\), let its ordered variable scope be
+
+\[
+(i(j,1),i(j,2),i(j,3)),
+\]
+
+and let
+
+\[
+S_j\subseteq \{0,1\}^3
+\]
+
+be the seven local bit assignments satisfying \(C_j\). The bits in \(a\in S_j\) are values of the underlying variables, not literal truth values.
+
+## Rows
+
+There are three kinds of rows.
+
+1. Variable coverage rows:
+   \[
+   V_i,\qquad i\in[n].
+   \]
+
+2. Clause coverage rows:
+   \[
+   Q_j,\qquad j\in[m].
+   \]
+
+3. Occurrence consistency rows:
+   \[
+   R_{j,r},\qquad j\in[m],\ r\in\{1,2,3\}.
+   \]
+
+Thus
+
+\[
+R_0=n+4m
+\]
+
+rows.
+
+## Columns
+
+1. For every variable \(x_i\) and bit \(b\in\{0,1\}\), a column
+   \[
+   X_{i,b}.
+   \]
+   It has:
+   - a \(1\) in row \(V_i\);
+   - entry \(b\) in every row \(R_{j,r}\) with \(i(j,r)=i\);
+   - zero elsewhere.
+
+2. For every clause \(C_j\) and every \(a=(a_1,a_2,a_3)\in S_j\), a column
+   \[
+   Y_{j,a}.
+   \]
+   It has:
+   - a \(1\) in row \(Q_j\);
+   - entry \(a_r\) in row \(R_{j,r}\), for \(r=1,2,3\);
+   - zero elsewhere.
+
+The number of columns is
+
+\[
+P_0=2n+7m.
+\]
+
+Let the matrix formed by these columns be \(H_F\).
+
+## Target syndrome
+
+Let \(t_F\in\mathbb F_2^{n+4m}\) have:
+
+- \(1\) in every variable coverage row \(V_i\);
+- \(1\) in every clause coverage row \(Q_j\);
+- \(0\) in every consistency row \(R_{j,r}\).
+
+Set
+
+\[
+K=n+m.
+\]
+
+---
+
+# 2. Exact completeness and exact threshold
+
+## Lemma 2.1: Completeness
+
+If \(F\) is satisfiable, then \(H_F e=t_F\) has a solution of weight exactly \(K\).
+
+### Proof
+
+Given a satisfying assignment \(A\):
+
+- select \(X_{i,A(x_i)}\) for every variable \(i\);
+- select \(Y_{j,A|_{\operatorname{scope}(C_j)}}\) for every clause \(j\).
+
+There is one selected column in every variable group and every clause group, so all coverage rows equal \(1\).
+
+At occurrence \((j,r)\), the variable column contributes \(A(x_{i(j,r)})\), and the clause-view column contributes the same bit. Their sum is zero over \(\mathbb F_2\).
+
+The weight is \(n+m=K\). ∎
+
+## Lemma 2.2: Exact soundness at threshold \(K\)
+
+If \(H_F e=t_F\) has a solution of weight at most \(K\), then \(F\) is satisfiable.
+
+### Proof
+
+The row \(V_i\) is supported only on the two columns \(X_{i,0},X_{i,1}\). Since its target is \(1\), an odd number of those two columns must be selected. Hence at least one variable column is selected for every \(i\).
+
+Likewise, row \(Q_j\) is supported only on the seven columns \(Y_{j,a}\), so at least one clause column is selected for every \(j\).
+
+Thus every solution has weight at least \(n+m=K\). If its weight is at most \(K\), it selects exactly one column in every variable group and exactly one in every clause group.
+
+Write the selected variable bit as \(b_i\), and the selected clause view as \(a^{(j)}\in S_j\). Consistency row \(R_{j,r}\) gives
+
+\[
+b_{i(j,r)}+a^{(j)}_r=0,
+\]
+
+so \(a^{(j)}\) is the restriction of the global assignment \(b\). Since \(a^{(j)}\in S_j\), every clause is satisfied. ∎
+
+Consequently,
+
+\[
+F\in\mathrm{SAT}\iff \operatorname{opt}(H_F,t_F)=K,
+\]
+
+while in the NO case
+
+\[
+\operatorname{opt}(H_F,t_F)\ge K+2.
+\]
+
+The increment is even because every coverage group must have odd selected cardinality.
+
+---
+
+# 3. Exact binary-superposition attack
+
+The lower bound \(K+2\) is essentially tight.
+
+Fix an arbitrary global assignment \(b\). For a clause \(C_j\):
+
+- if \(b\) satisfies \(C_j\), select the singleton local view \(b|_{\operatorname{scope}(C_j)}\);
+- if \(b\) falsifies \(C_j\), let \(u\in\{0,1\}^3\) be its falsifying local view.
+
+Choose two linearly independent nonzero vectors \(p,q\in\mathbb F_2^3\). The three views
+
+\[
+u+p,\qquad u+q,\qquad u+p+q
+\]
+
+are all different from \(u\), hence all satisfy the clause. Moreover,
+
+\[
+(u+p)+(u+q)+(u+p+q)=u.
+\]
+
+Selecting these three clause columns:
+
+- gives clause coverage \(3\equiv1\pmod 2\);
+- contributes exactly the falsifying local view \(u\) to the consistency rows.
+
+Therefore it is perfectly consistent with the selected global variable columns.
+
+If \(v_F(b)\) is the number of clauses falsified by \(b\), this gives
+
+\[
+\operatorname{opt}(H_F,t_F)\le K+2v_F(b).
+\]
+
+In particular,
+
+\[
+\operatorname{opt}(H_F,t_F)
+ \le K+2\min_b v_F(b).
+\]
+
+There are unsatisfiable formulas with \(\min_bv_F(b)=1\). For example, on three variables take all eight clauses, one clause falsified by each of the eight assignments. Every assignment violates exactly one clause. For that formula,
+
+\[
+K=3+8=11,\qquad \operatorname{opt}\le13.
+\]
+
+By Lemma 2.2, the optimum is exactly \(13\).
+
+This is not a rare cancellation; it is forced by affine geometry over \(\mathbb F_2\).
+
+---
+
+# 4. Local linear signatures cannot fix this
+
+The attack survives arbitrary duplication of consistency rows and arbitrary linear error-correcting postprocessing.
+
+## Lemma 4.1: Affine local-view obstruction
+
+Suppose the contribution of the three independently selected variable bits to some collection of binary consistency rows is an affine map
+
+\[
+g:\mathbb F_2^3\to\mathbb F_2^r,\qquad g(u)=Au+c.
+\]
+
+Suppose a singleton clause column for satisfying view \(a\) is designed to cancel \(g(a)\). Then for every forbidden view \(u\), there are three satisfying views \(a,b,c\) whose three clause columns cancel \(g(u)\).
+
+### Proof
+
+Choose independent nonzero \(p,q\), and set
+
+\[
+a=u+p,\quad b=u+q,\quad c=u+p+q.
+\]
+
+All three differ from \(u\), so all satisfy a clause having \(u\) as its unique falsifying view. Also \(a+b+c=u\). Because the sum contains an odd number of affine offsets,
+
+\[
+g(a)+g(b)+g(c)
+ =A(a+b+c)+c
+ =Au+c
+ =g(u).
+\]
+
+Thus the three satisfying columns simulate the forbidden view in every such row. ∎
+
+Any consistency signature obtained by summing contributions from separately chosen variable columns is affine. Therefore no linear row augmentation of this local form can exclude the attack.
+
+A successful construction must introduce genuinely non-affine global information—products, larger tuple views, or an equivalent mechanism.
+
+---
+
+# 5. Explicit outer-code amplification—and why it does not solve the problem
+
+The following operation strongly amplifies a nonzero residual. It does not amplify exact zero-residual superpositions.
+
+Let \(H\in\mathbb F_2^{R\times P}\) and \(t\in\mathbb F_2^R\).
+
+## An explicit binary code
+
+Choose \(q=2^s\) to be the least power of two satisfying
+
+\[
+q\ge 2S,\qquad S\ge \max\{R,P\}.
+\]
+
+Thus \(2S\le q<4S\).
+
+Partition an \(R\)-bit message into
+
+\[
+k_{\rm RS}=\left\lceil R/s\right\rceil
+\]
+
+symbols of \(\mathbb F_q\), padding with zeroes. Regard them as coefficients of a polynomial \(p\in\mathbb F_q[X]\) of degree \(<k_{\rm RS}\).
+
+Evaluate \(p\) at all \(\beta\in\mathbb F_q\). Concatenate each symbol \(a\in\mathbb F_q\) with its binary simplex word
+
+\[
+\sigma(a)=\bigl(\operatorname{Tr}_{\mathbb F_q/\mathbb F_2}(\gamma a)\bigr)_
+ {\gamma\in\mathbb F_q^\times}.
+\]
+
+This defines an injective binary linear map
+
+\[
+E:\mathbb F_2^R\to\mathbb F_2^L,
+\qquad
+L=q(q-1).
+\]
+
+If \(a\ne0\), then \(\sigma(a)\) has weight \(q/2\). A nonzero degree-\(<k_{\rm RS}\) polynomial has at most \(k_{\rm RS}-1\) roots. Hence
+
+\[
+d_E
+ \ge (q-k_{\rm RS}+1)\frac q2
+ \ge \frac{q^2}{4}.
+\]
+
+Since \(q<4S\),
+
+\[
+L=\Theta(S^2),\qquad d_E=\Theta(S^2).
+\]
+
+Everything is deterministic and can be implemented using any explicit irreducible degree-\(s\) polynomial over \(\mathbb F_2\).
+
+## Amplified syndrome instance
+
+Define
+
+\[
+H^\star=\begin{bmatrix}EH&I_L\end{bmatrix},
+\qquad
+t^\star=Et.
+\]
+
+For every choice of original coordinates \(x\in\mathbb F_2^P\), the identity coordinates are forced to be
+
+\[
+y=E(t+Hx).
+\]
+
+Thus the objective is exactly
+
+\[
+|x|+\bigl|E(t+Hx)\bigr|.
+\]
+
+Therefore:
+
+- if \(Hx=t\), the code contributes zero;
+- if \(Hx\ne t\), the code contributes at least \(d_E\).
+
+Applied to the base instance, a satisfying assignment still has weight \(K\).
+
+But the three-view attack has \(H_Fx=t_F\) exactly, so it still has weight \(K+2v_F(b)\). The outer code contributes nothing.
+
+> **Soundness warning:** Error-correcting the residual amplifies violated linear equations. It cannot amplify a sparse alternative exact representation of the same target syndrome.
+
+---
+
+# 6. The most concrete next candidate: connected local-view hierarchy
+
+The narrowest construction I consider worth implementing is a logarithmic connected-view hierarchy, followed by the explicit residual code above.
+
+It is polynomial-size for bounded-degree formulas. Its required soundness lemma is precise and directly falsifiable.
+
+## 6.1 Bounded-degree preprocessing
+
+Replace each occurrence of a high-degree variable by a separate copy, and connect consecutive copies cyclically using equality constraints
+
+\[
+(\neg x_j\lor x_{j+1})\land(x_j\lor\neg x_{j+1}).
+\]
+
+If strict 3CNF is required, replace a 2-clause \(a\lor b\) by
+
+\[
+(a\lor b\lor z)\land(a\lor b\lor\neg z)
+\]
+
+with a fresh \(z\).
+
+This preserves satisfiability and increases size only linearly. The resulting variable occurrence degree is bounded by a universal constant. Consequently the clause-intersection graph—clauses adjacent when they share a variable—has maximum degree at most a universal constant \(D\); one safe bound is \(D=24\).
+
+Let the resulting formula have \(M\) clauses.
+
+## 6.2 Connected scopes
+
+Fix a constant \(C>0\) and set
+
+\[
+d=\lceil C\ln M\rceil.
+\]
+
+Let \(\mathcal Q_d\) be all nonempty connected sets \(Q\) of at most \(d\) clauses in the clause-intersection graph.
+
+For \(Q\in\mathcal Q_d\):
+
+- let \(V(Q)\) be the variables occurring in \(Q\);
+- let \(A_Q\subseteq\{0,1\}^{V(Q)}\) be the assignments satisfying every clause in \(Q\).
+
+Since \(|V(Q)|\le3d\),
+
+\[
+|A_Q|\le 2^{3d}.
+\]
+
+## 6.3 Columns
+
+For every \(Q\in\mathcal Q_d\) and every \(a\in A_Q\), create a column
+
+\[
+Z_{Q,a}.
+\]
+
+## 6.4 Rows
+
+### Coverage rows
+
+For every \(Q\in\mathcal Q_d\), create a row \(U_Q\). Every column \(Z_{Q,a}\) has a \(1\) in \(U_Q\). The target in \(U_Q\) is \(1\).
+
+### Marginal-consistency rows
+
+For every pair \(Q',Q\in\mathcal Q_d\) such that
+
+- \(Q'\subset Q\);
+- \(|Q\setminus Q'|=1\);
+- both \(Q,Q'\) are connected,
+
+and for every \(b\in A_{Q'}\), create a row
+
+\[
+W_{Q,Q',b}.
+\]
+
+In that row:
+
+- \(Z_{Q,a}\) has entry \(1\) iff \(a|_{V(Q')}=b\);
+- \(Z_{Q',b}\) has entry \(1\);
+- all other columns have entry \(0\).
+
+The target is zero.
+
+Call the resulting matrix and target
+
+\[
+H_{F,d},\qquad t_{F,d}.
+\]
+
+## 6.5 Completeness
+
+If \(F\) has satisfying assignment \(A\), select exactly
+
+\[
+Z_{Q,A|_{V(Q)}}
+\]
+
+for every \(Q\in\mathcal Q_d\).
+
+Every coverage row receives one. Every marginal-consistency row receives either two ones or zero ones. Thus
+
+\[
+H_{F,d}x=t_{F,d}.
+\]
+
+The exact YES weight is
+
+\[
+K_d=|\mathcal Q_d|.
+\]
+
+No exact solution has weight below \(K_d\), because every coverage group must have odd nonzero support.
+
+## 6.6 Interpretation of exact solutions
+
+An exact solution is equivalently a family of functions
+
+\[
+\mu_Q:A_Q\to\mathbb F_2
+\]
+
+such that:
+
+1. odd normalization:
+   \[
+   \sum_{a\in A_Q}\mu_Q(a)=1
+   \quad\text{for every }Q;
+   \]
+
+2. marginal consistency:
+   \[
+   \mu_{Q'}(b)
+   =
+   \sum_{\substack{a\in A_Q\\a|_{V(Q')}=b}}
+   \mu_Q(a)
+   \quad\text{for every inclusion edge }Q'\subset Q.
+   \]
+
+Its weight is
+
+\[
+\sum_{Q\in\mathcal Q_d}
+ |\operatorname{supp}\mu_Q|.
+\]
+
+This is a mod-2 local pseudoassignment. It need not arise from a global assignment.
+
+---
+
+# 7. The exact missing lemma
+
+The candidate needs the following statement.
+
+## Unproved Lemma LCV\((C,\eta)\)
+
+There exist universal constants \(C,\eta>0\) such that for every unsatisfiable bounded-degree 3CNF \(F\) with \(M\) clauses, every exact solution of
+
+\[
+H_{F,d}x=t_{F,d},
+\qquad d=\lceil C\ln M\rceil,
+\]
+
+has weight at least
+
+\[
+K_d M^\eta.
+\]
+
+If no exact solution exists, the conclusion is interpreted as vacuous.
+
+> **UNPROVED SOUNDNESS STEP:** LCV\((C,\eta)\) is not established here.
+
+> **Adversarial assessment:** This is not plausibly a routine expander lemma. It asserts that logarithmic connected views eliminate, or force polynomial support in, every mod-2 pseudoassignment of every unsatisfiable bounded-degree formula. High-girth formulas assembled from locally satisfiable parity-like constraints are natural counterexample candidates. A proof would supply precisely the missing robust global-consistency phenomenon; it is therefore comparable in strength to the gap-generation ingredient the project is trying not to assume.
+
+I would not build further theory on this lemma until it survives exhaustive testing.
+
+---
+
+# 8. Conditional polynomial-gap accounting
+
+The number of connected clause sets of size at most \(d\) in a graph of maximum degree \(D\) is bounded by
+
+\[
+|\mathcal Q_d|\le M(4D)^d.
+\]
+
+Thus
+
+\[
+K_d\le M(4D)^d.
+\]
+
+The number of columns satisfies
+
+\[
+P
+ \le |\mathcal Q_d|2^{3d}
+ \le M(32D)^d.
+\]
+
+There are at most \(d|\mathcal Q_d|\) relevant one-clause-deletion inclusion edges, each carrying at most \(2^{3d}\) consistency rows. Therefore
+
+\[
+R
+ \le |\mathcal Q_d|+d|\mathcal Q_d|2^{3d}
+ \le 2Md(32D)^d
+\]
+
+for \(d\ge1\).
+
+Set
+
+\[
+S=P+R\le 3Md(32D)^d.
+\]
+
+Because \(d=C\ln M+O(1)\), this is polynomial in \(M\). A safe exponent is
+
+\[
+S=O(M^a),
+\qquad
+a=2+C\ln(32D).
+\]
+
+Now apply the explicit RS–simplex residual code with \(q\) the least power of two at least \(2S\). It has
+
+\[
+L=q(q-1)=\Theta(S^2),\qquad d_E\ge q^2/4=\Theta(S^2).
+\]
+
+The final syndrome matrix is
+
+\[
+H^\star_{F,d}
+ =
+ \begin{bmatrix}
+ E H_{F,d}&I_L
+ \end{bmatrix},
+\qquad
+t^\star_{F,d}=Et_{F,d}.
+\]
+
+Its number of coordinates is
+
+\[
+N=P+L=\Theta(S^2).
+\]
+
+### YES case
+
+A satisfying assignment gives weight exactly
+
+\[
+K_d.
+\]
+
+Since \(d_E>K_d\) for sufficiently large \(M\), no nonexact lower-weight choice helps. Hence the optimum is \(K_d\).
+
+### NO case, conditional on LCV
+
+For any \(x\):
+
+- if \(H_{F,d}x=t_{F,d}\), LCV gives
+  \[
+  |x|\ge K_dM^\eta;
+  \]
+- otherwise the residual-code coordinates have weight at least \(d_E\).
+
+Therefore
+
+\[
+\operatorname{opt}_{\rm NO}
+ \ge \min\{K_dM^\eta,d_E\}.
+\]
+
+The binary gap is at least
+
+\[
+\min\left\{M^\eta,\frac{d_E}{K_d}\right\}.
+\]
+
+Since \(K_d\le P\le S\) and \(d_E=\Theta(S^2)\),
+
+\[
+\frac{d_E}{K_d}=\Omega(S)=\Omega(N^{1/2}).
+\]
+
+Also \(N=O(M^{2a})\), up to a constant. A conservative explicit exponent, absorbing constants for sufficiently large instances, is
+
+\[
+c_{\rm bin}
+ =
+ \min\left\{\frac13,\frac{\eta}{3a}\right\},
+\qquad
+a=2+C\ln(32D).
+\]
+
+Thus, **conditional on LCV\((C,\eta)\)**,
+
+\[
+\frac{\operatorname{opt}_{\rm NO}}
+     {\operatorname{opt}_{\rm YES}}
+ \ge N^{c_{\rm bin}}.
+\]
+
+The sharper asymptotic exponent is
+
+\[
+\min\left\{\frac12,\frac{\eta}{2a}\right\}-o(1).
+\]
+
+---
+
+# 9. Exact Euclidean CVP lift
+
+Given any binary syndrome instance
+
+\[
+H e=t,\qquad e\in\mathbb F_2^N,
+\]
+
+choose any \(v\in\{0,1\}^N\) with
+
+\[
+Hv=t.
+\]
+
+For the amplified construction this is immediate because of the identity block: one may take \(v=(0,Et)\).
+
+Define the Construction-A lattice
+
+\[
+\Lambda_H
+ =
+ \{z\in\mathbb Z^N:Hz=0\pmod2\}.
+\]
+
+A basis can be computed deterministically in polynomial time by taking the integer lattice generated by \(2I_N\) together with lifts of a basis of \(\ker_{\mathbb F_2}H\), followed by Hermite normal form.
+
+For every \(z\in\Lambda_H\), let
+
+\[
+e=(v-z)\bmod2.
+\]
+
+Then \(He=t\). Every coordinate where \(e_i=1\) has \(|v_i-z_i|\ge1\), so
+
+\[
+\|v-z\|_2^2\ge |e|.
+\]
+
+Conversely, for any binary \(e\) with \(He=t\), the integer vector
+
+\[
+z=v-e
+\]
+
+lies in \(\Lambda_H\), and
+
+\[
+\|v-z\|_2^2=|e|.
+\]
+
+Therefore
+
+\[
+\operatorname{dist}_2(v,\Lambda_H)^2
+ =
+ \min\{|e|:He=t\}.
+\]
+
+A binary syndrome weight gap \(N^{c_{\rm bin}}\) becomes a Euclidean distance gap
+
+\[
+N^{c_{\rm bin}/2}.
+\]
+
+Under LCV, the conservative explicit Euclidean exponent is therefore
+
+\[
+c_{\rm CVP}
+ =
+ \frac12
+ \min\left\{\frac13,\frac{\eta}{3(2+C\ln(32D))}\right\}.
+\]
+
+---
+
+# 10. Why the other two routes do not currently compete
+
+## Tensor/direct product
+
+Even granting perfect multiplicativity, a base ratio
+
+\[
+\frac{K+2}{K}=1+\frac2K
+\]
+
+tensorized \(r\) times gives
+
+\[
+\left(1+\frac2K\right)^r.
+\]
+
+An explicit \(r\)-fold tensor has dimension at least \(P^r\). Polynomial output permits only constant \(r\), which leaves ratio \(1+O(1/K)\). Taking \(r=\Theta(K\log K)\) would create a polynomial ratio but output size \(P^{\Theta(K\log K)}\), which is superpolynomial. Moreover, multiplicativity of coset weight is itself false or unproved for the relevant tensor constructions.
+
+## Low-degree evaluation
+
+A low-degree identity test can spread a nonzero polynomial residual over many evaluation points. The unresolved issue is forcing the evaluation table to arise from one Boolean assignment using one affine nearest-codeword instance. Multiplication and clause satisfaction are nonlinear; linearization introduces local pseudoassignments of exactly the kind above. Proving that all low-weight affine solutions globally decode to an assignment is the missing soundness theorem, not an elementary polynomial-distance calculation.
+
+---
+
+# Recommendation
+
+Implement the connected-view matrix \(H_{F,d}\) and search directly for counterexamples to LCV:
+
+1. generate small bounded-degree unsatisfiable formulas;
+2. enumerate connected clause sets up to \(d\);
+3. build the binary marginal-consistency matrix exactly as above;
+4. test whether \(t_{F,d}\) lies in its column span;
+5. if it does, solve the minimum-weight syndrome problem for that fiber.
+
+The first target family should be high-girth, minimally inconsistent systems of parity constraints converted gate-by-gate to bounded-degree 3CNF. If they admit low-support mod-2 pseudoassignments at \(d=\Theta(\log M)\), this route is dead. If they do not, LCV is the narrowest concrete soundness statement worth attempting.
+
+At present, every step except LCV is elementary and proved above. LCV is the entire research bottleneck; treating it as routine would conceal exactly the missing gap-amplification ingredient.

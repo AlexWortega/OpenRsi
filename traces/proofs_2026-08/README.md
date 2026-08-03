@@ -43,3 +43,16 @@ max_{α(G)≤2} α(G^⊠k) = R_k(r+1)−1.
 Goal ladder for round 3+: (a) base > 3.199 record → (b) provably growing base →
 (c) superexponential. None reached yet; the durable output is theorems that
 close mechanism classes. Full event streams (`events.jsonl.gz`) archived per run.
+
+## CVP campaign (ten-proofs ch.7 problem; worker sol thinking=high + oracle, $50, runner `agent/proofs/run5.js`)
+
+`cvp_oracle/` — PCP-free polynomial-factor NP-hardness of Euclidean CVP from
+3SAT. PARTIAL (negative diagnostics only), 8 oracle consultations, 40 passing
+verifiers. Durable output: a rigorous obstruction map — every bounded-local
+mechanism dies (affine extrapolation; alternating (d+1)-cube cheat for any
+constant-degree local signature, surviving mixing/mod/tensoring/folding;
+gauge-triviality theorem for copy-stable local phase lifts; unary-marginal
+2x2-rectangle nonintegrality; tensor pointed-distance multiplicativity +
+sampling lower bounds). Its final verdict: hardness must come from a genuinely
+global norm-vs-integrality mechanism. Run ended by an over-aggressive 120-min
+round watchdog while still active (lesson: activity-based, not nudge-based).

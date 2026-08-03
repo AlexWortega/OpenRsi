@@ -1,0 +1,594 @@
+## Outcome
+
+I tested a new **characteristic-3, relation-matched syndrome encoding**. It avoids one-hot local views entirely:
+
+1. Convert each 3SAT clause to four exact-one constraints.
+2. Encode exact-one constraints directly over \(\mathbb F_3\), where a Boolean sum of three bits is \(1\bmod 3\) iff it is exactly \(1\).
+3. Lift the syndrome instance exactly to Euclidean CVP using a Construction-A lattice.
+
+This encoding provably destroys both the forbidden-clause all-plus triple and the three-color odd-orbit sum. Nevertheless it does **not** yield any superconstant gap. There is an explicit family of UNSAT 3SAT instances whose resulting CVP optimum is exactly
+\[
+\sqrt{N+1}
+\]
+against completeness radius \(\sqrt N\). The obstruction is a characteristic-3 affine extrapolation: a false implication is repaired by assigning one auxiliary variable the field value \(2=-1\), costing only one extra support position.
+
+No unproved lemma is used below.
+
+---
+
+# 1. Exact-one preprocessing
+
+Write
+\[
+R(u,v,w)\quad\Longleftrightarrow\quad u+v+w=1
+\]
+over Boolean values, allowing literals in the three positions.
+
+For every original 3SAT clause
+\[
+C=(\ell_1\vee \ell_2\vee \ell_3),
+\]
+introduce six fresh variables
+\[
+s_{C,1},s_{C,2},s_{C,3},a_{C,1},a_{C,2},a_{C,3}
+\]
+and the four exact-one constraints
+\[
+R(s_{C,1},s_{C,2},s_{C,3}),
+\]
+\[
+R(s_{C,j},\neg\ell_j,a_{C,j}),\qquad j=1,2,3.
+\]
+
+Here \(\neg\ell_j\) denotes the complementary literal.
+
+For Boolean values, the second constraint is
+\[
+s_{C,j}+(1-\ell_j)+a_{C,j}=1,
+\]
+hence
+\[
+a_{C,j}=\ell_j-s_{C,j}.
+\]
+A Boolean \(a_{C,j}\) exists exactly when \(s_{C,j}\leq \ell_j\).
+
+### Lemma 1: Exact Boolean equivalence
+
+The original clause \(C\) is satisfied iff the four new exact-one constraints admit a Boolean extension.
+
+#### Proof
+
+If \(C\) is satisfied, choose one true literal \(\ell_j\), set \(s_{C,j}=1\), and set the other selectors to zero. Then set
+\[
+a_{C,k}=\ell_k-s_{C,k}\in\{0,1\}.
+\]
+
+Conversely, the first constraint selects exactly one \(j\). For that \(j\), Boolean feasibility of
+\[
+a_{C,j}=\ell_j-1
+\]
+forces \(\ell_j=1\). Thus \(C\) is satisfied. ∎
+
+For a 3SAT instance with \(n\) variables and \(m\) clauses, the resulting exact-one instance \(G\) has
+\[
+N=n+6m
+\]
+variables and
+\[
+Q=4m
+\]
+constraints.
+
+---
+
+# 2. The ternary syndrome matrix
+
+For every variable \(u\) of \(G\), create two columns
+\[
+(u,0),\qquad (u,1).
+\]
+The intended meaning is that exactly one is selected.
+
+Let
+\[
+H_G\in\mathbb F_3^{(N+Q)\times 2N}
+\]
+and \(t=\mathbf 1\in\mathbb F_3^{N+Q}\).
+
+## Variable rows
+
+For each variable \(u\), create a row \(r_u\) with
+\[
+H_G[r_u,(u,0)]=H_G[r_u,(u,1)]=1,
+\]
+and all other entries zero.
+
+Thus every syndrome solution \(e\) satisfies
+\[
+e_{u,0}+e_{u,1}=1.
+\]
+
+## Constraint rows
+
+For every exact-one constraint
+\[
+R(\lambda_1,\lambda_2,\lambda_3),
+\]
+create a row \(r_C\). For each occurrence of a literal on variable \(u\),
+
+- if the literal is \(u\), put \(1\) in column \((u,1)\);
+- if the literal is \(\neg u\), put \(1\) in column \((u,0)\).
+
+All other entries are zero. The target in this row is \(1\).
+
+The syndrome problem is therefore
+\[
+H_G e=t\qquad\text{over }\mathbb F_3,
+\]
+minimizing \(\operatorname{wt}(e)\).
+
+This matrix is directly implementable as a sparse \(0/1\) matrix.
+
+---
+
+# 3. Completeness and exact additive soundness
+
+## Lemma 2: Completeness
+
+If the original 3SAT instance is satisfiable, then
+\[
+\min\{\operatorname{wt}(e):H_Ge=t\}\leq N.
+\]
+
+### Proof
+
+Extend the satisfying assignment to a Boolean assignment of all \(N\) variables using Lemma 1. For each variable \(u\), set
+\[
+(e_{u,0},e_{u,1})=
+\begin{cases}
+(1,0),&u=0,\\
+(0,1),&u=1.
+\end{cases}
+\]
+Exactly one coordinate per pair is nonzero, so \(\operatorname{wt}(e)=N\).
+
+Every variable row sums to \(1\). Every exact-one row receives exactly one contribution \(1\), hence also sums to \(1\) in \(\mathbb F_3\). ∎
+
+## Lemma 3: Exact soundness at weight \(N\)
+
+If there exists \(e\) satisfying
+\[
+H_Ge=t,\qquad \operatorname{wt}(e)\leq N,
+\]
+then the original 3SAT instance is satisfiable.
+
+Consequently, for an UNSAT instance,
+\[
+\operatorname{wt}(e)\geq N+1
+\]
+for every syndrome solution.
+
+### Proof
+
+Each variable pair satisfies
+\[
+e_{u,0}+e_{u,1}=1.
+\]
+Thus every pair has at least one nonzero coordinate. There are \(N\) pairs, so weight at most \(N\) means every pair has support exactly one.
+
+The single nonzero coefficient in each pair must be \(1\). Hence \(e\) defines a Boolean assignment.
+
+In a constraint row, the row sum is the number \(k\in\{0,1,2,3\}\) of true literals. Over \(\mathbb F_3\),
+\[
+k=1\bmod 3
+\]
+holds exactly for \(k=1\). Thus every exact-one constraint is Boolean-satisfied. Lemma 1 then gives a satisfying assignment of the original 3SAT instance. ∎
+
+This is an exact theorem, but it gives only the additive gap
+\[
+N\quad\text{versus}\quad N+1.
+\]
+
+---
+
+# 4. Explicit Euclidean CVP lift
+
+Let
+\[
+C=2N
+\]
+be the syndrome-vector length, and let
+\[
+L_H=\{z\in\mathbb Z^C:H_Gz=0\bmod 3\}.
+\]
+This is a full-rank integer lattice of rank \(C\).
+
+The transformed exact-one system is always solvable over \(\mathbb F_3\): assign arbitrary values to the original variables, choose selectors summing to \(1\), and define
+\[
+a_{C,j}=\ell_j-s_{C,j}\in\mathbb F_3.
+\]
+Therefore \(t\in\operatorname{im}H_G\). Compute any \(y\in\{0,1,2\}^C\) satisfying
+\[
+H_Gy=t.
+\]
+
+The CVP instance is
+\[
+(L_H,y)
+\]
+with ordinary unit-weight Euclidean norm.
+
+## Explicit basis
+
+Row-reduce \(H_G\) over \(\mathbb F_3\), deleting dependent rows and permuting columns, to obtain
+\[
+H_G\sim [\,I_s\mid A\,],
+\]
+where \(s=\operatorname{rank}_{\mathbb F_3}H_G\).
+
+An integer basis of \(L_H\), in this column ordering, is
+\[
+B=
+\begin{pmatrix}
+3I_s & -\widetilde A\\
+0 & I_{C-s}
+\end{pmatrix},
+\]
+where \(\widetilde A\) is any integer lift of \(A\), for example with entries in \(\{0,1,2\}\). Undo the column permutation afterward.
+
+Every basis column lies in \(L_H\), and
+\[
+|\det B|=3^s=[\mathbb Z^C:L_H],
+\]
+so these columns form a basis of the entire lattice.
+
+## Lemma 4: Exact distance identity
+
+\[
+\operatorname{dist}_2(y,L_H)^2
+=
+\min\{\operatorname{wt}(e):H_Ge=t\}.
+\]
+
+### Proof
+
+Because \(H_Gy=t\),
+\[
+y-L_H=\{e\in\mathbb Z^C:H_Ge=t\bmod 3\}.
+\]
+For any residue vector \(\bar e\in\mathbb F_3^C\), its minimum-norm integer lift uses
+
+- \(0\) for residue \(0\);
+- \(1\) for residue \(1\);
+- \(-1\) for residue \(2\).
+
+Its squared Euclidean norm is therefore exactly the number of nonzero residues. Minimizing over the syndrome coset gives the identity. ∎
+
+Hence:
+
+- YES:
+  \[
+  \operatorname{dist}_2(y,L_H)\leq\sqrt N.
+  \]
+- NO:
+  \[
+  \operatorname{dist}_2(y,L_H)\geq\sqrt{N+1}.
+  \]
+
+The lattice rank is
+\[
+r=C=2N=2n+12m.
+\]
+
+The gap is only
+\[
+\sqrt{\frac{N+1}{N}}
+=
+1+\Theta(1/N)
+=
+1+\Theta(1/r),
+\]
+not \(r^c\).
+
+## Output accounting
+
+For an \(n\)-variable, \(m\)-clause 3SAT instance:
+
+\[
+N=n+6m,
+\]
+\[
+Q=4m,
+\]
+\[
+H_G\text{ has }n+10m\text{ rows and }2n+12m\text{ columns},
+\]
+\[
+\operatorname{rank}(L_H)=2n+12m.
+\]
+
+All matrix entries are in \(\{-2,-1,0,1,2,3\}\) after the basis construction. Gaussian elimination and basis production are deterministic polynomial time, and even a dense representation has polynomial size.
+
+---
+
+# 5. Exact counterfamily: NO optimum \(N+1\)
+
+The additive soundness is tight on an infinite family arising from the stated 3SAT preprocessing.
+
+Let \(F_0\) have variables \(x_1,x_2,x_3\) and all eight clauses
+\[
+C_a=(\lambda_{a,1}\vee\lambda_{a,2}\vee\lambda_{a,3}),
+\qquad a\in\{0,1\}^3,
+\]
+where
+\[
+\lambda_{a,i}=
+\begin{cases}
+x_i,&a_i=0,\\
+\neg x_i,&a_i=1.
+\end{cases}
+\]
+For every Boolean assignment \(b\), exactly the clause \(C_b\) is false. Hence \(F_0\) is UNSAT.
+
+Add \(D\) disjoint satisfiable clauses
+\[
+(p_j\vee q_j\vee r_j),\qquad j=1,\dots,D.
+\]
+The resulting formula remains UNSAT. It has
+\[
+n=3+3D,\qquad m=8+D.
+\]
+After exact-one preprocessing,
+\[
+N=n+6m=51+9D.
+\]
+
+Choose any Boolean assignment to the core. In every satisfied clause gadget, select a true literal. In the unique false clause gadget, select any literal. For the selected false literal,
+\[
+a=\ell-s=0-1=-1=2\in\mathbb F_3.
+\]
+All other transformed variables can be Boolean.
+
+A Boolean-valued transformed variable costs one support position. A value \(2\) has
+\[
+(e_{u,0},e_{u,1})=(2,2),
+\]
+because \(2+2=1\bmod 3\), and therefore costs two positions. Thus the constructed syndrome vector has weight
+\[
+N+1.
+\]
+
+Lemma 3 gives the matching lower bound.
+
+### Theorem 5
+
+For every \(D\geq0\), this UNSAT 3SAT instance produces a CVP instance with
+\[
+\operatorname{dist}_2(y,L_H)^2=N+1,
+\qquad N=51+9D,
+\]
+while the completeness radius is \(\sqrt N\).
+
+Therefore this encoding cannot provide any superconstant approximation gap.
+
+---
+
+# 6. Attack on the two specified obstructions
+
+## 6.1 Forbidden-clause affine triple
+
+The old GF(2) all-plus triple does not survive. In characteristic \(3\), summing three satisfying singleton choices gives clause contribution
+\[
+1+1+1=0,
+\]
+not the target \(1\).
+
+For the exact-one relation, the Boolean patterns of weights \(0,2,3\) are all rejected by the equation
+\[
+x_1+x_2+x_3=1\bmod3.
+\]
+
+However, after the implication gadget, a selected false literal is repaired by
+\[
+a=-1=2.
+\]
+This costs one additional support coordinate, not a large amount. Thus the old exact zero-cost representation is removed, but it is replaced by an additive-cost-one affine extrapolation.
+
+The variable gadget makes the extrapolation explicit:
+\[
+w_0=(1,0),\qquad w_1=(0,1),
+\]
+represent values \(0\) and \(1\). The field value \(2\) has witness
+\[
+(1-2)w_0+2w_1=2w_0+2w_1=(2,2),
+\]
+whose support is at most the union of the two legal supports.
+
+## 6.2 Three-color holonomy
+
+At the level of direct ternary equations, the odd orbit sum is indeed killed. If a holonomy cycle propagates a color vector \(v\in\mathbb F_3^3\) around a nontrivial cyclic shift \(P\), exact consistency requires
+\[
+Pv=v.
+\]
+Hence
+\[
+v=(a,a,a).
+\]
+A vertex exact-one equation would require
+\[
+3a=1
+\]
+in \(\mathbb F_3\), which is impossible. Thus the old three-color orbit sum is not a ternary pseudoassignment.
+
+But the full 3SAT preprocessing again loses the gap. In the stated \(F_n\), choose colors satisfying every untwisted edge and violate only the closing twist. Comparing a one-hot vector to its nontrivial cyclic shift produces two mismatched color coordinates. For each mismatch, one implication clause is false; after binary-clause padding, exactly one of the two padded 3-clauses is false. Thus one can satisfy all but two of the \(19n\) original clauses.
+
+After preprocessing, choose a true selector in every satisfied clause and an arbitrary selector in each of the two false clauses. Each false clause creates one auxiliary field value \(2\). Since
+\[
+N=12n+6(19n)=126n,
+\]
+the syndrome witness has weight at most
+\[
+126n+2.
+\]
+
+So the holonomy family no longer cheats by an odd orbit sum, but it still has a near-Boolean exact field solution with only \(O(1)\) illegal symbols. The ratio again tends to \(1\).
+
+---
+
+# 7. General affine obstruction to characteristic changes
+
+The failure is not specific to the chosen pair gadget.
+
+### Lemma 6: Two-legal-values affine extrapolation
+
+Let a linear gadget over a field have witnesses \(w_0,w_1\) for interface values \(0,1\), with the same internal target:
+\[
+Aw_0=(t,0),\qquad Aw_1=(t,1).
+\]
+For every field element \(\lambda\),
+\[
+w_\lambda=(1-\lambda)w_0+\lambda w_1
+\]
+satisfies
+\[
+Aw_\lambda=(t,\lambda)
+\]
+and
+\[
+\operatorname{supp}(w_\lambda)
+\subseteq
+\operatorname{supp}(w_0)\cup\operatorname{supp}(w_1).
+\]
+
+Thus any linear gadget admitting both Boolean values with support at most \(k\) automatically admits every field value with support at most \(2k\).
+
+This rules out a local construction in which \(0\) and \(1\) are cheap but \(2\) is polynomially more expensive. Using several characteristics does not remove this:
+
+- over a product ring, the same affine extrapolation occurs componentwise;
+- if each characteristic gets separate coordinates, both YES cost and illegal-symbol cost are replicated, leaving the ratio constant;
+- imposing linear equality between the copies preserves the affine extrapolation.
+
+A successful multi-characteristic construction would therefore need a genuinely non-affine common-support mechanism. Ordinary syndrome decoding and ordinary integer lattices do not provide one locally.
+
+---
+
+# 8. The scaled-exact-CVP paradox
+
+Consider a lattice reduction whose distance has the form
+\[
+\left\|
+\begin{pmatrix}
+W A\\
+C
+\end{pmatrix}z
+-
+\begin{pmatrix}
+Wb\\
+d
+\end{pmatrix}
+\right\|_2^2
+=
+W^2\|Az-b\|_2^2+\|Cz-d\|_2^2,
+\qquad z\in\mathbb Z^r.
+\]
+
+Suppose YES instances have a witness \(z_Y\) with
+\[
+Az_Y=b,\qquad \|Cz_Y-d\|\leq R.
+\]
+
+There are two cases in a NO instance.
+
+## Case 1: The exact fiber is empty
+
+If
+\[
+\{z\in\mathbb Z^r:Az=b\}=\varnothing,
+\]
+then scaling can indeed force a large distance, because every point has nonzero residual.
+
+But integer linear feasibility
+\[
+Az=b,\qquad z\in\mathbb Z^r
+\]
+is decidable in deterministic polynomial time by Smith or Hermite normal form. Therefore, if a polynomial reduction arranged
+\[
+Az=b\text{ is integer-feasible}\iff F\text{ is satisfiable},
+\]
+then applying Smith normal form to the produced system would itself decide 3SAT in polynomial time.
+
+Thus pure exact feasibility of linear integer equations cannot carry the intended Boolean hardness without simultaneously yielding a polynomial-time algorithm for 3SAT.
+
+## Case 2: The exact fiber is nonempty
+
+Let
+\[
+S_{\mathrm{exact}}
+=
+\min\{\|Cz-d\|_2:Az=b,\ z\in\mathbb Z^r\}.
+\]
+Then for every \(W\),
+\[
+\operatorname{dist}\leq S_{\mathrm{exact}},
+\]
+because exact-fiber points have zero scaled residual.
+
+Hence scaling does nothing to exact alternative representations. To obtain a polynomial gap, one must already prove
+\[
+S_{\mathrm{exact,NO}}\geq r^c R.
+\]
+That is essentially the desired CVP soundness theorem; scaling has not created it.
+
+The ternary encoding above illustrates this precisely. Every transformed instance, including every UNSAT instance, has exact field solutions. UNSAT is witnessed only by one or more non-Boolean field values. Scaling the exact-one equations leaves their residual exactly zero.
+
+## Concrete affine bound
+
+If two exact points \(z_0,z_1\) satisfy
+\[
+Az_0=Az_1=b,
+\]
+then
+\[
+z_{-1}=2z_0-z_1
+\]
+is also an integer exact point. Moreover, if
+\[
+\|Cz_0-d\|,\ \|Cz_1-d\|\leq R,
+\]
+then
+\[
+\begin{aligned}
+\|Cz_{-1}-d\|
+&=\|2(Cz_0-d)-(Cz_1-d)\|\\
+&\leq 3R.
+\end{aligned}
+\]
+Thus affine extrapolations of legal exact witnesses remain exact and geometrically close. Local gadgets whose two Boolean branches are exact automatically generate nearby non-Boolean exact points.
+
+## Can an exact reduction be redesigned?
+
+Only in the following nontrivial sense:
+
+- permit the exact fiber to exist on both YES and NO instances;
+- prove that every short exact-fiber point integrally decodes to a Boolean satisfying assignment;
+- prove every other exact-fiber point has norm at least \(r^cR\).
+
+Then scaling may suppress nonexact points, but all substantive amplification is already contained in the exact-fiber decoding theorem.
+
+Linear residual equations alone cannot provide Booleanity: their integer solution sets are affine lattices and are closed under integer affine combinations. Avoiding the paradox therefore requires a global norm-vs-integrality theorem that defeats these affine extrapolations, not merely larger residual weights.
+
+---
+
+# Verdict
+
+The characteristic-3 exact-one encoding is structurally different from the dead GF(2) local-view routes and does kill their two named exact superpositions. It has completely explicit matrices, a polynomial-size Euclidean lattice basis, and exact completeness/soundness.
+
+It nevertheless fails decisively:
+
+\[
+\boxed{\text{YES optimum}^2\leq N,\qquad
+       \text{UNSAT optimum}^2=N+1
+       \text{ on an explicit infinite family}.}
+\]
+
+The narrow obstruction is exact and general: once two Boolean values have cheap linear witnesses, non-Boolean field values arise by affine interpolation with support bounded by the union of the legal supports. Multiple characteristics and residual scaling do not remove this exact alternative representation.

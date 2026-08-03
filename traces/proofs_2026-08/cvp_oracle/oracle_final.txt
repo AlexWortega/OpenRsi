@@ -1,0 +1,662 @@
+# Final adversarial referee report
+
+## Verdict
+
+**Major revision required. No ladder credit.**
+
+The odd permutation-cycle obstruction is mathematically sound after minor quantifier and wording corrections. The pointed tensor multiplicativity lemma is also sound after adding a necessary nonemptiness assumption.
+
+The sampled-coordinate counting argument is sound only in a **cross-multiplied, minimax form for a fixed coordinate sample \(S\)**. Its ratio statement is undefined when \(C_d=0\), its non-strict “factor \(R\)” formulation has a floor error, and the surrounding claims materially overstate what the lemma rules out. In particular, it does not rule out code-dependent coordinate selections.
+
+The characteristic-\(3\) \(N=51\), optimum-\(52\) assertion is computational evidence, not a proof as supplied. Several imported source files and solver certificates are absent, so the finite computational claims are not independently auditable from the attachment.
+
+---
+
+# 1. Odd permutation-cycle obstruction
+
+## 1.1 Counts and exact-3CNF status
+
+These counts are correct.
+
+At every vertex:
+
+- one ternary at-least-one clause;
+- three binary at-most-one clauses;
+- each binary clause becomes two ternary clauses.
+
+Thus there are
+\[
+1+2\binom32=7
+\]
+vertex clauses per vertex.
+
+At every edge:
+
+- for each of three colors, two binary implications;
+- each implication becomes two ternary clauses.
+
+Thus there are
+\[
+3\cdot2\cdot2=12
+\]
+edge clauses per edge.
+
+The total is therefore
+\[
+7n+12n=19n.
+\]
+
+There are \(3n\) color variables. Padding introduces three variables per vertex and six per edge, hence \(9n\) padding variables and
+\[
+3n+9n=12n
+\]
+variables total.
+
+All clauses have three distinct underlying variables:
+
+- the at-least-one clauses use three distinct color variables;
+- every original binary clause uses two distinct color variables;
+- its padding variable is fresh.
+
+Thus the construction is an exact 3CNF under the usual “three distinct variables per clause” convention.
+
+The occurrence count is also correct. A fixed color variable occurs:
+
+- once in its at-least-one clause;
+- in two at-most-one binary clauses, each duplicated by padding: \(4\) occurrences;
+- in two implications on each incident edge, each duplicated by padding: \(4\) occurrences per incident edge.
+
+Every cycle vertex has two incident edges, so the total is
+\[
+1+4+2\cdot4=13.
+\]
+Every padding variable occurs twice. Hence the maximum occurrence is exactly \(13\).
+
+## 1.2 Unsatisfiability
+
+The proof is correct. The implication pair for edge \((u,v)\) enforces
+\[
+X_{u,c}\leftrightarrow X_{v,c+\mathrm{shift}}.
+\]
+Together with one-hotness, this means
+\[
+c_v=c_u+\mathrm{shift}\pmod 3.
+\]
+All but the final edge have shift \(0\), while the final edge gives
+\[
+c_0=c_{n-1}+1.
+\]
+The identity edges imply \(c_{n-1}=c_0\), producing \(c_0=c_0+1\), impossible.
+
+Padding preserves the binary clause because
+\[
+(B\vee z)\wedge(B\vee\neg z)\equiv B.
+\]
+
+## 1.3 Clause-intersection connectivity versus skeleton connectivity
+
+The argument is valid.
+
+If two clauses share a color variable, their attachments both contain the corresponding cycle vertex. If they share a padding variable, they are the two padded clauses arising from the same binary clause and therefore have identical attachments. Thus every adjacency in the clause-intersection graph maps to intersecting attachments. A connected clause set consequently has connected attachment union.
+
+If \(|Q|<n\), then \(T(Q)\) cannot contain every cycle edge: every included underlying edge requires at least one distinct clause attached to that edge. Therefore \(T(Q)\) is a connected proper subgraph of a cycle, hence a path or a single vertex.
+
+No hidden assumption that the converse implication holds is needed.
+
+## 1.4 Satisfaction by zero-padded local views
+
+This should be stated more explicitly, but it is correct.
+
+For a selected coloring \(\sigma\):
+
+- every vertex at-least-one clause is satisfied because the coloring is one-hot;
+- every original at-most-one binary clause \(B\) is satisfied by one-hotness;
+- every selected edge implication \(B\) is satisfied because the coloring obeys the full edge permutation;
+- with \(z_B=0\), the two padded clauses become
+  \[
+  B\vee0=B,\qquad B\vee1=1.
+  \]
+
+Therefore every partial set of padded clauses in \(Q\) is satisfied. It is harmless that the local coloring enforces the entire permutation constraint on an attached edge even when \(Q\) contains only one of its padded implication clauses.
+
+If a padding variable disappears when passing from \(Q\) to \(Q'\), restriction simply drops its zero coordinate. Thus padding assignments commute with restriction.
+
+## 1.5 Marginal consistency and collisions
+
+The restriction argument is correct.
+
+For connected \(Q'\subseteq Q\), both \(T(Q')\) and \(T(Q)\) are connected subtrees of the same path. Every consistent coloring of \(T(Q')\) extends uniquely to \(T(Q)\), and restriction gives the inverse map. Hence restriction is a bijection between their three propagated colorings.
+
+The Boolean encodings commute with this restriction. Therefore pushforward of
+\[
+\sum_{\sigma\in\operatorname{Col}(T(Q))}
+\delta_{a_{Q,\sigma}}
+\]
+is exactly the corresponding sum for \(Q'\).
+
+Collisions among Boolean restrictions do occur. For example, an implication clause may see one distinguished root color as \((1,1)\) and the other two colors both as \((0,0)\); the latter cancel over \(\mathbb F_2\). This does not damage the proof. Pushforward preserves total mass:
+\[
+3\equiv1\pmod2.
+\]
+The support therefore has odd size at most three; in this construction it is typically one or three.
+
+## 1.6 Required theorem correction
+
+The quantifiers must be repaired. As written, “for every \(d<n\)” includes nonpositive and nonintegral \(d\), while \(\mathcal Q_d\) is only meaningful here for positive integer depth.
+
+Use:
+
+> **Theorem.** For every integer \(n\ge3\) and every integer \(d\) with \(1\le d<n\), there is an unsatisfiable exact 3CNF \(F_n\) with \(19n\) clauses, \(12n\) variables, and maximum occurrence \(13\), whose depth-\(d\) connected-view system has an exact pseudoassignment of weight at most \(3|\mathcal Q_d|\).
+
+The consequence should explicitly choose \(n\) large enough that
+\[
+1\le\lfloor C\log(19n)\rfloor<n
+\quad\text{and}\quad
+(19n)^\eta>3.
+\]
+Then
+\[
+3K<K(19n)^\eta.
+\]
+
+This obstruction is valid and is the strongest fully proved result in the submission.
+
+---
+
+# 2. Pointed tensor multiplicativity
+
+## 2.1 Missing hypothesis
+
+The lemma needs the assumption that a pointed word exists:
+\[
+\{x\in D:x_*=1\}\ne\varnothing.
+\]
+Otherwise \(\delta_*(D)\) is the minimum of an empty set and is undefined unless an \(+\infty\) convention is declared.
+
+A clean statement is:
+
+> Let \(D\le\mathbb F_2^{L_D}\) and \(E\le\mathbb F_2^{L_E}\) have distinguished coordinates and assume each distinguished-coordinate projection is nonzero. Then
+> \[
+> \delta_*(D\otimes E)=\delta_*(D)\delta_*(E).
+> \]
+> Consequently, for every integer \(q\ge1\),
+> \[
+> \delta_*(D^{\otimes q})=\delta_*(D)^q.
+> \]
+
+The homogenized affine code automatically satisfies this assumption because \((t,1)\in D\).
+
+## 2.2 Matrix orientation
+
+The orientation in `proof_cvp.md` is correct.
+
+Index the matrix by \(i\in[L_D]\) for rows and \(j\in[L_E]\) for columns. Then:
+
+- every column belongs to \(D\);
+- every row belongs to \(E\);
+- the distinguished column is \(j=*_{E}\);
+- its distinguished bit is the entry \((*_D,*_E)\).
+
+At least \(\delta_*(D)\) rows have a \(1\) in that column. Each such row is an \(E\)-word whose distinguished coordinate is \(1\), so it has at least \(\delta_*(E)\) nonzeros. Since distinct rows are disjoint coordinate sets,
+\[
+|W|\ge\delta_*(D)\delta_*(E).
+\]
+Tensoring minimum pointed words gives equality.
+
+The reversed row/column phrasing in `NOTES.md` should be synchronized with this orientation, although it does not affect the argument.
+
+## 2.3 Homogenization
+
+The identity
+\[
+\delta_*(D)=1+\min_{c\in C}|t+c|
+\]
+is correct. Every pointed word has the unique form
+\[
+(t+c,1),\qquad c\in C.
+\]
+
+## 2.4 Parameter accounting requires sharper wording
+
+The sentence “polynomial output allows only constant \(q\) when \(N\) grows polynomially” needs a lower-growth assumption. If the original input size is \(r\), the intended conclusion follows when, for example,
+\[
+N(r)\ge r^\alpha
+\]
+for some fixed \(\alpha>0\). Merely saying that \(N\) is polynomially bounded above is insufficient.
+
+For the ratio
+\[
+\left(\frac{K+2}{K+1}\right)^q
+\]
+to be at least \(N^c\), one needs
+\[
+q\ge
+\frac{c\log N}{\log(1+1/(K+1))}
+\ge c(K+1)\log N.
+\]
+Thus \(q=\Omega(K\log N)\).
+
+There is an even sharper obstruction if “polynomial factor” means a fixed power of the **final tensor block length**
+\[
+n_q=(N+1)^q.
+\]
+Then
+\[
+\frac{\log\left(((K+2)/(K+1))^q\right)}
+     {\log n_q}
+=
+\frac{\log(1+1/(K+1))}{\log(N+1)},
+\]
+which is independent of \(q\) and tends to zero in the relevant regime. Increasing \(q\) alone cannot produce an \(n_q^c\) ratio with fixed \(c>0\).
+
+The lemma is valid, but it does not provide a usable hardness amplification.
+
+---
+
+# 3. Sampled-coordinate lower bound
+
+## 3.1 “Sampled pointed distance” needs a distinguished-coordinate assumption
+
+For a sampled code to remain pointed, \(S\) must contain at least one copy of the all-star tensor coordinate
+\[
+(*,\ldots,*),
+\]
+and one such copy must be designated as the distinguished sampled coordinate.
+
+Without this, “sampled pointed distance” is not defined. The function
+\[
+f(Z)=|\{j:T_j\subseteq Z\}|
+\]
+is still the sampled Hamming weight of the nonzero generator, but not necessarily a pointed distance.
+
+If the all-star coordinate is included, then \(T_j=\varnothing\) for that sample and therefore
+\[
+f(Z)\ge1
+\]
+for all \(Z\). In particular \(C_d>0\).
+
+## 3.2 The ratio lemma is undefined when \(C_d=0\)
+
+As stated,
+\[
+\frac{B_d}{C_d}\le\frac d{d-s+1}
+\]
+is meaningless when \(C_d=0\).
+
+The proof actually establishes the stronger and always meaningful cross-multiplied inequality
+\[
+\boxed{(d-s+1)B_d\le dC_d.}
+\]
+
+This must be the primary lemma statement. Then add:
+
+- if \(C_d>0\), division gives the displayed ratio;
+- if \(C_d=0\), the inequality forces \(B_d=0\).
+
+A corrected statement is:
+
+> **Sampling lemma.** Let \(1\le s\le d\le N\). If
+> \[
+> m(d/N)^s<1,
+> \]
+> then
+> \[
+> (d-s+1)B_d\le dC_d.
+> \]
+> In particular, if \(C_d>0\), then
+> \[
+> \frac{B_d}{C_d}\le\frac d{d-s+1}.
+> \]
+
+## 3.3 Probability estimate
+
+The probability estimate is correct. For \(|T_j|=r\ge s\),
+\[
+\Pr[T_j\subseteq Y]
+=
+\frac{(d)_r}{(N)_r}
+=
+\prod_{i=0}^{r-1}\frac{d-i}{N-i}
+\le\left(\frac dN\right)^r
+\le\left(\frac dN\right)^s.
+\]
+If \(r>d\), the probability is zero.
+
+The strict hypothesis \(m(d/N)^s<1\) ensures that the union of all “large \(T_j\) is contained” events has probability strictly below one.
+
+## 3.4 Double counting
+
+The equality
+\[
+\sum_{y\in Y}f(Y\setminus\{y\})
+=
+\sum_{j:T_j\subseteq Y}(d-|T_j|)
+\]
+is correct, including for a multiset \(S\). Each sampled coordinate is counted with its multiplicity.
+
+Since every counted \(T_j\) has size at most \(s-1\),
+\[
+d-|T_j|\ge d-s+1.
+\]
+Also every \(Y\setminus\{y\}\) has size \(d-1\), so the left side is at most \(dC_d\). Finally \(B_d\le f(Y)\). Thus the corrected cross-multiplied conclusion follows.
+
+## 3.5 Strict versus non-strict factor and exact floor arithmetic
+
+Let
+\[
+A=d+1-\frac dR.
+\]
+
+For a desired **strict** separation
+\[
+\frac{B_d}{C_d}>R,
+\]
+the manuscript’s exponent
+\[
+s=\lfloor A\rfloor
+\]
+is correct. Indeed,
+\[
+d-s+1\ge\frac dR,
+\]
+so
+\[
+\frac d{d-s+1}\le R.
+\]
+Hence strict ratio \(>R\) implies
+\[
+m\ge (N/d)^{\lfloor d+1-d/R\rfloor}.
+\]
+
+For a desired non-strict separation
+\[
+\frac{B_d}{C_d}\ge R,
+\]
+that exponent is not justified when \(A\) is an integer, because the lemma may give equality \(B_d/C_d=R\). The correct guaranteed exponent is
+\[
+\boxed{
+s=\left\lceil d+1-\frac dR\right\rceil-1
+}
+\]
+because then
+\[
+s<d+1-\frac dR
+\]
+and consequently
+\[
+\frac d{d-s+1}<R.
+\]
+
+Thus:
+
+- ratio \(>R\):
+  \[
+  m\ge (N/d)^{\lfloor d+1-d/R\rfloor};
+  \]
+- ratio \(\ge R\):
+  \[
+  m\ge (N/d)^{\lceil d+1-d/R\rceil-1}.
+  \]
+
+For factor \(2\) in the non-strict sense, the latter exponent is
+\[
+\left\lceil\frac d2\right\rceil.
+\]
+It is still exponential in \(d\) when \(N/d\ge1+\varepsilon\), but the displayed exponent in `STATUS.md` is one too large when \(d\) is even.
+
+For pointed support layers \(K+1\) and \(K+2\), one has \(d=K+1\), because \(|Z|=K\) and \(|Z|=K+1\) correspond to pointed base weights \(K+1\) and \(K+2\). That part of the substitution is correct.
+
+## 3.6 Major quantifier overclaim
+
+This is the most important substantive defect.
+
+The proof fixes a single multiset \(S\) and then varies \(Z\). It proves:
+
+> For every fixed coordinate sample \(S\), if that same \(S\) is required to separate all one-dimensional codes \(D_Z\) uniformly across adjacent support layers, then some \(Z\) defeats the desired separation unless \(m\) is large.
+
+It does **not** prove:
+
+- that a coordinate sample selected as a function of the input code \(D_Z\) must be large;
+- that every coordinate-puncturing algorithm fails;
+- that coordinate sampling cannot work for a particular fixed code relevant to a reduction;
+- that an input-dependent monomial-pruning rule fails;
+- that all expander-based coordinate choices fail when the expander may depend on the code.
+
+The family \(D_Z\) changes with \(Z\), and an algorithm allowed to inspect the input code may choose a different \(S_Z\) for each \(Z\). The minimax lemma does not exchange these quantifiers.
+
+Therefore the heading
+
+> “Coordinate-sampled tensor powers cannot repair the parameters”
+
+is too broad. A defensible replacement is:
+
+> “No fixed coordinate sample uniformly preserves all adjacent pure-support layers.”
+
+Likewise, replace
+
+> “This rules out coordinate puncturing, expander-sampled coordinates, and monomial pruning as universal compression mechanisms”
+
+by something such as:
+
+> “This rules out fixed or code-oblivious coordinate selections that are required to preserve the adjacent-layer ratio uniformly over the family \(D_Z\). It does not rule out code-dependent coordinate selection, nor any compression using non-coordinate linear functionals.”
+
+The current `STATUS.md` statement
+
+> “Any compression retaining only sampled tensor coordinates obeys…”
+
+is false with its present quantifiers and must be restricted accordingly.
+
+This is not a defect in the counting lemma itself, but it is fatal to the broad advertised obstruction.
+
+---
+
+# 4. Explicit sampled image generator
+
+The iterative Schur-product construction is correct.
+
+Starting with the all-ones row, at stage \(h\) one takes coordinatewise products with
+\[
+\bigl(G_{a,\alpha_{j,h}}\bigr)_{j\le m}.
+\]
+Bilinearity of coordinatewise multiplication ensures that replacing the current rows by any basis of their span preserves the span generated at the next stage. Every intermediate rank is at most \(m\).
+
+The claim should nevertheless be limited to computation of the coordinate-restricted tensor image. It gives no distance or soundness guarantee.
+
+---
+
+# 5. Computational claims and scripts
+
+## 5.1 Missing dependencies prevent a complete audit
+
+The following imported files are not supplied:
+
+- `experiments/connected_views.py`;
+- `experiments/search_pseudoviews.py`;
+- `experiments/ternary_exact_one.py`;
+- `experiments/verify_pointed_tensor.py`.
+
+Consequently I cannot verify from the attachment:
+
+- that `build` implements exactly the formal connected-view system described;
+- that all required one-clause marginal equations are present with the intended orientation;
+- that `inst.views[q]` is exactly the satisfying-view set;
+- that `gf2_solve` is correct;
+- that the characteristic-\(3\) matrix has the claimed dimensions and semantics;
+- that the MILP model really minimizes support over the exact mod-\(3\) fiber;
+- the separate pointed-tensor test cited by `STATUS.md`.
+
+The mathematical odd-cycle proof does not depend on these scripts, but claims that the implementation is “exactly” the formal system remain unaudited.
+
+## 5.2 Odd-cycle verifier
+
+Conditional on `build` having the claimed semantics, `verify_odd_cycle_counterexample.py` correctly checks:
+
+- the clause and variable counts;
+- legality of each selected local Boolean view via membership in `inst.views[q]`;
+- satisfaction of the assembled syndrome equations;
+- witness weight at most \(3K\).
+
+It does not independently brute-force the Boolean CNF’s unsatisfiability. The final assertion
+```python
+assert all((c + 1) % 3 != c for c in range(3))
+```
+only checks the last arithmetic contradiction; it relies on the mathematical propagation argument. That is acceptable because the proof is valid, but the comment “also brute-force colors” is inaccurate.
+
+The aggregate script tests only \((n,d)=(3,1)\) and \((4,2)\), not the quantified theorem. It is a finite sanity check, not computational evidence for all \(n,d\).
+
+## 5.3 MILP optimality is not an exact proof as supplied
+
+Both connected-view and characteristic-\(3\) optimality assertions rely on a floating-point MILP solver returning status zero. Expressions such as
+```python
+round(rt.fun) == Nt + 1
+```
+do not constitute an exact certificate of the lower bound.
+
+A proof-grade computational claim would require at least:
+
+- the full model source;
+- integrality checks on the returned variables;
+- an independently verifiable lower-bound or branch-and-bound certificate;
+- solver/version information and tolerances;
+- a checker that validates the certificate using exact arithmetic.
+
+Without this, the correct wording is:
+
+> “HiGHS reports optimum \(52\) for the implemented \(N=51\) instance.”
+
+It should not be placed unqualified under `STATUS.md`’s heading “Proved.”
+
+The same issue applies to the claimed exact minimum \(243\) for the 14-clause connected-view instance. This finite optimum is not needed for the main theorem.
+
+## 5.4 The \(N=51\) and rank-\(102\) claims are not actually asserted
+
+The characteristic-\(3\) section does not contain
+```python
+assert Nt == 51
+```
+or an explicit assertion that the lattice rank is \(102\).
+
+The assertion
+```python
+Bt.shape == (2*Nt, 2*Nt)
+```
+only checks shape relative to whatever `Nt` happens to be. It does not check \(Nt=51\), nor does square shape prove full rank.
+
+Required additions, if these facts are retained, are:
+
+- `assert Nt == 51`;
+- an exact full-rank test for `Bt`;
+- `assert Bt.shape == (102,102)`.
+
+Again, the relevant implementation is absent, so even these checks would not by themselves certify the encoding.
+
+## 5.5 Sampling script is only a sanity check
+
+`verify_sampled_tensor_obstruction.py` exhaustively enumerates the span of one tiny sampled tensor image and correctly tests that its pointed minimum is \(2\).
+
+It does **not** exhaustively test the sampling lemma. It tests only twenty deterministic lists of four subsets. The comments acknowledge this later, but the earlier phrase “Exhaustively check the sampling lemma” is misleading and should be removed.
+
+The appropriate description is:
+
+> “Finite sanity checks for one mixed-tensor example and twenty sampled instances of the cross-multiplied layer inequality.”
+
+The code wisely tests
+\[
+B_d(d-s+1)\le dC_d
+\]
+rather than dividing by \(C_d\).
+
+## 5.6 “All finite candidate claims verified” is too broad
+
+The final printout in `verify_finite_claims.py` says:
+```python
+print('all finite candidate claims verified')
+```
+That is inaccurate. The script does not reproduce all finite experiments recorded in `NOTES.md`, including the various XOR-cycle, Tseitin, and random-instance statements. It also does not invoke the sampled-tensor script or the absent pointed-tensor script.
+
+Change the docstring and output to enumerate exactly which instances were checked.
+
+---
+
+# 6. Required changes to `STATUS.md`
+
+1. Move the characteristic-\(3\) \(N=51\), optimum-\(52\) item from **Proved** to **Computational evidence**, unless an exact certificate and complete implementation are supplied.
+
+2. Replace the sampled-coordinate bullet by a quantifier-correct statement:
+   > For every fixed coordinate sample \(S\), uniform separation over all one-dimensional pure-support codes \(D_Z\) obeys the stated layer bound.
+
+3. Distinguish strict and non-strict factors:
+   - for \(B/C>R\), retain the floor exponent;
+   - for \(B/C\ge R\), use
+     \[
+     \left\lceil K+2-\frac{K+1}{R}\right\rceil-1.
+     \]
+
+4. For non-strict factor two, use exponent
+   \[
+   \left\lceil\frac{K+1}{2}\right\rceil.
+   \]
+
+5. Do not say that the theorem rules out all coordinate puncturing, expander sampling, or monomial pruning. Restrict this to fixed/code-oblivious choices with a uniform guarantee over the family.
+
+6. Replace “the only narrow tensor direction not refuted” by:
+   > “the only tensor-compression class discussed here not covered by the present negative arguments.”
+   
+   The supplied work does not justify a global “only remaining possibility” claim.
+
+7. Qualify the Smith/Hermite statement to explicit integer linear feasibility systems with polynomially bounded encodings. The broad structural conclusion is a framework observation, not a theorem excluding all reductions.
+
+---
+
+# 7. Severity classification
+
+## Sound after minor corrections
+
+- Exact-3CNF construction and all counts.
+- Maximum occurrence \(13\).
+- Unsatisfiability.
+- Clause-connectivity implies connected tree skeleton for \(|Q|<n\).
+- Zero-padding satisfies every selected partial padded clause set.
+- Restriction and marginal consistency.
+- Weight at most \(3|\mathcal Q_d|\).
+- Pointed tensor distance multiplicativity.
+- Homogenization identity.
+- Iterative computation of a sampled tensor image.
+
+## Repairable formal errors
+
+- Missing \(1\le d<n\), integer quantifier.
+- Missing existence assumption in the pointed-distance lemma.
+- Undefined \(B_d/C_d\) when \(C_d=0\).
+- Strict versus non-strict factor arithmetic.
+- Imprecise polynomial-output parameter statement.
+- Misleading script comments and missing explicit \(N=51\)/rank checks.
+
+## Substantive overclaims
+
+- “Any compression retaining sampled coordinates” obeys the lower bound.
+- The lemma rules out coordinate puncturing or monomial pruning without a code-oblivious qualification.
+- “Only remaining amplification direction.”
+- Treating floating-point MILP status as an exact mathematical proof.
+
+The broad sampled-compression conclusion does not follow from the proved quantifiers and must be substantially narrowed.
+
+---
+
+# 8. Honest ladder assessment
+
+## (a) Polynomial-gap NCP/syndrome reduction
+
+**No progress.** The connected-view construction is refuted, and the characteristic-\(3\) construction has only an additive gap, supported here only by a finite computational instance.
+
+## (b) Polynomial-time gap amplification/compression
+
+**No progress.** Exact pointed tensor multiplicativity is a valid structural lemma, but explicit tensor length destroys the parameters. The sampled-coordinate lemma supplies only a restricted fixed-sample minimax obstruction; it is not an amplifier and does not exclude all coordinate-based compression algorithms.
+
+## (c) Polynomial-factor GapCVP reduction
+
+**No progress.** No polynomial-gap NCP input has been obtained, so no lattice reduction can reach the requested gap. The computational characteristic-\(3\) example and the tensor obstructions do not change this.
+
+## Final ladder verdict
+
+**Zero ladder advancement toward (a)–(c).** The submission contains one genuine counterexample to the connected-view hierarchy, one correct exact tensor identity, and one narrower sampled-coordinate counting lemma. These are useful negative results only.

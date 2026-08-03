@@ -1,0 +1,476 @@
+## Verdict
+
+The connected-view lemma is false, even for bounded-occurrence CNFs in which every clause has exactly three distinct variables.
+
+There is an explicit family \(F_n\) with \(M=19n\) clauses such that:
+
+1. \(F_n\) is unsatisfiable.
+2. Every connected clause set \(Q\) with \(|Q|<n\) is satisfiable.
+3. For every \(d<n\), the exact connected-view system over \(\mathbb F_2\) has a solution \((\mu_Q)_{Q\in\mathcal Q_d}\).
+4. Every \(\mu_Q\) has support at most \(3\). Hence the total weight is at most
+   \[
+   3K,\qquad K=|\mathcal Q_d|.
+   \]
+5. Consequently, for every fixed \(C,\eta>0\), taking \(d=\lfloor C\log M\rfloor\) and \(n\) sufficiently large gives an exact solution of weight \(O(K)\), contradicting any lower bound \(K M^\eta\).
+
+The mechanism is an odd-alphabet permutation cycle. The analogous two-state construction fails because the sum of all local states has even mass; this explains why the inconsistent XOR cycles are detected so early.
+
+---
+
+# 1. The unsatisfiable family
+
+Let the color alphabet be
+\[
+A=\mathbb Z/3\mathbb Z=\{0,1,2\}.
+\]
+Take a directed cycle on vertices
+\[
+V=\{0,\ldots,n-1\}
+\]
+with edges
+\[
+e_i=(i,i+1)\quad (0\le i<n-1),\qquad e_{n-1}=(n-1,0).
+\]
+
+Attach a permutation \(\pi_i\in S_3\) to each edge:
+\[
+\pi_i=\operatorname{id}\quad(0\le i<n-1),\qquad
+\pi_{n-1}(c)=c+1\pmod 3.
+\]
+
+The intended constraint on \(e_i=(u,v)\) is
+\[
+\operatorname{col}(v)=\pi_i(\operatorname{col}(u)).
+\]
+Its holonomy around the cycle is the fixed-point-free 3-cycle \(c\mapsto c+1\), so the permutation CSP is unsatisfiable.
+
+## Boolean variables
+
+For each \(v\in V\) and \(c\in A\), introduce a Boolean variable
+\[
+X_{v,c},
+\]
+intended to mean that \(v\) has color \(c\).
+
+We first describe a width-\(\le 3\) encoding, then make every clause exactly three-variable.
+
+### Vertex clauses
+
+At least one color:
+\[
+(X_{v,0}\vee X_{v,1}\vee X_{v,2}).
+\]
+
+For each \(0\le c<c'\le2\), impose at most one:
+\[
+(\neg X_{v,c}\vee \neg X_{v,c'}).
+\]
+
+### Edge clauses
+
+For every directed edge \(e=(u,v)\) and every \(c\in A\), impose
+\[
+X_{u,c}\leftrightarrow X_{v,\pi_e(c)}
+\]
+using
+\[
+(\neg X_{u,c}\vee X_{v,\pi_e(c)}),
+\qquad
+(X_{u,c}\vee \neg X_{v,\pi_e(c)}).
+\]
+
+## Exact three-variable padding
+
+Replace every binary clause
+\[
+B=(\ell_1\vee\ell_2)
+\]
+by two clauses using a fresh variable \(z_B\):
+\[
+(\ell_1\vee\ell_2\vee z_B),
+\qquad
+(\ell_1\vee\ell_2\vee\neg z_B).
+\]
+These have three distinct variables, and their conjunction is equivalent to \(B\).
+
+Call the resulting exact 3CNF \(F_n\).
+
+---
+
+# 2. Parameters and unsatisfiability
+
+For every vertex there are:
+
+- one at-least-one clause;
+- three binary at-most-one clauses, each replaced by two 3-clauses.
+
+Thus there are \(7\) clauses per vertex.
+
+For every edge there are:
+
+- three color equivalences;
+- two binary implications per equivalence;
+- two padded clauses per binary implication.
+
+Thus there are \(12\) clauses per edge. Since the graph is a cycle,
+\[
+M=7n+12n=19n.
+\]
+
+The variables are:
+
+- \(3n\) color variables;
+- \(3n\) padding variables for vertex clauses;
+- \(6n\) padding variables for edge clauses.
+
+Thus there are \(12n\) variables.
+
+Each \(X_{v,c}\) occurs:
+
+- once in the at-least-one clause;
+- four times in padded at-most-one clauses;
+- four times for each of its two incident edges.
+
+Hence each color variable occurs \(13\) times. Each padding variable occurs twice. This is bounded occurrence.
+
+### Proposition 1
+
+\(F_n\) is unsatisfiable.
+
+### Proof
+
+The vertex clauses force exactly one \(X_{v,c}\) to be true at each \(v\), so every satisfying assignment determines a color \(\sigma(v)\in A\).
+
+The edge clauses force
+\[
+\sigma(v)=\pi_e(\sigma(u))
+\]
+on every directed edge \(e=(u,v)\).
+
+The first \(n-1\) edges are labeled by the identity, so
+\[
+\sigma(0)=\sigma(1)=\cdots=\sigma(n-1).
+\]
+The final edge requires
+\[
+\sigma(0)=\sigma(n-1)+1\pmod 3,
+\]
+a contradiction. ∎
+
+---
+
+# 3. Skeleton of a connected clause set
+
+Attach every clause of \(F_n\) to either a vertex or an edge of the underlying cycle:
+
+- the at-least-one clause and every padded at-most-one clause at \(v\) are attached to \(v\);
+- every padded implication encoding edge \(e\) is attached to \(e\).
+
+For a nonempty clause set \(Q\), define its skeleton \(T(Q)\) as follows:
+
+- include every vertex to which a clause in \(Q\) is attached;
+- include every edge to which a clause in \(Q\) is attached, together with both endpoints.
+
+### Lemma 2
+
+If \(Q\) is connected in the clause-intersection graph, then \(T(Q)\) is connected in the underlying cycle.
+
+### Proof
+
+Suppose two clauses intersect.
+
+If they share a padding variable, they are the two padded clauses arising from the same binary clause, so they have the same attachment.
+
+Otherwise they share some \(X_{v,c}\). Each of their attachments then contains \(v\): each attachment is either \(v\) itself or an edge incident to \(v\).
+
+Thus intersecting clauses have intersecting skeleton attachments. A path in the clause-intersection graph therefore induces a connected union of skeleton attachments. ∎
+
+### Corollary 3
+
+If \(Q\) is connected and \(|Q|<n\), then \(T(Q)\) is a tree, in fact a path or a single vertex.
+
+### Proof
+
+By Lemma 2, \(T(Q)\) is connected. To contain the unique cycle, \(T(Q)\) would have to contain all \(n\) underlying edges. Every included underlying edge requires at least one distinct clause of \(Q\) attached to it, so this would require \(|Q|\ge n\). ∎
+
+In particular, every connected \(Q\) of size less than \(n\) is satisfiable: choose any root color and propagate it uniquely along the path \(T(Q)\).
+
+---
+
+# 4. Explicit pseudoassignments
+
+Let \(Q\) be connected with \(|Q|<n\). Since \(T(Q)\) is a tree with bijective edge constraints, it has exactly three colorings satisfying all its edge constraints:
+\[
+\operatorname{Col}(T(Q))
+=
+\{\sigma:T(Q)\to A:
+\sigma(v)=\pi_e(\sigma(u))\text{ for every }e=(u,v)\in T(Q)\}.
+\]
+A choice of color at any root determines the entire coloring, so
+\[
+|\operatorname{Col}(T(Q))|=3.
+\]
+
+For each \(\sigma\in\operatorname{Col}(T(Q))\), define a Boolean assignment
+\[
+a_{Q,\sigma}\in\{0,1\}^{\operatorname{scope}(Q)}
+\]
+by
+
+\[
+X_{v,c}=1\iff \sigma(v)=c,
+\]
+and by setting every padding variable appearing in \(\operatorname{scope}(Q)\) to \(0\).
+
+Each \(a_{Q,\sigma}\) satisfies every clause in \(Q\):
+
+- the one-hot assignments satisfy all vertex clauses;
+- the propagated colors satisfy all original binary edge clauses;
+- every padded pair is satisfied because its underlying binary clause is true.
+
+Define
+\[
+\boxed{
+\mu_Q=\sum_{\sigma\in\operatorname{Col}(T(Q))}
+\delta_{a_{Q,\sigma}}
+\quad\in\mathbb F_2^{A_Q}.
+}
+\]
+The sum is over \(\mathbb F_2\), so coincident restrictions cancel.
+
+Equivalently, for every satisfying view \(a\in A_Q\),
+\[
+\mu_Q(a)
+=
+\left|
+\{\sigma\in\operatorname{Col}(T(Q)):a_{Q,\sigma}=a\}
+\right|\pmod 2.
+\]
+
+This is directly implementable: enumerate the three root colors, propagate each through the skeleton, form the induced bit tuple on `scopes[Q]`, and XOR-toggle that tuple.
+
+---
+
+# 5. Odd mass
+
+Let
+\[
+\epsilon(\mu_Q)=\sum_{a\in A_Q}\mu_Q(a)
+\]
+be total mass in \(\mathbb F_2\). Pushforward and collisions do not change total mass. Therefore
+\[
+\epsilon(\mu_Q)
+=
+|\operatorname{Col}(T(Q))|
+=
+3
+=
+1\pmod 2.
+\]
+
+Thus every group-coverage equation is satisfied.
+
+Notice that injectivity of
+\[
+\sigma\mapsto a_{Q,\sigma}
+\]
+is unnecessary. For some small clause sets, two of the three colorings give the same restricted Boolean view and cancel. The remaining vector still has odd total mass.
+
+---
+
+# 6. Exact gluing lemma
+
+The following is the structural point.
+
+### Lemma 4: odd permutation-tree gluing
+
+Let \(S\subseteq T\) be nonempty connected subtrees of a tree whose directed edges carry bijections of a finite alphabet \(A\). Let \(\operatorname{Col}(U)\) denote the assignments to \(U\) satisfying all edge bijections.
+
+Then restriction induces a bijection
+\[
+\rho_{T,S}:\operatorname{Col}(T)\longrightarrow\operatorname{Col}(S).
+\]
+
+Consequently, if \(\operatorname{enc}_U(\sigma)\) is any restriction-compatible Boolean encoding of \(\sigma\), then over any field
+\[
+(\operatorname{marg}_{T\to S})
+\left(
+\sum_{\sigma\in\operatorname{Col}(T)}
+\delta_{\operatorname{enc}_T(\sigma)}
+\right)
+=
+\sum_{\tau\in\operatorname{Col}(S)}
+\delta_{\operatorname{enc}_S(\tau)}.
+\]
+
+If \(|A|\) is odd and the field is \(\mathbb F_2\), these vectors all have odd mass and support at most \(|A|\).
+
+### Proof
+
+Injectivity: choose any vertex \(r\in S\). A coloring of \(T\) is uniquely determined by its value at \(r\), because along the unique path from \(r\) to any other vertex, the color is propagated through edge bijections or their inverses. Hence two colorings agreeing on \(S\), and therefore at \(r\), agree everywhere.
+
+Surjectivity: given \(\tau\in\operatorname{Col}(S)\), extend it from \(S\) one edge at a time through every component of \(T\setminus S\). Each new vertex receives a unique color because the edge relation is a bijection. Since \(T\) is acyclic, no consistency conflict can occur.
+
+Thus restriction is a bijection.
+
+For the vector identity, marginalizing a point mass gives
+\[
+\operatorname{marg}_{T\to S}
+\delta_{\operatorname{enc}_T(\sigma)}
+=
+\delta_{\operatorname{enc}_S(\sigma|_S)}.
+\]
+Summing and using the bijection gives the result. The augmentation is \(|A|\), and the support is at most the number of summands. ∎
+
+### Application to connected one-clause deletions
+
+Let \(Q'\) be obtained from \(Q\) by deleting one clause, and suppose both are connected and \(|Q|<n\). Then
+\[
+T(Q')\subseteq T(Q),
+\]
+and both are connected subtrees of the cycle. Lemma 4 gives
+\[
+\operatorname{marg}_{Q\to Q'}(\mu_Q)=\mu_{Q'}.
+\]
+
+This proves every marginal equation in the implemented hierarchy. In fact, it proves consistency for every connected inclusion
+\[
+Q'\subseteq Q,\qquad |Q|<n,
+\]
+not only one-clause deletions.
+
+---
+
+# 7. Weight bound and refutation of LCV
+
+Each \(\mu_Q\) is the XOR of three point masses. Therefore
+\[
+|\operatorname{supp}(\mu_Q)|\le 3.
+\]
+For
+\[
+\mathcal Q_d=\{Q:Q\text{ connected},\ 1\le |Q|\le d\},
+\qquad
+K=|\mathcal Q_d|,
+\]
+the total weight satisfies
+\[
+\boxed{
+\sum_{Q\in\mathcal Q_d}|\operatorname{supp}(\mu_Q)|
+\le 3K
+}
+\]
+for every \(d<n\).
+
+Since \(M=19n\), for every fixed \(C\),
+\[
+d=\lfloor C\log M\rfloor<n
+\]
+for all sufficiently large \(n\). Thus \(F_n\) has exact logarithmic-depth pseudoassignments of weight at most \(3K\). For every fixed \(\eta>0\),
+\[
+3K<KM^\eta
+\]
+once \(M^\eta>3\).
+
+Therefore the asserted universal LCV bound
+\[
+\operatorname{weight}\ge K M^\eta
+\]
+cannot hold.
+
+The hierarchy itself remains polynomial-sized at logarithmic depth. The clause-intersection graph has bounded degree—at most \(36\) from the occurrence count above—so the number of connected clause sets of size at most \(d\) is at most
+\[
+M\,(e\Delta)^d.
+\]
+For fixed \(C\) and \(d=C\log M\), this is polynomial in \(M\). Also,
+\[
+|\operatorname{scope}(Q)|\le 3|Q|,
+\]
+so each group has at most \(2^{3d}\), again polynomially many, columns. Hence the counterexample is within the intended polynomial-size regime.
+
+---
+
+# 8. Implementation recipe
+
+Use the following metadata for every generated clause:
+
+```text
+attachment = ("vertex", v)
+```
+
+or
+
+```text
+attachment = ("edge", e_index)
+```
+
+and record which variables are color variables \(X_{v,c}\) and which are padding variables.
+
+For a connected group `q`:
+
+```python
+def pseudo_view(q):
+    # Build the underlying skeleton.
+    edges = set()
+    vertices = set()
+    for clause_index in q:
+        kind, obj = attachment[clause_index]
+        if kind == "vertex":
+            vertices.add(obj)
+        else:
+            u, v, pi = edge_data[obj]
+            edges.add(obj)
+            vertices.add(u)
+            vertices.add(v)
+
+    root = min(vertices)
+    coeff = {}  # assignment tuple -> bit
+
+    for root_color in range(3):
+        color = {root: root_color}
+        stack = [root]
+
+        while stack:
+            u = stack.pop()
+            for e in incident_selected_edges(u, edges):
+                a, b, pi = edge_data[e]
+                if u == a:
+                    v = b
+                    implied = pi[color[u]]
+                else:
+                    v = a
+                    implied = inverse(pi)[color[u]]
+                if v not in color:
+                    color[v] = implied
+                    stack.append(v)
+                else:
+                    assert color[v] == implied
+
+        values = {}
+        for variable in scopes[q]:
+            if variable in color_variable_metadata:
+                v, c = color_variable_metadata[variable]
+                values[variable] = int(color[v] == c)
+            else:
+                # Every padding auxiliary.
+                values[variable] = 0
+
+        bits = tuple(values[v] for v in scopes[q])
+        coeff[bits] = coeff.get(bits, 0) ^ 1
+
+    return {bits for bits, bit in coeff.items() if bit}
+```
+
+The returned set is the support of \(\mu_Q\); every listed coefficient is \(1\). Its size is either \(1\) or \(3\), never more than \(3\).
+
+A direct falsifiable check is:
+
+> For every \(n\) and every \(d<n\), building \(F_n\) as above and inserting these columns must satisfy `H x = target mod 2` exactly, with total chosen-column count at most `3 * len(groups)`.
+
+---
+
+## Structural conclusion
+
+The failure is not an encoding artifact or a weakness confined to depth \(2\). The hierarchy cannot distinguish an inconsistent permutation holonomy on an odd state space from its tree restrictions. On every proper connected local skeleton, summing the three propagated states gives an odd-mass, exactly gluable \(\mathbb F_2\) view. The global obstruction appears only when a clause set touches every edge of the cycle.
+
+Thus the proposed connected-view hierarchy cannot support a universal polynomial NCP gap on bounded-degree unsatisfiable 3CNFs.

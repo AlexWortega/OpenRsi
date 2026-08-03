@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "smoke": "node --enable-source-maps dist/smoke.js",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "proofs:run7": "node --enable-source-maps dist/proofs/run7.js"
   },
   "dependencies": {
     "@earendil-works/pi-agent-core": "0.80.7",

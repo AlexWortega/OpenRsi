@@ -5,6 +5,7 @@ Usage (from the run's working directory):
   python3 ask_pro.py "question" [file ...]                 # converge: deep single-answer (default model gpt-5.6-sol-pro)
   python3 ask_pro.py --ideate "task" [file ...]            # divergent: 5-8 distinct mechanism sketches (default model claude-fable-5)
   python3 ask_pro.py --scout "topic query" [file ...]      # literature scout with live web search (:online)
+  python3 ask_pro.py --review "claim" [file ...]           # hostile review; strict CONTINUE/KILL JSON
   python3 ask_pro.py --model <openrouter-slug> ...         # override model for any mode
 
 Every call appends its USD cost to ./pro_costs.jsonl (counted against the run
@@ -17,8 +18,10 @@ import sys
 import time
 import urllib.request
 
-MAX_FILE_CHARS = 60_000
-MAX_TOKENS = 60_000
+MAX_FILE_CHARS = int(os.environ.get("OPENRSI_ORACLE_MAX_FILE_CHARS", "60000"))
+MAX_TOTAL_FILE_CHARS = int(os.environ.get("OPENRSI_ORACLE_MAX_CONTEXT_CHARS", "180000"))
+MAX_TOKENS = int(os.environ.get("OPENRSI_ORACLE_MAX_TOKENS", "12000"))
+UNKNOWN_CALL_COST_USD = float(os.environ.get("OPENRSI_UNKNOWN_CALL_COST_USD", "2"))
 
 OFFLIMITS = (
     "STRICT PROHIBITION: a recent document by another lab ('Ten Advances in Mathematics and "
@@ -59,12 +62,23 @@ SYSTEMS = {
         "Prefer primary sources (arXiv, journals) and give 5-10 finds ranked by likely "
         "leverage. " + OFFLIMITS
     ),
+    "review": (
+        "You are a hostile independent research referee. Check every claimed mechanism against "
+        "the attached obstruction map and every claimed experimental result against the supplied "
+        "verifier evidence. Never promote finite evidence to an asymptotic theorem. Return ONLY one "
+        "JSON object with keys: verdict (CONTINUE or KILL), fatal_blockers (array of strings), "
+        "evidence (array of strings), next_experiment (string), and confidence (number from 0 to 1). "
+        "CONTINUE means the candidate is worth exactly one more bounded experiment, not that the "
+        "target theorem is proved. KILL means this candidate/run should stop unless a stated mutation "
+        "escapes the blocker. " + OFFLIMITS
+    ),
 }
 
 DEFAULT_MODELS = {
     "converge": os.environ.get("OPENRSI_PRO_MODEL", "openai/gpt-5.6-sol-pro"),
     "ideate": os.environ.get("OPENRSI_IDEATE_MODEL", "anthropic/claude-fable-5"),
     "scout": os.environ.get("OPENRSI_SCOUT_MODEL", "openai/gpt-5.6-sol:online"),
+    "review": os.environ.get("OPENRSI_PRO_MODEL", "openai/gpt-5.6-sol-pro"),
 }
 
 
@@ -78,6 +92,8 @@ def main():
             mode = "ideate"
         elif flag == "--scout":
             mode = "scout"
+        elif flag == "--review":
+            mode = "review"
         elif flag == "--model":
             if not args:
                 sys.exit("--model needs a value")
@@ -92,11 +108,20 @@ def main():
     model = model or DEFAULT_MODELS[mode]
     question = args[0]
     parts = [question]
+    total_file_chars = 0
     for path in args[1:]:
         try:
-            text = open(path).read()[:MAX_FILE_CHARS]
+            remaining = MAX_TOTAL_FILE_CHARS - total_file_chars
+            if remaining <= 0:
+                break
+            raw_text = open(path).read()
+            cap = min(MAX_FILE_CHARS, remaining)
+            text = raw_text[:cap]
+            if len(raw_text) > cap:
+                text += f"\n[TRUNCATED: kept {cap} of {len(raw_text)} chars]"
         except OSError as e:
             sys.exit(f"cannot read {path}: {e}")
+        total_file_chars += len(text)
         parts.append(f"\n\n===== FILE: {path} =====\n{text}")
     payload = {
         "model": model,
@@ -108,6 +133,8 @@ def main():
         "max_tokens": MAX_TOKENS,
         "usage": {"include": True},
     }
+    if mode == "review":
+        payload["response_format"] = {"type": "json_object"}
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions",
         data=json.dumps(payload).encode(),
@@ -127,6 +154,7 @@ def main():
         "mode": mode,
         "model": model,
         "cost": cost,
+        "reserved_cost": UNKNOWN_CALL_COST_USD if cost is None else 0,
         "prompt_tokens": usage.get("prompt_tokens"),
         "completion_tokens": usage.get("completion_tokens"),
         "seconds": round(time.time() - t0, 1),

@@ -24,10 +24,11 @@ const VERIFIER_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_VERIFIER_TIMEOUT_MS", 10
 const UNKNOWN_CALL_COST_USD = numberEnv("OPENRSI_UNKNOWN_CALL_COST_USD", 2);
 const SOL_TURN_RESERVE_USD = numberEnv("OPENRSI_SOL_TURN_RESERVE_USD", 5);
 const SOL_MAX_TOKENS = positiveIntegerEnv("OPENRSI_SOL_MAX_TOKENS", 12_000);
+const FROM_SCRATCH = process.env.OPENRSI_FROM_SCRATCH === "1";
 
 const SOL_SYSTEM = `You are the implementation worker in a model-separated CVP proof-research loop.
 The target is a deterministic PCP-free polynomial-factor hardness reduction from 3SAT to Euclidean
-GapCVP. The inherited campaign is PARTIAL: never describe finite evidence as an asymptotic theorem.
+GapCVP. Never describe finite evidence as an asymptotic theorem.
 
 Your role is implementation and adversarial verification, not proposal grading and not the final
 continue/kill decision. Read both proposer documents and both cross-reviews for the current
@@ -253,6 +254,17 @@ function seedPrior(repoRoot: string, runDir: string): void {
   }
 }
 
+function seedScratch(runDir: string): void {
+  const target = "Prove a deterministic polynomial-time many-one reduction from 3SAT to Euclidean GapCVP with approximation factor n^c for an explicit absolute c>0, without PCP and without unproved conjectures.";
+  writeFileSync(join(runDir, "STATUS.md"), `# Status\n\n**OPEN — fresh run.** No inherited claims, ideas, experiments, or checkpoints.\n\nTarget: ${target}\n`);
+  writeFileSync(join(runDir, "IDEAS.md"), "# Idea population\n\nFresh run: no inherited ideas. Every proposal must state its mechanism, falsification test, and smallest executable experiment.\n");
+  writeFileSync(join(runDir, "NOTES.md"), `# Notes\n\nFresh run started from zero.\n\n## Target\n\n${target}\n`);
+  writeFileSync(join(runDir, "proof_cvp.md"), `# PCP-free polynomial-factor CVP hardness\n\nNo theorem has been established in this fresh run.\n\n## Target\n\n${target}\n`);
+  writeFileSync(join(runDir, "ORACLE_BRIEF.md"), `# Oracle brief\n\nThis is a from-scratch campaign: do not assume or import any prior campaign's obstruction map or partial results.\n\n${target}\n\nSoundness must be attacked with executable small-instance searches before any claim is promoted.\n`);
+  writeFileSync(join(runDir, "LITERATURE.md"), "# Literature\n\nNo checkpoint or prior campaign literature was seeded. Any classical source used must be cited explicitly during this run.\n");
+  mkdirSync(join(runDir, "experiments"));
+}
+
 function dryRunPlan(repoRoot: string): void {
   const sampleContinue = parseReview('{"verdict":"CONTINUE","fatal_blockers":[],"evidence":["verifier exit 0"],"next_experiment":"bounded mutation","confidence":0.8}');
   const sampleKill = parseReview('{"verdict":"KILL","fatal_blockers":["counterexample"],"evidence":[],"next_experiment":"","confidence":0.9}');
@@ -260,6 +272,7 @@ function dryRunPlan(repoRoot: string): void {
     dry_run: true,
     repo_root: repoRoot,
     models: { fable: FABLE, pro: PRO, sol: SOL },
+    from_scratch: FROM_SCRATCH,
     stages: ["parallel ideation", "parallel cross-review", "Sol implementation+verification", "parallel result review", "optional one-round rebuttal", "code-owned gate"],
     max_generations: MAX_GENERATIONS,
     oracle_timeout_ms: ORACLE_TIMEOUT_MS,
@@ -288,7 +301,8 @@ async function main(): Promise<void> {
   const runDir = resolve(process.env.OPENRSI_PROOFS_DIR || join(repoRoot, "runs", runId));
   if (existsSync(runDir)) throw new Error(`run directory already exists; choose a fresh OPENRSI_PROOFS_DIR: ${runDir}`);
   mkdirSync(runDir, { recursive: true });
-  seedPrior(repoRoot, runDir);
+  if (FROM_SCRATCH) seedScratch(runDir);
+  else seedPrior(repoRoot, runDir);
   writeFileSync(join(runDir, "AGENTS.md"), `${SOL_SYSTEM}\n`);
 
   const events = join(runDir, "events.jsonl");

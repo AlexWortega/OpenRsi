@@ -188,6 +188,26 @@ async function settleParallel(tasks: Array<Promise<void>>): Promise<void> {
   }
 }
 
+async function ensureReview(
+  python: string,
+  cwd: string,
+  outputPath: string,
+  args: string[],
+): Promise<void> {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    if (existsSync(outputPath)) {
+      try {
+        parseReview(readFileSync(outputPath, "utf8"));
+        return;
+      } catch (error) {
+        renameSync(outputPath, `${outputPath}.invalid-${Date.now()}-attempt-${attempt}`);
+      }
+    }
+    await runOracle(python, cwd, outputPath, args);
+  }
+  parseReview(readFileSync(outputPath, "utf8"));
+}
+
 function oracleCost(path: string): number {
   if (!existsSync(path)) return 0;
   let sum = 0;
@@ -415,8 +435,8 @@ async function main(): Promise<void> {
     const proReviewsFable = join(genDir, "pro_reviews_fable.json");
     const fableReviewsPro = join(genDir, "fable_reviews_pro.json");
     await settleParallel([
-      ...(!existsSync(proReviewsFable) ? [runOracle(python, runDir, proReviewsFable, [askPro, "--review", "--model", PRO, "Review Fable's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", fableIdeas, ...liveContext])] : []),
-      ...(!existsSync(fableReviewsPro) ? [runOracle(python, runDir, fableReviewsPro, [askPro, "--review", "--model", FABLE, "Review Pro's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", proIdeas, ...liveContext])] : []),
+      ensureReview(python, runDir, proReviewsFable, [askPro, "--review", "--model", PRO, "Review Fable's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", fableIdeas, ...liveContext]),
+      ensureReview(python, runDir, fableReviewsPro, [askPro, "--review", "--model", FABLE, "Review Pro's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", proIdeas, ...liveContext]),
     ]);
     const fableProposalReview = parseReview(readFileSync(proReviewsFable, "utf8"));
     const proProposalReview = parseReview(readFileSync(fableReviewsPro, "utf8"));
@@ -476,8 +496,8 @@ async function main(): Promise<void> {
     const proResult = join(genDir, "pro_result_review.json");
     const reviewQuestion = `Review generation ${generation}'s Sol result. Check the packet against STATUS/IDEAS/NOTES and refuse any promotion from finite evidence to asymptotic hardness. CONTINUE only for one precise next bounded experiment; otherwise KILL.`;
     await settleParallel([
-      ...(!existsSync(fableResult) ? [runOracle(python, runDir, fableResult, [askPro, "--review", "--model", FABLE, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"])] : []),
-      ...(!existsSync(proResult) ? [runOracle(python, runDir, proResult, [askPro, "--review", "--model", PRO, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"])] : []),
+      ensureReview(python, runDir, fableResult, [askPro, "--review", "--model", FABLE, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"]),
+      ensureReview(python, runDir, proResult, [askPro, "--review", "--model", PRO, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"]),
     ]);
     let fableReview = parseReview(readFileSync(fableResult, "utf8"));
     let proReview = parseReview(readFileSync(proResult, "utf8"));
@@ -497,8 +517,8 @@ async function main(): Promise<void> {
       const fableRebuttal = join(genDir, "fable_rebuttal.json");
       const proRebuttal = join(genDir, "pro_rebuttal.json");
       await settleParallel([
-        runOracle(python, runDir, fableRebuttal, [askPro, "--review", "--model", FABLE, "One final rebuttal: read Pro's result review and reconsider your verdict. Return strict review JSON. No further debate follows.", proResult, fableResult, resultPacket]),
-        runOracle(python, runDir, proRebuttal, [askPro, "--review", "--model", PRO, "One final rebuttal: read Fable's result review and reconsider your verdict. Return strict review JSON. No further debate follows.", fableResult, proResult, resultPacket]),
+        ensureReview(python, runDir, fableRebuttal, [askPro, "--review", "--model", FABLE, "One final rebuttal: read Pro's result review and reconsider your verdict. Return strict review JSON. No further debate follows.", proResult, fableResult, resultPacket]),
+        ensureReview(python, runDir, proRebuttal, [askPro, "--review", "--model", PRO, "One final rebuttal: read Fable's result review and reconsider your verdict. Return strict review JSON. No further debate follows.", fableResult, proResult, resultPacket]),
       ]);
       fableReview = parseReview(readFileSync(fableRebuttal, "utf8"));
       proReview = parseReview(readFileSync(proRebuttal, "utf8"));

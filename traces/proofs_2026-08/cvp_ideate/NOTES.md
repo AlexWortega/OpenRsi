@@ -129,6 +129,198 @@ Also implemented `verify_reduced_fold_cvp.py`, taking the level-1 folded finite 
 
 Per the catalyst autopsy, immediately tested the required asymmetric mutation rather than burying it. `verify_asymmetric_hash_fold.py` exactly evaluates 866 valid formula-oblivious sparse hash folds on ten YES and ten NO reduced 3DM squares. Best uniform exponent is 0.0962 versus unfurled 0.2447; most folds collapse the ratio. The exact tested family is wounded/killed with autopsy and the next code-dependent mutation recorded in `IDEAS.md`.
 
+## Milestone 9 — code-dependent folds and exact parity-check simplification
+
+Implemented the previously recorded next mutation rather than extrapolating
+from formula-oblivious hashes.  `verify_code_dependent_type_fold.py` groups
+moving coordinates by basis-invariant generator-column type and punctures each
+class according to a deterministic budget.  It checks all mixed words, the
+exact rounding bound, and relabeling invariance on ten YES and ten NO reduced
+3DM squares.  The best tested standard rank exponent is the unpunctured one;
+at budget two the uniform distance ratio already drops from `25/9` to at most
+`13/9`.
+
+Per protocol, ran a targeted pre-2024 scout before any further ideation.  It
+found exact syndrome-side matroid simplification: merge repeated nonzero
+parity-check columns and delete zero columns, preserving every target's minimum
+weight exactly.  I immediately implemented this in
+`verify_parity_type_tensor.py`, including reduced tensor, affine parity-check
+conversion, simplification, and re-homogenization.  Both tiny 3DM fibers retain
+all `8 -> 64 -> 4096` formal coordinates; distances amplify exactly but length
+does too.
+
+This finite outcome has a short general autopsy.  A parity-check matrix has a
+zero/repeated column only if its kernel has a word of weight one/two.  The BMT
+moving span has distance at least three, and its reduced star-zero tensor code
+has distance at least nine by product distance.  Therefore parallel
+simplification removes nothing at every iteration of this family.  Recorded
+the proof in `proof_cvp.md`, the classical digest in `LITERATURE.md`, and both
+mutations/autopsies in `IDEAS.md`.
+
+## Milestone 10 — harvest and construction-only round
+
+Harvested background processes first.  No process in this run was active; one
+long `ehrhart3_adv.py` process belonged to the separate
+`runs/proofs_code_fable` working directory and was left untouched.  No local
+PID/log was unfinished.
+
+The user-supplied current accounting was `$4.37/$30`, oracle `$1.50`; exact
+construction-dollar attribution was unavailable, so quarantine was treated as
+binding.  The next actions were two explicit constructions and exact attacks,
+with no oracle call.
+
+1. `verify_feature_shell_3dm.py` implements augmented syndrome matrices with
+   cost `|x|+R|Fx|`, using global pair projections, deterministic sparse
+   hashes, and hybrids.  Exhaustive search over every odd cover in 40 YES and
+   40 NO instances, 45 feature choices, gives best uniform ratio `7/6`, below
+   the base `5/3`.  It checks an explicit augmented-matrix cheating witness.
+2. `verify_integer_3dm_cvp.py` implements direct integer incidence CVP and
+   meet-in-the-middle signed search.  It confirms YES norm squared 3 and NO
+   minima at least 5 across 80 instances, including a coefficient `-1` cheat
+   at norm 5.  The general proof is `sum z_j^2>=sum z_j=q`, equality only for
+   Boolean `z`, with even positive excess in NO cases.
+3. The tested mutation appends all pair-projection equations and branches over
+   the 36 consistent targets at `q=3`.  Exact `{-1,0,1}` search on four YES and
+   four NO instances finds YES norm 3 and no NO exact-fiber point.  This finite
+   classifier initially left an exponential `(q!)^2` target menu; item 4 tests
+   and resolves the disjunction encoding, but not its additive-gap wall.
+4. Immediately tested the required polynomial disjunction mutation in
+   `verify_variable_pair_projection_cvp.py`: make all three projection tables
+   lattice variables constrained to equal the projections of `z`.  This gives
+   one fixed polynomial-size target and is sound against signed vectors, but
+   exact minima are only 12 versus 14.  The mutation's autopsy is the table
+   norm baseline: each row-sum-one integer table costs at least `q`, so three
+   projection tables add `3q` to every YES witness.  Block-weight variants
+   change constants but remain additive.
+
+## Milestone 11 — scout then immediate determinant construction
+
+After the construction-only milestone, ran one protocol-required pre-2024
+scout on zero-baseline permutation unions and multiplicative integer tensor
+soundness.  It found no direct solution; the main constructive lead was the
+global determinant/common-basis polynomial, with Haviv--Regev's all-sublattice
+criterion as the relevant mixed-tensor invariant.
+
+Acted immediately with `verify_determinant_permutation_dictionary.py`.  It
+exhausts signed determinant-monomial dictionaries at q=3 and all support-three
+trades at q=4, including aggregate tables and every exterior compound state.
+Global states yield finite constant separation but retain short virtual
+permutations and require q! monomial columns.  The required mutation from top
+determinant to all compounds was tested before recording the autopsy.
+
+## Milestone 12 — homogeneous integer tensor construction
+
+Acted on the scout's Haviv--Regev lead with
+`verify_homogeneous_integer_tensor.py`.  It constructs homogeneous integer
+exact-cover lattices and exhausts bounded arbitrary mixed tensor coefficients,
+not only pure products.  Four rank-two YES/NO examples show exact
+multiplicativity of the pointed squared norm.  This remains finite evidence;
+higher kernel rank and an all-sublattices determinant theorem are unresolved,
+as is the tensor rank wall.  The next hostile mutation is recorded in
+`IDEAS.md` rather than promoting the signal to a claim.
+
+## Milestone 13 — harvest and higher-rank tensor mutation
+
+Harvested first.  No local job was initially active; the only old process
+belonged to another run.  User accounting (`$10.63`, oracle `$2.89`) did not
+permit exact construction attribution, so the next action was the recorded
+higher-rank construction mutation, not an obstruction call.
+
+`verify_highrank_integer_tensor.py` now uses Smith decomposition for saturated
+integer kernels and exhausts six YES/six NO rank-three tensor codes over all
+`3^9` mixed coefficient matrices.  Multiplicativity survives exactly.
+`verify_tensor_subdeterminants.py` then attacks the proposed all-sublattices
+proof on twelve+ twelve cases and finds the precise failure: unrestricted NO
+`s=0` directions match YES minimum norm, rank-two determinant, and support.
+The required homogenizing-functional/quotient mutation is recorded before
+burying the naive lemma.
+
+A coefficient-`[-2,2]` background search over selected rank-three tensors was
+launched after the foreground verifier.
+
+## Milestone 14 — harvest and pointed-sublattice mutation
+
+Harvested the local background search: it completed with `HIGHRANK_C2_PASS`,
+checking `5^9` mixed matrices for each of three YES/three NO lattices.  Added
+`verify_highrank_tensor_C2.py` so the finite claim is independently
+reproducible and asserted.
+
+Then implemented the required mutation to the failed unrestricted sublattice
+lemma.  `verify_pointed_sublattice_diagnostics.py` restricts to sublattices on
+which the homogenizing functional is primitive.  Exact enumeration over
+20+20 rank-three lattices restores rank-one and rank-two norm,
+determinant, and support gaps.  This is now the sole promising mathematical
+invariant, with arbitrary-rank proof and rank compression still missing.
+`verify_pointed_rank3_coeff_bound.py` then widens coefficients through absolute
+value three; 145 primitive directions and at least 7,480 rank-two pairs per
+instance retain exactly the same finite gaps.  The next rank mutation,
+`verify_pointed_rank4_diagnostics.py`, tests 20+20 rank-four lattices and
+sparse mixed tensors; it also retains the same pointed determinant/support and
+16/36 tensor gaps.
+
+## Milestone 15 — focused proof resolution
+
+Used one CONVERGE call on the sole promising pointed-sublattice lemma.  It
+proved the exact rank-two determinant/support bounds and a general odd-minor
+bound, but also supplied a decisive arbitrary-partner counterexample.  The
+correct surviving mechanism is simpler: coordinate parity reduces the integer
+lattice tensor to the already-proved binary pointed tensor theorem, certifying
+all mixed integer tensors.  Added a self-contained proof to `proof_cvp.md` and
+`verify_pointed_tensor_theorems.py` for every finite arithmetic/count quoted.
+The remaining wall is rank compression, not mixed-word soundness.
+
+## Milestone 16 — weighted Euclidean tensor compression
+
+Harvested first: no active process belonged to this run.  User accounting was
+`$21.17` total and `$5.73` oracle; exact construction attribution was
+unavailable, so quarantine was treated as binding and no oracle was called.
+
+Implemented an exact construction exploiting Euclidean weights rather than
+unweighted binary puncturing.  Pure-power tensor coordinates depend only on
+their underlying set of base indices.  Integer orbit multiplicities are
+represented as sums of scaled square rows, giving an explicit Construction-A
+CVP basis whose squared distance equals full tensor Hamming distance.
+
+Three verifiers cover multiset orbits, set-support compression, explicit
+integer bases, tiny 3DM end-to-end distances, and the required mutation merging
+identical product functions.  The resulting output is independent of tensor
+order, but finite function-type counts grow rapidly with base code dimension;
+the remaining parameter gap was then attacked rather than left conjectural.
+`verify_pure_power_dimension.py` checks the exact formula
+`dim P_r(D)=sum_{j<=min(k,r)} C(k,j)`.  The proof in `proof_cvp.md` shows that
+all squarefree message monomials occur.  Hence every exact weighted/function
+compression has exponential rank once tensor order reaches code dimension;
+function-type merging is the tested mutation and cannot evade this wall.
+
+The next construction, `verify_weight_class_compressor.py`, shows that distance
+powering itself admits only `m+2` weighted coordinates if exact attainable
+fiber weights are supplied.  Exact low-weight search validates it, then the
+computability attack identifies its hidden NP-hard step: deciding whether to
+include class `q`.  The tested parity/counting relaxation includes that class
+in NO and collapses the gap.
+
+Finally tested the dimension-wall mutation that discards rather than exactly
+represents most pure-power functions.  A canonical sampled fold initially
+found ratio 7 on ten+ten instances.  Before believing it, froze the parameters
+and expanded to 50+50 instances at five dictionary sizes and permuted
+presentations.  The gap collapses to at most 4/3 and then one, so the apparent
+signal is recorded as overfitting with an exact generalization verifier.
+
+With the remaining budget, tested the only small-dimension parameter mutation
+rather than calling another oracle.  `verify_exact_power_polynomial_base.py`
+confirms large finite gaps when BMT code dimension is at most six.  The
+asymptotic autopsy is rigorous: logarithmic dimension permits exhaustive
+polynomial decoding, while larger dimension makes exact compressed rank
+superpolynomial.  This closes the finite toy without changing ladder status.
+
 ## Budget quarantine
 
-Oracle spending so far: two scouts + one ideation call. Construction work immediately followed the ideation answer with two exact end-to-end finite programs. No further no-go consultation has been made. The construction fraction is now substantial and should remain at least 40%.
+Oracle log now records eight calls totaling `$15.31318`, including the final
+targeted classical scout.  No further ideation/no-go consultation followed it:
+its sole surviving mechanism was immediately implemented, tested, proved
+vacuous for the current family, and mutated against the already implemented
+generator-type fold.  Construction work includes nineteen exact verifier
+scripts and the finite explicit CVP transfer.  No claim is made that dollar
+attribution can be reconstructed exactly, but the post-checkpoint research
+sequence remained entirely construction/implementation/attack except for the
+single protocol-required scout.

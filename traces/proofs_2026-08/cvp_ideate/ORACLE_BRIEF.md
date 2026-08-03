@@ -26,6 +26,55 @@ A surviving construction must use a polynomial-size sparse column model with gen
 
 Any proposal must explicitly survive: (i) the all-eight 3-clause core and its local cube trades, (ii) odd permutation holonomy, (iii) arbitrary mixed tensor words, and (iv) YES-baseline/output-rank accounting.
 
-## Current core need for literature search / ideation
+## Current post-construction position
 
-Find classical pre-PCP machinery giving an explicit polynomial-size linear representation with a large gap between a designated affine coset's sparse Boolean witnesses and all spurious field/integer linear combinations. Candidate vocabulary may include minimum-distance amplification, concatenated/product codes, sparse recovery/nullspace properties over finite fields, superimposed/disjunct matrices, matroid girth products, algebraic-geometric evaluation codes, exterior powers, rank condensers, and code-dependent tensor compression. A useful answer must lead to an explicit matrix and a small hostile experiment, not merely name a paradigm.
+The two original openings have now been narrowed substantially.
+
+* Exact-cover relative quotients fail when illegal odd covers lie in the affine
+  span of legal matchings (`verify_exchange_quotient.py`).
+* Reduced pointed tensoring and odd orbit folding have rigorous all-mixed-word
+  distance lemmas, but invariant ladders conserve a vanishing exponent;
+  non-invariant sheets do not compress in tested cases; direct cyclic closure
+  destroys distance; pure tensor catalysts cannot improve standard rank
+  exponent; sparse hashes lose soundness.
+* A deterministic code-dependent generator-column-type puncture was tested on
+  every mixed word and loses the finite gap.
+* Exact parity-check parallel simplification preserves every syndrome coset
+  distance, but is rigorously vacuous on BMT reduced tensors: their moving
+  span has distance at least three, tensor products have larger distance, and
+  a parity-check kernel of distance at least three has no zero/repeated
+  columns (`verify_parity_type_tensor.py`).
+
+A new direct integer construction sharpens the remaining need.  Integer 3DM
+incidence CVP has rigorous squared gap `q` versus `q+2`, including signed
+coefficients.  Fixing all three pair-projection permutation matrices eliminates
+the tested NO fibers.  Making those tables lattice variables gives a
+polynomial-size signed-sound encoding of the disjunction, but each row-sum-one
+table has norm at least `q`; exact tests give only 12 versus 14.  Global binary
+feature-cost shells likewise reduce the gap.
+
+A focused proof pass now resolves integer tensor soundness.  For coordinate
+incidence lattices, reduction mod two has pointed distance `q+1` versus at
+least `q+3`, and this distance multiplies exactly for every mixed tensor;
+integer squared norm dominates parity support.  A rank-two pointed sublattice
+theorem `det_Gr>=4(q+2)` is proved, but arbitrary-Euclidean all-partner
+multiplicativity is false and its required determinant profile is too large.
+A new exact Euclidean mechanism compresses pure-power tensor tuples to their
+underlying set supports, retaining integer orbit multiplicities as sums of
+scaled square rows.  It preserves every mixed pure-power word and makes output
+independent of tensor order, but uses up to `2^n-1` subset coordinates in base
+length `n`.  Merging identical product functions helps finite low-dimensional
+3DM codes but has no polynomial asymptotic bound.
+
+Thus the remaining core need is either (i) prove polynomially many reachable
+product-function types for a suitable additive-gap base family, (ii) obtain a
+base reduction with logarithmic coordinate length relative to represented
+instance size, or (iii) an **asymmetric, code-dependent linear operation**
+that can be computed from the instance without finding a SAT witness, gives a
+short sparse representative to every satisfiable affine fiber, and provably
+charges all unsatisfiable fiber words by a larger-than-common multiplier.  It
+must not be pure tensor-product multiplication, ordinary puncturing/type
+merging, or a quotient identifying all legal witnesses.  No such operation or
+classifier is known in this run.  Any future proposal must specify an explicit
+matrix and first survive the tiny 3DM YES/NO families plus the all-eight-clause
+and odd-holonomy attacks.

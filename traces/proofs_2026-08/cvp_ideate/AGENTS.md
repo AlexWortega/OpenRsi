@@ -33,11 +33,11 @@ Ground rules:
 - Budget discipline: fixed USD budget shared between your inference and oracle calls. Do not drift into survey mode — pick an encoding strategy, implement, measure, iterate.
 
 ## Recalled insights from past sessions (memory)
+- (cvp) Treat run score fields as placeholders unless STATUS.md explicitly records an evaluated outcome; derive lessons from the status narrative and evidence instead.
+- (cvp) For CVP/NCP hardness ideation, explicitly target a PCP-free reduction from 3SAT with a polynomial approximation gap, and track where the gap and soundness are proved.
 - (cvp) In benchmark run summaries, treat a score explicitly marked placeholder as metadata, not evidence of success or failure; derive lessons only from recorded status/results.
 - (cvp) For proof-search runs, keep claims tied to the run's written STATUS.md rather than inferring progress from the target theorem, budget, worker/oracle setup, or model configuration.
 - (ramsey) In benchmark run summaries, treat the score field as a placeholder unless STATUS.md explicitly records an evaluated outcome; derive lessons from STATUS.md evidence only.
 - (ramsey) For follow-on Ramsey oracle runs, seed the worker and oracle with the full merged map, including completed prior runs, to preserve accumulated proof context.
 - (ramsey) In ramsey_fable-style runs, treat score=0 as a placeholder; only STATUS.md's proved/partial entries are ground truth for outcomes—never infer failure from the score field.
 - (ramsey) For superexponential R_k(3) lower-bound campaigns, seed new runs from prior rounds' STATUS.md artifacts (round 1 + round 2) so partial proofs carry forward instead of restarting.
-- (ramsey) In Ramsey run artifacts, treat the score field as a placeholder; infer progress or outcome only from explicit entries in STATUS.md.
-- (ramsey) The ramsey_oracle run was seeded with the full merged map, including the completed ramsey_sol run; preserve that inherited context when continuing analysis.

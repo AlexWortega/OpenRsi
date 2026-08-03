@@ -1,0 +1,8 @@
+{'q': 3, 'signed_affine_vectors': 1680, 'report': {'lambda': (1, 3, 3.0), 'lambda+table': (4, 8, 2.0), 'lambda+all_compounds': (8, 22, 2.75), 'lambda+top_det': (2, 4, 2.0), 'lambda+middle_compounds': (4, 12, 3.0)}}
+lambda {'lambda': (-1, 0, 0, 0, 1, 1), 'X': (-1, 0, 2, 1, 0, 0, 1, 1, -1), 'legal': 1, 'illegal': 3}
+lambda+table {'lambda': (-1, 0, 1, 0, 0, 1), 'X': (-1, 1, 1, 1, 0, 0, 1, 0, 0), 'legal': 4, 'illegal': 8}
+lambda+all_compounds {'lambda': (-1, 0, 0, 0, 1, 1), 'X': (-1, 0, 2, 1, 0, 0, 1, 1, -1), 'legal': 8, 'illegal': 22}
+lambda+top_det {'lambda': (-1, 0, 0, 0, 1, 1), 'X': (-1, 0, 2, 1, 0, 0, 1, 1, -1), 'legal': 2, 'illegal': 4}
+lambda+middle_compounds {'lambda': (-1, 0, 0, 0, 1, 1), 'X': (-1, 0, 2, 1, 0, 0, 1, 1, -1), 'legal': 4, 'illegal': 12}
+{'q': 4, 'support3_checked': 12144, 'report': {'lambda': (1, 3, 3.0), 'lambda+table': (5, 7, 1.4), 'lambda+all_compounds': (16, 34, 2.125), 'lambda+top_det': (2, 4, 2.0), 'lambda+middle_compounds': (11, 25, 2.272727272727273)}, 'arg': {'lambda': (0, 1, 2, (1, 0, 0, 0, 0, 2, -1, 0, 0, -1, 1, 1, 0, 0, 1, 0)), 'lambda+table': (0, 7, 1, (0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)), 'lambda+all_compounds': (0, 7, 3, (0, 1, 0, 0, 1, 1, -1, 0, 0, 0, 1, 0, 0, -1, 1, 1)), 'lambda+top_det': (0, 1, 2, (1, 0, 0, 0, 0, 2, -1, 0, 0, -1, 1, 1, 0, 0, 1, 0)), 'lambda+middle_compounds': (0, 7, 3, (0, 1, 0, 0, 1, 1, -1, 0, 0, 0, 1, 0, 0, -1, 1, 1))}}
+determinant/permutation dictionary exact attack passes

@@ -54,5 +54,13 @@ constant-degree local signature, surviving mixing/mod/tensoring/folding;
 gauge-triviality theorem for copy-stable local phase lifts; unary-marginal
 2x2-rectangle nonintegrality; tensor pointed-distance multiplicativity +
 sampling lower bounds). Its final verdict: hardness must come from a genuinely
-global norm-vs-integrality mechanism. Run ended by an over-aggressive 120-min
-round watchdog while still active (lesson: activity-based, not nudge-based).
+global norm-vs-integrality mechanism. Segment 1 ($50) ended by an over-aggressive 120-min round watchdog while
+still active (lesson: activity-based, not nudge-based). Segment 2 (+$25, 10
+oracle consultations total, 54 verifiers) extended the map to GLOBAL
+mechanisms: CRT coupling, circuit tableaus with affine interfaces, Walsh
+characters (integer closure needs all 2^n), fixed-prime fingerprints
+(Hamming-type exponential row bound), bounded integer fingerprints (counting
+obstruction), and naive univariate polynomial moments (finite-difference
+extrapolation kills degree <= q-2) — each killed by an exact low-weight
+witness in the tested model. Final verdict unchanged: a fundamentally
+different polynomial-size sparse column model is required. Total CVP spend ~$75.

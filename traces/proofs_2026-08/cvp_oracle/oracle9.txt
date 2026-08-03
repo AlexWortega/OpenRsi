@@ -1,0 +1,271 @@
+## No-go theorem: bounded-fan-in arithmetic/determinantal tableau linearizations have an exact support-three fault
+
+This rules out compact global high-degree predicates—including determinant/resultant predicates—when they are evaluated by a polynomial-size Boolean/arithmetic circuit whose legal gate tables are coupled only through affine wire equations. The obstruction survives arbitrary dense row mixing, residual coding, and integer scaling.
+
+### 1. Exact model
+
+Let \(C\) be a feed-forward Boolean circuit. Primary inputs are represented by source blocks. Every non-source gate \(g\) has fan-in at most two and Boolean function
+\[
+h_g:\{0,1\}^{k_g}\to\{0,1\},\qquad k_g\le 2.
+\]
+
+For every source block \(s_i\), create columns
+\[
+c_{s_i,0},c_{s_i,1}.
+\]
+For every gate \(g\) and every legal tuple
+\[
+\tau=(a_1,\dots,a_{k_g},h_g(a))\in\operatorname{graph}(h_g),
+\]
+create a column \(c_{g,\tau}\).
+
+Let \(N\) be the number of columns. Define an integer matrix
+\[
+A\in\mathbb Z^{r\times N}
+\]
+with the following rows.
+
+1. **Block coverage.** For every source or gate block \(g\),
+   \[
+   \sum_{\tau} \lambda_{g,\tau}=1.
+   \]
+
+2. **Wire equality.** For every connection from the output of block \(g\) to input port \(j\) of block \(h\),
+   \[
+   \sum_{\tau}\tau_{\rm out}\lambda_{g,\tau}
+   -
+   \sum_{\sigma}\sigma_j\lambda_{h,\sigma}=0.
+   \]
+
+3. **Fixed constants and acceptance.** A constant input port \(j\) fixed to \(b\) has row
+   \[
+   \sum_\sigma \sigma_j\lambda_{h,\sigma}=b.
+   \]
+   The designated circuit output has the analogous target-one row.
+
+Let \(b\in\mathbb Z^r\) be the resulting target.
+
+The binary NCP instance is
+\[
+H=A\bmod 2,\qquad t=b\bmod2,
+\]
+with Hamming norm on the coefficient vector.
+
+For the integer Euclidean version, for any scale \(M\ge1\), use the rank-\(N\) lattice basis
+\[
+B=\begin{pmatrix}I_N\\MA\end{pmatrix}\in\mathbb Z^{(N+r)\times N},
+\qquad
+t_{\rm CVP}=\binom{0_N}{Mb}.
+\]
+Thus
+\[
+\|B\lambda-t_{\rm CVP}\|_2^2
+=
+\|\lambda\|_2^2+M^2\|A\lambda-b\|_2^2.
+\]
+
+Arbitrary subsequent linear row processing \(A\mapsto LA\), including dense coding and repeated/scaled rows, is allowed.
+
+---
+
+### 2. The theorem
+
+**Theorem.** Suppose a circuit tableau of the above form contains a binary OR gate whose intended interface is
+\[
+(\text{coverage},a,b,z)=(1,0,0,1).
+\]
+Although this is not a legal OR tuple, it has the exact representations
+\[
+(1,0,0,1)
+=
+(1,0,1,1)+(1,1,0,1)-(1,1,1,1)
+\tag{1}
+\]
+over \(\mathbb Z\), and
+\[
+(1,0,0,1)
+=
+(1,0,1,1)+(1,1,0,1)+(1,1,1,1)
+\tag{2}
+\]
+over \(\mathbb F_2\).
+
+Consequently, replacing one honest OR-table column by these three legal OR columns:
+
+* preserves the block-coverage row exactly;
+* preserves both input-wire values as \(0,0\);
+* changes the output-wire value from \(0\) to \(1\);
+* has Hamming support \(3\) over \(\mathbb F_2\);
+* has integer squared coefficient norm
+  \[
+  1^2+1^2+(-1)^2=3;
+  \]
+* remains exact after every linear row map \(L\).
+
+If the rest of the circuit has a legal accepting transcript after that output is changed to one, the complete NCP syndrome has a witness of weight \(G+2\), and the integer CVP instance has an exact-fiber point of squared cost \(G+2\), where \(G\) is the number of source/gate blocks. A canonical accepting transcript costs exactly \(G\).
+
+**Proof.** Identity (1) is coordinatewise:
+\[
+1+1-1=1,\quad 0+1-1=0,\quad 1+0-1=0,\quad 1+1-1=1.
+\]
+Modulo two, subtraction equals addition, giving (2). Every tableau row sees a gate block only through coverage and its incident wire coordinates, so all rows remain exact. Applying any linear map \(L\) preserves equality. All other blocks use one unit coefficient, contributing \(G-1\); the exceptional block contributes three, hence total cost \(G+2\). ∎
+
+The same principle defeats a determinant or resultant evaluated by a bounded-fan-in circuit: either apply the fault to its final appended gate
+\[
+z_{\rm accept}=\operatorname{AND}(z_{\rm predicate},1),
+\]
+or, more strongly on CNF input, apply (1) at the unique false clause before feeding the resulting all-one clause vector into the global determinant/resultant backend.
+
+The theorem assumes that gate transcripts communicate through affine wire values. A genuinely global row not factoring through these tableau interfaces is outside the theorem; such a row is precisely the missing construction.
+
+---
+
+### 3. All-eight-clause hostile instance
+
+For \(a\in\{0,1\}^3\), define the clause falsified exactly by \(a\):
+\[
+C_a=\bigvee_{i=1}^3
+\begin{cases}
+x_i,&a_i=0,\\
+\neg x_i,&a_i=1.
+\end{cases}
+\]
+Set
+\[
+F_8=\bigwedge_{a\in\{0,1\}^3}C_a.
+\]
+Every assignment falsifies exactly one clause, so \(F_8\) is unsatisfiable.
+
+Use this explicit circuit:
+
+* three input source blocks;
+* three NOT gates, one per \(x_i\);
+* two binary OR gates per clause;
+* a binary AND tree over the eight clause outputs;
+* one final gate \(\operatorname{AND}(A,1)\).
+
+Hence
+\[
+G=3+3+16+7+1=30.
+\]
+
+The exact matrix dimensions are:
+
+* columns:
+  \[
+  N=3\cdot2+3\cdot2+16\cdot4+8\cdot4=108;
+  \]
+* coverage rows: \(30\);
+* driven wire rows: \(50\);
+* one constant-one row;
+* one output-one row;
+
+therefore
+\[
+A\in\mathbb Z^{82\times108}.
+\]
+
+Take the assignment \(x=000\). Clause \(C_{000}=x_1\vee x_2\vee x_3\) is false and every other clause is true. At the second OR gate of \(C_{000}\), retain input interface \((0,0)\) but replace its false output by the three-column combination
+\[
+c_{01,1}+c_{10,1}-c_{11,1}
+\]
+over \(\mathbb Z\), or the corresponding sum over \(\mathbb F_2\). Now every clause-output wire equals one. Select the ordinary all-one accepting transcript in the entire downstream AND tree.
+
+This gives:
+
+\[
+He=t,\qquad |e|=32=G+2,
+\]
+and
+\[
+A\lambda=b,\qquad \|\lambda\|_2^2=32.
+\]
+
+Thus for every \(M\),
+\[
+\|B\lambda-t_{\rm CVP}\|_2^2=32.
+\]
+
+---
+
+### 4. Implementable arbitrary-superposition search
+
+Construct \(A,H,t\) exactly as above and perform both checks.
+
+#### Binary exact search
+
+Solve
+\[
+\min\sum_{j=1}^{108}e_j
+\]
+subject to
+\[
+\sum_j H_{ij}e_j-2q_i=t_i,\qquad
+e_j\in\{0,1\},\ q_i\in\mathbb Z.
+\]
+
+Add the hostile cutoff
+\[
+\sum_j e_j\le32.
+\]
+
+This is a direct MILP/CP-SAT search over arbitrary GF(2) superpositions, not assignments or pure table selections. It must find the explicit support-32 witness above. Coverage rows imply every block has odd support; under the cutoff, exactly one block can have support three and every other block has support one.
+
+A smaller exhaustive specialized test is therefore:
+
+1. enumerate the exceptional block \(g\);
+2. enumerate every three-column subset of that block;
+3. enumerate the eight source assignments;
+4. propagate all ordinary gates, using the parity interface of the exceptional subset at \(g\);
+5. accept if the final output is one.
+
+For \(F_8\), the exceptional block is the second OR gate of \(C_{000}\), with subset
+\[
+\{(0,1,1),(1,0,1),(1,1,1)\}.
+\]
+
+#### Integer hostile search
+
+Solve
+\[
+A\lambda=b,\qquad
+\lambda_j\in\{-2,-1,0,1,2\},
+\qquad
+\sum_j\lambda_j^2\le32.
+\]
+Use table constraints for each \(\lambda_j^2\) in CP-SAT. This searches arbitrary signed low-norm combinations and must find coefficients \(+1,+1,-1\) on the exceptional OR block.
+
+---
+
+### 5. Gap accounting
+
+Append \(D\) disjoint positive clauses, each on three fresh variables, and set their variables to one in the hostile transcript. The instance remains unsatisfiable because it still contains \(F_8\).
+
+With the same circuit layout,
+\[
+G_D=30+6D,\qquad
+N_D=108+18D,\qquad
+r_D=82+12D.
+\]
+
+A satisfiable instance represented by this tableau has completeness cost \(G_D\). The unsatisfiable padded core has an exact witness of cost at most
+\[
+G_D+2.
+\]
+Therefore
+\[
+\frac{\operatorname{OPT}_{\rm NO}}
+     {\operatorname{OPT}_{\rm YES}}
+\le
+1+\frac{2}{30+6D}
+=
+1+O(N_D^{-1})
+\]
+for binary NCP, and the Euclidean distance ratio is at most
+\[
+\sqrt{1+\frac{2}{30+6D}}.
+\]
+
+No \(N_D^c\) gap for any \(c>0\) can arise in this model, regardless of residual scaling, dense row coding, or the algebraic degree of the global predicate.
+
+**Unproved lemmas:** none. The limitation is explicit: the theorem does not cover a construction containing a genuinely global assignment-dependent linear functional that does not factor through affine circuit-wire interfaces.

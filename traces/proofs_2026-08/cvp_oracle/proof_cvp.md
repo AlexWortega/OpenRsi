@@ -55,6 +55,143 @@ The coefficient \(\ell_1\)-sum is \(2^{d+1}-1\), constant for constant \(d\). Th
 
 This is not a no-go theorem for every integer CVP gadget: a nonlinear joint clause interface of degree at least its number of independently variable inputs can evade bounded-degree extrapolation. It proves that huge equation weights cannot amplify the broad class of bounded-degree count/slack encodings inside a nonempty exact affine fiber.
 
+## An explicit global CRT coupling still has a constant local repair
+
+The preceding failure is not repaired merely by coupling every Boolean variable through one global integer. Let the formula have Boolean coefficients \(b_1,\ldots,b_n\), choose distinct odd primes \(p_i\), and put \(P=\prod_i p_i\). Introduce one global coefficient \(X\) and quotients \(q_i\), with scaled rows
+\[
+ M(X-p_iq_i-b_i)=0.
+\]
+Every Boolean assignment has a unique representative \(0\le X<P\) by the Chinese remainder theorem. For each clause retain the scaled exact equation
+\[
+ M(\ell_1(b)+\ell_2(b)+\ell_3(b)+s_j+2t_j)=4M.
+\]
+Add identity rows \(2b_i\) and \(2s_j,2t_j\), all targeted at one, and the global row \(2X\) targeted at \(P\). These rows and the constraint rows form an explicit integer matrix \(B\); its columns are a lattice basis because they are linearly independent. Indeed, a coefficient-kernel vector has all \(b_i,s_j,t_j=0\) from the identity rows, then \(X=0\) from the global row, and finally every \(q_i=0\) from its private CRT row.
+
+For every satisfying assignment, choose the CRT representative and Boolean clause slacks
+\[
+ (s_j,t_j)=(1,1),(0,1),(1,0)
+ \quad\text{at true-literal counts }1,2,3.
+\]
+All scaled rows are then exact. The identity contribution is \(n+2m\), while \((2X-P)^2\le P^2\). Thus
+\[
+ R^2=P^2+n+2m
+\]
+is a valid uniform completeness threshold.
+
+Now take the unsatisfiable conjunction of all eight clauses on three variables and append \(D\) disjoint positive clauses. Set the three core bits to zero and every appended bit to one. Exactly the core clause falsified by \(000\) fails. Give it the exact slack \((s,t)=(0,2)\); all other clauses use the Boolean slacks above. Every scaled CRT and clause row is still satisfied exactly, and the false clause contributes ten rather than two in its centered identity rows. Hence this NO instance has a lattice point of squared distance at most
+\[
+ R^2+8,
+\]
+independently of \(M\). Its distance ratio is at most \(\sqrt{1+8/R^2}\), which tends to one. The global CRT coordinate actually worsens the baseline because \(P\) is exponential in \(n\), but the decisive point is that it does not alter the additive exact-fiber clause repair. `experiments/verify_crt_global_coupling.py` checks the integer residuals, the additive cost eight, and the explicit dimensions on four instances.
+
+This refutes only this CRT-coupled construction, not every global integer encoding. It demonstrates that global assignment uniqueness is irrelevant if clause soundness is still mediated by an affine local slack fiber.
+
+## Bounded-fan-in circuit tableaus inherit a support-three fault
+
+A global high-degree predicate does not evade the preceding obstruction when it is evaluated by a compact bounded-fan-in circuit and then linearized by local gate tables. Consider a feed-forward Boolean circuit. For every source use the two columns indexed by its bit. For each fan-in-at-most-two gate \(g\), use one column for every tuple in the graph of its Boolean function. Add one coverage row per block, affine equality rows between the output marginal of a producer and the corresponding input marginal of its consumer, rows for constants, and an accepting-output row. Let the resulting integer system be \(A\lambda=b\); reducing modulo two gives a syndrome instance.
+
+At a binary OR gate, prepend the coverage coordinate to the two inputs and output. The illegal accepting interface has the exact identity
+\[
+ (1,0,0,1)
+ =(1,0,1,1)+(1,1,0,1)-(1,1,1,1)
+ \tag{*}
+\]
+over the integers. Modulo two, replace the minus sign by plus. All three right-hand tuples are legal OR tuples. Thus replacing a singleton gate column by these three columns preserves coverage and both input wire values but changes the output from zero to one. It costs support three over \(\mathbb F_2\), or squared coefficient norm three over the integers, instead of one. Since (*) is an exact interface identity, arbitrary linear row mixing, scaling, and residual coding preserve it.
+
+This gives an end-to-end fault on the conjunction of all eight clauses over three variables. Use three source blocks, three NOT gates, two binary OR gates per clause, a seven-gate binary AND tree, and a final gate \(\operatorname{AND}(A,1)\). There are
+\[
+ G=3+3+16+7+1=30
+\]
+blocks. Their legal tables have
+\[
+ N=3\cdot2+3\cdot2+16\cdot4+8\cdot4=108
+\]
+columns. There are 30 coverage rows, 50 driven-wire rows, one constant row, and one acceptance row, hence \(A\in\mathbb Z^{82\times108}\).
+
+Take source assignment \(000\). Exactly clause \(x_1\vee x_2\vee x_3\) is false. Apply (*) to its second OR gate while selecting one ordinary legal column in every other block and the resulting accepting transcript downstream. The binary witness has exact syndrome and weight \(G+2=32\). The signed integer witness has \(A\lambda=b\) and \(\|\lambda\|_2^2=32\). Therefore for the explicit full-column-rank basis
+\[
+ B=\begin{pmatrix}I_N\\ MA\end{pmatrix},
+ \qquad
+ t=\binom{0}{Mb},
+\]
+the same point is at squared distance 32 for every \(M\). Appending disjoint satisfiable circuit components increases the baseline while retaining additive cost two, so no polynomial multiplicative gap arises from this tableau family.
+
+`experiments/verify_circuit_tableau_fault.py` constructs the full matrix, checks both exact witnesses, exhaustively enumerates every binary support-32 pattern permitted by block coverage, and finds 48 accepting one-fault transcripts. It also checks deterministic dense row mixing. This theorem does not cover genuinely global rows that do not factor through affine circuit-wire interfaces. It does rule out the standard compact route of evaluating a determinant, resultant, or other global polynomial by a bounded-fan-in circuit and enforcing its transcript only by such rows.
+
+Even full-degree local truth tables do not become integral merely by changing from GF(2) to integer unary marginals. On the all-eight-clause core, use global variable-value columns and, for each clause, all seven legal local assignments. Impose integer coverage one and equality of every unary marginal. Fix any global assignment \(u\). Seven clauses select \(u\). In the unique clause forbidding \(u\), flip two coordinates to obtain legal views \(a,b,c\) with
+\[
+ a+b-c=u
+\]
+coordinatewise and coefficient sum one. Selecting coefficients \(+1,+1,-1\) on these three views preserves clause coverage and every unary marginal exactly. Together with three variable columns and seven ordinary clause columns, this gives support and squared coefficient norm 13. The explicit system has 59 rows and 62 columns; all eight choices of \(u\), dense row maps, and several moduli are checked in `experiments/verify_truth_table_marginal_integer.py`. Thus full local degree separates the forbidden view only before projecting to affine interfaces; unary marginal coupling immediately restores the parallelogram fault.
+
+## Incomplete global Walsh moments admit an exact virtual assignment
+
+Dense rows depending on the entire assignment still fail if they omit even one Walsh character. Let \(\Omega=\{0,1\}^n\), \(q=2^n\), and \(\chi_T(x)=(-1)^{\sum_{i\in T}x_i}\). Form the UNSAT family with one group for every \(u\in\Omega\), whose legal columns are all full assignments \(x\ne u\). Thus every possible global assignment is forbidden by one group. Impose coverage one in every group and equality across groups of the moments indexed by a family \(\mathcal P\) of nonempty characters.
+
+Suppose \(\mathcal P\) omits \(T_0\ne\varnothing\), and fix an anchor assignment \(a\). Every group \(u\ne a\) selects the legal singleton \(a\). In exceptional group \(a\), put
+\[
+ z_{a,x}=-\frac{\chi_{T_0}(x)}{\chi_{T_0}(a)}\in\{-1,1\}
+ \qquad(x\ne a).
+\]
+Walsh orthogonality gives, for every retained \(T\ne T_0\),
+\[
+ \sum_{x\ne a}z_{a,x}=1,
+ \qquad
+ \sum_{x\ne a}\chi_T(x)z_{a,x}=\chi_T(a).
+\]
+Hence the UNSAT system has an exact signed witness with support and squared norm
+\[
+ (q-1)+(q-1)=2q-2<2q,
+\]
+less than twice the canonical one-column-per-group baseline. The rows are genuinely global: each column is a complete assignment and every character may involve all \(n\) bits.
+
+The threshold is sharp over the integers. Coverage plus all \(2^n-1\) nonconstant Walsh characters is the complete invertible Walsh transform over \(\mathbb Q\), so equal moments force all groups to carry one common signed table. Group \(u\) omits \(u\), forcing that table to vanish at every \(u\), contradicting mass one. Therefore exactness requires all \(2^n\) character coordinates—exponential in the size of a genuinely global \(n\)-bit object.
+
+Over GF(2), even all parity-bit moments fail. For \(b_T(x)=\sum_{i\in T}x_i\bmod2\), the sum over all \(x\in\Omega\) of the vector \((1,(b_T(x))_T)\) is zero whenever \(n\ge2\): coverage occurs \(2^n\) times and each parity bit is one \(2^{n-1}\) times. Thus the exceptional group can select all \(x\ne a\), again giving binary weight \(2q-2\), even with every nonconstant parity moment.
+
+For \(n=3\), the system has 56 columns. `experiments/verify_walsh_global_moments.py` checks all 56 omitted-character/anchor integer witnesses, all eight complete-parity GF(2) witnesses, dense row mixing, and exact ranks 56 versus 57 for full integer Walsh infeasibility. This theorem covers Walsh/character rows specifically, not arbitrary dense global functionals. It shows that the most direct global Fourier repair either remains exactly cheatable or explicitly spends exponential output size.
+
+Over any fixed prime field, arbitrary global fingerprints have a rank obstruction. For functions \(f_1,\ldots,f_m:\Omega\to\mathbb F_p\), put
+\[
+ w(x)=(1,f_1(x),\ldots,f_m(x))\in\mathbb F_p^{m+1}.
+\]
+If \(q=|\Omega|>m+1\), the \(q\) vectors are linearly dependent. Choose a relation \(\sum_x\lambda_xw(x)=0\) and anchor \(a\) with \(\lambda_a\ne0\). Then
+\[
+ w(a)=-\sum_{x\ne a}\frac{\lambda_x}{\lambda_a}w(x).
+\]
+Using singleton \(a\) in all ordinary forbidden groups and the displayed coefficients in exceptional group \(a\) gives an exact field-valued syndrome witness with at most \(q+m\) nonzeros. Hence fewer than \(q-1=2^n-1\) arbitrary global feature rows cannot make the all-forbidden family exact over **any** fixed prime field. Since this model also explicitly contains \(q(q-1)\) complete-assignment columns, both its dictionary and any exact fingerprint closure are exponentially large in \(n\); this is an obstruction analysis, not a polynomial reduction. This theorem is not character-specific and imposes no locality or bounded-entry restriction; it is simply matroid dependence. For binary NCP every nonzero coefficient is one, giving Hamming weight at most \(q+m\). For larger fixed \(p\), centered integer representatives have squared coefficient norm at most \((q+m)(p-1)^2/4\), still constant-field overhead. `experiments/verify_arbitrary_binary_global_fingerprints.py` checks 150 deterministic random binary systems through \(m=q-2\); `verify_arbitrary_prime_global_fingerprints.py` checks primes 2,3,5,7 and dense field row processing; `verify_field_fingerprint_output_accounting.py` checks representative exact exponential-size inequalities.
+
+There is also a basis-independent counting obstruction for arbitrary bounded integer fingerprints. Let \(f_1,\ldots,f_m:\Omega\to[-H,H]\cap\mathbb Z\), \(|\Omega|=q\), and augment each assignment by coverage:
+\[
+ w(x)=(1,f_1(x),\ldots,f_m(x)).
+\]
+Every subset sum \(\sum_{x\in S}w(x)\) lies in at most
+\[
+ (q+1)(2qH+1)^m
+\]
+integer bins. If
+\[
+ 2^q>(q+1)(2qH+1)^m,
+ \tag{BC}
+\]
+two distinct subsets have the same sum. Their difference gives a nonzero \(\lambda\in\{-1,0,1\}^{\Omega}\) with \(\sum_x\lambda_xw(x)=0\). Choose an anchor \(a\) in its support and divide by \(\lambda_a=\pm1\). Then
+\[
+ w(a)=-\sum_{x\ne a}(\lambda_x/\lambda_a)w(x).
+\]
+In the all-assignments-forbidden family, use singleton \(a\) in every ordinary group and this signed table in exceptional group \(a\). It is legal, has exact coverage and every fingerprint moment, and has support/squared norm at most \(2q-2\). Thus any bounded global fingerprint family satisfying (BC) has an exact low-norm virtual assignment, regardless of its algebraic form. Quantitatively, it covers
+\[
+ m<\frac{q\log2-\log(q+1)}{\log(2qH+1)}.
+\]
+In particular, if \(q=2^n\), while both the number of rows \(m\) and the bit length \(\log H\) are polynomial in \(n\), then (BC) holds for all sufficiently large \(n\): its left logarithm is \(2^n\), whereas the right logarithm is polynomial in \(n\). Therefore **arbitrary** polynomial-count, polynomial-bit integer fingerprints of the complete assignment are insufficient for exactness in this all-forbidden global-table model. The theorem does not cover encodings whose columns are not complete assignments grouped by forbidden global views; nor does it make this exponentially large model into a reduction. `experiments/verify_bounded_global_fingerprint_collision.py` checks twenty deterministic random \((q,m,H)=(20,2,2)\) families and dense row mixing; `verify_bounded_fingerprint_asymptotics.py` checks representative exact exponent inequalities for polynomial row/bit bounds.
+
+A parallel obstruction applies to global algebraic moments after encoding assignments injectively as integers \(0,\ldots,q-1\). Suppose every forbidden group is required to have common moments \(x,x^2,\ldots,x^d\). For anchor zero and \(d\le q-2\), the finite-difference identity
+\[
+ \delta_0\equiv
+ \sum_{j=1}^{d+1}(-1)^{j+1}\binom{d+1}{j}\delta_j
+ \quad\text{on every polynomial of degree at most }d
+\]
+gives an exact exceptional-group signed table. Together with anchor singletons in the other \(q-1\) groups, its support is \(q+d\), coefficient \(\ell_1\)-cost is \(q+2^{d+1}-2\), and every global moment row is exact. Full degree \(q-1\) is Vandermonde-complete and makes the system inconsistent, but again requires \(q=2^n\) global moments. Thus low-degree global polynomial fingerprints trade row count against exponentially growing finite-difference coefficients rather than giving a free gap; at the exactness threshold they explicitly spend exponential size. `experiments/verify_univariate_global_moments.py` checks every degree zero through seven for \(q=8\), exact dense row mixing, and modular rank certificates 56 versus 57 at full degree.
+
 ## Universal affine extrapolation inside a lattice
 
 The preceding local phenomena reflect a general geometric fact. If \(p_0,p_1\in L\) are lattice points, then \(p_2=2p_0-p_1\in L\). For every target \(t\),
@@ -151,6 +288,30 @@ The same odd-orbit obstruction is not inherently about connected scopes. On the 
 
 Consequently, replacing connected scopes by random/disconnected scopes while enforcing only variable-wise consistency does not defeat odd holonomy, even if every cycle edge appears in many scopes. To expose the contradiction, some selected object or higher-order overlap structure must collectively retain the whole cycle; unary consistency alone cannot. Exact checks on 500 arbitrary proper scopes are in `experiments/verify_disconnected_unary_orbit.py`.
 
+There is an integer analogue that avoids the apparent obstacle that an orbit of size three has mass three rather than one. Use alphabet
+\[
+ \Omega=A\sqcup B,\qquad |A|=2,\quad |B|=3.
+\]
+On a cycle, every edge preserves the branch; all but the last are identities, while the last is a fixed-point-free 2-cycle on \(A\) and a fixed-point-free 3-cycle on \(B\). The CSP is globally unsatisfiable. Every proper connected edge scope is a path and has exactly two propagated \(A\)-colorings and three propagated \(B\)-colorings. Define its signed integer local table by coefficient \(-1\) on each \(A\)-coloring and \(+1\) on each \(B\)-coloring. Its mass is
+\[
+ 3-2=1.
+\]
+Restriction from a path to a nonempty connected subpath bijects the two colorings in branch \(A\) and separately bijects the three colorings in branch \(B\). Hence every signed marginal agrees exactly over the integers. The witness has five nonzero unit coefficients per scope and squared norm \(5K\).
+
+Thus changing the connected-view hierarchy from GF(2) to integer coefficients does not restore integrality: a virtual cardinality-one measure can be built as the difference of two orbit measures. For every depth \(d<n\) this is a zero-residual witness on an UNSAT constant-alphabet permutation CSP. `experiments/verify_integer_mixed_orbit_cycle.py` checks four depths, global fixed-point-freeness, and dense row processing.
+
+The same obstruction has an exact-3CNF realization of bounded occurrence and linear size. Encode each five-valued state one-hot. Encode at-most-one constraints and permutation equivalences by padded binary clauses, and encode the five-way at-least-one constraint by the standard three-clause chain
+\[
+ (x_0\vee x_1\vee y_1)\wedge
+ (\neg y_1\vee x_2\vee y_2)\wedge
+ (\neg y_2\vee x_3\vee x_4).
+\]
+Use a canonical auxiliary assignment determined by the color and set padding bits to zero. As in the three-color construction, intersecting clauses have intersecting attachments, so every connected clause scope has a connected attachment skeleton. If it has fewer than \(n\) clauses, the skeleton omits a cycle edge and is a tree. It therefore has exactly two propagated branch-\(A\) colorings and three branch-\(B\) colorings. Coefficients \(-1\) and \(+1\), respectively, have mass one. Restriction to any connected deletion subtree bijects each branch's colorings separately; canonical Boolean/auxiliary encoding commutes with restriction. Colliding restricted Boolean views are combined over the integers and do not change this pushforward identity.
+
+There are \(23n\) vertex clauses and \(20n\) edge clauses, hence \(43n\) clauses, and \(27n\) variables including fresh padding/chain variables. A color variable occurs at most 17 times; chain and padding variables occur at most two times. Before restriction each scope measure uses five unit coefficients; collisions can only give support at most five and squared coefficient norm at most \(25\) per scope. Thus its total squared norm is at most \(25K\), still only a constant factor over the group baseline.
+
+The implemented finite construction directly checks every deletion marginal. At \((n,d)=(3,1)\) it has 129 clauses and 129 groups; at \((4,2)\) it has 172 clauses, 2724 groups, 15188 rows, and 7636 columns. Both exact signed witnesses pass (`experiments/verify_integer_mixed_orbit_3cnf.py`).
+
 ## Affine parallelogram obstruction for local integer gadgets
 
 Let \(g:\{0,1\}^k\to A\) be the restriction of an affine map \(g(x)=Mx+c\), where \(A\) is any abelian group or module. Fix \(u\in\{0,1\}^k\) and two distinct coordinates \(i,j\). Let \(a,b,c'\) be obtained from \(u\) by flipping coordinate \(i\), coordinate \(j\), and both coordinates, respectively. Coordinatewise over the integers,
@@ -241,6 +402,27 @@ This is scalable: take a disjoint union of \(s\) Petersen graphs and put total c
  9N+27\cdot\frac{3N}{2}+81\left(\binom N2-\frac{3N}{2}\right)=\Theta(N^2),
 \]
 while the number of groups is \(K=N+\binom N2=\Theta(N^2)\); their ratio tends to 81. Thus the zero-residual cheat has only constant-factor weight over the canonical one-column-per-group baseline, on an infinite bounded-arity family. Exact support checks for one through three components are in `experiments/verify_petersen_family.py`.
+
+### Integer all-pairs hierarchies also fail
+
+The Petersen obstruction has a characteristic-zero analogue. Take two disjoint charged flow branches on the same Petersen graph, one over \(\mathbb F_2\) and one over \(\mathbb F_3\), and include a branch tag in every local view. Both global branches are inconsistent because summing the ten incidence equations gives \(0=1\) in either field.
+
+For every singleton/pair group \(Q\), let \(S_{Q,p}\) be its affine local solution space in branch \(p\). Its cardinality is
+\[
+ |S_{Q,2}|\in\{4,8,16\},\qquad
+ |S_{Q,3}|\in\{9,27,81\}.
+\]
+Give branch two total signed mass \(m_2=-80\) and branch three total mass \(m_3=81\). Thus the combined group mass is one. Put the uniform integer coefficient
+\[
+ -80/|S_{Q,2}|
+ \quad\text{or}\quad
+ 81/|S_{Q,3}|
+\]
+on every local solution in the corresponding branch; divisibility holds for all displayed cardinalities. The support/projection lemma proved for the GF(3) Petersen system is field-independent here and applies separately over \(\mathbb F_2\) and \(\mathbb F_3\). Uniform local solution measures have uniform pushforwards to every common projection. Since each branch's **total** mass is fixed independently of \(Q\), all full-intersection integer marginals agree exactly. Branch tags keep the two measures disjoint.
+
+The resulting UNSAT integer hierarchy has 55 groups, 3565 columns, and 30550 rows. Its exact signed witness has support 3565, maximum coefficient 20, and squared norm 53365. Disjoint unions produce a scalable bounded-arity family. With \(N\) vertex constraints, adjacent pairs number \(3N/2\) and all other pairs are nonadjacent. The witness support divided by the group count tends to 97, while squared norm divided by the group count tends to 481. Thus the exact-fiber cheat remains only a constant factor over the canonical one-column-per-group baseline. `experiments/verify_integer_petersen_pair_counterexample.py` checks the full base matrix, both global inconsistency certificates, and dense integer row processing; `verify_integer_petersen_family.py` checks the scaling formulas.
+
+Thus moving the full-intersection hierarchy from GF(2) to integer coefficients does not restore exactness. Coprime local branch cardinalities provide integral virtual mass one, just as mixed orbit sizes did for connected scopes.
 
 ### Every fixed scope level fails at some bounded arity
 

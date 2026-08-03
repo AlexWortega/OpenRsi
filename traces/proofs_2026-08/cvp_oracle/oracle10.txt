@@ -1,0 +1,139 @@
+## No-go theorem: any incomplete family of global Walsh moments admits an exact all-eight-core virtual assignment
+
+Let \(\Omega=\{0,1\}^n\), \(q=2^n\), and for \(T\subseteq[n]\) define the dense Walsh character
+\[
+\chi_T(x)=(-1)^{\sum_{i\in T}x_i}.
+\]
+Fix a family \(\mathcal P\subseteq 2^{[n]}\setminus\{\varnothing\}\) of proposed global character rows.
+
+Form the UNSAT constraint family \(\{C_u:u\in\Omega\}\), where \(C_u\) permits every global assignment except \(u\). For \(n=3\), these are exactly the eight width-three clauses, one forbidding each assignment.
+
+For every group \(u\), introduce one column \((u,x)\) for each \(x\neq u\). The column represents the full global assignment \(x\), not a marginal or tableau view. Use:
+
+* one coverage row for each \(u\), requiring
+  \[
+  \sum_{x\neq u}z_{u,x}=1;
+  \]
+* for every \(T\in\mathcal P\) and every \(u\neq 0^n\), one global-moment equality row
+  \[
+  \sum_{x\neq u}\chi_T(x)z_{u,x}
+  -
+  \sum_{x\neq 0^n}\chi_T(x)z_{0^n,x}=0.
+  \]
+
+Thus the matrix has
+\[
+N=q(q-1)
+\]
+columns and
+\[
+r=q+(q-1)|\mathcal P|
+\]
+rows. A common satisfying assignment, if one existed, would give the canonical one-column-per-group cost \(K=q\).
+
+### Theorem
+
+1. **Integer case.** If \(\mathcal P\) omits any nonempty Walsh character \(T_0\), then the above UNSAT system has an exact signed integer witness with
+   \[
+   |\operatorname{supp}z|=\|z\|_2^2=2q-2.
+   \]
+   Hence its cost is less than twice the canonical group baseline \(q\).
+
+2. **GF(2) case.** If Walsh moments are represented by their parity bits
+   \[
+   b_T(x)=\sum_{i\in T}x_i\pmod 2,
+   \]
+   then for every \(n\ge2\), even including all \(2^n-1\) nonconstant parity characters leaves an exact witness of weight \(2q-2\).
+
+These statements hold against arbitrary signed or GF(2) superpositions, not merely convex measures or pure assignment columns.
+
+### Proof
+
+Choose any anchor assignment \(a\in\Omega\). For every group \(u\neq a\), select the legal singleton \(x=a\):
+\[
+z_{u,a}=1.
+\]
+
+For the exceptional group \(u=a\), use every \(x\neq a\) with coefficient
+\[
+z_{a,x}
+=
+-\frac{\chi_{T_0}(x)}{\chi_{T_0}(a)}
+\in\{-1,+1\}.
+\tag{1}
+\]
+
+For every retained \(T\in\mathcal P\), Walsh orthogonality gives
+\[
+\sum_{x\in\Omega}\chi_{T_0}(x)\chi_T(x)=0,
+\]
+because \(T\neq T_0\). It also gives
+\[
+\sum_x\chi_{T_0}(x)=0
+\]
+because \(T_0\neq\varnothing\). Removing the term \(x=a\) and multiplying by \(-1/\chi_{T_0}(a)\) yields
+\[
+\sum_{x\neq a}z_{a,x}=1
+\]
+and
+\[
+\sum_{x\neq a}\chi_T(x)z_{a,x}=\chi_T(a).
+\]
+Thus every group has mass one and the same retained global moments as \(\delta_a\). All equations hold exactly. There are \(q-1\) ordinary singleton groups and \(q-1\) nonzero unit coefficients in the exceptional group, giving
+\[
+|\operatorname{supp}z|=\|z\|_2^2=(q-1)+(q-1)=2q-2.
+\]
+
+Over \(\mathbb F_2\), let
+\[
+w(x)=\bigl(1,(b_T(x))_{T\in\mathcal P}\bigr).
+\]
+For \(n\ge2\),
+\[
+\sum_{x\in\Omega}w(x)=0:
+\]
+the constant coordinate occurs \(2^n\) times, while each nonconstant parity is one on \(2^{n-1}\) assignments, both even. Therefore
+\[
+w(a)=\sum_{x\neq a}w(x).
+\]
+Using all \(x\neq a\) with coefficient one in the exceptional group gives the claimed binary witness.
+
+Any row scaling, dense row mixing, residual-code postprocessing, or linear generation of these rows from another sparse dictionary preserves these exact identities.
+
+### Sharpness over the integers
+
+If all \(2^n-1\) nonconstant Walsh characters are retained, together with coverage, the complete Walsh transform is invertible over \(\mathbb Q\). Equal moments force every group to carry the same signed table \(\mu:\Omega\to\mathbb Z\). Since group \(u\) omits \(u\), it forces \(\mu(u)=0\). Applying this for every \(u\) gives \(\mu=0\), contradicting mass one.
+
+Thus the integer threshold is exact: this core is feasible precisely when at least one nonconstant Walsh character is missing. Full global Fourier closure requires \(2^n\) independent rows.
+
+The GF(2) conclusion is stronger because the Walsh transform degenerates in characteristic two; adding every parity character still does not recover full truth-table information.
+
+### Explicit all-eight hostile test
+
+Take \(n=3\), so
+\[
+q=8,\qquad N=8\cdot7=56,\qquad
+r=8+7|\mathcal P|.
+\]
+For every proper subset
+\[
+\mathcal P\subsetneq
+\bigl\{\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\bigr\},
+\]
+and every anchor \(a\in\{0,1\}^3\):
+
+1. choose any omitted \(T_0\);
+2. build the witness from (1);
+3. verify exactly over \(\mathbb Z\) that \(Az=t\);
+4. verify
+   \[
+   |\operatorname{supp}z|=\|z\|_2^2=14;
+   \]
+5. reduce the parity-bit matrix modulo two and verify the all-plus exceptional table also has syndrome \(t\) and weight \(14\);
+6. multiply rows by deterministic dense integer and binary matrices and recheck the identities.
+
+For an exhaustive minimum-cost check, enumerate each group’s \(3^7\) coefficient vectors in \(\{-1,0,1\}^7\) having sum one, hash them by their moment tuple, retain minimum squared norm per tuple, and intersect the eight hash tables. For GF(2), enumerate the \(2^7\) local subsets, retain those of odd cardinality, and hash by their parity-moment tuple. Finally verify that with all seven integer characters present, the exact fiber is empty by rational row reduction.
+
+The support-three circuit fault is the \(n=2\) instance of the same mechanism when the quadratic character is omitted. Mixed \(2/3\) virtual measures offer no defense: they are merely additional signed linear combinations, while the displayed witness already lies in the exact kernel with unit coefficients.
+
+There are no unproved lemmas. The theorem does not rule out an integer construction that supplies the complete \(2^n\)-row Walsh basis on every genuinely global \(n\)-bit object; it proves that any incomplete character family fails exactly, even on the smallest all-eight core, and that GF(2) Walsh/parity characters fail even when complete.

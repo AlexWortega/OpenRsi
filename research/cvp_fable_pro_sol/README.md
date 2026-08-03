@@ -11,7 +11,7 @@ Launch a live run only after choosing the USD launch cap:
 
 ```bash
 OPENRSI_PROOFS_BUDGET_USD=30 \
-OPENRSI_MAX_GENERATIONS=3 \
+OPENRSI_MAX_GENERATIONS=8 \
 npm --silent run proofs:run7
 ```
 

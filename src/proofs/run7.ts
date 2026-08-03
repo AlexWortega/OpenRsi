@@ -18,7 +18,7 @@ import { assertKey, buildModel } from "../provider.js";
 const FABLE = process.env.OPENRSI_FABLE_MODEL || "anthropic/claude-fable-5";
 const PRO = process.env.OPENRSI_PRO_MODEL || "openai/gpt-5.6-sol-pro";
 const SOL = process.env.OPENRSI_SOL_MODEL || "openai/gpt-5.6-sol";
-const MAX_GENERATIONS = positiveIntegerEnv("OPENRSI_MAX_GENERATIONS", 3);
+const MAX_GENERATIONS = positiveIntegerEnv("OPENRSI_MAX_GENERATIONS", 8);
 const ORACLE_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_ORACLE_TIMEOUT_MS", 30 * 60_000);
 const VERIFIER_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_VERIFIER_TIMEOUT_MS", 10 * 60_000);
 const UNKNOWN_CALL_COST_USD = numberEnv("OPENRSI_UNKNOWN_CALL_COST_USD", 2);
@@ -46,6 +46,7 @@ Do not set the campaign gate. Do not read, search for, or use the prohibited rec
 document or any coverage of its solutions.`;
 
 type Verdict = "CONTINUE" | "KILL";
+type GateDecision = "CONTINUE_IDEA" | "KILL_IDEA";
 type Review = {
   verdict: Verdict;
   fatal_blockers: string[];
@@ -59,7 +60,7 @@ type State = {
   phase: string;
   generation: number;
   outcome: "running" | "completed" | "budget_exhausted" | "fatal";
-  decision?: Verdict;
+  decision?: GateDecision;
   reason?: string;
   models: { fable: string; pro: string; sol: string };
   budget_usd: number;
@@ -122,8 +123,8 @@ function parseReview(text: string): Review {
   };
 }
 
-function gateDecision(verifiersPassed: boolean, fable: Verdict, pro: Verdict): Verdict {
-  return verifiersPassed && fable === "CONTINUE" && pro === "CONTINUE" ? "CONTINUE" : "KILL";
+function gateDecision(verifiersPassed: boolean, fable: Verdict, pro: Verdict): GateDecision {
+  return verifiersPassed && fable === "CONTINUE" && pro === "CONTINUE" ? "CONTINUE_IDEA" : "KILL_IDEA";
 }
 
 async function rerunVerifiers(python: string, runDir: string, packetPath: string, outputPath: string): Promise<boolean> {
@@ -141,8 +142,9 @@ async function rerunVerifiers(python: string, runDir: string, packetPath: string
   for (const item of verifiers) {
     const relative = String(item);
     const absolute = resolve(runDir, relative);
-    const allowedRoot = `${resolve(runDir, "experiments")}/`;
-    if (!absolute.startsWith(allowedRoot) || !basename(absolute).startsWith("verify_") || !absolute.endsWith(".py") || !existsSync(absolute)) {
+    const runRoot = `${resolve(runDir)}/`;
+    const allowedRelative = /^(?:experiments|gen-\d+\/experiments)\/verify_[^/]+\.py$/.test(relative);
+    if (!absolute.startsWith(runRoot) || !allowedRelative || !basename(absolute).startsWith("verify_") || !existsSync(absolute)) {
       results.push({ path: relative, exit_code: null, signal: null, stdout: "", stderr: "invalid or missing verifier path" });
       continue;
     }
@@ -207,6 +209,7 @@ function runOracle(
   cwd: string,
   outputPath: string,
   args: string[],
+  attempt = 1,
 ): Promise<void> {
   return new Promise((resolvePromise, reject) => {
     const child = spawn(python, args, { cwd, env: process.env, stdio: ["ignore", "pipe", "pipe"] });
@@ -231,6 +234,21 @@ function runOracle(
           cost: null, reserved_cost: UNKNOWN_CALL_COST_USD, code, signal,
         })}\n`);
         reject(new Error(`oracle ${basename(outputPath)} failed code=${code} signal=${signal}: ${stderr.slice(-2000)}`));
+        return;
+      }
+      if (stdout.trim().length < 200) {
+        writeFileSync(`${outputPath}.short-attempt-${attempt}`, stdout);
+        if (attempt < 2) {
+          runOracle(python, cwd, outputPath, args, attempt + 1).then(resolvePromise, reject);
+          return;
+        }
+        if (args.includes("--ideate")) {
+          writeFileSync(outputPath, stdout);
+          writeFileSync(`${outputPath}.stderr`, `${stderr}\n[proofs7] proposer response remained truncated after retry; peer review will reject it.\n`);
+          resolvePromise();
+          return;
+        }
+        reject(new Error(`oracle ${basename(outputPath)} returned a truncated response twice`));
         return;
       }
       writeFileSync(outputPath, stdout);
@@ -404,12 +422,13 @@ async function main(): Promise<void> {
     const proProposalReview = parseReview(readFileSync(fableReviewsPro, "utf8"));
     if (fableProposalReview.verdict === "KILL" && proProposalReview.verdict === "KILL") {
       atomicJson(join(genDir, "GATE.json"), {
-        decision: "KILL", stage: "pre_implementation", pro_reviews_fable: fableProposalReview,
+        decision: "KILL_IDEA", stage: "pre_implementation", pro_reviews_fable: fableProposalReview,
         fable_reviews_pro: proProposalReview, reason: "both proposal populations rejected",
       });
-      state = { ...state, phase: "done", outcome: "completed", decision: "KILL", reason: "both proposal populations rejected before Sol" };
+      state = { ...state, phase: "gate", outcome: "running", decision: "KILL_IDEA", reason: "both proposal populations rejected before Sol; advance to a fresh generation" };
       checkpoint();
-      break researchLoop;
+      event({ phase: state.phase, generation, status: "completed", decision: "KILL_IDEA", spent_usd: spent() });
+      continue researchLoop;
     }
 
     if (spent() >= budget) {
@@ -492,16 +511,11 @@ async function main(): Promise<void> {
       machine_verification: machineVerification,
       fable: fableReview,
       pro: proReview,
-      rule: "CONTINUE requires a passing verifier and two CONTINUE verdicts; all other states KILL",
+      rule: "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation",
     });
-    state = { ...state, phase: "gate", decision, reason: decision === "CONTINUE" ? "two approvals plus verifier" : "verification/review gate failed" };
+    state = { ...state, phase: "gate", decision, reason: decision === "CONTINUE_IDEA" ? "two approvals plus verifier; mutate or extend in the next generation" : "candidate killed; advance to a fresh generation" };
     checkpoint();
     event({ phase: state.phase, generation, status: "completed", decision, spent_usd: spent() });
-    if (decision === "KILL") {
-      state = { ...state, phase: "done", outcome: "completed" };
-      checkpoint();
-      break;
-    }
     if (generation === MAX_GENERATIONS) {
       state = { ...state, phase: "done", outcome: "completed", reason: "max generations reached" };
       checkpoint();

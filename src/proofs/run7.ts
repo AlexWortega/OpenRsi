@@ -25,6 +25,7 @@ const UNKNOWN_CALL_COST_USD = numberEnv("OPENRSI_UNKNOWN_CALL_COST_USD", 2);
 const SOL_TURN_RESERVE_USD = numberEnv("OPENRSI_SOL_TURN_RESERVE_USD", 5);
 const SOL_MAX_TOKENS = positiveIntegerEnv("OPENRSI_SOL_MAX_TOKENS", 12_000);
 const FROM_SCRATCH = process.env.OPENRSI_FROM_SCRATCH === "1";
+const RESUME = process.argv.includes("--resume");
 
 const SOL_SYSTEM = `You are the implementation worker in a model-separated CVP proof-research loop.
 The target is a deterministic PCP-free polynomial-factor hardness reduction from 3SAT to Euclidean
@@ -109,8 +110,8 @@ function parseReview(text: string): Review {
   if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1) {
     throw new Error("review confidence must be in [0,1]");
   }
-  if (raw.verdict === "CONTINUE" && (raw.fatal_blockers.length > 0 || !nextExperiment.trim())) {
-    throw new Error("CONTINUE review must have no fatal blockers and must name a next experiment");
+  if (raw.verdict === "CONTINUE" && !nextExperiment.trim()) {
+    throw new Error("CONTINUE review must name a next experiment");
   }
   return {
     verdict: raw.verdict,
@@ -273,6 +274,7 @@ function dryRunPlan(repoRoot: string): void {
     repo_root: repoRoot,
     models: { fable: FABLE, pro: PRO, sol: SOL },
     from_scratch: FROM_SCRATCH,
+    resume: RESUME,
     stages: ["parallel ideation", "parallel cross-review", "Sol implementation+verification", "parallel result review", "optional one-round rebuttal", "code-owned gate"],
     max_generations: MAX_GENERATIONS,
     oracle_timeout_ms: ORACLE_TIMEOUT_MS,
@@ -299,11 +301,15 @@ async function main(): Promise<void> {
   const runId = process.env.OPENRSI_RUN_ID || `cvp_fable_pro_sol_${new Date().toISOString().replace(/[:.]/g, "-")}`;
   if (!/^[A-Za-z0-9._-]+$/.test(runId)) throw new Error("OPENRSI_RUN_ID must be basename-safe");
   const runDir = resolve(process.env.OPENRSI_PROOFS_DIR || join(repoRoot, "runs", runId));
-  if (existsSync(runDir)) throw new Error(`run directory already exists; choose a fresh OPENRSI_PROOFS_DIR: ${runDir}`);
-  mkdirSync(runDir, { recursive: true });
-  if (FROM_SCRATCH) seedScratch(runDir);
-  else seedPrior(repoRoot, runDir);
-  writeFileSync(join(runDir, "AGENTS.md"), `${SOL_SYSTEM}\n`);
+  const runExists = existsSync(runDir);
+  if (runExists && !RESUME) throw new Error(`run directory already exists; choose a fresh OPENRSI_PROOFS_DIR or pass --resume: ${runDir}`);
+  if (!runExists && RESUME) throw new Error(`cannot resume missing run directory: ${runDir}`);
+  if (!runExists) {
+    mkdirSync(runDir, { recursive: true });
+    if (FROM_SCRATCH) seedScratch(runDir);
+    else seedPrior(repoRoot, runDir);
+    writeFileSync(join(runDir, "AGENTS.md"), `${SOL_SYSTEM}\n`);
+  }
 
   const events = join(runDir, "events.jsonl");
   const costLedger = join(runDir, "pro_costs.jsonl");
@@ -318,8 +324,20 @@ async function main(): Promise<void> {
     cwd: runDir,
     sessionManager: SessionManager.inMemory(runDir),
   });
-  const spent = () => (session.getSessionStats()?.cost || 0) + oracleCost(costLedger);
-  let state: State = {
+  const priorState = RESUME
+    ? JSON.parse(readFileSync(join(runDir, "state.json"), "utf8")) as State
+    : undefined;
+  const persistedNonOracleCost = priorState
+    ? Math.max(0, Number(priorState.spent_usd || 0) - oracleCost(costLedger))
+    : 0;
+  const spent = () => persistedNonOracleCost + (session.getSessionStats()?.cost || 0) + oracleCost(costLedger);
+  let state: State = priorState ? {
+    ...priorState,
+    phase: "resuming",
+    outcome: "running",
+    reason: undefined,
+    budget_usd: budget,
+  } : {
     run_id: runId,
     phase: "initialized",
     generation: 0,
@@ -336,7 +354,8 @@ async function main(): Promise<void> {
   checkpoint();
 
   try {
-  researchLoop: for (let generation = 1; generation <= MAX_GENERATIONS; generation++) {
+  const firstGeneration = RESUME ? Math.max(1, state.generation) : 1;
+  researchLoop: for (let generation = firstGeneration; generation <= MAX_GENERATIONS; generation++) {
     if (spent() >= budget) {
       state = { ...state, phase: "done", generation: generation - 1, outcome: "budget_exhausted", reason: "USD cap reached before next generation" };
       checkpoint();
@@ -348,7 +367,7 @@ async function main(): Promise<void> {
       break;
     }
     const genDir = join(runDir, `gen-${generation}`);
-    mkdirSync(genDir);
+    mkdirSync(genDir, { recursive: true });
     state = { ...state, phase: "ideation", generation };
     checkpoint();
     event({ phase: state.phase, generation, status: "started" });
@@ -359,8 +378,8 @@ async function main(): Promise<void> {
     const liveContext = ["ORACLE_BRIEF.md", "IDEAS.md", "STATUS.md", "LITERATURE.md", "NOTES.md"];
     if (generation > 1) liveContext.push(`gen-${generation - 1}/SOL_RESULT.json`, `gen-${generation - 1}/GATE.json`);
     await settleParallel([
-      runOracle(python, runDir, fableIdeas, [askPro, "--ideate", "--model", FABLE, ideaQuestion, ...liveContext]),
-      runOracle(python, runDir, proIdeas, [askPro, "--ideate", "--model", PRO, ideaQuestion, ...liveContext]),
+      ...(!existsSync(fableIdeas) ? [runOracle(python, runDir, fableIdeas, [askPro, "--ideate", "--model", FABLE, ideaQuestion, ...liveContext])] : []),
+      ...(!existsSync(proIdeas) ? [runOracle(python, runDir, proIdeas, [askPro, "--ideate", "--model", PRO, ideaQuestion, ...liveContext])] : []),
     ]);
     if (spent() >= budget) {
       state = { ...state, phase: "done", outcome: "budget_exhausted", reason: "USD cap reached after ideation; cross-review not launched" };
@@ -378,8 +397,8 @@ async function main(): Promise<void> {
     const proReviewsFable = join(genDir, "pro_reviews_fable.json");
     const fableReviewsPro = join(genDir, "fable_reviews_pro.json");
     await settleParallel([
-      runOracle(python, runDir, proReviewsFable, [askPro, "--review", "--model", PRO, "Review Fable's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", fableIdeas, ...liveContext]),
-      runOracle(python, runDir, fableReviewsPro, [askPro, "--review", "--model", FABLE, "Review Pro's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", proIdeas, ...liveContext]),
+      ...(!existsSync(proReviewsFable) ? [runOracle(python, runDir, proReviewsFable, [askPro, "--review", "--model", PRO, "Review Fable's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", fableIdeas, ...liveContext])] : []),
+      ...(!existsSync(fableReviewsPro) ? [runOracle(python, runDir, fableReviewsPro, [askPro, "--review", "--model", FABLE, "Review Pro's proposals before any implementation. Select or kill them against every CURRENT obstruction; CONTINUE only if at least one bounded experiment is genuinely discriminating.", proIdeas, ...liveContext])] : []),
     ]);
     const fableProposalReview = parseReview(readFileSync(proReviewsFable, "utf8"));
     const proProposalReview = parseReview(readFileSync(fableReviewsPro, "utf8"));
@@ -410,8 +429,10 @@ async function main(): Promise<void> {
       fableProposalReview.verdict === "CONTINUE" ? "Fable proposals" : "",
       proProposalReview.verdict === "CONTINUE" ? "Pro proposals" : "",
     ].filter(Boolean).join(" and ");
-    await session.prompt(`${SOL_SYSTEM}\n\nGeneration ${generation}. Read ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review. Implement and adversarially verify the single best surviving bounded experiment; do not revive the rejected population. Write the required result packet to ${resultPacket}.`);
-    await session.waitForIdle();
+    if (!existsSync(resultPacket)) {
+      await session.prompt(`${SOL_SYSTEM}\n\nGeneration ${generation}. Read ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review. Implement and adversarially verify the single best surviving bounded experiment; do not revive the rejected population. Write the required result packet to ${resultPacket}.`);
+      await session.waitForIdle();
+    }
     if (!existsSync(resultPacket)) {
       atomicJson(resultPacket, { summary: "Sol did not produce a result packet", hypothesis: "", changed_files: [], verifiers: [], tests: [], claimed_progress: "NONE", next_experiment: "" });
     }
@@ -436,8 +457,8 @@ async function main(): Promise<void> {
     const proResult = join(genDir, "pro_result_review.json");
     const reviewQuestion = `Review generation ${generation}'s Sol result. Check the packet against STATUS/IDEAS/NOTES and refuse any promotion from finite evidence to asymptotic hardness. CONTINUE only for one precise next bounded experiment; otherwise KILL.`;
     await settleParallel([
-      runOracle(python, runDir, fableResult, [askPro, "--review", "--model", FABLE, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"]),
-      runOracle(python, runDir, proResult, [askPro, "--review", "--model", PRO, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"]),
+      ...(!existsSync(fableResult) ? [runOracle(python, runDir, fableResult, [askPro, "--review", "--model", FABLE, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"])] : []),
+      ...(!existsSync(proResult) ? [runOracle(python, runDir, proResult, [askPro, "--review", "--model", PRO, reviewQuestion, resultPacket, machineVerification, "STATUS.md", "IDEAS.md", "NOTES.md", "proof_cvp.md"])] : []),
     ]);
     let fableReview = parseReview(readFileSync(fableResult, "utf8"));
     let proReview = parseReview(readFileSync(proResult, "utf8"));

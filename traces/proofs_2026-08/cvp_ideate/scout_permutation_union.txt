@@ -1,0 +1,472 @@
+## Bottom line
+
+I found **no pre-2024 construction that directly gives** a polynomial-size equation-only linear/integer-lattice representation of all \(q\times q\) permutation matrices with zero or \(o(q)\) Euclidean completeness cost and soundness against arbitrary signed coefficients.
+
+There is, however, a fairly sharp classical design boundary:
+
+- **A single affine space or lattice coset cannot work exactly:** its projection necessarily contains every integral table with row and column sums one, including signed non-permutations.
+- The strongest constructive mechanisms outside that boundary are:
+  1. the **determinant/common-basis polynomial**, whose monomial support is exactly the permutation matrices;
+  2. **Waksman/Beneš permutation networks**, giving \(O(q\log q)\) Boolean controls;
+  3. the **Haviv–Regev all-sublattices tensor lemma**, which identifies the kind of invariant needed for mixed-word multiplicative soundness.
+- None of these by itself solves the Euclidean-baseline or submultiplicative-rank problem.
+
+## Ranked finds
+
+### 1. Determinantal common-basis encoding of all permutations
+
+**Source.** Classical Cauchy–Binet machinery; regular-matroid determinantal basis polynomials appear explicitly in Petter Brändén, 2007, *Advances in Mathematics* 216(1), 302–320. ([arxiv.org](https://arxiv.org/abs/math/0605678))
+
+**Precise construction.** Index \(q^2\) columns by edges \((i,j)\) of \(K_{q,q}\). Let
+
+\[
+L_{a,(i,j)}=\mathbf 1[a=i],\qquad
+R_{b,(i,j)}=\mathbf 1[b=j].
+\]
+
+For variables \(z_{ij}\),
+
+\[
+L\operatorname{diag}(z)R^\top=(z_{ij})_{i,j}=Z.
+\]
+
+Cauchy–Binet gives
+
+\[
+\det Z
+ =\sum_{\substack{S\subseteq[q]^2\\ |S|=q}}
+   \det(L_S)\det(R_S)\prod_{e\in S}z_e
+ =\sum_{\sigma\in S_q}\operatorname{sgn}(\sigma)
+   \prod_{i=1}^q z_{i,\sigma(i)}.
+\]
+
+Thus the monomial support is **exactly** the set of permutation matrices. More generally, if \(A\) is a rank-\(r\) totally unimodular matrix,
+
+\[
+\det\!\bigl(A\operatorname{diag}(z)A^\top\bigr)
+ =\sum_{B\text{ basis of }M(A)} \prod_{e\in B}z_e,
+\]
+
+because every nonzero maximal minor has square one.
+
+**Why relevant.** This is a polynomial-size, genuinely global, degree-\(q\) selector that does not factor through bounded local marginals. It is the cleanest classical mechanism whose support is exactly the desired union.
+
+**Main obstruction.** It is polynomial rather than linear. Any gate-by-gate linearization reintroduces local signed transcript combinations; preserving the determinant as one global relation is the essential issue.
+
+**How to adapt or verify.**
+
+1. For \(q=3\), symbolically check that \(\det Z\) has exactly six multilinear monomials.
+2. Try to make determinant evaluation an **uncharged target-side constraint**, charging only a failure certificate.
+3. Avoid local multiplication tables. Candidate interfaces are exterior-algebra coordinates, modular evaluations of the whole determinant, or a single global ABP relation.
+4. Exhaustively search signed coefficient vectors satisfying the proposed linearized determinant interface; compare with the six legal monomials.
+
+This is the most promising classical source for a sparse global algebraic dictionary.
+
+---
+
+### 2. Waksman/Beneš networks: \(O(q\log q)\) controls for every permutation
+
+**Sources.** V. E. Beneš, 1964, *Bell System Technical Journal* 43, 1619–1640 and 1641–1656; Abraham Waksman, 1968, *Journal of the ACM* 15(1), 159–163. ([onlinelibrary.wiley.com](https://onlinelibrary.wiley.com/doi/abs/10.1002/j.1538-7305.1964.tb04102.x?utm_source=openai))
+
+**Precise construction.** A \(2\times2\) switch with Boolean setting \(s\) has transfer matrix
+
+\[
+S(s)=
+\begin{pmatrix}
+1-s&s\\
+s&1-s
+\end{pmatrix},
+\qquad s\in\{0,1\}.
+\]
+
+A fixed multistage network composes embedded copies of these switches. For \(q=2^r\), the Waksman construction realizes every permutation using
+
+\[
+q\log_2 q-q+1
+\]
+
+binary switches. Its product matrix is a permutation matrix for every Boolean switch assignment, and every permutation occurs for at least one assignment.
+
+**Why relevant.** It replaces a \(q!\)-way disjunction by \(O(q\log q)\) Boolean controls. It is a polynomial-size explicit parametrization of the union, outside the affine-hull model.
+
+**Main obstruction.** The map from switch settings to the resulting table is degree \(O(\log q)\). If the settings themselves are Euclidean lattice coordinates, an honest witness pays \(\Theta(q\log q)\). If stage consistency is linearized locally, signed gate/path combinations appear.
+
+**How to adapt or verify.**
+
+- Treat the network only as an **indexing skeleton**.
+- Keep switch settings uncharged, and charge only a global inconsistency witness.
+- Couple all stages with one determinant/exterior-algebra checksum rather than separate local truth-table constraints.
+- For \(q=4\), use a five-switch Waksman network, enumerate its \(32\) settings, and verify that all \(24\) permutation matrices occur. Then enumerate signed integer flows through the proposed linear interface.
+
+This is the clearest route to compressing the permutation disjunction before applying a global nonlinear certificate.
+
+---
+
+### 3. Haviv–Regev’s “tensor-nice against every partner” criterion
+
+**Source.** Ishay Haviv and Oded Regev, 2012, “Tensor-based Hardness of the Shortest Vector Problem to within Almost Polynomial Factors,” *Theory of Computing* 8, 513–531. ([toc.cs.uchicago.edu](https://toc.cs.uchicago.edu/articles/v008a023/))
+
+**Precise statements.**
+
+For arbitrary lattices,
+
+\[
+\lambda_1(L_1\otimes L_2)
+ \le \lambda_1(L_1)\lambda_1(L_2),
+\]
+
+and strict inequality can be very large: there are self-dual \(n\)-dimensional lattices \(L\) with
+
+\[
+\lambda_1(L),\lambda_1(L^*)=\Omega(\sqrt n),
+\qquad
+\lambda_1(L\otimes L^*)\le \sqrt n.
+\]
+
+So arbitrary mixed tensor words can be much shorter than pure tensors.
+
+Their key special lemma is: for a NO lattice \(L_1\) produced by their base reduction and parameter \(d\),
+
+\[
+\lambda_1(L_1\otimes L_2)
+ \ge \sqrt d\,\lambda_1(L_2)
+\]
+
+for **every** lattice \(L_2\). Consequently, the \(k\)-fold tensor has NO distance at least \(d^{k/2}\).
+
+The proof classifies every rank-\(r\) sublattice \(K\subseteq L_1\): it must have enough nonzero rows, a strong parity property, or determinant at least \(d^{r/2}\). The mixed tensor word is then bounded by slicing or by
+
+\[
+\left\|\sum_{i=1}^r u_i\otimes w_i\right\|_2
+ \ge
+ \sqrt r\,
+ \bigl(\det L(u_1,\ldots,u_r)
+       \det L(w_1,\ldots,w_r)\bigr)^{1/r}.
+\]
+
+**Why relevant.** This is the closest classical theorem to the requested multiplicative composition **sound against all mixed signed words**. It says exactly what is missing from the \(q\) versus \(q+2\) integrality argument: not merely a lower bound on individual NO vectors, but a lower bound on every sublattice that can occur as a tensor slice.
+
+**How to adapt or verify.**
+
+For the integer 3DM fiber or its homogenization, test the following candidate property:
+
+> Every rank-\(r\) sublattice generated by NO-fiber differences either activates at least \(q+2\) triple coordinates, has a forced divisibility pattern, or has determinant at least \((q+2)^{r/2}\).
+
+For tiny instances, enumerate primitive rank-\(r\) sublattices via Hermite normal form and compute:
+
+- row support;
+- Smith invariants/parity;
+- Gram determinant;
+- shortest mixed tensor vector.
+
+A positive all-sublattices theorem would immediately give multiplicative tensor soundness. It would not by itself solve rank growth, but it is the right invariant for any later dense fold.
+
+---
+
+### 4. Compound matrices and exterior powers
+
+**Source.** Marvin Marcus and Henryk Minc, 1964, *A Survey of Matrix Theory and Matrix Inequalities*; classical compound-matrix/Cauchy–Binet theory. ([books.google.com](https://books.google.com/books/about/A_Survey_of_Matrix_Theory_and_Matrix_Ine.html?id=f-5QAAAAMAAJ&utm_source=openai))
+
+**Precise construction.** The \(k\)-th compound matrix \(C_k(A)\) is indexed by \(k\)-subsets of rows and columns and consists of all \(k\times k\) minors. It satisfies
+
+\[
+C_k(AB)=C_k(A)C_k(B),
+\]
+
+and represents the exterior power \(\bigwedge^k A\). Its dimension is
+
+\[
+\binom{m}{k}\times\binom{n}{k}
+\]
+
+for \(A\in\mathbb R^{m\times n}\). If \(A\) has singular values \(s_1,\dots,s_n\), the singular values of \(\bigwedge^k A\) are all products
+
+\[
+s_{i_1}\cdots s_{i_k}.
+\]
+
+**Why relevant.**
+
+- Exterior powers turn spectral gaps into multiplicative gaps.
+- The top exterior power is the determinant, so this machinery unifies the global permutation selector with multiplicative composition.
+- Antisymmetrization quotients a \(k\)-fold tensor from dimension \(n^k\) to \(\binom nk\), sometimes a substantial saving.
+
+**Parameter limitation.** A base ratio \(1+2/q\) requires \(k=\Omega(q)\) just to obtain a constant factor. Unless the exterior power acts on a space of dimension \(q+O(1)\), \(\binom nk\) is still exponential or quasiexponential. Fixed \(k\) preserves only a \(1+O(k/q)\) ratio.
+
+**How to adapt or verify.**
+
+Search for a polynomial-dimensional **defect operator** \(T(z)\), rather than exterior-powering the full coordinate space, such that:
+
+- legal integer points make \(T(z)\) have a prescribed rank or determinant;
+- every signed illegal point changes \(\bigwedge^kT(z)\) by a multiplicative amount;
+- \(T(z)\) depends linearly on the lattice coefficients.
+
+Test \(k=2,3\) compounds on the tiny signed 3DM fibers. This is especially attractive if all legal witnesses share a low-dimensional invariant subspace.
+
+---
+
+### 5. Exact affine/integer-hull impossibility for equation-only formulations
+
+**Sources.** Garrett Birkhoff, 1946, “Tres observaciones sobre el algebra lineal”; Hoffman–Kruskal, 1956, “Integral Boundary Points of Convex Polyhedra”; the contingency-table move machinery of Diaconis–Sturmfels, 1998, *Annals of Statistics* 26(1), 363–397. ([scienceopen.com](https://www.scienceopen.com/document?vid=fa429ed1-6420-401f-9c52-ddff427af671&utm_source=openai))
+
+Let \(\mathcal P_q\) be the \(q\times q\) permutation matrices. Then
+
+\[
+\operatorname{aff}_{\mathbb R}(\mathcal P_q)
+ =
+ \{X\in\mathbb R^{q\times q}:
+   X\mathbf1=\mathbf1,\;
+   X^\top\mathbf1=\mathbf1\}.
+\]
+
+More strongly, for \(q\ge2\),
+
+\[
+\operatorname{aff}_{\mathbb Z}(\mathcal P_q)
+ =
+ \{X\in\mathbb Z^{q\times q}:
+   X\mathbf1=\mathbf1,\;
+   X^\top\mathbf1=\mathbf1\}.
+\tag{1}
+\]
+
+**Proof of the integer statement.** Fix one permutation \(P_0\). Any \(X-P_0\) has zero row and column sums. The integer lattice of such tables is generated by rectangle moves
+
+\[
+E_{ik}+E_{j\ell}-E_{i\ell}-E_{jk}.
+\]
+
+Each rectangle move is the difference of two permutation matrices obtained by extending the two opposite pairings on rows \(i,j\) and columns \(k,\ell\). Hence every \(X\) in the right side of (1) is an integer affine combination of permutation matrices.
+
+**Consequence.** If an equation-only extended formulation is one affine space
+
+\[
+Y=\{y:By=c\}
+\]
+
+and its projection contains all permutation matrices, then its projection contains the entire real affine hull above. If the feasible lifted points form one lattice coset and contain one lift of each permutation, their projection contains the entire integer affine hull (1). Therefore signed doubly stochastic tables are unavoidable.
+
+This does **not** rule out selecting permutations as low-norm points inside the larger fiber. It rules out representing the union exactly by equations or by one projected lattice coset.
+
+---
+
+### 6. The Birkhoff toric ideal has Markov degree three
+
+**Source.** Takashi Yamaguchi, Mitsunori Ogawa and Akimichi Takemura, 2013, “Markov degree of the Birkhoff model,” arXiv:1304.1237. ([arxiv.org](https://arxiv.org/abs/1304.1237))
+
+**Precise statement.** Define
+
+\[
+\phi:\mathbb K[x_\sigma:\sigma\in S_q]
+ \longrightarrow
+ \mathbb K[t_{ij}:i,j\in[q]]
+\]
+
+by
+
+\[
+\phi(x_\sigma)=\prod_{i=1}^q t_{i,\sigma(i)}.
+\]
+
+Then the toric ideal \(\ker\phi\) is generated by binomials of degree at most three. Equivalently, any two multisets of permutations having the same summed incidence table can be connected by moves replacing at most three permutations by at most three others.
+
+For \(q=3\), the toric ideal is principal, generated by the cubic relation
+
+\[
+x_{123}x_{231}x_{312}
+ -
+x_{132}x_{213}x_{321},
+\]
+
+because both triples of permutation matrices sum to the all-ones matrix. ([kurims.kyoto-u.ac.jp](https://www.kurims.kyoto-u.ac.jp/EMIS/journals/JACO/Volume30_4/7xp01156655jj3u8.fulltext.pdf?utm_source=openai))
+
+**Why relevant.** Any proposed lift whose global interface depends only additively on the aggregate permutation table inherits constant-degree exchange relations. Degree-three toric moves are a systematic source of short signed superpositions even though individual permutation matrices are globally defined.
+
+**How to adapt or verify.**
+
+- Enumerate every quadratic and cubic Markov move for \(q=3,4\).
+- Apply the proposed extra feature map to both sides.
+- Reject any feature family for which all degree-three relations survive.
+- A viable feature must distinguish permutations in a way that does **not** factor through summed edge incidences.
+
+---
+
+### 7. Nisan’s exponential lower bound for order-sensitive permutation ABPs
+
+**Source.** Noam Nisan, 1991, “Lower Bounds for Non-Commutative Computation,” *STOC 1991*, 410–418. ([doi.org](https://doi.org/10.1145/103418.103462?utm_source=openai))
+
+**Precise statement.** For a homogeneous noncommutative polynomial \(f\) of degree \(d\), let \(M_k(f)\) have rows indexed by degree-\(k\) words, columns indexed by degree-\((d-k)\) words, and entries equal to the coefficient of their concatenation in \(f\). The minimum width at layer \(k\) of an ABP computing \(f\) is
+
+\[
+\operatorname{rank} M_k(f),
+\]
+
+and minimum total ABP size is the sum of these ranks. ([webusers.imj-prg.fr](https://webusers.imj-prg.fr/~herve.fournier/publications/nonnegative-rank.pdf?utm_source=openai))
+
+For the row-ordered noncommutative permanent or determinant,
+
+\[
+f=\sum_{\sigma\in S_q}\epsilon_\sigma\,
+ x_{1,\sigma(1)}x_{2,\sigma(2)}\cdots x_{q,\sigma(q)},
+\]
+
+one obtains
+
+\[
+\operatorname{rank}M_k(f)=\binom qk,
+\qquad
+\sum_{k=0}^q\operatorname{rank}M_k(f)=2^q.
+\]
+
+**Why relevant.** A straightforward ABP that preserves the identity of a partial permutation as an order-sensitive word must be exponential. The polynomial-size commutative determinant circuit succeeds only by exploiting commutativity and cancellation.
+
+**Design implication.** An ABP-based lattice construction faces a dichotomy:
+
+- preserve monomial identity robustly against signed coefficients and incur exponential size; or
+- exploit cancellation for polynomial size and prove that arbitrary signed path combinations do not create short false witnesses.
+
+**Verification.** For a proposed ABP, compute its prefix/suffix coefficient matrices for \(q\le5\). If the construction effectively retains noncommutative monomial identity, the ranks should already exhibit the \(\binom qk\) barrier.
+
+---
+
+### 8. Seymour decomposition: useful selector composition, not gap multiplication
+
+**Source.** P. D. Seymour, 1980, “Decomposition of Regular Matroids,” *Journal of Combinatorial Theory, Series B* 28(3), 305–359. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/0095895680900751?utm_source=openai))
+
+**Precise statement.** Every regular matroid can be constructed by \(1\)-, \(2\)- and \(3\)-sums from:
+
+- graphic matroids;
+- cographic matroids;
+- copies of the ten-element regular matroid \(R_{10}\).
+
+Regular matroids are exactly those representable by totally unimodular matrices. ([web.math.princeton.edu](https://web.math.princeton.edu/~pds/papers/regular/paper.pdf))
+
+**Why relevant.** The \(k\)-sum operations compose large global objects through interfaces of size at most three, with nearly additive rank. This is an attractive source of explicit submultiplicative-size composition.
+
+**Why it does not directly amplify distance.** Circuits contained in one component and avoiding the interface remain circuits after the sum. Hence minimum circuit or kernel-vector size generally satisfies an upper bound by the smaller component minimum; it does not multiply.
+
+Also, perfect matchings as edge sets are not themselves matroid bases. Already in \(K_{2,2}\), the two perfect matchings
+
+\[
+\{11,22\},\qquad \{12,21\}
+\]
+
+violate single-element basis exchange.
+
+**Best adaptation.** Use a regular matroid only as a compact **global checksum or selector layer**, perhaps for Waksman controls or determinant states, rather than expecting regular-matroid sums to amplify the Euclidean gap.
+
+---
+
+### 9. Balas disjunctive programming: exact OR, but with inequalities and additive branch size
+
+**Source.** Egon Balas, 1979, “Disjunctive Programming,” *Annals of Discrete Mathematics* 5, 3–51; expanded hierarchy treatment in 1985. ([lara.epfl.ch](https://lara.epfl.ch/w/_media/projects%3Adisjunctive_programming.pdf?utm_source=openai))
+
+**Precise formulation.** For nonempty polyhedra
+
+\[
+P_i=\{x:A_ix\le b_i\},
+\]
+
+the convex hull of their union is the projection of
+
+\[
+\begin{aligned}
+x&=\sum_i x^{(i)},\\
+A_i x^{(i)}&\le \lambda_i b_i,\\
+\sum_i\lambda_i&=1,\\
+\lambda_i&\ge0.
+\end{aligned}
+\]
+
+The size is essentially the sum of the branch-description sizes. ([arxiv.org](https://arxiv.org/abs/1711.00891?utm_source=openai))
+
+**Why relevant.** This is the canonical classical OR-composition mechanism. It also isolates why the desired equation-only analogue is difficult:
+
+- nonnegativity prevents signed branch cancellation;
+- removing the inequalities admits arbitrary signed affine combinations;
+- applying it directly to \(q!\) permutation targets is exponential.
+
+**Potential adaptation.** Replace explicit branches by a polynomial-size path system such as a Waksman network. A path/flow extended formulation can represent exponentially many switch configurations with polynomially many variables—but again relies on nonnegative unit flow. The missing lattice analogue is therefore:
+
+> enforce “one nonnegative unit path” by Euclidean norm with zero or \(o(q)\) honest cost, while charging every signed circulation.
+
+I found no classical construction accomplishing that.
+
+The general OR-cross-composition framework of Bodlaender–Jansen–Kratsch compresses the logical OR of many instances into a parameter polynomial in the maximum input size plus \(\log t\), but it is a complexity framework, not a CVP metric gadget; I found no pre-2024 CVP-specific instantiation with the required distance behavior. ([arxiv.org](https://arxiv.org/abs/1206.5941?utm_source=openai))
+
+---
+
+## Explicit \(q=3\) matrix test
+
+Order the table entries as
+
+\[
+(x_{11},x_{12},x_{13},x_{21},x_{22},x_{23},x_{31},x_{32},x_{33}).
+\]
+
+Use the five independent row/column-sum equations
+
+\[
+A=
+\begin{pmatrix}
+1&1&1&0&0&0&0&0&0\\
+0&0&0&1&1&1&0&0&0\\
+0&0&0&0&0&0&1&1&1\\
+1&0&0&1&0&0&1&0&0\\
+0&1&0&0&1&0&0&1&0
+\end{pmatrix},
+\qquad
+b=
+\begin{pmatrix}1\\1\\1\\1\\1\end{pmatrix}.
+\]
+
+Every \(3\times3\) permutation matrix satisfies \(Ax=b\). But so does
+
+\[
+X=
+\begin{pmatrix}
+1&1&-1\\
+0&0&1\\
+0&0&1
+\end{pmatrix},
+\qquad
+x=(1,1,-1,0,0,1,0,0,1)^\top.
+\]
+
+It has
+
+\[
+\|X\|_F^2=5=3+2,
+\]
+
+whereas every permutation matrix has squared norm \(3\). Explicitly,
+
+\[
+X=P_{[1,2,3]}+P_{[2,3,1]}-P_{[3,2,1]}.
+\]
+
+This is the smallest direct test for any proposed equation-only extension: lift those three permutations, take the same signed affine combination, and inspect whether the auxiliary coordinates cancel or incur the intended penalty.
+
+Also test the cubic toric identity
+
+\[
+P_{[1,2,3]}+P_{[2,3,1]}+P_{[3,1,2]}
+=
+P_{[1,3,2]}+P_{[2,1,3]}+P_{[3,2,1]}
+=
+J_3.
+\]
+
+Any additive feature map that assigns the same total feature to these two triples retains a support-six signed relation.
+
+## Recommended next experiment
+
+The highest-leverage hybrid suggested by the literature is:
+
+1. use a **Waksman network** to encode every permutation with \(O(q\log q)\) controls;
+2. represent the network’s complete input-output map by the **single determinant/common-basis polynomial**, not local switch tableaus;
+3. homogenize this into an affine lattice;
+4. search for a Haviv–Regev-style theorem about **every sublattice** of the illegal fiber;
+5. only then apply tensoring or a code-dependent fold.
+
+The first tiny test should combine the \(q=3\) matrix above with the six determinant monomials and exhaust all signed coefficients in \(\{-2,-1,0,1,2\}\). The decisive question is whether the global determinant state can distinguish the \(3\)-versus-\(5\) witness without itself contributing a \(\Theta(q)\) completeness norm.

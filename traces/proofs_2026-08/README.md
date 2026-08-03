@@ -74,5 +74,9 @@ Construction A (exact-cover quotient) wounded with a precise mutation path;
 Construction B (odd-cyclic tensor fold) yielded a genuinely new proved coding
 lemma — mixed-word bound delta_fold >= 1+ceil((delta^2-1)/ell) for any odd
 group acting freely off the pointed coordinate — plus a residual-lineage
-propagation theorem (14,773 verified recurrence transitions). Population
-handed off open for a future segment.
+propagation theorem (14,773 verified recurrence transitions). Segment 2 (+$31.12): population grew to 25 lines; new proved content —
+rank-two pointed determinant theorem, Pluecker count, disproof of all-partner
+pointed multiplicativity, exact weighted set-support compression of pure-power
+tensors; parity-check simplification proved vacuous on the BMT ladder. Final:
+still PARTIAL, 2 promising lines (I07 fold, I21 homogenized tensor) + I12 RS
+shell / I14 Pfaffian+BCH / I15 expander bundling left open. CVP total ~$137.

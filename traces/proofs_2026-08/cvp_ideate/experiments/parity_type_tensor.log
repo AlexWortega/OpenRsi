@@ -1,0 +1,4 @@
+YES [{'level': 0, 'n': 8, 'dim': 2, 'moving_d': 3}, {'level': 1, 'formal_n': 64, 'n': 64, 'dim': 4, 'checks': 61, 'moving_d': 9, 'max_multiplicity': 1, 'distinct_multiplicities': [1]}, {'level': 2, 'formal_n': 4096, 'n': 4096, 'dim': 16, 'checks': 4081, 'moving_d': 81, 'max_multiplicity': 1, 'distinct_multiplicities': [1]}]
+NO [{'level': 0, 'n': 8, 'dim': 2, 'moving_d': 5}, {'level': 1, 'formal_n': 64, 'n': 64, 'dim': 4, 'checks': 61, 'moving_d': 25, 'max_multiplicity': 1, 'distinct_multiplicities': [1]}, {'level': 2, 'formal_n': 4096, 'n': 4096, 'dim': 16, 'checks': 4081, 'moving_d': 625, 'max_multiplicity': 1, 'distinct_multiplicities': [1]}]
+ratios [1.6666666666666667, 2.777777777777778, 7.716049382716051]
+parity-check type tensor experiment passes

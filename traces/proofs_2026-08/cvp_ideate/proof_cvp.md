@@ -357,6 +357,508 @@ The first asymmetric mutation—formula-oblivious sparse hashing of reduced pair
 
 Finally, `verify_reduced_fold_cvp.py` applies the syndrome-to-lattice basis construction to the level-one folded finite examples. It produces explicit rank-192 integer bases with systematic determinant `2^187`; exact affine enumeration gives squared Euclidean distances 27 and 75, hence Euclidean distance ratio `sqrt(75/27)=5/3`. This is a finite end-to-end consistency check only.
 
+## Direct integer exact-cover CVP and a finite pair-projection classifier
+
+Let `A` be the integer element--triple incidence matrix of a 3DM instance with
+three parts of size `q`.  For an integer scale `M`, define
+
+\[
+ B=\begin{pmatrix}I_m\\MA\end{pmatrix},\qquad
+ t=\binom0{M\mathbf1}.
+\]
+
+The columns of `B` are independent because of the identity block, so `B` is
+an explicit integer lattice basis of rank `m`.  Every integer coefficient
+vector `z` with `Az=1` gives squared distance `||z||_2^2`.  Conversely any
+coefficient vector with nonzero incidence residual costs at least `M^2`.
+Choose `M^2` larger than the promised NO threshold under consideration.
+
+Summing the equations indexed by any one vertex part gives
+`sum_j z_j=q`.  Since `a^2>=a` for every integer `a`,
+
+\[
+ \|z\|_2^2-q=\sum_j(z_j^2-z_j)\ge0.                 \tag{IC}
+\]
+
+Equality holds exactly when every `z_j` is zero or one; then `Az=1` is a
+perfect matching.  Moreover every summand in (IC) is even.  Thus a YES
+instance has squared distance `q`, while a NO instance has exact-fiber squared
+norm at least `q+2`.  This is only an additive gap, but importantly it remains
+sound against arbitrary signed integer coefficients.  On 40 tiny NO instances
+`verify_integer_3dm_cvp.py` finds minima 5, 7, 9, or 13 against YES value 3.
+
+A finite mutation appends rows recording all three pair projections `AB, AC,
+BC` and fixes their integer target to the three permutation matrices of a
+perfect matching.  For any *fixed* consistent target this remains an explicit
+integer basis and the same norm argument applies.  Exhaustive
+`{-1,0,1}` search on four YES/four NO instances finds a norm-three YES point
+and no NO exact-fiber point for any of the 36 targets at `q=3`.  This is not a
+reduction: there are `(q!)^2` consistent projection targets, and a many-one
+map does not know which target a satisfying matching realizes.
+
+A simple polynomial-size encoding of this disjunction is possible, but it does
+not amplify the gap.  Introduce the three projection tables themselves as
+integer coefficients `p^{AB},p^{AC},p^{BC}`, enforce
+
+\[
+ p^{AB}=\Pi_{AB}z,\quad p^{AC}=\Pi_{AC}z,\quad
+ p^{BC}=\Pi_{BC}z,
+\]
+
+and retain the incidence equations (equivalently, impose row/column sums one
+on every table).  Put identity coordinates on both `z` and all entries of
+`p`.  No permutation target is selected: a YES matching existentially
+produces its three permutation matrices in the single fixed lattice fiber.
+The basis remains explicit and full-column-rank because of its identity block.
+
+For any integral `q`-by-`q` table with every row sum one,
+
+\[
+ \sum_{a,b}p_{ab}^2\ge\sum_{a,b}p_{ab}=q,
+\]
+
+with equality exactly when every entry is zero or one; row and column sums
+then make it a permutation matrix.  Hence a matching has total squared norm
+`4q` (one triple vector and three projections), while every nonmatching gains
+at least two in one charged block.  This is again only additive.  Giving the
+four blocks integer weights changes the baseline to `q` times the sum of the
+weights and the first defect by only a corresponding constant.
+`verify_variable_pair_projection_cvp.py` exhaustively checks 40 YES/40 NO
+tiny instances: equal weights give 12 versus 14, while increasing the triple
+weight through `1,2,4,8` gives finite ratios `7/6,19/15,29/21,49/33` but no
+asymptotic escape from `1+O(1/q)`.
+
+## Homogenized integer tensor: finite mixed-word signal only
+
+The direct integer system has a natural homogeneous lattice
+
+\[
+ L_T=\{(z,s)\in\mathbb Z^m\times\mathbb Z:Az=s\mathbf1\},
+\]
+
+with distinguished affine slice `s=1`.  The preceding argument gives pointed
+squared norm `q+1` in YES instances and at least `q+3` in NO instances.  A
+pure tensor raises squared norms multiplicatively.  For arbitrary lattices,
+however, a mixed tensor can be shorter than every pure tensor product; no
+binary slicing proof applies.  A valid asymptotic argument would require an
+all-sublattices determinant/support theorem of the kind used classically in
+Haviv--Regev's tensor hardness analysis.
+
+`verify_homogeneous_integer_tensor.py` gives only bounded exact evidence.  On
+four tiny YES/four NO rank-two homogeneous lattices it exhausts base
+coefficients in `[-2,2]` and every mixed tensor coefficient in `[-1,1]`.  Base
+squared norms `4` versus `6` or `8` become exactly `16` versus `36` or `64`.
+This does not prove the minimum over unbounded coefficients.  The higher-rank
+mutation `verify_highrank_integer_tensor.py` constructs saturated Smith-form
+Z-bases for six YES/six NO rank-three lattices and exhausts all `3^9` mixed
+coefficient matrices.  It again obtains exactly `16` versus `36` from base
+`4` versus `6`.
+
+A naive all-sublattices theorem is nevertheless false.  In
+`verify_tensor_subdeterminants.py`, for each of twelve YES/twelve NO rank-three
+lattices, all 13 primitive coefficient directions in `{-1,0,1}^3` and all 78
+independent pairs are checked.  Both families have minimum unrestricted vector
+norm 4, rank-two Gram determinant 12, and ambient support 6.  The NO lattice
+contains short `s=0` kernel directions unrelated to the pointed NO fiber.  Any valid all-partner theorem must incorporate the homogenizing
+functional—for example only sublattices on which it is primitive—or
+quotient/control the common kernel.
+
+That pointed mutation has positive finite evidence.
+`verify_pointed_sublattice_diagnostics.py` restricts rank-one directions to
+nonzero `s` and rank-two sublattices to those on which `s` has gcd one.  Across
+20 YES/20 NO rank-three examples, minimum rank-one norm/support are `4/4`
+versus `6/6`, while minimum rank-two Gram determinant/support are `12/6`
+versus `20/8`.  In addition, `verify_highrank_tensor_C2.py` exhausts
+`5^9=1,953,125` mixed coefficient matrices on three YES/three NO lattices and
+again finds exact squared-norm multiplicativity `16` versus `36`.
+
+`verify_pointed_rank3_coeff_bound.py` further expands the sublattice search to
+all 145 primitive directions in `[-3,3]^3` and at least 7,480
+primitive-functional rank-two pairs for each of ten YES/ten NO lattices.  The
+same gaps persist: rank-one norm 4 versus 6, rank-two Gram determinant 12
+versus 20, and support 6 versus 8.
+
+`verify_pointed_rank4_diagnostics.py` also tests 20 YES/20 NO rank-four
+lattices.  Per instance it enumerates 40 primitive box-one directions, 702
+primitive-functional rank-two pairs, and at least 451 pointed mixed tensor
+combinations of support at most three.  The same minima persist: rank-one
+norm 4 versus 6, rank-two determinant 12 versus 20 and support 6 versus 8,
+and sparse mixed tensor norm 16 versus 36.
+
+These finite data suggest the precise candidate invariant: lower bounds only
+for sublattices on which the homogenizing functional is primitive.  They do
+not prove it in arbitrary rank.  Ordinary tensor rank growth would still
+conserve a vanishing standard exponent.  These are construction signals and
+counterdiagnostics, not a hardness claim.
+
+## Pointed sublattice theorems and the correct tensor invariant
+
+The finite determinant signal has a rigorous rank-two explanation.  Write
+`Q=q+2`.  In a NO instance, every odd-fiber vector modulo two has at least
+`Q` triple coordinates, hence at least `q+3` coordinates after including the
+homogenizing bit.  Every nonzero homogeneous kernel word has even weight at
+least four: weight two would repeat an incidence column.
+
+### Rank-two pointed determinant theorem
+
+Let `K<=L_T` have rank two and `s(K)=Z`.  Then
+
+\[
+ \det_{\rm Gr}(K)\ge4(q+2),\qquad
+ |\operatorname{supp}K|\ge q+5.                 \tag{PD2}
+\]
+
+It suffices to saturate `K`, which can only decrease Gram determinant and does
+not change support.  Choose a basis `u=(x,1),v=(y,0)`.  Saturation makes their
+reductions independent, so `Y=supp(y mod 2)` has size `h>=4`.  Put
+
+\[
+ a=|X\cap Y|,\quad b=|Y\setminus X|,\quad
+ c=|X\setminus Y|,
+\]
+
+where `X=supp(x mod 2)`.  Both `x` and `x+y` are odd-fiber words, hence
+
+\[
+ a+c\ge Q,\qquad b+c\ge Q.                       \tag{P1}
+\]
+
+Cauchy--Binet in rank two is
+
+\[
+ \det_{\rm Gr}(u,v)=\sum_i y_i^2+
+       \sum_{i<j}(x_i y_j-x_jy_i)^2.
+\]
+
+Counting only odd terms gives
+
+\[
+ \det_{\rm Gr}(K)\ge h+ab+ch.                    \tag{P2}
+\]
+
+Let `t=min(a,b)`.  From (P1), `c>=max(0,Q-t)` and `h>=2t`.  If `t<=Q`,
+(P2) is at least
+
+\[
+ h+t(h-t)+h(Q-t)=h(Q+1)-t^2.
+\]
+
+For `4<=h<=2Q`, this is at least the minimum of its endpoint values,
+`4Q` and `Q^2+2Q`; for `h>=2Q` it is again at least `Q^2+2Q`.
+If `t>=Q`, then `h>=2Q` and `ab>=Q(h-Q)`, giving the same bound.  This proves
+the determinant statement.  Also `|X union Y|=h+c>=Q+2`; including the star
+coordinate proves support `Q+3=q+5`.
+
+### General pointed Pluecker count
+
+For a saturated rank-`r` `K` with `s(K)=Z`, reduce a basis modulo two.  It is
+an `r`-dimensional binary code containing a pointed word of weight at least
+`q+3`; every nonzero codeword has weight at least four.  Starting from each
+coordinate in the pointed word, greedily complete to an ordered column basis:
+at each of the remaining `r-1` steps, a hyperplane containing the columns
+already chosen has at least four columns outside it.  Dividing by at most
+`r!` orderings, there are at least
+
+\[
+ \left\lceil\frac{(q+3)4^{r-1}}{r!}\right\rceil
+\]
+
+odd maximal minors.  Cauchy--Binet therefore proves
+
+\[
+ \det_{\rm Gr}(K)\ge
+ \left\lceil\frac{(q+3)4^{r-1}}{r!}\right\rceil. \tag{PDr}
+\]
+
+This is rigorous but only linear in `q` at fixed rank.
+
+### Arbitrary pointed all-partner multiplicativity is false
+
+For `L=M=Z^2` with standard norm and primitive functional
+`s(x)=2x_1+5x_2`, the pointed squared minimum is five, attained at `(-2,1)`.
+Yet the mixed tensor matrix
+
+\[
+ X=\begin{pmatrix}-1&-1\\-1&1\end{pmatrix}
+\]
+
+satisfies `(s tensor s)(X)=1` and has Frobenius norm squared four, far below
+`5^2`.  Thus primitive functionals alone do not yield an arbitrary-Euclidean
+all-partner inequality.
+
+The correct sufficient invariant for arbitrary partners is the full pointed
+determinant profile
+
+\[
+ \Delta_r(L,s)=\inf_{\substack{K\le L,\,\operatorname{rank}K=r\\s(K)=Z}}
+                  \det_{\rm Gr}(K).
+\]
+
+If a rank-`r` tensor `t` has `(s tensor tau)(t)=1`, its minimal rational
+support lattices `K,N` have primitive functionals.  Writing its coefficient
+matrix as an integral full-rank `C`, trace--determinant AM--GM gives
+
+\[
+ \|t\|^2\ge r\bigl(\Delta_r(L,s)\Delta_r(M,\tau)\bigr)^{1/r}. \tag{DP}
+\]
+
+For self-multiplicativity at base pointed norm squared `mu^2`, (DP) needs
+roughly `Delta_r>=mu^{2r}/r^{r/2}`.  Already at rank two this is quadratic in
+`q`, while (PD2) is only linear.  The determinant-profile route therefore
+does not establish the desired tensor theorem.
+
+For the coordinate-integral incidence construction there is nevertheless an
+exact mixed-tensor certificate: reduce coordinates modulo two.  Its pointed
+binary distance is `q+1` in YES and at least `q+3` in NO, and binary pointed
+distance is exactly multiplicative by the usual contraction/slicing proof.
+Since integer squared norm dominates the Hamming weight of its parity vector,
+a `k`-fold integer self-tensor has certified squared norm at least
+`(q+3)^k` in NO, while a pure YES tensor has `(q+1)^k`.  This controls all
+mixed signed integer tensors, but ordinary tensor rank still grows as `n^k`,
+so the standard approximation exponent remains vanishing.  The finite checks
+for (PD2), (PDr), and the explicit all-partner counterexample are in
+`verify_pointed_tensor_theorems.py`.
+
+## Linear feature-cost shells do not realize that disjunction in tested cases
+
+For a binary feature matrix `F`, introduce `R` copies of variables constrained
+by `z^{(s)}=Fx`.  Together with `Ax=1`, this is an explicit syndrome instance
+whose exact objective is
+
+\[
+ |x|+R|Fx|.
+\]
+
+`verify_feature_shell_3dm.py` tests global pair projections, deterministic
+sparse hash features, and hybrids on every odd cover in 40 YES and 40 NO tiny
+instances.  Among 45 choices, the best uniform ratio is `14/12=7/6`, below
+the unshelled `5/3`; replication worsens it.  This finite result is an
+implementation diagnostic, not an asymptotic no-go theorem.
+
+## Global determinant dictionary: finite separation, exponential representation
+
+Cauchy--Binet gives the genuinely global identity
+
+\[
+ \det Z=\sum_{\sigma\in S_q}\operatorname{sgn}(\sigma)
+          \prod_i z_{i,\sigma(i)},
+\]
+
+so the monomial support is exactly the permutation matrices.  This avoids
+proper marginal interfaces if one keeps it as one global object.  An explicit
+linear lattice dictionary, however, needs one coefficient `lambda_sigma` per
+monomial.  Coverage `sum lambda_sigma=1` admits signed support-three virtual
+states `e_a+e_b-e_c`.  One may additionally charge the aggregate table and
+all compound/exterior representations
+`sum lambda_sigma wedge^k(P_sigma)`.
+
+`verify_determinant_permutation_dictionary.py` exhausts all signed affine
+coefficient vectors in `[-2,2]^6` at `q=3` and all ordered support-three trades
+at `q=4`.  The legal/cheapest-virtual squared costs are respectively:
+
+* coefficient only: `1/3` at both sizes;
+* coefficient plus aggregate table: `4/8` and `5/7`;
+* coefficient plus top determinant state: `2/4` and `2/4`;
+* coefficient plus all compound states: `8/22` and `16/34`.
+
+These are finite diagnostics, not asymptotic bounds.  They show that the top
+determinant does not by itself eliminate affine virtual permutations, while
+all compound states retain both a growing completeness baseline and the
+explicit `q!` monomial dictionary.  Evaluating the determinant by a
+polynomial-size bounded-fan-in tableau would return to the earlier exact gate
+fault obstruction.  No succinct global *linear* realization is obtained.
+
+## Exact weighted set-support compression of pure-power tensors
+
+There is an exact compression unavailable in unweighted binary Hamming space
+but realizable directly in Euclidean CVP.  Let `D<=F_2^n` and
+
+\[
+ P_r(D)=\operatorname{span}\{x^{\otimes r}:x\in D\}.
+\]
+
+For a tuple `alpha=(i_1,...,i_r)`, the coordinate of a pure power is
+
+\[
+ (x^{\otimes r})_\alpha=\prod_{i\in S(\alpha)}x_i,
+\]
+
+where `S(alpha)` is the set of distinct symbols in the tuple.  Consequently
+every mixed word in `P_r(D)` is constant on all tuples having the same
+underlying set.  Keep one coordinate for every nonempty
+`S subseteq [n]`, `|S|<=r`, and give it weight
+
+\[
+ w_{r,S}=|S|!\,{r\brace |S|},                 \tag{WS}
+\]
+
+because this is the number of length-`r` tuples whose symbol set is exactly
+`S`.  For every word `W in P_r(D)`, not merely pure powers,
+
+\[
+ |W|=\sum_{S:W_S=1}w_{r,S}.                  \tag{WD}
+\]
+
+Thus the compressed length is
+
+\[
+ N_{n,r}=\sum_{j=1}^{\min(n,r)}\binom nj\le2^n-1,
+\]
+
+independent of `r` once `r>=n`, while pointed distance remains exactly the
+full tensor power.
+
+The weighted metric is an explicit ordinary Euclidean metric.  Write each
+positive integer `w` as a sum of `O(log w)` squares deterministically from its
+binary expansion: bit `2^{2a}` contributes one square `(2^a)^2`, and bit
+`2^{2a+1}` contributes two such squares.  Replace compressed coordinate `S`
+by these integer-scaled rows.  Then a binary residue at `S` contributes
+exactly `w_{r,S}` to squared norm.  Applying the standard mod-two
+Construction-A basis to the compressed star-zero code gives an explicit
+integer lattice basis and target whose squared CVP distance equals the
+weighted pointed distance (WD).  All scales have `O(r log n)` bits, and the
+row count is `N_{n,r} O(r log n)`.
+
+`verify_weighted_symmetric_cvp.py` first checks the weaker multiset-orbit form
+on 72 random codes and explicit integer bases.
+`verify_set_support_weighted_cvp.py` checks (WS)--(WD) on 100 random cases and
+small 3DM codes.  For one moving-length-eight 3DM pair, compressed length
+saturates at 255 while exact distances remain `3^r` versus `5^r` through
+`r=12`.
+
+A further exact quotient merges subsets inducing the same Boolean function on
+the message space of `D`; their weights are added.  This is basis-invariant up
+to relabeling messages and preserves (WD).  In
+`verify_function_type_weighted_cvp.py`, 3DM dictionaries of sizes
+`8,9,10,11,12`, with code dimensions `2,...,6`, have respectively
+`6,20,59,251,1158` reachable nonzero function types at the tested large tensor
+orders.
+
+There is a definitive rank wall.  Let `k=dim D`.  The base coordinate
+functionals span the dual message space.  Products of `r` coordinate linear
+forms span every nonconstant squarefree message monomial of degree at most
+`r`: expand products of linear combinations, and pad a monomial of lower
+degree by repeating one factor, using `x_i^2=x_i` as Boolean functions.
+Distinct squarefree monomials are linearly independent as functions on
+`F_2^k`.  Hence
+
+\[
+ \dim P_r(D)=\sum_{j=1}^{\min(k,r)}\binom kj.       \tag{PPdim}
+\]
+
+In particular the dimension is `2^k-1` once `r>=k`.  Every explicit linear
+code or lattice realization preserving all of `P_r(D)` has rank at least
+(PPdim), irrespective of weighted coordinate merging.  For the tensor order
+`r=Theta(q log input)` required to amplify a `q` versus `q+2` base gap, this is
+superpolynomial unless the base dimension is very small.  If a BMT affine
+fiber had `k=O(log input)`, one could enumerate all `2^k` messages and solve
+its nearest-word instance in polynomial time, so it cannot encode NP-hardness
+unless `P=NP`.  `verify_pure_power_dimension.py` checks (PPdim) on 448 random
+cases and increasing 3DM codes.
+
+Thus exact weighted set/function compression is not a route from general BMT
+instances to polynomial output.  A surviving compressor must discard a large
+part of `P_r(D)` while preserving its pointed minimum, or leave the explicit
+linear-lattice model.  The construction remains a valid exact CVP compression
+lemma, but its hardness parameters are closed.
+
+## Deterministic sampling can show a finite gap but does not generalize
+
+A possible escape from (PPdim) is to retain only polynomially many product
+functions, chosen deterministically from the row-reduced input code, and merge
+duplicates with sample multiplicity as Euclidean weight.
+`verify_sampled_pure_power_fold.py` exhaustively evaluates every message in
+ten YES/ten NO tiny `m=8` codes across 1,400 parameter choices.  The best
+setting has finite worst-YES/best-NO distance `1/7`.
+
+This signal fails a precommitted generalization test.
+`verify_sampled_fold_generalization.py` freezes the setting and checks 50
+YES/50 NO instances at each `m=8,...,12`, including independently permuted
+presentations.  Uniform ratios are at most `4/3,1/3,1,1,1`; as dimension grows,
+both fibers acquire sampled pointed words of weight one.  This is a finite
+autopsy, not an asymptotic impossibility theorem for every deterministic
+sampler.  It kills only the tested canonical-hash product sampling family.
+
+## A compact nonlinear weight-class compressor hides the NP-hard step
+
+For an affine binary fiber `F`, suppose one knows its attainable weight set
+`W={|x|:x in F}`.  Introduce pointed generators `(1,e_w)`, `w in W`, and give
+class coordinate `w` Euclidean squared weight `w^r`.  Every pointed linear
+combination contains an odd total number of generators, so at least one class
+has odd parity.  Its weighted distance is therefore at least
+`1+(min W)^r`, attained by a singleton generator.  Thus only `m+2` possible
+class coordinates exactly realize arbitrary distance powering.
+
+This is not an efficient reduction.  For the BMT incidence fiber,
+
+\[
+ q\in W\quad\Longleftrightarrow\quad
+ \text{the 3DM instance has a perfect matching}.
+\]
+
+Hence constructing the class-`q` generator already decides the source
+problem.  The polynomially known relaxation `W_0={w>=q:w=q mod 2}` includes
+`q` in both YES and NO and destroys the gap.  `verify_weight_class_compressor.py`
+checks the exact weighted CVP construction on 40 YES/40 NO instances and the
+relaxation failure.  This illustrates why arbitrary nonlinear compression of
+the affine fiber is irrelevant unless its generator can be computed without
+nearest-word information.
+
+## Exact parity-check simplification cannot compress the BMT reduced ladder
+
+There is one useful exact code-dependent compression lemma.  Let
+`H=[h_1 ... h_N]` be binary.  Delete every zero column and keep one copy of
+each distinct nonzero column, obtaining `Hbar`.  Then, for every target `t`,
+
+\[
+ \min\{|x|:Hx=t\}=\min\{|y|:\bar H y=t\}.
+\]
+
+Indeed, map a selection `x` to the parity of its selected coordinates in each
+column class; this preserves syndrome and cannot increase weight.  Conversely,
+lift every selected class of `y` to one representative coordinate.  Equality
+of columns is unchanged by invertible row operations, so this simplification
+is basis-invariant and polynomial-time.
+
+Unfortunately it gives no shortening in the exact-cover reduced tensor
+construction.  If `K=ker H`, a zero column means `e_i in K`, while equal
+columns `h_i=h_j` mean `e_i+e_j in K`.  Therefore
+
+\[
+ d(K)\ge3\quad\Longrightarrow\quad
+ H\text{ has no zero or repeated columns}.                 \tag{PS}
+\]
+
+For a 3DM incidence matrix with distinct triple columns, let `C` be the moving
+span of its homogenized pointed code: `C=ker A+<x_0>`, where `Ax_0=t`.
+Every nonzero kernel word has weight at least three, since weight one would be
+a zero triple column and weight two would repeat a triple column.  Every word
+of the other coset has syndrome `t` and weight at least `q` by the exact-cover
+counting lemma.  Thus for `q>=3`, `d(C)>=3`.
+
+After one reduced tensor step, the star-zero moving code is a subcode of
+`C tensor C`.  Product-code distance gives at least `d(C)^2>=9`; hence (PS)
+shows that its affine parity-check matrix is again simple.  Re-homogenizing
+and iterating preserves the same conclusion: at no level can parity-check
+parallel simplification remove a coordinate.  This rules out exact
+parallel-class compression for this BMT reduced-tensor ladder, not for all
+possible base reductions.  `experiments/verify_parity_type_tensor.py` checks
+the concrete type counts `8,64,4096` and exact mixed distances on tiny YES and
+NO fibers.
+
+An approximate code-dependent mutation groups equal *generator* column types
+and keeps `ceil(m_a/B)` copies of a type of multiplicity `m_a`.  For every
+word of weight `w`, if `a` types are active, its image weight `w'` satisfies
+
+\[
+ w/B\le w'\le w/B+a.
+\]
+
+This does not preserve affine distance.  Exact tests in
+`verify_code_dependent_type_fold.py` show the active-type additive term harms
+the tested NO fibers at least as much as worst-case YES and never improves the
+finite standard rank exponent.
+
 ## Honest conclusion
 
-No polynomial-gap binary NCP reduction has been obtained, so the conditional lattice transfer does not establish CVP hardness within any fixed polynomial factor. The exact-cover quotient is wounded by illegal affine combinations of legal witnesses. The orbit and reduced folds have proved mixed-word bounds, but no viable asymptotic parameter construction yielding a fixed polynomial gap.
+No polynomial-gap binary NCP reduction has been obtained, so the conditional lattice transfer does not establish CVP hardness within any fixed polynomial factor. The exact-cover quotient is wounded by illegal affine combinations of legal witnesses. The orbit and reduced folds have proved mixed-word bounds, but no viable asymptotic parameter construction yielding a fixed polynomial gap. Exact parity-check simplification is distance-preserving but provably vacuous on the BMT reduced tensor ladder.

@@ -101,6 +101,74 @@ retains a fresh commuting `K`-action. When the spent `G` action is free, size is
 
 Voltage/deck lifts and explicit abelian/quasi-cyclic lifts provide fresh free actions, while balanced products spend them. The unresolved task is to build a sequence of bimodule **codes**, not merely coordinate bisets, with a sparse invariant pointed YES word and mixed-word distance. Ordinary lifts expand by the same group factor later spent. Projecting away star-cross sectors has exact distance results only with extra gauge/chain-complex structure in special terminal sectors; plain nonrectangular puncturing has no general product-distance theorem.
 
+## 11. Code-dependent parity-check simplification (fresh scout)
+
+A targeted pre-2024 scout isolated one exact, basis-invariant compression.  If
+`H=[h_1 ... h_n]` is binary, delete zero columns and keep one representative
+of each distinct nonzero column.  For every target `t`, the minimum of
+`|x|` subject to `Hx=t` is unchanged: replace all selected coordinates in a
+parallel class by their parity, and conversely lift a selected class to one
+representative.  This is representable-matroid simplification (Crapo--Rota;
+Dodunekov--Simonis' projective-multiset code correspondence), specialized to
+syndrome decoding.
+
+This exactly identifies a possible tensor-compression invariant: the number
+of distinct parity-check column types, rather than formal tensor coordinates.
+However, it gives no compression for the reduced tensor family tested here.
+For a code `K=ker H`, two columns of `H` coincide iff `e_i+e_j in K`, and a
+column is zero iff `e_i in K`.  Hence a kernel of distance at least three has
+no simplifiable columns.  In the BMT 3DM pointed construction the moving span
+`C` has distance at least three (distinct nonzero incidence columns rule out
+kernel weights one/two, while the target fiber has weight at least `q>=3`).
+After reduced tensoring the star-zero code lies inside `C tensor C`, whose
+ordinary distance is `d(C)^2>=9`.  Thus every formal parity-check column is
+again distinct and nonzero, inductively.  `verify_parity_type_tensor.py`
+checks 8 -> 64 -> 4096 distinct types on both tiny YES and NO fibers.
+
+The scout also confirmed the limitations of nearby classical tools:
+projective multisets retain exact *weighted* generalized weights but do not
+convert multiplicity to short unweighted binary Hamming length; product-code
+weight hierarchies control arbitrary mixed words but do not compress length;
+lossless expanders transform sparse support only linearly; rank condensers
+flatten most nonzero vectors to nearly equal block weight; relative
+generalized weights still require the failed legal/illegal quotient
+classifier; group-algebra correlation has exact difference-set collapse
+witnesses; puncturing, shortening, and residual codes give additive bounds.
+The full digest is in `scout_code_dependent.txt`.
+
+## 12. Permutation-union / tensor-soundness follow-up
+
+A targeted pre-2024 scout found no equation-only polynomial lattice
+representation of the permutation union with sublinear honest norm.  The
+integer affine hull of all permutation matrices is the full lattice of signed
+row/column-sum-one tables: rectangle moves are differences of permutations
+(Birkhoff/Hoffman--Kruskal; contingency-table move literature).  Thus equations
+can only make permutations the *minimum-norm* points, recreating the linear
+`q` baseline proved above.
+
+The best global selector is the Cauchy--Binet determinant/common-basis
+polynomial: its monomial support is exactly the permutations (Brändén's
+regular-matroid basis polynomial framework).  Waksman/Beneš networks
+parametrize permutations with `O(q log q)` Boolean controls but local
+linearization risks tableau faults.  Compound/exterior powers turn spectral
+quantities multiplicatively but have dimension `binom(n,k)`.  The Birkhoff
+toric ideal has degree-three Markov moves, giving systematic short signed
+relations for additive aggregate interfaces.  Nisan's noncommutative ABP
+ranks give an exponential barrier when one robustly preserves partial
+permutation identity.
+
+The scout also highlighted Haviv--Regev's classical all-sublattices tensor
+criterion: multiplicative lattice soundness against arbitrary mixed tensors
+requires lower bounds on every rank-r sublattice (support/parity/determinant),
+not merely individual NO vectors.  This is the right invariant for a future
+integer tensor attempt, but does not compress rank by itself.  Full details and
+primary references are in `scout_permutation_union.txt`.
+
+`verify_determinant_permutation_dictionary.py` immediately tests the global
+determinant lead at `q=3,4`; explicit monomial dictionaries retain
+support-three virtual states, and adding every compound state changes only
+finite constants while keeping exponential dictionary/state size.
+
 ## Honest assessment
 
-The literature search found no classical theorem that directly yields a deterministic polynomial-factor NCP gap. Relative distance modulo legal differences fails directly because legal affine hulls contain illegal covers. The remaining concrete opening is a chain of bimodule/biset code factors with genuinely fresh symmetries, but the pointed fixed-cross sector and sparse-invariant-witness requirements remain unsolved.
+The literature search found no classical theorem that directly yields a deterministic polynomial-factor NCP gap. Relative distance modulo legal differences fails directly because legal affine hulls contain illegal covers. Fresh/balanced tensor symmetry yielded rigorous one-step lemmas but conserved or worsened the standard rank exponent. Exact parity-check simplification is a clean code-dependent operation, but a distance-at-least-three theorem shows that it performs no compression on the BMT reduced tensor ladder. The surviving opening is a genuinely asymmetric code-dependent operation that compresses YES affine fibers more than NO fibers without computing a nearest witness; no classical theorem located here supplies it.

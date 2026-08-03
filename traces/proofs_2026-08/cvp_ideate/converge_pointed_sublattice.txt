@@ -1,0 +1,663 @@
+Put \(n=m+1\), and write vectors of \(L_A\) as \(u=(x,s)\in \mathbb Z^m\times\mathbb Z\). Let
+
+\[
+Q:=q+2,\qquad P:=q+3=Q+1.
+\]
+
+Here \(Q\) is the minimum possible parity support in a NO odd fiber, while \(P\) includes the homogenizing coordinate.
+
+I use \(\det_{\mathrm{Gr}}(K)\) for the determinant of a Gram matrix of a \(\mathbb Z\)-basis of \(K\); thus the covolume is \(\det_{\mathrm{Gr}}(K)^{1/2}\).
+
+---
+
+## 1. Primitive-functional sublattices
+
+### 1.1 Two parity facts
+
+Let \(\bar A\) denote \(A\) over \(\mathbb F_2\).
+
+#### Lemma 1: pointed parity distance
+
+If \(\bar A x=\mathbf 1\), then either \(x\) is a perfect-matching indicator of weight \(q\), or
+
+\[
+|x|\ge q+2=Q.
+\]
+
+Hence in a NO instance every \((z,s)\in L_A\) with \(s\) odd satisfies
+
+\[
+|\operatorname{supp}(z\bmod 2)|\ge Q,
+\qquad
+|\operatorname{supp}((z,s)\bmod 2)|\ge P.
+\]
+
+**Proof.**
+Every one of the \(3q\) vertices has positive odd selected degree, so
+
+\[
+3|x|\ge 3q,
+\]
+
+hence \(|x|\ge q\). Equality forces every vertex degree to be exactly one, giving a perfect matching. Also, summing the equations over one vertex part gives
+
+\[
+|x|\equiv q\pmod 2.
+\]
+
+Thus if weight \(q\) is impossible, the next possible weight is at least \(q+2\). ∎
+
+#### Lemma 2: homogeneous parity distance
+
+Every nonzero \(y\in\ker_{\mathbb F_2}\bar A\) has weight at least \(4\).
+
+**Proof.**
+Summing the equations over one vertex part gives \(|y|\equiv0\pmod2\). Weight two would mean that two columns of \(A\) are equal, contrary to distinctness. Thus every nonzero kernel word has even weight at least four. ∎
+
+The distinct-column assumption enters exactly here.
+
+---
+
+### 1.2 Saturation reduction
+
+For any \(K\le L_A\), let
+
+\[
+K^{\mathrm{sat}}
+  :=(\operatorname{span}_{\mathbb Q}K)\cap L_A.
+\]
+
+Because \(L_A\) is the integer kernel of an integer linear map, it is saturated in \(\mathbb Z^{m+1}\). Therefore \(K^{\mathrm{sat}}\) is saturated in \(\mathbb Z^{m+1}\). Moreover,
+
+\[
+\det_{\mathrm{Gr}}(K)
+ =[K^{\mathrm{sat}}:K]^2
+ \det_{\mathrm{Gr}}(K^{\mathrm{sat}}).
+\]
+
+The coordinate support of \(K\) and \(K^{\mathrm{sat}}\) is the same. If \(s(K)=\mathbb Z\), then also \(s(K^{\mathrm{sat}})=\mathbb Z\).
+
+Thus determinant and support lower bounds may be proved assuming \(K\) saturated. A basis matrix of a saturated rank-\(r\) sublattice has rank \(r\) modulo two: equivalently, at least one of its \(r\times r\) minors is odd.
+
+---
+
+## 1.3 Exact rank-two theorem
+
+### Theorem 3
+
+Let \(K\le L_A\) have rank two and \(s(K)=\mathbb Z\). In a NO instance,
+
+\[
+\boxed{\det_{\mathrm{Gr}}(K)\ge 4(q+2)=4Q.}
+\]
+
+Moreover, its ambient coordinate support satisfies
+
+\[
+\boxed{|\operatorname{supp}K|\ge q+5=Q+3.}
+\]
+
+The determinant bound is exactly the proposed \(4(q+2)\).
+
+### Proof
+
+By saturation, assume \(K\) saturated. Choose a basis
+
+\[
+u=(x,1),\qquad v=(y,0).
+\]
+
+Then \(Ax=\mathbf1\) and \(Ay=0\). Saturation implies that \(u,v\) are linearly independent modulo two, so \(\bar y\ne0\).
+
+Let
+
+\[
+X=\operatorname{supp}(\bar x),\qquad
+Y=\operatorname{supp}(\bar y).
+\]
+
+Set
+
+\[
+a=|X\cap Y|,\qquad
+b=|Y\setminus X|,\qquad
+c=|X\setminus Y|,\qquad
+h=|Y|=a+b.
+\]
+
+By Lemma 2,
+
+\[
+h\ge4.
+\]
+
+Both \(\bar x\) and \(\bar x+\bar y\) lie in the odd fiber. Therefore Lemma 1 gives
+
+\[
+a+c=|X|\ge Q,\qquad
+b+c=|X\triangle Y|\ge Q. \tag{1}
+\]
+
+Cauchy–Binet gives
+
+\[
+\begin{aligned}
+\det_{\mathrm{Gr}}(u,v)
+&=\|u\|^2\|v\|^2-\langle u,v\rangle^2\\
+&=\sum_i y_i^2
+  +\sum_{i<j}(x_i y_j-x_jy_i)^2. \tag{2}
+\end{aligned}
+\]
+
+We count the odd summands in (2).
+
+* The first sum has at least \(h\) odd terms.
+* For \(i,j\in Y\), the minor \(x_i y_j-x_jy_i\) is odd exactly when one index lies in \(X\cap Y\) and the other in \(Y\setminus X\), giving \(ab\) odd minors.
+* For \(i\in X\setminus Y\) and \(j\in Y\), the minor is odd, giving \(ch\) odd minors.
+
+Hence
+
+\[
+\det_{\mathrm{Gr}}(K)\ge h+ab+ch. \tag{3}
+\]
+
+It remains to minimize the right side subject to (1). Put \(t=\min(a,b)\). Then
+
+\[
+c\ge \max(0,Q-t),\qquad h=a+b\ge 2t.
+\]
+
+If \(t\le Q\), then \(ab=t(h-t)\), and
+
+\[
+h+ab+ch
+ \ge h+t(h-t)+h(Q-t)
+ =h(Q+1)-t^2. \tag{4}
+\]
+
+If \(h\le2Q\), then \(t\le h/2\), so
+
+\[
+h(Q+1)-t^2
+ \ge h(Q+1)-\frac{h^2}{4}.
+\]
+
+This concave function on \(4\le h\le2Q\) is minimized at an endpoint. At \(h=4\) it equals \(4Q\), while at \(h=2Q\) it equals \(Q^2+2Q\ge4Q\).
+
+If \(h\ge2Q\), then \(t\le Q\), and (4) gives
+
+\[
+h(Q+1)-t^2
+ \ge h(Q+1)-Q^2
+ \ge Q^2+2Q
+ \ge4Q.
+\]
+
+Finally, if \(t\ge Q\), then \(h\ge2Q\) and
+
+\[
+ab\ge Q(h-Q).
+\]
+
+Thus
+
+\[
+h+ab+ch\ge h+Q(h-Q)\ge Q^2+2Q\ge4Q.
+\]
+
+This proves the determinant bound.
+
+For coordinate support, \(K\) uses the homogenizing coordinate and all coordinates in \(X\cup Y\). From (1),
+
+\[
+c\ge\max(0,Q-\min(a,b))
+   \ge\max(0,Q-h/2).
+\]
+
+Therefore
+
+\[
+|X\cup Y|=h+c\ge Q+2
+\]
+
+because \(h\ge4\). Including the homogenizing coordinate gives
+
+\[
+|\operatorname{supp}K|\ge Q+3=q+5.
+\]
+
+∎
+
+### Exact diagnosis of \(4q\) versus \(4(q+2)\)
+
+The argument depends only on:
+
+* pointed parity distance \(q\) in YES, versus at least \(q+2\) in NO;
+* homogeneous parity distance \(4\), forced by distinct columns.
+
+Replacing \(Q=q+2\) by \(q\) gives the YES-side lower value \(4q\). Equality in the counting argument occurs at the basic configuration
+
+\[
+|Y|=4,\qquad
+|X\cap Y|=|Y\setminus X|=2,\qquad
+|X\setminus Y|=Q-2,
+\]
+
+with all contributing odd minors having absolute value one. Thus the observed \(4q\) versus \(4(q+2)\) is a parity/Plücker phenomenon, not a convexity estimate on the affine line \(x+\mathbb Zy\).
+
+---
+
+## 1.4 A general rank-\(r\) bound
+
+For a basis matrix \(B_K\), define its mod-two Plücker support to be the number of \(r\times r\) coordinate minors that are odd.
+
+### Theorem 4
+
+For every rank-\(r\) sublattice \(K\le L_A\) with \(s(K)=\mathbb Z\),
+
+\[
+\boxed{
+\det_{\mathrm{Gr}}(K)
+\ge
+\#\{\text{odd maximal minors of }K\}
+\ge
+\left\lceil\frac{(q+3)4^{r-1}}{r!}\right\rceil.
+}
+\tag{5}
+\]
+
+Also
+
+\[
+|\operatorname{supp}K|\ge q+3.
+\]
+
+For \(r=2\), Theorem 3 is substantially stronger.
+
+### Proof
+
+Again pass to the saturation. Choose a basis
+
+\[
+u_0=(x,1),\quad u_1=(y_1,0),\ldots,u_{r-1}=(y_{r-1},0).
+\]
+
+Modulo two, these rows generate an \(r\)-dimensional binary code \(D\). Every nonzero codeword with last coordinate zero has weight at least \(4\), by Lemma 2. The codeword \(\bar u_0\) has weight at least \(q+3\), by Lemma 1.
+
+View the ambient coordinates as columns in \(\mathbb F_2^r\). An \(r\)-subset gives an odd maximal minor exactly when the corresponding columns form a basis of \(\mathbb F_2^r\).
+
+Fix a coordinate \(j\in\operatorname{supp}(\bar u_0)\). Starting with column \(j\), greedily construct an ordered basis. After choosing \(i<r\) independent columns, choose a hyperplane containing their span. A nonzero functional defining this hyperplane gives a nonzero codeword of \(D\), and hence at least four columns lie outside the hyperplane. Thus there are at least four choices at each of the remaining \(r-1\) steps. Consequently there are at least
+
+\[
+(q+3)4^{r-1}
+\]
+
+pairs consisting of a distinguished \(j\in\operatorname{supp}(\bar u_0)\) and an ordered completion to a basis.
+
+Each unordered basis is counted at most \(r!\) times: at most \(r\) choices for the distinguished coordinate and \((r-1)!\) orders of the rest. Hence the number of odd maximal minors is at least the right side of (5).
+
+Finally, Cauchy–Binet says
+
+\[
+\det_{\mathrm{Gr}}(K)
+ =\sum_I \det(B_{K,I})^2,
+\]
+
+so every odd minor contributes at least one. The ambient-support bound follows already from the support of \(u_0\bmod2\). ∎
+
+This is a correct universal bound, but its \(q\)-dependence is only linear. Nothing here suggests the much larger determinant profile needed for arbitrary Euclidean partners.
+
+---
+
+# 2. The unrestricted pointed all-partner inequality is false
+
+Define
+
+\[
+\mu(L,s):=\min\{\|x\|:x\in L,\ s(x)=1\}.
+\]
+
+The assertion
+
+\[
+\mu(L\otimes M,s\otimes\tau)
+ \stackrel{?}{\ge}
+\mu(L,s)\mu(M,\tau)
+\tag{6}
+\]
+
+is false even for standard orthogonal lattices.
+
+### Counterexample
+
+Take
+
+\[
+L=M=\mathbb Z^2
+\]
+
+with the standard Euclidean norm, and let
+
+\[
+s(x_1,x_2)=\tau(x_1,x_2)=2x_1+5x_2.
+\]
+
+Both functionals are primitive.
+
+The solutions of \(2x_1+5x_2=1\) are
+
+\[
+(x_1,x_2)=(-2-5k,\,1+2k),\qquad k\in\mathbb Z.
+\]
+
+The minimum is attained at \(k=0\), so
+
+\[
+\mu(L,s)^2=\mu(M,\tau)^2=5.
+\]
+
+Identify \(L\otimes M\) with integer \(2\times2\) matrices with Frobenius norm. For
+
+\[
+X=
+\begin{pmatrix}
+-1&-1\\
+-1&1
+\end{pmatrix},
+\]
+
+we have
+
+\[
+(s\otimes\tau)(X)
+ =4(-1)+10(-1)+10(-1)+25(1)=1,
+\]
+
+while
+
+\[
+\|X\|_F^2=4.
+\]
+
+Therefore
+
+\[
+\mu(L\otimes M,s\otimes\tau)^2\le4
+\]
+
+whereas the claimed multiplicative lower bound would require
+
+\[
+\mu(L\otimes M,s\otimes\tau)^2
+ \ge 5\cdot5=25.
+\]
+
+Thus (6) fails by a large factor. The witness is genuinely mixed: its coefficient matrix has rank two. No large coefficients are required; all coefficients are \(\pm1\).
+
+The exact obstruction is that primitive pointed distance is a discrete Bézout quantity. Tensoring exposes new signed representations of \(1\) among the pairwise products of the functional coefficients. Primitivity alone does not control those representations.
+
+---
+
+# 3. What strengthened invariant is sufficient?
+
+There are two useful answers, depending on whether one insists on arbitrary Euclidean partners.
+
+## 3.1 Exact pointed determinant profile for arbitrary Euclidean partners
+
+Define
+
+\[
+\Delta_r(L,s)
+ :=
+ \inf_{\substack{K\le L\\
+                  \operatorname{rank}K=r\\
+                  s(K)=\mathbb Z}}
+ \det_{\mathrm{Gr}}(K).
+\]
+
+### Proposition 5: pointed determinant-profile tensor bound
+
+For every \(t\in L\otimes M\) of tensor rank \(r\) satisfying
+
+\[
+(s\otimes\tau)(t)=1,
+\]
+
+one has
+
+\[
+\boxed{
+\|t\|^2
+ \ge
+ r\bigl(\Delta_r(L,s)\Delta_r(M,\tau)\bigr)^{1/r}.
+}
+\tag{7}
+\]
+
+### Proof
+
+Let \(U\subseteq L_{\mathbb Q}\) and \(V\subseteq M_{\mathbb Q}\) be the minimal rational spaces supporting \(t\), both of dimension \(r\). Put
+
+\[
+K=L\cap U,\qquad N=M\cap V.
+\]
+
+Choose bases \(x_1,\ldots,x_r\) of \(K\) and \(y_1,\ldots,y_r\) of \(N\). Then
+
+\[
+t=\sum_{i,j}C_{ij}x_i\otimes y_j
+\]
+
+for a full-rank integer matrix \(C\).
+
+Write
+
+\[
+a_i=s(x_i),\qquad b_j=\tau(y_j).
+\]
+
+Since
+
+\[
+a^{T}Cb=(s\otimes\tau)(t)=1,
+\]
+
+both \(\gcd(a_1,\ldots,a_r)\) and \(\gcd(b_1,\ldots,b_r)\) equal one. Hence
+
+\[
+s(K)=\tau(N)=\mathbb Z.
+\]
+
+If \(G_K,G_N\) are the two Gram matrices, then
+
+\[
+\|t\|^2=\operatorname{tr}(G_K C G_N C^T).
+\]
+
+The matrix inside the trace is positive definite, so arithmetic–geometric mean gives
+
+\[
+\begin{aligned}
+\|t\|^2
+&\ge r\det(G_K C G_N C^T)^{1/r}\\
+&=r\bigl(\det G_K\det G_N\bigr)^{1/r}
+       |\det C|^{2/r}\\
+&\ge r\bigl(\Delta_r(L,s)\Delta_r(M,\tau)\bigr)^{1/r}.
+\end{aligned}
+\]
+
+∎
+
+Consequently, the determinant-profile condition
+
+\[
+\Delta_r(L,s)\Delta_r(M,\tau)
+ \ge
+ \left(\frac{\mu(L,s)^2\mu(M,\tau)^2}{r}\right)^r
+\tag{8}
+\]
+
+for every \(r\) is sufficient for pointed multiplicativity.
+
+For a self-tensor, a symmetric sufficient condition is
+
+\[
+\Delta_r(L,s)
+ \ge
+ \frac{\mu(L,s)^{2r}}{r^{r/2}}.
+\tag{9}
+\]
+
+### Incidence diagnosis
+
+For \(r=2\), (9) would require roughly
+
+\[
+\Delta_2(L_A,s)\gtrsim \frac{(q+3)^2}{2}.
+\]
+
+The proved incidence bound is only
+
+\[
+\Delta_2(L_A,s)\ge4(q+2).
+\]
+
+Thus the rank-two incidence determinant is linear in \(q\), while arbitrary-partner multiplicativity through the trace/determinant argument needs a quadratic bound. The rank-two theorem is real, but it is quantitatively far too weak for an all-Euclidean-partner theorem.
+
+This is not an artifact of the proof: short \(s=0\) trades of squared norm \(4\) can coexist with pointed vectors of squared norm \(\Theta(q)\), naturally producing rank-two Gram determinants of order \(q\).
+
+---
+
+## 3.2 The tensor-compatible quotient that incidence actually controls
+
+For the standard coordinate embedding \(L_A\subseteq\mathbb Z^{m+1}\), reduction modulo two is much stronger than real quotienting by \(\ker s\).
+
+Let
+
+\[
+D_A:=L_A\bmod2\subseteq\mathbb F_2^{m+1},
+\]
+
+and let \(\sigma\) read the homogenizing coordinate. Define the pointed binary distance
+
+\[
+\delta(D_A,\sigma)
+ :=
+ \min\{|w|:w\in D_A,\ \sigma(w)=1\}.
+\]
+
+By Lemma 1,
+
+\[
+\delta(D_A,\sigma)
+ \ge q+3
+\]
+
+in NO, while a Boolean perfect matching gives
+
+\[
+\delta(D_A,\sigma)=q+1
+\]
+
+in YES.
+
+### Lemma 6: binary pointed tensor multiplicativity
+
+For binary linear codes \(D,E\) with nonzero functionals \(\sigma,\tau\),
+
+\[
+\delta(D\otimes E,\sigma\otimes\tau)
+ =
+ \delta(D,\sigma)\delta(E,\tau).
+\tag{10}
+\]
+
+**Proof.**
+The upper bound is given by a pure tensor of pointed minimum words.
+
+For the lower bound, let \(W\in D\otimes E\) satisfy
+\((\sigma\otimes\tau)(W)=1\). Contract in the second factor:
+
+\[
+x=(\operatorname{id}\otimes\tau)(W)\in D.
+\]
+
+Then \(\sigma(x)=1\), so \(x\) has at least \(\delta(D,\sigma)\) nonzero coordinates. For every such coordinate \(i\), the \(i\)-th row \(W_i\in E\) satisfies \(\tau(W_i)=1\), hence has weight at least \(\delta(E,\tau)\). These rows are disjoint, giving
+
+\[
+|W|\ge\delta(D,\sigma)\delta(E,\tau).
+\]
+
+∎
+
+If a partner \(M\subseteq\mathbb Z^N\) is given in standard Euclidean coordinates and \(\tau\bmod2\) factors through coordinate reduction, then every integer tensor \(t\) satisfies
+
+\[
+\|t\|^2\ge |\operatorname{supp}(t\bmod2)|.
+\]
+
+Therefore
+
+\[
+\boxed{
+\|t\|^2
+\ge
+\delta(D_A,\sigma)\,\delta(D_M,\bar\tau)
+}
+\tag{11}
+\]
+
+whenever \((s\otimes\tau)(t)=1\).
+
+This is fully hostile to arbitrary signed coefficients: only their parities survive, but the odd distinguished functional forces a pointed mixed codeword, and Lemma 6 handles every mixed tensor.
+
+In particular, for self-tensors of the incidence lattice,
+
+\[
+\min_{(s\otimes s)(t)=1}\|t\|^2
+ \ge
+(q+3)^2
+\]
+
+in NO, whereas a pure tensor of a YES matching has squared norm
+
+\[
+(q+1)^2.
+\]
+
+More generally, \(k\)-fold self-tensoring gives the exact parity certificate
+
+\[
+(q+3)^k\quad\text{versus}\quad(q+1)^k
+\]
+
+for squared norm. This says nothing about controlling tensor rank or output size, but mixed integer tensors do not invalidate this particular certificate.
+
+### Why this does not restore an arbitrary-Euclidean-partner theorem
+
+For a general Euclidean lattice, reduction modulo two in an arbitrary lattice basis does not satisfy
+
+\[
+\|x\|^2\ge|x\bmod2|.
+\]
+
+A badly conditioned basis can make many odd coefficients cancel geometrically. In the counterexample above, \(\tau\bmod2\) is simply the second coordinate, whose pointed binary distance is one even though the Euclidean pointed minimum squared is five. Thus (11) only multiplies the parity certificate, not the arbitrary Euclidean pointed minimum.
+
+---
+
+## Final conclusions
+
+1. **The rank-two conjecture is true:**
+   \[
+   \det_{\mathrm{Gr}}(K)\ge4(q+2),
+   \qquad
+   |\operatorname{supp}K|\ge q+5.
+   \]
+   The proof is an exact mod-two Plücker count.
+
+2. **A universal primitive-functional all-partner inequality is false.**
+   Already \((\mathbb Z^2,(2,5))\) tensor itself has pointed squared minimum at most \(4\), versus base product \(25\).
+
+3. **For arbitrary Euclidean partners, the correct sufficient invariant is the entire pointed determinant profile \(\Delta_r\), not merely the rank-one pointed minimum.** Incidence gives only \(O(q)\) rank-two determinant, whereas generic multiplicativity needs \(\Omega(q^2)\).
+
+4. **For coordinate-integral tensor constructions, the minimal useful quotient is reduction modulo two with its pointed binary distance.** Incidence proves this invariant exactly, and binary pointed distance is multiplicative against all mixed tensors. The restriction to parity-dominated coordinate lattices is essential.

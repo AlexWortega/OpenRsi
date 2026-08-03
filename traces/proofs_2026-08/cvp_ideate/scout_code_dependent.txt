@@ -1,0 +1,784 @@
+# Classical literature scout report
+
+## Executive verdict
+
+I found **one exact deterministic compression mechanism with the right objective**:
+
+> For binary syndrome decoding \(Hx=t\), merge every parallel class of identical nonzero columns of \(H\) into one column. The minimum coset weight is preserved **exactly**, not merely approximately.
+
+This is the syndrome-side version of matroid/projective simplification. It is basis-invariant under invertible row operations and polynomial-time. Its usefulness hinges entirely on whether an implicitly represented tensor/reduced-tensor construction has only polynomially many distinct parity-check column types.
+
+The strongest classical machinery for arbitrary mixed tensor words is still the product-code theorem: distances and generalized weights are controlled exactly, but the ordinary output length remains multiplicative. Rank condensers, subspace designs, expanders, shortening, residual codes, and equidistant inner codes give only linear/additive transformations of support and therefore preserve or flatten nearby ratios rather than exponentiating them. Group-algebra correlation folds can compress quadratically, but classical difference sets give explicit catastrophic cancellations.
+
+For a base gap \(q\) versus \(q+2\), an \(r\)-fold multiplicative construction gives ratio
+\[
+\left(1+\frac2q\right)^r.
+\]
+If the compressed output satisfies \(N\le q^A\), achieving ratio \(N^c\) requires
+\[
+r\ge \frac{cA\log q}{\log(1+2/q)}
+   =\left(\frac{cA}{2}+o(1)\right)q\log q.
+\]
+Repeated squaring reaches such \(r\) in
+\[
+\left\lceil\log_2 r\right\rceil
+=\log_2 q+\log_2\log q+O(1)=O(\log q)
+\]
+compositions. Thus the missing theorem is very specifically an **exact support-preserving compression of a tensor exponent \(r=\Theta(q\log q)\) to \(\operatorname{poly}(q)\) coordinates**.
+
+---
+
+# Ranked finds
+
+## 1. Exact parallel-class compression for binary syndrome decoding
+
+**Likely leverage: highest.**
+
+### Literature lineage
+
+- Henry Crapo and Gian-Carlo Rota, 1970, *On the Foundations of Combinatorial Theory: Combinatorial Geometries*, MIT Press: simplification of representable matroids and the critical problem.
+- Stefan Dodunekov and Juriaan Simonis, 1998, “Codes and Projective Multisets,” *Electronic Journal of Combinatorics* 5, R37: matrix-free correspondence between codes and projective multisets.
+- Berlekamp, McEliece, and van Tilborg, 1978, “On the Inherent Intractability of Certain Coding Problems,” *IEEE Transactions on Information Theory* 24(3):384–386, for the syndrome-decoding formulation. ([combinatorics.org](https://www.combinatorics.org/ojs/index.php/eljc/article/view/v5i1r37?utm_source=openai))
+
+### Exact construction
+
+Let
+\[
+H=[h_1\;\cdots\;h_n]\in\mathbb F_2^{m\times n}.
+\]
+Partition coordinates by \(i\sim j\iff h_i=h_j\). Delete the zero-column class and form
+\[
+\bar H=[\bar h_1\;\cdots\;\bar h_s]
+\]
+with one representative of every distinct nonzero column.
+
+Then, for every target \(t\),
+\[
+\boxed{
+\min\{\lvert x\rvert:Hx=t\}
+=
+\min\{\lvert y\rvert:\bar Hy=t\}.
+}
+\]
+
+**Proof.** Given \(x\), define \(y_P=\bigoplus_{i:h_i=P}x_i\). Then
+\[
+\bar Hy=Hx,\qquad |y|\le |x|.
+\]
+Conversely, lift each \(y_P=1\) to one selected coordinate in its parallel class, preserving both syndrome and weight.
+
+The construction runs in deterministic polynomial time by sorting or hashing the \(m\)-bit columns. It is basis-invariant: for \(U\in GL_m(\mathbb F_2)\),
+\[
+h_i=h_j\iff Uh_i=Uh_j.
+\]
+
+### Relevance
+
+This is stronger than generator-column simplification: it preserves the **unweighted affine-coset minimum exactly**.
+
+If an implicit tensor parity-check \(H^{(r)}\) has exponentially many formal columns but only
+\[
+s_r=\#\{h_i^{(r)}\ne0\}
+\]
+distinct column types, and those types can be enumerated in \(\operatorname{poly}(q)\) time, then replacing \(H^{(r)}\) by its simplification preserves the amplified \(q^r\) versus \((q+2)^r\) gap exactly at length \(s_r\).
+
+No classical theorem I found guarantees \(s_r=\operatorname{poly}(q)\) for general product or reduced-product codes.
+
+### Small matrix experiment
+
+Take
+\[
+H=
+\begin{pmatrix}
+1&1&0\\
+0&0&1
+\end{pmatrix},
+\qquad
+t=\binom11.
+\]
+The first two columns form one parallel class. Every solution needs odd parity in that class and \(x_3=1\), so the minimum is \(2\).
+
+The simplification is
+\[
+\bar H=
+\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix},
+\]
+whose unique solution to \(\bar Hy=t\) is \(y=(1,1)\), also of weight \(2\).
+
+### Agent verification/adaptation
+
+For every proposed folded tensor:
+
+1. Construct or symbolically enumerate its parity-check column types.
+2. Hash after row reduction.
+3. Compare:
+   - formal coordinate count,
+   - distinct nonzero type count,
+   - exact coset distances before/after simplification on small instances.
+4. Require enumeration of all types without expanding the tensor.
+5. Test every target coset, not only a planted YES word.
+
+---
+
+## 2. Projective-multiset compression and generalized Hamming weights
+
+**Likely leverage: high as a symbolic representation; insufficient by itself for binary output.**
+
+### Authors/year/venue
+
+- Victor K.-W. Wei, 1991, “Generalized Hamming Weights for Linear Codes,” *IEEE Transactions on Information Theory* 37(5):1412–1418.
+- Michael Tsfasman and Serge Vlăduţ, 1995, “Geometric Approach to Higher Weights,” *IEEE Transactions on Information Theory* 41(6):1564–1588.
+- Dodunekov and Simonis, 1998, *Electronic Journal of Combinatorics* 5, R37. ([dblp.uni-trier.de](https://dblp.uni-trier.de/rec/journals/tit/Wei91.html?utm_source=openai))
+
+### Precise construction and formulas
+
+Let \(G\in\mathbb F_q^{k\times n}\) be a full-rank generator matrix with nonzero columns. Associate to each projective point \(P\in PG(k-1,q)\) its column multiplicity \(m(P)\).
+
+For a message \(u\ne0\), if \(H_u\) is the projective hyperplane annihilated by \(u\), then
+\[
+\operatorname{wt}(uG)
+=
+n-\sum_{P\in H_u}m(P).
+\]
+
+More generally, for the \(r\)-th generalized Hamming weight,
+\[
+\boxed{
+d_r(C)
+=
+n-\max_{\substack{\Pi\subseteq PG(k-1,q)\\
+\operatorname{codim}\Pi=r}}
+\sum_{P\in\Pi}m(P).
+}
+\]
+Tsfasman–Vlăduţ explicitly formulate the \(r=1\) case as
+\[
+n-d=\max_H |X\cap H|
+\]
+for the projective multiset \(X\). ([researchgate.net](https://www.researchgate.net/publication/3078830_Geometric_Approach_to_Higher_Weights))
+
+This is basis-invariant: changing generator basis acts projectively on the point set but leaves all weighted flat intersections unchanged.
+
+### Relevance
+
+It gives an exact symbolic compression from \(n\) generator columns to at most
+\[
+\frac{q^k-1}{q-1}
+\]
+projective types, retaining all generalized weights as **weighted** flat-complement minima.
+
+The obstruction is objective conversion:
+
+- For a generator code, deleting multiplicities does not preserve Hamming weight.
+- Expanding a point of multiplicity \(m(P)\) back into \(m(P)\) binary coordinates restores the original length.
+- Encoding multiplicity in binary digits changes weighted Hamming into a different norm and permits cancellations.
+
+Thus this machinery can make an exponentially long tensor **symbolically succinct**, but does not itself produce an equivalent short binary code.
+
+### Small matrix experiment
+
+Let
+\[
+G=
+\begin{pmatrix}
+1&1&1&0\\
+0&0&1&1
+\end{pmatrix}.
+\]
+Its projective multiplicities over \(\mathbb F_2\) are
+\[
+m(10)=2,\qquad m(11)=1,\qquad m(01)=1.
+\]
+The three nonzero codewords have weights \(3,2,3\), recovered exactly by weighted hyperplane complements.
+
+Deleting the repetition gives
+\[
+G_{\rm simp}=
+\begin{pmatrix}
+1&1&0\\
+0&1&1
+\end{pmatrix},
+\]
+where all three nonzero codewords have weight \(2\). Hence weighted simplification is exact; unweighted simplification is not.
+
+### Agent verification/adaptation
+
+Track the tensor or reduced-tensor code as a multiplicity function on projective column types. Check whether:
+
+1. the type set remains polynomial;
+2. multiplicities admit a special representation whose weighted support can be converted to ordinary binary Hamming without expansion;
+3. relevant maximum-flat intersections can be certified without solving a minimum-distance problem.
+
+A promising special case would be multiplicities taking only \(O(1)\) values, with each value realizable by a constant-length equidistant gadget.
+
+---
+
+## 3. Product-code generalized weights: exact control of arbitrary mixed words
+
+**Likely leverage: high for soundness, zero for compression.**
+
+### Authors/year/venue
+
+- Hans Georg Schaathun, 2000, “The Weight Hierarchy of Product Codes,” *IEEE Transactions on Information Theory* 46(7):2648–2651.
+- Conchita Martínez-Pérez and Wolfgang Willems, 2004, “On the Weight Hierarchy of Product Codes,” *Designs, Codes and Cryptography* 33:95–108. ([researchgate.net](https://www.researchgate.net/publication/3080240_The_weight_hierarchy_of_product_codes))
+
+### Precise theorem
+
+Let \(A,B\) have dimensions \(k_A,k_B\), put \(d_0(A)=0\), and define
+\[
+\Delta_i(A)=d_i(A)-d_{i-1}(A).
+\]
+Define
+\[
+d_r^*(A,B)=
+\min_{\substack{
+k_B\ge t_1\ge\cdots\ge t_{k_A}\ge0\\
+\sum_i t_i=r}}
+\sum_{i=1}^{k_A}\Delta_i(A)d_{t_i}(B).
+\]
+
+Schaathun proves
+\[
+\boxed{d_r(A\otimes B)\ge d_r^*(A,B).}
+\]
+If both codes satisfy the chain condition—there are nested subcodes simultaneously attaining every generalized weight—then equality holds for all \(r\). In particular,
+\[
+d_1(A\otimes B)=d_1(A)d_1(B)
+\]
+without any pure-tensor restriction. ([researchgate.net](https://www.researchgate.net/publication/220638923_On_the_Weight_Hierarchy_of_Product_Codes))
+
+The proof uses the Segre embedding of the two projective multisets.
+
+### Relevance
+
+This is the correct classical theorem for the “arbitrary mixed tensor combinations” requirement. It supplies more than ordinary multiplicativity: higher weights certify how low-dimensional spaces of mixed words occupy coordinates.
+
+But length remains
+\[
+n(A\otimes B)=n(A)n(B).
+\]
+The theorem offers no puncturing, quotient, or dense linear fold preserving the hierarchy.
+
+### Small matrix experiment
+
+For
+\[
+G=
+\begin{pmatrix}
+1&0&1\\
+0&1&1
+\end{pmatrix},
+\]
+the binary \([3,2,2]\) simplex code has hierarchy
+\[
+(d_1,d_2)=(2,3)
+\]
+and satisfies the chain condition.
+
+Direct enumeration of subspaces of the code generated by \(G\otimes G\) gives
+\[
+\boxed{(d_1,d_2,d_3,d_4)=(4,6,8,9),}
+\]
+exactly matching the Schaathun formula. The \(d_1=4\) statement covers all fifteen nonzero mixed codewords, not only pure tensors.
+
+### Agent verification/adaptation
+
+Use the full hierarchy, not only \(d_1\), to attack folds:
+
+1. enumerate subspaces \(W\subseteq C\otimes C\);
+2. record \(\operatorname{supp}(W)\);
+3. apply a candidate fold \(F\);
+4. compare \(d_r(F(C\otimes C))\) with the product hierarchy for every feasible \(r\).
+
+Any proposed fold that preserves only pure powers but substantially reduces \(d_2\) or \(d_3\) is unlikely to survive mixed soundness.
+
+---
+
+## 4. Relative generalized Hamming weights for quotient-protected classes
+
+**Likely leverage: conceptually exact, but classification and computation are hard.**
+
+### Authors/year/venue
+
+- Yuan Luo, Chaichana Mitrpant, A. J. Han Vinck, and Kefei Chen, 2005, “Some New Characters on the Wire-Tap Channel of Type II,” *IEEE Transactions on Information Theory* 51:1222–1229.
+- Zihui Liu, Jie Wang, and Xin-Wen Wu, 2010, “On the Relative Generalized Hamming Weights of Linear Codes and Their Subcodes,” *SIAM Journal on Discrete Mathematics* 24(4):1234–1241. ([researchgate.net](https://www.researchgate.net/publication/3085380_Some_New_Characters_on_the_Wire-Tap_Channel_of_Type_II?utm_source=openai))
+
+### Precise invariant
+
+For nested codes \(C_2\subsetneq C_1\),
+\[
+\boxed{
+M_r(C_1,C_2)=
+\min\left\{
+|\operatorname{supp}D|:
+D\subseteq C_1,\;
+\dim D-\dim(D\cap C_2)=r
+\right\}.
+}
+\]
+Equivalently, one can require an \(r\)-dimensional \(D\subseteq C_1\) with \(D\cap C_2=0\).
+
+In particular,
+\[
+\boxed{
+M_1(C_1,C_2)=
+\min\{\operatorname{wt}(x):x\in C_1\setminus C_2\}.
+}
+\]
+
+### Relevance
+
+This is exactly the quotient distance needed when legal exchanges should be cheap but nonlegal quotient classes should be heavy.
+
+However:
+
+- Setting \(C_2=0\) recovers ordinary generalized Hamming weights and, at \(r=1\), minimum distance.
+- Computing binary minimum distance is NP-hard; syndrome decoding and general code-weight problems are NP-complete in the classical reductions. ([authors.library.caltech.edu](https://authors.library.caltech.edu/records/aw9vs-ann16?utm_source=openai))
+- More importantly for the proposed reduction, a linear quotient cannot distinguish an illegal vector already in the affine span of legal witnesses.
+
+So RGHW is an excellent **certification target**, not a known polynomial-time construction of the required legal/illegal classifier.
+
+### Small matrix experiment
+
+Let
+\[
+C_1=\langle110,101\rangle
+=\{000,110,101,011\},
+\qquad
+C_2=\langle110\rangle.
+\]
+Then
+\[
+C_1\setminus C_2=\{101,011\},
+\qquad M_1(C_1,C_2)=2.
+\]
+
+Puncture coordinate \(3\). The images are
+\[
+C_1'=\mathbb F_2^2,\qquad C_2'=\langle11\rangle,
+\]
+and
+\[
+M_1(C_1',C_2')=1.
+\]
+Thus a single uninformed puncture can halve the protected quotient distance.
+
+### Agent verification/adaptation
+
+For any proposed legal boundary space \(B\subseteq C\):
+
+1. enumerate all legal witnesses \(L\);
+2. verify \(L-L\subseteq B\);
+3. enumerate low-weight elements of \(C\setminus B\);
+4. separately test whether an illegal witness lies in \(x_0+B\).
+
+Do not infer soundness merely from a large \(M_1(C,B)\); first verify that every illegal point is actually outside the legal quotient class.
+
+---
+
+## 5. Lossless expanders give deterministic Hamming-support condensers—but only linearly
+
+**Likely leverage: useful shell, not a gap exponentiator.**
+
+### Authors/year/venue
+
+Venkatesan Guruswami, Christopher Umans, and Salil Vadhan, 2009, “Unbalanced Expanders and Randomness Extractors from Parvaresh–Vardy Codes,” *Journal of the ACM* 56(4). ([salil.seas.harvard.edu](https://salil.seas.harvard.edu/publications/unbalanced-expanders-and-randomness-extractors-parvaresh%E2%80%93vardy-codes?utm_source=openai))
+
+### Precise theorem and support consequence
+
+For every constant \(\alpha>0\), \(N\), \(K\le N\), and \(\varepsilon>0\), GUV construct an explicit left-regular bipartite graph with left degree
+\[
+D=
+O\!\left(
+\frac{(\log N)(\log K)}{\varepsilon}
+\right)^{1+1/\alpha},
+\]
+right side
+\[
+M\le D^2K^{1+\alpha},
+\]
+and
+\[
+|\Gamma(S)|\ge(1-\varepsilon)D|S|
+\qquad (|S|\le K).
+\]
+([salil.seas.harvard.edu](https://salil.seas.harvard.edu/sites/g/files/omnuum4266/files/salil/files/ccc2007.pdf?utm_source=openai))
+
+Let \(A\in\mathbb F_2^{M\times N}\) be its adjacency matrix. Expansion implies at least
+\[
+(1-2\varepsilon)D|S|
+\]
+unique neighbors for \(S\). Therefore, for every \(x\) with \(|x|\le K\),
+\[
+\boxed{
+(1-2\varepsilon)D|x|
+\le |Ax|
+\le D|x|.
+}
+\]
+
+### Relevance
+
+This is an explicit deterministic finite-field \(\ell_0\) support guarantee that survives XOR cancellation because unique neighbors cannot cancel.
+
+But it transforms distances approximately as
+\[
+d\longmapsto \Theta(Dd),
+\]
+so a \(q\) versus \(q+2\) gap remains approximately the same ratio. Iterating such maps does not square the ratio.
+
+### Small matrix experiment
+
+Use
+\[
+A=
+\begin{pmatrix}
+1&0&0\\
+1&1&0\\
+0&1&1\\
+0&0&1
+\end{pmatrix}.
+\]
+Every column has degree \(D=2\). Every set of at most two columns has at least \(3|S|/2\) neighbors, corresponding to \(\varepsilon=1/4\).
+
+Yet
+\[
+A(1,0,0)^T=(1,1,0,0)^T
+\]
+has weight \(2\), while
+\[
+A(1,1,0)^T=(1,0,1,0)^T
+\]
+also has weight \(2\). Input weights \(1\) and \(2\) can become equal. The lower support bound is tight, but nearby ratios flatten.
+
+### Agent verification/adaptation
+
+Use expanders only after a nonlinear/global classifier has already produced a support gap. Test
+\[
+\min_{|x|=s}|Ax|
+\quad\text{and}\quad
+\max_{|x|=s}|Ax|
+\]
+for each small \(s\), rather than testing random inputs.
+
+---
+
+## 6. Subspace designs and rank condensers: strong mixed-rank control, weak Hamming discrimination
+
+**Likely leverage: medium; directly addresses mixed spaces but tends to flatten nonzero words.**
+
+### Authors/year/venue
+
+- Venkatesan Guruswami and Swastik Kopparty, 2016, “Explicit Subspace Designs,” *Combinatorica* 36(2):161–185.
+- Michael Forbes and Venkatesan Guruswami, 2015, “Dimension Expanders via Rank Condensers,” RANDOM 2015; full version arXiv:1411.7455. ([researchwithrutgers.org](https://www.researchwithrutgers.org/en/publications/explicit-subspace-designs/?utm_source=openai))
+
+### Precise theorem
+
+A strong \((s,A)\)-subspace design is a collection \(H_1,\ldots,H_M\subseteq\mathbb F_q^m\) satisfying
+\[
+\boxed{
+\sum_{i=1}^M\dim(W\cap H_i)\le A
+}
+\]
+for every \(s\)-dimensional \(W\).
+
+For \(q>m\), \(s\le\varepsilon m/4\), Guruswami–Kopparty construct explicitly
+\[
+M=q^{\Omega(\varepsilon m/s)}
+\]
+subspaces of codimension at most \(\varepsilon m\) forming a strong
+\[
+\left(s,\frac{2s}{\varepsilon}\right)
+\]
+design. Their more detailed construction has codimension \(rt\), size
+\[
+M=\Omega\!\left(\frac{q^r}{rt}\right),
+\]
+and strong-design parameter
+\[
+A=\frac{(m-1)s}{r(t-s+1)}.
+\]
+([math.utoronto.ca](https://www.math.utoronto.ca/swastik/subspace-designs.pdf))
+
+Let \(\pi_i\) be a quotient map with kernel \(H_i\). Then
+\[
+\sum_i\bigl(s-\operatorname{rank}(\pi_i|_W)\bigr)\le A.
+\]
+This is precisely a rank-condenser statement.
+
+### Relevance
+
+For a fixed nonzero vector \(w\), at most \(A\) quotient maps kill it, so the block vector
+\[
+(\pi_1(w),\ldots,\pi_M(w))
+\]
+has at least \(M-A\) nonzero blocks.
+
+That protects arbitrary mixed subspaces from disappearing, but every nonzero vector gets nearly the same block weight. It distinguishes **zero from nonzero**, not distance \(q\) from \(q+2\). Encoding each quotient block by a simplex code merely multiplies all nonzero block contributions by the same constant.
+
+### Small matrix experiment
+
+Over \(\mathbb F_2^2\), take the three quotient functionals
+\[
+R=
+\begin{pmatrix}
+1&0\\
+0&1\\
+1&1
+\end{pmatrix}.
+\]
+Every one-dimensional subspace is killed by exactly one row, so every nonzero \(x\) has
+\[
+|Rx|=2.
+\]
+Explicitly,
+\[
+10\mapsto101,\qquad
+01\mapsto011,\qquad
+11\mapsto110.
+\]
+The input weights \(1,1,2\) all become weight \(2\).
+
+### Agent verification/adaptation
+
+A useful adaptation would need quotient maps indexed by **input support geometry**, not merely message-subspace rank. Test whether candidate kernels satisfy a stronger statement such as
+\[
+|\{i:\pi_i(x)\ne0\}|\ge f(|x|)
+\]
+with superlinear \(f\). Standard subspace-design theorems only supply essentially constant \(f(s)\) for every nonzero \(x\).
+
+---
+
+## 7. Group-algebra correlation maps: explicit quadratic compression with explicit collapse witnesses
+
+**Likely leverage: algebraically attractive but currently negative.**
+
+### Classical construction
+
+For a finite group \(G\), define
+\[
+\mu:\mathbb F_2[G]\otimes\mathbb F_2[G]\to\mathbb F_2[G],
+\qquad
+\mu(g\otimes h)=gh^{-1}.
+\]
+Thus
+\[
+\mu(a\otimes b)=ab^{(-1)},
+\]
+the group-algebra correlation. It compresses \(|G|^2\) tensor coordinates to \(|G|\) coordinates and is deterministic.
+
+For a \((v,k,\lambda)\) difference set \(D\subseteq G\),
+\[
+\boxed{
+DD^{(-1)}=(k-\lambda)1_G+\lambda G
+}
+\]
+in \(\mathbb Z[G]\). Singer’s classical constructions provide cyclic difference sets from finite projective geometries; Ryser’s treatment gives the group-ring identity. ([doi.org](https://doi.org/10.1111/j.2164-0947.1966.tb02392.x?utm_source=openai))
+
+Reducing the identity modulo \(2\) gives an exact formula for the folded binary autocorrelation.
+
+### Relevance
+
+This map has exactly the desired dimensional form, but classical difference sets show that support can collapse from \(k^2\) to \(1\).
+
+Likewise, an idempotent \(e^2=e\) in a semisimple odd-order binary group algebra satisfies
+\[
+\mu(e\otimes e)=e
+\]
+for the corresponding multiplication fold: weight behaves like \(d\), not \(d^2\).
+
+### Concrete \(11\times121\) matrix experiment
+
+Let \(G=\mathbb Z_{11}\) and
+\[
+D=\{1,3,4,5,9\},
+\]
+the quadratic residues modulo \(11\). It is an \((11,5,2)\) difference set.
+
+Define \(M_{\rm corr}\) with rows \(g\in\mathbb Z_{11}\), columns \((i,j)\in\mathbb Z_{11}^2\), and
+\[
+(M_{\rm corr})_{g,(i,j)}=1[i-j=g].
+\]
+For the indicator \(a=1_D\),
+\[
+|a\otimes a|=25.
+\]
+But every nonzero difference occurs twice, while difference \(0\) occurs five times, so over \(\mathbb F_2\)
+\[
+M_{\rm corr}(a\otimes a)=e_0,
+\qquad
+|e_0|=1.
+\]
+
+### Agent verification/adaptation
+
+Any correlation/idempotent fold should first be tested against:
+
+1. Paley and Singer difference sets;
+2. subgroup indicators;
+3. primitive idempotents of every cyclic ideal;
+4. sums of two shifted low-weight words.
+
+A viable restriction would need to prove the tensor affine fiber avoids every low-autocorrelation ideal or difference-set component. Ordinary cyclicity does not provide that.
+
+---
+
+## 8. Puncturing, shortening, and residual codes: additive control only
+
+**Likely leverage: low as amplification; useful for removing provably irrelevant sectors.**
+
+### Classical statements
+
+For puncturing a coordinate set \(T\), \(|T|=t\),
+\[
+\boxed{d(C)-t\le d(C|_{\bar T})\le d(C).}
+\]
+
+Shortening on \(T\)—restricting to codewords zero on \(T\), then puncturing—satisfies
+\[
+\boxed{d(\operatorname{Short}_T C)\ge d(C),}
+\]
+but may lower dimension by as much as \(t\).
+
+For an affine coset \(A\),
+\[
+d(A)-t\le d(\operatorname{Punct}_T A)\le d(A).
+\]
+
+The standard residual-code lemma says that if \(C\) is \([n,k,d]_q\), \(c\in C\) has weight \(w\), and the usual residual dimension condition holds—for example \(w<qd/(q-1)\)—then the residual code has parameters
+\[
+[n-w,k-1,d']_q,
+\qquad
+\boxed{
+d'\ge d-w+\left\lceil\frac wq\right\rceil.
+}
+\]
+For binary codes,
+\[
+d'\ge d-\left\lfloor\frac w2\right\rfloor.
+\]
+These operations and formulas are standard in the classical coding-theory treatment of puncturing, shortening, and residual codes. ([researchgate.net](https://www.researchgate.net/publication/234102024_On_the_Covering_Radius_of_Simplex_Codes?utm_source=openai))
+
+### Relevance
+
+All bounds are additive or affine. They cannot turn
+\[
+q\quad\text{versus}\quad q+2
+\]
+into squared distances.
+
+Shortening can increase relative distance, but preserving completeness requires knowing that a minimum YES witness has specified zeros. Choosing an optimal puncturing/shortening set is therefore entangled with identifying minimum codewords or coset leaders.
+
+### Small matrix experiment
+
+Use the binary Hamming \([7,4,3]\) generator
+\[
+G=
+\begin{pmatrix}
+1&0&0&0&1&1&0\\
+0&1&0&0&1&0&1\\
+0&0&1&0&0&1&1\\
+0&0&0&1&1&1&1
+\end{pmatrix}.
+\]
+Its distance is \(3\).
+
+- Puncturing coordinate \(1\) gives distance \(2\), because the first row becomes weight \(2\).
+- Shortening coordinate \(1\) removes the first message row and gives a \([6,3,3]\) code.
+
+Thus the same coordinate deletion either loses one unit of distance or preserves distance, depending on whether one can require that coordinate to be zero.
+
+### Agent verification/adaptation
+
+Shortening is appropriate for the reduced pointed tensor’s star-cross sectors only if one proves that every required YES witness is zero there and that deletion cannot create low-weight mixed images. Do not choose shortening coordinates by inspecting a minimum word unless that word is computable independently of satisfiability.
+
+---
+
+## 9. Critical exponent and matroid simplification are multiplicity-blind
+
+**Likely leverage: useful obstruction/certificate, not a Hamming fold.**
+
+### Authors/year/venue
+
+- Crapo and Rota, 1970, *Combinatorial Geometries*.
+- Thomas Britz, 2005, “Extensions of the Critical Theorem,” *Discrete Mathematics* 305.
+- Thomas Britz, 2007, “Higher Support Matroids,” *Discrete Mathematics* 307:2300–2308. ([researchgate.net](https://www.researchgate.net/publication/222577568_Extensions_of_the_Critical_Theorem))
+
+### Precise theorem
+
+For a \(q\)-ary linear code \(C\) with associated vector matroid \(M_C\), the Critical Theorem states that the number of ordered \(m\)-tuples
+\[
+(v_1,\ldots,v_m)\in C^m
+\]
+whose union of supports is exactly \(X\) equals
+\[
+\boxed{
+\chi(M_C.X;q^m),
+}
+\]
+where \(M_C.X=M_C/(E-X)\). ([researchgate.net](https://www.researchgate.net/publication/222577568_Extensions_of_the_Critical_Theorem))
+
+The critical exponent is consequently
+\[
+c_q(M)=\min\{m:\chi(M;q^m)>0\},
+\]
+equivalently the minimum number of codewords whose supports cover the entire ground set.
+
+Parallel simplification preserves the lattice of flats, characteristic polynomial, and critical exponent.
+
+### Relevance
+
+This gives basis-invariant information about whether a bounded number of codewords covers all coordinates. But it ignores parallel multiplicity, exactly the quantity controlling Hamming weight in repeated-column generator codes.
+
+It therefore cannot distinguish the distance amplification obtained by coordinate replication.
+
+### Small matrix experiment
+
+Compare
+\[
+G_4=(1\;1\;1\;1)
+\quad\text{and}\quad
+G_1=(1).
+\]
+The first code has distance \(4\); its simplification has distance \(1\). Nevertheless, each code has critical exponent \(1\): one nonzero codeword covers every coordinate.
+
+Hence the critical exponent can certify full-support coverage but not a \(q\) versus \(q+2\) distance gap.
+
+---
+
+# What the classical operations actually preserve
+
+| Mechanism | Guarantee | Gap behavior | Hidden hard step |
+|---|---:|---:|---|
+| Parity-check parallel simplification | Exact coset distance | Exact preservation | Need polynomially many distinct tensor column types |
+| Projective-multiset compression | Exact **weighted** hierarchy | Exact only in weighted norm | Converting multiplicity to unweighted binary length |
+| Product/tensor code | Exact \(d\mapsto d^r\), mixed words included | Ratio exponentiates | Length \(n^r\) |
+| Relative GHW | Exact quotient distance | Potentially useful | Classifying legal quotient and computing distance |
+| Lossless expander | \((1-2\varepsilon)D|x|\le|Ax|\le D|x|\) for sparse \(x\) | Preserves ratio up to constants | None, but no amplification |
+| Rank condenser/design | Most quotient blocks nonzero | Flattens nonzero vectors | Rank-to-support dependence absent |
+| Correlation/group algebra | Quadratic-to-linear length | Can collapse \(d^2\) to \(1\) | Excluding difference-set/idempotent witnesses |
+| Puncture/shorten/residual | Additive distance formulas | No ratio exponentiation | Choosing coordinates/codewords preserving completeness |
+| Critical exponent | Support-cover number | Multiplicity-blind | Not a distance invariant |
+
+# Recommended next experiment
+
+The most concrete surviving classical route is:
+
+1. Represent each pointed reduced tensor stage by an **implicit parity-check matrix**, not a generator matrix.
+2. Compute its parallel/projective column classes symbolically.
+3. Apply exact syndrome simplification.
+4. Check whether fresh bimodule/biset symmetry forces the number of distinct syndrome columns—not merely coordinate orbits—to remain polynomial.
+5. Enumerate all coset leaders after simplification for the smallest hostile 3DM/SAT instances.
+
+The decisive quantity is
+\[
+s_i=\#\{\text{distinct nonzero columns of }H_i\},
+\]
+not the number of tensor coordinates or symmetry orbits. If one can prove
+\[
+s_i\le q^{O(1)}
+\]
+through \(i=O(\log q)\) squarings while retaining the exact product distance theorem, the parallel-class lemma would convert the symbolic amplification into a genuine polynomial-output binary syndrome instance. None of the classical sources above supplies that recurrence, but they isolate it as a sharply testable missing lemma.

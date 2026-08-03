@@ -42,7 +42,7 @@ A non-invariant 'super-budget' mutation avoids multiplying the YES weight by the
 
 ## Construction C — cyclic correlation catalyst: positive finite mechanism, insufficient parameters
 
-No background experiment remained to harvest. Exact dollar attribution could not certify the 40% construction floor, so quarantine was conservatively treated as binding: all subsequent work was construction/implementation/exact attack, with no further oracle call.
+No background experiment remained to harvest. Exact dollar attribution could not certify the 40% construction floor, so quarantine was conservatively treated as binding. The next eight research actions were construction/implementation/exact attacks; afterward one protocol-required targeted classical scout was run and its sole exact mechanism was immediately implemented and attacked in Construction D.
 
 `verify_cyclic_ideal_superbudget.py` exhausts 116 small binary cyclic ideals. All 94 nontrivial `ell>d>1` cases compress below `d²`; examples with `(ell,d,d')=(31,11,11)` compress 121 to 11. Directly applying cyclic closure to 3DM fails: `verify_cyclic_closure_3dm.py` checks 400 exact assemblies and every YES/NO transformed code has moving and folded distance one.
 
@@ -53,6 +53,166 @@ A general parameter identity now closes pure tensor catalysts as gap amplifiers:
 As a finite end-to-end transfer check, `verify_reduced_fold_cvp.py` converts the level-1 folded YES/NO codes into explicit rank-192 integer lattice bases in systematic Construction-A form. Exact affine enumeration and determinant/index checks give squared Euclidean distances 27 and 75, hence Euclidean ratio exactly `5/3`. This is a finite construction check, not asymptotic hardness.
 
 The protocol-required asymmetric mutation was also tested. `verify_asymmetric_hash_fold.py` checks 866 valid formula-oblivious 1-/2-sparse folds on ten YES and ten NO reduced 3DM squares. Best uniform exponent is 0.0962, below the unfurled finite exponent 0.2447; cancellation usually collapses soundness. Code-dependent algebraic folds remain outside this test.
+
+## Construction D — code-dependent column-type compression: tested and closed for the current ladder
+
+`verify_code_dependent_type_fold.py` tests a deterministic, basis-invariant
+generator-column-type puncture selected from the code alone.  It checks every
+mixed word and coordinate-relabeling invariance on ten YES and ten NO reduced
+3DM squares.  Budget two lowers the uniform finite gap from `25/9` to at most
+`13/9`; no tested budget improves the standard rank exponent.
+
+A fresh targeted classical scout then isolated exact parity-check parallel
+simplification: one representative of each distinct nonzero syndrome column
+preserves every affine coset minimum exactly.  This was immediately assembled
+end to end in `verify_parity_type_tensor.py`.  It gives no compression:
+YES and NO type counts both grow `8 -> 64 -> 4096`, while distances grow
+`3 -> 9 -> 81` and `5 -> 25 -> 625`.
+
+The failure is rigorous for this family, not just finite evidence.  A binary
+parity-check matrix with kernel distance at least three has no zero or repeated
+columns.  The BMT moving span has distance at least three, and reduced tensor
+star-zero codes inherit distance at least nine by product distance.  Hence
+every stage remains parity-check-simple.  Both generator-side approximate type
+compression and parity-check-side exact type compression are now autopsied and
+mutated as required.
+
+## Construction E — feature shells and direct integer exact cover
+
+Background harvest found no active process belonging to this run.  Because
+construction-spend attribution was unavailable, quarantine was treated as
+binding and this milestone used no oracle.
+
+`verify_feature_shell_3dm.py` constructs explicit augmented syndrome systems
+with objective `|x|+R|Fx|`.  It exhaustively attacks global pair projections,
+deterministic sparse hashes, and hybrids over every odd cover in 40 YES and 40
+NO tiny instances.  Across 45 choices the best uniform ratio is only `7/6`,
+below the base `5/3`; the required hybrid mutation was tested and is worse.
+
+`verify_integer_3dm_cvp.py` tests the explicit integer basis
+`B=[I;MA]`, target `[0;M1]`, against signed coefficients.  Across 40 YES and
+40 NO instances, squared minima are YES 3 and NO 5, 7, 9, or 13.  Generally,
+`Az=1` implies `sum z_j=q`, so `||z||²-q=sum(z_j²-z_j)` is nonnegative and
+even, with equality exactly for a Boolean perfect matching.  This proves only
+an additive `q` versus `q+2` gap.
+
+A fixed pair-projection target separates the tested fibers, but has `(q!)²`
+possible values.  The required mutation is now implemented in
+`verify_variable_pair_projection_cvp.py`: make the three projection tables
+lattice variables constrained to equal the projections of `z`.  This is one
+polynomial-size fixed-target basis and existentially includes every matching.
+Exact signed search on 40 YES/40 NO instances gives squared norm 12 versus 14.
+The construction is valid but still additive: every integer row-sum-one table
+has norm at least `q`, so the three tables add a `3q` YES baseline.  Tested
+block weights change constants only, reaching at best 49/33 for weight eight.
+
+## Construction G — homogenized integer tensor, bounded mixed search
+
+Following the scout's all-sublattices lead,
+`verify_homogeneous_integer_tensor.py` builds
+`L={(z,s):Az=s1}` for four tiny YES/four NO 3DM instances.  Exact bounded
+search gives base squared norms 4 versus 6 or 8 and mixed tensor minima exactly
+16 versus 36 or 64.
+
+The required higher-rank mutation is now tested.
+`verify_highrank_integer_tensor.py` constructs saturated Smith-form Z-bases
+for six YES/six NO rank-three lattices and exhausts all `3^9` mixed
+coefficient matrices: 4 versus 6 becomes exactly 16 versus 36.  However,
+`verify_tensor_subdeterminants.py` kills the naive unrestricted
+all-sublattices lemma.  Across twelve YES/twelve NO instances, both have
+minimum short-direction norm 4, rank-two Gram determinant 12, and support 6,
+because NO lattices contain short `s=0` kernel directions.  The pointed mutation is now exactly tested.
+`verify_pointed_sublattice_diagnostics.py` restricts to sublattices where the
+homogenizing functional is primitive.  On 20 YES/20 NO examples, rank-one
+norm/support separate 4/4 versus 6/6 and rank-two Gram determinant/support
+separate 12/6 versus 20/8.  A harvested wider search, reproduced by
+`verify_highrank_tensor_C2.py`, exhausts `5^9` mixed matrices on three YES/three
+NO lattices and again gives 16 versus 36.  `verify_pointed_rank3_coeff_bound.py` widens the search to 145 primitive
+coefficient directions and at least 7,480 rank-two pairs per instance; the
+same gaps persist on ten YES/ten NO lattices.
+`verify_pointed_rank4_diagnostics.py` then checks 20 YES/20 NO rank-four
+lattices, including 702 primitive-functional pairs and sparse mixed tensors;
+the same 4/6, 12/20, 6/8, and 16/36 minima persist.  A focused CONVERGE pass then proved the rank-two theorem universally:
+`det_Gr(K)>=4(q+2)` and support at least `q+5` for every primitive-functional
+NO sublattice.  A general odd-minor bound is
+`ceil((q+3)4^(r-1)/r!)`.  However, arbitrary-Euclidean pointed
+multiplicativity is false by an explicit norm-4 tensor versus base squared
+minimum 5.  Mod-2 coordinate distance does multiply exactly and certifies
+`(q+1)^k` versus `(q+3)^k` squared norms for all mixed integer tensors, but no
+submultiplicative rank compression is proved.
+
+## Construction F — global determinant permutation dictionary
+
+One targeted classical scout was followed immediately by construction.  The
+determinant/common-basis polynomial has exactly permutation monomials and is a
+genuinely global selector.  `verify_determinant_permutation_dictionary.py`
+exhausts signed coefficient dictionaries at q=3 and every support-three trade
+at q=4.  Coefficient-plus-table costs are legal/virtual 4/8 and 5/7; top
+determinant state gives 2/4; all exterior compound states give 8/22 and 16/34.
+The required all-compounds mutation was tested.
+
+This does not yield a reduction.  An explicit linear determinant-monomial
+dictionary has q! columns.  Succinct bounded-fan-in determinant evaluation
+re-enters the proved tableau faults, while top/compound global states retain
+short affine virtual permutations and growing completeness baselines.
+
+## Construction H — exact weighted set-support tensor compression
+
+The quarantine was treated as binding, so the next action was a construction.
+For binary pure-power tensors, tuple coordinates with the same underlying set
+are identical for every mixed word.  Keeping one subset coordinate with weight
+`|S|! {r brace |S|}` preserves the full tensor Hamming distance exactly.
+Binary expansion writes every weight as `O(log w)` integer squares, yielding
+an explicit ordinary Euclidean CVP basis with polynomial-bit entries.
+
+`verify_weighted_symmetric_cvp.py` checks 72 multiset-orbit cases and explicit
+integer bases.  `verify_set_support_weighted_cvp.py` checks 100 stronger
+set-support cases and tiny 3DM: length saturates at 255 while distances remain
+`3^r` versus `5^r`.  `verify_function_type_weighted_cvp.py` tests the required
+mutation merging equal Boolean product functions.  At 3DM code dimensions
+2--6, tested type counts are 6, 20, 59, 251, 1158.
+
+This is a genuine exact compression, including every mixed pure-power word,
+and output is independent of tensor order after saturation.  But a rigorous
+dimension wall closes it for general BMT instances:
+`dim P_r(D)=sum_{j<=min(k,r)} binom(k,j)`, reaching `2^k-1` at `r>=k`.
+`verify_pure_power_dimension.py` checks 448 random and increasing 3DM cases.
+Any exact realization preserving all pure-power mixed words has at least this
+rank.  If BMT dimension were logarithmic enough to make it polynomial, its
+base fiber could itself be exhaustively decoded in polynomial time.  The
+function-type mutation therefore cannot yield the target reduction.
+
+## Construction I — compact weight-class compressor and computability attack
+
+`verify_weight_class_compressor.py` constructs a weighted class coordinate for
+each attainable fiber weight.  It exactly powers distance with only `m+2`
+coordinates; on tiny BMT, `r=16` yields a ratio above 3500.  But producing the
+class-`q` generator is equivalent to deciding whether a perfect matching
+exists.  The tested polynomial counting/parity relaxation inserts class `q`
+in NO as well and collapses the gap.  The compact nonlinear mechanism therefore
+hides the NP-hard step and is killed after its required mutation.
+
+## Construction J — sampled pure-power fold, initial signal and failed generalization
+
+A deterministic code-dependent sampler discards most pure-power functions and
+merges duplicates with Euclidean multiplicity weights.
+`verify_sampled_pure_power_fold.py` found a finite ratio 7 on ten YES/ten NO
+instances.  The required mutation froze that setting and expanded the family:
+`verify_sampled_fold_generalization.py` checks 50+50 instances for each
+`m=8,...,12` and coordinate permutations.  The ratio drops to at most 4/3 and
+then to one or below.  The initial signal was overfitting; the sampled fold is
+killed in this form after exact mixed-word search.
+
+## Construction K — low-dimensional exact-power toy search
+
+`verify_exact_power_polynomial_base.py` combines weighted exact powering with
+small-dimensional BMT codes.  Finite q=3 toys show large exponents (best tested
+rank proxy 3024, ratio 11.390625), confirming the construction arithmetic.
+This cannot become an NP-hard asymptotic family: logarithmic code dimension
+makes the affine fiber polynomially enumerable, while superlogarithmic
+dimension makes exact compressed rank `2^k` superpolynomial.  The function
+merge and sampled mutations were already tested, so this closes the toy signal
+without a hardness claim.
 
 ## Files
 
@@ -78,9 +238,31 @@ The protocol-required asymmetric mutation was also tested. `verify_asymmetric_ha
 * `experiments/verify_catalyst_exponent_bound.py`
 * `experiments/verify_reduced_fold_cvp.py`
 * `experiments/verify_asymmetric_hash_fold.py`
+* `experiments/verify_code_dependent_type_fold.py`
+* `experiments/verify_parity_type_tensor.py`
+* `experiments/verify_feature_shell_3dm.py`
+* `experiments/verify_integer_3dm_cvp.py`
+* `experiments/verify_variable_pair_projection_cvp.py`
+* `experiments/verify_determinant_permutation_dictionary.py`
+* `experiments/verify_homogeneous_integer_tensor.py`
+* `experiments/verify_highrank_integer_tensor.py`
+* `experiments/verify_tensor_subdeterminants.py`
+* `experiments/verify_pointed_sublattice_diagnostics.py`
+* `experiments/verify_highrank_tensor_C2.py`
+* `experiments/verify_pointed_rank3_coeff_bound.py`
+* `experiments/verify_pointed_rank4_diagnostics.py`
+* `experiments/verify_pointed_tensor_theorems.py`
+* `experiments/verify_weighted_symmetric_cvp.py`
+* `experiments/verify_set_support_weighted_cvp.py`
+* `experiments/verify_function_type_weighted_cvp.py`
+* `experiments/verify_pure_power_dimension.py`
+* `experiments/verify_weight_class_compressor.py`
+* `experiments/verify_sampled_pure_power_fold.py`
+* `experiments/verify_sampled_fold_generalization.py`
+* `experiments/verify_exact_power_polynomial_base.py`
 
-All listed new verifiers exit zero; deterministic logs are in `experiments/*.log`.
+All listed new verifiers exit zero; deterministic logs are in `experiments/*.log`. The weighted-compression/dimension suite passes (`WEIGHTED_DIMENSION_SUITE_PASS`), the compact weight-class construction passes (`WEIGHT_CLASS_PASS`), the sampled-fold/generalization pair passes (`SAMPLED_FOLD_SUITE_PASS`), and the final low-dimensional toy check passes (`FINAL_TOY_PASS`).
 
 ## Honest assessment
 
-A final hostile referee pass was incorporated; it corrected pointedness hypotheses, residual-theorem scope, biset-model quantifiers, exponent terminology, and 3DM parity accounting. No deterministic polynomial-gap NCP instance and no GapCVP reduction have been obtained. The relative-quotient candidate suffered a concrete affine-closure failure. Two one-step mixed-word lemmas, a complete finite two-level assembly, and an exact cyclic-catalyst product lemma are obtained. Structured cyclic ideals compress tensor squares, but direct formula coupling dies and every pure tensor catalyst with a common YES/NO multiplier cannot improve the standard rank exponent; the tested asymmetric sparse-hash mutation also loses soundness. No polynomial-gap reduction results. The exact syndrome-to-CVP identity remains only a conditional transfer tool.
+A final hostile referee pass was incorporated; it corrected pointedness hypotheses, residual-theorem scope, biset-model quantifiers, exponent terminology, and 3DM parity accounting. No deterministic polynomial-gap NCP instance and no GapCVP reduction have been obtained. The relative-quotient candidate suffered a concrete affine-closure failure. Two one-step mixed-word lemmas, a complete finite two-level assembly, and an exact cyclic-catalyst product lemma are obtained. Structured cyclic ideals compress tensor squares, but direct formula coupling dies and every pure tensor catalyst with a common YES/NO multiplier cannot improve the standard rank exponent. Formula-oblivious sparse hashes, linear feature shells, and code-dependent generator-type punctures lose soundness; exact parity-check type simplification is rigorously vacuous on the BMT reduced tensor ladder. Direct integer exact cover gives a clean additive squared-distance gap. Fixed pair-projection targets separate the tested fibers; a polynomial variable-target encoding now realizes their disjunction, but necessarily introduces another linear YES norm baseline and retains only an additive gap. The explicit global determinant dictionary and its all-compounds mutation retain short virtual permutations and exponential representation size. Homogenized integer exact-cover tensors are multiplicative in bounded rank-two and rank-three searches. Unrestricted NO sublattices have short witnesses, but restricting to sublattices carrying a primitive homogenizing functional restores finite rank-one/rank-two determinant and support gaps. A universal rank-two pointed determinant theorem and a weaker general odd-minor bound are proved; they are quantitatively insufficient for arbitrary-Euclidean partners. The parity tensor certificate is rigorous. Weighted set-support compression preserves exact pure-power tensor distance, but the proved pure-power dimension formula makes its rank exponential in the regime needed for BMT amplification; its maximal function-type mutation cannot repair this. A compact weight-class powering construction exists, but computing its generators decides the source problem; its polynomial parity relaxation collapses soundness. Deterministic sampled product folds can show large tiny-family gaps but fail frozen-parameter generalization as dimension grows. Low-dimensional exact-power toys have large finite gaps, but their dimension regime is incompatible with asymptotic NP-hardness. No polynomial-size polynomial-time reduction is obtained. No polynomial-gap reduction results. The exact syndrome-to-CVP identity remains only a conditional transfer tool.

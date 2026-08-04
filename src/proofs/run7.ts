@@ -415,7 +415,12 @@ async function main(): Promise<void> {
     const proIdeas = join(genDir, "pro_ideas.md");
     const ideaQuestion = `Generation ${generation}: independently propose 5-8 distinct mechanisms that could advance the PCP-free polynomial-gap CVP campaign. Start from the CURRENT IDEAS.md and STATUS.md, do not repeat killed routes unchanged, and give mechanism, expected move, falsification test, and smallest executable experiment for each.`;
     const liveContext = ["ORACLE_BRIEF.md", "IDEAS.md", "STATUS.md", "LITERATURE.md", "NOTES.md"];
-    if (generation > 1) liveContext.push(`gen-${generation - 1}/SOL_RESULT.json`, `gen-${generation - 1}/GATE.json`);
+    if (generation > 1) {
+      // A generation killed before Sol has GATE.json but no SOL_RESULT.json.
+      for (const rel of [`gen-${generation - 1}/SOL_RESULT.json`, `gen-${generation - 1}/GATE.json`]) {
+        if (existsSync(join(runDir, rel))) liveContext.push(rel);
+      }
+    }
     await settleParallel([
       ...(!existsSync(fableIdeas) ? [runOracle(python, runDir, fableIdeas, [askPro, "--ideate", "--model", FABLE, ideaQuestion, ...liveContext])] : []),
       ...(!existsSync(proIdeas) ? [runOracle(python, runDir, proIdeas, [askPro, "--ideate", "--model", PRO, ideaQuestion, ...liveContext])] : []),

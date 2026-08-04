@@ -172,7 +172,8 @@ def main():
             if len(raw_text) > cap:
                 text += f"\n[TRUNCATED: kept {cap} of {len(raw_text)} chars]"
         except OSError as e:
-            sys.exit(f"cannot read {path}: {e}")
+            parts.append(f"\n\n===== FILE: {path} (unreadable, skipped: {e}) =====")
+            continue
         total_file_chars += len(text)
         parts.append(f"\n\n===== FILE: {path} =====\n{text}")
     t0 = time.time()

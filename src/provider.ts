@@ -22,10 +22,19 @@ export function modelSlug(tier: Tier): string {
   return process.env[envKey]?.trim() || DEFAULTS[tier];
 }
 
-/** Build a pi `Model` for the given OpenRouter slug (defaults per tier). */
+/** Build a pi `Model` for the given slug: `azure/<id>` routes to the Azure OpenAI
+ * Responses provider (endpoint/key from AZURE_OPENAI_BASE_URL / AZURE_OPENAI_API_KEY /
+ * AZURE_OPENAI_API_VERSION), anything else is an OpenRouter slug. */
 export function buildModel(slug: string): Model<any> {
   const factory = getBuiltinModel as unknown as (p: string, id: string) => Model<any> | null;
   let model: Model<any> | null = null;
+  if (slug.startsWith("azure/")) {
+    model = factory("azure-openai-responses", slug.slice("azure/".length));
+    if (!model) throw new Error(`azure model "${slug}" is not in pi-ai's catalog`);
+    const maxTok = Number(process.env.OPENRSI_MODEL_MAX_TOKENS || 0);
+    if (maxTok > 0) (model as any).maxTokens = maxTok;
+    return model;
+  }
   try {
     model = factory("openrouter", slug);
   } catch {

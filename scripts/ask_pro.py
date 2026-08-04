@@ -90,6 +90,26 @@ DEFAULT_MODELS = {
 AZURE_COST = {"gpt-5.6-sol": (5.0, 30.0)}
 
 
+def http_json(req, tries=4):
+    """POST and parse JSON, retrying transient failures (429/5xx/network)."""
+    for attempt in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=3000) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < tries - 1:
+                print(f"[ask_pro] HTTP {e.code}, retry {attempt + 1}/{tries - 1}", file=sys.stderr)
+                time.sleep(30 * (attempt + 1))
+                continue
+            raise
+        except urllib.error.URLError as e:
+            if attempt < tries - 1:
+                print(f"[ask_pro] network error ({e.reason}), retry {attempt + 1}/{tries - 1}", file=sys.stderr)
+                time.sleep(15 * (attempt + 1))
+                continue
+            raise
+
+
 def ask_azure(model, mode, prompt):
     """Call an `azure/<deployment>[:pro]` model via the Azure OpenAI Responses API."""
     base = os.environ.get("AZURE_OPENAI_BASE_URL", "").rstrip("/")
@@ -119,8 +139,7 @@ def ask_azure(model, mode, prompt):
         data=json.dumps(payload).encode(),
         headers={"api-key": key, "Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=3000) as resp:
-        data = json.load(resp)
+    data = http_json(req)
     if data.get("error"):
         sys.exit(f"oracle error: {data['error']}")
     texts = []
@@ -200,8 +219,7 @@ def main():
             data=json.dumps(payload).encode(),
             headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
         )
-        with urllib.request.urlopen(req, timeout=3000) as resp:
-            data = json.load(resp)
+        data = http_json(req)
         if "error" in data:
             sys.exit(f"oracle error: {data['error']}")
         choice = data["choices"][0]["message"]

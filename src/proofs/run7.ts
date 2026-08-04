@@ -23,7 +23,7 @@ const ORACLE_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_ORACLE_TIMEOUT_MS", 30 * 6
 const VERIFIER_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_VERIFIER_TIMEOUT_MS", 10 * 60_000);
 const UNKNOWN_CALL_COST_USD = numberEnv("OPENRSI_UNKNOWN_CALL_COST_USD", 2);
 const SOL_TURN_RESERVE_USD = numberEnv("OPENRSI_SOL_TURN_RESERVE_USD", 5);
-const SOL_MAX_TOKENS = positiveIntegerEnv("OPENRSI_SOL_MAX_TOKENS", 12_000);
+const SOL_MAX_TOKENS = positiveIntegerEnv("OPENRSI_SOL_MAX_TOKENS", 32_000);
 const FROM_SCRATCH = process.env.OPENRSI_FROM_SCRATCH === "1";
 const RESUME = process.argv.includes("--resume");
 
@@ -31,19 +31,19 @@ const SOL_SYSTEM = `You are the implementation worker in a model-separated CVP p
 The target is a deterministic PCP-free polynomial-factor hardness reduction from 3SAT to Euclidean
 GapCVP. Never describe finite evidence as an asymptotic theorem.
 
-Your role is implementation and adversarial verification, not proposal grading and not the final
-continue/kill decision. Read both proposer documents and both cross-reviews for the current
-generation. Select only a proposal that survives its opponent review, state its causal mechanism,
-expected move, and falsification condition, then implement the smallest discriminating experiment.
-Every finite claim needs a deterministic verify_*.py that exits zero. Attack soundness with exact
-low-weight search. Update IDEAS.md, NOTES.md, STATUS.md, and proof_cvp.md honestly.
+Each generation: read both proposer documents and both cross-reviews, select only a proposal that
+survives its opponent review, state its causal mechanism, expected move, and falsification
+condition, then implement the smallest discriminating experiment. Every finite claim needs a
+deterministic verify_*.py that exits zero; attack soundness with exact low-weight search. Update
+IDEAS.md, NOTES.md, STATUS.md, and proof_cvp.md honestly, and keep them as brief as accuracy allows.
 
-At the end of the generation write the requested SOL_RESULT.json. It must be valid JSON with keys:
-summary (string), hypothesis (string), changed_files (array), verifiers (an array of relative paths
-to newly written experiments/verify_*.py files), tests (array of objects with command, exit_code,
-and finding), claimed_progress (one of NONE, FINITE, LEMMA, GOAL), and next_experiment.
-Do not set the campaign gate. Do not read, search for, or use the prohibited recent Ten Advances
-document or any coverage of its solutions.`;
+Proposal grading and the continue/kill gate belong to other components — end your generation by
+writing the requested SOL_RESULT.json: valid JSON with keys summary (string), hypothesis (string),
+changed_files (array), verifiers (an array of relative paths to newly written
+experiments/verify_*.py files), tests (array of objects with command, exit_code, and finding),
+claimed_progress (one of NONE, FINITE, LEMMA, GOAL), and next_experiment.
+The recent Ten Advances document and any coverage of its solutions are off-limits: do not read,
+search for, or use them.`;
 
 type Verdict = "CONTINUE" | "KILL";
 type GateDecision = "CONTINUE_IDEA" | "KILL_IDEA";
@@ -391,6 +391,7 @@ async function main(): Promise<void> {
   const canReserve = (usd: number) => budget - spent() >= usd;
   checkpoint();
 
+  let solPrimed = false;
   try {
   const firstGeneration = RESUME ? Math.max(1, state.generation) : 1;
   researchLoop: for (let generation = firstGeneration; generation <= MAX_GENERATIONS; generation++) {
@@ -469,7 +470,9 @@ async function main(): Promise<void> {
       proProposalReview.verdict === "CONTINUE" ? "Pro proposals" : "",
     ].filter(Boolean).join(" and ");
     if (!existsSync(resultPacket)) {
-      await session.prompt(`${SOL_SYSTEM}\n\nGeneration ${generation}. Read ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review. Implement and adversarially verify the single best surviving bounded experiment; do not revive the rejected population. Write the required result packet to ${resultPacket}.`);
+      const preamble = solPrimed ? "" : `${SOL_SYSTEM}\n\n`;
+      await session.prompt(`${preamble}Generation ${generation}. Read ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review. Implement and adversarially verify the single best surviving bounded experiment; do not revive the rejected population. Write the required result packet to ${resultPacket}.`);
+      solPrimed = true;
       await session.waitForIdle();
     }
     if (!existsSync(resultPacket)) {

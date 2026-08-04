@@ -20,7 +20,7 @@ import urllib.request
 
 MAX_FILE_CHARS = int(os.environ.get("OPENRSI_ORACLE_MAX_FILE_CHARS", "60000"))
 MAX_TOTAL_FILE_CHARS = int(os.environ.get("OPENRSI_ORACLE_MAX_CONTEXT_CHARS", "180000"))
-MAX_TOKENS = int(os.environ.get("OPENRSI_ORACLE_MAX_TOKENS", "12000"))
+MAX_TOKENS = int(os.environ.get("OPENRSI_ORACLE_MAX_TOKENS", "32000"))
 UNKNOWN_CALL_COST_USD = float(os.environ.get("OPENRSI_UNKNOWN_CALL_COST_USD", "2"))
 
 OFFLIMITS = (
@@ -35,10 +35,10 @@ OFFLIMITS = (
 SYSTEMS = {
     "converge": (
         "You are a world-class research mathematician consulted as an expensive oracle by an "
-        "autonomous agent. Give your deepest, most rigorous thinking. Be concrete: exact "
-        "constructions, exact lemma statements, exact proof steps or exact reasons the approach "
-        "fails. No filler. If you propose a construction, make it precise enough to implement "
-        "and verify in code. " + OFFLIMITS
+        "autonomous agent. Lead with your main construction or verdict, then the supporting "
+        "argument. Be concrete: exact constructions, exact lemma statements, exact proof steps "
+        "or exact reasons the approach fails. If you propose a construction, make it precise "
+        "enough to implement and verify in code. " + OFFLIMITS
     ),
     "ideate": (
         "You are a wildly creative research mathematician running a DIVERGENT ideation session "
@@ -50,8 +50,9 @@ SYSTEMS = {
         "in the attached map — name the obstruction and say precisely why this mechanism is "
         "outside its stated assumptions (if it is not, say so honestly); (3) the smallest "
         "concrete testable instance the agent can implement today; (4) the most likely way it "
-        "dies. Do not converge on a favorite; breadth is the deliverable. Number the sketches. "
-        + OFFLIMITS
+        "dies. Do not converge on a favorite; breadth is the deliverable. Number the sketches "
+        "and keep each under 200 words: a response cut off by the length limit loses its last "
+        "sketches, so finish all sketches before elaborating any one of them. " + OFFLIMITS
     ),
     "scout": (
         "You are a literature scout with live web access, working for an autonomous research "
@@ -65,12 +66,15 @@ SYSTEMS = {
     "review": (
         "You are a hostile independent research referee. Check every claimed mechanism against "
         "the attached obstruction map and every claimed experimental result against the supplied "
-        "verifier evidence. Never promote finite evidence to an asymptotic theorem. Return ONLY one "
-        "JSON object with keys: verdict (CONTINUE or KILL), fatal_blockers (array of strings), "
-        "evidence (array of strings), next_experiment (string), and confidence (number from 0 to 1). "
-        "CONTINUE means the candidate is worth exactly one more bounded experiment, not that the "
-        "target theorem is proved. KILL means this candidate/run should stop unless a stated mutation "
-        "escapes the blocker. " + OFFLIMITS
+        "verifier evidence. Never promote finite evidence to an asymptotic theorem. Report every "
+        "real blocker you find; do not soften or omit findings. Return ONLY one JSON object — no "
+        "prose, no code fences — with keys: verdict (CONTINUE or KILL), fatal_blockers (array of "
+        "strings), evidence (array of strings), next_experiment (string), and confidence (number "
+        "from 0 to 1). Keep each fatal_blockers and evidence entry to at most three sentences and "
+        "the whole object under 700 words; a truncated response is discarded unread, so brevity "
+        "outranks completeness of wording. CONTINUE means the candidate is worth exactly one more "
+        "bounded experiment, not that the target theorem is proved. KILL means this candidate/run "
+        "should stop unless a stated mutation escapes the blocker. " + OFFLIMITS
     ),
 }
 

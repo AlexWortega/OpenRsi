@@ -1,0 +1,52 @@
+# NOTE: external run. Unlike the other files here, this run was NOT produced by
+# kernelbench.com's native harness, so there is no matching outputs/runs/<run_id>
+# directory, transcript, or result.json. It comes from the OpenRSI scaffold. The
+# peak_fraction below is OpenRSI's own harness number, not a kernelbench.com score.
+run_id: EXTERNAL_openrsi_claude-opus-4-8_02_kimi_linear_decode
+model: claude-opus-4-8
+harness: external (OpenRSI)
+effort: ""
+problem: 02_kimi_linear_decode
+peak_fraction: 18.45   # OpenRSI harness, RTX PRO 6000; NOT scored by this repo
+
+verdict: interesting
+
+summary: >
+  External submission from a Recursive Self-Improvement (RSI) agent, not a native
+  harness run. My RSI agent running on Opus 4.8 drove itself to this kernel for
+  the RTX PRO 6000 (a6000pro): a from-scratch, single-launch fused CUDA W4A16
+  Kimi-Linear decode megakernel (int4 nibble-unpack + per-group asymmetric dequant
+  fused straight into the GEMV, weights never materialized; KDA recurrent update
+  and MLA latent-cache absorb all in one mega_launch per step). OpenRSI reports
+  18.45x geomean decode speedup over the PyTorch baseline at cosine >= 0.98 across
+  ctx 2048/8192/16384 (their check.py PASS), reached by iterating 11.23 -> 14.53
+  -> 18.45 with a keep-best-snapshot loop.
+  Code: https://github.com/AlexWortega/OpenRsi/blob/main/mega_results/opus_18.45x_RECORD.py
+  RSI scaffold: https://github.com/AlexWortega/OpenRsi
+
+quotes:
+  - file: solution.py
+    lines: [808, 809]
+    label: One fused megakernel launch per decode step (single_kernel path)
+    text: |
+              self._mod.mega_launch(self._qw, self._eb, self._sw, self._ksw, stp,
+                                    work, hin, hout, int(L), self._isel)
+  - file: solution.py
+    lines: [46, 48]
+    label: Clean imports only (no forbidden libs, no reference oracle)
+    text: |
+          import torch
+          import torch.nn as nn
+          from torch.utils.cpp_extension import load_inline
+
+implication: >
+  Treat the 18.45x as an EXTERNAL, cross-harness claim, not a cell scored by this
+  repo. What was independently re-verified off-GPU against this repo's check.py
+  logic: the AST forbidden-import scan passes (only torch + load_inline; no
+  `import reference`, no transformers/marlin/awq/etc.), and solution.Model loads
+  reference.py's state_dict with strict=True (all 147 params/buffers match by name
+  and shape) -- the two gates that disqualified neighbor models (glm-5.2 tried to
+  `import reference`; a misaligned kernel would fail strict load). NOT verified
+  here (requires an RTX PRO 6000): the cosine >= 0.98 correctness and the 18.45x
+  timing, which remain OpenRSI's reported numbers. Recommended before trusting the
+  cell: re-run check.py + benchmark.py in this repo's harness on the target GPU.

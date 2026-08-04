@@ -85,6 +85,57 @@ DEFAULT_MODELS = {
     "review": os.environ.get("OPENRSI_PRO_MODEL", "openai/gpt-5.6-sol-pro"),
 }
 
+# USD per 1M input/output tokens for Azure deployments (no usage-priced billing in the
+# response, so cost is computed locally and logged into the same budget ledger).
+AZURE_COST = {"gpt-5.6-sol": (5.0, 30.0)}
+
+
+def ask_azure(model, mode, prompt):
+    """Call an `azure/<deployment>[:pro]` model via the Azure OpenAI Responses API."""
+    base = os.environ.get("AZURE_OPENAI_BASE_URL", "").rstrip("/")
+    key = os.environ.get("AZURE_OPENAI_API_KEY")
+    if not base or not key:
+        sys.exit("AZURE_OPENAI_BASE_URL / AZURE_OPENAI_API_KEY not set")
+    if not base.endswith("/v1"):
+        base += "/v1"
+    name = model.split("/", 1)[1]
+    reasoning = {"effort": "high"}
+    if name.endswith(":pro"):
+        name = name[: -len(":pro")]
+        reasoning["mode"] = "pro"
+    payload = {
+        "model": name,
+        "input": [
+            {"role": "system", "content": SYSTEMS[mode]},
+            {"role": "user", "content": prompt},
+        ],
+        "reasoning": reasoning,
+        "max_output_tokens": MAX_TOKENS,
+    }
+    if mode == "review":
+        payload["text"] = {"format": {"type": "json_object"}}
+    req = urllib.request.Request(
+        f"{base}/responses?api-version=v1",
+        data=json.dumps(payload).encode(),
+        headers={"api-key": key, "Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=3000) as resp:
+        data = json.load(resp)
+    if data.get("error"):
+        sys.exit(f"oracle error: {data['error']}")
+    texts = []
+    for item in data.get("output") or []:
+        if item.get("type") == "message":
+            for block in item.get("content") or []:
+                if block.get("type") == "output_text":
+                    texts.append(block.get("text") or "")
+    usage = data.get("usage") or {}
+    rate_in, rate_out = AZURE_COST.get(name, (5.0, 30.0))
+    cost = round(
+        (usage.get("input_tokens", 0) * rate_in + usage.get("output_tokens", 0) * rate_out) / 1e6, 6
+    )
+    return "\n".join(texts), cost, usage.get("input_tokens"), usage.get("output_tokens")
+
 
 def main():
     args = sys.argv[1:]
@@ -106,9 +157,6 @@ def main():
             sys.exit(f"unknown flag {flag}\n{__doc__}")
     if not args:
         sys.exit(__doc__)
-    key = os.environ.get("OPENROUTER_API_KEY")
-    if not key:
-        sys.exit("OPENROUTER_API_KEY not set")
     model = model or DEFAULT_MODELS[mode]
     question = args[0]
     parts = [question]
@@ -127,40 +175,48 @@ def main():
             sys.exit(f"cannot read {path}: {e}")
         total_file_chars += len(text)
         parts.append(f"\n\n===== FILE: {path} =====\n{text}")
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": SYSTEMS[mode]},
-            {"role": "user", "content": "\n".join(parts)},
-        ],
-        "reasoning": {"effort": "high"},
-        "max_tokens": MAX_TOKENS,
-        "usage": {"include": True},
-    }
-    if mode == "review":
-        payload["response_format"] = {"type": "json_object"}
-    req = urllib.request.Request(
-        "https://openrouter.ai/api/v1/chat/completions",
-        data=json.dumps(payload).encode(),
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-    )
     t0 = time.time()
-    with urllib.request.urlopen(req, timeout=3000) as resp:
-        data = json.load(resp)
-    if "error" in data:
-        sys.exit(f"oracle error: {data['error']}")
-    choice = data["choices"][0]["message"]
-    answer = choice.get("content") or ""
-    usage = data.get("usage", {})
-    cost = usage.get("cost")
+    if model.startswith("azure/"):
+        answer, cost, prompt_tokens, completion_tokens = ask_azure(model, mode, "\n".join(parts))
+    else:
+        key = os.environ.get("OPENROUTER_API_KEY")
+        if not key:
+            sys.exit("OPENROUTER_API_KEY not set")
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": SYSTEMS[mode]},
+                {"role": "user", "content": "\n".join(parts)},
+            ],
+            "reasoning": {"effort": "high"},
+            "max_tokens": MAX_TOKENS,
+            "usage": {"include": True},
+        }
+        if mode == "review":
+            payload["response_format"] = {"type": "json_object"}
+        req = urllib.request.Request(
+            "https://openrouter.ai/api/v1/chat/completions",
+            data=json.dumps(payload).encode(),
+            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=3000) as resp:
+            data = json.load(resp)
+        if "error" in data:
+            sys.exit(f"oracle error: {data['error']}")
+        choice = data["choices"][0]["message"]
+        answer = choice.get("content") or ""
+        usage = data.get("usage", {})
+        cost = usage.get("cost")
+        prompt_tokens = usage.get("prompt_tokens")
+        completion_tokens = usage.get("completion_tokens")
     rec = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "mode": mode,
         "model": model,
         "cost": cost,
         "reserved_cost": UNKNOWN_CALL_COST_USD if cost is None else 0,
-        "prompt_tokens": usage.get("prompt_tokens"),
-        "completion_tokens": usage.get("completion_tokens"),
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
         "seconds": round(time.time() - t0, 1),
         "question": question[:300],
     }

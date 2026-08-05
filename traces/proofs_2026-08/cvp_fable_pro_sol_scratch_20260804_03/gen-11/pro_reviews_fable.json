@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 only targets the current seven-term degree-two parity witness; it supplies no composition theorem, splitter construction, or dimension-dependent gap law. Any finite pass remains finite evidence, and higher-order/global signed circuits remain uncontrolled.",
+    "Proposal 2 searches arbitrary nonlinear codewords without first enforcing zero-cost honest overlap. Linear checks against shared singleton symbols can represent only affine functions of the local bits; adding higher-moment symbols merely reduces the proposal to Proposal 1 or 6.",
+    "Proposal 3 gives no explicit chain complex, cover construction, SAT-preserving map, or proof that clause-local circuits become nonlocal. High systole controls nontrivial cycles, not automatically local contractible selector relations, so a small-lift SNF calculation would not validate the claimed mechanism.",
+    "Proposal 4 requires choosing a formula-dependent Gram matrix under potentially exponential equal-completeness constraints, with no deterministic polynomial-time construction. Optimizing only deviations through anchor excess 24 cannot establish simultaneous separation of unrestricted deviations or an asymptotic gap.",
+    "Proposal 5 assumes a multiplicative CVP distance law that tensoring does not provide: the error of t tensor t versus v tensor v is not the tensor square of t-v. Plucker coordinates cannot enforce decomposability on an unrestricted additive lattice, and entangled integer combinations remain admissible.",
+    "Proposal 6 assumes the missing bounded-degree certificate theorem. A degree-3 computation on two instances cannot establish bounded degree for arbitrary unsatisfiable 3CNFs, while growing Macaulay degree can make the dimension superpolynomial.",
+    "Proposal 7 gains nothing from multiple primes against an exact integer signature relation, and its actual novelty is again the unverified cubic signature. Construction-A carry and p-multiple directions must be fully charged; otherwise G1 or an unrestricted modular bypass returns."
+  ],
+  "evidence": [
+    "Generation 9 exactly verified squared minima 96 and 72, but its unsatisfiable nearest vector is a constant-cost seven-term cube-parity kernel invisible to degree-two moments. This directly justifies one degree-three falsification test and nothing asymptotic.",
+    "Generation 7 exhibited an exact zero-residual signed selector in the fully emitted radix lattice, proving that amplification of residual rows cannot charge vectors already in the raw kernel.",
+    "Generation 5 found short private-clause kernel moves in every tested overlap system, so merely describing signatures or chain tests as global does not establish overlap composition.",
+    "Generation 6 was invalidated because constraints were external and the reference changed. Any new test must emit every normalization, consistency, auxiliary, carry, basis, target, and metric coordinate and optimize unrestrictedly.",
+    "No verifier evidence accompanies any of the seven new proposals."
+  ],
+  "next_experiment": "Select Proposal 1 only; kill Proposals 2-7 in their present forms. Extend verify_global_psd_metric.py with explicitly emitted degree-3 consistency rows that vanish on every honest witness, without free moment variables or external filters; print the exact basis, target, Gram factor, and row definitions. Compute the exact unrestricted minima for the fixed nine-clause obstruction and satisfiable control, explicitly evaluate the known three-term and seven-term witnesses, and search for the minimum-anchor exact kernel of all degree-0-through-3 rows. Falsify the mutation if any constant-anchor cubic-zero signed selector survives or if the unsatisfiable minimum fails to increase while the control remains at completeness radius.",
+  "confidence": 0.97
+}

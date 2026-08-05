@@ -1,0 +1,47 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not specify assignment vertices, clause-dependent lattices, centers, shell radius, or the asymmetric lamination. Enumerating small bases could test O14 realizability, but even a pass would not test the claimed O10/O13 excess multiplication and therefore is not genuinely discriminating for the mechanism.",
+      "Proposal 2 never emits the nine-clause lattice, target, scaling, or consistency construction, and it switches between Construction-D and Construction-A. O5/O7 remain fatal: if a harmful affine point occupies an honest coset, that coset's short honest leader defeats any lower bound on illegal coset leaders; DROP survival and concatenation growth are also unproved.",
+      "Proposal 3 leaves the incidence complex, mapping cone, cover, and coordinate embedding undefined. Primitive penalties do nothing when the G13 affine lift maps to the zero chain, while one double cover cannot establish the O10/O13 claim that adverse Hodge energy grows faster than honest energy.",
+      "Proposal 4 assumes the metric confines every unrestricted lattice point in the relevant shell to one sign chamber, which is exactly the missing O19 premise. Rank-4/5 represented matroids have circuits of size at most 5/6, so the proposed search cannot discriminate the claimed asymptotic high-girth cost, and neither harmfulness nor the perturbation family is finitely specified.",
+      "Proposal 5 has no additive CVP realization of ideal multiplication; externally checking multiplication would violate O3, while linearizing it reopens O5/O7/O16/O20. A class-number-two example cannot test tower growth, and nonprincipality alone supplies no large Euclidean minimum or equal honest radius.",
+      "Proposal 6 does not specify the repaired asymmetric seed, parity-check search range, emitted factor, target, or a complete shell bound. Linear rank-code checks cannot assume honest rank-one structure against unrestricted entangled coefficient matrices (O12), and enumeration restricted to l1<=4 cannot certify exact CVP distance or strict O13 superadditivity.",
+      "Proposal 7 conflates sandpile stabilization with unrestricted Euclidean nearest-vector selection; recurrent or superstable status is an impermissible external filter unless proved to coincide with the emitted CVP optimum. Laplacian cosets remain additive, so O5/O7 affine collisions can occupy the same short class, and the chip map, target, equal-radius completeness, and attachment construction are unspecified."
+    ],
+    "evidence": [
+      "No verifier, emitted basis, target, exact control minimum, or exhaustive shell certificate is supplied for any proposal. All claimed expected moves are therefore unsupported.",
+      "G13 found an exact harmful affine combination annihilating every compatible linear syndrome, and G15 lifted it through an entire hierarchy with zero residual. This directly blocks the code, mapping-cone, ideal-linearization, rank-check, and sandpile-coset proposals absent a proved nonlinear escape.",
+      "G28 measured adverse growth below legal growth, and G32 exhibited exactly additive cross-copy parity. Thus no proposal may assume lamination, concatenation, covers, matroid girth, towers, or graph lifts provide O10/O13 growth.",
+      "G30 showed unrestricted tensor coefficients invalidate intended rank-one reasoning, while G19 found a signed accepting flow despite complete linear constraints. These results directly undermine Proposals 6 and 7.",
+      "G33/G34 failed exact common-sphere and positive-metric completeness gates. Proposal 1 and every other geometric construction likewise require a fully specified O14 gate before any soundness search."
+    ],
+    "next_experiment": "None is authorized. A restart must freeze one complete emitted CVP construction and control, prove exact equal-radius completeness, and preregister a finite exhaustive shell covering DROP, G13/G15 affine lifts, zero syndromes, signed splicing, and unrestricted entanglement; any amplification claim then requires an exact two-level adverse-versus-legal growth comparison.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not defeat O5/O11/O16: all intersection constraints are linear, so the supplied global affine pseudodistribution may lift through walk bags, while exponentially many walk occurrences also enlarge the honest radius. The clause expander, legality convention, weights, control, and finite min-plus state space are unspecified, so the proposed L=1,2,3 test is not executable or discriminating as written.",
+      "Proposal 2 remains vulnerable to O5/O6/O16 because divided-power rows are linear and therefore preserve any affine combination of complete encodings; Prouhet and finite-difference relations provide exact moment kernels. The proposal does not specify which overlap marginals are matched, and its single-falsified-clause experiment omits the known nine-clause affine lift, DROP, control radius, and emitted CVP shell.",
+      "Proposal 3 leaves O4/O10/O11/O16 unresolved. The fixed complex with boundary map [5] supplies no growing cosystole, while the claimed Voronoi gauge is neither an emitted linear factor nor accompanied by a common-radius certificate; “exact cocycle” and the relevant chain/cochain degree are also not defined consistently.",
+      "Proposal 4 confuses a local Delaunay property with sound composition. Even if four AND graph points form an empty cell, unrestricted integral combinations of multiple gates can splice across shared ports; no composition inequality, DROP audit, or adverse-versus-legal growth law is given, and the Gram search has no normalization or coefficient bounds.",
+      "Proposal 5 does not establish its central projection claim: binary code distance does not lower-bound exact integer-kernel or Graver moves, because parity/carry and Lawrence duplicate directions can create short moves such as doubled coordinates. The code, integral matrix, OR attachment, harmful-move predicate, target, and exhaustive domain are not frozen.",
+      "Proposal 6 has no applicable uncertainty lower bound for unrestricted signed integer mixtures. With all phases and uniform weights, Plancherel makes the fingerprint a tight-frame multiple of selector l2 energy, amplifying honest and adverse vectors equally; nonuniform shared spectra still require exact cosphericity and direct G13/DROP/additive-parity audits, none of which is specified.",
+      "Proposal 7 merely relocates O4/O5: any emitted digit, transition, or embedding rows are linear, and affine combinations of complete digit-graph encodings preserve them unless a genuinely nonlinear CVP-realizable separation is proved. The algebraic norm helps only after proving a nonzero residual, while equal completeness and adverse growth beyond the per-level legal cost remain unproved."
+    ],
+    "evidence": [
+      "No Generation-36 verifier, basis, factor, target, control, coefficient bound, or shell certificate is supplied. Every asserted benefit is therefore conjectural rather than experimental evidence.",
+      "Generation 13 gives an exact bounded-coefficient affine collision annihilating every compatible linear syndrome, and Generation 15 lifts it through every hierarchy level with zero residual. This directly obstructs the linear walk, moment, code, and digit mechanisms.",
+      "Generation 14 only passed one fixed pair-bag shell; Generation 28 measured adverse growth below legal growth, and Generation 32 found exactly additive zero-residual parity across coupled copies. These results refute any inference from local coverage to scalable amplification.",
+      "Generation 7 found an exact kernel annihilating all radix rows, Generation 12 found a cheaper DROP vector, and Generation 19 found an exact accepting signed splice. The proposed experiments do not comprehensively include these attacks.",
+      "Generation 31 shows that equal-radius Walsh geometry can pass one finite shell without yielding a growth law, while Generations 33–34 show that proposed geometric tags can fail exact common-radius and positive-definiteness gates before soundness is tested."
+    ],
+    "next_experiment": "None is authorized for these submissions. A resubmission must freeze one exact emitted construction and control, prove or computationally certify common radius, and preregister a complete bounded shell containing G13/G15, DROP, exact kernels, and two-level adverse/legal growth; the mutation must first explain why affine lifting is impossible.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

@@ -1,0 +1,5 @@
+{
+  "passed": false,
+  "reason": "packet must name 1-5 verifier paths",
+  "results": []
+}

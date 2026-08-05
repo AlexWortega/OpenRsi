@@ -1,0 +1,48 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has an exact degree blind spot: a parity perturbation on k+1 variables has zero mass and zero marginals on every subset of size at most k, while a k-perfect family guarantees injectivity only through k variables. Its four-variable k=4 test avoids this asymptotic obstruction and therefore cannot discriminate the claimed log-width mechanism; no theorem converts anchor excess into support on at most k variables.",
+      "Proposal 2 does not escape affine linearity under unrestricted selectors: precomputed nonlinear phase labels become a fixed linear column map, so G13 coefficient-sum-one affine combinations remain affine combinations after lifting. The Construction-A4 basis, carries, target, weights, control, and unrestricted CVP objective are unfrozen, and merely scoring G7/G11/G12/G13 is not a G6-compliant experiment.",
+      "Proposal 3 confuses high girth with signed-flow soundness: high girth excludes short word collisions but not integer combinations of many endpoint tags or splices having the same tag totals. Variable endpoint unit vectors also create the G12 dilemma—zero-centered equal norms make drops cheaper—while no explicit group, transition-word map, target, normalization, control, or complete unrestricted fiber is specified.",
+      "Proposal 4 is algebraically blocked by Lawrence lifting itself. In the standard higher Lawrence kernel, every z in ker(A) yields the bounded-type move (z,-z,0,...), so shared-sum rows preserve type-two circuits rather than forcing type to grow; G7, G13, and G19 lifts therefore remain live, and baseline replication supplies no relative-gap law.",
+      "Proposal 5 supplies no polynomial-size useful-degree bound: full squarefree degree on three variables is a constant exhaustive encoding, whereas degree growing with n gives n^Omega(d) Macaulay dimension absent a proved ABP compression valid for unrestricted integral functionals. The degree weights, target, control, and exact CVP shell are also unspecified, so the proposed test cannot distinguish G20/G21 scaling.",
+      "Proposal 6 tests only coefficients in [-2,2], contrary to unrestricted CVP; with a variable Gram matrix and no normalized eigenvalue bound, competitors outside that box cannot be excluded. One- and two-clause Delaunay feasibility would not establish overlap preservation, defeat G13/G19 globally, or produce a growing shell ratio.",
+      "Proposal 7 cannot emit Plucker minors of an unknown lattice combination as linear CVP coordinates. Precomputed column wedges only give a linear sum of individual tags, not the wedge or minors of the combined port state, so unrestricted signed coefficients retain G13/G19 cancellations and G22 entangled vectors."
+    ],
+    "evidence": [
+      "G13 verifies a harmful selector that is an integral coefficient-sum-one affine combination of honest encodings; G15 lifts it through every tested hierarchy level with zero residual at 24960 below 25472.",
+      "G19 verifies an accepting signed flow with two negative coefficients and exactly zero residual; obstruction/control squared minima are 22770 and 22754.",
+      "G9/G11 exhibit constant-cost parity kernels, while G12 shows that charging parity can expose a cheaper clause drop. Any fingerprint, phase, word-tag, or shell metric must audit both under unrestricted optimization.",
+      "G14 excludes vectors only through B+32 on one finite pair-bag instance. No supplied verifier establishes recursive composition, G20/G21 relative growth, or an n^c gap.",
+      "No proposal supplies new verifier output; all listed experiments are prospective and several omit a frozen basis, target, matched control, or unrestricted coefficient bound."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a frozen Proposal-3 mutation specifying the finite group, all segment-history columns, target, normalization and drop pricing, matched control, and a provable unrestricted coefficient bound; then exactly solve the full smallest G19 segment fiber including all signed combinations, G13 lifts, and drops, killing on any completeness mismatch or tag-zero splice.",
+    "confidence": 0.995
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "P1 does not bound or specify H, its target, dimension, or entries, so the MILP is not a bounded experiment. Finite separation of flows at anchor excess 16 would not control larger signed circuits, G13/G15 affine lifts, or establish G20/G21 scaling; calling legal vectors a semigroup does not restrict CVP coefficients to that semigroup.",
+      "P2 leaves the XOR/product lattice, targets, auxiliary constraints, and completeness radius undefined. Unrestricted linearized product auxiliaries retain the G19 signed-splice and G22 entanglement risks, and no splitter theorem says every low-distance attack has a detected character.",
+      "P3 cannot enforce group-ring multiplication using only linear lattice equations; unrestricted coefficients can splice multiplication-table flows exactly as in G19. Enumerating coefficients only in [-2,2] violates G6, while augmentation-ideal membership alone supplies no proved Euclidean norm growth or G20/G21 recurrence.",
+      "P4 does not freeze weights, target, shell, or a valid drop-pricing objective; optimizing weights on one obstruction can merely overfit it. Restrictions of width at most three have an exact four-variable parity blind spot, and polynomially many fixed-width restrictions cannot exclude the acknowledged higher-order parity family or prove scaling.",
+      "P5 specifies no chain complex, boundary maps, voltage representation, target relative class, or correspondence between chain norm and CVP distance. SNF and shortest representatives in two finite covers cannot establish systolic growth through logarithmic depth, while G12 drops, G13/G15 affine chains, and the actual G19 signed flow remain unaudited.",
+      "P6 assumes a nonlinear positive/negative decomposition that a Lawrence lift does not enforce under unrestricted integer coefficients; duplicated variables can themselves participate in affine and signed circuits. Support-at-most-eight circuits of the G7 matrix do not cover G11, G13, G19, semigroup holes, or high-support Graver moves, and no polynomial-rank family or cumulative gap law is supplied.",
+      "P7 is the only structurally relevant direction, but it still fails the prior reopening condition: L, port dimension, legal/illegal/drop classes, target range, gluing map, S, normalization, and recursive contract are not frozen. Targets in (1/6)Z^r are infinite as stated, and a depth-two ratio increase without recursive closure or a 3SAT semantic compilation would not imply G20/G21.",
+      "No proposal supplies a polynomial-size family with a proved excess-to-baseline law. Assertions that G22 is “absent” are not mechanisms; where composition is undefined, unrestricted fiber or auxiliary representatives have simply not been audited."
+    ],
+    "evidence": [
+      "G5 found squared-norm-at-most-four overlap circuits in every tested private-row composition, so constant local isolation does not justify any proposed global composition.",
+      "G7 verified a zero-residual signed selector at squared distance 80 versus baseline 72; residual, radix, filtration, or topology labels cannot charge an exact surviving kernel without an additional emitted metric.",
+      "G9/G11 retain constant-cost parity kernels, while G12 shows that charging parity can expose a cheaper clause drop. Any candidate must audit both under unrestricted optimization.",
+      "G13 exhibited a harmful coefficient-sum-one affine combination of honest encodings, and G15 lifted it through every tested hierarchy level with zero residual at 24960 below 25472.",
+      "G19 verified an exact accepting signed flow with two negative coefficients and zero residual; obstruction/control squared minima are 22770 and 22754. G14 is only a finite shell pass, and no verifier establishes G20/G21 scaling or G22-safe recursion."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a P7 mutation supplied as a finite static specification of L, bounded target representatives, port maps and classes, drop states, Gram matrices, S, gate semantics, normalization, and a recursively closed min-plus contract; then exactly enumerate every unrestricted depth-two fiber and kill on any completeness mismatch, cheap drop, G13/G19 lift, entangled minimum, or nonincreasing contracted gap.",
+    "confidence": 0.995
+  },
+  "reason": "both proposal populations rejected"
+}

@@ -1,0 +1,19 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole candidate worth one bounded falsification, but it currently specifies neither the laminar construction nor weights, output dimension, bit complexity, completeness radius, or an explicit exponent c. Complete boundary marginals may also become exponential on high-width formulas, which would destroy polynomial-time reduction size.",
+    "Proposal 2 is killed as stated. Equal-radius Boolean codewords do not acquire CVP cost merely from code distance, and searching coefficients or carries only in [-2,2] is not unrestricted CVP evidence without an objective-derived bound.",
+    "Proposal 3 offers only linear cosystolic support against a linear completeness baseline, yielding at most a constant distance ratio absent additional weighting or superlinear energy. It also leaves predicate-compatible short cocycles unexcluded.",
+    "Proposal 4 has no uniform base-gap theorem: sparse unsatisfaction can give base ratio 1+O(1/m), which logarithmic tensor depth cannot amplify polynomially. The proposed Kronecker lift and expander sampling also do not specify how unrestricted entangled integer vectors or arbitrary formulas are represented.",
+    "Proposal 5 supplies no explicit polynomial-size compression preserving the required certificates. Fixed degree-1-to-6 tests cannot distinguish the admitted linear-degree obstruction, and uncompressed logarithmic-degree moment systems are generally quasipolynomial in m.",
+    "Proposal 6 is killed by its abelian quotient mechanism: in a discriminant group containing (Z/2)^3, the G7 relation 011+100-111=000 has zero quotient syndrome. Outer linear gluing therefore cannot spread that attack; base-lattice geometry can charge only a constant local cost unless an additional nonlinear mechanism is given."
+  ],
+  "evidence": [
+    "Generation 14 exhibits the decisive scaling obstruction: complete pair bags have quadratic baseline while deleting a minimum-indegree clause costs only B+O(m), so the ratio tends to one. Its successful B+32 verifier is explicitly only a fixed-instance shell result.",
+    "Generations 7 and 11 provide exact zero-residual signed-selector attacks, while Generation 13 proves the unique-triple attack lies in the integral affine span of honest encodings. Any Proposal-1 experiment must optimize these lifts through every separator rather than merely test clause drops.",
+    "Generation 5 shows that certified local affine isolation fails under overlap in all 5,832 tested systems, and Generation 6 shows that externally filtered searches are not CVP evidence. Consequently every constraint and coefficient bound must come from the emitted fixed-target objective.",
+    "Proposal 1 directly mutates the killed quadratic pair mesh using hierarchy and weights, and its claimed mechanism is falsifiable on the prescribed growing chains. A finite pass would justify only another experiment, never a composition theorem or polynomial gap."
+  ],
+  "next_experiment": "Run exactly one preregistered Proposal-1 audit. First freeze a deterministic hierarchy, all rational or integral weights, polynomial bit bounds, emitted dimension n(m), squared completeness baseline B(m), and explicit c0>0 with threshold T(m)=B(m)n(m)^(2c0); reject immediately if any boundary table is superpolynomial. For minimally unsatisfiable chains at m=8,16,32, emit the complete fixed-target lattice and use exact MILP with objective-derived coefficient bounds to optimize every minimum-indegree clause drop and the known G7, G9, G11, and G13 affine lifts through T(m); also audit hierarchy size on bounded-degree high-separator inputs. Any subthreshold witness or superpolynomial boundary kills the direction, while a pass remains finite evidence only.",
+  "confidence": 0.97
+}

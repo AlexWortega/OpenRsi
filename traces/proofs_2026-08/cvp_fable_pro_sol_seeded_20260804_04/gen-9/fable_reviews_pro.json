@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 is already defeated by affine closure. Because every matching has zero collision shell, any odd XOR of legal lifted matchings also has zero shell; the known all-eight and holonomy witnesses therefore survive every coloring, splitter, forest size, and dense linear postprocessing of these zero-on-matchings features.",
+    "Proposal 2 confuses semantic detection with mixed-span soundness. All matchings have the same divisor product, so an odd XOR of their lifted vectors retains the legal fingerprint while its triple support can be illegal; directly lifting whole fiber points also requires exponential enumeration, while a product-tree implementation re-enters the tableau obstruction.",
+    "Proposal 3's separating cocircuit parity is constant on the syndrome fiber. For any row covector a and Hx=t, the cocircuit crossing parity is aHx=at, so stacking such measurements adds a common baseline rather than separating YES and NO distances; no alternative explicit matrix is specified.",
+    "Proposal 4 has no polynomial-size binary linear realization of its ordered nonabelian product. Encoding products by a circuit re-enters the bounded-interface obstruction, while whole-witness product lifts again let odd XORs of identity-labeled matchings produce illegal supports with the legal identity feature.",
+    "Proposal 5 does not specify the selector equations, BCH parameters, target, or resulting binary matrix. Any affine existential selector admits odd multi-sector superpositions unless nonlinear one-sector validity is enforced, which either restores rectangle/tableau splicing or requires an unprovided genuinely global realization.",
+    "Proposal 6's SDP is not a valid reduction algorithm: it optimizes using enumerated NO exact-fiber vectors and therefore uses information unavailable in polynomial time. The diagonal constraints do not control the norm of a YES matching because PSD cross terms can make its q-column sum cost quadratic, and no constraints protect every matching or fix a concrete rank/trace budget."
+  ],
+  "evidence": [
+    "The I27 verifier already found an all-eight illegal mixed word of cost 6 and a twisted-holonomy illegal word of cost 9 with every collision-walk feature canceled. Proposal 1 preserves the decisive premise that all legal matchings have zero shell.",
+    "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings, including weight 5 versus legal weight 3. This directly attacks any common legal fingerprint or identity label used by proposals 1, 2, and 4.",
+    "Prior exact integer experiments establish only additive gaps q versus q+2 and 12 versus 14 after variable projection tables. The arbitrary-partner Euclidean multiplicativity hope is also explicitly false, so finite instance-specific PSD optimization cannot be promoted to an amplification theorem.",
+    "The obstruction map proves failures for bounded-fan-in product tableaus, complete-fiber fingerprints, and affine selectors under their stated hypotheses. None of the proposals supplies an explicit construction demonstrably outside those hypotheses.",
+    "No verifier evidence is supplied for these six proposals; all reported items are proposed experiments or expectations. Several experiments are not reproducible as written because the lift, field, selector, measurement matrix, or optimization budget is unspecified."
+  ],
+  "next_experiment": "None as written. Reconsider only a mutation giving an explicit polynomial-time matrix or witness-oblivious Q(A), a fixed target and rank budget, universal YES-cost bounds, and a proof that known all-eight and holonomy affine combinations do not inherit the same cheap legal representation.",
+  "confidence": 0.995
+}

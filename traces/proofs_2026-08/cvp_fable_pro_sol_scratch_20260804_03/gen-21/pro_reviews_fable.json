@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 is defeated by G13 affine closure: any linear discriminant or Construction-A map sending all honest encodings to one class also sends their coefficient-sum-one affine combination to that class. Code distance says nothing about this zero-class attack, and the proposed block replacement does not enlarge the encoding or otherwise break the collision.",
+    "Proposal 2 does not meet polynomial size: squarefree moments through degree d=O(log m) number n^{O(log m)}, generally quasipolynomial rather than polynomial. Low-degree Macaulay rows remain linear and admit pseudomoments until a refutation degree is reached; the three-variable all-eight-clauses instance has an elementary degree-three contradiction and cannot discriminate the required asymptotic degree.",
+    "Proposal 3 leaves the edge labels, representations, twisted target, fiber initialization, weights, and matched control unspecified. Twisted conservation is still linear, so affine combinations of paths with identical twisted boundary survive; testing two unfrozen representations only against the G19 shell cannot establish that completeness boundaries coincide or that a common signed kernel is absent.",
+    "Proposal 4 offers only constant-size local shell separation. Even a forbidden label beyond 2R gives only additive local cost against a completeness radius accumulated over many clauses, while G5 overlap, G13 affine combinations, and G15 threading remain untreated; the dimension-six search therefore cannot discriminate polynomial-gap scaling.",
+    "Proposal 5 either attaches fingerprints to exponentially many complete assignments or requires the unspecified multiplication-table lift already threatened by G19/G20 signed splicing. The 16-state experiment merely checks the direct Vandermonde property and omits the arithmetic circuit, Construction-A lift, unrestricted CVP objective, baseline, and control where the actual blocker occurs.",
+    "Proposal 6 cannot encode nonnegativity, bounded remainders, or rounding semantics using the stated unrestricted linear lattice rows; G1 negative slack and carry-table splicing remain live. A uniformly generated polynomial-size CG contradiction for every unsatisfiable formula is also an unsupported proof-complexity assumption, and two rounds on the easy three-variable obstruction do not test rank or size growth."
+  ],
+  "evidence": [
+    "G13 exactly exhibits a constant-excess harmful selector as an integral affine combination of honest encodings with coefficient sum one. G15 verifies that the same combination threads every level of an enlarged hierarchy with zero residual.",
+    "G7 verifies a zero-residual signed selector defeating all radix rows, and G19 verifies a zero-residual accepting signed flow with two negative coefficients. These directly undermine linear quotient, carry-table, and transition-conservation lifts.",
+    "G9 and G11 find constant-cost parity kernels under degree-two and degree-three moments, while G12 finds a cheaper clause-drop attack against a nonlinear-looking Walsh tag. These finite results provide no bounded-degree or fingerprint scaling law.",
+    "G14 is only a shell exclusion through baseline plus 32 on one pair-bag instance and explicitly supplies no composition theorem. None of the proposed local experiments addresses that missing growing-gap law.",
+    "No verifier evidence accompanies these six proposals, and the supplied status establishes no hardness lemma or dimension-dependent gap. Their proposed experiments are either underspecified or test an easy finite consequence rather than the stated causal blocker."
+  ],
+  "next_experiment": "None authorized as written. Reopen only a frozen magnetic-holonomy mutation specifying every integral representation, edge label, fiber coordinate, row, target, weight, and matched control, proving all honest accepting paths have one twisted boundary, and exactly searching the unrestricted obstruction/control instances through baseline plus 16; kill on any zero-residual signed flow or completeness mismatch.",
+  "confidence": 0.99
+}

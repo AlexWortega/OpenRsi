@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not define how a local triple column evaluates genuinely global assignment monomials. Using only information carried by that triple returns to bounded local signatures; adding product consistency returns to tableaux/moments; using complete assignments is exponential. The cover-free family, tie-breaking, BCH map, target, and resulting binary matrix are also unspecified, so the proposed finite test is not reproducible.",
+    "Proposal 2 has no completeness mechanism connecting a satisfying assignment to trivial nonabelian transport. Formula-fixed labels cannot depend on the witness, while witness-dependent transports require an unspecified global selector or multiplication tableau; moreover fixed S3 supplies only constant conjugate spreading, not a polynomial gap.",
+    "Proposal 3 has no linear construction implementing acceptance of one protected sector without either charging every sector or introducing an OR/branch interface. Isolation of a legal minimum does not by itself separate illegal affine superpositions, and the proposed enumeration omits a defined combiner matrix and target.",
+    "Proposal 4 asks additive columns to measure the rank or Plücker profile of a selected set, which is nonlinear across selected triples. Linearizing those wedges requires subset columns or product-consistency interfaces, while per-triple compounds do not compute the compound of the selected collection. No endpoint-vector normalization establishes uniformly cheap YES witnesses.",
+    "Proposal 5 supplies neither a specific Lawrence matrix, expander, target, nor norm weights. Searching coefficients only in [-2,2] cannot certify an integer-fiber minimum or absence of larger-coefficient Graver repairs, so its proposed experiment is not genuinely discriminating.",
+    "Proposal 6 is already algebraically defeated: the recorded all-eight and holonomy mixed words cancel every indexed walk feature before coding. Any linear prefix or tree-code transform maps that zero feature vector to zero, and bounded occurrence or orientation does not change this fact.",
+    "Proposal 7 needs growing degree to escape the fixed-degree obstructions, but the full squarefree Macaulay space through degree Theta(log n) has n^{Theta(log n)} size. No polynomial sparse monomial rule or multiplicity matrix is specified, and degree-3/4 tests cannot discriminate the missing growing-degree construction; evaluation-vector Hamming baselines are also assignment-dependent."
+  ],
+  "evidence": [
+    "The bounded-signature theorem gives exact alternating cube relations that survive arbitrary linear rows, modular reduction, and dense postprocessing. Cover-free design properties concern set isolation and do not invalidate XOR finite-difference relations.",
+    "The existing walk verifier found an all-eight illegal mixed word of cost 6 and a twisted-holonomy illegal word of cost 9, with every walk coordinate zero. This directly falsifies the claimed tree-code protection mechanism rather than merely providing adverse finite statistics.",
+    "The exchange-quotient verifier found illegal odd covers in the affine span of perfect matchings on 32 instances. Separate cheap sectors therefore require a non-affine, explicitly encoded selector; no such selector appears in Proposal 3.",
+    "The determinant/exterior verifier retained support-three virtual permutation states even after all compound coordinates were added, while the explicit global dictionary was exponential. This is direct adverse evidence for Proposal 4's rank-profile premise.",
+    "Integer exact-cover experiments obtained only additive gaps, including 12 versus 14 with variable projection tables, and proved that affine table interfaces impose linear YES baselines. Proposal 5 gives no mutation that removes this baseline or excludes constant toric repairs.",
+    "No verifier evidence is supplied for Proposals 1, 2, 3, 4, 5, or 7, and none specifies a complete binary H,t instance whose full mixed fiber can be enumerated. Their finite sketches therefore cannot presently support implementation."
+  ],
+  "next_experiment": "None for these proposals. Reopen only after a mutation supplies an explicit polynomial-time matrix and target; for Proposal 6 specifically, the mutation must create a nonzero feature on the already certified zero-walk hostile words before any linear coding.",
+  "confidence": 0.99
+}

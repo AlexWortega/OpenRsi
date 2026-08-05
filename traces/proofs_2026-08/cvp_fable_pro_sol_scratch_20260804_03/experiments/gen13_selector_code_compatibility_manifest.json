@@ -1,0 +1,11228 @@
+{
+  "affine_collision": {
+    "anchor_extra": 24,
+    "coefficient_sum": 1,
+    "coefficients_on_lexicographic_honest_encodings": [
+      1,
+      -1,
+      -1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      1,
+      1,
+      -1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "identity": "collision=sum_i coefficients[i]*honest_encoding[i] over Z",
+    "name": "G11_unique_triple_parity",
+    "selector": [
+      [
+        4,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        11,
+        -1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        13,
+        -1
+      ],
+      [
+        14,
+        -1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        59,
+        1
+      ],
+      [
+        65,
+        1
+      ]
+    ]
+  },
+  "assignments": [
+    "0000",
+    "0001",
+    "0010",
+    "0011",
+    "0100",
+    "0101",
+    "0110",
+    "0111",
+    "1000",
+    "1001",
+    "1010",
+    "1011",
+    "1100",
+    "1101",
+    "1110",
+    "1111"
+  ],
+  "audit_sha256": "2b074feb1370a5bedce0d0d36d1754b486ffe29d1c5e1c70f6f3137cab8a926b",
+  "conclusion": "the G11 selector has the common honest hash under every linear compatible syndrome, over Z and modulo every tested or untested prime",
+  "difference_generators": [
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        43,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        60,
+        1
+      ],
+      [
+        61,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        26,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        55,
+        1
+      ],
+      [
+        70,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        26,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        41,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        54,
+        1
+      ],
+      [
+        60,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        70,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        25,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        35,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        63,
+        1
+      ],
+      [
+        69,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        17,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        25,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        47,
+        1
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        62,
+        1
+      ],
+      [
+        69,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        35,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        44,
+        1
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        63,
+        1
+      ],
+      [
+        68,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        17,
+        1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        50,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        62,
+        1
+      ],
+      [
+        68,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        8,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        31,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        37,
+        1
+      ],
+      [
+        57,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        67,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        31,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        43,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        56,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        67,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        37,
+        1
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        55,
+        1
+      ],
+      [
+        57,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        66,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        41,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        54,
+        1
+      ],
+      [
+        56,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        66,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        59,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        65,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        38,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        47,
+        1
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        58,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        65,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        28,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        44,
+        1
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        59,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        64,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ],
+    [
+      [
+        0,
+        -1
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        12,
+        -1
+      ],
+      [
+        18,
+        -1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        27,
+        -1
+      ],
+      [
+        28,
+        1
+      ],
+      [
+        33,
+        -1
+      ],
+      [
+        38,
+        1
+      ],
+      [
+        42,
+        -1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        50,
+        1
+      ],
+      [
+        53,
+        -1
+      ],
+      [
+        58,
+        1
+      ],
+      [
+        61,
+        -1
+      ],
+      [
+        64,
+        1
+      ],
+      [
+        71,
+        -1
+      ]
+    ]
+  ],
+  "finite_claim_only": true,
+  "honest_encodings": [
+    [
+      [
+        0,
+        1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        18,
+        1
+      ],
+      [
+        27,
+        1
+      ],
+      [
+        33,
+        1
+      ],
+      [
+        42,
+        1
+      ],
+      [
+        53,
+        1
+      ],
+      [
+        61,
+        1
+      ],
+      [
+        71,
+        1
+      ]
+    ],
+    [
+      [
+        1,
+        1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        27,
+        1
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        43,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        60,
+        1
+      ],
+      [
+        71,
+        1
+      ]
+    ],
+    [
+      [
+        2,
+        1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        18,
+        1
+      ],
+      [
+        26,
+        1
+      ],
+      [
+        33,
+        1
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        55,
+        1
+      ],
+      [
+        61,
+        1
+      ],
+      [
+        70,
+        1
+      ]
+    ],
+    [
+      [
+        3,
+        1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        19,
+        1
+      ],
+      [
+        26,
+        1
+      ],
+      [
+        32,
+        1
+      ],
+      [
+        41,
+        1
+      ],
+      [
+        54,
+        1
+      ],
+      [
+        60,
+        1
+      ],
+      [
+        70,
+        1
+      ]
+    ],
+    [
+      [
+        4,
+        1
+      ],
+      [
+        12,
+        1
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        25,
+        1
+      ],
+      [
+        35,
+        1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        63,
+        1
+      ],
+      [
+        69,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        1
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        17,
+        1
+      ],
+      [
+        25,
+        1
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        47,
+        1
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        62,
+        1
+      ],
+      [
+        69,
+        1
+      ]
+    ],
+    [
+      [
+        6,
+        1
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        35,
+        1
+      ],
+      [
+        44,
+        1
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        63,
+        1
+      ],
+      [
+        68,
+        1
+      ]
+    ],
+    [
+      [
+        7,
+        1
+      ],
+      [
+        15,
+        1
+      ],
+      [
+        17,
+        1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        50,
+        1
+      ],
+      [
+        62,
+        1
+      ],
+      [
+        68,
+        1
+      ]
+    ],
+    [
+      [
+        0,
+        1
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        31,
+        1
+      ],
+      [
+        37,
+        1
+      ],
+      [
+        42,
+        1
+      ],
+      [
+        53,
+        1
+      ],
+      [
+        57,
+        1
+      ],
+      [
+        67,
+        1
+      ]
+    ],
+    [
+      [
+        1,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        31,
+        1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        43,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        56,
+        1
+      ],
+      [
+        67,
+        1
+      ]
+    ],
+    [
+      [
+        2,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        37,
+        1
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        55,
+        1
+      ],
+      [
+        57,
+        1
+      ],
+      [
+        66,
+        1
+      ]
+    ],
+    [
+      [
+        3,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        41,
+        1
+      ],
+      [
+        54,
+        1
+      ],
+      [
+        56,
+        1
+      ],
+      [
+        66,
+        1
+      ]
+    ],
+    [
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        59,
+        1
+      ],
+      [
+        65,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        1
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        29,
+        1
+      ],
+      [
+        38,
+        1
+      ],
+      [
+        47,
+        1
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        58,
+        1
+      ],
+      [
+        65,
+        1
+      ]
+    ],
+    [
+      [
+        6,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        20,
+        1
+      ],
+      [
+        28,
+        1
+      ],
+      [
+        39,
+        1
+      ],
+      [
+        44,
+        1
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        59,
+        1
+      ],
+      [
+        64,
+        1
+      ]
+    ],
+    [
+      [
+        7,
+        1
+      ],
+      [
+        11,
+        1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        28,
+        1
+      ],
+      [
+        38,
+        1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        50,
+        1
+      ],
+      [
+        58,
+        1
+      ],
+      [
+        64,
+        1
+      ]
+    ]
+  ],
+  "prime_audits": [
+    {
+      "all_simple_clause_drops": [
+        {
+          "assignment": "0000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        }
+      ],
+      "attacks": [
+        {
+          "anchor_extra": 8,
+          "name": "G7_three_term",
+          "syndrome_weight": 28,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G9_degree_two_parity",
+          "syndrome_weight": 8,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G11_unique_triple_parity",
+          "syndrome_weight": 0,
+          "zero_syndrome": true
+        },
+        {
+          "anchor_extra": 0,
+          "name": "G12_exact_clause_drop",
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        }
+      ],
+      "difference_rank": 14,
+      "g5_representative_embeddings": [
+        {
+          "clause": 0,
+          "syndrome_weight": 32,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 1,
+          "syndrome_weight": 10,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 2,
+          "syndrome_weight": 18,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 3,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 4,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 5,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 6,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 7,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 8,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        }
+      ],
+      "maximal_compatible_syndrome_basis": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            12,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            19,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            21,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            22,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            23,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            25,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            26,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            27,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            29,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            30,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            31,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            32,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            33,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            1
+          ],
+          [
+            34,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            1
+          ],
+          [
+            35,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            36,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            37,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            38,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            39,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            40,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            41,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            42,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            43,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            44,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            45,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            46,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            47,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            1
+          ],
+          [
+            48,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            49,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            50,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            51,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            52,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            53,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            1
+          ],
+          [
+            54,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            55,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            56,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            57,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            58,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            60,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            61,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            1
+          ],
+          [
+            62,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            1
+          ],
+          [
+            63,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            64,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            66,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            67,
+            1
+          ]
+        ],
+        [
+          [
+            24,
+            1
+          ],
+          [
+            68,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            69,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            70,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            71,
+            1
+          ]
+        ]
+      ],
+      "maximal_compatible_syndrome_dimension": 58,
+      "prime": 2,
+      "rref_pivots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        16,
+        17,
+        24
+      ]
+    },
+    {
+      "all_simple_clause_drops": [
+        {
+          "assignment": "0000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        }
+      ],
+      "attacks": [
+        {
+          "anchor_extra": 8,
+          "name": "G7_three_term",
+          "syndrome_weight": 28,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G9_degree_two_parity",
+          "syndrome_weight": 8,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G11_unique_triple_parity",
+          "syndrome_weight": 0,
+          "zero_syndrome": true
+        },
+        {
+          "anchor_extra": 0,
+          "name": "G12_exact_clause_drop",
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        }
+      ],
+      "difference_rank": 14,
+      "g5_representative_embeddings": [
+        {
+          "clause": 0,
+          "syndrome_weight": 33,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 3,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 4,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 5,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 6,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 7,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 8,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        }
+      ],
+      "maximal_compatible_syndrome_basis": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            12,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            19,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            21,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            22,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            23,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            25,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            26,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            27,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            29,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            30,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            31,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            32,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            33,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            2
+          ],
+          [
+            34,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            2
+          ],
+          [
+            35,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            36,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            37,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            38,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            39,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            40,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ],
+          [
+            41,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            42,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ],
+          [
+            43,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ],
+          [
+            44,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            45,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            46,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            2
+          ],
+          [
+            47,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            2
+          ],
+          [
+            48,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            49,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            50,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ],
+          [
+            51,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ],
+          [
+            52,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            53,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ],
+          [
+            54,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            55,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            56,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            57,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            58,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            60,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            61,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            2
+          ],
+          [
+            62,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            2
+          ],
+          [
+            63,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            64,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            66,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            16,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            67,
+            1
+          ]
+        ],
+        [
+          [
+            24,
+            2
+          ],
+          [
+            68,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            2
+          ],
+          [
+            17,
+            2
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            69,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            70,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            71,
+            1
+          ]
+        ]
+      ],
+      "maximal_compatible_syndrome_dimension": 58,
+      "prime": 3,
+      "rref_pivots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        16,
+        17,
+        24
+      ]
+    },
+    {
+      "all_simple_clause_drops": [
+        {
+          "assignment": "0000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        }
+      ],
+      "attacks": [
+        {
+          "anchor_extra": 8,
+          "name": "G7_three_term",
+          "syndrome_weight": 28,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G9_degree_two_parity",
+          "syndrome_weight": 8,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G11_unique_triple_parity",
+          "syndrome_weight": 0,
+          "zero_syndrome": true
+        },
+        {
+          "anchor_extra": 0,
+          "name": "G12_exact_clause_drop",
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        }
+      ],
+      "difference_rank": 14,
+      "g5_representative_embeddings": [
+        {
+          "clause": 0,
+          "syndrome_weight": 33,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 3,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 4,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 5,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 6,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 7,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 8,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        }
+      ],
+      "maximal_compatible_syndrome_basis": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            12,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            19,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            21,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            22,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            23,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            25,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            26,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            27,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            29,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            30,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            31,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            32,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            33,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            4
+          ],
+          [
+            34,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            4
+          ],
+          [
+            35,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            36,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            37,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            38,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            39,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            4
+          ],
+          [
+            40,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ],
+          [
+            41,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            42,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            4
+          ],
+          [
+            43,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            4
+          ],
+          [
+            44,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            45,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            46,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            4
+          ],
+          [
+            47,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            4
+          ],
+          [
+            48,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            49,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            50,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            4
+          ],
+          [
+            51,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            4
+          ],
+          [
+            52,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            53,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ],
+          [
+            54,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            4
+          ],
+          [
+            55,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            56,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            57,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            58,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            60,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            61,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            4
+          ],
+          [
+            62,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            4
+          ],
+          [
+            63,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            64,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            66,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            67,
+            1
+          ]
+        ],
+        [
+          [
+            24,
+            4
+          ],
+          [
+            68,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            4
+          ],
+          [
+            17,
+            4
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            69,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            70,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            71,
+            1
+          ]
+        ]
+      ],
+      "maximal_compatible_syndrome_dimension": 58,
+      "prime": 5,
+      "rref_pivots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        16,
+        17,
+        24
+      ]
+    },
+    {
+      "all_simple_clause_drops": [
+        {
+          "assignment": "0000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 1,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 3,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "0111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 0,
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1000",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 0,
+          "syndrome_weight": 21,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1001",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 0,
+          "syndrome_weight": 23,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1010",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 0,
+          "syndrome_weight": 15,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1011",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 0,
+          "syndrome_weight": 37,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1100",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 0,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1101",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 0,
+          "syndrome_weight": 25,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1110",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 0,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 2,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 3,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 4,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 5,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 6,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 7,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        },
+        {
+          "assignment": "1111",
+          "clause": 8,
+          "syndrome_weight": 1,
+          "zero_syndrome": false
+        }
+      ],
+      "attacks": [
+        {
+          "anchor_extra": 8,
+          "name": "G7_three_term",
+          "syndrome_weight": 28,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G9_degree_two_parity",
+          "syndrome_weight": 8,
+          "zero_syndrome": false
+        },
+        {
+          "anchor_extra": 24,
+          "name": "G11_unique_triple_parity",
+          "syndrome_weight": 0,
+          "zero_syndrome": true
+        },
+        {
+          "anchor_extra": 0,
+          "name": "G12_exact_clause_drop",
+          "syndrome_weight": 27,
+          "zero_syndrome": false
+        }
+      ],
+      "difference_rank": 14,
+      "g5_representative_embeddings": [
+        {
+          "clause": 0,
+          "syndrome_weight": 33,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 1,
+          "syndrome_weight": 11,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 2,
+          "syndrome_weight": 19,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 3,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 4,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 5,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 6,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 7,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        },
+        {
+          "clause": 8,
+          "syndrome_weight": 4,
+          "zero_syndrome": false
+        }
+      ],
+      "maximal_compatible_syndrome_basis": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            12,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            15,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            19,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            21,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            126
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            16,
+            126
+          ],
+          [
+            22,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            9,
+            126
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            23,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            25,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            26,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            27,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            29,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            30,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            126
+          ],
+          [
+            9,
+            126
+          ],
+          [
+            16,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            31,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            32,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            33,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            126
+          ],
+          [
+            34,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            126
+          ],
+          [
+            35,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            9,
+            126
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            36,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            126
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            16,
+            126
+          ],
+          [
+            37,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            38,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            39,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            126
+          ],
+          [
+            40,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            126
+          ],
+          [
+            41,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            42,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            126
+          ],
+          [
+            43,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            126
+          ],
+          [
+            44,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            45,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            46,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            126
+          ],
+          [
+            47,
+            1
+          ]
+        ],
+        [
+          [
+            5,
+            126
+          ],
+          [
+            48,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            49,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            50,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            126
+          ],
+          [
+            51,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            126
+          ],
+          [
+            52,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            53,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            126
+          ],
+          [
+            54,
+            1
+          ]
+        ],
+        [
+          [
+            2,
+            126
+          ],
+          [
+            55,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            9,
+            126
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            56,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            126
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            16,
+            126
+          ],
+          [
+            57,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            58,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            60,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            6,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            61,
+            1
+          ]
+        ],
+        [
+          [
+            17,
+            126
+          ],
+          [
+            62,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            126
+          ],
+          [
+            63,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            64,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            66,
+            1
+          ]
+        ],
+        [
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            8,
+            126
+          ],
+          [
+            9,
+            126
+          ],
+          [
+            16,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            67,
+            1
+          ]
+        ],
+        [
+          [
+            24,
+            126
+          ],
+          [
+            68,
+            1
+          ]
+        ],
+        [
+          [
+            16,
+            126
+          ],
+          [
+            17,
+            126
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            69,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            70,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            126
+          ],
+          [
+            1,
+            126
+          ],
+          [
+            4,
+            126
+          ],
+          [
+            5,
+            126
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            17,
+            1
+          ],
+          [
+            24,
+            126
+          ],
+          [
+            71,
+            1
+          ]
+        ]
+      ],
+      "maximal_compatible_syndrome_dimension": 58,
+      "prime": 127,
+      "rref_pivots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        16,
+        17,
+        24
+      ]
+    }
+  ],
+  "schema": "gen13-selector-code-compatibility-v1",
+  "scope": "finite obstruction to raw 72-selector linear hashing; no claim about nonlinear or enlarged encodings",
+  "selector_count": 72
+}

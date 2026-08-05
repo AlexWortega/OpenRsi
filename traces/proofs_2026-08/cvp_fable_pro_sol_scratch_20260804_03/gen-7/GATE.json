@@ -1,0 +1,39 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-7/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The tested mechanism has an exact affine-kernel attack: the signed block 011 + 100 - 111 preserves normalization and marginals while eliminating the forbidden 000 selector. Because Az=b exactly, every raw and cyclic radix residual vanishes regardless of radix weights or ordering.",
+      "The only verified gap is the fixed-instance ratio sqrt(80/72). This supplies neither a dimension-dependent gap nor an asymptotic hardness lemma, and the finite counterexample cannot be promoted to a general impossibility theorem for other constructions.",
+      "The proposed next step is not one precise bounded experiment. It specifies no mutated basis, target, parameter range, exhaustive domain, or numerical pass/fail threshold, so it does not justify CONTINUE.",
+      "No polynomial-size family, composition theorem, reduction correctness proof, or relation between SAT size, lattice dimension, and approximation factor is supplied."
+    ],
+    "evidence": [
+      "Machine verification passed and reconstructs a rank-72, dimension-154 fixed-target lattice with matching basis/target and canonical column-HNF hashes.",
+      "The verifier establishes the finite objective ||2z-1||^2+||Az-b||^2+||R(Az-b)||^2 and exhibits an integral zero-residual selector of squared distance 80 versus Boolean baseline 72.",
+      "The exact finite minimum argument is sound: anchor excess is quantized in multiples of 8; below 80 coefficients must be Boolean, while Boolean zero residual would yield a satisfying assignment, excluded by coverage of all 16 assignments.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently classify Generation 7 as a finite kill of this linear radix mutation and explicitly state that no hardness lemma or polynomial gap is established."
+    ],
+    "next_experiment": "None for this candidate: stop the radix run. Reopen only after an explicit mutated fixed-target basis adds coordinates that distinguish 011 + 100 - 111 from 000; then prescribe an unrestricted exact-CVP test on the same nine-clause obstruction plus a specified satisfiable multi-assignment control with fixed numerical acceptance thresholds.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The candidate’s causal mechanism is defeated by an exact residual-kernel vector on the tested fixed-target lattice. The signed block 011 + 100 - 111 preserves normalization and all first marginals while avoiding the forbidden 000 selector, so every raw and radix residual is zero.",
+      "The verified finite gap is only squared distance 80 versus completeness radius squared 72, a ratio sqrt(80/72). This supplies neither a dimension-dependent gap nor any asymptotic hardness lemma, and the single finite instance cannot be promoted to either.",
+      "The proposed next step is not one precise bounded experiment: it requests an unspecified fresh polynomial-size mechanism. Continuing would require a concrete basis, target, mutation, finite instance set, and exact unrestricted-CVP falsification threshold."
+    ],
+    "evidence": [
+      "The supplied verifier passed and reconstructs a rank-72 lattice in dimension 154 with one fixed target, 72 anchor rows, 41 raw checks, and 41 cyclic radix rows; its basis/target and canonical column-HNF hashes match the packet.",
+      "The nine falsification edges are checked to cover all 16 assignments. The verifier exhibits the stated integral selector with zero raw residual and squared anchor cost 80.",
+      "The minimum-80 claim has a valid finite certificate: every integral anchor contributes at least one and any non-Boolean coefficient adds at least eight, while Boolean zero residual would imply a satisfying assignment. For Boolean nonzero residuals, the derived digit bound and base-33 inequality force nonzero radix coordinates, placing them above 80.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently classify this as a finite kill of the tested linear radix mutation and explicitly state that no hardness lemma or polynomial gap has been established."
+    ],
+    "next_experiment": "None for this candidate. Reopen only with a fully specified mutation that adds constraints not annihilated by 011 + 100 - 111, then emit its fixed basis and target and exactly audit unrestricted CVP on the same nine-clause obstruction plus a satisfiable multi-assignment control.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

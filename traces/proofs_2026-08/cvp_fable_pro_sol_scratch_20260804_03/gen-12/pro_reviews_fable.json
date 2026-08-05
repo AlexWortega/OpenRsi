@@ -1,0 +1,22 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 does not escape G6 or G11 as specified. Binary/BCH distance applies modulo two or to binary messages, not unrestricted integer register shifts; an integral realization needs carries or may have sparse cancellation, while synchronized occurrence changes can move a shared register together with its writers.",
+    "Proposal 1 also lacks completeness scaling: equal weight of codewords does not imply equal Euclidean distance of all centered honest register vectors. A constant-rate encoding with linear distance normally adds the same order of squared norm to completeness and a one-register defect, yielding at most a constant ratio absent a new accounting lemma.",
+    "Proposal 2 has no explicit selector-to-chain map, fixed target, or proof that pinning homology removes integral boundaries created inside clause gadgets. SNF on tetrahedral and octahedral examples would test only those constant complexes and cannot distinguish ambient cosystole from gadget-local fillings.",
+    "Proposal 3 merely moves G7 to a lifted signed-pseudodistribution kernel. Constant k supplies no uniform soundness theorem, growing k threatens superpolynomial dimension, and tuple anchors can make completeness scale as fast as the number of exposed contexts; the proposed fixed-instance k=2,3,4 test cannot resolve these issues.",
+    "Proposal 4 is inapplicable because no composable base quotient gap exists, and every current exact kernel tensors forward. The proposed rank-one enforcement is unspecified and is not a linear lattice condition; comparing against 96^2 and 72^2 assumes product behavior that must not be presumed.",
+    "Proposal 5's norm-integrality bound applies only after proving a nonzero algebraic residual. Equal trace norm of individual fingerprints does not guarantee uniform completeness for sums, support-at-most-ten enumeration does not audit unrestricted relations, and no explicit rational Euclidean basis or globally consistent fingerprint assignment is supplied.",
+    "Proposal 7 is still a linear residual encoder unless its transition map is proved injective on the exact signed-selector quotient. Termination removes tail-biting cycles but not local zero-output branch relations such as G9/G11, and testing memory two or three cannot discriminate a claimed polynomial-free-distance family.",
+    "Proposal 6 is implementable only after forbidding instance-specific SDP overfitting: the Gram family, center, normalization, completeness set, and rational realization must be fixed before optimization. A circuit list through excess 32 is not unrestricted CVP evidence; final separation must use exact nearest-vector search with an eigenvalue-derived exhaustive bound."
+  ],
+  "evidence": [
+    "Generation 5 found squared-norm-at-most-four overlap kernels in every one of 5,832 tested compositions, so certified local isolation does not justify Proposals 2, 3, or 7.",
+    "Generation 6 established that external normalization, changed references, and mod-2 filtering are invalid CVP evidence. This directly bars informal binary-code, trellis, and filtered-SNF arguments.",
+    "Generation 7 exhibited an exact zero-residual signed selector at squared distance 80, proving that residual spreading or reweighting cannot charge an existing kernel.",
+    "Generations 9 and 11 found exact seven-term parity kernels with anchor excess 24; cubic pairwise comparisons merely moved the attack to a unique occurrence, and synchronized copies evade pairwise comparison analytically.",
+    "The only positive benchmark is the finite two-parameter metric with minima 96 and 72. A broader predeclared PSD family can therefore genuinely test whether that fixed-instance ceiling came from the restricted ansatz, but no outcome would establish asymptotic hardness."
+  ],
+  "next_experiment": "Run Proposal 6 once with a predeclared shared incidence-equivariant rational Gram parameterization, fixed center, trace normalization, and positive eigenvalue floor. Enforce completeness for every honest encoding on all satisfiable signings of the same finite incidence template; use exact CVP separation on the obstruction, rationally realize the final Gram as an emitted fixed-target lattice, and certify either a ratio strictly above sqrt(4/3) or a dual upper bound. Reject any result based only on the excess-32 circuit list.",
+  "confidence": 0.97
+}

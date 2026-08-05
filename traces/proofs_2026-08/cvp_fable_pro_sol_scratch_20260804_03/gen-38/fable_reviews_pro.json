@@ -1,0 +1,22 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed as a reduction mechanism. A fixed cyclotomic block can at most impose constant local trace separation; dropping a selector gives zero embedding energy, and independent copies remain additive under O8, so neither overlap soundness nor a polynomial gap follows.",
+    "Proposal 2 is killed in its present form. Reed–Solomon distance applies to codewords, while multiplication and re-encoding are linearized with joint selectors that can admit O4 affine pseudocodewords; the finite-field-to-integral CVP lift, carries, weights, and an unbounded coefficient certificate are also unspecified.",
+    "Proposal 3 is killed. Field cosystolic expansion does not automatically give the required integral Euclidean inequality for unrestricted coefficients, and a complete six-vertex complex cannot discriminate asymptotic expansion because every support is constant-sized; no explicit twisted boundary construction excludes O2/O4 affine lifts.",
+    "Proposal 4 is killed. Noncommutative ordered products are not enforced by linear representation-valued conservation; expanding finite-group states reduces the construction to an ordinary linear flow cover where O6 signed cycles remain, while enumeration only through l1 norm 6 would not certify the unrestricted fiber.",
+    "Proposal 6 is killed. Local Delaunay empty-sphere properties have no supplied preservation theorem under lattice fiber products, and overlap points, drops, or additive radius growth remain exactly O2/O5/O7; the proposed gluing does not specify an integral lattice, center, target, or acceptance threshold.",
+    "Proposal 7 is killed. Quaternion no-zero-divisors applies to actual rank-one products, not unrestricted signed joint-selector mixtures; bilinear linearization restores O4/O7 entanglement, a zero factor annihilates the product, and norm-one nonhonest units defeat the claimed defect distinction.",
+    "Proposal 5 remains blocked from any theorem by the G13/G15 affine-lift risk and by O8: even charging every dense attack proportionally to the number of bags yields only a constant relative cost unless a superlinear scaling law is proved. It nevertheless has one precise finite falsifier that distinguishes whether larger bags eliminate the known affine pseudodistribution."
+  ],
+  "evidence": [
+    "Generation 13 verified that the harmful parity selector is an exact integral affine combination of 16 honest encodings and is invisible to every compatible raw linear syndrome.",
+    "Generation 15 verified that those same affine coefficients lift with zero residual through every node of the tested hierarchy, below its claimed threshold.",
+    "Generation 14 verified that complete pair bags exclude attacks only through the finite shell B+32; no scaling law followed. Larger 3/4-clause bags therefore test a real unresolved boundary rather than repeating an already settled case.",
+    "Generations 32 and 37 verified additive compatible parity across copies, including the exact universal equality W2=2W1 in the frozen metric family. Thus finite local separation cannot be promoted to composition or polynomial hardness.",
+    "Generation 30 verified that unrestricted tensor coefficients invalidate rank-one composition reasoning, directly undermining the analogous quaternion argument.",
+    "All seven proposed experiments are presently unexecuted; none supplies verifier evidence or an asymptotic soundness lemma."
+  ],
+  "next_experiment": "Implement only Proposal 5 on the frozen nine-clause obstruction and matched control. Construct the lexicographically first minimum family of 3/4-clause bags such that, for every nonempty clause support S of size at most four and every i in S, some bag intersects S exactly in i; use selectors only for assignments satisfying every clause in a bag, emit normalization and complete shared-variable marginal rows, and optimize ||2z-1||^2+25||Az-b||^2 exactly through B+64 with bounds derived from the anchor shell. KILL if the control minimum is not B, the known 16-assignment affine coefficients lift exactly, or any unrestricted obstruction vector has cost at most B+64.",
+  "confidence": 0.96
+}

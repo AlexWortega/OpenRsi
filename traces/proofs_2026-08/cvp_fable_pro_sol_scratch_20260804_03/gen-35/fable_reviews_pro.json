@@ -1,0 +1,23 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposals 1, 2, and 6 do not escape O9/O11. Deterministic monomial tags, linear coboundary/period rows, modular Construction-A rows, covers, and tuple marginals all admit the supplied G13 affine coefficients lifted through the enlarged coordinates; zero syndrome then defeats Graver, cosystolic, and p-adic amplification.",
+    "Proposal 1 supplies no uniform toric family or harmful-Graver lower bound, and its quartic experiment does not define the exact matrix, harmful fiber, or exhaustive search domain. On the four-variable instance, per-label monomial expansion cannot remove an existing affine relation among complete selector encodings.",
+    "Proposal 2 has no explicit complex, cover rule, period basis, or proved separation between legal and adverse growth. Testing one smallest double cover cannot discriminate the claimed logarithmic recurrence, while linear relative-homology and affine-lift attacks remain available.",
+    "Proposal 3 tests only whether a quadratic Veronese code is Delaunay, not whether clauses can be attached soundly. A three-literal falsification indicator is cubic and is not represented linearly by the stated 10 quadratic coordinates; the unrestricted rational Q,c search and lattice-point enumeration also lack finite bounds.",
+    "Proposal 4 assumes multiplicativity for rank-one quaternion residuals, but CVP coefficients are unrestricted and do not enforce rank-one tensor structure. Enumerating coefficient matrices with l1 at most 3 cannot certify the relevant shell or exclude O14 entangled shortcuts.",
+    "Proposal 5 gives no explicit compilation of the CNF into an S3 multiplication tree and no polynomial-size analysis for iterated wreath products. Full group-algebra marginals retain signed contingency-table trades analogous to O12, so a bounded anchor-excess search cannot validate the claimed representation-theoretic growth.",
+    "Proposal 7's H8 projectors are mutually Frobenius-orthogonal, so their vectorizations are merely a scaled one-hot basis. Khatri-Rao powering therefore reduces to tuple-bag lifting, where O11 affine lifts and O14 unrestricted entangled coefficient arrays remain; the proposed common-sphere audit does not test the powering claim.",
+    "None of the proposals provides a uniform construction, completeness radius, exact unrestricted soundness argument, or growth inequality addressing O10/O13/O15. Their proposed fixed-instance tests could at most produce finite shell observations and cannot support an n^c gap."
+  ],
+  "evidence": [
+    "Generation 13 supplies an exact integral affine representation of the harmful G11 selector using coefficients summing to one, making every compatible linear syndrome vanish over all tested moduli. Generation 15 then lifts those same coefficients through every hierarchy node with zero residual and beats the preregistered threshold.",
+    "Generation 7 found an exact signed-selector kernel annihilating all raw and radix rows. This directly supports O5 against Proposal 6's divisibility narrative unless its nonlinear enlargement first proves that the kernel cannot lift.",
+    "Generation 14's complete pair bags passed only one finite shell, while Generation 15 showed that an affine pseudodistribution can thread a hierarchy exactly. Thus tuple or cover proliferation alone has no verified growth law.",
+    "Generation 30 showed that unrestricted tensor coefficients invalidate conclusions based on intended product structure, and Generation 32 exhibited additive compatible parity at exactly twice the one-copy cost. These are the current O14/O16 blockers for Proposals 4 and 7.",
+    "Generation 28 measured adverse growth 57/32 below legal growth 2, while Generation 31's strict finite shell pass produced no composition theorem. No supplied verifier evidence supports any claimed multiplicative recurrence.",
+    "No verifier, emitted basis, exact factor, target, control minimum, or exhaustive shell certificate is supplied for any of the seven new proposals."
+  ],
+  "next_experiment": "None for the submitted candidates. A fresh mutation must freeze one explicit polynomial-size encoding that provably blocks the supplied G13 affine lift, then preregister an exact two-level emitted-CVP audit including DROP, zero-residual kernels, and unrestricted entangled coefficients; otherwise implementation should not begin.",
+  "confidence": 0.99
+}

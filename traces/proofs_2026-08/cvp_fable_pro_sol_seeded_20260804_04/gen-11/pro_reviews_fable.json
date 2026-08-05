@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 is an affine flow/tableau encoding through state interfaces, so paths meeting at a checksum state can be linearly spliced; a polynomial-state checksum does not itself charge such splices. No checksum map, routing algorithm, target, or YES/NO support accounting is specified, and testing r=2,3 cannot resolve the logarithmic-state mechanism.",
+    "Proposal 2 linearizes flat sections with a twisted coboundary. Odd affine combinations of legal flat sections remain flat, so illegal affine-closure combinations are uncharged unless a nonlinear protected-sector mechanism is added; no 3SAT interface, binary matrix, target, or universal completeness construction is given.",
+    "Proposal 3 substitutes branch-width and rank visibility for the required Hamming-support theorem. High branch-width does not imply that the proposed separator measurements make every NO mixed matrix heavier than every YES witness, and the separator bases, expander, output coordinates, and completeness bound are not frozen.",
+    "Proposal 4 is already defeated by affine closure. Every connected incompatibility set of size at least two vanishes on every matching, so any odd linear combination of legal lifted matchings has an identically zero connected-set shell; BCH postprocessing cannot recover information that is zero before encoding. It also lacks the required bounded-incompatibility-degree reduction.",
+    "Proposal 5 provides no explicit affine matrix space having the claimed exact rank-one correspondence. Rank condensers preserve rank or nonzeroness, not binary support, while tensoring an affine matrix space introduces arbitrary mixed matrices whose minimum rank need not power; no frozen condenser family or YES/output-rank accounting is supplied.",
+    "Proposal 6 does not escape O5. In an ordinary Lawrence lifting, the old q+2 repair embeds diagonally with zero disagreement while the honest q baseline is replicated too; storing the common vector only once either leaves the old defect unchanged or requires a new, unspecified nonstandard objective. The proposed bounded coefficient search is not exact without a coefficient bound.",
+    "Proposal 7 has no binary linear realization of fermionic defect support. Three-variable OR is not a matchgate signature, and representing residual Pfaffians or minors by bounded local gadgets re-enters O1/O2, while listing global minors supplies neither a syndrome matrix nor a support lower bound for arbitrary mixed sectors."
+  ],
+  "evidence": [
+    "The exchange-quotient verifier found 32 instances where illegal odd covers lie in the affine span of perfect matchings, including weight-5 covers versus weight-3 matchings. This directly defeats common linear flat-section and zero-on-matchings feature shells.",
+    "The nonbacktracking Schur verifier already found all-eight and odd-holonomy illegal mixed words whose entire collision-feature shell cancels. Connected-set products have the same zero-on-every-matching affine-closure failure, so Proposal 4's proposed hostile tests are redundant.",
+    "Dense rank-oriented folds have repeatedly flattened support: the frozen F8 condenser had worst YES 31 and best NO 6 despite no pointed kernels. Generator-type folding, sparse hashes, and polar shortening likewise failed exact mixed-word tests.",
+    "Direct integer exact cover has a proved squared gap only q versus q+2, and variable projection tables produced 12 versus 14. These results support the baseline-replication objection to the Lawrence proposal.",
+    "Exact tensor soundness is already available, but output rank remains the blocker; pure-power compression has a proved exponential dimension wall. None of the seven proposals supplies a proved submultiplicative rank or output-size mechanism.",
+    "No supplied verifier implements any proposed matrix here. Consequently none of the stated experimental outcomes exists, and finite tests could not be promoted to asymptotic claims in any event."
+  ],
+  "next_experiment": "None as written. Reconsider only a mutation supplying one explicit witness-oblivious polynomial-time matrix or integer basis, fixed target, polynomial output bound, universal YES-cost bound, and an invariant covering every mixed word; it must analytically escape affine closure before testing all-eight, odd holonomy, regular YES/NO fibers, and output-rank accounting.",
+  "confidence": 0.997
+}

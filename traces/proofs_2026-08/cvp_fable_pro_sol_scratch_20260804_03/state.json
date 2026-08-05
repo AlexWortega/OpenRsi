@@ -1,0 +1,15 @@
+{
+  "run_id": "cvp_fable_pro_sol_scratch_20260804_03",
+  "phase": "done",
+  "generation": 41,
+  "outcome": "budget_exhausted",
+  "models": {
+    "fable": "anthropic/claude-fable-5",
+    "pro": "openai/gpt-5.6-sol-pro",
+    "sol": "openai/gpt-5.6-sol"
+  },
+  "budget_usd": 200,
+  "spent_usd": 196.21068875000003,
+  "decision": "KILL_IDEA",
+  "reason": "insufficient reserve for Sol implementation turn"
+}

@@ -1,0 +1,15 @@
+{
+  "run_id": "cvp_fable_pro_sol_seeded_20260804_04",
+  "phase": "done",
+  "generation": 16,
+  "outcome": "budget_exhausted",
+  "models": {
+    "fable": "azure/gpt-5.6-sol",
+    "pro": "azure/gpt-5.6-sol:pro",
+    "sol": "azure/gpt-5.6-sol"
+  },
+  "budget_usd": 100,
+  "spent_usd": 96.25612475,
+  "decision": "KILL_IDEA",
+  "reason": "insufficient reserve for parallel ideation"
+}

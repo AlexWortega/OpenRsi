@@ -1,0 +1,130 @@
+{
+  "affine_closure": {
+    "distance_range": null,
+    "pointed_kernels": 0,
+    "seeds": [
+      27,
+      97,
+      103,
+      104,
+      241,
+      245,
+      416,
+      438,
+      545,
+      580,
+      585,
+      604,
+      610,
+      675,
+      970,
+      1320,
+      1321,
+      1479,
+      1549,
+      1848
+    ],
+    "solved": 0,
+    "unsolved": 20,
+    "unsolved_dimensions": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      16,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "all_eight": {
+    "code_dimension": 25,
+    "pointed_constraints": 16777216,
+    "rankone_constraints": 256,
+    "reason": "exact ILP exceeds precommitted dimension cap",
+    "row_universe": 33554431,
+    "solved": false,
+    "unfurled_square_distance": 4
+  },
+  "budget": 64,
+  "exact_dimension_cap": 4,
+  "folded_solved_subset": {
+    "NO_range": [
+      16,
+      16
+    ],
+    "YES_range": [
+      16,
+      16
+    ],
+    "best_NO": 16,
+    "exponent": 0,
+    "max_rank": 64,
+    "objective_margin_range": [
+      32,
+      32
+    ],
+    "output_length_range": [
+      64,
+      64
+    ],
+    "pointed_kernels": 0,
+    "solved_NO": 195,
+    "solved_YES": 9,
+    "uniform_ratio": 1.0,
+    "unsolved_NO": 5,
+    "unsolved_NO_dimensions": [
+      9,
+      9,
+      9,
+      9,
+      9
+    ],
+    "unsolved_YES": 1,
+    "unsolved_YES_dimensions": [
+      9
+    ],
+    "worst_YES": 16
+  },
+  "holonomy": {
+    "code_dimension": 9,
+    "pointed_constraints": 256,
+    "rankone_constraints": 16,
+    "reason": "exact ILP exceeds precommitted dimension cap",
+    "row_universe": 511,
+    "solved": false,
+    "unfurled_square_distance": 9
+  },
+  "instances": {
+    "NO": 200,
+    "YES": 10,
+    "affine_closure": 20,
+    "all_eight": 1,
+    "holonomy": 1
+  },
+  "mechanism": "exact integer row-multiplicity ILP over every nonzero code functional",
+  "mixed_words_enumerated": 3264,
+  "objective": "maximize nonrank minimum minus rank-one maximum, then nonrank minimum, minimize length, fixed weighted row order",
+  "primary_success": false,
+  "total_solver_seconds": 0.024227657355368137,
+  "unfurled": {
+    "best_NO": 25,
+    "exponent": 0.2447428045068572,
+    "rank": 64,
+    "worst_YES": 9
+  },
+  "unique_ILPs": 3
+}
+ADVERSARIAL_MATROID_FOLD_PASS

@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole authorized Pro Proposal 7 audit as an exact rational equal-radius Walsh Gram. The rank-72 objective has exact control squared minimum 144. Exhaustive zero-residual moment DP and complete residual-one low-base enumeration prove that the obstruction has no unrestricted vector through squared radius 192; a parity witness gives upper bound 216. Thus this fixed obstruction has certified squared-distance ratio at least 193/144>4/3. This is finite evidence only and establishes no composition or asymptotic hardness lemma.",
+  "hypothesis": "Discrepancy rows may assign different vectors but equal norm to honest encodings, thereby charging affine signed selectors without requiring a common syndrome; the bounded target was obstruction squared distance strictly above four thirds of the exact control radius.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_equal_radius_walsh_gram.py",
+    "experiments/gen31_equal_radius_walsh_gram_manifest.json",
+    "gen-31/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_equal_radius_walsh_gram.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_equal_radius_walsh_gram.py",
+      "exit_code": 0,
+      "finding": "Verified the exact factor, target, rational center, control minimum 144, empty unrestricted obstruction shell through 192, lower/upper obstruction bounds 193 and 216, and finite squared-ratio lower bound 193/144>4/3."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_equal_radius_walsh_gram.py && python3 -m json.tool experiments/gen31_equal_radius_walsh_gram_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the emitted 298-row factor/target manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_degree3_global_psd_metric.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-11 degree-three source checks still verify after reuse by the new Gram audit."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Apply the same frozen Walsh/residual rule to one deterministic two-block overlap composition with a matched satisfiable control, derive its unrestricted shell bound before search, and test whether the obstruction/control squared ratio remains strictly above 193/144; kill on a drop, affine parity, control mismatch, or ratio non-growth."
+}

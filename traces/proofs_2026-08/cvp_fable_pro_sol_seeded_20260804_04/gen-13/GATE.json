@@ -1,0 +1,44 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_seeded_20260804_04/gen-13/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen A4 fold satisfies multiple precommitted falsification conditions: best NO distance 10 is below worst YES distance 20, canonical all-eight has a pointed kernel, and holonomy illegal cost 22 is below legal baseline 24. Its reported rank exponent is therefore zero rather than above 0.2447428.",
+      "A fixed 12-element A4 experiment cannot test the claimed asymptotic mechanism of a growing quasirandom group family. No uniform every-mixed-word Hamming-support bound, uniform YES-support bound, polynomial output analysis, or hardness reduction is supplied.",
+      "The proposed next step is not a precise bounded experiment; it is a demand for a new analytic family and theorem. STATUS, IDEAS I32, and NOTES consistently classify this exact candidate as killed with finite evidence only, so another A4 tuning run is unjustified.",
+      "The claimed 1,693,630 coordinate-relabeling checks are not substantive covariance checks: relabel_check merely verifies that permuting eight entries leaves their sorted multiset unchanged. This tautology does not recompute folded images or establish robustness under induced relabelings.",
+      "The 40,320 label assignments cover only permutations of the fixed first eight A4 elements, not all injective choices of eight labels from A4 or other probes. The kernel frequency therefore cannot be generalized beyond that restricted label set."
+    ],
+    "evidence": [
+      "Machine verification exited zero and reproduced YES distances 12–20, NO distances 10–22, best NO 10, worst YES 20, and maximum active output count 48. These are finite exact results for the enumerated instances, not asymptotic evidence.",
+      "The all-eight image has folded moving distance zero and a pointed kernel; 28,800 of 40,320 permutations of the fixed label set also have kernels. This alone falsifies the candidate's stated acceptance condition.",
+      "Holonomy has cheapest semantic illegal pure-square cost 22 versus legal pure-square cost 24. The affine-closure diagnostics also show illegal costs 16–26 against legal baselines 24–30.",
+      "The verifier enumerated 605,072 mixed image words across the stated finite suite and asserted primary_success=false. Successful execution validates those computations and internal assertions only; it does not prove the proposed mixing mechanism.",
+      "SOL_RESULT correctly labels progress FINITE and explicitly denies killing every growing quasirandom family. No promotion to an asymptotic hardness theorem is supported."
+    ],
+    "next_experiment": "None for Generation 13's frozen A4 candidate: stop this run and do not tune labels or probes. Revival requires a distinct pre-specified growing group family plus a proved uniform Hamming-support and YES-support theorem before any new bounded verification.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The precommitted metric criterion fails decisively: worst YES distance is 20 while best NO distance is 10, giving ratio 1/2 and reported exponent zero rather than exceeding 0.2447428. Finite enumeration cannot support asymptotic hardness, and the packet correctly supplies no such theorem.",
+      "The canonical all-eight instance has a pointed kernel, so the fold can erase the entire moving part of a pointed word. Moreover, 28,800 of 40,320 permutations of the fixed eight labels retain such a kernel, while holonomy has illegal cost 22 below legal baseline 24.",
+      "The claimed quasirandom mechanism has no valid bridge to binary Hamming support. A4 has nontrivial one-dimensional representations through its C3 abelianization, so it is not a meaningful member of a growing high-quasirandomness family; in any event, Fourier/product mixing does not imply an every-mixed-word support bound.",
+      "The proposed next step is not one precise bounded experiment: it conditions reopening on first obtaining a growing explicit family and analytic uniform support bounds. STATUS, IDEAS, and NOTES all classify the frozen A4 map as killed, so this run has no authorized continuation.",
+      "The claimed 1,693,630 coordinate-relabeling checks are not substantive covariance checks. The supplied relabel_check function merely permutes T, sorts it, asserts equality with the canonical sorted set, and increments a counter without recomputing or comparing folded images or distances."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION passed and reports YES distances 12–20, NO distances 10–22, best NO 10, worst YES 20, uniform ratio 0.5, and primary_success false.",
+      "The verifier reports all-eight folded distance zero with pointed_kernel true, exact-transfer rank 48, and 28,800 kernels among 40,320 permutations of the fixed eight labels.",
+      "Holonomy reports cheapest semantic illegal pure-square cost 22 versus legal pure-square cost 24. Affine-closure diagnostics likewise have illegal costs 16–26 against legal upper baselines 24–30.",
+      "The source exhaustively enumerates 605,072 mixed image words for the listed finite suite, but that establishes only the frozen finite failure. SOL_RESULT, STATUS, IDEAS I32, NOTES, and proof_cvp consistently refuse an asymptotic conclusion.",
+      "The machine summary establishes only max_exact_transfer_rank 48; it does not itself establish that the extremal YES and NO instances both occur at rank 48. The summary wording “at exact-transfer rank 48” is therefore stronger than the displayed aggregate evidence."
+    ],
+    "next_experiment": "None for the frozen A4 candidate. Reopen only as a new mutation after specifying a precommitted growing group family and proving an every-mixed-word binary Hamming-support lower bound plus a uniform YES-support upper bound; only then define one bounded finite-size falsification test.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

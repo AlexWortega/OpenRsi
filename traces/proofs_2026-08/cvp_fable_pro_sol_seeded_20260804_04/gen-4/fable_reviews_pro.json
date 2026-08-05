@@ -1,0 +1,19 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1's protected-OR identity is valid, but it only composes already-sound branches. The proposed fold family is undefined, and selecting branches by set cover over labeled YES/NO fibers can hide witness discovery or finite-suite overfitting rather than yield a polynomial-time reduction.",
+    "Proposal 2 does not specify its curves, evaluation set, derivative coordinates, or asymptotic field and degree schedule. PIT nonvanishing alone does not imply the required Hamming-support ratio, and fixed F16 experiments cannot resolve the output-rank scaling wall.",
+    "Proposal 3 has no soundness theorem and its commutative multiplication identifies every ordered pair (i,j) with (j,i), creating a large structured tensor kernel. The claimed valuation mechanism is especially weak because every proposed a_j with h_j>0 is a unit with constant coefficient one.",
+    "Proposal 4 is not a certified CVP reduction: SDP optimization and rationalization lack polynomial bit-complexity guarantees, and searching only z in [-2,2]^m cannot certify an integer-fiber minimum. Choosing G using labeled YES/NO behavior is also not the stated deterministic spectral rule, and the construction bypasses the required binary route.",
+    "Proposal 5 is blocked algebraically by the standard higher-Lawrence anti-diagonal: every base kernel direction v yields a two-brick direction (v,-v,0,...). Thus adding bricks cannot force that direction's support or norm to grow unless a mutation explicitly excludes the anti-diagonal.",
+    "Proposal 6 supplies neither a formula-to-interpolation reduction nor an explicit affine binary matrix, parameter schedule, or analogues of the hostile instances. Enumerating one smallest interpolation example cannot discriminate the missing asymptotic gap and polynomial-output claims."
+  ],
+  "evidence": [
+    "The supplied modular-Kronecker verifier tested 35 frozen PIT-style folds against every mixed word; all had uniform ratio at most one. This is adverse finite evidence for Proposal 2, not an asymptotic impossibility theorem.",
+    "Direct integer exact-cover verifiers obtained only q versus q+2 and 12 versus 14 after variable projection tables. These results support the baseline objection to Proposal 4 and provide no evidence that a PSD overlap metric changes the scaling.",
+    "Existing tensor verifiers establish that arbitrary mixed words, not pure products, determine soundness; sparse hashes, type punctures, cyclic closure, and sampled products all collapsed or overfit. Proposal 3 is the only proposal here giving a nearly explicit new linear fold whose exact mixed-word image can be tested without first solving the source instance.",
+    "No supplied verifier tests the nonsemisimple multiplication matrix itself. Therefore a frozen exhaustive test of Proposal 3 is genuinely discriminating, although any positive result would remain finite evidence only."
+  ],
+  "next_experiment": "Test only Proposal 3. Freeze M=16; derive each h_j as 1 plus the parity-check column's canonical binary value modulo 7, set a_j=1+u^{h_j}+u^{2h_j+1}, and build the explicit 16-by-m^2 reduced-square multiplication fold. Exhaust every mixed image word on the current YES family, all 200 NO dictionaries, all-eight, and twisted-holonomy cases; rerun under coordinate relabelings and record actual output length, worst YES distance, and best NO distance. Kill this mutation unless every hostile family retains best-NO above worst-YES and its worst-case rank exponent strictly exceeds the unfurled reduced square.",
+  "confidence": 0.97
+}

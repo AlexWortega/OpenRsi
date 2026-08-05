@@ -1,0 +1,45 @@
+I use the obstruction labels operationally as: **O1** unrestricted slack/carry cancellation; **O2** short overlap kernels; **O3** exact-zero signed selectors; **O4** parity relocation and clause drops; **O5** localized unsatisfiability; **O6** the G13/G15 nine-term affine lift; **O7** polynomial-size explicitness; **O8** dimension-growing gap.
+
+1. **Toric saturation of a global violation circuit.**  
+**Core trick:** Compile a Boolean circuit whose output is the OR of all clause violations. Replace plain gate marginals by table selectors plus lifted binomials from a Markov basis of the circuit-trace toric ideal, aiming to make every normalized integral zero-residual trace an integer combination of genuine complete traces with preserved output.  
+**Expected move:** For UNSAT, every genuine trace outputs one; weight the output mismatch by \(W=n^k\), while SAT traces output zero.  
+**Checks:** O1: only outside if saturation includes every auxiliary—unproved. O2: global toric relations are not private overlaps, but short Markov circuits may survive. O3: saturation would exclude output-zero signed kernels. O4: parity/drop must alter the global output. O5: one violated clause suffices. O6: any coefficient-sum-one combination of UNSAT traces still outputs one. O7: not escaped; the Markov basis or its linearization may be exponential. O8: polynomial weighting gives growth only if the exact decomposition theorem holds.  
+**Falsification/test:** On the nine-clause instance, compute low-degree toric moves and search for a normalized zero-residual output-zero trace.  
+**Likely death:** Required Markov degree explodes, and lifted monomials recreate pseudotraces.
+
+2. **Dual Macaulay/Nullstellensatz lattice.**  
+**Core trick:** Form the homogenized Macaulay operator for Boolean equations and clause-violation polynomials. In its dual coefficient lattice, a satisfying evaluation functional should give a short prescribed coset representative, while an UNSAT Nullstellensatz identity forces a nonzero pairing with the constant polynomial; amplify only that pairing.  
+**Expected move:** Replace “many violated clauses” by the global algebraic fact \(1\in I_F\), immune to violation localization.  
+**Checks:** O1: no slack is needed after exact SNF, but coefficient auxiliaries remain an O1 risk. O2: one global ideal replaces overlap composition. O3: a zero functional is impossible if the unit pairing is certified. O4: parity/drop survives below the chosen degree. O5: outside—ideal inconsistency is global, not density-based. O6: a normalized affine pseudo-evaluation pairs with \(1\) as one, provided sufficient degree is present. O7: not escaped; general Nullstellensatz degree and Macaulay dimension may be exponential. O8: amplification is available only after polynomial degree and coefficient bounds.  
+**Falsification/test:** Build degree-3 through degree-6 matrices for the all-eight-clause three-variable formula; compute SNF, dual minima, and explicit CVP objectives.  
+**Likely death:** Exponential proof degree or catastrophic coefficient conditioning.
+
+3. **Hensel tower with weighted torsion levels.**  
+**Core trick:** Encode Boolean idempotence and clause equations simultaneously over \(\mathbb Z/2^j\mathbb Z\) for \(j=1,\ldots,k\), using a Construction-D-style nested lattice. A true assignment lifts coherently through every level; an inconsistent residue should fail at a first level whose orthogonal block receives geometrically increasing weight.  
+**Expected move:** Turn a single algebraic failure into a large Euclidean contribution without requiring many false clauses.  
+**Checks:** O1: directly exposed—carry variables are unrestricted, so exact SNF auditing is mandatory. O2: shared residues are global, but local carry circuits may compose. O3: any exact modular pseud_solution kills all levels. O4: higher levels do not automatically detect relocated parity or drops. O5: first-lift failure does not require density. O6: signed affine distributions may satisfy every modular expectation; not escaped. O7: \(k=O(\log n)\) is polynomial, assuming polynomial gate tables. O8: geometric weights could grow polynomially, but only if some level has unavoidable defect.  
+**Falsification/test:** For the eight-clause three-variable core, emit levels \(2,4,8,16\), include every carry, and enumerate the unrestricted exact minima.  
+**Likely death:** A modular signed selector plus carries annihilates the whole tower.
+
+4. **Sheaf obstruction with cosystolic spreading.**  
+**Core trick:** Regard local clause assignments as sections of a coefficient sheaf on the clause-variable complex; inconsistency is sought as a nonzero cohomology class rather than a row residual. Pull the instance through an explicit bounded-degree complex and pair the class with many independent cocycles, hoping cosystolic expansion forces large support.  
+**Expected move:** A single localized contradiction becomes a globally supported topological obstruction block, which is zero for satisfiable sections.  
+**Checks:** O1: no arithmetic slack, though unrestricted cochains play the same role. O2: short overlap kernels become coboundaries; harmful nontrivial cycles remain possible. O3: exact signed cochains kill the proposal if they trivialize the class. O4: parity may itself be a cocycle; drops create boundaries only if the sheaf is designed correctly. O5: expansion is intended to spread a nonzero class. O6: not escaped unless the obstruction pairing is one on the G13 affine lift. O7: explicit bounded-degree covers are polynomial-size. O8: a polynomial gap needs a linear cosystole plus a sound weighting theorem.  
+**Falsification/test:** Build the nine-clause sheaf, tensor it with cycles of lengths 3–8, compute integer cohomology/SNF, and enumerate shortest nontrivial coset leaders.  
+**Likely death:** Arbitrary 3SAT inconsistency has no persistent cohomology class, or signed cochains trivialize it.
+
+5. **Graver-complexity barrier for global accumulator changes.**  
+**Core trick:** Search for a fixed block matrix whose iterated, globally coupled product encodes assignment traces and has large Graver norm for every conformal move changing a violation accumulator. Unlike private-row composition, the coupling is designed around the global output coordinate, not clause marginals.  
+**Expected move:** Honest traces use unit brick choices, whereas every harmful unrestricted correction requires \(n^\alpha\) coefficient mass.  
+**Checks:** O1: all auxiliaries must be columns of the audited block matrix. O2: the objective is precisely to eliminate bounded overlap circuits; not yet achieved. O3: a zero-residual accumulator-changing Graver element kills it. O4: parity/drop must induce such a global move, which needs verification. O5: the accumulator reacts to one violation. O6: not outside until the nine-term affine move is shown nonconformal or long. O7: fixed blocks and linear-size products are explicit. O8: if minimum harmful norm is \(n^\alpha\) against baseline \(O(\sqrt n)\), a gap follows; current evidence is absent.  
+**Falsification/test:** Enumerate small \(0,\pm1\) block pairs, compute Graver elements for 2–6 bricks, and minimize those changing the accumulator.  
+**Likely death:** A bounded-support circuit persists for every fixed block family.
+
+6. **Violation-gated Freiman fingerprints.**  
+**Core trick:** Give each complete assignment \(a\) a short Vandermonde/Freiman tag \((1,\alpha_a,\ldots,\alpha_a^9)\), but multiply it by the global “some clause is violated” bit. Satisfying assignments therefore contribute zero, while the known nine-term affine combination of UNSAT traces cannot cancel if the \(\alpha_a\) are chosen over a sufficiently large explicit field; an outer code is tasked with high-support combinations.  
+**Expected move:** Directly separate the G13 lift without charging honest satisfying encodings, then scale the tag block polynomially.  
+**Checks:** O1: field multiplication and carries are a major unresolved exposure. O2: tags are global, not overlap-local. O3: Vandermonde independence excludes bounded-support zero tags if the circuit is genuine. O4: relocated parity/drop still activates the violation gate. O5: one violation activates the full tag. O6: explicitly outside raw compatible linear hashing; it targets the nine supporting global assignments nonlinearly. O7: fixed-degree tags are polynomial, but sound gate realization and high-support coding remain open. O8: scaling works because SAT tags vanish, contingent on unrestricted soundness.  
+**Falsification/test:** Over \(q=101\), enumerate all signed relations of \(\ell_1\)-norm at most nine on the 16 assignments, then embed the violation-gated arithmetic circuit and search its exact shell.  
+**Likely death:** A signed circuit trace turns the violation gate off, or modular high-support relations cancel.
+
+Classical touchstones only: Diaconis–Sturmfels (1998) for toric Markov bases, Kollár (1988) for effective Nullstellensatz bounds, and Bose–Chowla (1962) for bounded-order additive tags.

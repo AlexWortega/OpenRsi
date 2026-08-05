@@ -1,0 +1,44 @@
+checked 120 exact cyclic folds with ell=3 (100 natural invariant codes)
+mixed-word failures of 1+ceil((d_rep^2-1)/ell): 0
+pure-word failures of 1+ceil((d_rep^2-1)/ell): 0
+natural-code losses relative to full tensor distance d_rep^2: 37
+{'base_dim': 2, 'base_length': 3, 'base_d': 2, 'rep_dim': 6, 'rep_length': 7, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 17, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 2, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 5, 'base_d': 3, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 3, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 9, 'best_pure': 9, 'naive_lower': 3}
+{'base_dim': 2, 'base_length': 3, 'base_d': 2, 'rep_dim': 6, 'rep_length': 7, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 17, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 3, 'base_d': 2, 'rep_dim': 6, 'rep_length': 7, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 17, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 1, 'rep_dim': 4, 'rep_length': 10, 'rep_d': 1, 'fold_dim': 6, 'fold_length': 34, 'fold_d': 1, 'best_pure': 1, 'naive_lower': 1}
+{'base_dim': 2, 'base_length': 5, 'base_d': 2, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 5, 'base_d': 4, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 4, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 16, 'best_pure': 16, 'naive_lower': 6}
+{'base_dim': 2, 'base_length': 5, 'base_d': 3, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 3, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 9, 'best_pure': 9, 'naive_lower': 3}
+{'base_dim': 2, 'base_length': 5, 'base_d': 3, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 3, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 9, 'best_pure': 9, 'naive_lower': 3}
+{'base_dim': 2, 'base_length': 3, 'base_d': 2, 'rep_dim': 6, 'rep_length': 7, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 17, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 2, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 3, 'base_d': 1, 'rep_dim': 4, 'rep_length': 7, 'rep_d': 1, 'fold_dim': 6, 'fold_length': 17, 'fold_d': 1, 'best_pure': 1, 'naive_lower': 1}
+{'base_dim': 2, 'base_length': 3, 'base_d': 1, 'rep_dim': 4, 'rep_length': 7, 'rep_d': 1, 'fold_dim': 6, 'fold_length': 17, 'fold_d': 1, 'best_pure': 1, 'naive_lower': 1}
+{'base_dim': 2, 'base_length': 5, 'base_d': 2, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 2, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 5, 'base_d': 2, 'rep_dim': 6, 'rep_length': 13, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 57, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 2, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 2, 'base_length': 4, 'base_d': 3, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 3, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 9, 'best_pure': 9, 'naive_lower': 3}
+{'base_dim': 2, 'base_length': 4, 'base_d': 2, 'rep_dim': 6, 'rep_length': 10, 'rep_d': 2, 'fold_dim': 12, 'fold_length': 34, 'fold_d': 4, 'best_pure': 4, 'naive_lower': 2}
+{'base_dim': 1, 'base_length': 4, 'base_d': 4, 'rep_dim': 1, 'rep_length': 4, 'rep_d': 4, 'fold_dim': 1, 'fold_length': 6, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 4, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 4, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 8, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 8, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 32, 'best_pure': 32, 'naive_lower': 22}
+{'base_dim': 3, 'base_length': 7, 'base_d': 5, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 5, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 15, 'best_pure': 15, 'naive_lower': 9}
+{'base_dim': 3, 'base_length': 10, 'base_d': 4, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 7, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 7, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 17, 'best_pure': 17, 'naive_lower': 17}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 5, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 5, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 17, 'best_pure': 19, 'naive_lower': 9}
+{'base_dim': 3, 'base_length': 7, 'base_d': 5, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 5, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 15, 'best_pure': 15, 'naive_lower': 9}
+{'base_dim': 1, 'base_length': 7, 'base_d': 7, 'rep_dim': 1, 'rep_length': 7, 'rep_d': 7, 'fold_dim': 1, 'fold_length': 17, 'fold_d': 17, 'best_pure': 17, 'naive_lower': 17}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 5, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 5, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 17, 'best_pure': 19, 'naive_lower': 9}
+{'base_dim': 3, 'base_length': 10, 'base_d': 6, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 6, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 26, 'best_pure': 26, 'naive_lower': 12}
+{'base_dim': 3, 'base_length': 10, 'base_d': 4, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 7, 'base_d': 4, 'rep_dim': 3, 'rep_length': 7, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 17, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}
+{'base_dim': 3, 'base_length': 10, 'base_d': 4, 'rep_dim': 3, 'rep_length': 10, 'rep_d': 4, 'fold_dim': 3, 'fold_length': 34, 'fold_d': 6, 'best_pure': 6, 'naive_lower': 6}

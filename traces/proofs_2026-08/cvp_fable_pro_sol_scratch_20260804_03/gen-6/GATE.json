@@ -1,0 +1,43 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-6/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The emitted 178-dimensional lattice does not enforce the eight normalization or 21 consistency equations; those conditions are imposed only by the search filter. Therefore the enumeration excludes legitimate lattice points and cannot establish CVP soundness for the emitted basis and target.",
+      "The supplied nine-clause four-variable edge-cover instance gives an exact mod-2 bypass. Its falsification graph has odd connected components, so no clause subset has odd incidence at every assignment; equivalently, an odd set of assignment-incidence vectors XORs to zero, placing the illegal target parity in the honest-difference span.",
+      "Binary repetition cannot repair that zero syndrome, and the code s -> (s,s) has constant minimum distance 2 rather than dimension-dependent amplification. Thus the proposed causal mechanism already fails on a finite general-formula instance.",
+      "The reported audit distance is not computed against the single emitted target for seven of eight reference assignments. Replacing the fixed-target residual S(h_a+d)-h_0 by d changes the quantity being measured, so the claimed minimum tested distance does not certify the manifest.",
+      "The relation family remains exponential, and neither a polynomial-time formula-local generator nor a composition proof for overlapping clause cores is supplied. The three-variable all-clause core does not confront the freed-marginal overlap obstruction.",
+      "All positive evidence is bounded to deviations of squared norm at most 12 and cannot imply an asymptotic gap or hardness theorem. SNF invariants alone would also be insufficient to prove equality of two embedded relation lattices without canonical HNF or mutual-containment certificates."
+    ],
+    "evidence": [
+      "The verifier checks 156880 deviations only after imposing normalization, legality, and common-marginal constraints externally. The manifest basis itself contains selector scaling, quotient rows, and mod-2 carry columns, not lattice enforcement of those affine constraints.",
+      "The nine-edge cover has component sizes 3,3,2,2,2,2,2. Over F2 every edge-incidence image has even parity on each component, so the all-ones assignment vector is excluded on the odd components; the resulting orthogonal-kernel witness has odd weight.",
+      "The verifier supports only the narrow facts of seven unit SNF invariants, free rank 57, and no constrained exact or binary bypass within norm 12. It does not solve unrestricted CVP for the emitted basis and fixed target.",
+      "Pro's proposed F3/F4 generator comparison does not address the prior missing-constraint defect or the explicit unrestricted mod-2 bypass. A pass would therefore leave the current realization unsound.",
+      "SOL_RESULT and the project notes correctly label the result finite and disclaim a hardness lemma, scaling law, polynomial relation family, or completed reduction."
+    ],
+    "next_experiment": "No further experiment on the current realization. A mutation-only restart must encode normalization and consistency penalties in the actual lattice, then exactly compute the unrestricted coset minimum for the supplied nine-clause four-variable edge-cover instance against the single emitted target; any zero coded syndrome or distance at most the completeness scale kills the mutation, which must also address the earlier slack and overlap-composition obstructions.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The emitted 178-dimensional lattice does not enforce the eight normalization or 21 consistency equations; those constraints appear only in the deviation filter. Therefore the constrained enumeration cannot establish soundness for CVP, which ranges over all integer lattice points.",
+      "The unrestricted Construction-A mechanism has an explicit four-variable parity bypass. The nine clause-falsification edges in Fable's review cover all 16 assignments, yielding an unsatisfiable 3-CNF, while their odd-sized graph components make an all-odd clause-incidence certificate impossible by handshake parity.",
+      "The fixed-target distance audit is invalid for seven of eight references: it substitutes the deviation d where the actual top residual is S(h_a+d)-h_0. Thus the reported minimum audit distance is not a verified distance for the emitted basis and single target.",
+      "No asymptotic mechanism survives review: complete-assignment difference generation is exponential, no formula-local composition theorem is supplied, and binary repetition has constant minimum distance. Finite norm-12 evidence cannot imply a dimension-dependent CVP gap."
+    ],
+    "evidence": [
+      "The verifier exhaustively checks only normalized, legal, common-marginal deviations; the emitted basis itself contains selector scaling, quotient rows, and mod-2 carry columns, not the affine constraints used by that filter.",
+      "The nine-edge obstruction has component sizes 3,3,2,2,2,2,2 and covers every assignment. An all-odd degree vector is impossible on either three-vertex component, giving an exact mod-2 obstruction rather than a sampling failure.",
+      "Machine evidence does support only the narrow finite facts: seven unit SNF invariants, free rank 57, and no exact or binary bypass among 156,880 constrained deviations through squared norm 12. It does not solve unrestricted CVP for the emitted basis and target.",
+      "The result packet itself labels the outcome FINITE and disclaims a hardness lemma, polynomial relation family, scaling law, and completed reduction."
+    ],
+    "next_experiment": "None for the current realization. A mutation-only restart must encode normalization and consistency penalties in the actual lattice and exactly solve the unrestricted bounded CVP/coset minimum for the explicit nine-clause four-variable edge-cover instance against one fixed target; any zero coded syndrome or distance at most the completeness scale kills the mutation.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

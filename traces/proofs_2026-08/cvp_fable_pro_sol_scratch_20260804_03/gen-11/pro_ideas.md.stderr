@@ -1,0 +1,2 @@
+
+[ask_pro] mode=ideate model=azure/gpt-5.6-sol:pro cost=$1.24128 time=277.4s

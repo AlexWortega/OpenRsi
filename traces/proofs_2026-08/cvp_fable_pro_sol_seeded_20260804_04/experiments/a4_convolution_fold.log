@@ -1,0 +1,275 @@
+{
+  "affine_closure": {
+    "distance_range": [
+      4,
+      16
+    ],
+    "legal_baseline_range": [
+      24,
+      30
+    ],
+    "pointed_kernels": 0,
+    "seeds": [
+      27,
+      97,
+      103,
+      104,
+      241,
+      245,
+      416,
+      438,
+      545,
+      580,
+      585,
+      604,
+      610,
+      675,
+      970,
+      1320,
+      1321,
+      1479,
+      1549,
+      1848
+    ],
+    "semantic_illegal_cost_range": [
+      16,
+      26
+    ]
+  },
+  "all_eight": {
+    "active_pointed_length": 49,
+    "base_distance": 2,
+    "cheapest_semantic_illegal_pure_square": 14,
+    "exact_transfer_rank": 48,
+    "fiber_size": 16,
+    "folded_distance": 0,
+    "image_dimension": 19,
+    "legal_pure_square_range": [
+      8,
+      14
+    ],
+    "mixed_words_enumerated": 524288,
+    "nominal_pointed_length": 49,
+    "parity_check_rank": 30,
+    "pointed_kernel": true,
+    "source_square_dimension": 25,
+    "unfurled_square_distance": 4
+  },
+  "all_eight_label_permutation_kernels": 28800,
+  "all_eight_label_permutations_tested": 40320,
+  "coordinate_relabelings_checked": 1693630,
+  "expected_move": "quasirandom product mixing spreads NO mixed matrices while structured YES squares remain concentrated",
+  "falsification": "pointed kernel, NO not above worst YES, hostile illegal cost not above legal baseline, or exponent not above baseline",
+  "folded": {
+    "NO_distance_range": [
+      10,
+      22
+    ],
+    "NO_pointed_kernels": 0,
+    "YES_distance_range": [
+      12,
+      20
+    ],
+    "YES_pointed_kernels": 0,
+    "best_NO": 10,
+    "max_exact_transfer_rank": 48,
+    "rank_exponent": 0,
+    "uniform_ratio": 0.5,
+    "worst_YES": 20
+  },
+  "group": {
+    "conjugacy_class_sizes": [
+      1,
+      4,
+      4,
+      3
+    ],
+    "labels": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        2,
+        3,
+        1
+      ],
+      [
+        0,
+        3,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        0,
+        3
+      ],
+      [
+        1,
+        3,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        3
+      ],
+      [
+        2,
+        1,
+        3,
+        0
+      ]
+    ],
+    "model": "A4 isomorphic to PSL2(F3)",
+    "ordered_elements": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        2,
+        3,
+        1
+      ],
+      [
+        0,
+        3,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        0,
+        3
+      ],
+      [
+        1,
+        3,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        3
+      ],
+      [
+        2,
+        1,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        0,
+        1
+      ],
+      [
+        3,
+        0,
+        2,
+        1
+      ],
+      [
+        3,
+        1,
+        0,
+        2
+      ],
+      [
+        3,
+        2,
+        1,
+        0
+      ]
+    ],
+    "probes": [
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        2,
+        3,
+        1
+      ],
+      [
+        0,
+        3,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        3,
+        2
+      ]
+    ]
+  },
+  "holonomy": {
+    "active_pointed_length": 49,
+    "base_distance": 3,
+    "cheapest_semantic_illegal_pure_square": 22,
+    "exact_transfer_rank": 48,
+    "fiber_size": 4,
+    "folded_distance": 14,
+    "image_dimension": 9,
+    "legal_pure_square_range": [
+      24,
+      24
+    ],
+    "mixed_words_enumerated": 512,
+    "nominal_pointed_length": 49,
+    "parity_check_rank": 40,
+    "pointed_kernel": false,
+    "source_square_dimension": 9,
+    "unfurled_square_distance": 9
+  },
+  "instances": {
+    "NO_q3_m8": 200,
+    "YES_q3_m8": 10,
+    "affine_closure_q3_m8": 20,
+    "all_eight_q2_m8": 1,
+    "holonomy_q3_m8": 1
+  },
+  "mechanism": "A4 convolution buckets lambda_i a_s lambda_j^-1 with one probe per conjugacy class",
+  "mixed_words_enumerated": 605072,
+  "primary_success": false,
+  "unfurled": {
+    "best_NO": 25,
+    "exact_transfer_rank": 64,
+    "rank_exponent": 0.2447428045068572,
+    "worst_YES": 9
+  }
+}
+A4_CONVOLUTION_FOLD_PASS

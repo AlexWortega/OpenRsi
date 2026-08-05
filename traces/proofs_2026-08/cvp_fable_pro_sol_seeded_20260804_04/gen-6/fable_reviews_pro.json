@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed. It abandons the required NCP-first route, and its SDP requires constraints derived from all matchings and signed NO minima, which embeds the source classification problem rather than giving a polynomial-time reduction; finite q=3 separation would not repair this.",
+    "Proposal 3 is killed by O1 in its stated form. Rainbow simple-path and cycle indicators remain degree-O(k) Boolean polynomials after formula-dependent coordinate selection, so a larger independent cube retains the alternating relation; deleting repeated walks cannot fix the already-zero length-at-most-four hostile features.",
+    "Proposal 4 is killed as specified. Difference labels identify many ordered pairs, and over characteristic two the proposed even-order groups have nonsemisimple group algebras, so their irreducible matrix coefficients do not separate the radical; no injectivity or support bound on the relevant mixed subspace is supplied.",
+    "Proposal 5 is killed because charged cycles do not address forest-shaped illegal covers, whose voltages are gauge-trivial. The voltage assignment, lifted syndrome matrix, target, and expander quotient are also unspecified, so there is no reproducible bounded construction to test.",
+    "Proposal 6 is killed by O5 and an objective mismatch. Higher Lawrence and Graver complexity count conformal atoms, not Euclidean coefficient norm, while a base constant-cost signed repair embeds into the affine layered system and scales no worse than the honest baseline.",
+    "Proposal 7 is killed in its stated low-degree form. Connected Macaulay features remain exposed to O3, while splitter-selected degree-d monomials still obey O1 whenever a polynomial-size hostile instance realizes a dimension-(d+1) cube; the expander substitution and sparse YES representation are not specified.",
+    "Proposal 2 survives only as a finite test candidate, not as a theorem. Rank condensers preserve rank or nonzeroness rather than Hamming support, rank-one YES and NO tensors have the same rank profile, and stacking enough blocks may erase all compression; every mixed word and actual output rank must therefore be measured."
+  ],
+  "evidence": [
+    "The obstruction map expressly leaves code-dependent dense structured tensor folds open, while requiring arbitrary mixed-word soundness and output-rank accounting. Proposal 2 is the only proposal directly occupying that opening without already contradicting a proved obstruction.",
+    "Prior modular-Kronecker, sparse-hash, generator-type, cyclic, and frozen matrix-algebra folds all lost the finite gap, but those verifiers establish no universal no-go for two-sided dense rank-condenser maps. The previous M_3(F_4) result killed only its frozen aligned rank-one labeling.",
+    "I27's verifier found a finite walk gap but also exact all-eight and holonomy words with every tested walk feature canceled. This evidence supports the stated rejection of merely restricting those low-degree walk coordinates and cannot be promoted to an asymptotic claim.",
+    "The integer experiments prove only additive q versus q+2 or 12 versus 14 gaps, and the exact-fiber obstruction supplies constant repairs. They provide no evidence that Lawrence layering or a learned Euclidean metric yields polynomial separation.",
+    "No supplied verifier tests any of the seven new proposals. Consequently, only one frozen finite experiment is authorized, and any positive result would remain finite evidence."
+  ],
+  "next_experiment": "Test proposal 2 only. Freeze F_8=F_2[u]/(u^3+u+1), a canonical coordinate ordering, explicit 2-by-8 left and 8-by-2 Vandermonde matrices, and five precommitted two-sided blocks totaling at most 60 binary moving coordinates; enumerate every mixed image word on ten YES, 200 NO, affine-closure, all-eight, and holonomy instances. Continue this lineage only if it has no hostile pointed kernel, best NO exceeds worst YES, and the exact-transfer rank exponent strictly exceeds the unfurled 0.2447428; otherwise kill the frozen condenser family without tuning.",
+  "confidence": 0.96
+}

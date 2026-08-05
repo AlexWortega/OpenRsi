@@ -1,0 +1,40 @@
+{
+  "summary": "Selected the common surviving raw-selector Construction-A/expander-code direction and performed the mandatory exact compatibility audit before emitting carries. For p=2,3,5,127, differences among the 16 globally consistent one-hot encodings have rank 14, giving a maximal compatible syndrome space of dimension 58. The Generation-11 unique-triple parity at anchor excess 24 is an exact integral affine combination of those honest encodings with coefficient sum one, so its maximal compatible syndrome is zero for every audited prime and, in fact, for every linear modulus. This finitely kills the raw 72-selector linear-code mutation.",
+  "hypothesis": "Causal mechanism: a maximal linear syndrome orthogonal to all honest-encoding differences should detect every low-anchor harmful selector, after which Construction-A code distance could spread the nonzero syndrome. Expected move: all supplied attacks have nonzero maximal compatible syndrome. Falsification condition: any harmful selector in the affine span of honest encodings. The Generation-11 parity satisfies an exact integer affine identity with coefficients [1,-1,-1,1,0,0,0,0,-1,1,1,-1,1,0,0,0] summing to one, and therefore satisfies the falsification condition.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_selector_code_compatibility.py",
+    "experiments/gen13_selector_code_compatibility_manifest.json",
+    "gen-13/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_selector_code_compatibility.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_selector_code_compatibility.py",
+      "exit_code": 0,
+      "finding": "Exact modular elimination gives honest-difference rank 14 and maximal compatible syndrome dimension 58 for p=2,3,5,127; the anchor-excess-24 Generation-11 parity has zero syndrome for every prime."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_selector_code_compatibility.py",
+      "exit_code": 0,
+      "finding": "The new deterministic compatibility verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen13_selector_code_compatibility_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted honest encodings, difference generators, maximal modular syndrome bases, attack audits, and affine certificate form valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_degree3_global_psd_metric.py >/tmp/gen11_recheck13.json",
+      "exit_code": 0,
+      "finding": "The inherited verifier independently reconstructs the unique-triple parity selector used in the affine-collision certificate."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Before reconsidering any code lattice, apply the same exact affine-compatibility audit to the smallest formula-syntax-derived quadratic lift of the 16 honest encodings. Test whether the Generation-11 parity remains in their lifted affine span; kill the enlarged linear-code continuation immediately if it does, and emit no carries until it does not."
+}

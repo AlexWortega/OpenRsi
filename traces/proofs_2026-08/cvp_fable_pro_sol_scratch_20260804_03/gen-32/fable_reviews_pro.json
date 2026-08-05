@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is selected only for one finite composition audit. Its Walsh term is isotropic because F^T F=8I, and the one-copy zero-residual parity witness caps the squared ratio at 3/2; no recurrence or n^c gap follows from a two-copy pass.",
+    "Proposal 2 is killed as submitted. Constant-degree expansion gives at most linear neighborhood growth, not the claimed Omega(m^(1+epsilon)) coefficient support, and a smallest-cover search cannot distinguish that asymptotic claim from G13 affine lifts or short signed circulations.",
+    "Proposal 3 is killed. An integral cocycle cannot detect torsion homology because Hom(torsion,Z)=0; using a modular detector reopens the G13/code compatibility problem, while no formula-to-nontrivial-coset construction or emitted CVP instance is specified.",
+    "Proposal 4 is killed. Complete path-history selectors are exponential, whereas polynomially many adjacent-history selectors revert to G19 signed splicing; irreducible representations are only linear transforms of product marginals and do not enforce Boolean coefficients.",
+    "Proposal 5 is killed. Linear carry automata have unrestricted integral circulation directions unless a full-rank exact-fiber theorem is supplied, and bounds or canonicality cannot be externally filtered; the proposed mod-3/mod-5 toy is not a frozen emitted construction.",
+    "Proposal 6 is killed as submitted. No seed alphabet, integer Gram search bound, substitution rule, complete port partition, or tail certificate is fixed, so a finite shell cannot establish the claimed transfer inequality over all integral states or escape G28 nonclosure.",
+    "Proposal 7 is killed. Perfect hashing variables does not isolate the small-support G13 affine mixture over global assignments, and complete Möbius characters are orthogonal and hence reproduce an isotropic penalty; the four-variable toy cannot test polynomial energy growth."
+  ],
+  "evidence": [
+    "The supplied Generation-31 verifier exited successfully and certifies only d_YES^2=144 and 193<=d_NO^2<=216 for one rank-72 instance. It does not determine the exact NO value or prove composition.",
+    "The verified identity Q=12I+100A^T A confirms that the Walsh block has no cross-clause geometry. A zero-residual parity vector of cost 216 proves naive repetition cannot yield a growing ratio.",
+    "Verified prior experiments already exhibit the relevant attacks: G13 affine compatibility, G15 hierarchy lifting, G19 signed splicing, G28 transfer non-growth, and G30 seed isometry. None of Proposals 2-7 supplies a frozen mutation that demonstrably escapes those mechanisms.",
+    "No new experimental result is supplied for these proposals. Their expected moves and likely deaths are hypotheses, not verifier-backed evidence."
+  ],
+  "next_experiment": "Select Proposal 1 only: serialize two obstruction copies sharing variables 0 and 1 and rename the second copy's 2,3 to 4,5; use 18 H8 blocks, residual scale 10, and all global degree-at-most-three moment checks on unrestricted Z^144, with a compatible matched control. Exhaust one copy through 216 to determine exact squared minimum D1, certify control minimum 288 by a witness and exhaustive search through 287, then derive coefficient bounds and exhaust every residual-squared branch of the two-copy obstruction through 2D1. KILL on control mismatch, external filtering, incomplete branch coverage, or any vector of cost at most 2D1; an empty shell is only finite strict superadditivity.",
+  "confidence": 0.98
+}

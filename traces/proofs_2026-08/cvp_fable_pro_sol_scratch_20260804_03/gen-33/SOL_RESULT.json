@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole selectable Fable Proposal 6 mutation through its preregistered equal-completeness gate. Eight explicit integral Vandermonde bivector tags were frozen, and all 512 clause-incidence sign rules were audited exactly. For every rule, the 16 honest control points have common-sphere coefficient rank 4 and augmented rank 5; the obstruction has the same failure. No rational or real center exists, so the candidate is rejected before CVP factor/target or soundness-shell construction. This is a finite kill of this exact tag/sign family only.",
+  "hypothesis": "A shared six-dimensional exterior tag block might make affine parity energy coherent across clauses while all honest global encodings remain on one common completeness sphere.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_exterior_bivector_completeness.py",
+    "experiments/gen33_exterior_bivector_completeness_manifest.json",
+    "gen-33/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_exterior_bivector_completeness.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_exterior_bivector_completeness.py",
+      "exit_code": 0,
+      "finding": "Verified eight distinct decomposable integral bivectors, all Plucker relations, and exact rank pair (4,5) for every one of 512 sign rules on both control and obstruction; zero rules admit a common sphere."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_exterior_bivector_completeness.py && python3 -m json.tool experiments/gen33_exterior_bivector_completeness_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the exhaustive sign-audit manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_crosscopy_walsh_composition.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-32 source state still verifies after the exterior-tag audit."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If the exterior direction is continued, first solve a trace-normalized rational PSD equal-sphere feasibility system for a preregistered tag family and emit its exact factor and center; reject before soundness unless all honest control encodings are cospherical, then immediately evaluate G13 parity, DROP, and compatible two-copy parity."
+}

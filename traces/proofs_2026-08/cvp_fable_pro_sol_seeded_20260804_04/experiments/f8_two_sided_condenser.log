@@ -1,0 +1,402 @@
+{
+  "affine_closure": {
+    "distance_range": [
+      10,
+      26
+    ],
+    "pointed_kernels": 0,
+    "seeds": [
+      27,
+      97,
+      103,
+      104,
+      241,
+      245,
+      416,
+      438,
+      545,
+      580,
+      585,
+      604,
+      610,
+      675,
+      970,
+      1320,
+      1321,
+      1479,
+      1549,
+      1848
+    ],
+    "semantic_illegal_cost_range": [
+      11,
+      36
+    ]
+  },
+  "all_eight": {
+    "active_pointed_length": 14,
+    "base_distance": 2,
+    "cheapest_semantic_illegal_pure_square": 2,
+    "exact_transfer_rank": 13,
+    "fiber_size": 16,
+    "folded_distance": 2,
+    "image_dimension": 11,
+    "legal_pure_square_range": [
+      6,
+      10
+    ],
+    "mixed_words_enumerated": 2048,
+    "nominal_pointed_length": 61,
+    "parity_check_rank": 3,
+    "pointed_kernel": false,
+    "source_square_dimension": 25,
+    "unfurled_square_distance": 4
+  },
+  "block_exponents": [
+    [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    [
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    [
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        9
+      ]
+    ]
+  ],
+  "coordinate_relabelings_checked": 846931,
+  "expected_move": "preserve many dense slices of every NO mixed matrix while rank-one YES squares stay sparse",
+  "falsification": "pointed kernel, NO not above worst YES, hostile illegal cost not above worst YES, or exponent not above baseline",
+  "field": {
+    "basis": [
+      "1",
+      "u",
+      "u^2"
+    ],
+    "modulus": "u^3+u+1"
+  },
+  "folded": {
+    "NO_distance_range": [
+      6,
+      33
+    ],
+    "NO_pointed_kernels": 0,
+    "YES_distance_range": [
+      13,
+      31
+    ],
+    "YES_pointed_kernels": 0,
+    "best_NO": 6,
+    "max_exact_transfer_rank": 48,
+    "rank_exponent": 0.0,
+    "uniform_ratio": 0.1935483870967742,
+    "worst_YES": 31
+  },
+  "frozen_m8_blocks": [
+    {
+      "A": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "B_columns": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    {
+      "A": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          2,
+          3
+        ]
+      ],
+      "B_columns": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          2
+        ]
+      ]
+    },
+    {
+      "A": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          2
+        ]
+      ],
+      "B_columns": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          7,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "A": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          6,
+          7,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "B_columns": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "A": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          7,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      ],
+      "B_columns": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          2,
+          3
+        ]
+      ]
+    }
+  ],
+  "holonomy": {
+    "active_pointed_length": 36,
+    "base_distance": 3,
+    "cheapest_semantic_illegal_pure_square": 6,
+    "exact_transfer_rank": 35,
+    "fiber_size": 4,
+    "folded_distance": 6,
+    "image_dimension": 9,
+    "legal_pure_square_range": [
+      15,
+      28
+    ],
+    "mixed_words_enumerated": 512,
+    "nominal_pointed_length": 61,
+    "parity_check_rank": 27,
+    "pointed_kernel": false,
+    "source_square_dimension": 9,
+    "unfurled_square_distance": 9
+  },
+  "instances": {
+    "NO_q3_m8": 200,
+    "YES_q3_m8": 10,
+    "affine_closure_q3_m8": 20,
+    "all_eight_q2_m8": 1,
+    "holonomy_q3_m9": 1
+  },
+  "mechanism": "five frozen two-sided generalized-Vandermonde blocks over F8",
+  "mixed_words_enumerated": 83648,
+  "primary_success": false,
+  "unfurled": {
+    "best_NO": 25,
+    "exact_transfer_rank": 64,
+    "rank_exponent": 0.2447428045068572,
+    "worst_YES": 9
+  }
+}
+F8_TWO_SIDED_CONDENSER_PASS

@@ -1,0 +1,41 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_seeded_20260804_04/gen-8/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen polar-shortening rule satisfies every precommitted falsification condition: pointed kernels occur, best NO is not above worst YES, hostile illegal words are too cheap, and the measured exponent is zero. In particular, YES distance can be zero, so the shortened target can collapse into the kernel.",
+      "The mechanism is structurally misaligned: coordinates vanishing on the star-zero subcode may be constant but nonzero on the pointed affine coset, and deleting them can erase all target-syndrome separation. Invertibility of the polar transform before deletion does not prevent this coset collapse.",
+      "The proposed follow-up is not a precise bounded experiment. It supplies no explicit target-aware deletion map, precommitted transform, instance bound, or acceptance threshold, so CONTINUE is not authorized.",
+      "No asymptotic hardness consequence follows from these finite tests. STATUS, IDEAS, NOTES, and proof_cvp consistently classify the rule as killed and the overall hardness theorem as unproved."
+    ],
+    "evidence": [
+      "The supplied verifier reports YES distances 0–13 and NO distances 0–21, with worst YES 13 and best NO 0. Pointed kernels occur in 3/10 YES, 38/200 NO, and 5/20 affine-closure instances.",
+      "The all-eight hostile instance retains 40 coordinates but has folded distance zero and semantic illegal pure-square cost zero, versus legal pure-square costs 7–40. The holonomy illegal cost is 3 while its legal range reaches 48.",
+      "The computed uniform ratio and rank exponent are both zero, below the unfurled finite exponent 0.2447428045. The verifier explicitly sets primary_success to false and asserts the negative outcomes.",
+      "Machine verification reran the supplied script successfully and enumerated 33,636,544 mixed image words, but this remains finite evidence. The claimed 1,693,630 relabeling checks are weak: check_relabel only confirms that sorting each permutation recovers the canonical list and does not recompute image spectra."
+    ],
+    "next_experiment": "None for this run. A future mutation is admissible only after specifying an explicit polynomial-time affine-coset-aware deletion rule that provably retains the nonzero target syndrome, plus fixed transforms, bounded suites, and precommitted kernel/gap/hostile-cost thresholds.",
+    "confidence": 0.995
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The precommitted mechanism is directly falsified: best NO distance is 0 versus worst YES distance 13, with pointed kernels in 3/10 YES and 38/200 NO instances. A NO pointed kernel makes any positive multiplicative separation impossible for this map.",
+      "The shortening criterion is unsound for a pointed affine coset. Coordinates vanishing on the star-zero kernel may carry the entire target-coset separation, as witnessed by the all-eight image where both a pointed mixed word and a semantic illegal pure square have moving cost 0.",
+      "No asymptotic hardness consequence exists. These fixed q=2,3 computations neither prove behavior for growing instances nor overcome the established rank/output-size and mixed-word obstructions for dense tensor folds.",
+      "The proposed follow-up is not a bounded experiment: it supplies no explicit affine-coset-aware deletion rule, theorem statement, fixed instance suite, or numerical acceptance threshold. Therefore it does not justify another run."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION reports primary_success=false, folded YES range 0–13, NO range 0–21, best_NO=0, uniform_ratio=0, and rank_exponent=0.",
+      "The hostile suites agree with STATUS, IDEAS, and NOTES: five affine-closure instances have pointed kernels, and all-eight retains 40 coordinates yet has folded distance 0 and cheapest semantic illegal cost 0.",
+      "The verifier exhaustively enumerated 33,636,544 mixed image words and asserted the reported failures; passed=true means the failure-diagnostic script executed successfully, not that the construction passed.",
+      "The packet appropriately labels the result FINITE and does not claim the target theorem. Its rejection of this frozen rule is supported, but it cannot be generalized to every dense transform or to asymptotic hardness.",
+      "Exponent bookkeeping is inconsistent: the unfurled baseline uses log(65), while the folded calculation uses log(max retained coordinates) without the analogous pointed-coordinate convention. This does not affect the zero-ratio rejection, but it would invalidate a positive exponent comparison."
+    ],
+    "next_experiment": "None for this run. Reconsider only after specifying and proving a concrete polynomial-time deletion map that preserves the nonzero affine target coset—not merely its kernel—then precommitting the exact finite suite and success thresholds before execution.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

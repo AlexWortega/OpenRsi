@@ -1,0 +1,17 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The emitted encoding fails its preregistered falsification condition: an exact ACCEPT-fiber signed flow exists with zero residual and anchor excess 16. This directly destroys the claimed mechanism that rejection of every honest path prevents integral affine acceptance.",
+    "Source, sink, conservation, and repeated-query-total rows enforce only linear flow marginals; they do not force each signed path component to use one globally consistent assignment across repeated queries. Barrington correctness for honest assignments therefore does not transfer to unrestricted integral flows.",
+    "The finite squared-distance ratio is 22770/22754, with a constant-cost signed bypass. No composition law, growing negative-flow bound, dimension-dependent gap, or asymptotic hardness lemma is supplied.",
+    "The proposed transition-table refinement is not a precise bounded experiment: it specifies neither the lifted variables and rows nor a frozen size, shell bound, or exact candidate construction. 'Smallest explicit lift' leaves the mutation chosen after witness inspection and is not preregistered enough to justify continuation."
+  ],
+  "evidence": [
+    "Machine verification exited 0 after reconstructing the 3,250-layer program, 22,754 coefficients, 17,555 rows, manifest, and factor/target hash.",
+    "The exact DP exhausts zero-residual accepting flows through anchor excess 8 and reconstructs one at excess 16 with coefficient histogram {-1: 2, 0: 19500, 1: 3252}. Every emitted residual is checked to vanish.",
+    "The universal integral anchor baseline is 22,754; any nonzero integral residual adds at least 25, while the signed witness costs baseline plus 16. Thus the reported finite obstruction minimum 22,770 and control minimum 22,754 follow for this emitted instance.",
+    "STATUS, IDEAS, NOTES, proof_cvp, SOL_RESULT, and verifier output consistently label the result a finite kill and explicitly deny any O5/O8, growing-gap, or hardness theorem."
+  ],
+  "next_experiment": "None authorized for this candidate. Reopen only with a fully specified enlarged encoding that lists every selector and row before execution, fixes one finite obstruction/control pair and shell bound, and uses exact unrestricted search to test whether any zero-residual signed ACCEPT flow of constant anchor excess remains.",
+  "confidence": 0.99
+}

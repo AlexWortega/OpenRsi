@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The tested private-row composition is directly defeated: each covered one- or two-variable overlap admits a nonzero integer kernel move of squared norm at most 4. Amplifying or blowing up this unchanged 18-survivor gadget cannot restore the claimed local isolation mechanism.",
+    "The proposed next step is not one precise bounded experiment. It is a disjunction between an unspecified search with no row, degree, coefficient, or enumeration bounds and an undefined global pivot.",
+    "The broad wording that private-row composition or occurrence blow-up is killed is unsupported beyond the tested partial overlaps. The verifier frees unshared marginals; it does not test globally coupled systems in which every clause marginal is constrained by other occurrences.",
+    "The supplied machine evidence does not support the claimed rerun of verify_affine_isolation_core.py. The overlap verifier reconstructs a hard-coded survivor family and compares it to a hard-coded hash, which is not independent provenance for the Generation-2 exhaustive result.",
+    "No full-rank CVP basis, target, completeness radius, soundness threshold, or dimension-dependent gap is constructed. The finite kernel audit cannot be promoted to asymptotic hardness or a general impossibility theorem."
+  ],
+  "evidence": [
+    "The supplied verifier exited successfully and exactly checked 5,832 systems and 95,256 compatible references within its stated scope. It exhibits a representative nonzero move [-1,0,1,1,-1,0,0] and verifies all tested row equations exactly.",
+    "The source searches only short moves supported in clause one, but finding even one such move per tested system suffices to refute exact isolation for those systems. It does not establish behavior after all three marginals are globally coupled or after additional CVP coordinates are added.",
+    "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently state that no hardness lemma or dimension-dependent gap has been established. Their explicit FINITE qualification is correct.",
+    "MACHINE_VERIFICATION contains only verify_overlap_composition.py; it contains no execution record for verify_affine_isolation_core.py despite SOL_RESULT listing that test."
+  ],
+  "next_experiment": "None for this candidate. Reopen only as a new run with fixed finite row, column-degree, and coefficient bounds for a mutated local block, requiring exact certification that every nonzero integer circuit changes each of the three variable marginals before any composition test.",
+  "confidence": 0.98
+}

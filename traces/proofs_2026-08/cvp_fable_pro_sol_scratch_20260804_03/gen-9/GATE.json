@@ -1,0 +1,40 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-9/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The exact nearest vector is a zero-residual degree-two cube-parity kernel with constant anchor excess 24. Thus the new metric charges the old three-term attack but leaves the decisive affine-kernel obstruction intact.",
+      "The proposed padding experiment is already resolved analytically. With m clauses, duplicate only clauses satisfied by the attack's displayed global assignment and use honest selectors there; the parity repair remains zero-residual, giving squared distance at most 8m+24 versus completeness radius 8m, hence ratio at most sqrt(1+3/m), which is below 1.1 at m=18 and tends to one.",
+      "There is no uniform synthesis, composition, or amplification argument converting the finite constant ratio into the required n^c gap. The control comparison establishes only two fixed-instance minima and cannot support asymptotic hardness.",
+      "The claim that the scale was predeclared is contradicted by the manifest: residual scale 5 is defined as the smallest integer whose square exceeds the obstruction-specific searched excess 24. This does not invalidate the finite arithmetic, but it invalidates the claimed independent parameter selection."
+    ],
+    "evidence": [
+      "The supplied machine verifier exited successfully and supports the finite claims: exact unrestricted squared minima 96 and 72, squared ratio 4/3, positive-definite rational Gram form 4I+25A^T A, and a displayed zero-residual selector of anchor excess 24.",
+      "STATUS, IDEAS, NOTES, and proof_cvp.md consistently label Generation 9 finite only and explicitly report the constant-cost cube-parity kernel. None supplies a hardness lemma or dimension-dependent gap law.",
+      "The verifier's minimum proof is adequate for this fixed instance: nonzero integral residual costs at least 25, while exact dynamic programming exhausts normalized legal zero-residual states through anchor excess 24. This evidence must not be generalized beyond the emitted instances without a separate theorem.",
+      "The zero-residual witness matches all singleton and pair moments of its displayed assignment. Consequently, adding honest duplicate clauses satisfied by that assignment preserves every all-pairs consistency row, so the planned 18- and 36-clause computations cannot rescue the template."
+    ],
+    "next_experiment": "Stop this run. Reopen only as a new mutation with all incidence-equivariant degree-three moment-consistency rows and scales fixed before search; on the same obstruction/control, exactly test that the displayed seven-term parity selector has nonzero residual and that the unrestricted distance ratio still exceeds 1.1.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The degree-two template has a universal zero-residual cube-parity attack, not merely a finite-instance defect. For any assignment, replace each falsified clause's forbidden label by +1 on weight-1 and weight-3 legal patterns and -1 on weight-2 patterns; this preserves normalization and every degree-at-most-two moment while adding only 24 anchor energy per falsified clause.",
+      "For an m-clause proper 3CNF, some assignment falsifies at most m/8 clauses by the averaging argument. Hence the template always has squared distance at most 8m+24(m/8)=11m against completeness squared radius 8m, bounding the distance ratio by sqrt(11/8), so no polynomial approximation gap is possible regardless of residual scale.",
+      "The proposed padding experiment is already resolved by the displayed localized kernel: duplicating clauses satisfied by its underlying assignment leaves excess 24 while the baseline grows. At 18 clauses the witness alone gives ratio at most sqrt(168/144)<1.1, and the ratio tends to one.",
+      "The metric value s=5 was not uniformly synthesized: the manifest selects it as the smallest scale whose square exceeds the exactly searched obstruction-specific excess 24. This supplies neither a predeclared formula-independent choice justified for a family nor a polynomial-time synthesis rule."
+    ],
+    "evidence": [
+      "Machine verification supports only the finite claims: exact unrestricted minima 96 and 72, ratio sqrt(4/3), rational full-rank factor, and a seven-term zero-residual cube-parity minimizer of anchor excess 24.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently state that no hardness lemma, composition theorem, uniform synthesis theorem, or dimension-dependent gap has been established.",
+      "The verifier's objective is exactly ||2z-1||^2+25||Az-b||^2. Because the parity attack has Az=b, increasing or otherwise amplifying the residual block cannot charge it.",
+      "The finite exact-minimum proof is sound within the supplied evidence: nonzero integral residual costs at least 25 above the universal anchor floor, while exhaustive signed dynamic programming certifies minimum zero-residual excess 24."
+    ],
+    "next_experiment": "None for this degree-two metric or its padding. Reopen only after a predeclared mutation introduces constraints that provably make the cube-parity vector nonzero; its first bounded test must explicitly evaluate that same seven-term witness under unrestricted integer coefficients.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

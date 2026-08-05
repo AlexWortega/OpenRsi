@@ -1,0 +1,96 @@
+{
+  "all_coordinate_relabelings_checked": 806400,
+  "best_observed_rule_diagnostic_only": {
+    "beats_unfurled_exponent": false,
+    "canonical_type_range": [
+      3,
+      7
+    ],
+    "image_dimension_range": [
+      1,
+      2
+    ],
+    "max_ambient_rank": 3,
+    "moduli": [
+      2
+    ],
+    "no_distance_range": [
+      1,
+      1
+    ],
+    "nominal_buckets": 2,
+    "rank_exponent": 0.0,
+    "strictly_compressed": true,
+    "uniform_ratio": 1.0,
+    "yes_distance_range": [
+      1,
+      1
+    ]
+  },
+  "expected_move": "retain all low-weight NO mixed words while using fewer than 64 moving buckets",
+  "falsification": "a mixed NO image at or below worst YES, or no compressed uniform exponent gain",
+  "instances": {
+    "NO": 10,
+    "YES": 10
+  },
+  "mechanism": "canonical ordered Kronecker exponents, parity buckets modulo fixed M_j",
+  "mixed_image_words_enumerated": 24084,
+  "precommitted_rule": {
+    "beats_unfurled_exponent": false,
+    "canonical_type_range": [
+      3,
+      7
+    ],
+    "image_dimension_range": [
+      1,
+      9
+    ],
+    "max_ambient_rank": 53,
+    "moduli": [
+      5,
+      7,
+      11,
+      13,
+      17
+    ],
+    "no_distance_range": [
+      5,
+      17
+    ],
+    "nominal_buckets": 53,
+    "rank_exponent": 0.0,
+    "strictly_compressed": true,
+    "uniform_ratio": 0.29411764705882354,
+    "yes_distance_range": [
+      5,
+      17
+    ]
+  },
+  "rules_beating_unfurled_exponent": 0,
+  "rules_checked": 35,
+  "rules_preserving_gap": 0,
+  "rules_with_ratio_one": 23,
+  "unfurled": {
+    "ambient_rank": 65,
+    "best_NO": 25,
+    "rank_exponent": 0.2447428045068572,
+    "uniform_ratio": 2.7777777777777777,
+    "worst_YES": 9
+  },
+  "uniform_ratio_range": [
+    0.14285714285714285,
+    1.0
+  ]
+}
+TOP_RULES
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 2], "max_ambient_rank": 3, "moduli": [2], "no_distance_range": [1, 1], "nominal_buckets": 2, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 3], "max_ambient_rank": 4, "moduli": [3], "no_distance_range": [1, 1], "nominal_buckets": 3, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 3], "max_ambient_rank": 4, "moduli": [4], "no_distance_range": [1, 1], "nominal_buckets": 4, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 5], "max_ambient_rank": 6, "moduli": [5], "no_distance_range": [1, 1], "nominal_buckets": 5, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 4], "max_ambient_rank": 5, "moduli": [6], "no_distance_range": [1, 1], "nominal_buckets": 6, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 6], "max_ambient_rank": 7, "moduli": [7], "no_distance_range": [1, 1], "nominal_buckets": 7, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 3], "max_ambient_rank": 5, "moduli": [8], "no_distance_range": [1, 1], "nominal_buckets": 8, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 7], "max_ambient_rank": 10, "moduli": [9], "no_distance_range": [1, 1], "nominal_buckets": 9, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 6], "max_ambient_rank": 10, "moduli": [10], "no_distance_range": [1, 1], "nominal_buckets": 10, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+{"beats_unfurled_exponent": false, "canonical_type_range": [3, 7], "image_dimension_range": [1, 9], "max_ambient_rank": 12, "moduli": [11], "no_distance_range": [1, 1], "nominal_buckets": 11, "rank_exponent": 0.0, "strictly_compressed": true, "uniform_ratio": 1.0, "yes_distance_range": [1, 1]}
+SPARSE_PIT_TENSOR_FOLD_PASS

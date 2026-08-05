@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "None of the seven sketches supplies an explicit polynomial-time lattice basis, target, completeness radius, soundness threshold, coefficient bound, and dimension-versus-gap law. Consequently, none currently defines an executable CVP reduction or a bounded experiment capable of discriminating the claimed asymptotic mechanism.",
+    "Proposal 1 misstates Construction-A distance: for a binary code, the lattice contains 2Z^m and hence vectors 2e_i of constant norm, regardless of code distance. Mod-2 syndrome checks are not affine real coordinates without quotient variables, which create new integer directions requiring analysis; moreover [7,4,3] has constant distance and does not test the claimed linear scaling.",
+    "Proposal 2 confuses filling area with CVP distance. For L = im(partial_2), CVP minimizes ||z-partial_2 c||, not ||c||, so a filling-area inequality does not lower-bound the stated objective; no formula-to-complex map or treatment of cheap near-fillings is supplied.",
+    "Proposal 3's dual inequality is valid only for an exact w in L* with an exact nonintegral pairing, but LLL search for an approximately half-integral pairing cannot certify absence or soundness. The proposal gives no construction forcing such witnesses for every unsatisfiable formula, and ||w|| <= n^-c is insufficient without relating it to the completeness radius and normalization.",
+    "Proposal 4 is already blocked by O5: both honest consistency anchors and soundness penalties scale with the number of copies, yielding only a constant ratio absent a new weighting argument. With three variables, 'all 3-subsets' is one block, so the proposed experiment has no overlap graph and cannot test agreement spreading.",
+    "Proposal 5 studies the wrong invariant: minimum distance of ker_Z(A) controls separation among solutions of Ax=b, not dist(b,AZ^k) or distance from a CVP target. Linear equations with OR slacks still require Boolean enforcement and retain O1/O2 surfaces, while finding or excluding short Graver elements would not establish CVP soundness.",
+    "Proposal 6 incorrectly treats minimum lattice distance as a deep-hole guarantee; lambda_1 separates lattice points but gives no lower bound on distance from the routed target. The assignment-to-coset routing must compute OR using an affine map, which it cannot do without selectors or nonlinear constraints, reopening O1 or O2.",
+    "Proposal 7 has neither a valid seed nor a valid multiplication identity: the finite 27-versus-19 result is not an asymptotic seed theorem, and CVP distance generally does not multiply under t tensor t and L tensor L because cross terms and arbitrary tensor-lattice sums remain. Its own dimension calculation also concedes that a constant seed gap cannot deliver the required polynomial factor."
+  ],
+  "evidence": [
+    "The only supplied executable evidence concerns Generation 1. It certifies the exact finite optimum 27, baseline 19, and zero amplified residual energy through a non-Boolean slack witness, killing only that residual-only gadget.",
+    "No verifier, explicit basis, target, or machine output is supplied for any Generation 2 proposal. Claims that syndromes, filling inequalities, dual vectors, agreement tests, kernel distance, Barnes-Wall geometry, or tensoring defeat O1-O5 are therefore unverified mechanisms rather than results.",
+    "The Generation 1 verifier cannot be promoted asymptotically: sqrt(27/19) is a constant from one eight-clause instance and supplies no dimension-dependent gap law. It also cannot validate untested coding, geometric, dual, or tensor variants by analogy."
+  ],
+  "next_experiment": "None on these submitted sketches. Reopen only as a new mutation after providing an explicit integer basis and target, SAT completeness radius, UNSAT threshold, dimension-gap law, and proved finite search bound; then exactly enumerate both a matched SAT/UNSAT small pair, with Proposal 1 additionally eliminating the unavoidable 2Z^m and quotient-variable directions.",
+  "confidence": 0.99
+}

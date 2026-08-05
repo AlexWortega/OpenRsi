@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 supplies no explicit folding matrix or rank-to-Hamming lemma. Rank condensers preserve flattening rank/nonzeroness, not pointed support, and the proposed “2×k condenser” search does not define the resulting coordinates, field, dimensions, or compression criterion.",
+    "Proposal 2 does not freeze a hash family, bucket layout, or integer matrix, and searching coefficients only in [-2,2] cannot certify an integer coset minimum. Failure to find a bounded-coefficient relation would not distinguish dissociation from a larger-coefficient kernel relation, while large powers can inflate the worst-YES baseline.",
+    "Proposal 3 remains a degree-r polynomial signature in the original bits because y=Ex is linear. An affine (r+1)-cube therefore cancels every Schur feature even after global diffusion; disjoint hostile cores supply growing cube dimension, and the proposed lifted span is still constructed by enumerating the affine fiber.",
+    "Proposal 4 is the already-wounded determinant/exterior dictionary with an added splitter but no demonstrated escape from Grassmann–Plücker trades. Keeping all relevant minors is exponential, while selecting polynomially many minors has no partition-rank soundness theorem or explicit protected dictionary.",
+    "Proposal 5 has no polynomial linear realization of the global ordered product. Direct endpoint columns admit affine endpoint splices, while compiling multiplication through states re-enters the proved bounded-interface tableau obstruction and the previously tested global-branch rectangle cheat.",
+    "Proposal 6 is not an explicit linear CVP construction: tropical valuation and normal-cone selection are nonlinear minima. Encoding separate chambers recreates an exponential witness-sector disjunction, whereas fixed valuation rows are additive and cannot charge illegal affine combinations of legal matchings.",
+    "Proposal 7 is incompatible with linear or group filling subadditivity. A fixed illegal affine combination of cheap legal boundaries has a filling obtained by combining their diagrams at only constant-factor cost; padding that hostile core makes the legal baseline grow while preserving a 1+O(1/q) ratio."
+  ],
+  "evidence": [
+    "Existing exact fold tests already show sparse hashes, generator-type punctures, modular Kronecker folds, and frozen sampled product folds lose soundness or overfit; parity-check simplification is rigorously vacuous on the current tensor family.",
+    "The supplied rank-condenser literature digest explicitly states that rank retention does not imply Hamming-support retention and tends to flatten nonzero words. No verifier evidence supplies the missing rank-to-support implication.",
+    "The Schur-walk verifier found shell-free illegal affine words on both all-eight and twisted-holonomy diagnostics, and its generator exhaustively enumerates affine-fiber points. Linear diffusion does not invalidate the finite-difference identity for the resulting degree-r polynomials.",
+    "The determinant verifier already found support-three virtual permutation states at q=3,4 even after adding every compound/exterior state, while the complete monomial dictionary has q! size.",
+    "The phase/selector campaign already found a weight-9 rectangle splice for a shared global branch, and the obstruction map proves bounded-fan-in multiplication tableaus have constant-cost exact repairs.",
+    "The exchange-quotient verifier found 32 instances where illegal odd covers lie in the affine span of perfect matchings. This directly undermines additive valuation shells and any filling objective whose certificates can be combined subadditively."
+  ],
+  "next_experiment": "None for these proposals as written. Reopen only a mutated proposal 2 after specifying one deterministic polynomial-time, code-dependent integer matrix with polynomial bit length; then compute certified exact q=3,r=2 YES and NO image-coset minima without coefficient truncation, including all-eight and holonomy cases, and kill it unless its worst-YES/best-NO rank exponent strictly beats the unfurled tensor.",
+  "confidence": 0.99
+}

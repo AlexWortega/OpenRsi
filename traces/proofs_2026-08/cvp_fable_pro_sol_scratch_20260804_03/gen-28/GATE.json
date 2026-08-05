@@ -1,0 +1,37 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-28/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The serialized recursion fails its preregistered necessary condition: lambda=57/32 is strictly less than mu=2. Illegal cost therefore grows more slowly than legal cost in the tested composition, so this frozen rule cannot support the proposed amplification mechanism.",
+      "The rank-32, depth-two computation supplies no recurrence invariant, uniform tile family, or dimension-dependent gap law. Its exact finite minima cannot be promoted to asymptotic hardness, consistent with STATUS, IDEAS, NOTES, and proof_cvp.md.",
+      "The proposed size-16 mutation is not a precise bounded experiment: it does not fix the four-variable bag, emitted rows, seam map, radius, or threshold. It also does not state how it confronts the previously verified zero-residual affine pseudodistribution lift from Generations 13 and 15."
+    ],
+    "evidence": [
+      "Machine verification exited 0 and reproduced complete shell tables: obstruction minimum 57, control minimum 32, depth-one adverse minimum 32, and legal minimum 16.",
+      "The minima have valid unrestricted proofs beyond mere enumeration: anchor cost is at least 32; zero obstruction residual contradicts normalization after all eight coordinates are forbidden; and a one-hot witness attains 57. The control has a one-hot witness attaining its anchor lower bound 32.",
+      "The coefficient interval [-2,3] and local cutoff 41 are sufficient for completeness through squared radius 57, since omitted coordinates or tiles contribute their universal anchor minima. Thus the finite negative result is credible, but it certifies failure rather than progress toward hardness.",
+      "All supplied project documents consistently label Generation 28 a finite recursion-rule failure and explicitly state that no hardness lemma or dimension-dependent gap exists."
+    ],
+    "next_experiment": "None authorized for this run. Reopen only as a new preregistered mutation fixing the exact four-variable bag, all rows, one explicit nonidentity seam, matched control, coefficient bound, shell radius, and an affine-lift audit; kill on nonclosure, control mismatch, a zero-residual Generation-13/15 lift, or lambda<=mu.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The sole authorized recursion rule meets its preregistered falsification condition: lambda=57/32 is strictly below mu=2. The mechanism therefore fails on its defining bounded growth test.",
+      "The verified rank-32 tables provide no composition invariant, uniform tile family, or dimension-dependent gap law. They cannot be promoted to asymptotic GapCVP hardness.",
+      "The proposed size-16 mutation is not a precise bounded experiment: the four-variable bags, overlap seam, obstruction/control instances, radius, growth denominator, and acceptance threshold are unspecified. It therefore does not justify CONTINUE."
+    ],
+    "evidence": [
+      "The machine verifier exited 0 and reports exact obstruction/control squared minima 57 and 32, with depth-one adverse/legal minima 32 and 16; hence 57/32<32/16.",
+      "Closure through squared radius 57 is supported by the anchor bound giving coefficient interval [-2,3], local-table cutoff 41, and exhaustive table composition. Exact minimum claims also have direct finite proofs: obstruction residual zero is inconsistent, while a one-hot witness attains 57 and the control attains anchor baseline 32.",
+      "STATUS, IDEAS, NOTES, proof_cvp.md, SOL_RESULT, and verifier output consistently label this a finite failure and state that no hardness lemma or asymptotic gap has been established."
+    ],
+    "next_experiment": "None for this frozen reduced rule. A revival requires a separately preregistered mutation specifying the exact size-16 factors, seam map, obstruction/control pair, exhaustive coefficient bound and radius, and a strict lambda>mu acceptance criterion before execution.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

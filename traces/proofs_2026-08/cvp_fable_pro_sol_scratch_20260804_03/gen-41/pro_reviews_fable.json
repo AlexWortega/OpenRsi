@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1's full Walsh block is only a scaled Euclidean anchor: H_q^T H_q=qI, so a constant-support signed section has only a constant NO/YES ratio. No support-growth theorem is supplied, and testing H_16 on the already finite G38 instance cannot discriminate logarithmic-width scaling.",
+    "Proposal 2 cannot realize linear-suffix history distance with a fixed memory-3 convolutional encoder: after two streams agree for three steps, their emitted labels agree. A true tree-code history would require path-dependent columns or growing state, neither of which has a polynomial-size emitted construction; linear signed superpositions remain unaudited.",
+    "Proposal 3 amplifies only nonzero algebraic residuals. The exact G13 honest-affine-span collision, and its G15 lift, gives zero under every compatible linear residual map regardless of coefficient field, while equal trace-radius, DROP cost, integral factor, and normalization are unspecified.",
+    "Proposal 4 relies on determinant bounds for decomposable wedges, but unrestricted CVP coefficients in a compound-coordinate lattice need not be decomposable. Imposing decomposability is nonlinear and invalid, while the proposed compound target, control radius, and complete unrestricted shell are not defined.",
+    "Proposal 5 is an unfrozen metric search rather than an experiment: the Gram family, scale normalization, center, shell threshold, rounding map, and constraints defining 'shell-relevant' off-diagonals are absent. Diagonal dominance or an M-matrix sign pattern alone does not prove rounding to a legal one-hot section or exclude DROP and affine pseudosections.",
+    "Proposal 6 supplies no formula-to-complex construction, attachment rule, target class, weights, or Euclidean cosystolic certificate. Smith normal form proves torsion order, not a lower bound on shortest representatives, and the fixed RP2 seed has only constant-size torsion representatives.",
+    "Proposal 7 cannot amplify sparse affine collisions: for unit tags, the squared feature norm of 2u_a^{⊗k}-u_b^{⊗k} tends to 5, versus honest norm 1, as correlations decay. G13 supplies a constant-support affine collision, so polynomial energy requires an absent and currently contradicted support-expansion lemma; the proposed k=1,2,3 test cannot test asymptotic growth."
+  ],
+  "evidence": [
+    "G13 verifies an exact integral affine combination of honest encodings annihilating every compatible linear syndrome. G15 lifts the same coefficients through every hierarchy level with zero residual.",
+    "G19 verifies a zero-residual accepting signed flow with two negative coefficients and anchor excess 16. No supplied evidence shows that linear history checks prevent analogous cancellation.",
+    "G31's finite Walsh pass does not compose: G32 finds compatible parity at exactly additive cost, and G37 proves an exact additive parity cut throughout its tested metric family.",
+    "G38 is only a fixed B+64 shell pass using eleven full-variable bags; it establishes neither logarithmic-width support growth nor a dimension-dependent ratio. G14 also records a zero-residual affine lift at finite anchor cost.",
+    "G30 demonstrates that selected-rank tensor audits do not control unrestricted coefficient spaces, matching the nondecomposable-wedge obstruction to Proposal 4.",
+    "No verifier evidence accompanies any of these seven proposals. Their expected moves are predictions, not experimental results."
+  ],
+  "next_experiment": "None as written. Reopen Proposal 5 only after freezing a rational normalized Gram-and-center family, matched control, positive eigenvalue floor, exact factor/target, explicit rounding map, and a derived complete unrestricted coefficient shell; then exhaustive verification or one counterexample would be genuinely discriminating.",
+  "confidence": 0.995
+}

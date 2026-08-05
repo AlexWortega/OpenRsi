@@ -1,0 +1,30 @@
+{
+  "summary": "Selected only Pro Proposal 2, the sole candidate allowed by cross-review. Built the complete 64-selector module for the unsatisfiable all-eight-clause core, with eight normalization checks, 21 global variable-consistency checks, seven complete-Boolean difference relations, and no slack or auxiliary coordinates. Smith normal form gives seven unit invariants and quotient free rank 57, independently matching exact rational rank 7. Exhaustive low-weight search checked 156880 harmful signed-selector deviations through squared norm 12; none maps to zero exactly or modulo 2. The checked manifest also emits a full-rank 178-dimensional triangular Construction-A carry basis and target. This is a finite prerequisite survivor, not a hardness lemma or asymptotic gap.",
+  "hypothesis": "Causal mechanism: quotienting global selector data by complete-Boolean assignment differences makes honest assignments share a syndrome while harmful signed legal selectors retain a nonzero class that a binary outer code can detect. Expected move: every harmful deviation in the requested norm ball has nonzero exact and binary syndrome. Falsification condition: one normalization- and consistency-preserving deviation that removes all false labels, has squared norm at most 12, and vanishes in the quotient or modulo 2.",
+  "changed_files": [
+    "experiments/verify_global_selector_quotient.py",
+    "experiments/gen6_global_selector_manifest.json",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-6/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_global_selector_quotient.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_global_selector_quotient.py",
+      "exit_code": 0,
+      "finding": "Verified the emitted module and 178-dimensional basis/target manifest; SNF invariants are seven ones with independent rational rank 7; all 156880 harmful deviations of squared norm at most 12 have nonzero exact and binary quotient syndrome. Minimum harmful squared norm is 4, minimum binary syndrome weight is 4, and minimum tested audit squared distance is 12."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_global_selector_quotient.py && python3 -m json.tool experiments/gen6_global_selector_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the complete emitted manifest is valid JSON."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Before any amplification claim, replace the exhaustively listed complete-assignment differences by an explicit polynomial-time formula-local generator (or prove that the proposed quotient cannot be generated that way). Verify equality of the generated integer lattice by SNF on the three-variable core and the next four-variable overlapping core, then repeat exact low-weight and modulo-q bypass search."
+}

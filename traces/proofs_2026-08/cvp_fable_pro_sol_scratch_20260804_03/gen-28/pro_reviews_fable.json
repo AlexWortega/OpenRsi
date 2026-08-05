@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not specify the block lattice, target, normalized search class for Q, retraction map, or inequalities covering DROP, G13, and G19 states. Because Q is variable, the eigenvalue-bounded shell is circular, rationalization requires certified strict margins, and an eight-clause pass cannot establish G20–G22 scaling.",
+    "Proposal 2 relies on quadratic Plücker relations although CVP residuals are linear; selector linearization reopens independent signed charts, G13 affine lifts, and G19-style trades. Salts, transitions, target, baseline, coefficient bound, and the claimed D/W recurrence are not frozen, so the proposed enumeration is not executable or asymptotically discriminating.",
+    "Proposal 3 does not defeat G19: noncommutative multiplication tables become linear flow constraints after selectors are emitted and remain vulnerable to signed splicing. An A5 test cannot examine a growing PSL2 family, uniform displacement, or whether the baseline from full table selectors overwhelms the claimed Ω(sqrt(p)) penalty.",
+    "Proposal 4's CRT shell injectivity does not exclude exact zero-residual integral trades in the fully emitted linear digit-and-carry system; it must explicitly defeat the G13 affine lift and G19 splicing. The completeness cost of anchored carries and the dependence of the coefficient shell on M are unaccounted for, and no concrete equations or target are supplied.",
+    "Proposal 5 still fails the Generation-27 reopening condition: the base target, glue map, port equivalence, matched control, and legal/illegal contracted costs are not frozen. Enumerating only through B+32 can omit expensive boundary states that later re-enter cheaply, while ordinary min-plus powers give additive cycle-mean growth rather than the asserted exponential ratio absent an explicit recursive inequality.",
+    "Proposal 6's degree-three experiment on the constant eight-clause formula cannot discriminate the central exponential-degree, rank, or coefficient-height obstruction for general formulas. Kronecker compression has no proved Euclidean separation, and the proposed dual-functional coordinate lacks a uniformly constructible definition and bounded norm.",
+    "Proposal 7 turns nonlinear tables into linear selector constraints, so short integral trades and signed pseudocodewords remain the decisive G7/G13/G19 obstruction. No specific expander, quasigroup tables, lattice target, baseline, or spectral coefficient bound is frozen, and a length-12 pass would not test uniform integral expansion."
+  ],
+  "evidence": [
+    "G13 verifies an exact coefficient-sum-one affine collision, and G15 lifts it through every tested hierarchy node with zero residual below threshold. This directly blocks claims that enlarged linear encodings automatically remove affine pseudodistributions.",
+    "G19 verifies an exact accepting signed flow with two negative coefficients and zero residual. Nonlinearity before selector emission did not survive unrestricted integral CVP coefficients.",
+    "G7, G9, and G11 exhibit constant-cost zero-residual signed kernels, while G12 shows that charging one such kernel exposes a cheaper DROP state. Residual scaling alone therefore supplies no polynomial relative gap.",
+    "G14 is only a finite B+32 pair-bag shell pass. The supplied Generation-27 gate explicitly rejected truncated recursive-state searches without complete ports, glue, closure, and a noncircular bound.",
+    "No Generation-28 proposal supplies verifier output or a fully specified emitted lattice, so none of its expected moves is experimental evidence."
+  ],
+  "next_experiment": "None authorized as written. Reopen only a Proposal-5 mutation that freezes the complete base lattice and target, glue coordinates, matched control, exhaustive DROP/G13/G19/malformed port classes, and a noncircular bound covering every depth-two minimizer rather than B+32; then enumerate all unrestricted depth-two fibers and kill on nonclosure, an unlisted minimizer, completeness mismatch, cheap affine lift, illegal-to-legal shortcut, or failure of an explicit dimension-accounted recurrence.",
+  "confidence": 0.998
+}

@@ -1,0 +1,48 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not escape G13: generalized Hamming weights constrain codewords, not arbitrary integral affine combinations of encoded columns. The fixed Golay test lacks a frozen basis, target, coupling, weights, and full-fiber solver, and a constant code cannot address G14/G20/G21 scaling.",
+      "Proposal 2 assumes the missing support lemma. A k-perfect hash isolates only supports of size at most k, while a parity on k+1 variables remains a degree-width blind spot; sparse linear expander measurements can also have high-support integral kernels. The eight-variable test is unfrozen and cannot discriminate the claimed asymptotic handoff.",
+      "Proposal 3 is not a finite search as stated: integral Gram entries, targets, port representatives, state classes, scale, gluing maps, and coefficient bounds are unspecified. Moreover, additive min-plus costs do not automatically yield a multiplicative rho-per-level gap, so even a depth-two pass would not establish the asserted recurrence.",
+      "Proposal 4 supplies no formula-to-relative-class map and no proof that mod-2 cosystolic expansion controls shortest integral representatives under unrestricted carries. The fundamental group of RP2 has only a double cover, so the proposed finite example cannot test polynomial cover growth or G20/G21 amplification.",
+      "Proposal 5 amplifies only nonzero residuals and therefore leaves G7/G13/G19 exact kernels untouched; fixed linear embeddings preserve affine collisions. On the proposed nine-clause encoding, the already verified zero-residual signed selector forces alpha=0, so the p=17 test would merely reproduce a known blocker.",
+      "Proposal 6 gives no theorem by which M-convexity enforces nonnegative path decomposition over an unrestricted integer flow fiber. Laminar inventories are linear aggregates that affine or signed splices may preserve, and even an O(log L) inventory penalty is negligible against an Omega(L) completeness radius without a scale-stable recurrence. The graph segment, Gram matrices, target, and unrestricted solver are not frozen."
+    ],
+    "evidence": [
+      "G13 verifies a harmful coefficient-sum-one affine combination of honest encodings; G15 lifts it through every tested hierarchy level with zero residual at 24960 below 25472.",
+      "G19 verifies an exact accepting signed flow with two negative coefficients and zero residual; obstruction and control squared minima are 22770 and 22754.",
+      "G9/G11 exhibit constant-cost parity kernels, while G12 shows that charging parity can expose a cheaper clause drop. Every shell or fingerprint proposal must audit both in the complete unrestricted fiber.",
+      "G5 found squared-norm-at-most-four overlap circuits in every tested private-row composition, so local isolation does not imply compositional soundness.",
+      "G14 is only a finite shell pass through B+32. No supplied verifier proves recursive closure, polynomial relative-gap growth, or an n^c approximation factor.",
+      "The six proposals provide no new verifier output and several proposed searches omit enough finite data that they are not executable bounded experiments."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a Proposal-3 mutation that freezes one tile dimension, bounded Gram-entry range, finite port and DROP/malformed classes, targets, scale, gluing map, legal controls, and an explicit recursive cost inequality; then exactly minimize every unrestricted depth-two fiber using a certified eigenvalue-derived coefficient bound, killing on any cheap drop, G13/G19 lift, entangled representative, completeness mismatch, or nonincreasing contracted gap.",
+    "confidence": 0.997
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 remains a fixed linear lift, so the G13 coefficient-sum-one affine collision is carried to the same affine combination of incidence vectors. A length-31 test cannot establish polynomial trade support, and no explicit design matrix, target, weights, control, or baseline-versus-trade scaling law is frozen.",
+      "Proposal 2's exponent-two discriminant quotient is blind to even signed combinations and parity kernels, while gluing does not by itself make incompatible cosets grow faster than the honest radius. The lattice, isotropic subgroup, target, drop coset, scaling rule, and depth recurrence are unspecified, so the proposed shell is not executable or G22-complete.",
+      "Proposal 3 cannot restrict unrestricted CVP coefficients to a nonnegative affine semigroup; G13/G19 attacks simply become signed kernel or Graver moves. Toric fiber products can lift bounded moves at every depth, and computing two or three finite Graver bases cannot prove support growth or a G20/G21 relative-gap law.",
+      "Proposal 4 requires canonical digit ranges, but linear lattice coordinates permit unrestricted integer digits and carries; anchoring them does not enforce canonical representation without an explicit metric proof and risks reproducing G1. No basis, target, carry equations, weights, completeness radius, control, or valid unrestricted shell bound is frozen.",
+      "Proposal 5 supplies no complex or theorem forcing semantic inconsistency into a nontrivial large homology class rather than a small boundary or signed cycle. Cosystolic expansion is not automatically a lower bound for these relative chains, and a support-eight two-clause audit cannot discriminate asymptotic systolic growth or G20/G21.",
+      "Proposal 6 again applies fixed linear labels to selectors, so any G13 affine reconstruction remains an affine reconstruction after every embedding; algebraic norm is nonlinear and cannot prevent exact zero or unit cancellations in the emitted linear sum. The finite label search domain, rational factor, normalization pricing, tensor construction, and unrestricted entangled audit are not specified.",
+      "Proposal 7 is the only structurally relevant direction but still fails the Generation-25 reopening condition. It does not statically specify the base lattice, ports, finite target representatives, legal/illegal/drop states, glue map, transfer operator, normalization, or recursive closure; consequently B+16 may omit states that later reenter, and no genuinely bounded G22-complete experiment is presently defined."
+    ],
+    "evidence": [
+      "G5 found squared-norm-at-most-four circuits in every tested private-row overlap composition, so local certificates do not compose automatically.",
+      "G7 produced an exact zero-residual signed selector, while G9/G11 produced constant-cost parity kernels and G12 showed that charging parity exposed a cheaper clause drop.",
+      "G13 exhibited a harmful integral affine combination of honest encodings, and G15 lifted it through every tested hierarchy level with zero residual below threshold.",
+      "G19 found an exact accepting signed flow with two negative coefficients and zero residual, directly defeating semigroup, flow, and splice intuitions under unrestricted coefficients.",
+      "G14 is only a finite B+32 shell pass on one pair-bag instance. No supplied verifier establishes recursive state closure, G20/G21 relative growth, or immunity to G22 entangled vectors.",
+      "No proposal supplies new verifier evidence, and none proves a polynomial-size construction with an excess-to-baseline law yielding an n^c gap."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a Proposal-7 mutation that freezes a finite full-rank base lattice and target, bounded port representatives, semantic and drop classes, glue coordinates, matched control, coefficient bounds, and a recursively closed min-plus contract; then exactly enumerate every unrestricted depth-two fiber and kill on any completeness mismatch, cheap drop, G13/G19 lift, unlisted entangled minimum, state nonclosure, or lambda<=mu.",
+    "confidence": 0.997
+  },
+  "reason": "both proposal populations rejected"
+}

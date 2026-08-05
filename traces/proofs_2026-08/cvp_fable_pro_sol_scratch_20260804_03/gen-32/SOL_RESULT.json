@@ -1,0 +1,35 @@
+{
+  "summary": "Selected Pro Proposal 1 from the two cross-review survivors and implemented an exact two-copy composition audit of the Generation-31 Walsh Gram. Exact one-copy DP gives d_1^2=216, and residual-branch accounting gives matched two-copy control minimum 288. Despite 125 emitted cross-copy moment rows, compatible G11/G13 parity witnesses have zero residual and cost 432=2d_1^2, so strict superadditivity fails. This is a finite counterexample to this coupling rule only.",
+  "hypothesis": "Global degree-at-most-three moment rows spanning two overlapping copies might make one-copy parity witnesses incompatible and force d_2^2>2d_1^2 while preserving control minimum 288.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_crosscopy_walsh_composition.py",
+    "experiments/gen32_crosscopy_walsh_composition_manifest.json",
+    "gen-32/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_crosscopy_walsh_composition.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_crosscopy_walsh_composition.py",
+      "exit_code": 0,
+      "finding": "Verified exact one-copy minimum 216, exact two-copy control minimum 288, 125 cross-copy moment rows, coefficient interval [-4,5] through 432, and a zero-residual two-parity witness of cost 432=2d_1^2."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_crosscopy_walsh_composition.py && python3 -m json.tool experiments/gen32_crosscopy_walsh_composition_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the emitted rank-144 obstruction/control manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_equal_radius_walsh_gram.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-31 source Gram still verifies after reuse in the composition audit."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If composition is continued, freeze the surviving noncommuting signed-permutation edge rule before search and require an exact evaluation of the same compatible two-parity witness; kill immediately if its edge energy is boundary-additive or if the two-copy obstruction cost remains at most twice the exact one-copy cost."
+}

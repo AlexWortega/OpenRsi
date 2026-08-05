@@ -1,0 +1,45 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 fails O3. At degree two, the exact parity relation 000 = 100 + 010 + 001 - 110 - 101 - 011 + 111 preserves every moment of degree at most two; degree three distinguishes it only inside a full bag, while clauses on distinct triples can alter their private triple moments and preserve all overlap moments.",
+      "Proposal 2 cannot range-lock unrestricted integer flows using linear trellis equations. If P0 and P1 are accepting paths decoding 0 and 1, then 2P0-P1 has unit start/end flow and decodes -1 while preserving every affine transition or tag equation; anchors can charge it but do not remove the kernel or establish a polynomial ratio.",
+      "Proposal 3 encounters known degree growth: Boolean Nullstellensatz and polynomial-calculus certificates for 3-CNF can require degree growing with n, making the Macaulay monomial lift exponential. Testing degrees 1 through 4 on four variables cannot discriminate this asymptotic blocker, and no Euclidean gap or coefficient bound is supplied.",
+      "Proposal 4 supplies neither an explicit chain complex nor a polynomial construction producing a nonzero unsatisfied coset and a uniform cosystolic bound. Nonzero mod-q residue alone gives only constant local distance, and the proposed search over unspecified candidate 2-cells is not reproducible.",
+      "Proposal 5 invokes only bounded dissociation, so O2 remains until a proved CVP-radius-to-l1 bound is given. The tag count, coordinate search range, fixed-target coupling to global bits, completeness cost, and dimension/radius law are all missing; the stated search is therefore not a finite specified experiment.",
+      "Proposal 6 is conditional on a kernel-free composable seed that is not supplied. Its proposed degree-two seed has the exact parity kernel above, tensoring maps zero to zero, and linear rank-consistency admits non-rank-one integral pseudo-tensors.",
+      "Proposal 7 cannot remove the projected affine relation with private existential auxiliaries: choose legal witnesses for 011, 100, and 111, and their signed combination has normalized boundary 000 while satisfying every affine equation shared by legal columns. Boolean anchors can impose only constant gadget cost, and auditing two or three overlaps cannot certify arbitrary composition or O6."
+    ],
+    "evidence": [
+      "The supplied Generation-7 verifier reconstructs the fixed-target lattice and exhibits the exact zero-residual attack 011 + 100 - 111 at squared distance 80 versus baseline 72. This directly confirms that linear reweighting or coding cannot detect an existing affine kernel.",
+      "Generation 5 exhaustively found short integer kernel moves in every tested private-row overlap system, despite Generation 3 having exactly certified the isolated local fibers. This is direct finite evidence against treating local isolation or bounded overlap checks as composable.",
+      "Generation 1 verifies that unrestricted integer slack can annihilate every amplified residual, while Generation 6 shows that external filters or changed references do not constitute CVP evidence.",
+      "No proposal supplies a polynomial family, completeness/soundness proof, dimension-dependent gap, or reduction theorem. The supplied status correctly reports that no hardness lemma exists."
+    ],
+    "next_experiment": "None for these proposals. Reopen only with a fully specified polynomial-size fixed-target mutation whose unrestricted affine system provably makes both the cube-parity replacement and every lifted-witness version nonzero; then run one exact, box-free CVP/SNF audit on the nine-clause obstruction and a fixed satisfiable control, requiring a valid control witness and unsatisfiable distance strictly above the stated completeness radius.",
+    "confidence": 0.98
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has a new exact kernel. For every degree-≤2 character f, f(000)=f(001)+f(010)+f(100)-f(011)-f(101)-f(110)+f(111), so the forbidden label is replaced using legal labels while preserving normalization, singleton moments, and pair moments globally. Under the existing anchors this costs only baseline+24, making the proposed baseline+8 kill threshold unsound and leaving no asymptotic gap.",
+      "Proposal 2 supplies no uniform polynomial certificate-degree or coefficient bound. Degree growing linearly with the variable count makes the full monomial table exponential, while success at degrees 2–4 on one four-variable formula would not discriminate this asymptotic obstruction.",
+      "Proposal 3 never defines a fixed-target residual that is zero for every satisfying local label yet cannot be absorbed by shared variables. B_h uniqueness applies only inside an asserted coefficient bound, and a mod-q linear code amplifies only nonzero messages; it cannot remove exact residual kernels or justify the bound at an n^c soundness radius.",
+      "Proposal 4 makes only nonzero algebraic residuals expensive and therefore assumes away the central global zero-kernel problem. No explicit gluing equations, polynomial-bit field family, rational Euclidean realization, or proof that every unsatisfiable short vector has nonzero residual is supplied; testing one known identity would not discriminate these failures.",
+      "Proposal 5 provides neither a chain complex nor an attachment theorem showing that falsification maps to nonzero homology while honest changes are boundaries. The proposed construction and acceptance thresholds are unspecified, so SNF on an arbitrarily chosen incidence complex would not test the claimed mechanism.",
+      "Proposal 6 has exponential assignment state in general; the 16-state four-variable example does not address polynomial size. It also gives no explicit fixed-target geometry excluding signed flows and circulations, so finite flow enumeration cannot rescue the reduction route.",
+      "Proposal 7 gives no finite Gram-entry or target-denominator bounds, making its proposed enumeration unbounded, and no explicit gluing or forbidden-label penalty is defined. Even a successful constant-dimensional shell search would establish neither overlap soundness nor shell separation large enough relative to the aggregate completeness radius."
+    ],
+    "evidence": [
+      "The Generation-7 verifier establishes an unrestricted exact zero-residual signed-selector attack at squared distance 80 versus baseline 72. Therefore any mechanism that merely reweights a residual must first exclude exact affine kernels.",
+      "The degree-2 proposal does distinguish the specific 011+100−111 identity, but the displayed seven-term degree-3 parity identity is exactly invisible to all degree-≤2 Fourier rows and shared pair moments. This is an algebraic obstruction, not finite experimental extrapolation.",
+      "Generation 5 exhaustively found short private-row overlap circuits in all 5,832 tested systems, while Generation 6 was invalidated because its constraints were external and an unrestricted mod-2 bypass existed. None of Proposals 3–7 emits a concrete basis resolving both findings.",
+      "All supplied successful searches are finite local facts, and the verified ratios are constant-instance quantities. No proposal supplies a polynomial-size family, composition theorem, or dimension-dependent soundness bound."
+    ],
+    "next_experiment": "None for these proposals. Reopen only with an explicit polynomial-size fixed-target basis and target that defeats both the full degree-3 parity replacement of 000 and unrestricted overlap/modular kernels; then prescribe one exact unrestricted-CVP audit on the nine-clause obstruction and a fixed satisfiable overlapping control with numerical pass/fail thresholds.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposals 1, 3, and 4 amplify only after a global linear defect is formed, but their listed normalization, marginal-consistency, and false-pattern defects admit exact short signed-selector pseudoassignments. Encoding, algebraic embeddings, CRT spreading, and range checks cannot amplify an identically zero defect, so O1 and O3 remain.",
+    "Proposal 1 also has unavoidable modular kernel directions: adding p to any integer selector preserves every syndrome over F_p while costing only an unamplified constant for fixed p. Its proposed ternary [13,3,9] code accepts only three syndrome symbols, whereas the stated eight-clause syndrome has more than three independent listed coordinates.",
+    "Proposal 2 does not establish its claimed shared-completeness accounting. Replicating the same signed local pseudoassignment across every lift gives zero consistency and false-pattern penalties, while any selector anchoring is replicated with R; thus the proposed soundness/completeness separation is absent and O4 remains.",
+    "Proposal 5 supplies neither a formula-to-cohomology map nor a proof that unsatisfiability creates a nontrivial class. An exact satisfiable-as-coboundary versus unsatisfiable-as-noncoboundary mapping would itself make 3SAT decidable by polynomial-time linear algebra, and the proposed cycle-product experiment does not resolve that obstruction.",
+    "Proposal 6 depends on minors and decomposability, which require quadratic Plücker relations. A lattice coset enforces linear relations only; introducing minor variables therefore admits fake compound vectors, and the proposal has no mutation that realizes the nonlinear invariant in CVP.",
+    "Proposal 7 likewise requires multiplicativity or characterhood, neither of which linear CVP constraints enforce. Truncated moments admit pseudocharacters, while general Boolean Nullstellensatz certificates can require nonconstant degree and exponentially many monomials, leaving no polynomial dimension-gap law.",
+    "None of the seven proposals specifies a complete full-rank basis, target, completeness radius, soundness threshold, and polynomial bit-complexity analysis. Construction A or HNF alone does not discharge O5, and each suggested experiment either tests an already-defeated downstream amplifier or leaves its defining matrix, range gadget, coset, or linearization unspecified."
+  ],
+  "evidence": [
+    "For any clause, use literal coordinates where 000 is false and prescribe consistent literal marginals y. Weights 1-y2-y3, 1-y1-y3, y3, and y1+y2+y3-1 on satisfying patterns 100, 010, 001, and 110 respectively sum to one and realize exactly y, with zero false-pattern weight; choosing y from any global Boolean vector gives a short integral zero-defect pseudoassignment for every clause simultaneously.",
+    "The Generation-5 verifier found squared-norm-at-most-4 kernel moves in all 5,832 tested overlap systems and 95,256 references. This directly confirms that merely aggregating private or marginal checks does not eliminate O3, although it is finite evidence rather than a universal theorem.",
+    "The Generation-1 verifier showed that unchanged residual amplification is annihilated by integer slack, with optimum squared distance 27 rather than the claimed amplified cost. No supplied verifier supports any new range certificate or elimination of slack-like kernel directions.",
+    "The supplied status and result packets explicitly report no hardness lemma, no dimension-dependent gap, and no complete CVP construction. Existing positive evidence is confined to constant-size fixed-marginal isolation already defeated under overlap."
+  ],
+  "next_experiment": "None for these proposals. Reopen only with a genuinely new mutation that explicitly defines the entire integer defect matrix and CVP instance, defeats the displayed signed pseudoassignment by an exact integral-kernel certificate, and states a proved polynomial completeness-versus-soundness scaling law before any amplifier is tested.",
+  "confidence": 0.98
+}

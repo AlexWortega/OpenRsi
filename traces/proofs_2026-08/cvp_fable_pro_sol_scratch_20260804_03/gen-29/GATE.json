@@ -1,0 +1,48 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not emit a linear enforcement of s_I=product(s_i); assignment-table marginals admit unrestricted signed non-rank-one tables, exactly the issue behind G14/G15. Added lift variables also increase the honest anchor baseline, contradicting the claimed unchanged baseline unless explicit weights and targets are supplied. A fixed-degree lift and a constant excess increase provide no dimension-dependent gap or composition law.",
+      "Proposal 2 has dimension 2^n before any lattice construction, so it is not a polynomial-time reduction. No explicit polynomial-size compression, target coset, distance bound, or conditioning theorem is supplied; a 16-by-16 experiment cannot discriminate this fatal scaling issue.",
+      "Proposal 3 supplies no cell complex, boundary maps, target class, or proof that unsatisfiability yields nontrivial homology. Homology is linear, so G13 affine mixtures remain cycles, while the claimed superlinear cosystole is merely an assumed gap-amplification theorem.",
+      "Proposal 4 linearizes multiplication tables into signed local transcript constraints, so ordered checkpoints remain vulnerable to the G19 signed-flow splice; traces are additional linear rows, not multiplication enforcement. S3 also lacks the non-solvable-group mechanism used for polynomial-length general Boolean computation. Searching only coefficients in [-2,2] cannot certify an empty unrestricted accepting fiber.",
+      "Proposal 5 defines neither the two-copy lattice/target nor how Kronecker energy acts on unrestricted integer vectors. Separation against a discovered finite attack list is not an exact SDP certificate, and quadratic energies do not automatically tensorize CVP legal/adverse ratios. The proposed 72-selector two-copy enumeration has no coefficient bound or executable exact-search plan.",
+      "Proposal 6 has a direct zero-residual pseudodistribution on the chosen eight-clause formula: fix any assignment f, and in its uniquely falsified clause replace delta_f by the seven-term cube-parity affine combination of the other labels. This preserves normalization and every shared input-bit marginal while making every clause output legal; affine combinations of complete local gate transcripts then satisfy all truth-table, residue, carry, and downstream-zero rows. CRT redundancy cannot charge an exact kernel.",
+      "Proposal 7's Sidon tokens are still linear labels of emitted selector columns, so every G13 affine relation extends through them with zero residual. Fixed B_h guarantees exclude only bounded signed sums and provide no growing Graver norm; the l1<=12 search cannot establish polynomial support growth or a gap law."
+    ],
+    "evidence": [
+      "Generation 13 verified that the harmful parity vector is an exact integral affine combination of honest encodings and therefore defeats every compatible raw linear syndrome over all tested moduli.",
+      "Generation 15 verified that the same affine coefficients lift through every node of a full-assignment hierarchy with exactly zero residual and remain below the proposed threshold.",
+      "Generation 19 emitted all branching-program flow rows yet found an exact accepting transcript with two negative coefficients and zero residual, directly contradicting the checkpoint-flow premise.",
+      "Generation 14's complete pair-bag lift passed only one finite shell, while Generation 28's exact composition tables gave lambda=57/32<mu=2. Neither supplies the composition theorem needed by Proposals 1 or 5.",
+      "Generations 9, 11, and 12 show that finite Gram separation can be real but is defeated by constant-cost parity or drop attacks; no supplied verifier establishes tensorized growth. No verifier evidence exists for any Generation-29 construction."
+    ],
+    "next_experiment": "None authorized for these sketches. Reopen only a new Proposal-5 mutation that freezes one explicit rational seed Gram matrix, an exact integer two-copy lattice and target, matched legal control, derived coefficient bound and complete shell radius, with preregistered acceptance requiring adverse/legal growth strictly above the one-copy ratio and immediate kill on any G13, drop, G19, or malformed-product state.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not specify how finite-field evaluations, modular syndromes, carries, pair/triple selectors, targets, and weights become one unrestricted Euclidean CVP instance. If it retains the complete G14 pair-bag system, repeating the already-passed B+32 shell is not discriminating; if it replaces that system, the exact replacement is undefined, and deterministic selector lifts remain vulnerable to G13/G15 affine lifting.",
+      "Proposal 2 cannot underlie a polynomial-time reduction by first computing a Nullstellensatz refutation of the input NO instance. Emitting all Macaulay rows avoids that computation only at a degree whose monomial count and coefficient complexity must be uniformly polynomial; the proposed three-variable certificate experiment cannot discriminate this asymptotic blocker.",
+      "Proposal 3 supplies no explicit reduction from clauses to transports, prescribed holonomies, ACCEPT condition, matched control, objective, or shell bound. Multiplication-table and sheet selectors linearize the nonabelian product into a signed finite-state chain, leaving the same representation/splicing danger concretely exhibited by G19.",
+      "Proposal 4 relies on quadratic rank-one conditions: 2x2 minors are not CVP-linear constraints. Introducing pair selectors does not enforce products over unrestricted integers, and the resulting pseudotensor relaxation is exposed to G13-style affine combinations; moreover its seed is the G28 rule whose measured illegal growth was already below legal growth.",
+      "Proposal 5 cannot force a canonical residue range using only linear one-hot, quotient, and carry equations on unrestricted integer coefficients. Affine combinations of complete deterministic residue encodings preserve every such row, while the proposed G7-only shell omits the stronger verified G13 affine collision and G15 lift.",
+      "Proposal 6 is not outside the signed-flow obstruction: length-three windows are ordinary first-order flow on the de Bruijn graph whose vertices are length-two windows. Restricting edges to a nonlinear recurrence changes the graph but not the linear signed-flow relaxation, and no exact scan, acceptance rows, control, or radius is frozen.",
+      "Proposal 7 tests two satisfiable overlapping OR clauses rather than an unsatisfiable soundness obstruction and leaves the deep hole, truth cosets, glue code, target, weights, and shell unspecified. Outer-code distance helps only after a nonzero discriminant syndrome; it does not address a G13 affine lift with zero syndrome.",
+      "Across all seven proposals, a constant-fixture shell pass would remain finite evidence and none supplies a uniform polynomial-size construction, composition invariant, or dimension-dependent gap law. Scaling residual rows after a finite no-kernel audit cannot promote that audit to asymptotic soundness."
+    ],
+    "evidence": [
+      "G13 verifies an exact integral affine combination of 16 globally consistent encodings that annihilates every compatible raw-selector linear syndrome over several primes.",
+      "G15 verifies that the same affine coefficients lift through every node of an enlarged deterministic hierarchy with exactly zero residual, showing that nonlinear naming followed by linear selector compilation is not automatically an escape.",
+      "G19 finds an exact accepting signed flow with two negative coefficients despite nonlinear ordered-product semantics, directly undermining the holonomy and higher-window arguments.",
+      "G14 already proves the complete pair-bag obstruction empty through B+32, while G28 subsequently shows that a finite pair-based pass need not compose: lambda=57/32 is below mu=2.",
+      "G7 and G11 exhibit exact zero-residual signed selector kernels; G12 shows that charging one kernel can merely expose a cheaper clause drop. The supplied status explicitly establishes no hardness lemma or dimension-dependent gap."
+    ],
+    "next_experiment": "None authorized. Reopen only a separately preregistered mutation giving the complete emitted CVP basis, target, matched YES/NO instances, coefficient bound, shell radius, and acceptance threshold, together with explicit G13 affine-lift and G19 signed-flow audits; a constant instance must test a new obstruction rather than repeat G14.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

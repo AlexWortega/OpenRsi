@@ -1,0 +1,50 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 cannot escape affine closure: every collision-cluster coordinate is zero on a legal matching, so an odd XOR of legal lifted vectors remains zero on the entire cluster shell even when the shell uses a full Möbius basis. The known all-eight and holonomy words therefore stay cheap, and changing walk products to cluster coordinates does not address the causal failure.",
+      "Proposal 1 also assumes rather than supplies a deterministic bounded-occurrence 3DM reduction preserving the required gap and a polynomial splitter-decorated cluster family. Its proposed r=2,3,4 test would only reconfirm known finite hostile cancellations, not discriminate the claimed logarithmic-scope asymptotic mechanism.",
+      "Proposal 2 has no explicit polynomial-size binary matrix for arbitrary instances; the claimed rank omits the cost of selecting and representing the overlapping block family. Over F2, exterior algebra supplies alternation but no fermionic sign, and an odd XOR of a constant number of sparse legal block states has at most a constant multiple of the YES support, defeating the required polynomial separation over all mixed words.",
+      "Proposal 3 is not precommitted: “Sidon-like” labels, Cayley probes, irreducible representations, field realizations, and binary coefficient maps are unspecified. Quasirandomness or product growth controls rank and nonzeroness, not Hamming support, exactly the unsupported leap exposed by prior A4, F8, and matrix-fold experiments.",
+      "Proposal 4 repeats the killed linear-homology classifier. If legal witnesses have cheap lifted fillings, the XOR of three such fillings is automatically another cheap chain, including illegal affine combinations; a cosystolic check cannot charge a chain already represented by that cheap sum.",
+      "Proposal 4 additionally gives no explicit formula-dependent voltage assignment or selected cosystolic rows with universal YES completeness. A fixed A5 lift on q=3 cannot test the asserted growing systole, and its proposed experiment is undefined without those choices.",
+      "Proposal 5 conflates rational functions, divisors, and divisor classes: principal divisors all have trivial class, while the divisor of a sum is not the sum of divisor classes. Valuations and pole support are nonlinear under addition, so simplex expansion does not produce the claimed binary linear syndrome whose Hamming weight equals divisor support.",
+      "Proposal 5's adaptive search for curve labels is also test-suite fitting rather than a polynomial-time arbitrary-instance construction. Requiring every legal matching to share a cheap linear target again preserves odd affine combinations, while no gonality theorem supplied here separates their sparse coefficient representations.",
+      "Across all five proposals, avoiding complete-assignment fingerprints and integer fibers does not repair the active bounded-signature, affine-closure, holonomy, mixed-word, and output-rank blockers. Exact syndrome-to-CVP transfer is irrelevant until an explicit binary H,t with a proved polynomial syndrome-distance gap exists."
+    ],
+    "evidence": [
+      "The Schur-walk verifier found all-eight and twisted-holonomy illegal mixed words of costs 6 and 9 with every collision-walk feature canceled. Any shell vanishing on each legal matching, including Proposal 1's collision clusters, inherits this cancellation.",
+      "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings. Linear quotients, chain fillings, and lifted-state spans cannot distinguish such a vector merely by assigning cheap representatives to all legal witnesses.",
+      "The determinant/exterior experiment retained short virtual states even after all compound exterior states were included, while the explicit dictionary was exponential. This is direct negative evidence against Proposal 2's wedge mechanism, though not an asymptotic theorem about every exterior construction.",
+      "The frozen A4 convolution fold had worst YES 20 versus best NO 10, while the F8 condenser had 31 versus 6. These exact all-mixed-word results verify that nonabelian mixing and rank preservation do not imply useful binary support.",
+      "The supplied positive tensor results prove mixed-word soundness only before rank compression; all tested dense, sparse, type, orbit, and sampled folds either lose the gap or retain the output-growth wall. None of the proposals supplies the missing asymmetric support theorem."
+    ],
+    "next_experiment": "No implementation is justified as written. Revival requires a mutation specifying one explicit polynomial-time arbitrary-instance binary matrix, precommitted global labels or selectors, polynomial rank accounting, and a mechanism not vanishing on known affine-closure words; only then run one exact all-mixed-word test on held-out YES/NO, affine-closure, all-eight, and holonomy instances.",
+    "confidence": 0.995
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 occupies the surviving O7 opening but specifies neither an explicit HDX construction nor a deterministic expansion objective, tie-breaking rule, fold matrix, or generator recurrence. Its m=8 graph-walk test is not the claimed matroidal high-dimensional-face mechanism and cannot discriminate polynomial compression at r=Theta(log N); choosing graphs greedily against the suite invites the sampled-fold overfitting already observed.",
+      "Proposal 2 cannot charge illegal rank-one pure squares: every higher minor vanishes on any rank-one matrix, not only legal YES squares. Retaining the original matrix merely restores the unfurled baseline, while fixed 2x2 and 3x3 minors are degree-2/3 signatures covered by O1 and their affine span preserves the cube relations.",
+      "Proposal 3 has no binary linear realization, so O8 is unavailable and the proposed minimum filling area is a nonlinear optimization rather than a syndrome coordinate. The vertex-to-generator map, presentation, treatment of non-nullhomotopic words, and mixed-word lift are unspecified; linearizing fillings permits XORs of cheap fillings and re-enters O2/O5.",
+      "Proposal 4 does not specify an injective map from the full excess space into the chosen Riemann–Roch space, the curve, blocks, or binary support encoding. The proposed block size three is fixed-degree and therefore covered by O1; growing-degree norms remain unsupported by any polynomial-rank binary realization and have no automatic O8 transfer.",
+      "Proposal 5 does not define how all hash charts are embedded and coupled by a [7,3,4] code, which has only eight selector words and constant distance. Binary superpositions of protected sectors remain possible, and no argument excludes the already-observed cross-branch splice, all-eight cube trade, or odd-holonomy word.",
+      "Proposal 6 is algebraically impossible in its stated zero-slack form. A fixed CG slack that is zero on every perfect matching is affine and therefore zero on their entire affine hull, including known illegal odd covers; sparse cut-expander postprocessing cannot restore information that is identically zero.",
+      "None of the proposals supplies the currently required explicit polynomial-time matrix, uniform sparse YES bound, every-mixed-word NO bound, exact output rank, and binary transfer. Their expected asymptotic moves are unsupported predictions, not consequences of the proposed finite experiments."
+    ],
+    "evidence": [
+      "The sampled pure-power fold passed a small family and then collapsed to ratio at most 4/3 and eventually one or below on frozen held-out families. Code-dependent generator-type puncturing also reduced the gap, while parity-check simplification was proved vacuous on the current tensor ladder.",
+      "The Schur-walk verifier found illegal all-eight and holonomy mixed words of costs 6 and 9 with every walk feature canceled. This directly warns against Proposal 1's walk surrogate and Proposal 5's low-degree collision charts, though it is not a theorem against all HDX folds.",
+      "The determinant/exterior experiment retained short virtual states even after all compound states were added, with exponential explicit size. The frozen F8 rank condenser likewise had worst YES 31 versus best NO 6, confirming that rank detection does not imply Hamming-support separation.",
+      "The global branch selector previously admitted a weight-9 rectangle splice. Pair-feature and sparse-hash shells achieved at best 7/6 or worse, supporting the cancellation and completeness-baseline blockers for Proposal 5.",
+      "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings. This is a direct certificate against Proposal 6's zero-on-all-matchings slack dictionary.",
+      "No supplied verifier tests any of these six proposed constructions, so none of their claimed expected improvements has experimental support."
+    ],
+    "next_experiment": "No implementation is authorized as written. Proposal 1 may be revived only by freezing an explicit arbitrary-instance HDX/fold matrix and deterministic construction independent of witnesses and test outcomes; then exactly enumerate every mixed image word on held-out YES/NO, affine-closure, all-eight, and holonomy families, rejecting on any kernel, hostile distance not above worst YES, or rank exponent not above the unfurled baseline.",
+    "confidence": 0.995
+  },
+  "reason": "both proposal populations rejected"
+}

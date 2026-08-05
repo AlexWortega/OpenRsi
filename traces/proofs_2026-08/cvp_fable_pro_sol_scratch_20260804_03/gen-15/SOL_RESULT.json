@@ -1,0 +1,45 @@
+{
+  "summary": "Selected the weighted sparse/laminar hierarchy, the sole direction retained by both cross-reviews, and froze a deterministic adjacent-pair hierarchy and rational weights before testing. The emitted 200-selector, 210-check fixed-target instance has scaled completeness baseline B=18560 and preregistered threshold T=B+256*9^(3/2)=25472. The exact Generation-13 affine coefficients lift the legal G11 parity through every hierarchy node with zero residual at squared distance 24960, which is 512 below T. This finitely kills the frozen hierarchy and weight rule.",
+  "hypothesis": "Causal mechanism: low-weight internal anchors and high-weight parent-child marginal residuals should propagate a local harmful selector to an ancestor penalty while keeping completeness near linear. Expected move: every harmful unrestricted vector lies at or above T=25472. Falsification condition: a subthreshold harmful vector, especially one with exact zero residual. The G13 affine combination commutes with every hierarchy marginal, reproduces the G11 legal parity at the leaves, and satisfies the falsification condition at 24960.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_weighted_laminar_hierarchy.py",
+    "experiments/gen15_weighted_laminar_hierarchy_manifest.json",
+    "gen-15/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_weighted_laminar_hierarchy.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_weighted_laminar_hierarchy.py",
+      "exit_code": 0,
+      "finding": "The G13/G11 affine lift has zero residual and squared distance 24960, below the frozen threshold 25472; the control exact minimum is B=18560."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_weighted_laminar_hierarchy.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen15_weighted_laminar_hierarchy_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted hierarchy, variables, rational-weight scaling, rows, threshold, and factor/target hashes form valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_selector_code_compatibility.py >/tmp/gen13_recheck15.json",
+      "exit_code": 0,
+      "finding": "The exact affine coefficients used by the hierarchy attack are independently reverified."
+    },
+    {
+      "command": "python3 experiments/verify_pair_bag_lift.py >/tmp/gen14_recheck15.json",
+      "exit_code": 0,
+      "finding": "The prior complete pair-bag finite shell result remains reproducible for comparison with the sparse hierarchy mutation."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "For the still-conceivable weighted-hierarchy subclass, solve the exact finite weight-feasibility problem before emitting another lattice: constrain honest baseline to O(m), include the G13 affine lift at every candidate scope as a mandatory adversary, and test whether any nonnegative rational anchor weights can place that lift above B+m^(3/2). Kill the subclass if the feasibility system is empty."
+}

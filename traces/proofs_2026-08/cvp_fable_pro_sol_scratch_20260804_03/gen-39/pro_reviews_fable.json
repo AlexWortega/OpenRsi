@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not escape G13. Replacing each value by one-hot auxiliaries leaves an entirely linear emitted system, so the known affine coefficients can be applied to the enlarged honest registers; the resulting signed, noncanonical registers preserve every graph and code equation while paying only unamplified anchor cost.",
+    "Proposal 2 supplies neither a concrete 2-complex nor explicit restriction maps, so its experiment is not executable. Vanishing ordinary H0 would also not establish the required integral cosystolic inequality, and augmentation does not exclude signed affine pseudosections.",
+    "Proposal 3's prime scaling cannot increase the height of an exact affine relation: multiplying character rows by nonzero primes leaves their rational and integral kernels unchanged. Using enough Walsh characters to make all assignment fingerprints independent requires exponentially many characters in general; the proposed 16-assignment test would therefore be trivial or non-scalable.",
+    "Proposal 4 is a reformulation of G19 with higher-dimensional signed chains. Boundary and degree rows are linear, while no explicit complex or proved intersection inequality forces every signed degree-one representative to cross polynomially many forbidden cells.",
+    "Proposal 5 incorrectly infers exponential ratio growth from a strict cycle-mean inequality. Ordinary min-plus repetition accumulates costs additively, and neither nonidentity seams nor depth-two tables prove the claimed recurrence; the gadget search space, weights, and complete unrestricted shell are also unfrozen.",
+    "Proposal 6 linearizes noncommutative multiplication through table selectors, reintroducing signed group-algebra and augmentation-ideal identities. No explicit loop system or expander construction is supplied, and noncommutativity alone does not prevent the G13/G19 affine splices.",
+    "Proposal 7 does not encode the union of satisfying faces as the feasible set of one CVP instance; all lattice points remain admissible. Delaunay emptiness gives only strict separation, not a polynomial radial margin, while joins and code-lattice lifts have no demonstrated escape from G31/G32/G37 additive behavior or DROP."
+  ],
+  "evidence": [
+    "Generation 13 verifies an exact integral affine collision annihilated by every compatible linear syndrome. Enlarging the coefficient vector with linearly constrained one-hot registers does not invalidate the affine-combination argument.",
+    "Generations 12 and 38 exhibit explicit DROP witnesses, and the Generation-38 gate proves additive zero witnesses prevent dimension-growing ratios under homogeneous composition. None of the proposals supplies a fully emitted, audited mechanism eliminating this obstruction.",
+    "Generation 19 finds an exact accepting signed flow with two negative coefficients despite nonlinear permutation semantics. This directly undermines the chain and holonomy proposals.",
+    "Generation 28 obtains lambda less than mu for the complete tested min-plus rule, while Generation 30 finds an exact seed isometry. No supplied evidence supports the new exponential cycle-mean claim.",
+    "Generations 32 and 37 prove exact additive parity witnesses under cross-copy coupling and all metrics in the tested incidence family. A finite equal-radius or Delaunay margin therefore cannot be promoted to scalable amplification.",
+    "No verifier evidence is supplied for any of the seven new constructions; all stated experimental outcomes are predictions. Several experiments lack enough frozen data to define a unique factor, target, shell, or exhaustive search."
+  ],
+  "next_experiment": "None for these proposals as written. Reopen only with a fully specified polynomial-size emitted factor and target that algebraically excludes the lifted G13 signed registers and all-zero DROP witness, plus a proved nonadditive recurrence; then audit one fixed instance over the complete derived coefficient shell.",
+  "confidence": 0.99
+}

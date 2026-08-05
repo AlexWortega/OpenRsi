@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The frozen Generation-15 candidate fails its preregistered soundness threshold: an unrestricted integral zero-residual vector has squared distance 24960, strictly below T=25472. Increasing residual weights cannot affect this witness because every emitted linear hierarchy equation vanishes on it.",
+    "The claimed propagation mechanism is false for affine combinations of honest encodings. Normalization and marginalization commute with affine combinations whose coefficients sum to one, so the hierarchy transmits the G13 pseudodistribution rather than penalizing it.",
+    "The construction is not polynomial-size on general 3SAT instances. Internal nodes enumerate assignments to the union of their clauses, and the root can contain all variables, requiring exponentially many selector coordinates outside this four-variable test.",
+    "The proposed weight-feasibility follow-up is not well posed. At fixed m=9, an O(m) baseline has no specified uniform constant, rational weights have no fixed normalization, and 'every candidate scope' does not define a finite adversary or scope set.",
+    "Even a successful finite reweighting feasibility result would establish neither a uniform weight family nor composition, polynomial dimension, or an n^c gap. It cannot be promoted to asymptotic hardness."
+  ],
+  "evidence": [
+    "The supplied machine verifier exits successfully and reconstructs the manifest before checking zero residual, total squared distance 24960, and a 512-point violation of the threshold. These values agree across SOL_RESULT, STATUS, IDEAS, NOTES, and proof_cvp.md.",
+    "The verifier proves the control minimum B=18560 from the coordinatewise integral anchor lower bound and an honest zero-residual witness. This supports only the stated finite control result.",
+    "The verifier explicitly checks that the lifted leaf blocks equal the prior G11 selector and that all hierarchy residuals vanish. The expensive single-leaf-drop audit is irrelevant to this affine attack and supplies no broader soundness.",
+    "STATUS and the other packet files correctly retain the qualification that no hardness lemma or dimension-dependent gap is established. The ancillary Gen13 and Gen14 reruns listed in SOL_RESULT are not separately present in MACHINE_VERIFICATION, although the main verifier directly checks the affine identity needed here."
+  ],
+  "next_experiment": "None for this run. Reopen only with a mutation that has polynomially many coordinates for arbitrary 3SAT, fixes a formula-independent weight normalization and finite scope family, and preregisters an exact bounded search covering all specified zero-residual affine lifts; otherwise do not emit another lattice.",
+  "confidence": 0.99
+}

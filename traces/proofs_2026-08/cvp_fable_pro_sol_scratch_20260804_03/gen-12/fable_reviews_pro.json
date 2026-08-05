@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed by G11. Over primes 3 and 5, any linear selector check annihilating all honest-assignment differences has zero Fourier coefficient on a globally unique clause triple, so the seven-term parity on that occurrence has zero syndrome; carries and scaling cannot charge an exact modular kernel.",
+    "Proposal 2 is killed as an asymptotic mechanism. Degree-d rooted multiplication closure still admits a degree-(d+1) signed parity with all observed marginals unchanged; constant d leaves constant-cost kernels, while d growing as log n gives roughly n^d, hence quasipolynomial, monomial dimension. Its proposed four-variable degree-4 test uses full closure and therefore cannot discriminate the polynomial-size truncation.",
+    "Proposal 3 supplies no explicit satisfiability-preserving construction with a cosystolic bound. Smith form of an arbitrarily chosen tiny complex cannot test whether arbitrary formula complexes avoid private-clause cycles, torsion, or small harmonic representatives, and installing expansion is precisely the unproved amplification step.",
+    "Proposal 4 cannot repair the exact kernels verified in Generations 7, 9, and 11. Moreover, k=Theta(log n) applied to an n-dimensional base gives n^k quasipolynomial dimension, whereas polynomial dimension permits only constant k and therefore only constant amplification.",
+    "Proposal 5 does not specify a configuration family, target fiber, completeness radius, or dimension-versus-circuit bound. Small-chain MILP synthesis could merely overfit finite fibers, while inherited local circuits remain unaddressed; a Graver norm alone is not an unrestricted CVP distance theorem.",
+    "Proposal 7 has no polynomial-width state construction for arbitrary formulas. The exact four-variable network can retain the full assignment state and thus cannot distinguish the claimed mechanism from exponential-width enumeration; adding compact reuse constraints forfeits the stated total-unimodularity argument."
+  ],
+  "evidence": [
+    "Generation 5 exhaustively found norm-at-most-2 kernel moves in every tested private-row overlap composition, defeating mechanisms that rely on isolated local fibers.",
+    "Generation 7 verified an unrestricted exact residual kernel at squared distance 80: the three-term signed selector makes every raw and radix coordinate vanish.",
+    "Generation 9 found a seven-term cube-parity kernel with anchor excess 24, and Generation 11 verified that all degree-3 comparison rows still leave a unique-triple parity at squared distance 96. The supplied gate also establishes that duplicating the occurrence merely synchronizes the parity and remains zero-residual.",
+    "Only Proposal 6 changes the relevant condition from linear annihilation of honest differences to equal-radius spherical placement. Its occurrence tags could therefore charge both unique and synchronized parity without residual reweighting, but no polynomial-size family or finite candidate has yet been verified.",
+    "All supplied verifier evidence is finite: the best demonstrated ratio is sqrt(4/3) on one nine-clause obstruction, with no composition lemma or dimension-dependent gap."
+  ],
+  "next_experiment": "Run exactly one bounded Proposal-6 synthesis/audit: search dimensions 4 through 12 with integer tag entries in {-2,-1,0,1,2}, half-integral fixed-target coordinates in [-2,2], and honest fingerprint squared radius H<=24, requiring one tag template to place every honest encoding of both supplied nine-clause instances on that sphere. For each candidate, exactly enumerate unrestricted integer selector vectors through squared distance (4/3)(72+H), with normalization and consistency represented only by emitted coordinates; CONTINUE afterward only if the obstruction minimum is strictly above that threshold while the control has an honest vector at 72+H.",
+  "confidence": 0.93
+}

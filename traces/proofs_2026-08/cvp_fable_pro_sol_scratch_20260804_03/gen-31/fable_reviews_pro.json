@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed. Linearized minors are another fixed pair-bag lift under P; G14 supplies only a finite shell pass, and no composition or propagation theorem prevents rank-one signed pseudodistributions.",
+    "Proposal 2 is killed by K before implementation. The signed table vector 2e_0-e_1 represents -1 while every upper digit remains zero, so linear digit, carry, and range rows cannot enforce canonicality; the proposed coefficient box would also be an external E filter without a derived shell bound.",
+    "Proposal 3 is killed as a route to the target. A degree-four Macaulay test cannot resolve W, while the proposed universal construction has no polynomial degree or monomial-count bound and circuit-compressed Nullstellensatz soundness is merely assumed.",
+    "Proposal 4 is killed. Mod-p cosystolic expansion does not lower-bound Euclidean lengths of unrestricted integral representatives, and no explicit formula-preserving 18-sheet lift or Construction-A carry audit is supplied; the missing amplification theorem is essentially the claimed result.",
+    "Proposal 5 is killed. Linearizing products creates unrestricted signed tensor-network variables, so G19 signed splicing is not excluded; fixed-dimensional matrices also have signed polynomial identities, and “generic” matrices do not define a deterministic bounded construction.",
+    "Proposal 6 is killed. Reed–Muller distance governs genuine codewords, not unrestricted signed pseudotables, and representing arbitrary assignments at the required degree permits point-supported extensions, defeating D-style spreading; the coefficient box is again externally imposed.",
+    "Proposal 7 survives only one finite geometric audit. It has no scalable way to impose exponentially many equal-radius constraints and no composition or dimension-gap law, but unlike G13 it does not require a common linear syndrome, so A does not already refute the bounded mechanism."
+  ],
+  "evidence": [
+    "S, L, and E are established hazards: G1 annihilated amplified residuals with slack, G5 destroyed private-row isolation under overlap, and G6 was invalidated because constraints were external filters. Proposal 7 avoids these only if its complete objective, center, factor, and unrestricted shell are emitted.",
+    "K and W remain exact: G7 found a zero-residual three-term signed selector and G11 found a seven-term low-degree parity kernel. G13 further proves that the latter lies in the honest affine span, defeating every common-target linear syndrome.",
+    "D killed the explicit G12 equal-radius Walsh fingerprint at squared distance 105 versus threshold 108. Therefore Proposal 7 must search the complete unrestricted shell, not merely constrain named parity attacks.",
+    "P and H have no growth evidence: G14 passed only through B+32, while G15 admitted a zero-residual affine hierarchy lift. F likewise remains active through G19's two-negative exact accepting flow.",
+    "M failed because G28 had lambda=57/32 below mu=2, and T failed because the G30 seed was exactly isometric to its control. Proposal 7 invokes neither mechanism and may claim no consequence about them."
+  ],
+  "next_experiment": "Authorize Proposal 7 only. Before optimization, freeze the nine-clause obstruction, existing satisfiable control, selector coordinates, center, rational normalization or trace budget, equal-radius set, and target squared ratio strictly above 4/3; then use exact rational certificates for Q=4I+C^T C and a complete coefficient shell derived from the 4I anchor bound. Kill on infeasible margin, non-rational or nonfactorable output, control minimum mismatch, or any unrestricted obstruction vector below threshold; a pass remains finite evidence only.",
+  "confidence": 0.94
+}

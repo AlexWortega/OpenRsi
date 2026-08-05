@@ -1,0 +1,580 @@
+## Referee verdict
+
+The two principal one-step coding lemmas are correct after adding routine pointedness hypotheses. The reduced residual action is also correct, with a small induction hypothesis made explicit.
+
+There are, however, two locally fatal statements:
+
+1. the residual-lineage theorem is false as quantified because it omits \(Q>1\) / nonempty moving support at level \(0\);
+2. the claimed exact count of fixed classes in the pointed biset product omits the opposite star-cross sector.
+
+There are also several material scope and notation overstatements, especially in the no-go title, conserved-exponent paragraph, and finite-verifier descriptions. None establishes or invalidates the unclaimed target hardness theorem.
+
+---
+
+# 1. Odd-group orbit-fold lemma
+
+## Correct, with one missing standing hypothesis
+
+The displayed lemma is valid provided \(D\) has at least one pointed word, so that \(\delta_*(D)<\infty\). Explicitly assume that the star-coordinate functional \(D\to\mathbb F_2\) is nonzero.
+
+For \(P=\{*\}\), the proof is correct:
+
+\[
+S=\sum_{g\in G}gW
+\]
+
+has corner \(1\), is constant on every nontrivial orbit, and its value there is the orbit parity. Hence
+
+\[
+|S|=1+\ell\bigl(|F(W)|-1\bigr).
+\]
+
+The mixed-word quantifier is fully justified: no decomposability assumption on \(W\) is used.
+
+The equality statement is also correct. If \(x\) is an invariant pointed minimum word, every noncorner supported orbit of \(x\otimes x\) has size \(\ell\), so
+
+\[
+|F(x\otimes x)|=1+\frac{\delta^2-1}{\ell}.
+\]
+
+Invariance also implies \(\ell\mid \delta-1\), and hence \(\ell\mid \delta^2-1\), so there is no hidden rounding issue.
+
+## Missing extension needed in the residual-lineage proof
+
+At later residual levels there are multiple fixed coordinates \(P_i\), so the lemma as stated does **not literally apply**, because the action is no longer free on \(X_i\setminus\{*\}\).
+
+The required extension is nevertheless true:
+
+> **Fixed-set orbit-fold lemma.** Suppose \(G\) fixes \(P\) pointwise, acts freely on \(X\setminus P\), and \(*\in P\). Then
+> \[
+> \delta_*(F(D\otimes D))
+> \ge 1+\left\lceil\frac{\delta_*(D)^2-1}{|G|}\right\rceil.
+> \]
+
+Indeed, if \(r\) is the number of supported fixed pair-coordinates in the symmetrized word \(S\), then \(r\ge1\) and
+
+\[
+|S|=r+|G|(|F(W)|-r).
+\]
+
+Therefore
+
+\[
+|F(W)|
+=\frac{|S|+(|G|-1)r}{|G|}
+\ge 1+\frac{|S|-1}{|G|}
+\ge 1+\frac{\delta_*(D)^2-1}{|G|}.
+\]
+
+The residual proof must cite this generalized lemma, not (OF) verbatim.
+
+**Severity:** missing lemma/scope, not a failure of the lower bound.
+
+---
+
+# 2. Reduced pointed tensor and reduced orbit fold
+
+## Exact distance \(1+d^2\): correct
+
+Assume \(D\) has a pointed word, and define
+
+\[
+d=\min\{|u|:(1,u)\in D\}.
+\]
+
+The slicing argument is valid. If
+
+\[
+(1,M)=\sum_r(\alpha_r\beta_r,u_r\otimes v_r),
+\]
+
+then
+
+\[
+u=\sum_r\beta_r u_r
+\]
+
+satisfies \((1,u)\in D\), so at least \(d\) indices \(i\) have \(u_i=1\). For each such \(i\),
+
+\[
+\left(1,\sum_r (u_r)_i v_r\right)
+=\sum_r (u_r)_i(\beta_r,v_r)\in D.
+\]
+
+Thus row \(i\) of \(M\) has at least \(d\) nonzeros. The selected rows are disjoint, giving \(|M|\ge d^2\). A pure tensor from a pointed minimum word gives equality.
+
+Hence
+
+\[
+\delta_*(R(D))=1+d^2
+\]
+
+is correct for all mixed words.
+
+The case \(d=0\) is also consistent: it means \((1,0)\in D\), and \(R(D)\) contains the corner-only word.
+
+## Free-orbit reduced fold: correct
+
+If an odd group acts freely on moving coordinates and preserves \(D\), the induced diagonal action on moving pairs is free. Symmetrization yields
+
+\[
+\delta_*(F_R(R(D)))
+\ge 1+\left\lceil\frac{d^2}{|G|}\right\rceil.
+\]
+
+If \((1,u)\) is both invariant and moving-minimal, then \(|u|\) is divisible by \(|G|\), and the folded pure tensor has weight
+
+\[
+1+\frac{d^2}{|G|}.
+\]
+
+So the equality statement is correct.
+
+## Wording correction
+
+“100 arbitrary reduced tensor codes” should be replaced by “100 deterministic randomly generated small codes.” The script does not enumerate all small codes or all code structures.
+
+**Severity:** wording only.
+
+---
+
+# 3. Residual-lineage theorem, rounding, and \(Q\)
+
+## Fatal false quantifier
+
+The theorem is false as written because it allows \(Q=1\). The proof says
+
+\[
+(Q-1)/g_0
+\]
+
+is a positive integer, but only divisibility was established.
+
+For example, take an invariant pointed YES word supported only at \(*\), so
+
+\[
+a_0=s_0=Q=1.
+\]
+
+Then the first recurrence gives \(s_1=1\), contradicting \(s_1\ge3\).
+
+The theorem must assume
+
+\[
+a_0-s_0=Q-1>0.
+\]
+
+Since \(g_0\ge3\) and \(g_0\mid Q-1\), this implies \(Q\ge4\).
+
+A precise corrected opening is:
+
+> Start with \(a_0=Q\), \(s_0=1\), \(b_0=Q+1\), and assume the propagated YES word has nonempty moving support. Equivalently, \(Q>1\); under freeness and invariance this forces \(Q-1\ge g_0\), hence \(Q\ge4\).
+
+With this correction, the proof of \(s_1\ge3\) is valid.
+
+## The recurrences are otherwise correct
+
+For an invariant YES word,
+
+\[
+a_{i+1}=s_i^2+\frac{a_i^2-s_i^2}{g_i}
+\]
+
+is exact.
+
+Under the stated lineage condition, the fixed support at the next level contains:
+
+- \(s_i^2\) fixed-fixed classes;
+- \(s_i(a_i-s_i)/g_i\) fixed-moving classes;
+- the same number of moving-fixed classes.
+
+Thus
+
+\[
+s_{i+1}\ge
+s_i^2+\frac{2s_i(a_i-s_i)}{g_i}
+\]
+
+is correct.
+
+The NO recurrence is valid after invoking the fixed-set extension of the orbit-fold lemma:
+
+\[
+b_{i+1}
+=1+\left\lceil\frac{b_i^2-1}{g_i}\right\rceil.
+\]
+
+## Rounding calculation is correct
+
+Let \(Q-1=g_0t\), \(t\ge1\). Then
+
+\[
+a_1=1+t(Q+1).
+\]
+
+Also,
+
+\[
+\frac{2Q+1}{g_0}=2t+\frac3{g_0},
+\]
+
+and since \(g_0\ge3\),
+
+\[
+\left\lceil\frac{2Q+1}{g_0}\right\rceil=2t+1.
+\]
+
+Therefore
+
+\[
+b_1=a_1+2t+1.
+\]
+
+The estimate \(b_1/a_1\le1+3/Q\) is valid.
+
+The inequality
+
+\[
+\frac{\phi_g(y)}{\phi_g(x)}\le(y/x)^2
+\]
+
+is also correct, and the “surplus greater than one” argument correctly absorbs the ceiling. The nonrecovery claim when \(b_i<a_i\) is valid because \(b_i\le a_i-1\) and the YES surplus exceeds \(1\).
+
+## Overstated scope of the no-go
+
+The heading
+
+> “Residual-lineage iteration cannot give a fixed polynomial gap”
+
+is broader than the theorem proved. The theorem treats exactly:
+
+- the specified residual-lineage fixed-sector condition;
+- a base certificate \(Q\) versus \(Q+1\);
+- NO propagation using only the orbit-fold lower bound.
+
+It does not rule out:
+
+- a stronger initial base gap;
+- additional soundness information not represented by \(b_i\);
+- a fresh action remobilizing inherited sectors.
+
+Replace the heading by something such as:
+
+> “Residual-lineage propagation from a \(Q\) versus \(Q+1\) base certificate has vanishing certified exponent.”
+
+This matters for 3DM because the parity of a solution gives a slightly stronger elementary fact:
+
+\[
+|x|\equiv q\pmod2.
+\]
+
+Indeed, summing all \(3q\) syndrome equations gives \(3|x|\equiv3q\pmod2\). Thus, if there is no weight-\(q\) solution, the next possible weight is at least \(q+2\), not \(q+1\). The stated \(q+1\) lower bound remains true but is deliberately weaker. Consequently, the theorem with \(b_0=Q+1\) does not by itself constitute a no-go for every stronger 3DM-derived base certificate.
+
+## Final asymptotic wording
+
+The conclusion \(N_k^{o(1)}\) requires \(Q\to\infty\). “\(Q\) grows polynomially” is ambiguous: a polynomial upper bound alone is insufficient. Use:
+
+> If \(Q\to\infty\) with the input size—e.g. \(Q\ge n^\alpha\) for some \(\alpha>0\)—then the exponent \(3/(Q\ln3)\) is \(o(1)\).
+
+**Severity:** missing \(Q>1\) is fatal to the theorem as quantified; the other issues are scope corrections.
+
+---
+
+# 4. Functorial residual action
+
+## Correct after making pointedness and induction explicit
+
+The graph representation is correct under:
+
+1. the star functional on \(D\) is nonzero;
+2. \((1,0)\notin D\).
+
+The moving projection is then injective, so for \(C=\pi(D)\) there is a unique linear form \(\phi:C\to\mathbb F_2\) with
+
+\[
+D=\{(\phi(u),u):u\in C\}.
+\]
+
+Consequently,
+
+\[
+R(D)=
+\{((\phi\otimes\phi)(M),M):M\in C\otimes C\}.
+\]
+
+For a free abelian coordinate action, the residual action
+
+\[
+h[u,v]=[u,hv]
+\]
+
+is well-defined because commutativity makes it compatible with diagonal equivalence. It is free: if
+
+\[
+[u,hv]=[u,v],
+\]
+
+then some \(g\) satisfies \(gu=u\) and \(gv=hv\); freeness gives \(g=1\), then \(h=1\).
+
+It preserves the folded code because \(1\otimes h\) preserves \(C\otimes C\), preserves the corner functional when \(\phi(hv)=\phi(v)\), and commutes with diagonal folding.
+
+## “Reused indefinitely” needs one extra sentence
+
+To iterate, one must show each folded code again has no corner-only word. This follows if the initial moving distance \(d\ge1\), since
+
+\[
+\delta_*(F_R(R(D)))
+\ge1+\left\lceil\frac{d^2}{|G|}\right\rceil\ge2.
+\]
+
+Thus \((1,0)\) is absent at the next level, so the graph description and residual-action argument can be repeated inductively.
+
+Add this explicitly. Without the assumption that \(D\) is pointed, \((1,0)\notin D\) alone is not enough to discuss pointed distances.
+
+**Severity:** missing hypothesis/induction sentence, not a mathematical failure.
+
+---
+
+# 5. Conserved-exponent accounting
+
+## Algebraic identity: correct under stronger hypotheses
+
+The identity
+
+\[
+\frac{\log(b'/d')}{\log(n'/d')}
+=
+\frac{\log(b/d)}{\log(n/d)}
+\]
+
+is correct if all three exact recurrences hold:
+
+\[
+n'=\frac{n^2}{g},\qquad
+d'=\frac{d^2}{g},\qquad
+b'=\frac{b^2}{g}.
+\]
+
+But the prose currently assumes only “an invariant moving-minimum word.” To get both distance recurrences, one needs invariant minimum words for **both** the YES and NO codes. Alternatively, \(b\) must be explicitly described as an idealized threshold assumed to attain equality.
+
+Correct statement:
+
+> If the YES and NO moving minimum words are both invariant and therefore both attain their orbit-fold lower bounds, then the exact recurrences above hold and the normalized ratio is conserved.
+
+If ceilings are present, the displayed logarithmic identity is not exact. “Up to integer rounding” and an exact equality should not appear in the same assertion.
+
+## This is not the usual polynomial approximation exponent
+
+The denominator is \(\log(n/d)\), not \(\log n\). Thus the conserved quantity is an exponent normalized by coordinate overhead relative to the YES distance. It is not, without further argument, the standard rank exponent
+
+\[
+\frac{\log(b/d)}{\log n}.
+\]
+
+Replace
+
+> “The polynomial approximation exponent … is conserved”
+
+by
+
+> “The exponent normalized by the overhead ratio \(n/d\) is conserved.”
+
+Also assume \(n>d>0\), since otherwise \(\log(n/d)\) vanishes or is nonpositive.
+
+The claim that this normalized exponent tends to zero is valid only under an explicit asymptotic such as
+
+\[
+\log(b/d)=o(\log(n/d)).
+\]
+
+For an additive constant gap with \(d\to\infty\), this holds because \(\log(b/d)=O(1/d)\). It also holds for fixed \(d\) if \(n/d\to\infty\).
+
+## \(q\)-notation is inconsistent in the reduced section
+
+For the reduced construction, \(d,b\) are moving distances. Starting directly from the weak exact-cover certificate gives moving ratio
+
+\[
+\frac{q+1}{q},
+\]
+
+or, using the parity strengthening, at least \((q+2)/q\).
+
+The ratio
+
+\[
+\frac{q+2}{q+1}
+\]
+
+is the ratio after adding a corner to a hypothetical moving \(q\) versus \(q+1\) gap. It is not the base moving ratio used by reduced tensoring.
+
+Thus the final paragraph must either:
+
+- use \((q+1)/q\) in the reduced-moving notation; or
+- explicitly say it has switched back to full pointed weights.
+
+With reduced moving weights and the weak additive-one gap, the exact sentence should be
+
+\[
+\left(1+\frac1q\right)^{2^k},
+\]
+
+and obtaining \(N^c\) indeed requires
+
+\[
+2^k=\Omega(q\log N).
+\]
+
+**Severity:** substantive notation and interpretation error; the underlying logarithmic algebra is correct.
+
+---
+
+# 6. Biset fixed-class count
+
+## Fatal as stated
+
+The claim that the pointed balanced product has exactly
+
+\[
+1+R_U
+\]
+
+fixed quotient classes generally omits the opposite cross sector \([*,v]\).
+
+In a standard pointed regular cyclic bitorsor model:
+
+- \([u,*]\) contributes one fixed class for each moving right-\(G\) orbit of \(U\);
+- \([*,v]\) contributes fixed classes whenever the right \(K\)-action stays within the left \(G\)-orbit of \(v\), as it does for regular cyclic bitorsors;
+- \([*,*]\) is the common corner.
+
+If \(V\) has \(R_V\) regular moving bitorsor components, the usual count is
+
+\[
+1+R_U+R_V,
+\]
+
+not \(1+R_U\). Moving-moving classes can carry a free residual action.
+
+More generally, the stabilizer of \([*,v]\) is
+
+\[
+\{k\in K:vk\in Gv\},
+\]
+
+so no exact count is possible without hypotheses on the relation between the left \(G\)- and right \(K\)-actions on \(V\).
+
+The attached source for `verify_pointed_biset_cross.py` is absent, so it cannot resolve whether the script intentionally omitted one orientation. The mathematical prose must be corrected independently.
+
+**Severity:** fatal to the exact biset fixed-class claim.
+
+---
+
+# 7. What the finite 3DM scripts actually establish
+
+## `verify_reduced_fold_3dm.py`
+
+This script does substantiate the stated finite numerical assembly:
+
+- one fixed \(q=3,m=8\) planted YES instance has exact moving fiber distance \(3\);
+- one fixed deterministic NO instance has exact moving fiber distance \(5\);
+- three-sheet replication gives exact moving distances \(9,15\);
+- the first reduced fold gives \(27,75\);
+- the second gives \(243,1875\);
+- moving lengths are \(24,192,12288\);
+- all pointed words in each generated image code are enumerated through the basis span;
+- the ratios are asserted to equal \((5/3)^{2^i}\).
+
+Thus “exact mixed-word minima” is justified for these two fixed examples.
+
+It does **not**:
+
+- construct an asymptotic family;
+- prove reduction soundness beyond those fixed instances;
+- output a parity-check matrix and syndrome after each fold;
+- establish polynomial-time output bounds for growing instances.
+
+Accordingly, “finite two-level pointed-code assembly” is accurate; “syndrome assembly” or “reduction” would be overstated.
+
+## Distance terminology in the super-budget paragraph
+
+`verify_superbudget_3dm.py` uses
+
+```python
+pd(rows)
+```
+
+to return the **moving** pointed distance, excluding the corner. Hence the reported \(9\) and \(25\) are moving distances. Full pointed distances would be \(10\) and \(26\).
+
+The prose should say “moving distances \(9\) and \(25\).”
+
+Also, the script does not assert
+
+```python
+dp == d*d
+```
+
+—it only asserts the lower bound and prints `dp`. Therefore the exact \(9,25\) claim is supported only if the corresponding deterministic logs are inspected. To make the source itself a verifier of that claim, add
+
+```python
+assert dp == d*d
+```
+
+for the tested cases.
+
+## Other finite-count claims
+
+Several exact counts are printed but not asserted in source:
+
+- \(37\) cyclic natural-code losses;
+- \(14{,}773\) residual transitions;
+- the exact super-budget outcomes.
+
+These are deterministic computational observations if the logs show those outputs, but the scripts as source do not enforce those exact counts. This is not a mathematical theorem issue, but “the verifier proves count \(C\)” is too strong without either an assertion or an attached checked log.
+
+The claims based on absent sources—especially the exchange-quotient counts, biset count, and “two broader cyclic searches”—cannot be audited from the supplied attachment.
+
+Finally, STATUS says “Both verifiers exit zero” despite listing nine scripts. Replace this with either “all listed verifiers” or name the two intended scripts.
+
+---
+
+# 8. Additional internal corrections
+
+1. The final sentence of `proof_cvp.md` says the cyclic fold
+   > “lacks the central mixed-word theorem.”
+   
+   This directly contradicts the proved orbit-fold lemma earlier in the same file. Replace it by:
+   > “The cyclic fold has the mixed-word lower bound, but lacks a viable asymptotic symmetry/parameter construction.”
+
+2. The exact-cover section’s \(q+1\) lower bound is valid but nonsharp. Because \(|x|\equiv q\pmod2\), the next feasible weight after \(q\) is at least \(q+2\). This should be noted to avoid later \(Q\)-notation confusion.
+
+3. “The invariant ladder has vanishing exponent/output blowup” in STATUS is too broad. It should be restricted to the stated residual-lineage or exact idealized recurrence and the specified asymptotic base-gap assumptions.
+
+---
+
+## Final classification
+
+### Locally fatal claims
+
+- Residual-lineage theorem without \(Q>1\) / nonempty initial moving support.
+- Exact biset fixed-class count \(1+R_U\).
+- The concluding claim that the mixed-word theorem is missing is internally false, though it is a status-summary error rather than a proof failure.
+
+### Substantive but repairable
+
+- Applying (OF) at levels with multiple fixed coordinates without stating the fixed-set extension.
+- No-go title broader than the \(Q\) versus \(Q+1\), OF-only theorem.
+- Conserved exponent called the polynomial rank exponent.
+- Exact recurrence identity stated “up to rounding.”
+- Mixing full pointed ratios with reduced moving ratios.
+- “Reused indefinitely” without explicitly preserving absence of a corner-only word.
+
+### Correct
+
+- Mixed-word orbit-fold bound with one distinguished fixed coordinate.
+- Equality from an invariant pointed minimum word.
+- Reduced tensor exact distance \(1+d^2\).
+- Reduced free-orbit fold lower bound and invariant-word equality.
+- Functorial residual action for a free odd abelian action, after the stated pointedness induction.
+- The finite numerical values asserted inside `verify_reduced_fold_3dm.py`.
+- The ceiling arithmetic and ratio iteration in the residual proof once \(Q\ge4\) is imposed.
+[ask_pro] mode=converge model=openai/gpt-5.6-sol-pro cost=$1.963054 time=410.8s
+

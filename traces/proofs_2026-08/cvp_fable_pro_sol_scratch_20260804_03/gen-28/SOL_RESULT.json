@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented the sole authorized Pro Proposal 6 bounded audit as a frozen rank-32 reduced G14 pair-tile recursion. The complete unrestricted depth-two tables through squared radius 57 are closed, but the obstruction/control minima are 57 and 32 and the measured growth factors satisfy lambda=57/32<mu=2, so this serialized recursion rule fails its required growth inequality. This is finite evidence only.",
+  "hypothesis": "Complete full-assignment ports and exact min-plus gluing might force illegal transfer cost to grow strictly faster than legal cost; the falsification condition was nonclosure, an omitted attack class, control mismatch, or lambda<=mu.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_frozen_minplus_pair_tile.py",
+    "experiments/gen28_frozen_minplus_pair_tile_manifest.json",
+    "gen-28/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_frozen_minplus_pair_tile.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_frozen_minplus_pair_tile.py",
+      "exit_code": 0,
+      "finding": "Exact unrestricted obstruction/control squared minima are 57 and 32; all three depth-one tables have 20 entries, the obstruction depth-two table has eight ILLEGAL entries at 57, the control has one LEGAL entry at 32, and lambda=57/32<mu=2."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_frozen_minplus_pair_tile.py && python3 -m json.tool experiments/gen28_frozen_minplus_pair_tile_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the serialized complete-table manifest is valid JSON."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If the frozen-tile direction is continued, retain the same exhaustive closure contract but test one uncontracted size-16 four-variable G14 pair bag with a nontrivial overlap seam; derive its coefficient bound before enumeration and kill immediately on nonclosure, control mismatch, or lambda<=mu."
+}

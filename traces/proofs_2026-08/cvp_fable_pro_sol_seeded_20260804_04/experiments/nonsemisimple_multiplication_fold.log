@@ -1,0 +1,70 @@
+{
+  "all_eight": {
+    "active_output_length": 15,
+    "base_distance": 2,
+    "fiber_size": 16,
+    "folded_distance": 0,
+    "image_dimension": 11,
+    "minimum_message_mask": 1,
+    "minimum_output_word": 1,
+    "mixed_image_words_enumerated": 2048,
+    "nominal_output_length": 17,
+    "pointed_kernel": true,
+    "unfurled_square_dimension": 25,
+    "unfurled_square_distance": 4
+  },
+  "coordinate_relabelings_checked": 846911,
+  "expected_move": "nilpotent valuation layers keep YES sparse while spreading every NO mixed square",
+  "falsification": "a pointed kernel, NO not above worst YES, hostile collapse, or rank exponent not above unfurled square",
+  "folded": {
+    "NO_distance_range": [
+      2,
+      6
+    ],
+    "NO_pointed_kernels": 0,
+    "YES_distance_range": [
+      2,
+      4
+    ],
+    "best_NO": 2,
+    "max_active_output_length": 17,
+    "rank_exponent": 0.0,
+    "uniform_ratio": 0.5,
+    "worst_YES": 4
+  },
+  "instances": {
+    "NO_q3_m8": 200,
+    "YES_q3_m8": 10,
+    "all_eight_q2_m8": 1,
+    "twisted_holonomy_q3_m9": 1
+  },
+  "mechanism": "multiply canonical truncated-algebra labels a_i*a_j and retain 16 coefficient bits",
+  "mixed_image_words_enumerated": 3896,
+  "parameters": {
+    "M": 16,
+    "a_rule": "1 + u^h + u^(2h+1)",
+    "h_rule": "1 + canonical incidence-column value mod 7"
+  },
+  "primary_success": false,
+  "twisted_holonomy": {
+    "active_output_length": 14,
+    "base_distance": 3,
+    "fiber_size": 4,
+    "folded_distance": 3,
+    "image_dimension": 3,
+    "minimum_message_mask": 1,
+    "minimum_output_word": 139,
+    "mixed_image_words_enumerated": 8,
+    "nominal_output_length": 17,
+    "pointed_kernel": false,
+    "unfurled_square_dimension": 9,
+    "unfurled_square_distance": 9
+  },
+  "unfurled": {
+    "best_NO": 25,
+    "pointed_length": 65,
+    "rank_exponent": 0.2447428045068572,
+    "worst_YES": 9
+  }
+}
+NONSEMISIMPLE_MULTIPLICATION_FOLD_PASS

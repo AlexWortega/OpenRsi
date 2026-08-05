@@ -1,0 +1,17 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "The result is confined to one nine-clause instance and an additive squared gap of 32 over B=520. There is no composition law, uniform soundness lemma, or growing-gap mechanism supporting polynomial-factor GapCVP hardness.",
+    "The claim that the G11 affine collision lifts \"only\" with anchor excess 928 is unsupported. The verifier evaluates one canonical affine lift but does not optimize over alternative pair-bag extensions, leaving possible attacks at distances 553 through 1447.",
+    "The verifier is not an independent exhaustive optimizer for the audited shell. Its zero-residual reduction is mathematically plausible, but the one-residual exclusion is encoded only as asserted structural case labels rather than executable enumeration or a separately checkable certificate."
+  ],
+  "evidence": [
+    "The passed verifier reconstructs the emitted objective with 520 unrestricted integral selectors and 612 residual rows, checks the manifest hash, and exhibits a control vector of value 520. The coordinatewise anchor lower bound proves that control minimum exactly.",
+    "For zero residual through B+32, anchor accounting permits at most four non-Boolean bags, so every degree-eight clause has a Boolean incident bag. Full-marginal equality then propagates legal one-hot labels, and the backtracking result finds no globally compatible legal tuple on this fixed obstruction.",
+    "For nonzero residual through B+32, the residual penalty 25 leaves anchor excess at most 7, forcing all coefficients Boolean and raw residual squared exactly one. The normalization, forbidden-label propagation, and two-coordinate difference of unequal one-hot marginals do exclude a sole bad row, but this is a hand-checked finite argument rather than asymptotic evidence.",
+    "The reported G7 incompatibilities, canonical G11 lift at total 1448, and control-derived bag/clause drops are witness evaluations only. They do not establish optimal extension costs or exclude adapted attacks outside the audited shell.",
+    "STATUS, IDEAS, NOTES, and proof_cvp.md consistently classify Generation 14 as a finite shell pass and explicitly deny any hardness lemma or dimension-dependent gap."
+  ],
+  "next_experiment": "Exactly audit the same emitted obstruction through B+64=584. Partition all possibilities into raw residual squared 0, 1, or 2; for the zero-residual boundary enumerate the nine possible eight-bag stars and every bounded integral joint table, and for residual cases enumerate all exceptional bags and residual-row supports under the anchor budget. Emit either a manifest-rechecked selector witness of value at most 584, which kills fixed pair-bag size, or an independently checkable exhaustive certificate; a pass remains finite only.",
+  "confidence": 0.94
+}

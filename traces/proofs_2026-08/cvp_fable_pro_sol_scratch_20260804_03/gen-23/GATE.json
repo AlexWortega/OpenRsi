@@ -1,0 +1,45 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not escape G7/G13: additional mixed-radix rows remain linear and vanish on any exact signed relation already preserving the underlying checks. No bases, orderings, item matrix, target, scaling, or matched control are frozen, and an n=3 norm search cannot discriminate the missing G20/G21 polynomial excess-to-baseline law.",
+      "Proposal 2 is blocked by G13/G15. A coefficient-sum-one affine combination of honest global encodings marginalizes through every linear complete-bag constraint with zero residual; zero-centered anchors charge bounded coefficient energy per affected bag while honest encodings cost one per bag, yielding at best an unproved constant ratio rather than n^c.",
+      "Proposal 3 requires all 2^n squarefree monomials, so it is not a polynomial-time reduction. Its proposed four-variable test can confirm finite ideal inconsistency but cannot test any compression mechanism, because none is specified; compression is the entire unresolved obstruction.",
+      "Proposal 4 does not define the cells, boundary maps, target cycle, satisfying filling, or telescope attachment, so its SNF experiment is not executable. Moreover, a nonzero torsion class has no integral filling before attachment, while after attachment the claimed coefficient lower bound depends on unspecified maps; G13/G19 signed-chain fillings remain live.",
+      "Proposal 5 remains a linear transport/conservation construction, so symmetric-power coordinates preserve affine combinations and do not inherently prevent the G19 signed splice. The generators, representation bases, transition rows, boundaries, weights, target, and control required by the prior reopening condition are still unfrozen, and the toy contradiction cannot test relative asymptotic growth.",
+      "Proposal 6 offers only another finite global-PSD shell search. It supplies no recursive lattice construction or theorem making Delaunay shell ratios multiply, while G13 lattice points, G12 drops, and G22 entangled tensor vectors remain unrestricted; a 72-selector pass would repeat G14-style finite evidence without discriminating the missing composition law."
+    ],
+    "evidence": [
+      "G7 exhibits an exact zero-residual signed selector with squared distance 80 versus baseline 72, so residual radix amplification cannot charge it.",
+      "G13 proves a harmful selector is an integral affine combination of honest encodings with coefficient sum one, and G15 lifts those coefficients through an enlarged hierarchy with exactly zero residual.",
+      "G19 finds a zero-residual accepting signed flow using only two negative coefficients, with obstruction/control squared minima 22,770 and 22,754. No proposed linear transport or chain layer has a proved separator for this shell state.",
+      "G14 excludes vectors only through B+32 on one pair-bag instance; it establishes neither composition nor a growing gap. G9/G11 likewise retain constant-cost parity kernels, and G12 shows strengthening one attack can expose a cheaper drop.",
+      "The supplied verifier record establishes no dimension-dependent gap or hardness lemma. None of the six proposals supplies evidence for G20/G21 scaling, and their proposed finite tests cannot establish it."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a fully frozen mutation that first proves algebraically that its added nonlinear or topological invariant separates the explicit G13 affine lift and G19 signed splice, then preregister an unrestricted obstruction/control shell search including drops; kill on any zero-residual lift, completeness mismatch, or merely constant relative gap.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 cannot make its exact zero-residual integer fiber equal a finite Boolean fiber using only linear equalities and unrestricted integer selectors: two integer solutions generate the entire affine line through their difference. Bounded one-hot slack is not enforced by CVP linear rows, while rank, coefficient bound L, overlap family, slack encoding, baseline, and target remain unfrozen; G13/G15 therefore survive and a rank-2 shell test cannot establish polynomial rank or G20/G21 scaling.",
+      "Proposal 2 gives no explicit discriminant group, port map, seven-versus-eight legal-label convention, isotropic gluing map, target, or bounded Construction-A search family. Equal minima of selected cosets do not control unrestricted representatives after gluing, drops, or affine mixtures, and no composition law shows that a local ratio beats honest-radius growth.",
+      "Proposal 3 linearizes multiplication with table selectors, so unrestricted signed mixtures need not represent decomposable quaternion products. The four-square identity then says nothing about their coefficient-vector norm; this is exactly the live G13/G19 failure, and the rows, target, anchors, wiring, and baseline for the proposed two-gate search are not frozen.",
+      "Proposal 4 has no proof that separate signed carry streams force one ordinary nonzero carry divisible by 30^d; linear automaton equations can instead admit exact affine or signed-flow cancellations. Carry ranges, coupling rows, boundary conditions, residual weights, and target are unspecified, while testing bases 2 and 3 at depths at most 3 cannot discriminate the claimed G20/G21 law.",
+      "Proposal 5 still lacks the object needed for its contract: the finite boundary quotient, designated legal and illegal classes, rational targets, fiber-product homomorphisms, drop classes, and exact definition of S. Enumerating Gram matrices alone cannot compute port-coset minima or recursive legality, and checking one two-gadget gluing would not prove closure under arbitrary substitution.",
+      "Proposal 6 supplies no precise Magnus embedding, transition alphabet, truncation basis, integral transport rows, weight M, boundary target, or polynomial state-size accounting. The refinement remains linear, so G13/G15 affine combinations and G19 signed splices may lift degree by degree; results for d=0,1,2,3 on one fixed checker cannot imply logarithmic-degree support growth."
+    ],
+    "evidence": [
+      "G1 and G7 exhibit exact zero-residual slack or selector attacks, showing that residual amplification, radix structure, or carry magnitude cannot charge a surviving kernel. Proposal 1 and Proposal 4 do not first eliminate that kernel.",
+      "G2/G3 certify only constant-size local affine isolation, while G5 finds short overlap circuits in every tested composition. Local clause cuts, cosets, or gate tables therefore need an explicit unrestricted overlap theorem, not merely a local search.",
+      "G13 verifies a harmful integral affine combination of honest encodings, and G15 verifies that it threads a larger hierarchy with zero residual. G9/G11 additionally retain constant-cost parity kernels, while G12 shows strengthening one attack can expose a cheaper drop.",
+      "G19 verifies a zero-residual accepting signed flow with only two negative coefficients and squared excess 16. Neither quaternion tables nor finite Magnus transport currently supplies nonlinear constraints applicable to unrestricted lattice coefficients.",
+      "G14 is only a finite exclusion through B+32, and no supplied verifier establishes a growing gap, transformer composition law, or G20/G21 excess-to-baseline bound. The missing emitted definitions in all six proposals also retain G6/G22."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a Proposal-5 mutation that freezes a finite boundary quotient and every port class, target, Gram matrix family, gluing homomorphism, drop state, objective normalization, S, and recursive contract; then exactly enumerate dimensions 4-7 and all unrestricted two-gadget fiber minima, killing on any illegal minimum at most sqrt(S) times the legal radius or any completeness mismatch.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

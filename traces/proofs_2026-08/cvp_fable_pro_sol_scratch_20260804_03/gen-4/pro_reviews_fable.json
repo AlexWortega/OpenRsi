@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposals 1 and 2 are killed as stated. Pure-tensor norm multiplicativity does not imply multiplicativity of CVP distance because the tensor lattice contains non-product vectors; proposal 2 additionally gives no linear lattice reduction implementing coordinate products, while proposal 1 incurs dimension exponential in tensor depth and its proposed search leaves targets and singular bases unspecified.",
+    "Proposal 3's Graver claim is unsupported: sign-conformality prevents cancellation among coordinates of the decomposed variable vector, not cancellation inside a circuit's shared measurements. The local left-kernel certificates do not imply that every global circuit crossing a falsified clause has positive cost.",
+    "Proposal 4 correctly supplies a lower bound beta/||w||, but the claim that this particular bound is tight by LP duality is false; the exact real margin is the norm of the projection of b onto ker(A^T). Disjoint-support addition does not apply to shared rows, and any constant local margin still lacks a sparse-unsatisfaction or polynomial-gap law.",
+    "Proposal 5 is killed absent a reduction mapping satisfiability to trivial versus distant homology classes. A hand-chosen toric-code class tests known code distance, not completeness, O3 accounting, or the claimed SAT mechanism.",
+    "Proposal 6 is killed in its stated linear form: distinguishing {-1} from legitimate {0,1} by residues requires modular quotient variables or nonlinear constraints, with quotient variables recreating slack escape directions. It also leaves O2 and the completeness-normalized gap unresolved.",
+    "Proposal 7's bent-function gadget has only about 2^m nearest affine codewords, polynomial in the block length 2^m rather than exponentially dense in lattice dimension. Enumerating RM(1,4) verifies a classical finite fact but does not test projection robustness, mixing cheats, or polynomial amplification.",
+    "Proposal 8 is killed as an independent route: bounded-template Presburger uniformity cannot establish unbounded composition, and linear integer arithmetic cannot directly express the proposed quantified real quadratic margin. Its suggested two-clause query merely automates a finite exact-fiber check.",
+    "The only conditional survivor is a mutation of proposals 3+4 using exact composed-system optimization rather than the asserted Graver theorem or grid sampling. It still faces O1 globally, directly faces O2, has no O3 reduction or dimension-gap law, depends on closing O4, and addresses O5 only for the tested composition."
+  ],
+  "evidence": [
+    "The supplied verifier evidence establishes only that 126 systems built from 18 reconstructed matrices are inconsistent over Q via integral left-kernel witnesses. It does not establish survivor identity, overlap composition, approximate-cost bounds, or asymptotic hardness.",
+    "O4 is real: Generation 3 reconstructs the matrices by symmetry but never compares their canonical encodings or hashes with the actual Generation-2 exhaustive output.",
+    "Generation 1 exactly exhibits O1 in the tested gadget: all amplified residuals vanish while squared cost is only 27 versus Boolean baseline 19.",
+    "No proposal supplies a verified polynomial-time basis, target, completeness radius, soundness radius, and n^c gap. Passing another finite test must remain finite evidence."
+  ],
+  "next_experiment": "Run one bounded composition audit. First dump canonical encodings of the 18 Generation-2 survivors and require exact set/hash equality with Generation 3; then, for every survivor pair, shared-literal position, relative polarity, and legal reference pair, build the explicit two-clause residual matrix including all selector, auxiliary, slack, normalization, marginal, and shared-measurement coordinates. Using exact rational projection compute the real minimum residual and test the claimed squared-margin superadditivity; independently decide integer zero-defect feasibility by Smith/Hermite methods and certify the exact integer minimum within the resulting fixed-dimensional CVP instance. Any hash mismatch, rational zero margin, integer zero-defect witness, or subadditive margin kills the 3+4 composition route; universal passage licenses only one further bounded overlap test.",
+  "confidence": 0.97
+}

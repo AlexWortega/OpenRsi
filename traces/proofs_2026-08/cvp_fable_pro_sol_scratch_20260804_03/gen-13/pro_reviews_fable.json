@@ -1,0 +1,19 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 has not shown that bounded-sum-free fingerprints are compatible with one fixed, assignment-independent target for all honest encodings. Construction A amplifies only nonzero syndromes; any prescribed-coset collision remains an exact kernel, and constant h gives no asymptotic protection against larger signed combinations.",
+    "Proposal 2 is killed as stated. In a bounded-degree complex, the boundary and coboundary of a constant-support defect have only constant support, while integral cocycles remain exact zero-syndrome attacks; no concrete complex or expansion theorem is supplied.",
+    "Proposal 3 is killed by signed transportation circulations. Any zero-mass selector deviation can be lifted on each incident edge by a constant-support 2-by-2 transportation move with zero opposite projection, so bounded-degree expander edges do not force propagation.",
+    "Proposal 4 is killed as an independent mechanism. The product formula only lower-bounds a nonzero algebraic syndrome, which ordinary weighted integer rows already do; it neither excludes exact kernels nor proves compatibility between algebraic independence and equal completeness radius.",
+    "Proposal 5 is killed in this form because exact base kernels survive tensoring, and no fixed-target walk tensor or valid multiplicativity inequality is defined. A k=2 numerical ratio cannot overcome that structural blocker or justify logarithmic powering.",
+    "Proposal 6 is killed as a route to the target absent a uniform polynomial degree and coefficient bound. A certificate computation on the nine-clause instance cannot address general formulas, and faithful conversion of the Macaulay pairing into an emitted fixed-target CVP lattice is unproved."
+  ],
+  "evidence": [
+    "No verifier evidence is supplied for any Generation-13 proposal; all claimed moves are hypotheses.",
+    "The Generation-7 exact verifier found a zero-residual signed-selector attack at squared distance 80 versus 72. Thus any syndrome amplifier must first eliminate exact kernels rather than merely enlarge nonzero residuals.",
+    "Generation 11 exactly preserved the 96-versus-72 minimum through cubic moments because a seven-term parity remained in the emitted kernel. Generation 12 then exactly found a clause-drop vector at 105 versus control 81, below the required 108 threshold.",
+    "Generation 5 found short private-row overlap circuits in every tested composition, and Generation 6 showed that externally filtered quotient calculations are not CVP evidence. Any surviving test must emit normalization, consistency, congruence carries, and the fixed target."
+  ],
+  "next_experiment": "Test only Proposal 1 on the verified Generation-12 obstruction/control. Precommit p=127, r<=72, h=7, an incidence-equivariant hash orbit basis, and a formula-syntax-derived fixed-target rule; append exact rows 5(Hz-t-127y) with all carry variables y emitted. Use complete finite CEGIS over the unrestricted squared shell through 108, requiring every honest control encoding to have zero hash, control minimum 81, and no obstruction vector at or below 108; any hash collision, cheaper lift, or exact UNSAT result kills this bounded Construction-A mutation.",
+  "confidence": 0.97
+}

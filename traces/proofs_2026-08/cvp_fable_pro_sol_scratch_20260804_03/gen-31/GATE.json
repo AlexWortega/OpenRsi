@@ -1,0 +1,39 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-31/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The result certifies only one rank-72 instance: 193<=d_NO^2<=216 and d_YES^2=144. It supplies no uniform family, recurrence, composition lemma, or dimension-dependent gap, so it cannot be promoted to asymptotic hardness.",
+      "The advertised Walsh geometry collapses algebraically to F^T F=8I, hence Q=12I+100A^T A. The Walsh directions do not distinguish honest encodings in the squared objective; they merely rescale the isotropic coefficient penalty, so a genuine composition mechanism remains absent.",
+      "The zero-residual parity witness caps this instance's squared ratio at 216/144=3/2. Naive replication therefore gives at best a constant ratio, never n^c, and fixed residual weight 100 may cease to certify the honest control minimum as the number of clauses grows.",
+      "The proposed next experiment is underspecified without a fixed overlap, emitted union checks, threshold, and exhaustive residual branches. Only the precisely frozen two-copy audit below warrants continuation."
+    ],
+    "evidence": [
+      "Machine verification exited 0 for source SHA-256 eb42d73d057e40dd7970a7e1a871f6410d5a9095e48cf0264c77e453aa630a9b and reproduced the manifest, Gram identity, rational center, and stated shell data.",
+      "The shell proof is internally complete for this instance: base energy is at least 72, so radius 192 permits raw residual square only 0 or 1. The zero-residual moment DP ends with no state, while the complete 2,701-vector low-base list has minimum residual square 7.",
+      "The control minimum 144 is justified only at this size: a nonzero residual costs at least 100 atop base 72, while every zero-residual normalized/legal block costs at least 16. An honest control vector attains 144.",
+      "STATUS, IDEAS, NOTES, proof_cvp, and SOL_RESULT consistently describe the outcome as finite and explicitly disclaim composition and asymptotic hardness. The verifier proves no exact obstruction minimum beyond the interval [193,216]."
+    ],
+    "next_experiment": "Freeze an 18-clause union of two manifest obstruction copies, relabeling the second copy by (0,1,2,3)->(0,1,2,4), and form the analogous control union using the compatible assignment x0=x1=x2=1 and x3=x4=0. Rebuild all degree-at-most-three checks globally, use F=I_18 tensor H8 and residual scale 10 on unrestricted Z^144, derive the shell bound [-4,4], prove the control minimum is exactly 288 by exhausting through 287, and exhaust obstruction residual-square branches 0, 1, and 2 through squared radius 386. Kill on control mismatch, any obstruction vector at most 386, any external filter, or incomplete branch coverage.",
+    "confidence": 0.97
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "Fatal to promotion: the result certifies only one rank-72 instance, with no uniform formula family, composition lemma, recurrence, or dimension-dependent gap. Nothing supplied implies n^c hardness.",
+      "The Walsh mechanism is algebraically just F^T F=8I, so it adds the isotropic penalty 8||z||^2 and no cross-clause amplification. It escapes the G13 common-syndrome obstruction, but the G11/G13 affine parity remains a zero-residual witness of cost 216, limiting this instance's squared ratio to at most 3/2.",
+      "The proposed next experiment is not adequate as written: preservation above 193/144 compares against a lower bound, not the exact one-copy ratio, and cannot establish growth. Any claim of composition must compare exact one-copy and two-copy quantities under a fully serialized overlap."
+    ],
+    "evidence": [
+      "The machine evidence reruns the hashed verifier successfully and reports exact control minimum 144, no obstruction vector through 192, and a witness at 216. Inspection supports the shell split: base energy is at least 72, so only residual squared norms zero and one can occur through 192.",
+      "The zero-residual DP enumerates all normalized/legal local states allowed by the derived cost cap and ends with no global state. The residual-one branch exhausts the 2701 possible low-base vectors and finds minimum residual squared norm 7.",
+      "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently state only the finite interval 193<=d_NO^2<=216 and deny any asymptotic theorem. The verifier does not determine the exact obstruction minimum and is not an independent cross-check of its own search logic.",
+      "Direct-sum repetition cannot amplify this evidence: repeating the cost-216 parity witness and cost-144 control gives squared ratio at most 216/144=3/2. Only a genuinely coupling overlap could show even finite supermultiplicative behavior."
+    ],
+    "next_experiment": "Serialize exactly two copies of the manifest obstruction, sharing variables 0 and 1 and renaming the second copy's variables 2,3 to 4,5; construct the analogous satisfiable control, use 18 H8 blocks, residual scale 10, and all global degree-at-most-three moment checks. First certify the exact one-copy minimum d1^2 by exhausting through 216; then certify control minimum 288 and exhaust the unrestricted two-copy shell through 2*d1^2, including every residual-squared branch allowed by the base bound. KILL on control mismatch, incomplete shell coverage, or any two-copy vector of cost at most 2*d1^2; an empty shell is only a finite strict-growth pass, not a recurrence or hardness lemma.",
+    "confidence": 0.96
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

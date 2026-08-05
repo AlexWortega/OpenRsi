@@ -1,0 +1,40 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-13/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The exact integer affine identity places the Generation-11 anchor-excess-24 selector at the common target of every linear hash compatible with all 16 honest raw encodings. Therefore Construction-A distance, carries, and syndrome scaling cannot repair the selected raw 72-selector mechanism.",
+      "Nothing establishes asymptotic hardness: the audit concerns one 72-coordinate, nine-clause instance and supplies no uniform encoding family, composition theorem, dimension-dependent gap, or reduction. The finite rank calculations cannot be promoted to such claims.",
+      "The proposed “smallest formula-syntax-derived quadratic lift” is undefined: no coordinates, attack extension, compatibility target, or unrestricted lattice realization are specified. Any fixed linear feature augmentation preserves the affine collision, while genuine quadratic products require an explicit in-lattice product-consistency mechanism that the packet does not provide.",
+      "An affine-span test of nonlinear images alone would not be CVP evidence because unrestricted lattice coefficients need not obey the intended product relations. Thus there is no precise, mechanistically valid next bounded experiment warranting continuation."
+    ],
+    "evidence": [
+      "The supplied machine verifier exited 0 and reconstructs the manifest, the coefficient-sum-one identity, anchor excess 24, rank 14 and nullity 58 over p=2,3,5,127, and zero maximal compatible syndrome for the collision.",
+      "The exact integral identity itself, not extrapolation from four primes, proves collision under every linear map over any modulus: if all honest vectors map to t, the affine combination maps to t because its coefficients sum to one.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently label this as a finite obstruction to the raw linear encoding and explicitly state that no hardness lemma or asymptotic gap has been established.",
+      "MACHINE_VERIFICATION directly records only the main compatibility verifier; the separately listed py_compile, json.tool, and inherited recheck commands have no separate supplied machine records. This does not undermine the checked affine certificate but limits corroboration of those auxiliary test claims."
+    ],
+    "next_experiment": "Stop this run. Reopen only after supplying a fully specified enlarged integer encoding with explicit auxiliary coordinates, an emitted fixed-target lattice enforcing all intended lift relations internally, and an exact unrestricted search on the same obstruction and control; merely testing nonlinear lifted affine span is insufficient.",
+    "confidence": 0.98
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The exact integer identity z*=Σc_i h_i with Σc_i=1 makes every linear hash assigning a common target to the 16 honest encodings assign that same target to z*. Construction-A carries, code distance, modulus choice, and syndrome scaling cannot repair this raw-selector collision.",
+      "Any enlarged encoding that is merely linear in the 72 selectors preserves the affine identity and is equally blocked. A genuinely quadratic map of selector coefficients is not automatically realizable by a CVP lattice; introducing product coordinates without enforceable linear relations creates unrestricted cheating variables.",
+      "The proposed “smallest formula-syntax-derived quadratic lift” specifies neither its feature coordinates nor a fixed-target lattice realization, completeness target, search radius, or unrestricted-vector audit. It therefore is not one precise bounded experiment.",
+      "The packet establishes only a finite obstruction on one nine-clause instance. It supplies no uniform construction, composition law, dimension-dependent gap, or asymptotic hardness lemma, and cannot be promoted to the target theorem."
+    ],
+    "evidence": [
+      "The supplied machine verifier exited 0 and checks coordinatewise that the Generation-11 selector equals the stated integral affine combination of the 16 honest encodings, with coefficient sum one and anchor excess 24.",
+      "The verifier computes honest-difference rank 14 and compatible-syndrome dimension 58 for p=2,3,5,127, and confirms zero syndrome for the collision. The affine identity, rather than the four-prime sample, justifies the conclusion for every linear modulus.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently label the result finite, restrict it to raw linear hashes on the current 72 selectors, and explicitly deny any hardness lemma or asymptotic gap.",
+      "MACHINE_VERIFICATION supplies only the main compatibility-verifier execution. The separately listed py_compile, json.tool, and standalone Generation-11 recheck commands are not independently evidenced, although the main verifier imports the Generation-11 reconstruction and regenerates the manifest."
+    ],
+    "next_experiment": "None for the stated run. Reopen only after giving an explicit fixed-target linear lattice realization of a genuinely nonlinear lift, including all auxiliary variables and constraints; then prescribe and exhaustively audit one finite unrestricted distance shell on the same obstruction before considering coding or carries.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

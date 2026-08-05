@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented the jointly surviving proposal 2 lineage as the review-prescribed frozen two-sided F_8 generalized-Vandermonde condenser: five 2-by-m / m-by-2 blocks, 60 nominal moving bits, canonical coordinate order, and explicit binary syndrome fibers. Across ten YES, 200 NO, twenty affine-closure, all-eight, and holonomy dictionaries, no pointed kernel occurred, but worst YES distance was 31 and best NO distance was 6. The uniform ratio 6/31 and rank exponent zero kill this frozen family by rank-to-support mismatch. This is finite evidence, not a universal condenser no-go theorem.",
+  "hypothesis": "Causal mechanism: two-sided extension-field Vandermonde measurements should preserve many independent slices of every NO mixed tensor matrix while a rank-one YES square remains sparse. Expected move: kernel-free compression with best NO above worst YES and output-adjusted exponent above 0.2447428. Falsification condition: any pointed kernel, best NO at or below worst YES, any hostile semantic illegal cost at or below worst YES, or failure to beat the baseline exponent. The maps remained kernel-free but failed metric separation because dense measurements inflated YES support to 13-31 while mixed NO words retained support as low as 6.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_f8_two_sided_condenser.py",
+    "experiments/f8_two_sided_condenser.log",
+    "gen-6/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_f8_two_sided_condenser.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_f8_two_sided_condenser.py > experiments/f8_two_sided_condenser.log",
+      "exit_code": 0,
+      "finding": "Enumerated 83648 mixed image words and constructed explicit parity-check fibers. Found no pointed kernels, YES distances 13-31, NO distances 6-33, ratio 6/31, maximum exact-transfer rank 48, all-eight distance/illegal cost 2, holonomy distance/illegal cost 6, and 846931 consistent relabeling checks."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_f8_two_sided_condenser.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune the five blocks or revive rejected proposals. Reopen dense-condensing only after supplying an a priori uniform YES-support bound together with an all-mixed-word rank-to-Hamming-support theorem and polynomial exact-transfer rank; then precommit the matrices and rerun the same hostile suite."
+}

@@ -1,0 +1,40 @@
+{
+  "summary": "Selected Fable Proposal 2, the sole cross-review survivor, and implemented the complete pair-bag lift with no expander choices. The obstruction and control each have B=520 unrestricted integral selectors across all 36 clause pairs and 612 emitted normalization, endpoint-legality, and full-marginal consistency rows. A structural exhaustive-shell certificate proves there is no obstruction vector through B+32=552, while an honest control vector attains the universal anchor lower bound B=520. This is a finite shell pass only.",
+  "hypothesis": "Causal mechanism: complete joint selectors for every clause pair and equality of full clause-label marginals should force local parity or deletion attacks to propagate across the degree-eight pair mesh. Expected move: no obstruction vector through B+32 and control exact minimum B. Falsification condition: any unrestricted obstruction vector at most 552 or a control minimum different from 520. Neither condition occurs in the audited shell; the G11 affine collision lifts only with anchor excess 928.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_pair_bag_lift.py",
+    "experiments/gen14_pair_bag_lift_manifest.json",
+    "gen-14/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_pair_bag_lift.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_pair_bag_lift.py",
+      "exit_code": 0,
+      "finding": "The complete 520-selector, 612-check pair-bag objective has no obstruction vector through squared radius 552; the satisfiable control exact unrestricted minimum is 520."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_pair_bag_lift.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen14_pair_bag_lift_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted bag variables, normalization, legality, full-marginal rows, dimensions, and factor/target hashes form valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_selector_code_compatibility.py >/tmp/gen13_recheck14.json",
+      "exit_code": 0,
+      "finding": "The inherited affine-collision verifier still passes; its exact coefficients are used to reconstruct the lifted G11 attack at anchor excess 928."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Extend the exact pair-bag audit to shell B+64, where eight non-Boolean incident bags can first surround one clause and the degree-eight propagation argument ceases to apply. Search that structured boundary for a synchronized lifted parity; kill fixed pair-bag size if a constant-excess attack appears."
+}

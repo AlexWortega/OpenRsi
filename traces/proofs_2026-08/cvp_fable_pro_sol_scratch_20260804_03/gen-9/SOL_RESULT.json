@@ -1,0 +1,30 @@
+{
+  "summary": "Selected only Fable Proposal 1, the sole proposal authorized by opponent review for a repaired bounded test. Implemented a predeclared two-parameter incidence-equivariant global PSD metric on the Generation-7 obstruction and a fixed satisfiable nine-clause overlapping control. The exact rational factor realizes Q = 4I + 25 A^T A and the manifest emits its factor, fixed target, Gram matrix, center, and eigenvalue certificate. Exact unrestricted squared CVP minima are 96 and 72, respectively, so the finite distance ratio is sqrt(4/3) > 1.1. The old three-term selector attack is charged, but the exact nearest vector is the seven-term cube-parity kernel at anchor excess 24.",
+  "hypothesis": "Causal mechanism: global cross-clause quadratic terms enforcing every shared singleton and pair moment should charge affine selector directions that the Generation-7 linear marginal metric missed. Expected move: after exact rationalization, the unsatisfiable minimum is strictly more than 1.1 times the satisfying control radius. Falsification condition: a non-positive-definite or non-rational realization, an invalid control witness, or any unrestricted signed vector at or below the 1.1 threshold. The finite test passes, while exact low-weight search exposes a constant-cost cube-parity kernel and therefore supplies no asymptotic gap claim.",
+  "changed_files": [
+    "experiments/verify_global_psd_metric.py",
+    "experiments/gen9_global_psd_metric_manifest.json",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-9/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_global_psd_metric.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_global_psd_metric.py",
+      "exit_code": 0,
+      "finding": "Verified both emitted fixed-target factors and exact rational Gram/center pairs. The satisfiable control has exact unrestricted squared minimum 72. Exact signed dynamic programming checks all 959 derived local states through anchor excess 24 and proves the obstruction minimum is 96, attained by a zero-residual seven-term cube-parity selector. The finite ratio sqrt(4/3) exceeds 1.1."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_global_psd_metric.py && python3 -m json.tool experiments/gen9_global_psd_metric_manifest.json >/dev/null && python3 -m json.tool gen-9/SOL_RESULT.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles and both Generation-9 JSON artifacts are valid."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not promote the finite 1.1 pass. Apply the same two-parameter template to deterministically padded obstruction instances with 9, 18, and 36 clauses, duplicating clauses satisfied by the displayed global assignment, and use exact low-weight search to test whether the cube-parity attack remains at constant anchor excess 24 while the honest baseline grows. Kill this metric template if the verified distance ratio contracts toward one."
+}

@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 defeats the known nine-term lift only by explicitly enumerating all 2^n assignments. Fixed D admits constant-support signed moment kernels once support exceeds the sampled Vandermonde dimension, while growing D has no polynomial local realization; arithmetic compression would reopen O1/O6. The 16-column test cannot discriminate O7 or O8.",
+    "Proposal 2's full Walsh transform is injective precisely because it is exponential. No deterministic polynomial character sampler is supplied that separates every unrestricted low-cost signed measure, and uncertainty of the full spectrum does not establish this property. Testing all 16 characters and greedily pruning them on one instance is instance-specific finite evidence with no composition or gap law.",
+    "Proposal 3 is blocked directly by O6: the verified affine combination of honest global assignments extends linearly through Reed-Solomon codewords and every code-symbol view. List recovery is a nonlinear conclusion not enforced by the emitted lattice, while field-arithmetic auxiliaries would additionally require an O1 audit. The proposed finite code cannot test an escape from this exact affine pseudocodeword.",
+    "Proposal 4 preserves the G13 affine lift through every parity check and replicated copy. Replication increases both its anchor cost and the honest baseline proportionally, so support inflation alone gives no growing ratio; girth does not remove a global nine-term affine combination, and clause-drop spreading remains unproved. A 6-cycle is not an expander, and one or two levels cannot establish composition or O8.",
+    "Proposal 5 invokes E-type results about shortest tensor vectors, not distances to arbitrary closest targets or affine cosets. Entangled tensor vectors and spurious Kannan-embedding vectors are uncontrolled, and no embedding parameter, E-type factor, or predicted exact objective is frozen. Moreover, tensoring a formula-specific dimension N instance with constant gap rho yields exponent log(rho)/log(N), not an absolute c as N grows, while logarithmically many levels are superpolynomial in the original dimension.",
+    "Proposal 6 mistakes high incidence treewidth for distributed unsatisfiability. A constant unsatisfiable core attached to an arbitrarily large satisfiable high-treewidth component leaves O5 and O6 localized, and no routing theorem forces a polynomial fraction of independent distance witnesses. The routed bags, weights, unrestricted objective, and quantitative dimension-gap accounting are unspecified, so the proposed experiment is not executable as frozen.",
+    "None of the proposals supplies a deterministic polynomial-size unrestricted fixed-target CVP family addressing all of O1-O8. Their proposed tests either verify an exponential injective representation, preserve the exact affine lift, or lack a fully specified lattice and threshold."
+  ],
+  "evidence": [
+    "Generation 13 verified an integral nine-term affine combination with coefficient sum one that reconstructs the harmful legal selector and annihilates every compatible linear syndrome.",
+    "Generation 15 verified that the same affine combination traverses every level of a linear hierarchy with exactly zero residual and remains below threshold.",
+    "Generations 5 and 7 respectively found short overlap kernels in every tested composition and an exact zero-residual selector defeating all radix rows.",
+    "Generations 11 and 12 exhibit the remaining relocation and drop blockers: bounded-degree parity moved to a unique triple, and a clause drop beat the fingerprint threshold.",
+    "Generation 14 is only a finite pair-bag shell pass; its affine lift still exists at finite cost and no composition or dimension-dependent gap follows.",
+    "No verifier output, emitted basis, exact objective, or bounded-search certificate is supplied for any current proposal."
+  ],
+  "next_experiment": "None for these proposals. Reopen only with a frozen polynomial-size unrestricted CVP mutation that breaks the exact G13 affine lift, includes all drops, overlaps, carries, and auxiliaries, and preregisters a padded family whose required ratio grows with emitted dimension.",
+  "confidence": 0.995
+}

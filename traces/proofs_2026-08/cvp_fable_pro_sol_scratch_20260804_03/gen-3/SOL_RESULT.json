@@ -1,0 +1,29 @@
+{
+  "summary": "Selected Fable proposal 1, the exact arithmetic audit required by both cross-reviews before any modular or overlap mutation. Reconstructed all 18 Generation-2 survivor matrices and all seven legal one-hot references per matrix. For each of the 126 harmful affine systems A z=b, an integral left-kernel certificate satisfies w^T A=0 and w^T b nonzero; independent exact rational elimination agrees. Therefore every tested harmful fiber is empty over Q and hence over Z, so the Generation-2 survivor was not a [-3,3] box artifact. This remains a constant-size local fact with no gap-scaling claim.",
+  "hypothesis": "The 18 sparse measurement survivors exclude signed OR-selector cheats by an exact rational linear obstruction, not merely by pushing the shortest integer cheat outside the previous search box.",
+  "changed_files": [
+    "experiments/verify_affine_isolation_unbounded.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-3/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_affine_isolation_unbounded.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_affine_isolation_unbounded.py",
+      "exit_code": 0,
+      "finding": "Certified all 18 survivor matrices and 126 legal-reference systems infeasible over Q using integral left-kernel witnesses with nonzero RHS pairings of absolute value 1 through 3; exact rational elimination independently confirmed inconsistency."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_affine_isolation_unbounded.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Compose the representative certified local matrix across two overlapping OR clauses sharing one variable, write the full global affine system, and search first for an exact rational/integer zero-defect signed selector. If the global fiber is nonempty, extract the minimum low-weight integer witness and kill composition; if empty, emit an integral left-kernel certificate before testing q=5 or q=7 wraparound amplification."
+}

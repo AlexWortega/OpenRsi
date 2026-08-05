@@ -1,0 +1,221 @@
+{
+  "affine_closure": {
+    "folded_distance_range": [
+      0,
+      1
+    ],
+    "pointed_kernels": 18,
+    "seeds": [
+      27,
+      97,
+      103,
+      104,
+      241,
+      245,
+      416,
+      438,
+      545,
+      580,
+      585,
+      604,
+      610,
+      675,
+      970,
+      1320,
+      1321,
+      1479,
+      1549,
+      1848
+    ],
+    "semantic_illegal_cost_range": [
+      0,
+      4
+    ]
+  },
+  "all_eight": {
+    "active_pointed_length": 4,
+    "base_distance": 2,
+    "cheapest_semantic_illegal_pure_square": 1,
+    "exact_transfer_rank": 3,
+    "fiber_size": 16,
+    "folded_distance": 1,
+    "image_dimension": 3,
+    "legal_pure_square_range": [
+      1,
+      2
+    ],
+    "mixed_words_enumerated": 8,
+    "nominal_pointed_length": 19,
+    "parity_check_rank": 1,
+    "pointed_kernel": false,
+    "source_square_dimension": 25,
+    "unfurled_square_distance": 4
+  },
+  "coordinate_relabelings_checked": 846931,
+  "expected_move": "noncommutativity removes the symmetric-pair kernel while 18 bits retain the reduced-square gap",
+  "falsification": "pointed kernel, best NO not above worst YES, hostile illegal cost not above worst YES, or exponent not above baseline",
+  "field": {
+    "basis": [
+      "1",
+      "a"
+    ],
+    "relation": "a^2=a+1"
+  },
+  "first_nine_labels": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      1
+    ]
+  ],
+  "folded": {
+    "NO_distance_range": [
+      0,
+      4
+    ],
+    "NO_pointed_kernels": 112,
+    "YES_distance_range": [
+      0,
+      3
+    ],
+    "YES_pointed_kernels": 5,
+    "best_NO": 0,
+    "max_exact_transfer_rank": 4,
+    "pointed_kernels": 117,
+    "rank_exponent": 0.0,
+    "uniform_ratio": 0.0,
+    "worst_YES": 3
+  },
+  "holonomy": {
+    "active_pointed_length": 5,
+    "base_distance": 3,
+    "cheapest_semantic_illegal_pure_square": 1,
+    "exact_transfer_rank": 4,
+    "fiber_size": 4,
+    "folded_distance": 0,
+    "image_dimension": 5,
+    "legal_pure_square_range": [
+      1,
+      3
+    ],
+    "mixed_words_enumerated": 32,
+    "nominal_pointed_length": 19,
+    "parity_check_rank": 0,
+    "pointed_kernel": true,
+    "source_square_dimension": 9,
+    "unfurled_square_distance": 9
+  },
+  "instances": {
+    "NO_q3_m8": 200,
+    "YES_q3_m8": 10,
+    "affine_closure_q3_m8": 20,
+    "all_eight_q2_m8": 1,
+    "holonomy_q3_m9": 1
+  },
+  "mechanism": "lexicographically frozen rank-one 3x3 F4 labels with ordered matrix-product coefficients",
+  "mixed_words_enumerated": 2214,
+  "primary_success": false,
+  "rank_one_label_count": 1323,
+  "unfurled": {
+    "best_NO": 25,
+    "exact_transfer_rank": 64,
+    "pointed_length": 65,
+    "rank_exponent": 0.2447428045068572,
+    "worst_YES": 9
+  }
+}
+F4_ORDERED_PAIR_FOLD_PASS

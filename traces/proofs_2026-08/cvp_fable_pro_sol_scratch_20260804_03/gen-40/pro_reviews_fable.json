@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not define a bounded optimization: no radius/trace normalization, center, matched-control constraint, or complete factor/target is frozen, so absolute margins can be scaled. The old G31 shell is not complete for a newly optimized Gram and center; checking it plus parity is not an unrestricted-integer audit and cannot exclude DROP or a new short affine vector.",
+    "Proposal 2's experiment is vacuous on G38: its exact obstruction residual fiber is already empty, whereas G38 soundness concerns the minimum nonzero residual. The affine target under one or two Lawrence liftings, anchor normalization, and CVP factor are unspecified, and Graver growth in some homogeneous kernel does not imply a NO/YES distance-ratio increase.",
+    "Proposal 3's proposed Dirac theorem is false for linear restriction systems. Given two globally valid assignments, the normalized integral combination 2δ_a-δ_b is a consistent non-Dirac signed section on every bag, regardless of unique-neighbor expansion; the graph, bags, and threshold are also not frozen.",
+    "Proposal 4 cannot charge exact kernels: trace forms amplify only nonzero algebraic residuals. G14 already has a zero-residual G11 affine lift at anchor excess 928, while the proposed shell stops at 64, so a pass would not discriminate the stated mechanism or scaling claim.",
+    "Proposal 5 audits only rank-one and rank-two tensors, leaving unrestricted higher-rank entangled coefficient tensors unsearched. Kannan embeddings also admit last-coordinate-zero vectors, the embedding parameter and alleged canonical isometry removal are undefined, and no E-type result supplied transfers CVP gaps through iteration.",
+    "Proposal 6 supplies no explicit complex, gluing, target class, monodromy bound, or formula-to-lattice map. Smith normal form determines quotient structure, not the shortest Euclidean representative, while G13 cocycles and G19 signed splices remain completely available.",
+    "Proposal 7 leaves the ancilla substitutions, permitted repair space, normalization, control instance, and exact rational certificate unspecified. Strong convexity alone does not prevent free-ancilla kernels, DROP, or an additive one-clause penalty whose curvature also raises the completeness baseline; a rationalized SDP followed by an unfrozen box search is not a certificate."
+  ],
+  "evidence": [
+    "G13 exhibits an exact integral affine collision, and G15 lifts the same coefficients through every hierarchy level with zero residual. G19 independently finds an exact accepting signed flow with two negative coefficients.",
+    "G38 proves raw residual square at least three on the obstruction, so its exact residual fiber is empty; its finite pass relies on eleven full-variable bags and establishes no lifting amplification.",
+    "G14 explicitly records the zero-residual affine lift at anchor excess 928. Algebraic scaling cannot alter that zero residual.",
+    "G31's finite Gram pass fails to compose in G32, and G37 proves an exact additive parity cut throughout its tested metric family. Therefore finite metric separation cannot be treated as evidence of polynomial growth.",
+    "G12 and G38 provide concrete DROP costs, while G30 shows that tensor auditing must cover all unrestricted coefficient tensors rather than selected ranks.",
+    "No verifier evidence accompanies any proposed construction; all claimed outcomes are predictions."
+  ],
+  "next_experiment": "None as written. Reopen Proposal 1 only after freezing an exact normalized Gram-and-center program for obstruction and matched control, with explicit factor/target and candidate-dependent eigenvalue bounds enabling exhaustive separation over the complete integer shell; or reopen Proposal 2 on a matrix with a known nonempty harmful exact fiber and a fully specified affine Lawrence lift that audits DROP, nonzero residuals, and normalized NO/YES growth.",
+  "confidence": 0.99
+}

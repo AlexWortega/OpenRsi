@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented only surviving Pro proposal 2 as a canonical modular-Kronecker fold and attacked every mixed image word on the existing ten YES and ten NO q=3,m=8 codes. Across 35 precommitted strictly compressed rules, no rule preserved a uniform gap above one and none beat the unfurled finite rank exponent. The separately precommitted tuple (5,7,11,13,17) had ambient rank 53, worst YES distance 17, and best NO distance 5. This is a finite falsification of the tested family, not an asymptotic no-go theorem or a hardness result.",
+  "hypothesis": "Causal mechanism: canonical ordered Kronecker exponents followed by parity bucketing modulo several small M_j should preserve low-weight NO mixed polynomials while compressing the 64-coordinate reduced square. Expected move: retain a uniform NO/YES gap with smaller ambient rank. Falsification condition: any NO mixed image no heavier than the worst YES image, or failure to beat the unfurled finite exponent. The condition occurred for every frozen rule.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_sparse_pit_tensor_fold.py",
+    "experiments/sparse_pit_tensor_fold.log",
+    "gen-1/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_sparse_pit_tensor_fold.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_sparse_pit_tensor_fold.py > experiments/sparse_pit_tensor_fold.log",
+      "exit_code": 0,
+      "finding": "Enumerated 24084 mixed image words over 35 fixed rules, checked all 806400 coordinate relabelings, and found zero rules with uniform ratio above one or rank exponent above the unfurled 0.2447428 baseline."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_sparse_pit_tensor_fold.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune moduli or revive rejected proposals. A future proposal must change the fold map and supply an a priori all-mixed-word support invariant; only then precommit the rule and test a q=4 family with relabelings."
+}

@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "KILL proposal 1: general 3SAT trellises can have exponential cut width, so explicitly storing crossing-clause assignments is not a polynomial-time reduction. Network-flow integrality does not address negative unrestricted CVP coefficients, and the proposed finite ordering search cannot remove the width blocker.",
+    "KILL proposal 3: no boundary maps, tuple-cell rule, target coset, completeness representatives, or polynomial-size construction are specified. Searching arbitrary support-six 2-cells cannot validate the claimed systole mechanism.",
+    "KILL proposal 4: the admissible Gram family, normalization, harmful-vector definition, separation oracle, and shell bound are unspecified. A general learned Q destroys the asserted DP structure, while one fitted finite ellipsoid would provide no uniform separator or dimension-dependent gap.",
+    "KILL proposal 5: tensor powers of honest vectors are nonlinear, whereas unrestricted lattice combinations of tensor columns need not be rank one or decomposable. No emitted fixed-target lattice enforces that property, and logarithmic tensor degree generally gives quasipolynomial dimension.",
+    "KILL proposal 6: degree four is full degree on the four-variable obstruction, so success there would not discriminate constant-degree scalability. Fixed-degree moment systems may retain integral pseudo-moments, while degree growing with n makes the squarefree-moment dimension exponential; the anchoring objective is also unspecified.",
+    "KILL proposal 7: a discriminant group and label-to-coset assignment do not determine Euclidean coset minima or an exact glued lattice. The proposed enumeration lacks base lattices, Gram forms, targets, and an unrestricted-distance audit, so additive closure cannot yet be tested.",
+    "Proposal 2 is the sole bounded survivor, but its stated radius 108 is invalid after changing the selector dimension, and fixed bag size supplies no asymptotic gap theorem. It warrants only a repaired exact pair-bag experiment; failure kills this fixed lift."
+  ],
+  "evidence": [
+    "Generation 13 proves an exact integral affine collision for every compatible linear map on the raw 72 selectors. Proposal 2 genuinely escapes that assumption by introducing joint-assignment variables rather than linear features of raw selectors.",
+    "Generation 5 found short overlap circuits in every tested private-row composition, while Generations 7, 11, and 12 exposed exact-kernel parity and clause-drop attacks. Any pair-bag test must therefore search unrestricted signed coefficients and include normalization, legality, and consistency as lattice coordinates.",
+    "No verifier evidence supports any new proposal's expected move. All supplied positive evidence remains finite, and no proposal establishes a uniform family, composition lemma, polynomial dimension, or n^c gap.",
+    "Complete pair-bag marginal consistency is sufficiently explicit to test whether the known parity extends through a nonlinear lift. A complete mesh is stronger than the proposed expander coupling, so a short attack against it also kills the weaker fixed-pair version."
+  ],
+  "next_experiment": "Implement proposal 2 only, with no expander choices: on the nine-clause obstruction and same-scope satisfiable control, create one integer coefficient for every assignment to the union of each intersecting clause pair. Use all union assignments so both instances have the same anchor count B; emit bag-normalization rows, zero forbidden-label marginals, and canonical-star equality of every full clause-label marginal across incident bags. Verify the exact objective ||2z-1||^2+25||Az-b||^2 and exhaust the unrestricted shell through B+32, explicitly reconstructing the G7/G11 attacks and every single-bag and single-clause drop. Falsify on any obstruction vector at most B+32 or any control minimum other than B; a pass is only finite evidence that pair bags defeat the current constant-excess attacks.",
+  "confidence": 0.94
+}

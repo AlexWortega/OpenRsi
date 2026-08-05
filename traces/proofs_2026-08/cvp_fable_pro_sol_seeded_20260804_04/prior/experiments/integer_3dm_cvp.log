@@ -1,0 +1,4 @@
+{'YES_integer_norm2_distribution': {3: 40}, 'NO_integer_norm2_distribution': {5: 35, 7: 1, 9: 2, 13: 2}, 'worst_YES': 3, 'best_NO': 5}
+{'lightest_signed_NO': ('NO', [(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 2, 1), (0, 2, 2), (1, 1, 2), (1, 2, 1), (2, 1, 0)], 5, (1, 0, -1, 1, 0, 1, 0, 1))}
+{'pair_target_mutation_worstYES': 3, 'bestNO': 1000000000, 'YES_dist': {3: 4}, 'NO_dist': {1000000000: 4}}
+direct integer 3DM CVP construction and mutation attacked exactly

@@ -1,0 +1,160 @@
+{
+  "base": {
+    "best_NO": 5,
+    "pointed_length": 9,
+    "rank_exponent": 0.2324867603589636,
+    "worst_YES": 3
+  },
+  "coordinate_relabelings_checked": 846721,
+  "expected_move": "a collision in a NO odd cover seeds many walk coordinates while every matching has zero walk cost",
+  "falsification": "primary length 4 fails unless YES=3, every NO>5, and the uniform rank exponent beats the base",
+  "instances": {
+    "YES_q3_m8": 10,
+    "all_eight_q2_m8": 1,
+    "extended_NO_q3_m8": 200,
+    "inherited_NO_q3_m8": 10,
+    "odd_holonomy_q3_m9": 1
+  },
+  "lengths": {
+    "2": {
+      "NO_mixed_min_range": [
+        17,
+        21
+      ],
+      "NO_pure_min_range": [
+        17,
+        21
+      ],
+      "YES_pure_min_range": [
+        3,
+        3
+      ],
+      "all_eight": {
+        "active_ambient_rank": 57,
+        "cheapest_illegal_mixed": 6,
+        "cheapest_illegal_original_weight": 6,
+        "code_dimension": 11,
+        "fiber_size": 16,
+        "mixed_min": 2,
+        "mixed_words_enumerated": 2048,
+        "nominal_length": 57,
+        "pure_min": 2,
+        "walks": 48
+      },
+      "best_NO": 17,
+      "max_active_ambient_rank": 51,
+      "max_code_dimension": 4,
+      "max_nominal_output_length": 57,
+      "odd_holonomy": {
+        "active_ambient_rank": 64,
+        "cheapest_illegal_mixed": 9,
+        "cheapest_illegal_original_weight": 9,
+        "code_dimension": 4,
+        "fiber_size": 4,
+        "mixed_min": 3,
+        "mixed_words_enumerated": 16,
+        "nominal_length": 64,
+        "pure_min": 3,
+        "walks": 54
+      },
+      "rank_exponent": 0.4290326638170866,
+      "uniform_ratio": 5.666666666666667,
+      "worst_YES": 3
+    },
+    "3": {
+      "NO_mixed_min_range": [
+        25,
+        43
+      ],
+      "NO_pure_min_range": [
+        25,
+        43
+      ],
+      "YES_pure_min_range": [
+        3,
+        3
+      ],
+      "all_eight": {
+        "active_ambient_rank": 249,
+        "cheapest_illegal_mixed": 6,
+        "cheapest_illegal_original_weight": 6,
+        "code_dimension": 15,
+        "fiber_size": 16,
+        "mixed_min": 2,
+        "mixed_words_enumerated": 32768,
+        "nominal_length": 249,
+        "pure_min": 2,
+        "walks": 240
+      },
+      "best_NO": 25,
+      "max_active_ambient_rank": 193,
+      "max_code_dimension": 4,
+      "max_nominal_output_length": 257,
+      "odd_holonomy": {
+        "active_ambient_rank": 280,
+        "cheapest_illegal_mixed": 9,
+        "cheapest_illegal_original_weight": 9,
+        "code_dimension": 4,
+        "fiber_size": 4,
+        "mixed_min": 3,
+        "mixed_words_enumerated": 16,
+        "nominal_length": 280,
+        "pure_min": 3,
+        "walks": 270
+      },
+      "rank_exponent": 0.3820930734706491,
+      "uniform_ratio": 8.333333333333334,
+      "worst_YES": 3
+    },
+    "4": {
+      "NO_mixed_min_range": [
+        33,
+        91
+      ],
+      "NO_pure_min_range": [
+        33,
+        91
+      ],
+      "YES_pure_min_range": [
+        3,
+        3
+      ],
+      "all_eight": {
+        "active_ambient_rank": 1017,
+        "cheapest_illegal_mixed": 6,
+        "cheapest_illegal_original_weight": 6,
+        "code_dimension": 16,
+        "fiber_size": 16,
+        "mixed_min": 2,
+        "mixed_words_enumerated": 65536,
+        "nominal_length": 1209,
+        "pure_min": 2,
+        "walks": 1200
+      },
+      "best_NO": 33,
+      "max_active_ambient_rank": 805,
+      "max_code_dimension": 4,
+      "max_nominal_output_length": 1277,
+      "odd_holonomy": {
+        "active_ambient_rank": 1360,
+        "cheapest_illegal_mixed": 9,
+        "cheapest_illegal_original_weight": 9,
+        "code_dimension": 4,
+        "fiber_size": 4,
+        "mixed_min": 3,
+        "mixed_words_enumerated": 16,
+        "nominal_length": 1360,
+        "pure_min": 3,
+        "walks": 1350
+      },
+      "rank_exponent": 0.33526358153830865,
+      "uniform_ratio": 11.0,
+      "worst_YES": 3
+    }
+  },
+  "mechanism": "original triple coordinates plus products indexed by every ordered nonbacktracking incompatibility walk",
+  "mixed_words_enumerated": 103136,
+  "primary_length": 4,
+  "primary_success": true
+}
+NONBACKTRACKING_SCHUR_WALKS_PASS

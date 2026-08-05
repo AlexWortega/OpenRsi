@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented only surviving Pro proposal 3 as the fully frozen nonsemisimple multiplication fold over F_2[u]/(u^16). Exact enumeration on ten YES and 200 NO q=3,m=8 dictionaries gave worst YES distance 4 and best NO distance 2 at maximum active output length 17, inverting the gap to 1/2 and giving rank exponent zero versus the unfurled 0.2447428. The complete all-eight dictionary has the explicit pointed corner-only output word of moving weight zero. This finitely kills the specified label rule, not every nonsemisimple algebra fold.",
+  "hypothesis": "Causal mechanism: assign each triple the frozen unit a_j=1+u^{h_j}+u^{2h_j+1}, with h_j=1 plus its canonical incidence-column value modulo 7, and map each ordered reduced-square coordinate to the coefficients of a_i a_j. Expected move: nilpotent valuation layers keep YES images sparse while spreading every NO mixed square in only 16 coefficient coordinates. Falsification condition: a pointed kernel, best NO no larger than worst YES, hostile collapse, or failure to beat the unfurled rank exponent. The experiment triggered all relevant failures: all-eight has a pointed kernel and the main finite gap is inverted.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_nonsemisimple_multiplication_fold.py",
+    "experiments/nonsemisimple_multiplication_fold.log",
+    "gen-4/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_nonsemisimple_multiplication_fold.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_nonsemisimple_multiplication_fold.py > experiments/nonsemisimple_multiplication_fold.log",
+      "exit_code": 0,
+      "finding": "Enumerated 3896 mixed image words across ten YES, 200 NO, all-eight, and twisted-holonomy dictionaries. Found YES range 2-4, NO range 2-6, uniform ratio 1/2, and an all-eight corner-only pointed kernel word; 846911 relabeling/reverse-spectrum checks agreed."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_nonsemisimple_multiplication_fold.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune M or revive rejected proposals. Reopen this lineage only after specifying a frozen polynomial-time noncommutative algebra map that separates ordered pairs; then require exact all-mixed-word tests on the same 200 NO, all-eight, affine-closure, and holonomy families before any parameter claim."
+}

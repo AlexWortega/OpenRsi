@@ -1,0 +1,38 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-3/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "Unverified survivor identity: the Generation-3 verifier reconstructs the 18 matrices by symmetry (6 selector-row permutations x 3 auxiliary hosts) per its own docstring assertion, but never cross-checks this set against the actual 18 survivors emitted by verify_affine_isolation_core.py. If even one reconstructed matrix differs from the Gen-2 list, the box-artifact removal is certified for the wrong objects. This must be closed by an explicit set/hash comparison before any composition result built on these matrices is trusted."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION.json shows exit 0 with source SHA c1a414a9...; the script's hard assertions (len(survivors)==18, certificates_checked==126, all pairings nonzero, rational_consistent False for every system) mean the silent 'continue' skip paths could not have fired, so all 18 matrices genuinely received integral left-kernel certificates w^T A=0, |w^T b| in {1,2,3}.",
+      "The infeasibility-over-Q logic is sound: an integral w with w^T A=0 and w^T b != 0 proves the affine fiber A z=b empty over Q hence over Z, independent of any coefficient box; the in-script exact rational elimination is a second, algorithmically distinct check, though both run in the same process rather than as independent verifiers.",
+      "The packet does not promote finite evidence: claimed_progress is FINITE, and STATUS.md, IDEAS.md, NOTES.md, and proof_cvp.md all explicitly state this is a constant-size local fact with no overlap soundness, no CVP basis/target/radii, and no dimension-gap law. Consistency across all four documents checks out against the verifier output.",
+      "Remaining obstruction map is untouched and correctly acknowledged: the Gen-1 slack-cheat kill shows amplification must constrain slack directions, and nothing in Gen-3 addresses whether isolation survives clause overlap, where shared variables create new kernel directions across the composed system — the single most likely failure mode of this mechanism.",
+      "The 126 legal-reference targets all use global marginals (0,0,0) consistent with the Gen-2 falsified-clause setup; the rhs construction matches the measurement values of each one-hot reference, so the certified systems are the intended harmful fibers, not a strawman."
+    ],
+    "next_experiment": "One bounded experiment in two mandatory parts. (1) Re-run verify_affine_isolation_core.py, dump its exact 18 survivor matrices, and assert set-equality with the 18 matrices reconstructed in Generation 3; abort with nonzero exit on any mismatch. (2) Take one certified representative (selector rows [0,0,1,0,1,1,2], auxiliaries on row 0), compose it across two OR clauses sharing exactly one variable, write the full global affine system over Z with explicit shared-variable consistency rows, and exhaustively search for an integer harmful selector of squared norm at most 8; if none exists in that ball, attempt an integral left-kernel certificate for exact rational emptiness, and if the fiber is nonempty over Q, report the minimum-weight rational witness and kill the composition path. Any nonzero-defect or low-weight witness is an immediate mechanism kill for overlap; a certificate licenses exactly one further test (q=5 wraparound), nothing more.",
+    "confidence": 0.72
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The certificates concern only 18 constant-size 7-by-12 systems. They establish no uniform gadget family, overlap lemma, CVP basis/target construction, completeness radius, soundness threshold, or dimension-dependent approximation gap.",
+      "Local infeasibility excludes exact zero-defect selectors only at the tested Boolean falsifying marginals. It does not bound approximate or low-cost integer cheats, arbitrary non-Boolean marginals, or cancellation of defects between clauses.",
+      "The verifier reconstructs the purported Generation-2 survivors from a hard-coded structural characterization and checks that it obtains 18; it does not ingest or hash an independently recorded Generation-2 survivor list. Thus identity with the prior exhaustive output is supported by the packet narrative, not independently verified here.",
+      "When measurement rows are shared globally, left-kernel obstructions for individual clauses need not survive: deviations from a satisfied clause may cancel the obstruction of a falsified clause. No composition evidence currently rules this out."
+    ],
+    "evidence": [
+      "Machine verification exited 0 and exhibited integral vectors satisfying w^T A=0 with nonzero w^T b for all 18 reconstructed matrices and seven references each. These identities exactly prove the 126 constructed affine systems inconsistent over Q and therefore over Z.",
+      "Exact rational elimination in the same verifier agrees with every certificate. This is useful algorithmic corroboration, but it uses the same hard-coded matrix and right-hand-side construction rather than independent input provenance.",
+      "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently label the result finite and local and explicitly disclaim overlap, scaling, and hardness. No supplied claim legitimately promotes the evidence to asymptotic GapCVP hardness.",
+      "The bounded certificate search is not a mathematical caveat after a certificate is found: each displayed integral identity is directly checkable without assuming the search bound. The search bound affects discovery, not validity."
+    ],
+    "next_experiment": "Use the representative row map [0,0,1,0,1,1,2] with five auxiliaries on row 0 to compose exactly two clauses sharing x, with shared aggregate measurement rows. Exhaust all two relative polarities, all 32 assignments to x,a,b,c,d that falsify at least one clause, and all compatible pairs of satisfying one-hot references; for each system impose two normalizations, five consistent global marginals, and the reference pair's aggregate measurements, then decide integer feasibility exactly by Smith/Hermite normal form. Emit any integer witness and kill shared-row composition, or emit exact infeasibility certificates for every system without claiming anything beyond this two-clause test.",
+    "confidence": 0.97
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

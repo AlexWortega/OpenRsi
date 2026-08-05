@@ -1,0 +1,23 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Globally, no sketch specifies a lattice basis, target, thresholds, final dimension, coefficient bit lengths, or completeness/soundness proof. The proposed searches therefore have no well-defined object or exact acceptance inequality to test.",
+    "Sketch 1 only penalizes combinations outside the heavy matrix kernel; Vandermonde separation does not exclude kernel cheats or establish polynomial-bit coefficient bounds. Enumerating coefficients in [-10,10] is not exact CVP without a proved search bound.",
+    "Sketch 2 conflates amplification of code minimum distance with amplification of distance from an arbitrary target to a code. No ABNNR-derived coset-distance lemma is supplied, and constant amplification plus tensoring still yields exponent log(g)/log(n0), which vanishes with base size.",
+    "Sketch 3 misuses lattice minimum distance: separation between lattice points does not lower-bound the distance from a target to its nearest lattice point. A deep hole already has covering-radius distance, so Barnes-Wall geometry alone cannot force the claimed larger no-instance distance.",
+    "Sketch 4 never constructs a reduction making 3SAT unsatisfiability imply distance from the cocycle space. Cosystolic expansion only amplifies an already-established cochain-distance premise, and the resulting constant gap cannot reach the target without the blocked amplifier.",
+    "Sketch 5 cannot impose membership in a nonlinear simplex using an ordinary lattice; integer combinations include off-simplex vectors. The Johnson bound limits nearby codewords but supplies neither clause consistency nor a q^Ω(1) Euclidean gap.",
+    "Sketch 6 defines no powering operation and gives no dimension, completeness, or coefficient-growth analysis. Its missing sparsification/composition step is exactly where PCP machinery may be required, while constant amplification would still not prove an n^c gap.",
+    "Sketch 7 incorrectly applies Birkhoff integrality: the theorem needs nonnegativity inequalities, which a lattice slice does not enforce. For example, [[2,-1],[-1,2]] has integral row and column sums one but is not a permutation matrix.",
+    "Sketch 8 has only a constant base gap, so exact homogeneous tensor multiplication does not overcome the repetition wall. The required deterministic factor-preserving MDP-to-CVP many-one transfer and q^Ω(1) base gap are neither constructed nor verified."
+  ],
+  "evidence": [
+    "The supplied obstruction map is empty; O1-O5 are Fable's own additions, not inherited verified checkpoints. The target constraints nevertheless independently require deterministic polynomial size, no PCP, and an absolute final-dimension exponent.",
+    "No matrices, targets, code instances, outputs, verifier logs, or exact distance certificates were supplied. Every numerical ratio is an expectation or proposed measurement, not an experimental result.",
+    "For Construction-A embedding of a binary code, dist(t,{z in Z^n: z mod 2 in C})^2 equals the nearest-codeword Hamming distance for binary t. Thus the final mod-2 embedding is not Sketch 2's stated obstruction; the absent polynomial NCP gap is.",
+    "If a constant base gap g is tensored k times from base dimension n0, final dimension is N=n0^k and gap is N^(log(g)/log(n0)). This cannot give an absolute c when n0 grows.",
+    "All suggested brute-force tests omit either the actual construction or a proved exhaustive coefficient bound. A successful finite test could not establish asymptotic soundness, and as written even a null result would not certify the tested CVP optimum."
+  ],
+  "next_experiment": "Do not implement the current sketches. Mutation gate: fully specify Sketch 2's linear amplifier, target map, and claimed one-step coset-distance inequality, then exhaustively test all binary linear codes and targets of length at most 8 with exact distances and emit a minimal counterexample; without that formal lemma, stop.",
+  "confidence": 0.97
+}

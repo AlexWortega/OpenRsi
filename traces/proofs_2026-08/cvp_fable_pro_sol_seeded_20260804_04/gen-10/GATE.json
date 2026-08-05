@@ -1,0 +1,45 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 gives no explicit routing matrix, canonical-route algorithm, or norm accounting. A linear flow compiler carries signed exact-cover combinations through unchanged; unless propagation costs superlinearly more than the routes already paid by every YES matching, constant-column repairs still yield only an additive relative defect.",
+      "Proposal 2 does not specify the composed vectors or selector coupling, so its experiment has no unique matrix to implement. Linear span composition provides no reason that representations mixing both values cannot splice at O(n) cost, and recursively implementing consistency through bounded interfaces re-enters the tableau obstruction.",
+      "Proposal 3 specifies neither the expander-selected monomial rule nor a fixed syndrome representation and Hamming objective. Character moment vectors can have assignment-dependent dense weight, while degree-D signatures retain alternating cube relations; Macaulay/Koszul closure may also recreate the local-view pseudoexpectation hierarchy or exceed polynomial size.",
+      "Proposal 4 is directly inside the degree-two cube obstruction. Because all legal matchings satisfy the same permutation Gram identities, odd sums of legal quadratic lifts can inherit that state while having illegal support; dense contraction cannot remove this linear relation, and the existing affine-closure witnesses make the stated likely failure concrete.",
+      "Proposal 5 lacks a canonical presentation, canonical S3 representation, binary Fox matrix, target, and universal completeness proof. A nontrivial twist can charge legal cycles, while any linear twisted-boundary system assigning the same target to all legal fillings also accepts their odd affine combinations; therefore the proposed enumeration is not presently well-defined.",
+      "Proposal 6 collapses on regular linear 3DM dictionaries. If every element has occurrence r and L is the weighted incompatibility Laplacian, every exact-fiber vector decomposes as z=(1/r)1+y with Ly=3r y, so ||p(L)z||² is an affine function of ||z||² with a fiber-constant offset; the q versus q+2 defect remains ratio 1+O(1/q).",
+      "Proposal 6 also does not meet the required binary-syndrome target, and its [-2,2] search is not an exact CVP verifier without a proved coefficient bound. A positive q=3 result could therefore be finite baseline variation rather than evidence for polynomial-gap soundness."
+    ],
+    "evidence": [
+      "The exchange-quotient verifier found 32 instances where illegal odd covers lie in the affine span of perfect matchings. The nonbacktracking-shell verifier separately found all-eight and holonomy illegal mixed words whose entire added shell cancels.",
+      "Global linear feature shells achieved at best 7/6 versus the base 5/3, and variable pair-projection tables gave only 12 versus 14. These exact results support the baseline-versus-defect objection to proposals 1, 4, and 6, without constituting universal no-go theorems.",
+      "Previous dense condensers often preserved nonzeroness yet produced worst-YES costs above best-NO costs. Thus global rank, homology, or span detection alone is not the required Hamming-support theorem.",
+      "No supplied verifier constructs or tests any of these six proposals. Their claimed asymptotic improvements therefore have no supporting experimental evidence and cannot be inferred from the proposed bounded searches."
+    ],
+    "next_experiment": "None as written. Reconsider only a mutation supplying an explicit polynomial-time matrix and fixed target; for a spectral mutation, first prove its energy is not affine in coefficient norm on regular exact fibers, provide an exact coefficient bound and binary support analogue, then precommit all-eight, holonomy, affine-closure, regular YES/NO, worst-YES/best-NO, and output-rank tests.",
+    "confidence": 0.995
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has no polynomial-size linear realization of the global Barrington–Magnus word. Fixed-degree truncation is covered by O1, while degree high enough to outrun growing cubes has an exponential coefficient dictionary; representing whole assignment words invokes O6, and circuit linearization invokes O2/O5. The degree-4 all-eight test cannot discriminate this asymptotic dichotomy.",
+      "Proposal 2 specifies neither a frozen hitting set, evaluation matrix, field-to-binary map, nor output bound. ROABP hitting sets preserve nonzeroness, not the number of nonzero binary coordinates needed for a Hamming gap, and bounded derivative orders remain vulnerable to O1 where suitable cubes exist. Finite YES/NO testing cannot resolve the missing support theorem or polynomial-width requirement.",
+      "Proposal 3 is defeated by affine closure independently of Witt depth. Each ghost coordinate shown is linear in the integer coefficients, so if every legal matching has one common target, every odd affine combination of legal matchings has that target at every level; known illegal covers therefore incur no carry discrepancy. Coordinate scaling cannot repair an exact zero discrepancy, and introducing carry slacks invokes O5.",
+      "Proposal 4 gives no canonical polynomial-time divisor assignment or CVP matrix. Linear equivalence preserves divisor degree, so the stated 'minimum effective degree within a divisor class' is not a varying metric unless an additional nonlinear chip-addition objective is defined; Baker–Norine gonality alone supplies no Euclidean or binary syndrome lower bound. Searching graph/divisor assignments on tiny instances could overfit known witnesses and would not test an arbitrary-instance reduction.",
+      "Proposal 5's two-coset OR identity is correct, but it does not address the blocker claimed by the proposal. Full Shannon expansion has exponential rank, and no shared-substructure compilation is specified whose consistency could be attacked; the three-variable experiment merely verifies a constant-size instance of an already exact identity. O1–O6 remain untouched inside the leaves, so this is not a genuinely discriminating experiment for polynomial compilation.",
+      "Proposal 6 lacks the required binary linearization preserving word order and filling area. Relator-count lattices abelianize diagrams and lose the proposed nonabelian invariant, while enforcing ordered van Kampen diagrams through bounded local cells re-enters O2; enumerating diagrams only through area 12 cannot certify minima beyond that bound. A Baumslag–Solitar toy chosen after seeing hostile words also supplies no arbitrary-SAT construction or polynomial output theorem."
+    ],
+    "evidence": [
+      "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings, with examples of weight 5 versus legal weight 3. This directly kills Proposal 3's common linear ghost target and any analogous common legal class.",
+      "O1 proves an exact alternating cube relation for every bounded-degree signature whenever the corresponding independent cube exists. Dense postprocessing, modular reduction, and tensoring do not remove that relation, so degree-4 Magnus or bounded-derivative tests cannot establish an asymptotic escape.",
+      "Prior dense condenser experiments preserved nonzeroness yet flattened support: the five-block F8 test had worst YES 31 and best NO 6 without pointed kernels. This is direct finite evidence that PIT/rank preservation does not imply the Hamming separation asserted by Proposal 2.",
+      "The supplied tensor and compression verifiers repeatedly show that exact mixed-word mechanisms do not solve output-rank accounting: reduced tensoring amplifies distance but grows length, while exact type simplification is rigorously vacuous on the BMT family. Proposal 5 provides no new compression mechanism beyond an exponential decision tree.",
+      "O8 transfers only an already-correct binary syndrome distance to Euclidean CVP. It does not furnish the missing binary realizations for divisor effectivity or nonabelian filling area, and no supplied verifier establishes such a realization."
+    ],
+    "next_experiment": "None for these formulations. Reconsider only a mutation that supplies one explicit witness-oblivious polynomial-time matrix or integer basis, fixed target, polynomial rank bound, universal YES-cost bound, and all-mixed-word soundness invariant; its precommitted test must include all-eight, odd holonomy, affine-closure covers, exact minima, and output-rank accounting.",
+    "confidence": 0.995
+  },
+  "reason": "both proposal populations rejected"
+}

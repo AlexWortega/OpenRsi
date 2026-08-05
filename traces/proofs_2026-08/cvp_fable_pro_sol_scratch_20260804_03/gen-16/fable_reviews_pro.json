@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 specifies neither the SDP variables and constraints nor a uniform gluing family. More decisively, bounded-degree constant-size cells give only bounded energy to the G13 collision extended by honest states on padded clauses; no mechanism turns that local excess into an n^c distance ratio.",
+    "Proposal 2 uses linear truth-table marginal gluing, so the exact G13 affine combination of global evaluations lifts through every gate and cancels all clause-violation outputs. Its proposed three-variable all-eight-clause test does not instantiate the four-variable projection collision and therefore is not genuinely discriminating against the current obstruction.",
+    "Proposal 3 provides no construction proving that unsatisfiability induces a nontrivial twisted cohomology class; arbitrary local defects may be coboundaries. Searching instance-specific twists on one complex cannot validate a deterministic uniform reduction, and the proposal itself leaves the required gap transformation unresolved.",
+    "Proposal 4 cannot obtain uniqueness against signed affine lifts from linear digit and carry equations: affine combinations of canonical honest encodings satisfy every such equation exactly. Multiple bases only add anchored coordinates, yielding at best bounded or logarithmic excess for the fixed-core collision rather than a polynomial multiplicative gap.",
+    "Proposal 5 gives no fixed frame normalization, admissible coloring class, or synthesis threshold. Constant-dimensional occurrence frames and bounded-degree coupling can charge a local parity or drop only locally; Parseval redistribution or a finite 4B/3 shell pass supplies no growing-gap law.",
+    "Proposal 6 does not escape G13 merely by applying a nonlinear code before linear lattice checks. The integral affine combination of enlarged honest codewords still satisfies all linear RS, Tanner, Sidon, and clause checks; because its coefficient l1 norm is constant, its equal-radius code contribution is at most a constant factor above the honest radius, incompatible with n^c.",
+    "None of the six proposals supplies a polynomial-size uniform soundness lemma, composition theorem, or dimension-dependent gap. Their proposed finite searches could at most certify isolated instances, and several lack enough frozen parameters to be reproducible experiments."
+  ],
+  "evidence": [
+    "Generation 13 verified exact integral coefficients summing to one that reconstruct the harmful selector and annihilate every compatible linear syndrome over four tested moduli. This directly blocks linear hashes and any enlarged encoding whose consistency is enforced only linearly.",
+    "Generation 15 verified that the same affine coefficients lift through every normalization and parent-child marginal equation with zero residual. The attack remains below the preregistered threshold, demonstrating that linear hierarchical propagation transmits rather than penalizes the pseudodistribution.",
+    "Generation 7 found an exact zero-residual signed selector, so every residual radix row vanished and the ratio remained sqrt(80/72). This is direct evidence against carry or radix amplification that does not break the affine kernel.",
+    "Generations 9, 11, and 12 found respectively a constant-cost parity kernel, a relocated cubic-zero parity, and a cheaper clause drop. These results show that finite PSD or Walsh separation must simultaneously handle affine collisions, relocation, and drops; the current proposals provide no such proof.",
+    "Generation 14 passed only a finite B+32 shell using 520 complete pair-bag selectors and established no composition or growing gap. No Generation-16 verifier evidence has been supplied, so every claimed experimental outcome remains hypothetical."
+  ],
+  "next_experiment": "None for these proposals. Reopen only with a mutation that freezes a polynomial-size uniform construction and tests the nine-clause G13 affine lift, G7 kernel, clause drops, and a padded family under a preregistered ratio threshold that grows with emitted dimension.",
+  "confidence": 0.99
+}

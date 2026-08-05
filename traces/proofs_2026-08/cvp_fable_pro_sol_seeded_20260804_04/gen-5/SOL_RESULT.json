@@ -1,0 +1,30 @@
+{
+  "summary": "Selected the fully specified Pro proposal 2 variant from the surviving noncommutative ordered-pair proposals and implemented its frozen rank-one M_3(F_4) labeling. Exact enumeration on ten YES, 200 NO, twenty affine-closure, all-eight, and holonomy dictionaries gave worst YES distance 3 and best NO distance 0. Five YES, 112 NO, eighteen affine-closure, and the holonomy image have pointed kernels; maximum exact-transfer rank is only 4. This finitely kills the prescribed lexicographic rank-one rule, not every growing noncommutative algebra family.",
+  "hypothesis": "Causal mechanism: lexicographically canonical rank-one 3x3 labels over F_4 and ordered products L_iL_j should remove the commutative transpose kernel while compressing 64 reduced-square coordinates to 18 binary coefficients. Expected move: retain orientation, keep every hostile image kernel-free, preserve best NO above worst YES, and beat the unfurled rank exponent. Falsification condition: any pointed kernel, any designated semantic illegal cost at or below worst YES, best NO at or below worst YES, or exponent at or below 0.2447428. The frozen map fails all separation conditions because aligned rank-one labels create zero products and tiny bilinear spans.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_f4_ordered_pair_fold.py",
+    "experiments/f4_ordered_pair_fold.log",
+    "gen-5/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_f4_ordered_pair_fold.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_f4_ordered_pair_fold.py > experiments/f4_ordered_pair_fold.log",
+      "exit_code": 0,
+      "finding": "Enumerated 2214 mixed image words and built explicit parity-check fibers. Found worst YES 3, best NO 0, 112/200 NO pointed kernels, 18/20 affine-closure kernels, a holonomy kernel, all-eight distance and cheapest semantic illegal cost both 1, and 846931 consistent relabeling checks."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_f4_ordered_pair_fold.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune the lexicographic ordering or revive rejected proposals. Reopen the ordered-pair lineage only with a frozen growing matrix family having an a priori product-spanning/no-zero-product guarantee and polynomial construction; then rerun the same exact mixed-word, affine-closure, all-eight, holonomy, transfer-rank, and relabeling tests."
+}

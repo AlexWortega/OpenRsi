@@ -1,0 +1,47 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has no polynomial-size scaling law: repeated quadratic state lifting reaches superpolynomial selector complexity unless compression is performed through an unspecified multiplication gadget. A one-round 64-coordinate shell test cannot discriminate the claimed d=ceil(log log n) restricted isometry or G20/21 excess-to-baseline law, while sketch kernels remain subject to G13/G15 affine lifts.",
+      "Proposal 2 does not show that a harmful fiber correction is itself one long conformal Graver move. Standard Lawrence lifting preserves base kernel circuits in replicated signed form, so the short benign-difference circuits already threatened by G5 can remain cheap relative to the replicated baseline; the exact lifting, selected coordinates, weights, target, and control are also unfrozen.",
+      "Proposal 3 cannot amplify a class that is already zero, and G13/G15 make that the mandatory gate. No mapping complex, boundary maps, target cycle, or proof that the affine pseudosection defines a nonzero Smith-homology class is specified, so the proposed SNF experiment is not executable as written.",
+      "Proposal 4's integral moment-curve vertices do not have equal norm, leaving completeness accounting unresolved. More decisively, a coefficient-sum-one G13 combination lifts bagwise; replicating its fixed coefficient energy over splitter bags scales attack cost and honest baseline together, while the four-variable degree-8 test cannot discriminate an n^c ratio.",
+      "Proposal 5 remains a linear twisted-conservation system. The exterior-square transport is functorially determined by the same A5 edge permutation and does not by itself block affine combinations with common boundaries; exact representation bases, fiber rows, initialization, target, weights, and matched control required by the Generation-21 gate remain unspecified.",
+      "Proposal 6 treats decomposability and Plücker relations as though precomputed linear column tags enforced their quadratic equations. Unrestricted signed mixtures need not be decomposable, and linear tag energy can again be threaded by G13/G15 affine combinations; O(m^4) replication also grows the honest baseline without a proved relative gap.",
+      "Proposal 7 imports valuated-matroid exchange curvature outside its valid 0/1 or nonnegative base domain. Unrestricted signed lattice coefficients can traverse cheap alternating exchange circuits or drops, and neither the valuation nor the emitted exchange lattice is frozen; no argument converts a missing common base into B n^(2c) excess."
+    ],
+    "evidence": [
+      "G13 verifies an explicit harmful integral affine combination of honest encodings with coefficient sum one, and G15 verifies that it threads an enlarged hierarchy with zero residual. This directly blocks purely linear bag, chain, transport, tag, and exchange layers absent a new rigidity mechanism.",
+      "G19 finds a zero-residual accepting signed splice with only two negative coefficients and squared excess 16. Adding unspecified linear transported fibers provides no verifier evidence that this signed-flow mechanism is removed.",
+      "G14 excludes vectors only through B+32 on one 520-selector pair-bag instance; it proves no composition or growing-gap law. Proposal 1's single-sketch test and Proposal 4's four-variable test do not address that missing asymptotic requirement.",
+      "G11 retains a constant-cost parity kernel under cubic moments, and G12 replaces a strengthened parity attack by a cheaper clause drop. These results undermine moment, fingerprint, Plücker-tag, and valuation claims that audit only one attack family.",
+      "No verifier evidence accompanies any Generation-22 proposal, and no supplied result establishes a dimension-dependent gap. Finite shell success could not be promoted to the target theorem."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a fully frozen Proposal-5 mutation specifying integral representation bases, every edge/fiber row, boundary, target, weight, and matched control, together with an algebraic reason the added rows can separate G19 signed shell states; then exactly search unrestricted obstruction and control through baseline plus 16 and kill on any zero-residual splice or completeness mismatch.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "P1 fails G13/G20: a higher Lawrence kernel permits bounded-layer moves such as a seed move and its negative, while the known affine collision can also be repeated with constant excess per layer. Testing r=2,3,4 cannot discriminate the claimed asymptotic superlinear growth, and the proposal itself predicts only a constant soundness/completeness ratio.",
+      "P2 supplies only a constant-rank coset search, not a polynomial family with an N^{2c} radius ratio. The basis, targets, gluing maps, unrestricted minimum certificate, and defense against mixed-coset affine combinations or drops are unspecified; index-at-most-16 examples cannot resolve G12, G13, G20, or G21.",
+      "P3 does not meet the prior reopening condition: it names H_3(F_3) but does not freeze the edge labels, compiler, boundary vectors, row weights, target, or matched control, nor prove that every honest accepting path has the same holonomy boundary. Regular-representation transport remains linear, so G19 signed splicing and G13 affine closure remain live.",
+      "P4's emitted consistency and harmonic equations are linear, so the G13 affine pseudosection threads them exactly as G15 threaded a hierarchy; cosystolic expansion charges only a nonzero defect. A fixed Fano or 13-vertex complex cannot discriminate an asymptotic cosystolic-to-baseline law and leaves signed-chain analogues of G19 untreated.",
+      "P5 lacks a formal transformer contract: legal and illegal port sets, composition wiring, excess normalization, size blow-up, and treatment of every unrestricted integral state are undefined. A search over small matrices could certify a finite table but not that recursive substitution preserves the table against G13/G15 affine lifts or that C beats the accumulated completeness baseline.",
+      "P6 cannot use matroid base-polytope inequalities, nonnegativity, or hidden basis membership in an unrestricted CVP instance; affine rank equations alone admit signed circuits. Long exchange circuits do not establish an n^c distance ratio once the honest basis-shell baseline grows with the ground set, and the small TU search cannot resolve G5, G13, or G20.",
+      "P7 has no specified homogenized basis, target, tensor composition law, or certified unrestricted search bound. A tensor square can only test k=2, while multiplicativity for all logarithmic depth, formula-dependent polynomial size, and exclusion of entangled G13/G15/G19 tensors remain exactly the missing claims."
+    ],
+    "evidence": [
+      "G13 verifies a harmful selector that is an integral affine combination of honest encodings with coefficient sum one; every compatible linear syndrome vanishes on it. G15 verifies that the same coefficients pass through an enlarged hierarchy with zero residual.",
+      "G19 finds a zero-residual accepting signed flow with two negative coefficients in a fully emitted 3,250-layer program. The resulting obstruction/control squared minima, 22,770 and 22,754, show that added linear transport layers need a new proved rigidity mechanism.",
+      "G12 exhibits a clause-drop attack after strengthening a parity fingerprint, while G14 is only a shell exclusion through baseline plus 32. Neither result supplies a growing-gap or composition theorem.",
+      "G9 and G11 retain constant-cost parity kernels under degree-two and degree-three global metrics. These finite results directly undermine claims that more linear layers, moments, or tensor factors automatically force growing support.",
+      "No verifier evidence accompanies any current proposal, and the supplied status explicitly establishes no hardness lemma or dimension-dependent gap. Every proposed positive test is either underspecified or finite evidence that cannot discriminate its required asymptotic claim."
+    ],
+    "next_experiment": "None authorized as written. Reopen only P3 after freezing every group label, transport matrix, boundary, row, target, weight, compiler, and matched control, proving common honest-path boundary, and preregistering an exact unrestricted obstruction/control search through baseline plus 16; kill on any zero-residual signed flow or completeness mismatch.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

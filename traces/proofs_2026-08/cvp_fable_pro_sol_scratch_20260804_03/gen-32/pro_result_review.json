@@ -1,0 +1,15 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The selected mechanism is falsified by an explicit unrestricted integer witness: the two-copy obstruction has cost 432 = 2d_1^2 with zero residual. Therefore the required strict superadditivity cannot hold for this frozen cross-copy moment construction, regardless of further shell enumeration.",
+    "Nothing in the packet supplies a recurrence, arbitrary-copy invariant, or dimension-dependent gap law. The verified two-copy equality is finite evidence against this coupling rule and cannot be promoted to asymptotic hardness.",
+    "The proposed follow-up is not a precise bounded experiment. No noncommuting signed-permutation edge rule, concrete permutations, instance, objective, coefficient bound, or exact acceptance threshold is frozen in STATUS, IDEAS, NOTES, or the result packet."
+  ],
+  "evidence": [
+    "The supplied machine verifier passed and directly evaluated the compatible parity vector at base cost 432, raw residual squared 0, and total 432. It checks all 433 emitted rows, including 125 cross-copy moment rows.",
+    "The one-copy DP certifies d_1^2 = 216 within an objective-derived exhaustive shell, while residual-branch accounting certifies the matched two-copy control minimum 288. Thus the additive witness is exactly at 2d_1^2 and decisively defeats the preregistered strict-growth condition.",
+    "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently label the result as a finite kill and state that no hardness lemma or asymptotic gap is established. There is no unsupported promotion in the recorded Generation-32 claim itself."
+  ],
+  "next_experiment": "None authorized for this run. Reopen only as a new mutation after fully freezing an explicit signed-permutation composition rule and a finite exact test that evaluates the inherited compatible two-parity witness, with immediate falsification if its cost is at most twice the exact one-copy cost.",
+  "confidence": 0.99
+}

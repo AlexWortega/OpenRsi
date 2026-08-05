@@ -1,0 +1,43 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_seeded_20260804_04/gen-5/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen rule meets every precommitted falsification condition: best NO distance is 0 versus worst YES 3, pointed kernels are widespread, and the reported rank exponent is 0 rather than above 0.2447428. There is no finite separation to preserve, much less an asymptotic hardness mechanism.",
+      "Noncommutativity removes only the automatic transpose symmetry. The active bilinear images have maximum transfer rank 4, while aligned rank-one labels produce zero products and mixed XOR cancellations; orientation sensitivity therefore does not imply support or distance preservation.",
+      "Hostile diagnostics expose structural failure beyond the sampled YES/NO split: 18/20 affine-closure instances and holonomy have pointed kernels, while semantic illegal costs reach 0 in affine closure and 1 in all-eight. A linear fold cannot recover information already mapped to the pointed kernel.",
+      "The proposed follow-up is not a precise bounded experiment: it specifies no field, matrix dimensions, label construction, finite instance suite, resource bound, or numerical acceptance threshold. Moreover, pairwise no-zero-product and global product-spanning guarantees would not control mixed bilinear XOR kernels, so the stated mutation does not yet escape the observed obstruction.",
+      "The 846,931 relabeling checks cover permutations of dictionary-coordinate order, not arbitrary relabelings of the underlying three vertex parts. They therefore do not establish presentation covariance of the lexicographic label assignment, although this limitation is secondary because the rule already fails decisively."
+    ],
+    "evidence": [
+      "Machine verification exits successfully and reproduces worst YES 3, best NO 0, uniform ratio 0, rank exponent 0, maximum transfer rank 4, and primary_success=false.",
+      "The verifier reports pointed kernels in 5/10 YES, 112/200 NO, 18/20 affine-closure instances, and holonomy. All-eight has folded distance 1 and cheapest semantic illegal pure-square cost 1; affine-closure illegal cost ranges down to 0.",
+      "The source explicitly enumerates every word of each computed image basis, totaling 2,214 mixed image words, and asserts the frozen headline failures. This supports an exact bounded autopsy of this rule only.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently classify the result as finite diagnostics, kill only the frozen M_3(F_4) labeling, and claim no NCP reduction, GapCVP reduction, or asymptotic hardness theorem. No promotion from finite evidence is justified."
+    ],
+    "next_experiment": "None authorized for this candidate. Stop the run; reopen only after specifying an explicit finite matrix-label mutation with a proved lower-support or injectivity guarantee on relevant mixed bilinear subspaces—not merely pairwise nonzero products—and a fully bounded hostile test with fixed acceptance thresholds.",
+    "confidence": 0.995
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen fold fails its precommitted soundness criterion: best NO distance is 0 while worst YES distance is 3. Pointed kernels in 112/200 NO instances directly eliminate any finite YES/NO gap.",
+      "Noncommutativity preserves some orientation but does not provide the claimed kernel removal. The rank-one labels produce zero products and low-dimensional bilinear spans, with maximum exact-transfer rank only 4.",
+      "The affine-closure and holonomy obstructions remain active: 18/20 affine-closure instances and the holonomy instance have pointed kernels. All-eight also has a semantic illegal pure square of cost 1, below worst YES cost 3.",
+      "The fixed M_3(F_4) construction has only 1323 distinct rank-one labels and 18 nominal binary output coordinates, so it is not an asymptotic growing family. Finite enumeration cannot establish hardness or rule out other growing noncommutative families.",
+      "The proposed follow-up is not one precise bounded experiment; it presupposes an unspecified growing family, an a priori no-zero-product/product-spanning theorem, and polynomial constructibility. That is a new research program, not a bounded continuation of this candidate."
+    ],
+    "evidence": [
+      "The supplied verifier exits successfully and reports worst YES 3, best NO 0, uniform ratio 0, rank exponent 0, and maximum exact-transfer rank 4.",
+      "It exactly enumerates the finite image spans for the listed instances, totaling 2214 mixed image words. Reported kernels are 5/10 YES, 112/200 NO, 18/20 affine-closure, and the holonomy image.",
+      "The all-eight report gives folded distance 1 and cheapest semantic illegal pure-square cost 1. The holonomy report gives folded distance 0 and a pointed kernel.",
+      "STATUS, IDEAS, NOTES, proof_cvp, SOL_RESULT, and MACHINE_VERIFICATION consistently characterize this as a finite falsification of the frozen labeling rule, with no asymptotic hardness claim.",
+      "The machine evidence validates execution and internal assertions of the supplied verifier, not an independent asymptotic theorem or a universal obstruction for matrix-algebra folds."
+    ],
+    "next_experiment": "None for this candidate/run. Reopen only as a distinct mutation after specifying an explicit bounded member of a growing matrix family, its polynomial label algorithm, and a proved no-zero-product/product-spanning invariant; then precommit the same hostile finite suite.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

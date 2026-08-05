@@ -1,0 +1,50 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has no specified Delaunay gluing constraints or unrestricted lattice objective, and no theorem prevents overlap vertices, drops, or the constant-L1 affine lift. Its three-variable experiment misses the verified four-variable G13 collision and cannot test O6 or a growing gap.",
+      "Proposal 2 confuses tensor rank with Euclidean norm: an entangled sum of pure tensors can remain short, and rank alone supplies no distance lower bound. The G13 affine combination has norm at most nine times the honest radius for equal-radius tensor encodings, while full tensor dimension is exponential and polynomial bond compression is unspecified.",
+      "Proposal 3 gives no reason arbitrary unsatisfiability induces nontrivial holonomy. Encoding group multiplication by transition selectors and linear flow constraints preserves affine combinations of complete transcripts, recreating O6; the proposed three-variable test again omits G13 and lacks a frozen CVP instance.",
+      "Proposal 4 supplies neither a canonical secondary operation for every formula nor a theorem that unsatisfiability forces a nonzero secondary class. Any fixed-degree operation remains exposed to O4, and linear CVP gadgetization can transmit the affine lift; the proposed mod-4 computation is under-specified and cannot resolve O8.",
+      "Proposal 5 has no valid conversion from rank or a nonzero integer minor into a multiplicative CVP distance gap. Degree three is exhaustive on three variables and therefore nonrepresentative; degree Theta(log n) has n^{Theta(log n)} monomials before exterior powers, so the stated route is not polynomial, while fixed degree retains derivative kernels.",
+      "Proposal 6 does not define the transfer states, entries, target, or carry-complete lattice encoding. Determinants and spectral powers are nonlinear; linearizing them with gates or carries restores affine cancellation and potentially O1, while no theorem makes a sparse SAT defect affect a polynomial fraction of walks.",
+      "Proposal 7 only tests O2 on tiny two-clause systems. Kernel support growth does not imply a gap if honest lifted paths grow comparably, and the proposed sheet sizes and weight-eight cutoff cannot test O5, the G13 affine lift, or any dimension-dependent ratio.",
+      "Proposal 8 can reconstruct the G13 signed mixture but cannot reject it: power sums are linear in the signed measure, while positivity, Hankel rank, and atomwise legality are nonlinear constraints with no unrestricted CVP realization. Fixed K also leaves larger-support parity kernels, so the proposed collision search cannot validate O4, O6, O7, or O8.",
+      "None of the proposals emits a deterministic polynomial-size fixed-target Euclidean CVP family or an explicit n^c soundness law. Their finite tests therefore cannot discriminate the central asymptotic blocker even if they pass."
+    ],
+    "evidence": [
+      "Generation 13 verifies integral coefficients of sum one and L1 norm nine that reconstruct the harmful selector and annihilate every compatible linear syndrome.",
+      "Generation 15 verifies that the same affine combination traverses an enlarged hierarchy with exactly zero residual and remains below threshold.",
+      "Generation 5 finds short overlap kernels in every tested composed local system; Generation 7 finds an exact zero-residual selector defeating all radix rows.",
+      "Generation 11 exhibits a relocated bounded-degree parity kernel, and Generation 12 exhibits a cheaper clause drop.",
+      "Generation 14 is only a finite pair-bag shell pass and explicitly supplies no composition or growing-gap theorem.",
+      "No Generation-17 verifier evidence or fully specified emitted lattice is supplied; all proposed outcomes are hypothetical."
+    ],
+    "next_experiment": "None for these proposals. Reopen only with a frozen polynomial-size unrestricted CVP mutation that provably breaks the exact G13 affine lift, includes drops and all auxiliary variables, and preregisters a padded-family test whose ratio grows with emitted dimension.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not require a Latin trade to cheat. The verified G13 selector already reports every clause satisfied with zero linear residual, so it can feed honest accepting one-hot transitions through the entire AND/quasigroup circuit while retaining only the constant leaf attack cost.",
+      "Proposal 2 remains a linear hierarchy. The G13 affine combination extends through every Lawrence layer and formula-dependent permutation by taking the same affine combination of honest extensions; Graver minimality is irrelevant because CVP permits arbitrary lattice vectors, and replicated layers also replicate completeness cost.",
+      "Proposal 3 scans only forged clause-violation values. Since the G13 selector makes every clause locally legal, every order admits the all-good automaton transcript and accepting terminal state with zero scan residual; permutation enumeration therefore cannot distinguish the current obstruction.",
+      "Proposal 4 supplies no explicit complex, injection, uniform twist rule, or integral CVP objective proving that unsatisfiability creates nonzero twisted homology. Linear twisted boundary maps still transmit affine combinations, while homology over F3 does not imply an integral Euclidean systole or a polynomial gap.",
+      "Proposal 5 cannot enforce decomposability using linear lattice coordinates. The affine combination of honest Plucker extensions is itself an integral lattice vector, quadratic rank constraints are absent, and its distance is bounded by the coefficient l1 norm times the largest honest-extension distance; bounded minors also retain fixed-degree parity relocation.",
+      "Proposal 6 has no frozen Gram cone, normalization, synthesis threshold, padded family, or maximum-principle lemma. Separating a finite list by SDP and then passing another nine-clause shell would repeat the finite-only status of Generations 9 and 14 and cannot discriminate the missing composition and growing-ratio obstruction.",
+      "Proposal 7 uses linear gadget views, so the exact G13 affine coefficients tensor-lift through all honest gadget encodings and checks. Discrepancy bounds do not imply integer Graver or CVP norm bounds, and the constant-l1 affine vector gives a constant-factor ceiling whenever honest extensions have comparable radius."
+    ],
+    "evidence": [
+      "Generation 13 verified exact integral affine coefficients summing to one with l1 norm nine that reconstruct the harmful legal selector and annihilate every compatible linear syndrome.",
+      "Generation 15 verified that those coefficients lift through every node of a linear hierarchy with exactly zero residual, directly supporting the attacks on Lawrence, twisted-linear, and gadget lifts.",
+      "Generation 7 found a zero-residual signed selector that defeats every linear/radix amplifier. Generations 11 and 12 respectively found constant-cost parity relocation and a cheaper clause drop.",
+      "Generation 14 is only a finite pair-bag shell pass; its G13 lift still exists at finite cost and no composition theorem follows. No supplied verifier establishes any dimension-dependent gap.",
+      "No Generation-17 experiment, emitted lattice, exact objective, or verifier evidence was supplied. All proposed experimental outcomes are hypothetical."
+    ],
+    "next_experiment": "None for these proposals. Reopen only with a fully specified polynomial-size mutation that prevents the exact G13 affine lift nonlinearly in the emitted fixed-target lattice, includes unrestricted coefficients and clause drops, and gives a bounded padded-family test whose required ratio grows with emitted dimension.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

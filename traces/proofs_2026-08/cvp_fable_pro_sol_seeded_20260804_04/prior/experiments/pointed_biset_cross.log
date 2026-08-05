@@ -1,0 +1,14 @@
+checked 54 pointed biset products exactly
+{'G': 3, 'H': 3, 'Ru': 1, 'Rv': 1, 'raw_pairs': 40, 'quotient': 14, 'fresh_H_fixed': 2, 'fresh_H_moving': 12}
+{'G': 3, 'H': 3, 'Ru': 1, 'Rv': 2, 'raw_pairs': 76, 'quotient': 26, 'fresh_H_fixed': 2, 'fresh_H_moving': 24}
+{'G': 3, 'H': 3, 'Ru': 2, 'Rv': 1, 'raw_pairs': 70, 'quotient': 24, 'fresh_H_fixed': 3, 'fresh_H_moving': 21}
+{'G': 3, 'H': 3, 'Ru': 2, 'Rv': 2, 'raw_pairs': 133, 'quotient': 45, 'fresh_H_fixed': 3, 'fresh_H_moving': 42}
+{'G': 3, 'H': 3, 'Ru': 3, 'Rv': 1, 'raw_pairs': 100, 'quotient': 34, 'fresh_H_fixed': 4, 'fresh_H_moving': 30}
+{'G': 3, 'H': 3, 'Ru': 3, 'Rv': 2, 'raw_pairs': 190, 'quotient': 64, 'fresh_H_fixed': 4, 'fresh_H_moving': 60}
+{'G': 3, 'H': 5, 'Ru': 1, 'Rv': 1, 'raw_pairs': 64, 'quotient': 22, 'fresh_H_fixed': 2, 'fresh_H_moving': 20}
+{'G': 3, 'H': 5, 'Ru': 1, 'Rv': 2, 'raw_pairs': 124, 'quotient': 42, 'fresh_H_fixed': 2, 'fresh_H_moving': 40}
+{'G': 3, 'H': 5, 'Ru': 2, 'Rv': 1, 'raw_pairs': 112, 'quotient': 38, 'fresh_H_fixed': 3, 'fresh_H_moving': 35}
+{'G': 3, 'H': 5, 'Ru': 2, 'Rv': 2, 'raw_pairs': 217, 'quotient': 73, 'fresh_H_fixed': 3, 'fresh_H_moving': 70}
+{'G': 3, 'H': 5, 'Ru': 3, 'Rv': 1, 'raw_pairs': 160, 'quotient': 54, 'fresh_H_fixed': 4, 'fresh_H_moving': 50}
+{'G': 3, 'H': 5, 'Ru': 3, 'Rv': 2, 'raw_pairs': 310, 'quotient': 104, 'fresh_H_fixed': 4, 'fresh_H_moving': 100}
+Fresh symmetry is free off the unavoidable U x {star_V} cross sector.

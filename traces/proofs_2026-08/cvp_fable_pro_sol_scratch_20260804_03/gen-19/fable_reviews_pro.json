@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 confuses a Markov basis, which connects nonnegative fibers, with a theorem that every unrestricted integral pseudotrace decomposes into complete traces while preserving output. Its lifted binomials are nonlinear and require an unspecified linearization that reopens O1-O3; no degree cutoff, emitted lattice, or exact shell is frozen. O7 and O8 remain wholly conditional.",
+    "Proposal 2 tests the three-variable eight-clause core rather than the current four-variable G13/G15 affine lift, so its proposed experiment misses O6. Nullstellensatz membership alone does not control unrestricted dual coefficient vectors or turn the unit pairing into Euclidean distance, while polynomial degree, coefficient bounds, O1, O4, O7, and O8 remain unresolved.",
+    "Proposal 3 explicitly leaves O1, O3, O4, and O6 open. Additional powers of two cannot charge an exact modular signed pseudoselector, and the proposed three-variable test omits the verified four-variable affine lift; geometric weights do nothing when every defect is zero.",
+    "Proposal 4 supplies no explicit sheaf for which arbitrary 3SAT inconsistency yields a nontrivial class. Linear restriction and coboundary maps preserve signed affine combinations, so G13 can trivialize the proposed obstruction; tensoring with short cycles neither proves cosystolic expansion nor addresses O3, O4, O6, or O8.",
+    "Proposal 5 has no fixed block matrices, accumulator encoding, target, completeness radius, or bounded enumeration domain. Until the G13 lift is proved impossible in the unrestricted product, O1-O4 and O6 persist; searching unspecified small blocks cannot discriminate O7 or a dimension-growing O8 gap.",
+    "Proposal 6 separates the known nine-term relation only in an abstract ten-coordinate global-assignment table. The proposed low-norm enumeration is predetermined by Vandermonde independence, while the actual violation gate, field multiplication, carries, outer code, basis, target, and shell are unspecified and exposed to O1-O4; fixed tag dimension also admits larger-support relations and supplies no O7/O8 theorem.",
+    "Across all proposals, polynomial weighting or replication is presented as amplification without a proof that every unrestricted UNSAT vector has a nonzero defect whose energy grows faster than completeness. None provides a deterministic polynomial-size fixed-target CVP construction simultaneously covering auxiliaries, drops, overlaps, the exact affine lift, localized unsatisfiability, and a dimension-dependent ratio."
+  ],
+  "evidence": [
+    "Generation 13 verified an integral nine-term affine combination with coefficient sum one that reconstructs the harmful selector and annihilates every compatible linear syndrome.",
+    "Generation 15 verified that the same affine combination traverses every level of a linear hierarchy with exactly zero residual and remains below the proposed threshold.",
+    "Generations 5 and 7 found short overlap kernels and an exact zero-residual signed selector, respectively, defeating private composition and linear residual amplification.",
+    "Generations 11 and 12 verified parity relocation to an unshared triple and a clause-drop vector beating the fingerprint threshold.",
+    "Generation 14 is only a finite pair-bag shell pass; its affine lift still exists at finite cost, and no composition or growing-gap result follows.",
+    "No current proposal supplies verifier output, a complete emitted basis and target, or a preregistered unrestricted objective and threshold."
+  ],
+  "next_experiment": "None for these proposals. Reopen only with a mutation that freezes a polynomial-size emitted CVP basis, target, every auxiliary and carry, and a growing-instance threshold, then exactly audits the current G13 lift, all clause drops, and unrestricted shell minima on both UNSAT and satisfiable controls.",
+  "confidence": 0.995
+}

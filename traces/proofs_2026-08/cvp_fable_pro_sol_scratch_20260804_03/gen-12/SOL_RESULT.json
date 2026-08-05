@@ -1,0 +1,40 @@
+{
+  "summary": "Selected the surviving Pro Proposal 6 spherical-fingerprint direction and tested a predeclared dimension-9 top-Walsh tag. The tag gives every honest encoding fingerprint squared radius H=9 and raises the inherited seven-term cube-parity vector to squared distance 153. Exact unrestricted shell enumeration nevertheless finds a clause-drop vector at squared distance 105, below the prescribed four-thirds threshold 108; the control exact minimum is 81. This is a finite falsification of the explicit Walsh candidate only.",
+  "hypothesis": "Causal mechanism: a clausewise top-Walsh spherical tag has constant norm on every honest one-hot label but magnitude seven on the seven-term parity combination. Expected move: obstruction squared distance strictly above (4/3)(72+9)=108 while retaining honest control radius 81. Falsification condition: any unrestricted integral selector vector through squared distance 108. Setting all selectors of clause 0 to zero satisfies the condition with anchor 72, one normalization residual costing 25, fingerprint cost 8, and total 105.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_spherical_parity_fingerprint.py",
+    "experiments/gen12_spherical_parity_fingerprint_manifest.json",
+    "gen-12/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_spherical_parity_fingerprint.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_spherical_parity_fingerprint.py",
+      "exit_code": 0,
+      "finding": "The emitted unrestricted lattice has exact squared minima 105 on the obstruction and 81 on the control; cube parity costs 153, but dropping clause 0 costs 105<108."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_spherical_parity_fingerprint.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen12_spherical_parity_fingerprint_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted factor, target, Gram, center, fingerprint rows, and consistency-row manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_degree3_global_psd_metric.py >/tmp/gen11_recheck12.json",
+      "exit_code": 0,
+      "finding": "The inherited degree-three exact verifier still passes, independently rechecking the base metric and cube-parity witness used by this mutation."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Within the still-surviving predeclared global-PSD direction, add every clause-drop vector through squared distance 108 to the circuit cut set and solve one incidence-equivariant rational SDP with fixed center, trace normalization, and eigenvalue floor; certify either separation of both parity and clause-drop attacks or a dual upper bound, then audit any rational candidate by the same unrestricted shell DP."
+}

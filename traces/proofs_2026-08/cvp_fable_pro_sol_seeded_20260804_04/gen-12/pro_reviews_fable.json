@@ -1,0 +1,23 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 has no linear syndrome realization: prime-ideal valuation of a sum is not the sum of column valuations, and trace/BCH postprocessing cannot restore that lost nonlinearity. Implementing the arithmetic by polynomial slacks or circuits re-enters O5 or O2, while the product formula does not imply large binary Hamming support.",
+    "Proposal 2 assumes the central missing object: a polynomial deterministic isolation family guaranteed to isolate an arbitrary nonempty witness set. No family, branch-selection matrix, fixed target, or mixed-sector completeness bound is specified; tiny affine-hash enumeration cannot discriminate that asymptotic derandomization claim.",
+    "Proposal 3 cannot provide the claimed canonical center. If a polynomially computable planar Pfaffian aggregate were nonzero exactly when the original SAT instance had a witness, it would already decide the source problem; otherwise cancellations and even witness counts destroy completeness, and the aggregate need not be an actual sparse matching indicator.",
+    "Proposal 4 remains inside the only formally open O7 niche but specifies no actual condenser matrices, quotient flags, field, multiplicities, or canonical tie-breaking, so there is no unique bounded experiment. Rank visibility is not Hamming support, and the required theorem must cover every mixed matrix while controlling worst-case YES weight and actual image rank.",
+    "Proposal 5 cannot be both global and polynomially linear. Explicitly listing global sections is exponential, while implementing group multiplication through local gates re-enters O1/O2; binary expansion also restores linear superpositions without any proved nonabelian support lower bound.",
+    "Proposal 6 supplies neither a polynomial-time generator construction nor a sparse universal YES representative. Truncated moment consistency risks O3 pseudoexpectations and O1 cube relations, while arbitrary mixed lifted evaluations require a theorem absent from the proposal; degree-2-to-4 tests cannot resolve the logarithmic-degree or output-rank regime.",
+    "Proposal 7 relies on nonlinear Gröbner reduction but O8 requires an explicit polynomial-size linear binary syndrome system. Explicit normal-form states can be exponential or NP-hard to compute, circuit compilation re-enters O2/O5, and known low-degree toric moves directly undermine the claimed long-move shield.",
+    "Across all seven proposals, no explicit polynomial-time H, target t, universal YES-cost bound, polynomial output-rank bound, and all-mixed-word NO invariant are supplied. Consequently none reaches the minimum specification needed for implementation or exact-transfer accounting."
+  ],
+  "evidence": [
+    "The exchange-quotient verifier found 32 instances where illegal odd covers lie in the affine span of perfect matchings, including weight 5 versus matching weight 3. Global shells that become linear after encoding cannot merely identify or aggregate all legal witnesses.",
+    "Dense rank-oriented folds already exhibited the exact rank-versus-support failure relevant to Proposal 4: the frozen F8 condenser had no pointed kernels but worst YES 31 versus best NO 6. Generator-type folds, sparse hashes, and polar shortening also lost the finite gap.",
+    "The closest sparse-moment experiment, nonbacktracking Schur walks, achieved a finite ratio on selected tiny instances but had all-eight and holonomy illegal mixed words whose entire feature shell canceled. This is finite counterevidence to Proposal 6's mechanism, not an asymptotic theorem.",
+    "Direct integer exact cover proved only q versus q+2, and polynomial variable projection tables produced 12 versus 14. These results support the O5/baseline objection to valuation or normal-form implementations using ordinary integer auxiliaries.",
+    "The determinant/permutation dictionary retained short virtual states and required exponential monomial structure even after all compound states were added. This directly weakens both the Pfaffian-canonicalization and toric-normal-form routes.",
+    "No supplied verifier implements any of the seven proposed constructions, so none of their expected experimental moves is evidence."
+  ],
+  "next_experiment": "None as written. Reconsider only a Proposal 4 mutation that freezes one explicit basis-invariant binary fold computable solely from (H,t), including every matrix entry and rank bound; then enumerate every mixed word on the existing YES/NO, affine-closure, all-eight, and holonomy suite with precommitted acceptance thresholds.",
+  "confidence": 0.998
+}

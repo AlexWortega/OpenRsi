@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "P1 fails G13/G20: a higher Lawrence kernel permits bounded-layer moves such as a seed move and its negative, while the known affine collision can also be repeated with constant excess per layer. Testing r=2,3,4 cannot discriminate the claimed asymptotic superlinear growth, and the proposal itself predicts only a constant soundness/completeness ratio.",
+    "P2 supplies only a constant-rank coset search, not a polynomial family with an N^{2c} radius ratio. The basis, targets, gluing maps, unrestricted minimum certificate, and defense against mixed-coset affine combinations or drops are unspecified; index-at-most-16 examples cannot resolve G12, G13, G20, or G21.",
+    "P3 does not meet the prior reopening condition: it names H_3(F_3) but does not freeze the edge labels, compiler, boundary vectors, row weights, target, or matched control, nor prove that every honest accepting path has the same holonomy boundary. Regular-representation transport remains linear, so G19 signed splicing and G13 affine closure remain live.",
+    "P4's emitted consistency and harmonic equations are linear, so the G13 affine pseudosection threads them exactly as G15 threaded a hierarchy; cosystolic expansion charges only a nonzero defect. A fixed Fano or 13-vertex complex cannot discriminate an asymptotic cosystolic-to-baseline law and leaves signed-chain analogues of G19 untreated.",
+    "P5 lacks a formal transformer contract: legal and illegal port sets, composition wiring, excess normalization, size blow-up, and treatment of every unrestricted integral state are undefined. A search over small matrices could certify a finite table but not that recursive substitution preserves the table against G13/G15 affine lifts or that C beats the accumulated completeness baseline.",
+    "P6 cannot use matroid base-polytope inequalities, nonnegativity, or hidden basis membership in an unrestricted CVP instance; affine rank equations alone admit signed circuits. Long exchange circuits do not establish an n^c distance ratio once the honest basis-shell baseline grows with the ground set, and the small TU search cannot resolve G5, G13, or G20.",
+    "P7 has no specified homogenized basis, target, tensor composition law, or certified unrestricted search bound. A tensor square can only test k=2, while multiplicativity for all logarithmic depth, formula-dependent polynomial size, and exclusion of entangled G13/G15/G19 tensors remain exactly the missing claims."
+  ],
+  "evidence": [
+    "G13 verifies a harmful selector that is an integral affine combination of honest encodings with coefficient sum one; every compatible linear syndrome vanishes on it. G15 verifies that the same coefficients pass through an enlarged hierarchy with zero residual.",
+    "G19 finds a zero-residual accepting signed flow with two negative coefficients in a fully emitted 3,250-layer program. The resulting obstruction/control squared minima, 22,770 and 22,754, show that added linear transport layers need a new proved rigidity mechanism.",
+    "G12 exhibits a clause-drop attack after strengthening a parity fingerprint, while G14 is only a shell exclusion through baseline plus 32. Neither result supplies a growing-gap or composition theorem.",
+    "G9 and G11 retain constant-cost parity kernels under degree-two and degree-three global metrics. These finite results directly undermine claims that more linear layers, moments, or tensor factors automatically force growing support.",
+    "No verifier evidence accompanies any current proposal, and the supplied status explicitly establishes no hardness lemma or dimension-dependent gap. Every proposed positive test is either underspecified or finite evidence that cannot discriminate its required asymptotic claim."
+  ],
+  "next_experiment": "None authorized as written. Reopen only P3 after freezing every group label, transport matrix, boundary, row, target, weight, compiler, and matched control, proving common honest-path boundary, and preregistering an exact unrestricted obstruction/control search through baseline plus 16; kill on any zero-residual signed flow or completeness mismatch.",
+  "confidence": 0.99
+}

@@ -1,0 +1,40 @@
+{
+  "summary": "Selected Fable Proposal 1, the sole cross-review survivor, and emitted a deterministic balanced width-5 Barrington branching-program flow lattice for the nine-clause obstruction and matched control. The instance has 3,250 layers, 22,754 unrestricted integral coefficients, and 17,555 source, ACCEPT-sink, conservation, and repeated-query rows. Exact shell dynamic programming finds a zero-residual accepting signed flow for the unsatisfiable instance at anchor excess 16, so the exact obstruction and control squared minima are 22,770 and 22,754. This finitely kills the emitted flow encoding.",
+  "hypothesis": "Causal mechanism: the ordered noncommutative product sends every complete obstruction path to REJECT, so an affine combination of complete paths cannot satisfy the ACCEPT sink. Expected move: the integral exact ACCEPT fiber is empty, or at least requires growing negative-flow mass. Falsification condition: any zero-residual accepting signed flow. Exact DP reconstructs such a flow using two coefficients -1 and otherwise Boolean coefficients, satisfying the falsification condition with anchor excess 16.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_barrington_signed_flow.py",
+    "experiments/gen19_barrington_signed_flow_manifest.json",
+    "gen-19/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_barrington_signed_flow.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_barrington_signed_flow.py",
+      "exit_code": 0,
+      "finding": "Exact DP exhausts all accepting-flow vectors through anchor excess 8, then reconstructs a zero-residual accepting signed flow at excess 16; exact squared minima are 22,770 and 22,754."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_barrington_signed_flow.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen19_barrington_signed_flow_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted compiler output, instructions, sparse rows, dimensions, truth tables, and factor/target hashes form valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_selector_code_compatibility.py >/tmp/gen13_recheck19.json",
+      "exit_code": 0,
+      "finding": "The prior affine-collision verifier remains reproducible; the Barrington experiment genuinely uses a different endpoint mechanism yet still admits a signed-flow bypass."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Classify the two-negative-edge splice from the exact witness and test the smallest explicit per-layer transition-table lift that forbids that splice without an external nonnegativity constraint. Emit every added selector and marginal row, then rerun the same exact ACCEPT-fiber DP; kill the refinement if a constant-excess signed accepting flow remains."
+}

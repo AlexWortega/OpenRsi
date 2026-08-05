@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "S1 is selected only for one exact unbounded-fiber experiment. Modular infeasibility would exclude all integer cheats, but feasibility modulo 2, 3, and 4 proves nothing; full Smith/Hermite normal-form solvability and exact affine-lattice minimum computation are required. Even success remains a constant local fact and leaves O3–O5 untouched.",
+    "S2 is killed as stated. Effective resistance lower-bounds the cost only after an unavoidable unit demand is proved, while no equations prevent signed selectors or shared-clause moves from cancelling that demand; therefore O1 and O5 remain at the demand-creation layer. No basis, target, radii, or executable search instance is supplied.",
+    "S3 is killed. The proposed weights do not have the claimed bounded signed-independence: 2·1−2=0, 2·11−22=0, and 2·57−114=0. B_h uniqueness is not the asserted arbitrary signed-coefficient property, and widening a box until an uncertified apparent stabilization repeats O2.",
+    "S4 is killed. A lattice minimum-distance bound does not by itself lower-bound every nontrivial coset leader, and no explicit quotient, coset map, or distance proof is given. A linear parity map cannot represent OR without an additional selector/nonlinear mechanism, which restores O1 and O5.",
+    "S5 is killed as an experiment. The dual inequality requires explicitly valid dual-lattice vectors, while the proposed PSD or diagonal-SDP certificate and its soundness constraints are undefined. Local dual bounds would still plateau at O4 unless a proved aggregation law beats completeness cost.",
+    "S6 is killed for this campaign. Exhausting small integer lattices cannot determine the supremum over arbitrary dimensions and bit sizes, and the normalization and realizable-penalty class are not defined precisely enough to falsify either alternative. It supplies neither O3 nor a bounded experiment decisive for the reduction.",
+    "S7 is killed or deferred until O2 is resolved. There is no specified 12-column CVP basis, target, radii, tensor operation, or certified exact-enumeration procedure, and tensoring an unproved boxed survivor only compounds O1/O2 while introducing mixed cheats. It does not solve O4 even under its own assumptions.",
+    "No sketch currently supplies the deterministic reduction, polynomial dimension-versus-gap law, protection against a single violated clause, or overlap soundness required by O3–O6. The recommendation to start S1, S3, and S7 in parallel is rejected; only S1's exact affine-fiber audit is justified."
+  ],
+  "evidence": [
+    "The supplied verifier establishes only that 18 of 531441 three-row matrices have no harmful point inside the tested selector/auxiliary boxes. It does not certify emptiness or the true minimum of any unbounded integer fiber.",
+    "The current gate explicitly requires exact unbounded lattice search before overlap composition. Its stopping rule is discriminating: minima at most 4 kill the degree-one isolation form, while an empty fiber or certified minimum above 4 warrants only a subsequent overlap test.",
+    "Generation 1 already gives an exact slack-cheat witness with squared optimum 27 versus Boolean baseline 19, showing that amplified residuals are irrelevant when linear slack can cancel demand. S2 and S4 merely relocate this unresolved demand-creation problem.",
+    "No experimental result claimed in these seven sketches has verifier evidence; all are preimplementation mechanisms. The only supported results remain the finite Generation 1 counterexample and Generation 2 boxed enumeration."
+  ],
+  "next_experiment": "For each of the 18 survivors, reconstruct the verifier's full affine equations over selectors and auxiliaries, use Smith normal form to decide integer feasibility, parameterize every nonempty fiber by Hermite normal form, and run proof-producing exact closest-vector enumeration to obtain its global minimum squared norm. Report certificates and witnesses; kill the degree-one mechanism if all minima are at most 4, and do not run overlap, weighting, or tensor experiments in this round.",
+  "confidence": 0.98
+}

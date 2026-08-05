@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The authorized cubic mutation satisfies its own falsification condition: the obstruction minimum does not rise above 96, because a degree-0-through-3 zero-residual signed selector survives with anchor excess 24.",
+    "The proposed duplication experiment has a predetermined negative outcome. Applying the same seven-term parity to both copies makes their cubic moments equal, preserves all lower moments, and yields zero residual with anchor excess 48; running a verifier would add no information.",
+    "Pairwise consistency cannot detect a synchronized kernel across an occurrence class. Reweighting or radix amplification also cannot charge an exact residual kernel, matching the obstruction pattern already recorded in STATUS/IDEAS/NOTES.",
+    "The 96-versus-72 result is only a fixed nine-clause constant-gap calculation. It supplies no uniform construction, composition lemma, dimension-dependent gap, or asymptotic hardness result and must not be promoted to one."
+  ],
+  "evidence": [
+    "The supplied machine verifier exits 0 and reconstructs the emitted factor, target, Gram data, and positive-definite form Q=4I+25 A^T A.",
+    "Its exact shell DP checks 959 normalized/legal signed states per clause through total anchor excess 24 and finds a zero-residual witness supported in clause 1.",
+    "The verifier proves the finite unrestricted minima: anchor energy is at least 72, any nonzero integral residual raises the objective to at least 97, and the zero-residual witness attains 96; the control attains 72.",
+    "The verifier reports that triple (0,2,3) occurs once, while the inherited clause-3 parity is charged to distance squared 121. This directly supports the stated isolated-triple mechanism and finite falsification.",
+    "STATUS, IDEAS, NOTES, proof_cvp.md, SOL_RESULT, and machine output consistently label the result finite and deny any hardness lemma."
+  ],
+  "next_experiment": "None for this candidate. Resume only with a precisely specified mutation that breaks synchronized top-degree parity without relying on pairwise comparison or residual reweighting, together with bounded completeness, unrestricted-integral soundness, and dimension accounting.",
+  "confidence": 0.99
+}

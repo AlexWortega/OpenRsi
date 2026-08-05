@@ -1,0 +1,30 @@
+{
+  "summary": "Selected only Pro Proposal 5, the sole cross-review survivor for a bounded test. Emitted a fixed-target rank-72 lattice in dimension 154 for the nine-clause four-variable edge-cover formula: 72 selector anchors, 41 raw normalization/legality/occurrence-consistency checks, and all 41 cyclic base-33 radix residuals. Canonical column HNF checks the embedded lattice. The exact unrestricted squared CVP minimum is 80 versus Boolean completeness squared radius 72. A signed selector has zero raw and radix residual: for global marginals 0000, clause 0 replaces forbidden 000 by 011 + 100 - 111, while all other clauses are honest one-hot blocks. Thus the radix mutation is killed on this finite instance.",
+  "hypothesis": "Causal mechanism: cyclic superincreasing base-33 orders should make every bounded nonzero residual expensive because each check is the leading digit in one order. Expected move: every unrestricted vector for the unsatisfiable nine-clause instance lies beyond the Boolean completeness scale due to a nonzero raw/radix residual. Falsification condition: an integral signed-selector vector satisfying normalization, legality, and occurrence consistency exactly, since every radix coordinate then vanishes. The verifier finds such a vector at squared distance 80, only 8 above the 72 anchor baseline.",
+  "changed_files": [
+    "experiments/verify_multiorder_radix_barrier.py",
+    "experiments/gen7_multiorder_radix_manifest.json",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-7/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_multiorder_radix_barrier.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_multiorder_radix_barrier.py",
+      "exit_code": 0,
+      "finding": "Verified the emitted 154-dimensional basis and single target, matching canonical column HNF hash 0119d79d11831422315b0b60c635d9b50ae8b888bd0dcfd88729cbc24004a271. All 16 assignments are covered by a falsification edge. The derived Boolean residual digit bound is 7, and exact unrestricted CVP minimum squared is 80. The minimum zero-residual attack has anchor excess 8, so all 41 radix coordinates vanish."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_multiorder_radix_barrier.py && python3 -m json.tool experiments/gen7_multiorder_radix_manifest.json >/dev/null && python3 -m json.tool gen-7/SOL_RESULT.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles, and both emitted JSON packets are valid."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not continue this linear radix mutation: exact affine selector kernels are invisible to every residual weighting. A fresh proposal must first encode a polynomial-size lattice mechanism that excludes the local identity 011 + 100 - 111 = 000 at equal normalization and marginals; before any amplification claim, test its actual fixed-target basis by unrestricted exact CVP on this nine-clause obstruction and a satisfiable multi-assignment control."
+}

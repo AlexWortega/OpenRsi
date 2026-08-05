@@ -1,0 +1,35 @@
+{
+  "summary": "Selected Pro proposal 1, the private-syndrome overlap audit mandated by both cross-reviews. Re-ran Generation 2 and hash-checked the canonical 18-survivor set. Then tested every ordered survivor pair for two OR clauses sharing one or two variables, all shared-position choices, relative polarities, and compatible one-hot reference pairs. Every one of 5832 composed systems has a nonzero integer kernel move of squared norm at most 4; 95256 compatible references were checked. This kills private-row composition of the fixed-marginal local survivor in the tested form, not affine encodings generally.",
+  "hypothesis": "The exact single-clause isolation certificates fail under composition because freeing unshared marginals exposes short signed selector circuits that preserve normalization, all private measurement rows, and every shared marginal equality.",
+  "changed_files": [
+    "experiments/verify_affine_isolation_core.py",
+    "experiments/verify_overlap_composition.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-5/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_overlap_composition.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_overlap_composition.py",
+      "exit_code": 0,
+      "finding": "Covered 5832 ordered survivor-pair/overlap/polarity systems and 95256 compatible references; every system has an exactly checked nonzero integer kernel move of squared norm at most 4."
+    },
+    {
+      "command": "python3 experiments/verify_affine_isolation_core.py",
+      "exit_code": 0,
+      "finding": "Reproduced the 18 canonical Generation-2 survivors with SHA-256 41a55873bba90ca25f310717912c94fdc14f8e0d814a494f704b40b7bc4e49c3, closing provenance before composition."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_overlap_composition.py experiments/verify_affine_isolation_core.py",
+      "exit_code": 0,
+      "finding": "Both verifiers compile successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not amplify or blow up the killed private-row gadget. Search for a local affine block whose nonzero integer circuits necessarily change every variable marginal, and certify that property by exact kernel/Graver enumeration before any second composition test; alternatively pivot to a global mechanism not relying on the 18 survivors."
+}

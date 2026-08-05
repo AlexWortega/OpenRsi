@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 leaves G6/G22 as its central assumption: translated tensor cosets, legal and illegal shifts, and their composition are undefined, while the cited E-type hook concerns unshifted tensor minima and supplies no translated decomposition theorem. A twofold pass cannot establish decomposition for k=Theta(log n) or the G20/G21 gap law, and the Gram/target search is not fully bounded.",
+    "Proposal 2 does not freeze the cells, boundary maps, target cycle, satisfying filling, or two-lift, so its experiment is not executable. G13/G15 affine lifts and G19 signed splices simply become signed chains unless an integral filling theorem excludes them; one contradictory formula cannot discriminate an N^c systolic law.",
+    "Proposal 3 is closest to the prior reopening condition but still omits designated legal/illegal/drop classes, the gluing homomorphism, objective normalization, S, and a recursively closed contract. One unrestricted two-gadget pass would not prove closure under substitution, while G12, G22, and G20/G21 remain unresolved.",
+    "Proposal 4 has an exact algebraic blind spot: an integral parity perturbation on k+1 variables has total mass zero and every marginal on at most k variables equal to zero, so adding it to a Dirac measure gives a non-Dirac integral mass-one measure invisible to all stated k-variable Walsh bags. Perfect hashing does not change marginal degree, and the four-variable test cannot address this asymptotic obstruction.",
+    "Proposal 5 supplies no theorem converting resolution width into geometric excess. Constant-width preprocessing is polynomial but cannot yield growing support, whereas growing w costs n^O(w); enumeration on five variables cannot discriminate the required polynomial-time G20/G21 regime.",
+    "Proposal 6 defines neither the laminated substitution nor a theorem multiplying deep-hole radii. Shared unrestricted coefficients retain G12 drops, G13 affine mixtures, and G22 entangled vectors, while the two-set experiment can test only one local additive penalty.",
+    "Proposal 7's four-dimensional A5 augmentation representation has no global invariant vector but is not fixed-point-free for every nonidentity element, so inconsistent labels may still preserve section subspaces. Even a constant connection-Laplacian gap gives only constant relative energy against a linear anchor baseline, and the proposed labels, anchors, target, and drop pricing are unfrozen."
+  ],
+  "evidence": [
+    "G7 verifies an exact zero-residual signed selector at squared distance 80 versus baseline 72; residual or radix amplification cannot charge a surviving kernel.",
+    "G13 verifies a harmful coefficient-sum-one affine combination of honest encodings, and G15 lifts it through every frozen hierarchy level with exactly zero residual at 24960 below threshold 25472.",
+    "G19 verifies a zero-residual accepting signed flow with two negative coefficients; obstruction/control squared minima are 22770 and 22754.",
+    "G5 finds short overlap circuits in every tested private-row composition, so constant local isolation does not justify tensor, boundary, bag, or geometric composition.",
+    "G12 shows that charging parity exposed a cheaper clause drop, while G14 proves only a finite exclusion through B+32. No supplied verifier establishes a recursive transformer or dimension-dependent gap."
+  ],
+  "next_experiment": "None authorized as written. Reopen only a Proposal-3 mutation that freezes every quotient class, target, Gram family, gluing map, drop state, normalization, S, and symbolic recursive contract; then exactly enumerate all unrestricted depth-two fibers and kill on any completeness mismatch, entangled subproduct minimum, or drop below the contract.",
+  "confidence": 0.99
+}

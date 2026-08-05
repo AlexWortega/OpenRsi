@@ -1,0 +1,40 @@
+{
+  "summary": "Selected the cubic-moment proposal unanimously authorized by both cross-reviews. The fully emitted degree-3 metric charges the inherited clause-3 cube-parity witness, but exact signed low-weight search finds the same seven-term parity in clause 1, whose global triple (0,2,3) has no second occurrence. The obstruction and control exact unrestricted squared minima therefore remain 96 and 72. This is a finite falsification of the tested cubic mutation, not an asymptotic theorem.",
+  "hypothesis": "Causal mechanism: all-pairs cubic moment consistency should expose the degree-two cube-parity kernel. Expected move: raise the fixed obstruction minimum above 96 while retaining control minimum 72. Falsification condition: any degree-0-through-3 zero-residual signed selector of constant anchor excess, or failure to raise the obstruction minimum. The clause-1 parity witness satisfies the falsification condition with anchor excess 24.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_degree3_global_psd_metric.py",
+    "experiments/gen11_degree3_global_psd_metric_manifest.json",
+    "gen-11/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_degree3_global_psd_metric.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_degree3_global_psd_metric.py",
+      "exit_code": 0,
+      "finding": "Exact unrestricted squared minima are 96 (obstruction) and 72 (control); the inherited clause-3 parity rises to 121, but a clause-1 seven-term parity remains zero-residual at 96."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_degree3_global_psd_metric.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles successfully."
+    },
+    {
+      "command": "python3 -m json.tool experiments/gen11_degree3_global_psd_metric_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The emitted factor, target, Gram, center, and row manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_global_psd_metric.py >/tmp/gen9_recheck.json",
+      "exit_code": 0,
+      "finding": "The inherited Generation-9 exact verifier still passes and supplies the independently rechecked degree-two lower bound used by the attack comparison."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Duplicate the unique (0,2,3)-triple clause occurrence and exactly test whether synchronized seven-term parity across the resulting occurrence class survives with constant anchor excess 48; falsify the incidence-repair idea if it does."
+}

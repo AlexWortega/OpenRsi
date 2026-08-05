@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 remains an equal-radius Gram construction, so Generation 32's additive parity blocks composition and no growing gap follows even if metric repair restores completeness. It is nevertheless worth one exact completeness-only experiment because the positive-definite metric strictly enlarges the frozen Generation-33 family.",
+    "Proposal 2 is not a distinct nonlinear CVP mechanism: after flattening fixed representation entries, it is another linear tag map with a PSD Gram objective. Noncommutativity alone proves neither cosphericity nor superadditivity, and the generator assignments, representation basis, thresholds, and exact enumeration are not preregistered.",
+    "Proposal 3 has no bounded search space because entries of the determinant-2 maps are unbounded, and neither the occurrence network nor harmful fiber is specified. Determinant growth does not preserve primitive honest sections while selectively expanding harmful ones without an invariant-subspace proof; G13 affine lifting remains available.",
+    "Proposal 4 uses linear cochain and coboundary rows, so an affine combination of honest global lifts can preserve every emitted row exactly, as in Generations 13 and 15. The listed complexes and attachment rule are unspecified, and ordinary cosystolic support growth would not by itself outgrow the completeness radius.",
+    "Proposal 5 lacks a canonical CVP target transformation: Binet-Cauchy controls decomposable exterior witnesses, while unrestricted compound coefficients need not be decomposable. The claimed rank-6 G28-derived seed, homogenization, completeness witness, and global search bound are unspecified, and the G28 source family already failed its growth inequality.",
+    "Proposal 6 assumes the missing step: additive ideal-module constraints do not automatically make clause failure force multiplicative prime valuations. No explicit module, coset, conditional divisibility identity, or defense against units and G13 affine selectors is supplied.",
+    "Proposal 7 only proposes isolation of sparse support and expressly leaves dense affine pseudodistributions unresolved. Assignment-to-codeword tags still induce a PSD Gram objective, while the tag search, equivalence reduction, exact factor, and unrestricted shell bounds are not sufficiently specified."
+  ],
+  "evidence": [
+    "The Generation-33 verifier reports exact rank pair (4,5) for all 512 sign rules on both formulas, proving the frozen Euclidean bivectors are never cospherical. This directly justifies testing a nondegenerate learned Gram before any soundness work.",
+    "Generation 31 shows that equal-radius Gram geometry can pass a bounded shell, but Generation 32 gives compatible parity witnesses of cost exactly twice the one-copy optimum. Thus Proposals 1, 2, 4, and 7 have no demonstrated composition mechanism.",
+    "Generation 13 exhibits a harmful selector in the integral affine span of honest encodings, and Generation 15 lifts it through every linear hierarchy row with zero residual. This is a current blocker for the proposed sheaf, cochain, ideal-module, and bag lifts unless their exact geometry charges that affine combination.",
+    "Generation 28 has adverse growth 57/32 below legal growth 2, while Generation 30's selected seed is isometric to its control. Compound amplification cannot rely on either result as a separating seed.",
+    "All supplied results are finite-instance evidence; none establishes a uniform construction, polynomial gap, or hardness lemma."
+  ],
+  "next_experiment": "Run Proposal 1 as a completeness-only gate. For each of the same 512 frozen sign rules, exactly decide whether one shared rational symmetric 6-by-6 Gram G with trace(G)=1 and G-(1/100)I positive semidefinite admits separate center surrogates and radii making all 16 control points and all 16 obstruction points cospherical; formulate the sphere equations linearly using h=Gc. Accept a rule only with exact rational G, exact sphere identities, and a rational factor C satisfying C^T C=G; reject infeasibility only with an exact dual, facial-reduction, or algebraic certificate, and perform no shell search in this experiment.",
+  "confidence": 0.98
+}

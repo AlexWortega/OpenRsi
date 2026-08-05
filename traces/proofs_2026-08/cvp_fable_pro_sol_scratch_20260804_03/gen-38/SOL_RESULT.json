@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole authorized Pro Proposal 5 bounded audit using a deterministic minimum-cardinality family of twelve 3-clause splitter bags. The obstruction has B=117 selectors and no unrestricted vector through B+64=181; the matched control has exact minimum 119. Eleven obstruction bags contain all four variables: residual square at most two would force their integral distributions to agree coordinatewise, but their common legal support is empty, causing eleven normalization failures. The projected G13 vector costs 6883 and DROP costs 417. This is a finite shell pass only.",
+  "hypothesis": "Overlapping 3/4-clause splitter bags that isolate every clause support of size at most four might prevent the known affine pseudodistribution from extending while preserving a short honest control.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_splitter_clause_bags.py",
+    "experiments/gen38_splitter_clause_bags_manifest.json",
+    "gen-38/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_splitter_clause_bags.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_splitter_clause_bags.py",
+      "exit_code": 0,
+      "finding": "Verified the 12-bag separating family, exact control minimum 119, coefficient interval [-3,4], empty obstruction shell through 181, projected G13 cost 6883, and DROP cost 417."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_splitter_clause_bags.py && python3 -m json.tool experiments/gen38_splitter_clause_bags_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the emitted rank-117/rank-119 factor and target manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_selector_code_compatibility.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-13 affine-collision source verifier still passes after reuse in the bag audit."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze a two-copy overlap composition of this exact splitter rule with a matched control and compare adverse growth to the differing legal baselines; derive the full coefficient shell first and kill on a compatible affine lift, DROP, control mismatch, or non-superlinear relative growth."
+}

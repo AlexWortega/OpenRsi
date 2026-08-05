@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Pro's review does not rebut the asymptotic clause-drop attack. On minimally unsatisfiable growing formulas, deleting a low-canonical-indegree clause and zeroing its incident bags gives cost B+O(m) while B=Theta(m^2), so the approximation ratio tends to 1.",
+    "A B+64 audit of the same nine-clause instance cannot address this asymptotic failure. The candidate supplies no weighting, composition, hierarchy, or lower bound producing a gap proportional to B.",
+    "The claimed exhaustive shell certificate is not independently executable end to end. Zero-residual cases rely partly on structural reasoning, and the one-residual exclusion uses asserted case labels rather than enumerated certificates.",
+    "The statement that the G11 collision lifts only at total 1448 is unproved because only one canonical extension was evaluated. Alternative pair-bag extensions were not optimized or excluded."
+  ],
+  "evidence": [
+    "The successful verifier supports only the fixed B=520 instance through B+32: it establishes the control minimum and a finite shell exclusion, not asymptotic soundness.",
+    "The asymptotic attack has stated objective B+25[2m-2+d_i(m-3)]; with d_i at most 1 this is B+O(m), whereas complete pair-bag anchoring makes B quadratic.",
+    "SOL_RESULT and the project notes explicitly classify the result as finite and deny any composition or dimension-dependent gap theorem.",
+    "Pro's own review identifies the missing composition law, uniform soundness lemma, optimized G11 extension, and independently checkable exhaustive certificate. It therefore supplies no escape from the decisive obstruction.",
+    "The observed G11 lift at B+928 and the control-derived drop audits are witness evaluations on one hardcoded instance, not lower bounds for growing formula families."
+  ],
+  "next_experiment": "Stop the fixed-template run. Reopen only with an explicit weighting or hierarchical mutation, then test minimally unsatisfiable implication-chain instances at m=8,16,32 by deleting a minimum-canonical-indegree clause and zeroing its incident bags; reject the mutation unless the measured gap meets its declared growing soundness threshold and it separately blocks zero-residual affine collisions.",
+  "confidence": 0.99
+}

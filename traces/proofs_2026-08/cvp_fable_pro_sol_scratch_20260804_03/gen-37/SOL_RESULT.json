@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole authorized repaired Pro Proposal 6 test on a frozen normalized G31/G32 incidence-orbit metric family. The fixed one-copy G11/G13 parity has cost W_1=96alpha+120beta. Two compatible copies annihilate every cross residual and cost W_2=192alpha+240beta=2W_1 for every allowed metric, yielding the exact universal cutting plane delta<=0. At the fully emitted rational metric alpha=beta=1/144, exact control minima are 1 and 2, the one-copy obstruction minimum is 3/2, and the two-copy parity costs 3. Strict two-level growth is impossible in this family. This is finite evidence only.",
+  "hypothesis": "Rational reweighting of the G31 anchor/Walsh incidence features together with all G32 cross-copy residual rows might produce a positive two-level soundness margin above twice a fixed valid one-copy adverse witness.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_twolevel_metric_parity_cut.py",
+    "experiments/gen37_twolevel_metric_parity_cut_manifest.json",
+    "gen-37/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_twolevel_metric_parity_cut.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_twolevel_metric_parity_cut.py",
+      "exit_code": 0,
+      "finding": "Verified legal squared radii 1 and 2, uniform eigenvalue bounds, exact rational factors and targets, one-copy parity cost 3/2, two-copy parity cost 3, and the universal cut delta<=0."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_twolevel_metric_parity_cut.py && python3 -m json.tool experiments/gen37_twolevel_metric_parity_cut_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the fully emitted one-/two-copy metric manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_crosscopy_walsh_composition.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-32 source witnesses and cross-copy construction still verify."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If two-level PSD synthesis is continued, preregister a rational cross-copy Gram ansatz with genuinely nonorthogonal local feature blocks, exact common-radius equations, and fixed eigenvalue bounds; evaluate the compatible parity symbolically before any oracle loop and kill immediately if it again gives delta<=0."
+}

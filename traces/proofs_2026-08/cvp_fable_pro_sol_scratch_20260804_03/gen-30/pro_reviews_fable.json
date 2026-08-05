@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed: deterministic cloning plus linear Tanner checks preserves the G13 affine pseudodistribution. Its constant coefficients merely spread over the lifted instance, producing linear squared energy comparable to the honest baseline, not the claimed superlinear Graver norm.",
+    "Proposal 2 is killed as specified: no target coupling, legal-state embedding, weights, or harmful-state definition is emitted for the Lawrence lift. G13/G15 show that affine combinations can lift through deterministic linear hierarchies, and Lawrence layers can also introduce short primitive circuits.",
+    "Proposal 4 is killed: no sheaf, restriction maps, curvature cochain, or SAT-to-cohomology lemma is defined. Unsatisfiability does not imply a nonzero cohomology class, and an arbitrary octahedral Smith-form calculation would not discriminate that missing reduction.",
+    "Proposal 5 is killed algebraically: residue, quotient, and carry equations are linear in unrestricted integer coordinates. Applying the G13 affine coefficients to complete deterministic encodings simultaneously produces integral shared-X, residue, and carry coordinates with every emitted row exact; multiple bases cannot charge this kernel.",
+    "Proposal 6 is killed as specified: finite SDP separation repeats the finite-Gram phenomenon of G9 without a composition invariant. Exact enumeration could certify one seed only, while Delaunay amalgamation or lamination has no supplied reason for adverse radii to grow faster than honest radii.",
+    "Proposal 3 has no asymptotic support: unrestricted non-rank-one integer tensors are exactly the unresolved obstruction, and a two-copy pass cannot establish multiplicativity for growing k. It nevertheless admits one exact experiment that directly tests this mechanism rather than assuming rank-one witnesses."
+  ],
+  "evidence": [
+    "The supplied G13 verifier reports an exact integral affine combination of globally consistent encodings annihilating every compatible linear syndrome. G15 reports that the same coefficients lift through every node of a deterministic hierarchy with zero residual.",
+    "G19 reports an exact accepting signed flow despite all transition and consistency rows, confirming that linearized global semantics do not exclude signed splicing.",
+    "G9 achieved genuine finite Gram separation, but G11 and G12 exposed constant-cost parity and drop attacks. These results support finite geometric searches only as falsifiers, not as composition evidence.",
+    "G28 reports adverse/legal squared minima 32/16 at depth one and 57/32 at depth two, with adverse growth below legal growth. It supplies an explicit small seed and matched control but contains no tensor-product test.",
+    "No supplied verifier establishes expander-Graver growth, Lawrence-ratio growth, SAT-induced cohomology, mixed-radix soundness, Delaunay composition, or any dimension-dependent gap."
+  ],
+  "next_experiment": "Run only Proposal 3 at k=2. Before search, freeze the exact G28 depth-one integer factor C=[2I;5A], target y=[1;5b], matched control, literal products C⊗C and y⊗y, and squared ratio R_k=D_NO(k)/D_YES(k); derive a rigorous coefficient bound from the product Gram matrix and exhaust every integer coefficient matrix in the complete shell. Accept this run only if exact minima satisfy R_2>R_1; kill immediately if R_2<=R_1 or if the minimizer is any entangled G13, drop, G19, or malformed-product state. Even R_2>R_1 remains finite evidence and authorizes no theorem.",
+  "confidence": 0.98
+}

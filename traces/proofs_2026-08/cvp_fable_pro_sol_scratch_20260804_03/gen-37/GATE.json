@@ -1,0 +1,39 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-37/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The authorized orthogonal incidence-orbit family is defeated algebraically: the compatible parity has W_2=192alpha+240beta=2(96alpha+120beta)=2W_1 and zero cross residual for every allowed weighting. Therefore the preregistered fixed-witness margin satisfies delta<=0, independent of further oracle or shell search.",
+      "The packet provides only one- and two-copy facts for fixed finite obstruction/control instances. It establishes no recurrence, arbitrary-instance soundness lemma, dimension-dependent gap, or reduction, so no asymptotic hardness promotion is permissible.",
+      "The statement that strict two-level growth is impossible throughout the family is broader than the verified cut. For general alpha,beta, the verifier does not prove that W_1 equals the true one-copy minimum d_1; thus W_2=2W_1 alone does not establish d_2<=2d_1 for every weighting, although it does kill the stated margin above the fixed witness and does so at the emitted equal-weight metric where d_1=W_1.",
+      "The proposed nonorthogonal-Gram follow-up is not a precise bounded experiment: it supplies no explicit finite Gram basis, parameter count, coefficient/denominator bounds, or finite feasibility/search domain. It therefore cannot justify CONTINUE under the requested gate."
+    ],
+    "evidence": [
+      "Machine verification passed for source hash 1861ffa35533769bb8837c1e5f5c700706095c2ce6063727ba5c11798d361db6 and reported the exact symbolic cut delta<=0, legal radii 1 and 2, and eigenvalue bounds [1/18,275416].",
+      "The verifier checks parity feature components (96,120,0) and (192,240,0), so the additive obstruction is an explicit unrestricted integer witness rather than an inference from incomplete enumeration.",
+      "At alpha=beta=1/144, the checked control minima are exactly 1 and 2, the one-copy obstruction minimum is 3/2, and the two-copy parity has cost 3. This validly disproves strict growth at that representative but does not determine the two-copy obstruction minimum.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently classify Generation 37 as a finite kill of the frozen orthogonal family and state that no hardness lemma or dimension-dependent gap exists."
+    ],
+    "next_experiment": "None for this run. Reopen only as a new mutation after preregistering an explicitly listed finite incidence-orbit basis for nonorthogonal cross-Gram blocks, rational coefficient and denominator bounds, exact common-radius and eigenvalue constraints, and the rule that the compatible parity is evaluated symbolically before any bounded optimization; kill immediately if its margin is nonpositive.",
+    "confidence": 0.98
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The compatible parity witness is an exact algebraic blocker for the frozen orthogonal incidence-orbit family: its residual is zero and its two-copy base cost is exactly twice its one-copy cost. Therefore no choice of alpha, beta, or residual weight within this family can produce the required positive margin over that fixed witness.",
+      "The summary's blanket statement that strict two-level growth is impossible throughout the family is too strong if interpreted as d2^2>2d1^2 for every weighting. The verifier proves a universal cut relative to the fixed witness W1, but proves W1 equals the true one-copy minimum only at alpha=beta=1/144.",
+      "The proposed follow-up is not a precise bounded experiment: it specifies neither a finite nonorthogonal Gram parameterization nor dimensions, coefficient bounds, completeness equations, search domain, or an exact acceptance threshold. It therefore cannot justify CONTINUE."
+    ],
+    "evidence": [
+      "The passed verifier checks feature vectors (96,120,0) and (192,240,0), giving W2-2W1=0 symbolically for every normalized alpha,beta in the frozen family.",
+      "At alpha=beta=1/144, the packet reports exact one-copy minimum 3/2 and a two-copy witness of cost 3, so strict superadditivity fails at this emitted metric. Control minima 1 and 2 and positive-definite eigenvalue bounds are also checked.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently limit the result to a finite family kill and explicitly state that no hardness lemma, composition law, or dimension-dependent gap follows.",
+      "The Generation-37 verifier inherits the exact 3/2 obstruction minimum from Generation 32 rather than independently rerunning its full DP; this does not affect the explicit universal witness cut but limits claims of fresh independent minimum verification."
+    ],
+    "next_experiment": "None for this run; terminate the frozen family. Reopening requires a separately preregistered, fully finite nonorthogonal Gram mutation with explicit variables, rational bounds, common-radius constraints, and a symbolic parity evaluation before optimization.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented the sole surviving Fable proposal 5 as a canonical generator-only integer row-selection ILP over every nonzero code functional. Exact solves cover all dimension-four patterns: nine YES and 195 NO dictionaries. Every optimum uses output rank 64 and gives pointed distance exactly 16, so the finite uniform ratio is one. The remaining hostile instances expose the construction-size wall: all-eight has reduced-code dimension 25, requiring 33554431 row variables and 16777216 pointed constraints under the prescribed exact universe. This kills the exact ILP route as a scalable construction, not all analytically generated dense folds.",
+  "hypothesis": "Causal mechanism: a code-dependent ILP over dense parity rows should hit every dangerous non-rank-one mixed word many times while hitting every rank-one pointed tensor few times, potentially finding a fold missed by fixed hashes and condensers. Expected move: kernel-free output below rank 65 with uniform ratio above 25/9 and improved exponent. Falsification condition: a kernel, ratio at most 25/9, rank at least 65, relabeling failure, or exponential row/separation complexity. Exact dimension-four optima flatten YES and NO to the same distance 16 at rank 64, while dimensions 9, 16, and 25 make the all-functional row universe exponential.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_adversarial_matroid_fold.py",
+    "experiments/adversarial_matroid_fold.log",
+    "gen-16/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_adversarial_matroid_fold.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_adversarial_matroid_fold.py > experiments/adversarial_matroid_fold.log",
+      "exit_code": 0,
+      "finding": "Solved three unique dimension-four ILPs covering 9/10 YES and 195/200 NO instances. Every solved image had rank 64, distance 16, no kernel, and uniform ratio 1. Recorded unsolved hostile dimensions 9 and 16; all-eight dimension 25 requires 33554431 candidate rows and 16777216 pointed constraints."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_adversarial_matroid_fold.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not enlarge the exact all-functional ILP or revive rejected proposals. Reopen dense row selection only after supplying a deterministic polynomial-time separation oracle and analytic row family whose size is polynomial in code dimension, with a proved all-mixed-word support invariant; then precommit it and rerun the full hostile suite."
+}

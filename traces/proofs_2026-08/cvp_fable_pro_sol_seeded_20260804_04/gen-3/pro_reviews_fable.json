@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 gives no explicit polynomial-size binary or integer matrix. Plücker valuations and the product formula do not by themselves convert a nonlinear valuation defect into syndrome weight or lattice coefficient norm; retaining sufficiently high compounds risks exponential size, while circuit linearization re-enters O2/O5.",
+    "Proposal 2 is the only proposal plausibly outside the phase obstruction, but it specifies neither canonical voltages nor a formula-to-action matrix, universal YES section, or polynomial-time binary compilation. Searching multiple small groups and actions post hoc is not a frozen experiment, and a finite pass would not test the required scaling law.",
+    "Proposal 3 is already killed by rank subadditivity and the certified affine-closure obstruction. If three legal shifted matrices have rank at most r and their XOR is an illegal cover, that illegal shifted matrix has rank at most 3r, precluding polynomial separation when r is constant.",
+    "Proposal 4 assumes a splitter isolates witnesses, but perfect hashing isolates elements of a fixed set, not one satisfying cover from all competing covers. Constructing protected centers or branches can require enumerating witnesses, while no selector matrix or all-mixed-sector soundness statement is supplied.",
+    "Proposal 5's product P(x) is nonlinear in the selected columns; a regular-representation block for the labels does not linearly compute that product. Exact realization requires high-degree monomial coordinates, an exponential free algebra, or a multiplication tableau already blocked by O2/O5.",
+    "Proposal 6 likewise lacks a constructible linear lift: evaluating global defects on every fiber point and spanning the lifts can be exponential or NP-hard. Expander propagation cannot help when an illegal affine mixed word annihilates the defect vector, and no theorem excludes that cancellation.",
+    "Proposal 7's traces, characteristic coefficients, and resolvent moments are nonlinear functions of x, not syndrome columns. Low moments fall under O1; full spectral linearization recreates the exponential determinant/exterior dictionary, while succinct circuits re-enter O2/O5.",
+    "Proposal 8 cannot preserve nonlinear Dehn area through a linear lattice realization: filling chains add, so an illegal odd XOR of three cheap legal fillings remains cheap. Retaining genuinely nonabelian filling area leaves O8 unresolved because no exact binary-syndrome or Euclidean-CVP encoding is given."
+  ],
+  "evidence": [
+    "verify_exchange_quotient.py found 32 instances where an illegal odd cover lies in the affine span of legal matchings, including weight 5 versus legal weight 3. This directly kills the proposed rank shell and any linear classifier identifying or cheaply representing those witnesses.",
+    "verify_determinant_permutation_dictionary.py found support-three virtual permutation states even with all compound states, while the explicit monomial dictionary has factorial size. This is direct adverse evidence for proposals 1 and 7.",
+    "verify_nonbacktracking_schur_walks.py showed that even a concrete global nonlinear lift can have complete all-eight and odd-holonomy shell cancellation. Its generator also required exhaustive fiber enumeration, illustrating the unresolved construction defect in proposals 5 and 6.",
+    "The exact syndrome-to-CVP theorem only transfers an already explicit binary H,t instance. It supplies no compiler for valuations, products, spectral invariants, nonabelian transport, or filling area.",
+    "No verifier evidence is supplied for any of these eight proposals; every proposed experiment still requires inventing essential matrices, parameter bounds, or encodings. Consequently none is presently a genuinely bounded test of a fully specified candidate."
+  ],
+  "next_experiment": "None for these formulations. Reopen only after a mutation supplies one frozen polynomial-time matrix family, explicit YES baseline and output rank, and an exact all-mixed-word test on all-eight, affine-closure, and odd-holonomy instances; the nonabelian voltage route would additionally need a fixed formula-to-voltage rule and binary compilation before testing.",
+  "confidence": 0.99
+}

@@ -1,0 +1,19 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The frozen fold fails its precommitted soundness criterion: best NO distance is 0 while worst YES distance is 3. Pointed kernels in 112/200 NO instances directly eliminate any finite YES/NO gap.",
+    "Noncommutativity preserves some orientation but does not provide the claimed kernel removal. The rank-one labels produce zero products and low-dimensional bilinear spans, with maximum exact-transfer rank only 4.",
+    "The affine-closure and holonomy obstructions remain active: 18/20 affine-closure instances and the holonomy instance have pointed kernels. All-eight also has a semantic illegal pure square of cost 1, below worst YES cost 3.",
+    "The fixed M_3(F_4) construction has only 1323 distinct rank-one labels and 18 nominal binary output coordinates, so it is not an asymptotic growing family. Finite enumeration cannot establish hardness or rule out other growing noncommutative families.",
+    "The proposed follow-up is not one precise bounded experiment; it presupposes an unspecified growing family, an a priori no-zero-product/product-spanning theorem, and polynomial constructibility. That is a new research program, not a bounded continuation of this candidate."
+  ],
+  "evidence": [
+    "The supplied verifier exits successfully and reports worst YES 3, best NO 0, uniform ratio 0, rank exponent 0, and maximum exact-transfer rank 4.",
+    "It exactly enumerates the finite image spans for the listed instances, totaling 2214 mixed image words. Reported kernels are 5/10 YES, 112/200 NO, 18/20 affine-closure, and the holonomy image.",
+    "The all-eight report gives folded distance 1 and cheapest semantic illegal pure-square cost 1. The holonomy report gives folded distance 0 and a pointed kernel.",
+    "STATUS, IDEAS, NOTES, proof_cvp, SOL_RESULT, and MACHINE_VERIFICATION consistently characterize this as a finite falsification of the frozen labeling rule, with no asymptotic hardness claim.",
+    "The machine evidence validates execution and internal assertions of the supplied verifier, not an independent asymptotic theorem or a universal obstruction for matrix-algebra folds."
+  ],
+  "next_experiment": "None for this candidate/run. Reopen only as a distinct mutation after specifying an explicit bounded member of a growing matrix family, its polynomial label algorithm, and a proved no-zero-product/product-spanning invariant; then precommit the same hostile finite suite.",
+  "confidence": 0.99
+}

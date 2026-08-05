@@ -1,0 +1,19 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 fails its stated universal soundness claim: quotienting the span of legal restriction signatures also makes every odd affine superposition of legal witnesses shell-invisible. Such a three-witness superposition costs at most three times the YES baseline, precluding an n^epsilon gap unless separately protected sectors replace the quotient.",
+    "Proposal 3 has no polynomial-size construction for arbitrary 3DM incidence hypergraphs. Balanced separators can have linear width, making exterior states or whole-interval transitions exponential; representative-family reachability results do not preserve the required Hamming-cost separation.",
+    "Proposal 4 confuses isolation among legal matchings with separation from illegal odd covers. Polynomial-range uniqueness gives at most an additive weight difference, while the global branch selector remains exposed to the already observed cross-branch rectangle splice unless a new explicit nonlocal selector is supplied.",
+    "Proposal 5 cannot obtain the claimed aggregate-rank separation: every pure tensor, including a pure NO tensor, has matrix rank one, and A_i W B_i cannot increase it. Dense scrambling may alter support but then requires an entirely new support theorem and can inflate YES equally.",
+    "Proposal 6 has no explicit voltage-selection algorithm or polynomial witness-coverage argument. Binary linear sums abelianize the sector incidence and permit sheet/path superpositions; encoding all assignment-dependent whole walks instead risks an exponential dictionary.",
+    "Proposal 2 remains underspecified: sparse PIT does not apply to arbitrary mixed tensor words, which may be dense, and choosing exponents or moduli by observed coset distance could hide the NP-hard decoding step. It survives only as a tightly frozen finite fold family tested against every mixed word."
+  ],
+  "evidence": [
+    "verify_exchange_quotient.py found illegal odd covers in the affine span of perfect matchings in 32 instances, directly warning against Proposal 1's legal-span quotient. This is finite evidence for the new scopes, not an asymptotic theorem.",
+    "Formula-oblivious sparse hashes lost soundness in 866 exact tests, and code-dependent generator-type puncturing reduced the finite gap from 25/9 to at most 13/9. Exact parity-check simplification was rigorously vacuous on the BMT reduced-tensor ladder.",
+    "The weighted pure-power and function-type constructions preserve all mixed words exactly, but their rank is rigorously at least sum_{j<=r} binom(k,j). Thus Proposal 2 must genuinely discard information while retaining pointed distance, not merely merge polynomial-product types.",
+    "The current obstruction map does not rule out a code-dependent dense structured fold, so Proposal 2 lies in the sole relevant opening. No supplied verifier establishes its modular-Kronecker mechanism."
+  ],
+  "next_experiment": "Test only Proposal 2. Canonicalize each existing 8-coordinate reduced-square code, assign Kronecker exponents by canonical generator-column order, exhaust a fixed public family of modulus tuples M_j<=32, and require one frozen rule across all YES/NO instances and coordinate relabelings; enumerate every mixed word and report output buckets, worst YES distance, best NO distance, and rank exponent. Continue afterward only if a strictly compressed fold preserves a uniform gap and beats the unfurled finite exponent without selecting parameters from distance data.",
+  "confidence": 0.94
+}

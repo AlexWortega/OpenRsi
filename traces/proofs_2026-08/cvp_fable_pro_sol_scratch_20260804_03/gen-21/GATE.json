@@ -1,0 +1,45 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 is defeated by G13 affine closure: any linear discriminant or Construction-A map sending all honest encodings to one class also sends their coefficient-sum-one affine combination to that class. Code distance says nothing about this zero-class attack, and the proposed block replacement does not enlarge the encoding or otherwise break the collision.",
+      "Proposal 2 does not meet polynomial size: squarefree moments through degree d=O(log m) number n^{O(log m)}, generally quasipolynomial rather than polynomial. Low-degree Macaulay rows remain linear and admit pseudomoments until a refutation degree is reached; the three-variable all-eight-clauses instance has an elementary degree-three contradiction and cannot discriminate the required asymptotic degree.",
+      "Proposal 3 leaves the edge labels, representations, twisted target, fiber initialization, weights, and matched control unspecified. Twisted conservation is still linear, so affine combinations of paths with identical twisted boundary survive; testing two unfrozen representations only against the G19 shell cannot establish that completeness boundaries coincide or that a common signed kernel is absent.",
+      "Proposal 4 offers only constant-size local shell separation. Even a forbidden label beyond 2R gives only additive local cost against a completeness radius accumulated over many clauses, while G5 overlap, G13 affine combinations, and G15 threading remain untreated; the dimension-six search therefore cannot discriminate polynomial-gap scaling.",
+      "Proposal 5 either attaches fingerprints to exponentially many complete assignments or requires the unspecified multiplication-table lift already threatened by G19/G20 signed splicing. The 16-state experiment merely checks the direct Vandermonde property and omits the arithmetic circuit, Construction-A lift, unrestricted CVP objective, baseline, and control where the actual blocker occurs.",
+      "Proposal 6 cannot encode nonnegativity, bounded remainders, or rounding semantics using the stated unrestricted linear lattice rows; G1 negative slack and carry-table splicing remain live. A uniformly generated polynomial-size CG contradiction for every unsatisfiable formula is also an unsupported proof-complexity assumption, and two rounds on the easy three-variable obstruction do not test rank or size growth."
+    ],
+    "evidence": [
+      "G13 exactly exhibits a constant-excess harmful selector as an integral affine combination of honest encodings with coefficient sum one. G15 verifies that the same combination threads every level of an enlarged hierarchy with zero residual.",
+      "G7 verifies a zero-residual signed selector defeating all radix rows, and G19 verifies a zero-residual accepting signed flow with two negative coefficients. These directly undermine linear quotient, carry-table, and transition-conservation lifts.",
+      "G9 and G11 find constant-cost parity kernels under degree-two and degree-three moments, while G12 finds a cheaper clause-drop attack against a nonlinear-looking Walsh tag. These finite results provide no bounded-degree or fingerprint scaling law.",
+      "G14 is only a shell exclusion through baseline plus 32 on one pair-bag instance and explicitly supplies no composition theorem. None of the proposed local experiments addresses that missing growing-gap law.",
+      "No verifier evidence accompanies these six proposals, and the supplied status establishes no hardness lemma or dimension-dependent gap. Their proposed experiments are either underspecified or test an easy finite consequence rather than the stated causal blocker."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a frozen magnetic-holonomy mutation specifying every integral representation, edge label, fiber coordinate, row, target, weight, and matched control, proving all honest accepting paths have one twisted boundary, and exactly searching the unrestricted obstruction/control instances through baseline plus 16; kill on any zero-residual signed flow or completeness mismatch.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "P1: Delaunay gluing is not an emitted CVP construction: the lattice basis, target, facet-identification maps, completeness radius, and unrestricted enumeration bound are unspecified. Linear facet equalities retain G13/G15 affine pseudosections, while no argument excludes G12 drops or shows hole depth dominates the growing completeness baseline as required by G20.",
+      "P2: The variable u already has dimension 2^n, so compressing only Hu cannot yield a polynomial-time reduction. Parseval merely rescales ||u||_2; there is no proof that unsatisfiable marginal equations force n^epsilon mass rather than a constant-mass signed solution, and a four-variable test cannot discriminate the missing asymptotic compression or mass-versus-baseline theorem.",
+      "P3: Mapping-cone boundary equations are linear and therefore preserve coefficient-sum-one affine combinations of honest chains, exactly the G13/G15 obstruction. No explicit cells, restriction maps, formula-dependent torsion class, target cycle, or systolic-to-CVP ratio are supplied; attaching local Moore cells may instead create constant-support torsion representatives.",
+      "P4: Ordered path signatures are nonlinear under concatenation. Any selector/table linearization reintroduces signed pseudodistributions and G19-style splicing unless a new integral rigidity theorem is proved; fixed degree gives no growing-gap law, while growing degree has superpolynomial dimension. The proposed program, signature coordinates, basis, target, and shell certificate are not frozen.",
+      "P5: Full-adder table marginals cannot make the exact zero fiber Boolean. If T0 and T1 are the two honest complete traces for residues 0 and 1, then 2T0-T1 has normalization one and satisfies every linear wiring, multiplication, carry, and idempotence marginal while being a signed non-Boolean pseudotrace. Its anchor excess scales with circuit size alongside the completeness baseline, yielding at best a constant ratio; the proposed depth-independent-excess kill condition would miss this decisive G13/G15 affine lift.",
+      "P6: Minimum-Frobenius transportation matrices being permutations does not imply a polynomial gap. A persistent non-permutation defect costs Theta(L) while the honest transport baseline is also Theta(L), giving only a constant ratio, and query-split layers still permit G19-type signed cycles. No mechanism defeats G12 layer drops or the G20 baseline objection."
+    ],
+    "evidence": [
+      "G13 verifies an explicit constant-excess harmful selector that is an integral affine combination of honest encodings with coefficient sum one. Every compatible linear syndrome vanishes on it.",
+      "G15 verifies that the same affine coefficients thread every level of an enlarged hierarchy with exactly zero residual. This directly refutes relying on additional linear restriction, carry, chain, or table layers alone.",
+      "G19 finds a zero-residual accepting signed splice in a fully emitted 3,250-layer branching program, with obstruction/control squared minima 22,770 and 22,754. Noncommutative or transport proposals supply no verified rigidity escaping that mechanism.",
+      "G12 demonstrates clause dropping after a parity fingerprint is strengthened, while G14 supplies only a finite pair-bag shell pass and explicitly no composition or growing-gap theorem.",
+      "No verifier evidence accompanies any Generation-21 construction. All supplied positive results are finite-instance facts and establish neither a hardness lemma nor an n^c approximation gap."
+    ],
+    "next_experiment": "None authorized. Reopen only with a fully frozen polynomial-size basis and target plus a proved mechanism that excludes all coefficient-sum-one affine lifts such as 2T0-T1, and a preregistered unrestricted search comparing soundness excess to the complete baseline rather than testing absolute excess alone.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

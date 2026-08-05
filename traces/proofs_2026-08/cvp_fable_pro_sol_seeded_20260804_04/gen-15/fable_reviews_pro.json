@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 occupies the surviving O7 opening but specifies neither an explicit HDX construction nor a deterministic expansion objective, tie-breaking rule, fold matrix, or generator recurrence. Its m=8 graph-walk test is not the claimed matroidal high-dimensional-face mechanism and cannot discriminate polynomial compression at r=Theta(log N); choosing graphs greedily against the suite invites the sampled-fold overfitting already observed.",
+    "Proposal 2 cannot charge illegal rank-one pure squares: every higher minor vanishes on any rank-one matrix, not only legal YES squares. Retaining the original matrix merely restores the unfurled baseline, while fixed 2x2 and 3x3 minors are degree-2/3 signatures covered by O1 and their affine span preserves the cube relations.",
+    "Proposal 3 has no binary linear realization, so O8 is unavailable and the proposed minimum filling area is a nonlinear optimization rather than a syndrome coordinate. The vertex-to-generator map, presentation, treatment of non-nullhomotopic words, and mixed-word lift are unspecified; linearizing fillings permits XORs of cheap fillings and re-enters O2/O5.",
+    "Proposal 4 does not specify an injective map from the full excess space into the chosen Riemann–Roch space, the curve, blocks, or binary support encoding. The proposed block size three is fixed-degree and therefore covered by O1; growing-degree norms remain unsupported by any polynomial-rank binary realization and have no automatic O8 transfer.",
+    "Proposal 5 does not define how all hash charts are embedded and coupled by a [7,3,4] code, which has only eight selector words and constant distance. Binary superpositions of protected sectors remain possible, and no argument excludes the already-observed cross-branch splice, all-eight cube trade, or odd-holonomy word.",
+    "Proposal 6 is algebraically impossible in its stated zero-slack form. A fixed CG slack that is zero on every perfect matching is affine and therefore zero on their entire affine hull, including known illegal odd covers; sparse cut-expander postprocessing cannot restore information that is identically zero.",
+    "None of the proposals supplies the currently required explicit polynomial-time matrix, uniform sparse YES bound, every-mixed-word NO bound, exact output rank, and binary transfer. Their expected asymptotic moves are unsupported predictions, not consequences of the proposed finite experiments."
+  ],
+  "evidence": [
+    "The sampled pure-power fold passed a small family and then collapsed to ratio at most 4/3 and eventually one or below on frozen held-out families. Code-dependent generator-type puncturing also reduced the gap, while parity-check simplification was proved vacuous on the current tensor ladder.",
+    "The Schur-walk verifier found illegal all-eight and holonomy mixed words of costs 6 and 9 with every walk feature canceled. This directly warns against Proposal 1's walk surrogate and Proposal 5's low-degree collision charts, though it is not a theorem against all HDX folds.",
+    "The determinant/exterior experiment retained short virtual states even after all compound states were added, with exponential explicit size. The frozen F8 rank condenser likewise had worst YES 31 versus best NO 6, confirming that rank detection does not imply Hamming-support separation.",
+    "The global branch selector previously admitted a weight-9 rectangle splice. Pair-feature and sparse-hash shells achieved at best 7/6 or worse, supporting the cancellation and completeness-baseline blockers for Proposal 5.",
+    "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings. This is a direct certificate against Proposal 6's zero-on-all-matchings slack dictionary.",
+    "No supplied verifier tests any of these six proposed constructions, so none of their claimed expected improvements has experimental support."
+  ],
+  "next_experiment": "No implementation is authorized as written. Proposal 1 may be revived only by freezing an explicit arbitrary-instance HDX/fold matrix and deterministic construction independent of witnesses and test outcomes; then exactly enumerate every mixed image word on held-out YES/NO, affine-closure, all-eight, and holonomy families, rejecting on any kernel, hostile distance not above worst YES, or rank exponent not above the unfurled baseline.",
+  "confidence": 0.995
+}

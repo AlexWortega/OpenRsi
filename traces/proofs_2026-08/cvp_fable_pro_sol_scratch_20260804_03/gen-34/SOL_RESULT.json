@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole authorized Fable Proposal 1 as an exact completeness-only positive-definite metric repair of the Generation-33 tags. For all 512 sign rules, center elimination gives the same rank-10 homogeneous Gram constraint RREF, which contains the unit equation G[1,1]=0. This contradicts the preregistered lower bound G-(1/100)I positive semidefinite, requiring G[1,1]>=1/100. The repair is therefore exactly infeasible before factor or shell construction. This is a finite rejection of this tag family only.",
+  "hypothesis": "A shared rational positive-definite 6-by-6 metric with separate formula centers might restore a common completeness sphere for the Generation-33 exterior fingerprints.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_exterior_metric_repair_infeasible.py",
+    "experiments/gen34_exterior_metric_repair_manifest.json",
+    "gen-34/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_exterior_metric_repair_infeasible.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_exterior_metric_repair_infeasible.py",
+      "exit_code": 0,
+      "finding": "Exhausted all 512 sign rules; every combined exact equal-sphere constraint space has rank 10 and one common RREF forcing G[1,1]=0, contradicting G>=I/100."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_exterior_metric_repair_infeasible.py && python3 -m json.tool experiments/gen34_exterior_metric_repair_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the exact algebraic-certificate manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_exterior_bivector_completeness.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-33 source bivector audit still verifies after reuse by the metric-repair experiment."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If equal-radius exterior geometry is continued, preregister a new integral tag family and first compute its combined center-eliminated Gram constraint space; proceed only if it contains a trace-one positive-definite rational point with an exact factor, then audit G13 parity and DROP before any composition claim."
+}

@@ -1,0 +1,120 @@
+{
+  "affine_closure": {
+    "distance_range": [
+      0,
+      15
+    ],
+    "legal_baseline_range": [
+      20,
+      48
+    ],
+    "pointed_kernels": 5,
+    "seeds": [
+      27,
+      97,
+      103,
+      104,
+      241,
+      245,
+      416,
+      438,
+      545,
+      580,
+      585,
+      604,
+      610,
+      675,
+      970,
+      1320,
+      1321,
+      1479,
+      1549,
+      1848
+    ],
+    "semantic_illegal_cost_range": [
+      8,
+      40
+    ]
+  },
+  "all_eight": {
+    "base_distance": 2,
+    "cheapest_semantic_illegal_pure_square": 0,
+    "deleted_coordinates": 24,
+    "exact_transfer_rank": 40,
+    "fiber_size": 16,
+    "folded_distance": 0,
+    "image_dimension": 25,
+    "legal_pure_square_range": [
+      7,
+      40
+    ],
+    "mixed_words_enumerated": 33554432,
+    "parity_check_rank": 16,
+    "pointed_kernel": true,
+    "retained_coordinates": 40,
+    "source_square_dimension": 25,
+    "star_zero_dimension": 24,
+    "unfurled_square_distance": 4
+  },
+  "coordinate_relabelings_checked": 1693630,
+  "expected_move": "matching fibers polarize to sparse retained channels while odd-cover fibers retain many active channels",
+  "falsification": "pointed kernel, NO not above worst YES, hostile illegal cost not above legal baseline, or exponent not above baseline",
+  "folded": {
+    "NO_distance_range": [
+      0,
+      21
+    ],
+    "NO_pointed_kernels": 38,
+    "YES_distance_range": [
+      0,
+      13
+    ],
+    "YES_pointed_kernels": 3,
+    "best_NO": 0,
+    "max_exact_transfer_rank": 63,
+    "rank_exponent": 0.0,
+    "retained_range": [
+      9,
+      63
+    ],
+    "uniform_ratio": 0.0,
+    "worst_YES": 13
+  },
+  "holonomy": {
+    "base_distance": 3,
+    "cheapest_semantic_illegal_pure_square": 3,
+    "deleted_coordinates": 16,
+    "exact_transfer_rank": 48,
+    "fiber_size": 4,
+    "folded_distance": 3,
+    "image_dimension": 9,
+    "legal_pure_square_range": [
+      3,
+      48
+    ],
+    "mixed_words_enumerated": 512,
+    "parity_check_rank": 40,
+    "pointed_kernel": false,
+    "retained_coordinates": 48,
+    "source_square_dimension": 9,
+    "star_zero_dimension": 8,
+    "unfurled_square_distance": 9
+  },
+  "instances": {
+    "NO_q3_m8": 200,
+    "YES_q3_m8": 10,
+    "affine_closure_q3_m8": 20,
+    "all_eight_q2_m8": 1,
+    "holonomy_q3_m8": 1
+  },
+  "mechanism": "canonical Arikan/Mobius transform P=[[1,0],[1,1]]^tensor6 followed by exact star-zero shortening",
+  "mixed_words_enumerated": 33636544,
+  "primary_success": false,
+  "unfurled": {
+    "best_NO": 25,
+    "exact_transfer_rank": 64,
+    "rank_exponent": 0.2447428045068572,
+    "worst_YES": 9
+  }
+}
+POLAR_SHORTENING_PASS

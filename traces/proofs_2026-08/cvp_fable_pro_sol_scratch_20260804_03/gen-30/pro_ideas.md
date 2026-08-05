@@ -1,0 +1,43 @@
+## Generation 30 — divergent mechanisms
+
+1. **Gain-expander pseudocodeword barrier**  
+**Mechanism.** Replace ordinary equality checks by a global Tanner graph whose deviation coordinates are transported through small integral gains, e.g. \(u_v=g_eu_w\), arranged so every short cycle has incompatible gain product. Honest labels occupy a separate zero-deviation section; a harmful exact pseudocodeword should either vanish or acquire polynomially large coefficients.  
+**Expected move.** Prove \(\|z-z_{\mathrm{honest}}\|_2\ge N^{1/2+\epsilon}\) for every harmful zero-residual vector; scale nonzero residuals similarly.  
+**Obstruction audit.** No slack (G1), local isolation (G2–3), or private rows (G5); all constraints are emitted (G6). It targets G7/G9/G11 parity and G19 splicing by global gain propagation, and charges G12 drops by gain-graph normalization. G13 affine mixtures and the G15 lift are **not outside its assumptions**: they require explicit testing. It is neither G14 pair bags nor G28 min-plus recursion. Unlike G29’s vague coding proposals, gains, shell, target, and unrestricted search are concrete.  
+**Experiment.** Add a 3-regular gain graph with gains \(\{2,3\}\) to the nine-clause instance; enumerate the exact shell through anchor excess 40, including G13/G19 seeds.  
+**Likely death.** The G13 combination lifts through every gain row with coefficients still in \(\{-1,0,1\}\).
+
+2. **Toric deep-hole / large-Graver-fiber gadget**  
+**Mechanism.** Use a Lawrence-lifted integer matrix whose legal Boolean witnesses have short coefficient representatives, while patched clause marginals lie in the same lattice fiber only through a large Graver move. This treats soundness as distance inside an affine semigroup fiber rather than amplification of a residual. See classical Graver-basis and toric-ideal methods (Graver 1975; Sturmfels 1996).  
+**Expected move.** Construct polynomial-size fibers where every harmful representation has coefficient norm \(N^{1/2+\epsilon}\), yielding \(c=\epsilon\).  
+**Obstruction audit.** There is no free slack (G1), fixed local isolator (G2–3), private overlap (G5), or external filtering (G6). Exact G7 kernels, G9/G11 parity, G12 drops, G13 affine collisions, and G15 lifts become candidate short Graver moves rather than invisible syndromes. It is not pair-bag lifting (G14), flow linearization (G19), or G28 recursion. It avoids G29’s unevaluated toric-style weakness only if the complete fiber and coefficient bound are emitted; otherwise that criticism applies.  
+**Experiment.** Enumerate Lawrence liftings of \(4\!-\!8\) columns for the all-eight-clauses core; compute the exact Graver basis and compare legal/harmful minimum norms.  
+**Falsification/death.** A conformal decomposition of G13 into constant-size Graver moves; this is the most likely outcome.
+
+3. **Formula sheaf with integral cosystolic expansion**  
+**Mechanism.** Build an explicit cellular sheaf on the variable–clause incidence complex: stalks are legal local-label modules, restrictions are occurrence maps, and the CVP lattice is the integral sheaf coboundary lattice. Unsatisfiability should place the target in a coset whose every integral representative has large support, using an explicit high-dimensional expander cover.  
+**Expected move.** A sheaf-cosystole bound \(\Omega(N^{1+2\epsilon})\) in squared norm while a global section gives YES radius \(O(\sqrt N)\).  
+**Obstruction audit.** No slack or radix mechanism (G1/G7), no G2–3 local certificate or G5 private composition, and every boundary row is emitted (G6). G9/G11 parity and G12 drops would be nontrivial cochains. However G13 affine mixtures and G15 hierarchy lifting remain genuine threats because sheaf cohomology is linear. It is not G14 pair bags, G19 path flow, or G28 min-plus composition. G29 explicitly killed unspecified homology; this proposal is outside that criticism only after stalks, boundary matrices, target class, and cover are frozen.  
+**Experiment.** Construct the incidence 2-complex for the nine-clause obstruction, take its smallest 2- or 3-sheet expander cover, compute SNF, and enumerate each target-coset cosystole.  
+**Falsification/death.** The target class is trivial, or G13 supplies a constant-support cocycle.
+
+4. **Homogenized tensor lattice with entanglement penalties**  
+**Mechanism.** Freeze one exact rational seed lattice and form a two-copy homogenized tensor instance with coordinates \(1\!\otimes v\), \(v\!\otimes1\), and \(v\!\otimes v\). Add explicit symmetric/antisymmetric projections so pure legal tensors retain multiplicative norm, while malformed sums of products acquire “entanglement” energy.  
+**Expected move.** Demonstrate adverse growth strictly exceeding legal growth in two copies, then seek an inductive singular-value inequality; even a ratio exponent \(1+\eta\) per constant-size composition would give polynomial amplification at logarithmic depth.  
+**Obstruction audit.** No slack, local isolation, private overlap, or external filters (G1–6). Tensor coordinates directly expose G7/G9/G11 parity, G12 drops, G13 mixtures, G15 lifts, and G19 splices—but do not automatically defeat them. It is distinct from G14’s pair marginals and G28’s identity-glued min-plus tile. This is precisely the G29 tensor route reopened with the demanded explicit Gram, target, control, coefficient bound, and complete malformed-state partition; rank-one enforcement is not assumed.  
+**Experiment.** Tensor a rank-\(\le12\) seed; rationally factor its Gram and exhaust all unrestricted coefficients through the first radius containing DROP, G13, and G19 states.  
+**Falsification/death.** An entangled integer vector has norm below the product of one-copy adverse minima.
+
+5. **Association-scheme deep-hole geometry**  
+**Mechanism.** Replace coordinatewise half-anchors by a single centered spherical block whose legal labels are vertices of an integral two-distance frame, with a separate radial coordinate making the zero/drop vector expensive. Concatenate blocks using a classical association-scheme code and use Delsarte linear-programming bounds to control every signed combination, not merely syndromes (Delsarte 1973).  
+**Expected move.** Find a frame where all honest global encodings have radius \(R\), but every normalization-preserving harmful affine combination has radius at least \(N^\epsilon R\).  
+**Obstruction audit.** No slack or local/private isolation (G1–5), and the full Gram realization avoids G6. Unlike G7, amplification is geometric rather than residual-only. G9/G11 are lower-degree Gram special cases; the frame optimizes parity and G12 drops jointly. G13 does apply algebraically, but its affine collision need not preserve Euclidean radius; it must be included explicitly. G15, G19, and malformed G28 states likewise require shell checks. This is not G14 pair lifting. It answers G29 only if an exact rational Gram and unrestricted coefficient bound are supplied.  
+**Experiment.** Search rational Bose–Mesner combinations on 8-label Hamming or folded-cube schemes, optimizing the exact nine-clause minimum against the matched control.  
+**Falsification/death.** Convex cancellation puts the G13 affine combination closer to the center than honest vertices.
+
+6. **High-girth representable-matroid base lift**  
+**Mechanism.** Express each assignment as a common base choice across variable and clause partition matroids, then replace every ground element by a column of an explicit high-girth representable matroid. Inconsistency should require a long circuit—or a circuit with large integral coefficients—while a satisfying common base remains short.  
+**Expected move.** Obtain a global circuit lower bound \(N^{1/2+\epsilon}\) for every harmful exact fiber, then polynomially weight all nonzero constraint residuals.  
+**Obstruction audit.** This uses neither G1 slack, G2–3 local isolation, nor G5 private rows; the entire representation is emitted, satisfying G6. G7/G9/G11 attacks become matroid circuits, and G12 drops violate base rank. G13 and G15 are **not escaped automatically**: their affine relation may itself be a short circuit. G19 signed flow is irrelevant unless the representation degenerates to a graphic matroid. It is not G14 pair bags or G28 recursion. G29’s rank-one and fixed-Sidon objections do not directly apply, but its demand for a uniform composition law still does.  
+**Experiment.** Encode the all-eight-clauses core using a small binary or ternary linear matroid, enumerate lifts of girth \(5\!-\!8\), and compute minimum harmful circuit norm exactly.  
+**Falsification/death.** Representability forces short exchange circuits, with G13 appearing as one of them.

@@ -1,0 +1,29 @@
+{
+  "summary": "Selected Pro proposal 6, the only proposal surviving opponent review, and exhaustively tested affine/Graver isolation on one falsified OR core. Every degree-one left-regular 12-column matrix with one or two rows retains a squared-norm-2 harmful signed move. Among all 531441 three-row matrices, 18 isolate the harmful fiber in the tested coefficient box [-3,3]; the other matrices have minimum harmful squared norm 2 or 4. This is a bounded finite survivor, not a reduction or asymptotic lemma.",
+  "hypothesis": "A sparse affine measurement matrix may exclude exact signed local-pattern relaxations by giving the relevant integer affine fiber no short harmful kernel direction.",
+  "changed_files": [
+    "experiments/verify_affine_isolation_core.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-2/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_affine_isolation_core.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_affine_isolation_core.py",
+      "exit_code": 0,
+      "finding": "Covered all degree-one left-regular 12-column matrices with 1-3 rows. Counts were 1, 4096, and 531441; exactly 18 three-row matrices isolated the tested harmful fiber, while no one- or two-row matrix did."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_affine_isolation_core.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Take the representative three-row isolating matrix and compose two overlapping OR-clause selector blocks sharing a global variable. Perform exact low-weight search, including auxiliary directions, to test whether cross-clause correlated kernel moves restore a signed cheat; then test column degree two only if the overlap instance still isolates."
+}

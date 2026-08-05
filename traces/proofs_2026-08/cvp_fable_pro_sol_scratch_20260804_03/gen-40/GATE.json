@@ -1,0 +1,50 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not define a bounded optimization: no radius/trace normalization, center, matched-control constraint, or complete factor/target is frozen, so absolute margins can be scaled. The old G31 shell is not complete for a newly optimized Gram and center; checking it plus parity is not an unrestricted-integer audit and cannot exclude DROP or a new short affine vector.",
+      "Proposal 2's experiment is vacuous on G38: its exact obstruction residual fiber is already empty, whereas G38 soundness concerns the minimum nonzero residual. The affine target under one or two Lawrence liftings, anchor normalization, and CVP factor are unspecified, and Graver growth in some homogeneous kernel does not imply a NO/YES distance-ratio increase.",
+      "Proposal 3's proposed Dirac theorem is false for linear restriction systems. Given two globally valid assignments, the normalized integral combination 2δ_a-δ_b is a consistent non-Dirac signed section on every bag, regardless of unique-neighbor expansion; the graph, bags, and threshold are also not frozen.",
+      "Proposal 4 cannot charge exact kernels: trace forms amplify only nonzero algebraic residuals. G14 already has a zero-residual G11 affine lift at anchor excess 928, while the proposed shell stops at 64, so a pass would not discriminate the stated mechanism or scaling claim.",
+      "Proposal 5 audits only rank-one and rank-two tensors, leaving unrestricted higher-rank entangled coefficient tensors unsearched. Kannan embeddings also admit last-coordinate-zero vectors, the embedding parameter and alleged canonical isometry removal are undefined, and no E-type result supplied transfers CVP gaps through iteration.",
+      "Proposal 6 supplies no explicit complex, gluing, target class, monodromy bound, or formula-to-lattice map. Smith normal form determines quotient structure, not the shortest Euclidean representative, while G13 cocycles and G19 signed splices remain completely available.",
+      "Proposal 7 leaves the ancilla substitutions, permitted repair space, normalization, control instance, and exact rational certificate unspecified. Strong convexity alone does not prevent free-ancilla kernels, DROP, or an additive one-clause penalty whose curvature also raises the completeness baseline; a rationalized SDP followed by an unfrozen box search is not a certificate."
+    ],
+    "evidence": [
+      "G13 exhibits an exact integral affine collision, and G15 lifts the same coefficients through every hierarchy level with zero residual. G19 independently finds an exact accepting signed flow with two negative coefficients.",
+      "G38 proves raw residual square at least three on the obstruction, so its exact residual fiber is empty; its finite pass relies on eleven full-variable bags and establishes no lifting amplification.",
+      "G14 explicitly records the zero-residual affine lift at anchor excess 928. Algebraic scaling cannot alter that zero residual.",
+      "G31's finite Gram pass fails to compose in G32, and G37 proves an exact additive parity cut throughout its tested metric family. Therefore finite metric separation cannot be treated as evidence of polynomial growth.",
+      "G12 and G38 provide concrete DROP costs, while G30 shows that tensor auditing must cover all unrestricted coefficient tensors rather than selected ranks.",
+      "No verifier evidence accompanies any proposed construction; all claimed outcomes are predictions."
+    ],
+    "next_experiment": "None as written. Reopen Proposal 1 only after freezing an exact normalized Gram-and-center program for obstruction and matched control, with explicit factor/target and candidate-dependent eigenvalue bounds enabling exhaustive separation over the complete integer shell; or reopen Proposal 2 on a matrix with a known nonempty harmful exact fiber and a fully specified affine Lawrence lift that audits DROP, nonzero residuals, and normalized NO/YES growth.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "None of the seven proposals specifies a complete polynomial-size factor, target, normalization, coefficient bound, and unrestricted soundness shell. Assertions that R, L, V, D, or S are handled are design intentions, while every proposal still lacks the C/X composition or dimension-growth theorem required for a polynomial gap.",
+      "Proposal 1 invokes integer-RIP without a theorem connecting lossless-expander support, PSD, exact equal-radius equations, and unrestricted signed deviations. Its SDP has no frozen Gram parameterization or scale normalization, and G32/G37 already show that compatible parity can remain exactly additive despite cross-copy terms.",
+      "Proposal 2 supplies no formula-to-complex construction or explicit augmentation target. Smith torsion does not lower-bound the Euclidean norm of an affine representative, and searching arbitrary tiny restriction matrices can find irrelevant torsion without distinguishing YES from NO instances.",
+      "Proposal 3 leaves the laminar rows and weights unspecified and searches only flows with at most four negative edges, not the unrestricted CVP shell. A local signed splice can cancel after a short interval and affect only logarithmically many laminar rows, so no polynomial excess follows from prefix discrepancy.",
+      "Proposal 4 is defeated algebraically by A/K. Applying the exact integral G13 coefficients to the lifted honest digit trees satisfies every linear carry equation; if honest trees have only O(d) support, the affine combination has at most a constant multiple of O(d) support rather than b^d malformed leaves.",
+      "Proposal 5 has no specified phase family or proof of exact cosphericity, DROP resistance, or propagation from a sparsely falsified clause. The stated coherence bound becomes nonpositive for large support unless p dominates the square of that support, and a p=17,29 test cannot discriminate the claimed asymptotic mechanism.",
+      "Proposal 6 requires multiplication of coefficient-dependent residuals, which is nonlinear and cannot be implemented by a CVP lattice map. Companion matrices only implement multiplication by fixed elements; selector-based linearization reintroduces G13/G19 signed identities, while an l1-at-most-3 search is not a complete shell.",
+      "Proposal 7 is an unfrozen search framework rather than a construction: G31, G38, and flow features inhabit different coefficient spaces, and no linking map, metric normalization, eigenvalue floor, or iteration bound is given. A fixed-instance CEGIS optimum or dual would concern only its finite feature cone and cannot be promoted to an asymptotic theorem."
+    ],
+    "evidence": [
+      "G13 verified an exact integral honest-affine-span collision annihilating every compatible linear syndrome, and G15 lifted it through every hierarchy level with zero residual. This directly blocks the linear digit-tree and sheaf-style claims absent a nonlinear emitted mechanism.",
+      "G19 found a zero-residual accepting flow with two negative coefficients and only 16 anchor excess. No supplied verifier shows that prefix or higher-chain metrics force this or all related splices to polynomial cost.",
+      "G31 passed one finite shell, but G32 exhibited compatible parity at exactly twice the one-copy cost and G37 proved an exact universal additive cut throughout its tested metric family. Thus equal-radius geometry alone has no verified composition law.",
+      "G38 and G14 are only fixed-shell bag passes; G15 shows that enlarged views can still admit zero-residual affine lifts. Neither supplies evidence for the proposed cosystolic or expander scaling claims.",
+      "G28 failed its adverse-versus-legal growth inequality, and G30 found an exact NO/YES seed isometry. These are direct warnings against inferring amplification from finite composition or multiplicative terminology.",
+      "No verifier evidence is supplied for any Generation-40 proposal. Every experimental outcome in the proposal file is predictive, and several experiments do not define a unique emitted instance."
+    ],
+    "next_experiment": "None as written. Reopen only Proposal 7 after freezing one common coefficient space, explicit rational feature matrices and center, a scale normalization and positive eigenvalue floor yielding a complete coefficient shell, and a derived one/two-copy rule; then exact CEGIS may run to either a fully audited metric or a rational infeasibility/additivity certificate.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

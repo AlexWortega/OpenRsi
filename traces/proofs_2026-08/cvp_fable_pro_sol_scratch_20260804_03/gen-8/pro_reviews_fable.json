@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 fails O3. At degree two, the exact parity relation 000 = 100 + 010 + 001 - 110 - 101 - 011 + 111 preserves every moment of degree at most two; degree three distinguishes it only inside a full bag, while clauses on distinct triples can alter their private triple moments and preserve all overlap moments.",
+    "Proposal 2 cannot range-lock unrestricted integer flows using linear trellis equations. If P0 and P1 are accepting paths decoding 0 and 1, then 2P0-P1 has unit start/end flow and decodes -1 while preserving every affine transition or tag equation; anchors can charge it but do not remove the kernel or establish a polynomial ratio.",
+    "Proposal 3 encounters known degree growth: Boolean Nullstellensatz and polynomial-calculus certificates for 3-CNF can require degree growing with n, making the Macaulay monomial lift exponential. Testing degrees 1 through 4 on four variables cannot discriminate this asymptotic blocker, and no Euclidean gap or coefficient bound is supplied.",
+    "Proposal 4 supplies neither an explicit chain complex nor a polynomial construction producing a nonzero unsatisfied coset and a uniform cosystolic bound. Nonzero mod-q residue alone gives only constant local distance, and the proposed search over unspecified candidate 2-cells is not reproducible.",
+    "Proposal 5 invokes only bounded dissociation, so O2 remains until a proved CVP-radius-to-l1 bound is given. The tag count, coordinate search range, fixed-target coupling to global bits, completeness cost, and dimension/radius law are all missing; the stated search is therefore not a finite specified experiment.",
+    "Proposal 6 is conditional on a kernel-free composable seed that is not supplied. Its proposed degree-two seed has the exact parity kernel above, tensoring maps zero to zero, and linear rank-consistency admits non-rank-one integral pseudo-tensors.",
+    "Proposal 7 cannot remove the projected affine relation with private existential auxiliaries: choose legal witnesses for 011, 100, and 111, and their signed combination has normalized boundary 000 while satisfying every affine equation shared by legal columns. Boolean anchors can impose only constant gadget cost, and auditing two or three overlaps cannot certify arbitrary composition or O6."
+  ],
+  "evidence": [
+    "The supplied Generation-7 verifier reconstructs the fixed-target lattice and exhibits the exact zero-residual attack 011 + 100 - 111 at squared distance 80 versus baseline 72. This directly confirms that linear reweighting or coding cannot detect an existing affine kernel.",
+    "Generation 5 exhaustively found short integer kernel moves in every tested private-row overlap system, despite Generation 3 having exactly certified the isolated local fibers. This is direct finite evidence against treating local isolation or bounded overlap checks as composable.",
+    "Generation 1 verifies that unrestricted integer slack can annihilate every amplified residual, while Generation 6 shows that external filters or changed references do not constitute CVP evidence.",
+    "No proposal supplies a polynomial family, completeness/soundness proof, dimension-dependent gap, or reduction theorem. The supplied status correctly reports that no hardness lemma exists."
+  ],
+  "next_experiment": "None for these proposals. Reopen only with a fully specified polynomial-size fixed-target mutation whose unrestricted affine system provably makes both the cube-parity replacement and every lifted-witness version nonzero; then run one exact, box-free CVP/SNF audit on the nine-clause obstruction and a fixed satisfiable control, requiring a valid control witness and unsatisfiable distance strictly above the stated completeness radius.",
+  "confidence": 0.98
+}

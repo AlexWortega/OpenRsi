@@ -1,0 +1,41 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-12/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The scale-1 Walsh candidate is decisively killed: an unrestricted clause-drop selector has squared distance 105, below the required strict threshold 108. Charging cube parity to 153 does not rescue the construction.",
+      "Nothing in Generation 12 supplies a uniform formula family, composition argument, or dimension-dependent gap. The result cannot be promoted beyond a finite falsification of one 72-variable instance/template.",
+      "The proposed SDP follow-up is underspecified: it does not enumerate the invariant Gram basis, equal-radius constraints, normalization, or cut set, and separation of selected cuts would not certify unrestricted CVP soundness. It should not be run in that form."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION reports exit code 0 for the deterministic verifier. Its shell DP covers all integral selectors through squared radius 108, finds obstruction minimum 105, and finds control minimum 81.",
+      "The displayed witness accounting is consistent: anchor 72, one raw residual of square 1 weighted by 25, and fingerprint energy 8 total 105. The cube-parity accounting is likewise 96+57=153.",
+      "The shell result proves the global obstruction minimum is 105, not merely a bounded-search minimum: any better vector would lie inside the exhaustively audited shell. The control witness and per-block lower bound establish exact minimum 81.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently label the result finite and state that no hardness lemma exists. No supplied claim improperly promotes this evidence to asymptotic hardness.",
+      "The machine packet directly records only the new verifier run; the separate inherited-verifier, compilation, and JSON checks appear only as self-reported SOL_RESULT tests. This does not undermine the witnessed counterexample but limits independent evidence for those ancillary claims."
+    ],
+    "next_experiment": "Run exactly one scale-only mutation of the same Walsh tag: clear denominators for fingerprint scale 1/3 and emit the integer objective 9||2z-1||^2+225||A_{<=3}z-b||^2+||Fz||^2 on the same obstruction and control. Exact unrestricted shell-DP audit through squared radius 876=(4/3)657; verify control minimum 657 and require obstruction minimum strictly above 876. The known parity and clause-drop witnesses then cost 921 and 881 respectively; if any vector costs at most 876, kill this scale-only Walsh line.",
+    "confidence": 0.98
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The explicit dimension-9 top-Walsh candidate is dead: an unrestricted clause-drop selector has squared distance 105, below the required strict threshold 108. It cannot be promoted or reused without a mutation that charges deletion rather than merely charging parity.",
+      "The homogeneous clausewise fingerprint loses one unit of fingerprint energy when a clause is dropped while the anchor energy remains 72; only the normalization row charges the deletion. This directly defeats the claimed separation mechanism even though the seven-term parity attack rises to 153.",
+      "Nothing here establishes a uniform reduction, composition law, growing soundness gap, or dimension-dependent hardness. The n=9 calculation is finite evidence only and cannot support the target asymptotic theorem.",
+      "The proposed SDP is not yet evidence: a numerical optimum or separation of a preselected attack list would not certify unrestricted CVP soundness. Any survivor requires an exact rational certificate followed by unrestricted shell enumeration."
+    ],
+    "evidence": [
+      "The supplied passing verifier reconstructs the factor, target, Gram data, and manifest, then audits unrestricted integer selectors through squared distance 108. It reports exact obstruction and control minima 105 and 81.",
+      "The displayed clause-drop witness has anchor 72, raw residual squared 1 scaled by 25, and fingerprint squared 8, totaling 105. Thus its squared ratio is 35/27, strictly below 4/3.",
+      "The same verifier reports the inherited cube-parity vector at 153, confirming that the intended parity-charging mechanism works locally but does not control the cheaper deletion attack.",
+      "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently label the result as a finite falsification of this explicit fingerprint and state that no hardness lemma exists.",
+      "MACHINE_VERIFICATION directly records only the Generation-12 verifier run. The separately claimed standalone Generation-11 rerun is not independently evidenced in that machine packet, although the Generation-12 verifier imports and checks the inherited construction."
+    ],
+    "next_experiment": "Freeze and hash one incidence-equivariant rational Gram/linear orbit basis before optimization on the same obstruction and control. Impose the fixed center, trace normalization, Q>=4I, and squared distance 81 for every honest satisfying control selector; add every one-clause-zero selector having current distance at most 108 and every clause-local seven-term parity selector as cuts requiring distance at least 108+1/1000. Produce either an exact rational primal factor/target or an exact rational dual obstruction; if primal, run unrestricted exact shell DP on both instances through 108, passing only if the control minimum is 81 and no obstruction vector has distance at most 108.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

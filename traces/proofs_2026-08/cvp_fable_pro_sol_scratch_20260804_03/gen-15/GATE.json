@@ -1,0 +1,42 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-15/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen Generation-15 candidate is directly falsified: the unrestricted integral affine lift has zero residual and squared distance 24960, below the preregistered threshold 25472. Residual reweighting cannot affect this witness.",
+      "The hierarchy is not a polynomial-size reduction family. The source creates a selector for every assignment to each node’s union of variables; the root therefore has 2^n selectors on a general n-variable formula, while the 16-coordinate root here is an artifact of the four-variable test.",
+      "The proposed weight-feasibility follow-up is neither bounded nor well specified: “O(m)” has no fixed constant and the candidate scope family is undefined. Moreover, feasibility against only the G13 witness is already nonempty: changing the internal factor from 1/16 to 1/8 gives integral scale 64, B=4736, T=6464, and G13 cost 6528, so that test would not resolve soundness.",
+      "All evidence concerns one m=9 instance. It supplies no uniform soundness lemma, polynomial dimension bound, composition theorem, or dimension-dependent approximation gap, and cannot be promoted to asymptotic hardness."
+    ],
+    "evidence": [
+      "The supplied machine verifier reports raw residual squared zero, attack cost 24960, threshold 25472, and a 512-point violation. Its source reconstructs all rows and checks the affine lift against the Generation-11 selector.",
+      "The control minimum B=18560 is valid: every integral anchor coordinate has the stated coordinatewise minimum, residual energy is nonnegative, and an honest control selector attains B with zero residual.",
+      "The source explicitly defines node assignments using product((0,1), repeat=len(variables)); the root contains the union of all clause variables. This exposes exponential selector growth on unrestricted formulas.",
+      "STATUS, IDEAS, NOTES, and proof_cvp consistently label the result a finite kill only and state that no hardness lemma exists. The SOL_RESULT does not improperly claim an asymptotic theorem.",
+      "MACHINE_VERIFICATION contains evidence only for verify_weighted_laminar_hierarchy.py. The additional py_compile, JSON, Generation-13, and Generation-14 rechecks listed in SOL_RESULT are not separately attested by the supplied machine record, although they are unnecessary for the central counterexample."
+    ],
+    "next_experiment": "None for this run. Reopen only after a new mutation replaces full assignment tables by an explicit polynomial-size uniform encoding and states fixed numerical weight and scope constraints; another weight-only test of the same exponential affine hierarchy is not warranted.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen Generation-15 candidate fails its preregistered soundness threshold: an unrestricted integral zero-residual vector has squared distance 24960, strictly below T=25472. Increasing residual weights cannot affect this witness because every emitted linear hierarchy equation vanishes on it.",
+      "The claimed propagation mechanism is false for affine combinations of honest encodings. Normalization and marginalization commute with affine combinations whose coefficients sum to one, so the hierarchy transmits the G13 pseudodistribution rather than penalizing it.",
+      "The construction is not polynomial-size on general 3SAT instances. Internal nodes enumerate assignments to the union of their clauses, and the root can contain all variables, requiring exponentially many selector coordinates outside this four-variable test.",
+      "The proposed weight-feasibility follow-up is not well posed. At fixed m=9, an O(m) baseline has no specified uniform constant, rational weights have no fixed normalization, and 'every candidate scope' does not define a finite adversary or scope set.",
+      "Even a successful finite reweighting feasibility result would establish neither a uniform weight family nor composition, polynomial dimension, or an n^c gap. It cannot be promoted to asymptotic hardness."
+    ],
+    "evidence": [
+      "The supplied machine verifier exits successfully and reconstructs the manifest before checking zero residual, total squared distance 24960, and a 512-point violation of the threshold. These values agree across SOL_RESULT, STATUS, IDEAS, NOTES, and proof_cvp.md.",
+      "The verifier proves the control minimum B=18560 from the coordinatewise integral anchor lower bound and an honest zero-residual witness. This supports only the stated finite control result.",
+      "The verifier explicitly checks that the lifted leaf blocks equal the prior G11 selector and that all hierarchy residuals vanish. The expensive single-leaf-drop audit is irrelevant to this affine attack and supplies no broader soundness.",
+      "STATUS and the other packet files correctly retain the qualification that no hardness lemma or dimension-dependent gap is established. The ancillary Gen13 and Gen14 reruns listed in SOL_RESULT are not separately present in MACHINE_VERIFICATION, although the main verifier directly checks the affine identity needed here."
+    ],
+    "next_experiment": "None for this run. Reopen only with a mutation that has polynomially many coordinates for arbitrary 3SAT, fixes a formula-independent weight normalization and finite scope family, and preregisters an exact bounded search covering all specified zero-residual affine lifts; otherwise do not emit another lattice.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented only surviving Pro proposal 7 as an explicit collision-seeded nonbacktracking Schur-walk lift. The precommitted length-4 map passed its bounded finite criterion on ten YES and 200 deterministic exact NO q=3,m=8 dictionaries: worst YES distance 3, best NO distance 33, uniform ratio 11, maximum nominal pointed length 1277, and finite rank exponent 0.3352636 versus the unfurled 0.2324868. Exact hostile checks also found illegal all-eight and twisted-holonomy mixed words of costs 6 and 9 whose entire walk shells cancel. This is finite evidence only; no polynomial walk-count or asymptotic soundness theorem is claimed.",
+  "hypothesis": "Causal mechanism: a perfect 3DM matching is an independent set in the incompatibility graph and activates no walk products, while a collision in an odd NO cover seeds many indexed nonbacktracking-walk monomials. Expected move: preserve YES cost 3, raise every tested NO above 5, and improve log(NO/YES)/log(output length). Falsification condition: at primary length 4, any tested NO has cost at most 5, worst YES differs from 3, or the finite exponent fails to exceed the base. The bounded q=3 criterion passed, while hostile legal-affine superpositions exposed complete shell cancellation and block asymptotic promotion.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_nonbacktracking_schur_walks.py",
+    "experiments/nonbacktracking_schur_walks.log",
+    "gen-2/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_nonbacktracking_schur_walks.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_nonbacktracking_schur_walks.py > experiments/nonbacktracking_schur_walks.log",
+      "exit_code": 0,
+      "finding": "Enumerated 103136 mixed words. Primary length 4 gave YES 3 versus NO at least 33 across 200 exact NO dictionaries, ratio 11 and finite exponent 0.3352636; all-eight and twisted-holonomy attacks exhibited illegal mixed words of costs 6 and 9 with zero walk-shell cost."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_nonbacktracking_schur_walks.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Stay within the surviving walk proposal: replace indexed nonbacktracking walks by precommitted simple paths so constant collision cycles cannot generate duplicate-coordinate amplification, then test deterministic bounded-degree q=4 YES/NO dictionaries and every mixed word. Kill the route unless the gap and exponent survive without repeated-vertex walks and with a proved polynomial path count."
+}

@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole bounded survivor because complete rejecting paths have zero ACCEPT coordinate, so the G13 affine combination does not automatically satisfy its endpoint row. However, the emitted flow system remains linear and may admit signed accepting circulations or spliced paths; the proposed coefficient box would not certify the unrestricted integer fiber.",
+    "Proposal 1 has no O5 or O8 argument. Its claimed Ω(length) negative-edge bound is insufficient: with Θ(length) anchored edge variables, Θ(length) unit deviations increase squared distance only by a constant factor over completeness, not by n^c.",
+    "Proposal 2 has unrestricted block mixing, no polynomial covering family, and an experiment with assignment-indexed columns that is exponential in general. A small MILP cannot discriminate O7 or O8, while affine combinations across blocks reopen O1/O6.",
+    "Proposal 3 cannot amplify the verified G13 lift: that lift has exactly zero linear pair-bag defect, and any linear tuple-to-chain map therefore places it in the zero chain class before torsion is consulted. No nonlinear semantic map, systole theorem, or frozen boundary construction is supplied.",
+    "Proposal 4 merely amplifies a nonzero integer residual; direct row weighting already does that. G13 and the hierarchy lift have exact-zero residual, so enumerating the recurrence does not test the current O3/O6 blocker.",
+    "Proposal 5 is already defeated algebraically by G13. Its normalized signed satisfying selector extends linearly through each clause circuit with output one, after which every AND gate can use its honest all-ones table entry, yielding a zero-residual accepting gate history.",
+    "Proposal 6 uses all subset bags on four variables, an exponential 3^n representation in general. Fixed-degree sampling retains parity relocation and the l1-nine affine attack gives at most constant-factor metric separation; the proposed finite search cannot address O7/O8."
+  ],
+  "evidence": [
+    "Generation 13 verified an integral affine combination with coefficient sum one and l1 norm nine that reconstructs the harmful legal selector and annihilates every compatible raw linear syndrome.",
+    "Generation 15 verified that the same affine combination traverses every level of a linear hierarchy with exactly zero residual and remains below threshold.",
+    "Generations 5 and 7 found short overlap kernels and an exact zero-residual signed selector; Generations 11 and 12 verified parity relocation and clause-drop attacks.",
+    "Generation 14 is only a finite pair-bag shell pass, and its G13 lift still exists at finite anchor cost with no growing-gap law.",
+    "No current proposal supplies verifier output, an emitted basis, an exact objective, or a soundness certificate. Barrington's classical polynomial-size compilation addresses explicitness for Proposal 1 but proves nothing about unrestricted signed-flow soundness."
+  ],
+  "next_experiment": "Implement only Proposal 1 after freezing a deterministic balanced Barrington compilation of the nine-clause obstruction and a matched satisfiable control. Emit every edge anchor, start/end flow row, conservation row, transition row, and repeated-query consistency row with no external filters; then use Smith normal form plus certified exact integer quadratic minimization to determine the unrestricted minimum anchor cost in the exact ACCEPT fiber, not merely coefficients in [-2,2]. A zero-residual accepting signed flow is the preregistered kill; absence of any integral ACCEPT fiber is only a finite survivor and must not be promoted to O5/O8.",
+  "confidence": 0.96
+}

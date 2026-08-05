@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not specify an exact cloud replacement, lifted affine fiber, or binary generator matrix. If cloud copies equal the original variable, its many paths are repeated Boolean functions subject to O1 cancellation; if copies are independent, new sheet-splicing and completeness obligations arise under O3, while existing all-eight and holonomy words already cancel every I27 walk feature.",
+    "Proposal 2 repeats the unresolved O7 rank-to-Hamming leap already falsified by dense two-sided condensers. Flattening rank is nonlinear, while outputting condensed matrix entries is linear but rank one does not imply sparse Hamming support; the condenser family and row encoders are also not uniquely specified.",
+    "Proposal 3 supplies no binary syndrome matrix or definition of its Fox-derivative rows. A fixed six-sheet S3 lift cannot create logarithmic systole over constant short base cycles, and collision forests have trivial monodromy, so O3 remains; any edge-interface linearization also risks O2, while universal completeness under the graph-dependent voltages is unproved under O4.",
+    "Proposal 4 has the wrong baseline and size accounting. A legal q-triple matching contributes up to sum_{k<=r} binom(q,k) standard monomials, which is q^{Theta(log q)} for r=Theta(log q), while conflict monomials can delete rather than expose illegal terms; fixed truncations remain vulnerable to O1 and the incidence binomials are unspecified.",
+    "Proposal 5 is directly blocked by O2 and O5: a signed 2x2x2 parity-cube perturbation has all three pair projections zero. Adding it to a matching leaves every P, G, and G^k unchanged, so all Gram features vanish while the original coefficient norm changes only additively; fixed primes cannot recover information absent from the projections.",
+    "Proposal 6 has no polynomial-time rule for Q: its SDP requires enumerating matchings and signed exact fibers, thereby using the source decision information. On Az=1 the A^T A term is constant, PSD triangle inequalities cap short affine trades by a constant multiple of the completeness radius, and this direct integer metric is not the O8 binary-syndrome transfer claimed.",
+    "None of the six proposals supplies polynomial output, worst-YES support, exact rank, and every-mixed-word soundness simultaneously. O6 is not directly triggered because these are not complete-assignment dictionaries, but avoiding O6 does not repair their O1-O5, O7, and O8 failures."
+  ],
+  "evidence": [
+    "I27's exact finite test found ratio 11 on the ordinary suite, but all-eight and twisted holonomy contain illegal mixed words of costs 6 and 9 with zero walk charge. No bounded-degree source reduction, logarithmic-path soundness lemma, or polynomial rank theorem was obtained.",
+    "The frozen F8 multi-block condenser had worst YES 31 versus best NO 6 despite no pointed kernels. This verifies the relevant rank-versus-Hamming-support failure on every enumerated mixed word, though it is not a universal no-go theorem.",
+    "The obstruction map proves that every proper marginal kills the full parity cube. Pair-projection Gram powers are functions only of such marginals and therefore cannot distinguish their exact integer kernel.",
+    "Variable pair-projection CVP was already tested and achieved only squared norm 12 versus 14; direct integer incidence gives q versus q+2. These are additive finite gaps, not evidence for polynomial separation.",
+    "Exact syndrome-to-CVP transfer applies only after an explicit binary H,t with a proved syndrome-distance gap is supplied. None of these proposals reaches that prerequisite."
+  ],
+  "next_experiment": "None for the proposals as written. Reopen only Proposal 1 after specifying an explicit polynomial-time cloud map and binary lift, proving legal completeness and nonduplicate path functions; then precommit one tiny cloud and enumerate every mixed word on all-eight, holonomy, affine-closure, and the 10/200 suite, rejecting unless hostile distance exceeds worst YES and the exact-rank exponent improves.",
+  "confidence": 0.99
+}

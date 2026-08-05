@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is not implementable as frozen: S, fields, binary expansion, condenser matrices, and the matroid-seeding rule are unspecified. Existing condenser guarantees preserve rank/nonzeroness, not Hamming separation, so the claimed YES/NO mechanism has no supporting lemma.",
+    "Proposal 2 has no asymptotic construction: M_5(F_2) gives at most 25 moving output bits, hence a constant-dimensional image that is exhaustively decodable. Only a parameterized growing family could escape this, and any M_5 success would remain finite evidence.",
+    "Proposal 3 is already killed by affine closure. Because every legal matching activates zero collision features, the documented illegal odd XOR of three legal matchings also has zero connected-collision shell, regardless of deduplication or Möbius basis changes.",
+    "Proposal 4 searches labels using the legal/illegal partition itself and supplies no uniform polynomial-time labeling rule; this can hide the source decision exactly as the killed weight-class compressor did. Rank separation also is not Hamming separation, and the required condenser theorem is absent.",
+    "Proposal 5 does not specify the constraint group elements, linear lifted columns, coefficient field, binary realization, or succinct Magnus dictionary. Fundamental-cycle holonomy addresses permutation-cycle inconsistency but supplies no reason arbitrary unsatisfiable 3CNFs must expose such a cycle.",
+    "Proposal 6 has no explicit syndrome matrix or affine target. On at most five variables, degree five can encode the full Boolean function space, so the proposed test can succeed by finite assignment enumeration while saying nothing about polynomial-size asymptotics; fixed degree remains under O1 and growing degree risks exponential borders.",
+    "Proposal 2's stated acceptance condition ratio greater than one is too weak. It must beat the unfurled output-adjusted exponent and pass pointed-kernel, affine-closure, all-eight, holonomy, and relabeling tests."
+  ],
+  "evidence": [
+    "No verifier evidence exists yet for any of these six proposals. Therefore none has an experimental result that may be treated as established.",
+    "The previous commutative multiplication fold had worst YES 4, best NO 2, and an all-eight pointed kernel. This supports testing the explicitly noncommutative mutation but does not predict its success.",
+    "The Schur-walk verifier already found an all-eight illegal word and an odd XOR of three twisted legal matchings whose entire collision shell vanished. Proposal 3 preserves the decisive property that all its added features vanish on every matching.",
+    "Prior sparse hashes, generator-type punctures, modular folds, and dense tiny folds failed to improve the output-adjusted gap. Rank-condensing language alone does not overcome those exact mixed-word failures.",
+    "O7 leaves code-dependent dense structured folds formally open, so Proposal 2 is not excluded by the obstruction map. Its explicit ordered-pair map is the only proposal close enough to a frozen mutation for one discriminating finite attack."
+  ],
+  "next_experiment": "Test Proposal 2 only. Before running, serialize the exact 5-cycle matrix P and incidence-column-to-h_i lookup with no post-hoc tuning; then enumerate every mixed image word on the existing ten YES, 200 NO, all-eight, affine-closure, and odd-holonomy families, including canonical relabelings. Continue this lineage only if there is no pointed kernel, best NO exceeds worst YES, and log(bestNO/worstYES)/log(actual output length or rank) strictly exceeds the unfurled baseline 0.2447428; otherwise kill the frozen M_5 map.",
+  "confidence": 0.98
+}

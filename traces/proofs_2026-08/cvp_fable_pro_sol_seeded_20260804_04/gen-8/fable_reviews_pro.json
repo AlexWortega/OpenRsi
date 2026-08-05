@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 confuses secant-rank injectivity with Hamming-support preservation, the rank-to-support failure already exposed by dense condensers. Its claimed O(Skr) output and efficient generator construction are unsupported, while exact retention of the Veronese span encounters the proved binomial-dimension wall; the proposed unconstrained condenser search is not reproducible.",
+    "Proposal 3 does not specify A_s, B_s, diagonal probes, or a support lower bound. Pure legal and illegal squares can both have rank one, and the prior F8 condenser preserved nonzeroness yet produced worst YES 31 versus best NO 6, directly refuting rank alone as the mechanism.",
+    "Proposals 4 and 7 remain fixed-degree polynomial signatures and are subject to alternating-cube relations whenever the required independent cube exists. Growing degree incurs the unresolved Macaulay/Veronese size explosion, so degree-3 or degree-4 experiments cannot discriminate the proposed asymptotic escape.",
+    "Proposal 5 cannot overcome affine closure with a linear BCH selector: the XOR of three target-fiber legal sector words is another target-fiber word of weight at most their summed weights. Existing instances contain semantic illegal odd XORs of legal witnesses, imposing a constant-factor ceiling regardless of selector distance.",
+    "Proposal 6 gives no explicit binary matrix implementing conditional interpolation through selected triples; that condition is bilinear in selection and polynomial coefficients unless witness-dependent columns or tableau interfaces are introduced. Root counting alone does not distinguish a perfect matching from an odd cover that also determines a low-degree interpolant.",
+    "Proposal 2's size-16 branch is undefined for the current coordinate sets without a padding rule and must not be implemented. Only the naturally sized 64-coordinate reduced-square transform is sufficiently specified after freezing multiplication orientation and coordinate order."
+  ],
+  "evidence": [
+    "The proved pure-power dimension formula is sum_{j<=min(k,r)} binom(k,j), reaching 2^k-1; exact function merging cannot evade that rank lower bound. This directly undermines Proposal 1's unexplained short exact realization.",
+    "Prior noncommutative and rank-condensing folds failed arbitrary mixed-word support: M3(F4) produced NO pointed kernels, while the F8 two-sided condenser had uniform ratio 6/31. Proposal 3 supplies no new theorem addressing those failures.",
+    "The exchange-quotient verifier found illegal covers in the affine span of perfect matchings on 32 instances, and the global-selector experiment admitted a weight-9 rectangle splice. These are concrete blockers for Proposal 5's linear protected-sector premise.",
+    "The earlier RS shell assigned every odd cover the same constant interpolation polynomial as a perfect matching, so it charged no hard syndrome-fiber words. Proposal 6 does not define a classifier that escapes this failure.",
+    "Proposal 2 is not covered by the fixed-coordinate-sampling no-go: an invertible dense polar transform followed by code-dependent shortening is a distinct explicit operation. Full mixed-word enumeration can therefore genuinely falsify or provisionally support it, without implying any asymptotic theorem.",
+    "No proposal supplies new verifier results; all claimed benefits remain hypotheses. Exact binary image construction and output-rank accounting are available for Proposal 2, so its bounded result can be evaluated under O7 and O8."
+  ],
+  "next_experiment": "Test only Proposal 2 on the 64 moving coordinates of the existing reduced-square suite. Freeze row-vector multiplication by P=[[1,0],[1,1]]^{tensor 6} in lexicographic ordered-pair order, delete exactly those transformed coordinates vanishing on the full star-zero subcode, reconstruct each binary syndrome image, and exhaust every mixed word on 10 YES, 200 NO, 20 affine-closure, all-eight, and holonomy cases; also test all induced 8! permutations on the hostile and inherited 10+10 core cases. Kill unless there are no pointed kernels, best NO exceeds worst YES, each hostile illegal cost exceeds its legal baseline, and the exact-transfer exponent using maximum retained rank exceeds the unfurled 0.2447428.",
+  "confidence": 0.98
+}

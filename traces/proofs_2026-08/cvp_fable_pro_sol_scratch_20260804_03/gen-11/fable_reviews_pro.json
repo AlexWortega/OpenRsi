@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "P1 is authorized only for a raw cubic-moment audit. Fixed degree d remains vulnerable to degree-(d+1) cube parity, while BCH distance over a finite field does not by itself imply injectivity for unrestricted integral signed selectors; no polynomial-size growing-degree construction or gap law is supplied.",
+    "P2 is killed as stated. Cosystole bounds nontrivial cohomology classes, not cheap boundaries or integral signed cycles, and no explicit complex or map proving that the known parity defect is nontrivial is specified.",
+    "P3 is killed. A Nullstellensatz identity supplies no CVP distance bound without polynomial degree, coefficient-height, and dual-norm control, none of which is established; degree-3 through degree-5 tests cannot resolve that asymptotic blocker.",
+    "P4 is killed. Unrestricted lattice coefficients produce the toric group completion, so semigroup positivity and rank-one semantics disappear; enumerating Graver moves only through support 12 cannot exclude larger negative-coefficient bypasses.",
+    "P5 is killed pending a raw-kernel escape. Coding spreads only nonzero modular syndromes, while exact integral kernels remain invisible and the product of mod-3 and mod-5 maps still has integral multiples in its kernel unless an independently proved coefficient bound is imposed.",
+    "P6 is killed as specified. A formula-specific Gram-matrix search is not a deterministic polynomial-time construction and can overfit the unsatisfiable instance, where the intended satisfying shell is empty; no uniform template or separation normalization is given.",
+    "P7 is killed. Total unimodularity gives integral vertices only under nonnegativity, which CVP does not enforce, and the full four-variable trellis tests exponential assignment memory rather than the required polynomial-width state compression."
+  ],
+  "evidence": [
+    "Generation 5 exhaustively found squared-norm-at-most-4 kernel moves in all 5,832 tested private-row overlap systems and 95,256 references. This directly blocks local isolation or private checks without a genuinely global mechanism.",
+    "Generation 7 emitted the full lattice objective and found an exact zero-residual signed selector at squared distance 80 versus completeness 72. Radix or code amplification cannot charge a vector already in the raw integral residual kernel.",
+    "Generation 9 exactly verified minima 96 and 72 but exposed a seven-term degree-two cube-parity zero-residual vector with constant anchor excess 24. Cubic rows are therefore the only proposal here offering an immediate, directly testable response to the current witness.",
+    "Generation 6 was invalidated because normalization and consistency were external filters. This rules out relying on positivity, nonnegativity, pseudoevaluations, or path legality unless they are enforced by the emitted lattice objective.",
+    "No supplied verifier establishes composition, a dimension-dependent gap, or an asymptotic hardness lemma."
+  ],
+  "next_experiment": "Authorize P1 only, without BCH compression. Extend the exact Generation-9 basis on the fixed nine-clause obstruction and satisfiable control by an incidence-equivariant, fully emitted matrix of all available squarefree cubic selector moments, using the inherited objective Q=4I+25 A_{\u00003c=3}^T A_{\u00003c=3}; permit no filters, slack, or modular coding. Use exact integer solvability to find any non-one-hot zero-residual selector and exact unrestricted CVP to compute both minima. Kill this fixed cubic mutation if any zero-residual cheat exists or if the unsatisfiable minimum is at most 96; a finite pass requires no such integral cheat, unsatisfiable minimum above 96, and control minimum exactly 72, with no asymptotic inference.",
+  "confidence": 0.97
+}

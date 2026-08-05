@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented the sole surviving Fable proposal 2 as the review-prescribed PSL_2(F_3) isomorphic to A_4 convolution fold: twelve even permutations in lexicographic order, the first eight as canonical coordinate labels, and one lexicographically first probe from each of four conjugacy classes. Across ten YES, 200 NO, twenty affine-closure, all-eight, and eight-coordinate holonomy dictionaries, worst YES distance was 20 and best NO distance was 10 at exact-transfer rank 48. Canonical all-eight has a pointed kernel, and 28800 of all 40320 assignments of the eight labels also have one. This finitely kills the frozen A_4 map, not every growing quasirandom group family.",
+  "hypothesis": "Causal mechanism: ordered nonabelian product buckets lambda_i a_s lambda_j^{-1} should preserve orientation and use quasirandom product mixing to spread every NO mixed matrix while structured YES squares remain concentrated. Expected move: kernel-free images, best NO above worst YES, hostile illegal costs above legal baselines, and exponent above 0.2447428. Falsification condition: any pointed kernel, NO at or below worst YES, hostile illegal cost at or below legal baseline, or no exponent gain. The map fails because group convolution controls algebraic/Fourier spread rather than binary Hamming support; YES costs reach 20 while NO costs reach 10, and all-eight has extensive label-assignment kernels.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_a4_convolution_fold.py",
+    "experiments/a4_convolution_fold.log",
+    "gen-13/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_a4_convolution_fold.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_a4_convolution_fold.py > experiments/a4_convolution_fold.log",
+      "exit_code": 0,
+      "finding": "Enumerated 605072 mixed words and reconstructed explicit syndrome fibers. Main YES/NO distances were 12-20 and 10-22 with no main kernels, but canonical all-eight had a pointed kernel; 28800/40320 all-eight label assignments had kernels. Holonomy illegal cost 22 was below legal baseline 24, and 1693630 induced coordinate relabelings were checked."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_a4_convolution_fold.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune A_4 labels or probes and do not revive rejected proposals. Reopen nonabelian convolution only after supplying a growing explicit group family with an analytic every-mixed-word Hamming-support bound and a uniform YES-support bound; then precommit the labels and rerun the same affine-closure, all-eight, holonomy, exact-rank, and full label-assignment attacks."
+}

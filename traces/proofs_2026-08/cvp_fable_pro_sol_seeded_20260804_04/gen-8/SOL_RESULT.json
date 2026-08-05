@@ -1,0 +1,30 @@
+{
+  "summary": "Implemented the sole surviving Pro proposal 2 as the exactly prescribed 64-coordinate polar shortening: canonical lexicographic ordered pairs, row multiplication by [[1,0],[1,1]]^tensor6, deletion of every transformed coordinate vanishing on the full star-zero subcode, and explicit reconstruction of each binary syndrome fiber. Across ten YES, 200 NO, twenty affine-closure, all-eight, and eight-coordinate holonomy dictionaries, worst YES was 13 and best NO was 0. Pointed kernels occurred in 3 YES, 38 NO, 5 affine-closure, and all-eight images. This finitely kills the frozen polar rule, not every dense transform.",
+  "hypothesis": "Causal mechanism: an invertible Arikan/Mobius transform should polarize matching fibers into sparse channels, after which coordinates invisible to the star-zero subcode can be deleted exactly while odd-cover fibers retain many active channels. Expected move: kernel-free compression with best NO above worst YES, hostile illegal costs above legal baselines, and exact-transfer exponent above 0.2447428. Falsification condition: any pointed kernel, NO at or below worst YES, hostile illegal cost at or below its baseline, or no exponent gain. The condition occurred because coordinates invisible to the kernel can still carry all separation between the pointed affine coset and that kernel.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_polar_shortening.py",
+    "experiments/polar_shortening.log",
+    "gen-8/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_polar_shortening.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_polar_shortening.py > experiments/polar_shortening.log",
+      "exit_code": 0,
+      "finding": "Enumerated 33636544 mixed image words and reconstructed explicit syndrome fibers. YES distances were 0-13, NO distances 0-21, retained ranks 9-63, with 3 YES, 38 NO, 5 affine-closure, and all-eight pointed kernels. All-eight retained 40 coordinates but had semantic illegal and mixed costs zero; 1693630 induced relabelings were checked."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_polar_shortening.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not tune the polar orientation or revive rejected proposals. Reopen dense-transform shortening only with an affine-coset-aware deletion theorem that preserves the nonzero target syndrome, not merely the star-zero kernel; precommit the rule and rerun the same mixed-word and hostile-suite checks."
+}

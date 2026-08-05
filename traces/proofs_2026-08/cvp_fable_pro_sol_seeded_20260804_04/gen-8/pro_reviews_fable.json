@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 has no polynomial-time construction rule: its SAT search quantifies over every perfect matching, thereby using the NP-hard witness set to construct the lift. The sheet routing, target, and resulting binary matrix are also unspecified, while tests at L=3,5 cannot establish the claimed asymptotic amplification.",
+    "Proposal 2 cannot compare overlapping scopes using full-scope checksums without a completeness failure: dependence on private variables makes equal overlaps produce unequal checksums. Projecting away private variables factors communication through a proper overlap signature and re-enters O2/O3, including the certified holonomy pseudoassignments.",
+    "Proposal 3 does not specify the subspace-design objective, selected maps, block count, or deterministic selection algorithm. For a pure witness W=xx^T, the cross blocks contain t(R_sx)^T and (R_sx)t^T, so sparse YES cost is unproved and may be densified exactly as in the failed F8 condenser.",
+    "Proposal 4 lacks a completeness-preserving jet lift of an unknown nearest Reed–Solomon polynomial. Ordinary value agreement gives only a simple root of the discrepancy, not agreement of higher derivatives, so multiplicity coordinates can inflate YES distance; the zero-multiplicity bound does not multiply each ordinary disagreement by s.",
+    "Proposal 5 is defeated by linear affine closure unless it supplies separate nonlinearly protected legal sectors. Three cheap fillings of the same binary target XOR to another target-fiber filling of at most three times their total support, and existing illegal odd covers already occur in affine spans of legal matchings.",
+    "Proposal 6 has an explicit layer-constant obstruction: repeat the cheapest illegal exact cover in every layer and every expander-difference row vanishes, just as for a matching. Both YES and NO norms then scale by the layer count, retaining only the additive q versus q+2 defect; bounded coefficient search cannot repair this parameter failure.",
+    "Proposal 7 starts from a false structural premise: partial 3DM packings are not the independent sets of one linear matroid, since 3-set packing violates matroid exchange. Even in applicable matroids, representative-family size is exponential at rank Θ(q), and identifying terminal states that cannot extend to a matching embeds the source NP-hard decision."
+  ],
+  "evidence": [
+    "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings. This directly obstructs Proposal 5 and any linear protected-class mechanism that makes all legal fillings cheap.",
+    "The twisted-holonomy and Petersen witnesses certify failures of proper connected scopes and fixed-level overlap systems. Proposal 2 provides no global interface escaping those hypotheses.",
+    "The frozen two-sided F8 condenser had worst YES 31 versus best NO 6 despite avoiding pointed kernels. This is finite adverse evidence, not a universal theorem, but Proposal 3 supplies no new rank-to-support lemma addressing the observed failure.",
+    "Direct integer exact cover rigorously gives only q versus q+2, while variable projection tables gave 12 versus 14. Proposal 6's layer-constant witness preserves that additive regime rather than amplifying it.",
+    "No supplied verifier implements any of the seven proposed matrices or establishes their claimed separation. Their suggested finite searches either depend on witness enumeration, omit a complete matrix and target, or test only constants unrelated to the missing asymptotic mechanism."
+  ],
+  "next_experiment": "None for the proposals as written. Reopen only after a mutation supplies an explicit polynomial-time matrix and target without enumerating matchings; the closest viable mutation is Proposal 3 with fully frozen binary maps and a proof of witness-independent YES support, followed by exhaustive all-mixed-word, affine-closure, all-eight, and holonomy testing.",
+  "confidence": 0.99
+}

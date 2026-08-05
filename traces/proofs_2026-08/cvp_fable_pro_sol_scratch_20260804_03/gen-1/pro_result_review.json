@@ -1,0 +1,15 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The selected residual-only RS mechanism is defeated: the integer slack witness makes every residual coefficient zero, so all 64 amplified coordinates vanish. The polynomial root bound applies only to nonzero residual vectors and therefore gives no soundness at the actual optimum.",
+    "The result is confined to one explicit three-variable instance and cannot establish asymptotic impossibility or the target n^c hardness theorem. No asymptotic gap, reduction, or dimension-to-factor analysis is supplied.",
+    "The proposed successor is not a precise bounded experiment: it gives no mutated integer basis, target, dimensions, completeness radius, soundness threshold, or finite search bound. Thus there is no executable candidate warranting another generation."
+  ],
+  "evidence": [
+    "The supplied verifier exited 0 and exhibited variables (0,0,0) with one slack value -1, zero amplified energy, and squared objective 27 versus baseline 19.",
+    "The global finite optimum argument is valid: every nonzero integral residual has RS energy at least 57, while any coordinate outside [-20,20] alone costs more than 27; the residual-zero search then exhausts the relevant bounded domain.",
+    "STATUS, IDEAS, NOTES, and proof_cvp consistently classify the finding as finite and state that no hardness lemma is established. Their limited conclusion—killing this residual-only gadget while not ruling out all RS reductions—matches the verifier evidence."
+  ],
+  "next_experiment": "None for the current candidate. Reopen only as a new mutation after supplying an explicit integer lattice basis and target that amplify slack or Booleanity defects while preserving a stated completeness radius; its first test must exactly search the same eight-clause instance below the claimed soundness radius using a proved finite coefficient bound.",
+  "confidence": 0.99
+}

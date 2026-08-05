@@ -1,0 +1,16 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The compatible parity witness is an exact algebraic blocker for the frozen orthogonal incidence-orbit family: its residual is zero and its two-copy base cost is exactly twice its one-copy cost. Therefore no choice of alpha, beta, or residual weight within this family can produce the required positive margin over that fixed witness.",
+    "The summary's blanket statement that strict two-level growth is impossible throughout the family is too strong if interpreted as d2^2>2d1^2 for every weighting. The verifier proves a universal cut relative to the fixed witness W1, but proves W1 equals the true one-copy minimum only at alpha=beta=1/144.",
+    "The proposed follow-up is not a precise bounded experiment: it specifies neither a finite nonorthogonal Gram parameterization nor dimensions, coefficient bounds, completeness equations, search domain, or an exact acceptance threshold. It therefore cannot justify CONTINUE."
+  ],
+  "evidence": [
+    "The passed verifier checks feature vectors (96,120,0) and (192,240,0), giving W2-2W1=0 symbolically for every normalized alpha,beta in the frozen family.",
+    "At alpha=beta=1/144, the packet reports exact one-copy minimum 3/2 and a two-copy witness of cost 3, so strict superadditivity fails at this emitted metric. Control minima 1 and 2 and positive-definite eigenvalue bounds are also checked.",
+    "STATUS, IDEAS, NOTES, and proof_cvp consistently limit the result to a finite family kill and explicitly state that no hardness lemma, composition law, or dimension-dependent gap follows.",
+    "The Generation-37 verifier inherits the exact 3/2 obstruction minimum from Generation 32 rather than independently rerunning its full DP; this does not affect the explicit universal witness cut but limits claims of fresh independent minimum verification."
+  ],
+  "next_experiment": "None for this run; terminate the frozen family. Reopening requires a separately preregistered, fully finite nonorthogonal Gram mutation with explicit variables, rational bounds, common-radius constraints, and a symbolic parity evaluation before optimization.",
+  "confidence": 0.98
+}

@@ -1,0 +1,29 @@
+{
+  "summary": "Selected surviving Pro proposal 1 and implemented the opponent-requested exact slack attack. On the unsatisfiable eight-clause formula over three variables, all 64 RS evaluation coordinates can be made zero by one non-Boolean slack bit. The exact finite squared objective is 27 against Boolean baseline 19, giving only sqrt(27/19), not an added residual squared cost of at least 57. This kills the tested residual-only RS gadget, not RS-based reductions in general.",
+  "hypothesis": "RS spreading amplifies only nonzero affine residuals; free integer clause slacks can instead set every residual to zero while paying a constant unamplified half-integral-anchor penalty.",
+  "changed_files": [
+    "experiments/verify_rs_slack_cheat.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "gen-1/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_rs_slack_cheat.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_rs_slack_cheat.py",
+      "exit_code": 0,
+      "finding": "Exact search certifies squared optimum 27, Boolean baseline 19, zero amplified residual energy, and distance ratio sqrt(27/19); 68,921 variable assignments and 524,288 Boolean variable/slack assignments were checked."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_rs_slack_cheat.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Test a mutation that spreads the Booleanity/slack defects together with clause residuals, with an explicit lattice basis and target; use exact low-weight search to determine whether correlated integer directions can still cancel every amplified block."
+}

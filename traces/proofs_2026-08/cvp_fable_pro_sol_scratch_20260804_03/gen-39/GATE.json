@@ -1,0 +1,48 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 does not escape G13. Replacing each value by one-hot auxiliaries leaves an entirely linear emitted system, so the known affine coefficients can be applied to the enlarged honest registers; the resulting signed, noncanonical registers preserve every graph and code equation while paying only unamplified anchor cost.",
+      "Proposal 2 supplies neither a concrete 2-complex nor explicit restriction maps, so its experiment is not executable. Vanishing ordinary H0 would also not establish the required integral cosystolic inequality, and augmentation does not exclude signed affine pseudosections.",
+      "Proposal 3's prime scaling cannot increase the height of an exact affine relation: multiplying character rows by nonzero primes leaves their rational and integral kernels unchanged. Using enough Walsh characters to make all assignment fingerprints independent requires exponentially many characters in general; the proposed 16-assignment test would therefore be trivial or non-scalable.",
+      "Proposal 4 is a reformulation of G19 with higher-dimensional signed chains. Boundary and degree rows are linear, while no explicit complex or proved intersection inequality forces every signed degree-one representative to cross polynomially many forbidden cells.",
+      "Proposal 5 incorrectly infers exponential ratio growth from a strict cycle-mean inequality. Ordinary min-plus repetition accumulates costs additively, and neither nonidentity seams nor depth-two tables prove the claimed recurrence; the gadget search space, weights, and complete unrestricted shell are also unfrozen.",
+      "Proposal 6 linearizes noncommutative multiplication through table selectors, reintroducing signed group-algebra and augmentation-ideal identities. No explicit loop system or expander construction is supplied, and noncommutativity alone does not prevent the G13/G19 affine splices.",
+      "Proposal 7 does not encode the union of satisfying faces as the feasible set of one CVP instance; all lattice points remain admissible. Delaunay emptiness gives only strict separation, not a polynomial radial margin, while joins and code-lattice lifts have no demonstrated escape from G31/G32/G37 additive behavior or DROP."
+    ],
+    "evidence": [
+      "Generation 13 verifies an exact integral affine collision annihilated by every compatible linear syndrome. Enlarging the coefficient vector with linearly constrained one-hot registers does not invalidate the affine-combination argument.",
+      "Generations 12 and 38 exhibit explicit DROP witnesses, and the Generation-38 gate proves additive zero witnesses prevent dimension-growing ratios under homogeneous composition. None of the proposals supplies a fully emitted, audited mechanism eliminating this obstruction.",
+      "Generation 19 finds an exact accepting signed flow with two negative coefficients despite nonlinear permutation semantics. This directly undermines the chain and holonomy proposals.",
+      "Generation 28 obtains lambda less than mu for the complete tested min-plus rule, while Generation 30 finds an exact seed isometry. No supplied evidence supports the new exponential cycle-mean claim.",
+      "Generations 32 and 37 prove exact additive parity witnesses under cross-copy coupling and all metrics in the tested incidence family. A finite equal-radius or Delaunay margin therefore cannot be promoted to scalable amplification.",
+      "No verifier evidence is supplied for any of the seven new constructions; all stated experimental outcomes are predictions. Several experiments lack enough frozen data to define a unique factor, target, shell, or exhaustive search."
+    ],
+    "next_experiment": "None for these proposals as written. Reopen only with a fully specified polynomial-size emitted factor and target that algebraically excludes the lifted G13 signed registers and all-zero DROP witness, plus a proved nonadditive recurrence; then audit one fixed instance over the complete derived coefficient shell.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 remains linear in the emitted lifted symbols. The exact G13 affine coefficients, summing to one, carry any common-target linear syndrome to the honest target; repeating syndrome rows cannot charge this zero-residual affine lift, and no nonlinear polynomial-size exclusion mechanism is specified.",
+      "Proposal 2 never establishes the claimed conversion from a large Smith invariant to large Euclidean CVP distance. A divisibility obstruction can coexist with a short residual or DROP vector, while bounded Macaulay degree is incomplete and growing degree can require exponentially many monomials.",
+      "Proposal 3 provides no explicit formula-to-complex construction or reason integral signed chains cannot splice or cancel. Cosystolic expansion by itself concerns distance from cocycles and does not imply the asserted YES/NO filling-volume separation with a common prescribed boundary.",
+      "Proposal 4's fixed experiment reuses G38's full-variable artifact: on the four-variable instance, complete bags already force equality of global distributions. Scaling normalization rows therefore manufactures a predictable finite pass without testing the claimed logarithmic-bag scaling law, while G15-style zero-residual affine lifts remain unaddressed asymptotically.",
+      "Proposal 5 specifies neither a lattice family nor a theorem connecting exponentially many nearest vectors to a polynomial second-shell ratio. Searching unspecified Construction-A codes only through k=6 cannot discriminate the asymptotic claim, and a finite favorable ratio would establish nothing about polynomial growth.",
+      "Proposal 6 has an unresolved size-versus-linearity dichotomy: columns for complete words are exponential, whereas polynomial transition compilation linearizes into a signed-flow system vulnerable to G19. Truncated Magnus coordinates distinguish individual words, not unrestricted integral combinations, so free-group girth does not supply the required soundness."
+    ],
+    "evidence": [
+      "G13 verified an exact integral affine collision on the 72 selectors over every tested modulus; G15 then lifted those coefficients through every hierarchy level with zero residual. These directly contradict reliance on compatible linear codes or marginal hierarchies.",
+      "G7 found a zero-residual signed selector that defeated every repeated radix row, and G19 found a zero-residual accepting signed flow with two negative coefficients. These show that residual amplification and ordered computation do not control unrestricted integral combinations.",
+      "G38 verified only a fixed shell: no obstruction vector through 181, control minimum 119, and DROP cost 417. Its proof relies on eleven bags containing all four variables, so it supplies no evidence for logarithmic-width bags on growing formulas.",
+      "G14 passed one complete pair-bag shell, but G15 subsequently exhibited a zero-residual affine hierarchy lift. Thus larger local views can improve a fixed shell without yielding composition or dimension-dependent separation.",
+      "G31's finite equal-radius pass failed to compose in G32, where compatible parity witnesses had exactly additive cost; G37 proved the same exact additive cut throughout its metric family. No proposal supplies a mechanism escaping this established composition blocker.",
+      "G28 failed its required growth inequality, and G30's tensor seed was exactly isometric to its control. None of the proposed experiments defines a new verified recurrence whose adverse growth can exceed legal growth."
+    ],
+    "next_experiment": "None as written. Reopen only after a mutation gives a fully emitted polynomial-size factor and target, analytically excludes G13/G15 affine lifts and G19 signed splicing, removes DROP without merely scaling a fixed inhomogeneous row, and proposes a bounded test of an explicit composition inequality rather than another fixed-instance shell.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

@@ -1,0 +1,35 @@
+{
+  "summary": "Implemented the sole authorized Fable Proposal 3 bounded test using the serialized Generation-28 depth-one factors and their literal tensor squares. The alleged NO seed is exactly permutation-isometric to the matched control by swapping assignment coordinates 0 and 7 in both bags. Tensoring that permutation pairs every unrestricted integer coefficient matrix, so R_1=R_2=1 and the required strict ratio growth fails. This is finite evidence about this seed pair only.",
+  "hypothesis": "Literal Kronecker products of a frozen deep-hole seed might increase the exact NO/YES squared-distance ratio from R_1 to R_2>R_1; falsification was R_2<=R_1 or an unrestricted entangled shortcut.",
+  "changed_files": [
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "experiments/verify_literal_tensor_seed_isometry.py",
+    "experiments/gen30_literal_tensor_seed_manifest.json",
+    "gen-30/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_literal_tensor_seed_isometry.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_literal_tensor_seed_isometry.py",
+      "exit_code": 0,
+      "finding": "Verified exact seed and tensor permutation isometries, R_1=R_2=1, the [-60,60] coefficient bound through squared radius 31285, named DROP/G13/G19/malformed attacks, and all 131585 integer matrices with l1 norm at most two."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_literal_tensor_seed_isometry.py && python3 -m json.tool experiments/gen30_literal_tensor_seed_manifest.json >/dev/null",
+      "exit_code": 0,
+      "finding": "The verifier compiles and the emitted seed/product manifest is valid JSON."
+    },
+    {
+      "command": "python3 experiments/verify_frozen_minplus_pair_tile.py >/dev/null",
+      "exit_code": 0,
+      "finding": "The Generation-28 source construction still verifies after reuse by the tensor experiment."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If literal tensoring is continued, first freeze a genuinely nonisometric constant-rank NO/YES seed with R_1>1; then derive a product-shell coefficient bound and require an unrestricted k=2 search to prove R_2>R_1, killing immediately on equality, a DROP/G13/G19 state, or a non-rank-one shortcut."
+}

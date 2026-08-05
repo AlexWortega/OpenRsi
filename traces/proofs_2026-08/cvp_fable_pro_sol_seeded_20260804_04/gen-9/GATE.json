@@ -1,0 +1,45 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 supplies no explicit matrix or polynomial-time canonical selector. Its MILP searches only for Pv∉PK, which tests nonzeroness rather than support and may optimize using the very coset distances the reduction must not compute; it therefore does not test the claimed relative-rank mechanism.",
+      "Proposal 2's zeon coefficient for color set S is exactly the product of the parities of the corresponding color buckets. Perfect hashing an individual subset does not prevent other selected elements from cancelling those bucket parities, so the claimed binomial support growth does not follow; the map also remains degree r and subject to the certified cube obstruction.",
+      "Proposal 3 does not define a canonical word, ordering, twisted boundary matrix, or completeness-preserving binary representation for an arbitrary instance. Prefix enforcement re-enters the tableau obstruction, while direct global path columns can be exponential, so its proposed experiment has no well-defined construction to test.",
+      "Proposal 4 hides the source problem inside Boolean-fiber elimination and gives no polynomial-size method for generating the lifted span without enumerating fiber points. Moreover, F17 has no F2-linear trace expansion because the characteristics differ, so the asserted exact binary transfer is invalid as stated.",
+      "Proposal 5 specifies neither the Lawrence matrix, fixed target, nor the promised twists. Searching coefficients only in [-2,2] cannot certify an integer CVP minimum without a coefficient bound, and the established pair-projection norm baseline already makes this additive rather than multiplicative.",
+      "Proposal 6 cannot defeat the cited affine-closure attacks: every legal matching has T_x=0, so any odd XOR of lifted legal generators has every transfer block zero regardless of the noncommuting labels. The shell therefore leaves known illegal affine XORs charged only by their original support, and its bounded degree also retains the cube obstruction."
+    ],
+    "evidence": [
+      "The five-block F8 condenser preserved nonzeroness on the tested suite but produced worst YES 31 and best NO 6. This directly demonstrates that rank/nonkernel protection does not imply the support separation required by Proposal 1, though it is finite evidence rather than a universal no-go.",
+      "The I27 verifier enumerated 103,136 mixed words and found promising finite normal-suite behavior, yet all-eight and twisted-holonomy illegal affine words had costs 6 and 9 with every collision-walk feature cancelled. Proposal 6 inherits this cancellation algebraically because its feature is zero on each legal generator.",
+      "The variable pair-projection verifier gave exact finite minima 12 versus 14, while the proved row-sum-one table bound contributes at least q per table to every YES witness. Lawrence replication or unimodular sheet decoration supplies no stated mechanism removing that baseline.",
+      "The obstruction map proves degree-d signatures admit an alternating (d+1)-cube relation whenever the required independently flippable cube exists. Proposal 2 merely increases d to r and provides neither an escape from such cubes nor an asymptotic lower bound for arbitrary mixed lifted words.",
+      "None of the six proposals supplies verifier evidence establishing an asymptotic gap, polynomial output, or polynomial-time generator construction. The proposed finite searches cannot be promoted to those claims."
+    ],
+    "next_experiment": "None for these formulations. Reconsider only a mutation giving an explicit polynomial-time matrix or integer basis, a proved completeness bound, and a soundness invariant covering all mixed words; then precommit all-eight, holonomy, affine-closure, YES/NO, output-rank, and exact-minimum thresholds before testing.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 is already defeated by affine closure. Because every matching has zero collision shell, any odd XOR of legal lifted matchings also has zero shell; the known all-eight and holonomy witnesses therefore survive every coloring, splitter, forest size, and dense linear postprocessing of these zero-on-matchings features.",
+      "Proposal 2 confuses semantic detection with mixed-span soundness. All matchings have the same divisor product, so an odd XOR of their lifted vectors retains the legal fingerprint while its triple support can be illegal; directly lifting whole fiber points also requires exponential enumeration, while a product-tree implementation re-enters the tableau obstruction.",
+      "Proposal 3's separating cocircuit parity is constant on the syndrome fiber. For any row covector a and Hx=t, the cocircuit crossing parity is aHx=at, so stacking such measurements adds a common baseline rather than separating YES and NO distances; no alternative explicit matrix is specified.",
+      "Proposal 4 has no polynomial-size binary linear realization of its ordered nonabelian product. Encoding products by a circuit re-enters the bounded-interface obstruction, while whole-witness product lifts again let odd XORs of identity-labeled matchings produce illegal supports with the legal identity feature.",
+      "Proposal 5 does not specify the selector equations, BCH parameters, target, or resulting binary matrix. Any affine existential selector admits odd multi-sector superpositions unless nonlinear one-sector validity is enforced, which either restores rectangle/tableau splicing or requires an unprovided genuinely global realization.",
+      "Proposal 6's SDP is not a valid reduction algorithm: it optimizes using enumerated NO exact-fiber vectors and therefore uses information unavailable in polynomial time. The diagonal constraints do not control the norm of a YES matching because PSD cross terms can make its q-column sum cost quadratic, and no constraints protect every matching or fix a concrete rank/trace budget."
+    ],
+    "evidence": [
+      "The I27 verifier already found an all-eight illegal mixed word of cost 6 and a twisted-holonomy illegal word of cost 9 with every collision-walk feature canceled. Proposal 1 preserves the decisive premise that all legal matchings have zero shell.",
+      "The exchange-quotient verifier found 32 instances where an illegal odd cover lies in the affine span of perfect matchings, including weight 5 versus legal weight 3. This directly attacks any common legal fingerprint or identity label used by proposals 1, 2, and 4.",
+      "Prior exact integer experiments establish only additive gaps q versus q+2 and 12 versus 14 after variable projection tables. The arbitrary-partner Euclidean multiplicativity hope is also explicitly false, so finite instance-specific PSD optimization cannot be promoted to an amplification theorem.",
+      "The obstruction map proves failures for bounded-fan-in product tableaus, complete-fiber fingerprints, and affine selectors under their stated hypotheses. None of the proposals supplies an explicit construction demonstrably outside those hypotheses.",
+      "No verifier evidence is supplied for these six proposals; all reported items are proposed experiments or expectations. Several experiments are not reproducible as written because the lift, field, selector, measurement matrix, or optimization budget is unspecified."
+    ],
+    "next_experiment": "None as written. Reconsider only a mutation giving an explicit polynomial-time matrix or witness-oblivious Q(A), a fixed target and rank budget, universal YES-cost bounds, and a proof that known all-eight and holonomy affine combinations do not inherit the same cheap legal representation.",
+    "confidence": 0.995
+  },
+  "reason": "both proposal populations rejected"
+}

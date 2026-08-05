@@ -1,0 +1,42 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-14/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Pro's review does not rebut the asymptotic clause-drop attack. On minimally unsatisfiable growing formulas, deleting a low-canonical-indegree clause and zeroing its incident bags gives cost B+O(m) while B=Theta(m^2), so the approximation ratio tends to 1.",
+      "A B+64 audit of the same nine-clause instance cannot address this asymptotic failure. The candidate supplies no weighting, composition, hierarchy, or lower bound producing a gap proportional to B.",
+      "The claimed exhaustive shell certificate is not independently executable end to end. Zero-residual cases rely partly on structural reasoning, and the one-residual exclusion uses asserted case labels rather than enumerated certificates.",
+      "The statement that the G11 collision lifts only at total 1448 is unproved because only one canonical extension was evaluated. Alternative pair-bag extensions were not optimized or excluded."
+    ],
+    "evidence": [
+      "The successful verifier supports only the fixed B=520 instance through B+32: it establishes the control minimum and a finite shell exclusion, not asymptotic soundness.",
+      "The asymptotic attack has stated objective B+25[2m-2+d_i(m-3)]; with d_i at most 1 this is B+O(m), whereas complete pair-bag anchoring makes B quadratic.",
+      "SOL_RESULT and the project notes explicitly classify the result as finite and deny any composition or dimension-dependent gap theorem.",
+      "Pro's own review identifies the missing composition law, uniform soundness lemma, optimized G11 extension, and independently checkable exhaustive certificate. It therefore supplies no escape from the decisive obstruction.",
+      "The observed G11 lift at B+928 and the control-derived drop audits are witness evaluations on one hardcoded instance, not lower bounds for growing formula families."
+    ],
+    "next_experiment": "Stop the fixed-template run. Reopen only with an explicit weighting or hierarchical mutation, then test minimally unsatisfiable implication-chain instances at m=8,16,32 by deleting a minimum-canonical-indegree clause and zeroing its incident bags; reject the mutation unless the measured gap meets its declared growing soundness threshold and it separately blocks zero-residual affine collisions.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The fixed unweighted complete pair-bag mechanism has an explicit asymptotic clause-drop attack. On minimally unsatisfiable m-clause formulas, a clause of canonical-star indegree at most one can be deleted, the remainder satisfied, and its incident bags zeroed, yielding squared cost B+O(m) while B=Theta(m^2), so the approximation ratio tends to 1.",
+      "The B+32 pass, and the proposed B+64 extension, concern only one hardcoded nine-clause instance. They cannot refute the growing-family attack or supply a polynomial-factor gap, composition law, weighting law, or soundness bound proportional to B.",
+      "The verifier does not independently exhaust unrestricted vectors: zero-residual cases rely on a structural reduction, while one-residual exclusions are represented by hand-coded case labels. Exit code 0 therefore supports only the inspectable finite argument, not an independently certified shell optimization.",
+      "The statement that the G11 collision lifts \"only\" at anchor excess 928 is unsupported because only one canonical lift was evaluated. Alternative pair-bag extensions were not optimized, so lower-cost lifts remain unexcluded."
+    ],
+    "evidence": [
+      "Fable gives the concrete attack value B+25[2m-2+d_i(m-3)]. Since some clause has d_i<=1, the excess is linear in m against the quadratic pair-bag baseline.",
+      "The emitted verifier hardcodes nine clauses, B=520, and shell excess 32. Its control witness and anchor argument establish the finite control optimum, while the obstruction exclusion reaches only squared radius 552.",
+      "The finite propagation argument is coherent: zero residual allows at most four non-Boolean bags, and nonzero residual leaves the Boolean single-row case. This validates at most the stated fixed shell and does not repair asymptotic soundness.",
+      "The reported bag-drop and clause-drop audits start from the satisfiable control witness rather than a growing minimally unsatisfiable family. They do not test the attack identified by Fable.",
+      "The surviving G11 witness at B+928 shows that affine-kernel attacks persist, but supplies no lower bound proving 928 is the minimum extension cost."
+    ],
+    "next_experiment": "Stop this fixed template and do not run the same-instance B+64 audit. Reopen only after specifying a weighting or hierarchical mutation; then test minimally unsatisfiable implication-chain families at m=8,16,32 by deleting a minimum-indegree clause, zeroing its incident bags, and checking whether the exact attack cost exceeds the mutation's declared soundness threshold, while separately optimizing zero-residual affine lifts.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

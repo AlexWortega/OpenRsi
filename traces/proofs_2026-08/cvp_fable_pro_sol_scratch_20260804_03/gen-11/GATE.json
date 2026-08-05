@@ -1,0 +1,41 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_fable_pro_sol_scratch_20260804_03/gen-11/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The authorized cubic mutation satisfies its own falsification condition: the obstruction minimum does not rise above 96, because a degree-0-through-3 zero-residual signed selector survives with anchor excess 24.",
+      "The proposed duplication experiment has a predetermined negative outcome. Applying the same seven-term parity to both copies makes their cubic moments equal, preserves all lower moments, and yields zero residual with anchor excess 48; running a verifier would add no information.",
+      "Pairwise consistency cannot detect a synchronized kernel across an occurrence class. Reweighting or radix amplification also cannot charge an exact residual kernel, matching the obstruction pattern already recorded in STATUS/IDEAS/NOTES.",
+      "The 96-versus-72 result is only a fixed nine-clause constant-gap calculation. It supplies no uniform construction, composition lemma, dimension-dependent gap, or asymptotic hardness result and must not be promoted to one."
+    ],
+    "evidence": [
+      "The supplied machine verifier exits 0 and reconstructs the emitted factor, target, Gram data, and positive-definite form Q=4I+25 A^T A.",
+      "Its exact shell DP checks 959 normalized/legal signed states per clause through total anchor excess 24 and finds a zero-residual witness supported in clause 1.",
+      "The verifier proves the finite unrestricted minima: anchor energy is at least 72, any nonzero integral residual raises the objective to at least 97, and the zero-residual witness attains 96; the control attains 72.",
+      "The verifier reports that triple (0,2,3) occurs once, while the inherited clause-3 parity is charged to distance squared 121. This directly supports the stated isolated-triple mechanism and finite falsification.",
+      "STATUS, IDEAS, NOTES, proof_cvp.md, SOL_RESULT, and machine output consistently label the result finite and deny any hardness lemma."
+    ],
+    "next_experiment": "None for this candidate. Resume only with a precisely specified mutation that breaks synchronized top-degree parity without relying on pairwise comparison or residual reweighting, together with bounded completeness, unrestricted-integral soundness, and dimension accounting.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The authorized cubic mutation fails its declared test: the obstruction minimum remains 96 rather than increasing above 96, because a zero-residual seven-term parity survives at anchor excess 24.",
+      "The proposed duplication experiment is redundant. If clause 1 is duplicated identically, applying the same parity block to both copies changes their cubic moments equally while preserving all lower moments, normalization, and legality, so all pairwise rows vanish and the synchronized attack has anchor excess 48 by construction.",
+      "Nothing supports asymptotic hardness: the only demonstrated gap is the fixed ratio sqrt(4/3), and the surviving constant-support parity kernel supplies neither a composition theorem nor a dimension-dependent gap. STATUS, IDEAS, NOTES, and proof_cvp.md correctly deny any hardness lemma or asymptotic promotion."
+    ],
+    "evidence": [
+      "The supplied machine verifier reports exit code 0 and exact unrestricted squared minima 96 for the nine-clause obstruction and 72 for the satisfiable control.",
+      "The verifier reports that the inherited clause-3 parity is charged to distance squared 121, but an exact degree-0-through-3 zero-kernel DP finds a clause-1 selector with minimum anchor excess 24 and distance squared 96.",
+      "The reported triple counts show (0,2,3) occurs only once, so the all-pairs construction emits no cubic comparison for the surviving parity's changed top moment.",
+      "The exact-minimum argument is internally consistent: every integer anchor contributes at least 1, a nonzero integral residual adds at least 25 and therefore costs at least 97, while exhaustive zero-residual search through total excess 24 finds the attaining vector.",
+      "All status documents classify Generation 11 only as a finite falsification of the fixed cubic extension and make no asymptotic claim."
+    ],
+    "next_experiment": "None for this run; do not execute the analytically predetermined duplication test. Reconsider only after a stated mutation adds constraints that pin absolute top moments or otherwise breaks occurrence-class-synchronized parity, with an unrestricted fixed-target CVP audit.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

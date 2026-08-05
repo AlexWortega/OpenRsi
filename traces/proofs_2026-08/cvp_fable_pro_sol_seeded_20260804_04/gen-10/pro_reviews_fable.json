@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 gives no explicit routing matrix, canonical-route algorithm, or norm accounting. A linear flow compiler carries signed exact-cover combinations through unchanged; unless propagation costs superlinearly more than the routes already paid by every YES matching, constant-column repairs still yield only an additive relative defect.",
+    "Proposal 2 does not specify the composed vectors or selector coupling, so its experiment has no unique matrix to implement. Linear span composition provides no reason that representations mixing both values cannot splice at O(n) cost, and recursively implementing consistency through bounded interfaces re-enters the tableau obstruction.",
+    "Proposal 3 specifies neither the expander-selected monomial rule nor a fixed syndrome representation and Hamming objective. Character moment vectors can have assignment-dependent dense weight, while degree-D signatures retain alternating cube relations; Macaulay/Koszul closure may also recreate the local-view pseudoexpectation hierarchy or exceed polynomial size.",
+    "Proposal 4 is directly inside the degree-two cube obstruction. Because all legal matchings satisfy the same permutation Gram identities, odd sums of legal quadratic lifts can inherit that state while having illegal support; dense contraction cannot remove this linear relation, and the existing affine-closure witnesses make the stated likely failure concrete.",
+    "Proposal 5 lacks a canonical presentation, canonical S3 representation, binary Fox matrix, target, and universal completeness proof. A nontrivial twist can charge legal cycles, while any linear twisted-boundary system assigning the same target to all legal fillings also accepts their odd affine combinations; therefore the proposed enumeration is not presently well-defined.",
+    "Proposal 6 collapses on regular linear 3DM dictionaries. If every element has occurrence r and L is the weighted incompatibility Laplacian, every exact-fiber vector decomposes as z=(1/r)1+y with Ly=3r y, so ||p(L)z||² is an affine function of ||z||² with a fiber-constant offset; the q versus q+2 defect remains ratio 1+O(1/q).",
+    "Proposal 6 also does not meet the required binary-syndrome target, and its [-2,2] search is not an exact CVP verifier without a proved coefficient bound. A positive q=3 result could therefore be finite baseline variation rather than evidence for polynomial-gap soundness."
+  ],
+  "evidence": [
+    "The exchange-quotient verifier found 32 instances where illegal odd covers lie in the affine span of perfect matchings. The nonbacktracking-shell verifier separately found all-eight and holonomy illegal mixed words whose entire added shell cancels.",
+    "Global linear feature shells achieved at best 7/6 versus the base 5/3, and variable pair-projection tables gave only 12 versus 14. These exact results support the baseline-versus-defect objection to proposals 1, 4, and 6, without constituting universal no-go theorems.",
+    "Previous dense condensers often preserved nonzeroness yet produced worst-YES costs above best-NO costs. Thus global rank, homology, or span detection alone is not the required Hamming-support theorem.",
+    "No supplied verifier constructs or tests any of these six proposals. Their claimed asymptotic improvements therefore have no supporting experimental evidence and cannot be inferred from the proposed bounded searches."
+  ],
+  "next_experiment": "None as written. Reconsider only a mutation supplying an explicit polynomial-time matrix and fixed target; for a spectral mutation, first prove its energy is not affine in coefficient norm on regular exact fibers, provide an exact coefficient bound and binary support analogue, then precommit all-eight, holonomy, affine-closure, regular YES/NO, worst-YES/best-NO, and output-rank tests.",
+  "confidence": 0.995
+}

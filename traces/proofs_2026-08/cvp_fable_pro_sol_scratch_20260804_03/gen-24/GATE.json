@@ -1,0 +1,46 @@
+{
+  "decision": "KILL_IDEA",
+  "stage": "pre_implementation",
+  "pro_reviews_fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 has no defined port map, Gram family, target, auxiliary fibers, or two-gadget composition identity. Positive-definite fiber separation at one gate does not imply multiplicative separation under Schur complementation, while G9/G11 parity, G12 drops, G13/G15 affine lifts, and G19 signed splices remain unrestricted.",
+      "Proposal 2 does not freeze the overlattices, gluing homomorphisms, targets, port classes, or objective normalization. Seven-versus-one coset minima in one quotient do not control representatives created by fiber-product gluing, and no theorem converts a local ratio into the G20/G21 polynomial excess-to-baseline law.",
+      "Proposal 3 directly assumes away G22: unrestricted tensor lattices contain entangled vectors not controlled by decomposable correlations. Tensoring a formula-size rank-m lattice to k=Theta(log n) has superpolynomial rank absent an unspecified constant-rank recursive construction, and the required homogenization, integral symmetric projection, target, and matched control are not defined.",
+      "Proposal 4 linearizes multiplication, so unrestricted signed coefficients need not represent ring products; G13/G15 affine mixtures and the G19 signed splice can preserve a unit or zero state. Divisibility gives an archimedean lower bound only for a guaranteed nonzero high-valuation algebraic integer, while drops may produce zero, and the proposed coefficient box violates G6 unrestricted optimization.",
+      "Proposal 5 provides no uniform expansion theorem under label switching; unimodular transports have inverse or contracting directions, and parity, drops, affine lifts, and signed paths may select them. The matrix roles, legal invariant states, residual equations, target, baseline, and shell are unfrozen, while depths 1–4 cannot test the missing G20/G21 relative-growth law.",
+      "Proposal 6 supplies no explicit chain complex, formula attachment, boundary maps, target coset, satisfying filling, cover maps, or proved systolic growth. G9/G11 short cycles, G12 relative drops, G13/G15 boundaries, and G19 signed chains remain live, and SNF plus CVP on finitely many two-sheeted covers cannot establish growth through logarithmically many covers."
+    ],
+    "evidence": [
+      "G7 has an exact zero-residual signed selector at squared distance 80 versus baseline 72; residual, radix, or carry amplification cannot charge that vector.",
+      "G13 proves a harmful selector is an integral coefficient-sum-one affine combination of honest encodings, and G15 lifts it through every tested hierarchy level with zero residual at 24,960 below threshold 25,472.",
+      "G19 finds an exact accepting signed flow with two negative coefficients and zero residual; obstruction/control squared minima are 22,770 and 22,754. This is the current explicit blocker for linear transport, multiplication-table, and chain constructions.",
+      "G9/G11 retain constant-cost parity kernels, while G12 shows that charging parity exposes a cheaper clause drop. Any proposed metric must audit both attacks under unrestricted optimization.",
+      "G14 is only a finite pair-bag exclusion through B+32 and supplies no recursive or growing-gap law. No verifier evidence establishes G20/G21 scaling or any dimension-dependent hardness gap."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a fully frozen Proposal 1 or 2 mutation that first proves a symbolic recursive composition identity, specifies every port, target, Gram/coset map, drop state, and normalization, and then exactly enumerates unrestricted two-gadget obstruction/control minima including G13 and G19 lifts; kill on any completeness mismatch, nonmultiplicative ratio, or zero-residual attack.",
+    "confidence": 0.99
+  },
+  "fable_reviews_pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Proposal 1 leaves G6/G22 as its central assumption: translated tensor cosets, legal and illegal shifts, and their composition are undefined, while the cited E-type hook concerns unshifted tensor minima and supplies no translated decomposition theorem. A twofold pass cannot establish decomposition for k=Theta(log n) or the G20/G21 gap law, and the Gram/target search is not fully bounded.",
+      "Proposal 2 does not freeze the cells, boundary maps, target cycle, satisfying filling, or two-lift, so its experiment is not executable. G13/G15 affine lifts and G19 signed splices simply become signed chains unless an integral filling theorem excludes them; one contradictory formula cannot discriminate an N^c systolic law.",
+      "Proposal 3 is closest to the prior reopening condition but still omits designated legal/illegal/drop classes, the gluing homomorphism, objective normalization, S, and a recursively closed contract. One unrestricted two-gadget pass would not prove closure under substitution, while G12, G22, and G20/G21 remain unresolved.",
+      "Proposal 4 has an exact algebraic blind spot: an integral parity perturbation on k+1 variables has total mass zero and every marginal on at most k variables equal to zero, so adding it to a Dirac measure gives a non-Dirac integral mass-one measure invisible to all stated k-variable Walsh bags. Perfect hashing does not change marginal degree, and the four-variable test cannot address this asymptotic obstruction.",
+      "Proposal 5 supplies no theorem converting resolution width into geometric excess. Constant-width preprocessing is polynomial but cannot yield growing support, whereas growing w costs n^O(w); enumeration on five variables cannot discriminate the required polynomial-time G20/G21 regime.",
+      "Proposal 6 defines neither the laminated substitution nor a theorem multiplying deep-hole radii. Shared unrestricted coefficients retain G12 drops, G13 affine mixtures, and G22 entangled vectors, while the two-set experiment can test only one local additive penalty.",
+      "Proposal 7's four-dimensional A5 augmentation representation has no global invariant vector but is not fixed-point-free for every nonidentity element, so inconsistent labels may still preserve section subspaces. Even a constant connection-Laplacian gap gives only constant relative energy against a linear anchor baseline, and the proposed labels, anchors, target, and drop pricing are unfrozen."
+    ],
+    "evidence": [
+      "G7 verifies an exact zero-residual signed selector at squared distance 80 versus baseline 72; residual or radix amplification cannot charge a surviving kernel.",
+      "G13 verifies a harmful coefficient-sum-one affine combination of honest encodings, and G15 lifts it through every frozen hierarchy level with exactly zero residual at 24960 below threshold 25472.",
+      "G19 verifies a zero-residual accepting signed flow with two negative coefficients; obstruction/control squared minima are 22770 and 22754.",
+      "G5 finds short overlap circuits in every tested private-row composition, so constant local isolation does not justify tensor, boundary, bag, or geometric composition.",
+      "G12 shows that charging parity exposed a cheaper clause drop, while G14 proves only a finite exclusion through B+32. No supplied verifier establishes a recursive transformer or dimension-dependent gap."
+    ],
+    "next_experiment": "None authorized as written. Reopen only a Proposal-3 mutation that freezes every quotient class, target, Gram family, gluing map, drop state, normalization, S, and symbolic recursive contract; then exactly enumerate all unrestricted depth-two fibers and kill on any completeness mismatch, entangled subproduct minimum, or drop below the contract.",
+    "confidence": 0.99
+  },
+  "reason": "both proposal populations rejected"
+}

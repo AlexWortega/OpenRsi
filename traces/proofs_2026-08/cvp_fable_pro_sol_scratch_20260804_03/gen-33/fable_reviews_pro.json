@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 is not an executable experiment: the edge-bag variables, signed permutations, gauges, factor, target, matched control, and objective-derived coefficient bound are unspecified. Searching only coefficients in [-2,2] is not exhaustive, and the threshold 3d_1^2 is undefined for the proposed construction.",
+    "Proposal 2 does not escape G13: complete Walsh spectra and splitter consistency remain linear in bag selectors, so an affine combination of global assignment encodings lifts to every spectrum with zero residual. The n=4, k=4 test uses full degree rather than the claimed k=Theta(log n) regime and supplies no acceptance ratio, while replication can increase attack and completeness costs together.",
+    "Proposal 3 supplies no cell complex, boundary maps, cocycle, lattice factor, target, or matched control. Smith normal form could test exact triviality only after those data are frozen and would not establish the required cosystolic lower bound; signed affine sections remain an immediate exactness threat.",
+    "Proposal 4 has no canonical border matrix, clause-multiple set, multiplicity code, weights, or exhaustive shell bound. Degree four on four variables is full degree and therefore cannot support the claimed O(log n) asymptotic mechanism; any exact pseudomoment also nullifies the multiplicity amplifier.",
+    "Proposal 5 merely fits a finite Gram against known cuts and gives no polynomial local template or complete separation oracle. G31 already demonstrates that a finite equal-radius Gram pass can coexist with a constant-cost affine parity, while G32 shows additive composition; optimizing another rank-72 Gram cannot discriminate polynomial gap growth.",
+    "Proposal 6 is structurally blocked for standard Lawrence lifting: an old kernel circuit has a canonical replicated or anti-diagonal lift, and its norm scales at the same rate as a diagonally lifted honest witness. Any nonstandard replica-sum/difference construction intended to prevent this lacks an explicit matrix, target, and completeness calculation.",
+    "Proposal 7 leaves every exact residual kernel unchanged, including G7/G11/G13-type attacks. The algebraic norm bound alone gives squared Euclidean separation only on the order of the field degree under normalized Minkowski scaling, hence O(log n) for the proposed degree; unbalanced weights have no proved uniform advantage over completeness scaling."
+  ],
+  "evidence": [
+    "G13 verified that the harmful parity is an exact integral affine combination of all 16 consistent encodings and is annihilated by every compatible raw linear syndrome over multiple moduli.",
+    "G15 verified that the same affine coefficients lift through every node of an enlarged laminar encoding with exactly zero residual. This directly undermines claims that replication or additional linear scopes alone remove the collision.",
+    "G31 only passed one finite shell, with control minimum 144 and obstruction minimum between 193 and 216. G32 then proved the exact one-copy minimum 216 and exhibited two compatible zero-residual parities of cost 432=2d_1^2, refuting growth under the tested composition.",
+    "G7 and G11 provide verified constant-cost exact residual kernels, so residual spreading, algebraic embeddings, and multiplicity evaluation cannot help unless the exact fiber is first eliminated.",
+    "No supplied verifier serializes or tests any of the seven new mechanisms. Their proposed bounded searches omit data or completeness bounds required to make a pass or failure mathematically meaningful."
+  ],
+  "next_experiment": "None for the proposals as written. Reopen only a mutation with a fully serialized integer factor, target, matched control, objective-derived exhaustive coefficient bound, and an exact evaluation of the inherited G13/G11 parity; kill immediately if that witness remains zero-residual or the two-copy cost is at most twice the exact one-copy cost.",
+  "confidence": 0.99
+}

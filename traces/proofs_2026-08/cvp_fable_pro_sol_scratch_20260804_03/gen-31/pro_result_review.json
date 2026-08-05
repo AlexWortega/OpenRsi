@@ -1,0 +1,16 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Fatal to promotion: the result certifies only one rank-72 instance, with no uniform formula family, composition lemma, recurrence, or dimension-dependent gap. Nothing supplied implies n^c hardness.",
+    "The Walsh mechanism is algebraically just F^T F=8I, so it adds the isotropic penalty 8||z||^2 and no cross-clause amplification. It escapes the G13 common-syndrome obstruction, but the G11/G13 affine parity remains a zero-residual witness of cost 216, limiting this instance's squared ratio to at most 3/2.",
+    "The proposed next experiment is not adequate as written: preservation above 193/144 compares against a lower bound, not the exact one-copy ratio, and cannot establish growth. Any claim of composition must compare exact one-copy and two-copy quantities under a fully serialized overlap."
+  ],
+  "evidence": [
+    "The machine evidence reruns the hashed verifier successfully and reports exact control minimum 144, no obstruction vector through 192, and a witness at 216. Inspection supports the shell split: base energy is at least 72, so only residual squared norms zero and one can occur through 192.",
+    "The zero-residual DP enumerates all normalized/legal local states allowed by the derived cost cap and ends with no global state. The residual-one branch exhausts the 2701 possible low-base vectors and finds minimum residual squared norm 7.",
+    "STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently state only the finite interval 193<=d_NO^2<=216 and deny any asymptotic theorem. The verifier does not determine the exact obstruction minimum and is not an independent cross-check of its own search logic.",
+    "Direct-sum repetition cannot amplify this evidence: repeating the cost-216 parity witness and cost-144 control gives squared ratio at most 216/144=3/2. Only a genuinely coupling overlap could show even finite supermultiplicative behavior."
+  ],
+  "next_experiment": "Serialize exactly two copies of the manifest obstruction, sharing variables 0 and 1 and renaming the second copy's variables 2,3 to 4,5; construct the analogous satisfiable control, use 18 H8 blocks, residual scale 10, and all global degree-at-most-three moment checks. First certify the exact one-copy minimum d1^2 by exhausting through 216; then certify control minimum 288 and exhaust the unrestricted two-copy shell through 2*d1^2, including every residual-squared branch allowed by the base bound. KILL on control mismatch, incomplete shell coverage, or any two-copy vector of cost at most 2*d1^2; an empty shell is only a finite strict-growth pass, not a recurrence or hardness lemma.",
+  "confidence": 0.96
+}

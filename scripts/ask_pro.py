@@ -63,6 +63,17 @@ SYSTEMS = {
         "Prefer primary sources (arXiv, journals) and give 5-10 finds ranked by likely "
         "leverage. " + OFFLIMITS
     ),
+    "roadmap": (
+        "You are a research strategist planning the route to a hard theorem for an autonomous "
+        "agent. Produce 2-3 END-TO-END proof strategies for the stated target. Each strategy is a "
+        "chain of 3-6 intermediate lemmas: state each lemma as precisely as you can, say why the "
+        "chain suffices for the target, name the crux difficulty, and give the smallest executable "
+        "experiment that yields evidence for or against the chain's first open lemma. Check every "
+        "chain against EVERY obstruction in the attached map by name — a chain that re-enters a "
+        "closed mechanism class without a stated escape is dead on arrival. Finish with: which "
+        "strategy to attempt first, its FRONTIER lemma, and that lemma's first experiment. Keep "
+        "the whole answer under 1800 words. " + OFFLIMITS
+    ),
     "review": (
         "You are a hostile independent research referee. Check every claimed mechanism against "
         "the attached obstruction map and every claimed experimental result against the supplied "
@@ -83,6 +94,7 @@ DEFAULT_MODELS = {
     "ideate": os.environ.get("OPENRSI_IDEATE_MODEL", "anthropic/claude-fable-5"),
     "scout": os.environ.get("OPENRSI_SCOUT_MODEL", "openai/gpt-5.6-sol:online"),
     "review": os.environ.get("OPENRSI_PRO_MODEL", "openai/gpt-5.6-sol-pro"),
+    "roadmap": os.environ.get("OPENRSI_PRO_MODEL", "openai/gpt-5.6-sol-pro"),
 }
 
 # USD per 1M input/output tokens for Azure deployments (no usage-priced billing in the
@@ -168,6 +180,8 @@ def main():
             mode = "scout"
         elif flag == "--review":
             mode = "review"
+        elif flag == "--roadmap":
+            mode = "roadmap"
         elif flag == "--model":
             if not args:
                 sys.exit("--model needs a value")

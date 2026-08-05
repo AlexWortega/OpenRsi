@@ -37,6 +37,7 @@ const SCOUT = process.env.OPENRSI_SCOUT_MODEL || "openai/gpt-5.6-sol:online";
 const LEAN_PROJECT = process.env.OPENRSI_LEAN_PROJECT || join(process.env.HOME || "/root", "leanverify");
 const LAKE = process.env.OPENRSI_LAKE || join(process.env.HOME || "/root", ".elan/bin/lake");
 const LEAN_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_LEAN_TIMEOUT_MS", 15 * 60_000);
+const SOL_SUBAGENTS = process.env.OPENRSI_SOL_SUBAGENTS === "1";
 
 const SOL_SYSTEM = `You are the implementation worker in a goal-directed CVP proof-research loop.
 The target is a deterministic PCP-free polynomial-factor hardness reduction from 3SAT to Euclidean
@@ -367,7 +368,8 @@ async function main(): Promise<void> {
   const persistedNonOracleCost = priorState
     ? Math.max(0, Number(priorState.spent_usd || 0) - oracleCost(costLedger))
     : 0;
-  const spent = () => persistedNonOracleCost + (session.getSessionStats()?.cost || 0) + oracleCost(costLedger);
+  let subagentCost = 0;
+  const spent = () => persistedNonOracleCost + subagentCost + (session.getSessionStats()?.cost || 0) + oracleCost(costLedger);
   let state: State = priorState ? {
     ...priorState,
     phase: "resuming",
@@ -536,7 +538,7 @@ async function main(): Promise<void> {
     }
     state.phase = "sol_implementation";
     checkpoint();
-    if (!canReserve(SOL_TURN_RESERVE_USD)) {
+    if (!canReserve(SOL_TURN_RESERVE_USD * (SOL_SUBAGENTS ? 3 : 1))) {
       state = { ...state, phase: "done", outcome: "budget_exhausted", reason: "insufficient reserve for Sol implementation turn" };
       checkpoint();
       break researchLoop;
@@ -546,9 +548,45 @@ async function main(): Promise<void> {
       fableProposalReview.verdict === "CONTINUE" ? "Fable proposals" : "",
       proProposalReview.verdict === "CONTINUE" ? "Pro proposals" : "",
     ].filter(Boolean).join(" and ");
-    if (!existsSync(resultPacket)) {
+    const sharedBrief = `Read ROADMAP.md, ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review; do not revive the rejected population.`;
+    if (!existsSync(resultPacket) && SOL_SUBAGENTS) {
+      const roles: Array<[string, string, string]> = [
+        ["BUILDER", "SOL_BUILDER.json", "Implement the smallest discriminating experiment for the single best surviving proposal, with a deterministic experiments/verify_*.py that exits zero. Do not edit the shared campaign documents."],
+        ["PROVER", "SOL_PROVER.json", "Work the Lean channel: state the sharpest exact lemma the best surviving proposal rests on and prove it in a lean/Verify_*.lean file that compiles against Mathlib (native_decide allowed; sorry/admit/axiom are rejected). Prefer a universal statement; fall back to the exact finite kernel only if the general form resists. Do not edit the shared campaign documents."],
+        ["BREAKER", "SOL_BREAKER.json", "Adversarially attack the best surviving proposal before anyone trusts it: hunt the exact cheat vector, short kernel move, or degeneracy that kills it, with a deterministic experiments/verify_*.py exhibiting the cheat or certifying its absence in a stated bounded regime. Do not edit the shared campaign documents."],
+      ];
+      state.phase = "sol_subagents";
+      checkpoint();
+      await Promise.all(roles.map(async ([role, packetName, mandate]) => {
+        const packet = join(genDir, packetName);
+        if (existsSync(packet)) return;
+        const subModel = buildModel(SOL);
+        (subModel as unknown as { maxTokens: number }).maxTokens = SOL_MAX_TOKENS;
+        const sub = await createAgentSession({
+          model: subModel,
+          thinkingLevel: (process.env.OPENRSI_MLXFAST_THINKING || "high") as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
+          cwd: runDir,
+          sessionManager: SessionManager.inMemory(runDir),
+        });
+        try {
+          await sub.session.prompt(`${SOL_SYSTEM}\n\nGeneration ${generation}, parallel subagent role ${role}. ${mandate} ${sharedBrief} Write your result packet to ${packet} using the SOL_RESULT.json schema.`);
+          await sub.session.waitForIdle();
+        } finally {
+          subagentCost += sub.session.getSessionStats()?.cost || 0;
+        }
+        if (!existsSync(packet)) {
+          atomicJson(packet, { summary: `${role} produced no packet`, hypothesis: "", changed_files: [], verifiers: [], tests: [], claimed_progress: "NONE", next_experiment: "" });
+        }
+      }));
+      state.phase = "sol_implementation";
+      checkpoint();
       const preamble = solPrimed ? "" : `${SOL_SYSTEM}\n\n`;
-      await session.prompt(`${preamble}Generation ${generation}. Read ROADMAP.md, ${fableIdeas}, ${proIdeas}, ${proReviewsFable}, and ${fableReviewsPro}. Only ${eligible} survived cross-review. Implement and adversarially verify the single best surviving bounded experiment against the roadmap frontier; do not revive the rejected population. Write the required result packet to ${resultPacket}.`);
+      await session.prompt(`${preamble}Generation ${generation}, synthesis turn. Three parallel subagents just worked this generation: read ${join(genDir, "SOL_BUILDER.json")}, ${join(genDir, "SOL_PROVER.json")}, ${join(genDir, "SOL_BREAKER.json")}, and the experiment/lean files they name. Merge them into one honest verdict — if the breaker exhibited a real cheat, the cheat is the result; a compiled Lean lemma outranks unverified claims. Update the shared campaign documents (IDEAS.md, NOTES.md, STATUS.md, proof_cvp.md, ROADMAP.md frontier status) and write the final ${resultPacket}, listing every verifier that must be re-run.`);
+      solPrimed = true;
+      await session.waitForIdle();
+    } else if (!existsSync(resultPacket)) {
+      const preamble = solPrimed ? "" : `${SOL_SYSTEM}\n\n`;
+      await session.prompt(`${preamble}Generation ${generation}. ${sharedBrief} Implement and adversarially verify the single best surviving bounded experiment against the roadmap frontier. Write the required result packet to ${resultPacket}.`);
       solPrimed = true;
       await session.waitForIdle();
     }

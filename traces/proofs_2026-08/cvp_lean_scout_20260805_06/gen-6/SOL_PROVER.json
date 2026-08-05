@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the only cross-review-surviving direction: Proposal 1, the oblivious Beneš-routing compiler, with Proposal 4's mandatory marking restriction. The universal Lean verifier proves the sharp metric lemma required by that combination: over any finite coordinate type, every square integer matrix with Gram matrix equal to the identity is exactly a signed permutation matrix. Thus arbitrary unimodular column operations cannot be treated as Euclidean/selector-preserving; any metric-preserving integer equivalence has one nonzero entry, equal to +1 or -1, in every column and at distinct coordinates. This establishes only the equivalence restriction, not a Beneš compiler, a color-preserving permutation, L1, a primitive classification, or hardness.",
+  "hypothesis": "Causal mechanism: a fixed Beneš topology is intended to confine formula dependence to marked switch colors and coordinate permutations, while the proved integral-isometry classification prevents kernel-only unimodular transformations from silently changing Euclidean energy or selector support. Expected frontier move: a concrete full-brick serialization can now aim for L1 using separate certificates for abstract integer-kernel equivalence and for signed color-preserving metric transport. Falsification condition: any switch setting, fanout/COPY gadget, or depth-1/2/3 full matrix that requires mixing marked columns beyond a signed color-preserving permutation, changes legal energy after explicit Gram transport, or has an extra low-weight signed kernel/Graver class kills that serialization.",
+  "changed_files": [
+    "lean/Verify_integral_euclidean_isometry.lean",
+    "gen-6/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_integral_euclidean_isometry.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_integral_euclidean_isometry.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal integer unit-vector lemma, the orthonormal-column signed-permutation classification, and its direct integer Gram-identity corollary."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_integral_euclidean_isometry.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The new Lean verifier contains no sorry, admit, or axiom token."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Run the cross-reviews' single hash-locked marked-Beneš audit: freeze one width-four full brick with physical, pair, normalization, glue, DROP, transfer, anchor, NAND, and both COPY orientations; include all 24 permutations, a COPY tree, a fanout diamond, and a three-COPY cycle through depths 1-3. Verify exact integer kernels and signed color-preserving metric certificates, then attack soundness with a complete exact low-weight/Graver search starting with G13, the Generation-4 seam, affine-COPY and false-111 splices, toric exchange, DROP, and every physical Hamming-one/two flip. Any failed marked identity, unequal legal energy, or unclassified primitive kills this serialization; a pass is finite evidence only and authorizes an L1 induction attempt, not an asymptotic claim."
+}

@@ -1,0 +1,43 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/gen-3/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "No complete emitted NAND/COPY integer matrix, factor, target, or legal energy E is supplied. Therefore neither seam witness is shown to satisfy all tile equations, be reachable in a CVP fiber, or have energy below 17E.",
+      "The 8x8 witness uses an arbitrary asymmetric stress labeling rather than a serialized labeling of the actual candidate, and its cancellation is only in the leading F_289 residue modulo 17. It establishes nothing about P^2/P^3 lifts, carries, or full quaternionic transfer.",
+      "The 4x2 computation uses a commutative quadratic-order model without an explicit embedding into the claimed maximal quaternion order and prime filtration. Its coefficient weight 8 is not a CVP energy certificate.",
+      "The Lean dimension theorem implies a fatal obstruction to one leading F_289 coordinate whenever three independent rectangle directions survive all additional rows. The packet does not determine whether the complete tile retains those directions, so the single-coordinate candidate is unresolved rather than rescued.",
+      "Q1 still lacks common legal energy, saturation, DROP and false-fiber bounds, the complete enlarged Graver audit, and lift certification. Q2 and every amplification or asymptotic hardness claim remain wholly unsupported."
+    ],
+    "evidence": [
+      "The machine verifier exhausts all 3^8 vectors for the frozen 4x2 seam and exhibits an exact zero-margin, zero-tag witness with no proper conformal zero-tag submove. This is valid finite evidence only for that specialization.",
+      "The 8x8 verifier gives an explicit nonzero two-rectangle integer movement with zero row and column sums and zero product transfer modulo 17, of squared coefficient weight 12. It does not test the actual full tile or CVP objective.",
+      "Both Lean files compile without sorry, admit, or added axioms. They prove the local rectangle factorization/nonvanishing criterion and the generic dimension-two linear dependency, not Q1 or any lift theorem.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and SOL_RESULT consistently state that no hardness lemma or dimension-dependent gap follows. The claimed LEMMA progress is defensible only for the two local Lean statements, not for the frontier lemma Q1."
+    ],
+    "next_experiment": "Hash-lock and emit the actual N=8 product-tagged NAND matrix and both COPY-orientation matrices, including every normalization, calibration, port, glue, pair-selector, and tag row, together with the exact factor, target, and legal energy E. For the 4x2 witness and every corresponding rectangle dependency under the actual labels, use exact integer elimination to decide whether it lifts through all extra rows; for each lift, exhaust the positive-definite shell below 17E and report its exact CVP energy, while for each failure emit an SNF or rational left-kernel certificate. Stop after this lift audit—do not add multiple tags, P^3 enumeration, or a Graver computation in the same experiment.",
+    "confidence": 0.97
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "No verifier serializes the complete product-tagged NAND/COPY integer matrix. Therefore neither supplied kernel witness is shown to satisfy all calibration, glue, legality, normalization, or auxiliary rows of the actual Q1 tile.",
+      "No common legal energy E, exact CVP objective for the enlarged tile, DROP bound, false-fiber shell, or below-17E optimization is supplied. Coefficient squared weights 8 and 12 are not CVP energies and cannot establish a soundness violation.",
+      "A single F_289 leading coordinate has only F_17-dimension two, so any three surviving rectangle transfers have a nontrivial leading-symbol dependency. Unless the omitted full-tile equations leave fewer than three independent rectangle directions, the bare single-coordinate mechanism is structurally blocked.",
+      "The 4x2 enumeration covers only {-1,0,1}^8, while the 8x8 result concerns one artificial asymmetric labeling and transfer modulo P. These finite results cannot be promoted to all labelings, P^2/P^3 lifts, all-depth behavior, Q1, Q2, or hardness.",
+      "The Python tests use a commutative quadratic residue model, not a serialized maximal-order quaternion tile with carries and lifts. The generic Lean factorization validates only the local algebraic identity, not the proposed tile construction."
+    ],
+    "evidence": [
+      "The 4x2 verifier exhausts 6561 boxed vectors and exhibits an explicit ±1 movement with exact zero row/column margins and zero transfer over Z[u]/(u^2-3); its conformal-submove check supports primitiveness for that specific kernel witness.",
+      "The 8x8 verifier supplies a concrete two-rectangle movement with coefficients (2,-1), exact integer-zero margins, and zero F_289 leading transfer. It does not establish reachability or energy in the actual tile.",
+      "Both Lean files compile without sorry, admit, or added axioms. They prove rectangle factorization/nonvanishing and the dimension-two dependency theorem, but contain no NAND/COPY matrix, CVP objective, or asymptotic statement.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and SOL_RESULT consistently leave Q1 open and explicitly deny hardness or dimension-gap conclusions. The proposed SOL next step is improperly compound because it combines witness lifting, a complete Graver computation, shell exhaustion, and P^3 carry analysis.",
+      "MACHINE_VERIFICATION validates only the two bare-seam Python programs and two local Lean lemmas. It supplies no machine evidence for the complete emitted matrix or any below-17E claim."
+    ],
+    "next_experiment": "Hash-lock and serialize the actual single-coordinate enlarged NAND/COPY matrix for both COPY orientations, including every anchor, normalization, legality, calibration, glue, and product-tag row. Compute its honest legal energy E, then exactly minimize the full Euclidean objective over all remaining integral coordinates while fixing the pair-selector block to each sign of the certified 4x2 witness; derive finite coefficient bounds from the positive-definite anchor block and test whether the minimum is below 17E. Any such extension kills this candidate; absence only eliminates this witness and must not be reported as Q1. Do not add the Graver/P^3 program to this run.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

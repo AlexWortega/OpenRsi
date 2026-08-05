@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the separator/treewidth proposal (Fable 2 / Pro 2), the only proposal both opponent reviews left viable. Its causal mechanism is that a growing detector support invariant, stable under explicitly minor-preserving equality contraction, would exclude the four fixed-template optimization forms at U0; the expected frontier move is finite authorization to formulate separate class-side Lean closure lemmas. I attacked the mechanism with an exact synthetic control family D_n=[I|-C_n] at n=8,16,32. Each tested D_n contains a certified K_{n/2,n/2} support subgraph, yet has a support-2 boundary kernel move, n-1 internal support-3 moves, and a unimodular row rebasing to a presentation whose incidence graph is a tree. Thus growing support witnesses alone neither certify signed soundness nor survive equivalent equation rebasing. This does not refute the still-unserialized campaign C_S or prove any asymptotic statement; it is finite evidence that the proposal needs a frozen serializer, precise expansion semantics, and explicit protection against low-weight kernels and row-basis degeneracy before it is trusted.",
+  "hypothesis": "A separator/treewidth witness for the displayed matrix D_S can coexist with exact low-weight signed kernel cheats and with a low-treewidth equivalent equation basis, so support growth by itself is insufficient evidence for either CVP soundness or robust tractability exclusion.",
+  "changed_files": [
+    "experiments/verify_gen8_separator_kernel_degeneracy.py",
+    "gen-8/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_gen8_separator_kernel_degeneracy.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_gen8_separator_kernel_degeneracy.py",
+      "exit_code": 0,
+      "finding": "For synthetic n=8,16,32 controls, certified K_{4,4}, K_{8,8}, and K_{16,16} support subgraphs coexist with minimum total kernel support 2 in the exhaustive z-support<=2, coefficient-+-1 search, internal support-3 adjacent moves, and a row-equivalent tree-incidence presentation."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_gen8_separator_kernel_degeneracy.py",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles as Python."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Hash-freeze the actual C_8,C_16,C_32 serializer, targets, markings, and a minor-preserving equality-expansion grammar. Then (i) certify the predeclared increasing separator/treewidth witnesses, (ii) exhaust all signed z with support at most 12 beginning with the named G13/Beneš/ghost/COPY-cycle patterns and record full objective energy, and (iii) search bounded unimodular row rebasings and reusable bounded-width decompositions. Kill the separator mechanism on any low-weight adverse vector, non-minor-preserving allowed expansion, or bounded-width equivalent presentation; otherwise report only a finite pass."
+}

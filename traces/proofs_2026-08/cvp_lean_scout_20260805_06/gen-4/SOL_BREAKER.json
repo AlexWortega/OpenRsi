@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the only cross-review-authorized experiment, Fable Proposal 1 / Pro Proposal 1: hash-lock the current single-product-tag NAND/COPY completion and lift-or-kill the certified 4x2 witness. Its causal mechanism is that omitted full-matrix rows might block the zero-tag seam movement or force its exact cost to at least 17E. Because the proposals supply no complete candidate, the verifier freezes the smallest canonical completion of the current data: the determinant-one N=8 NAND module, rank-2 COPY in both column orientations, all row/column pair margins, and both integral components of the single product tag. It emits an exact 40x18 CVP factor for every legal cell. Exact search finds a conformally primitive full-kernel movement and, in all 16 cell/orientation fibers, a malformed exact-residual-zero vector of squared distance 42, below 17E=306 for legal energy E=18. This is a finite kill of that serialized marginal-only completion, not of an unspecified completion with extra pair-dependent rows, Q1, or any asymptotic reduction.",
+  "hypothesis": "Causal mechanism: extra emitted NAND/COPY equations can rescue one product tag only by obstructing the known zero-margin, zero-tag pair movement or making every exact lift cost at least 17E. Expected frontier move: a complete lift obstruction would clear this witness but would not prove Q1. Falsification condition: the movement remains conformally primitive in the complete emitted kernel and yields a malformed exact fiber below 17E. The hash-locked canonical completion meets the falsification condition in both COPY orientations.",
+  "changed_files": [
+    "experiments/verify_product_tag_full_lift_attack.py",
+    "gen-4/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_full_lift_attack.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_full_lift_attack.py",
+      "exit_code": 0,
+      "finding": "Specification SHA-256 eeb4bd797781134bc73c6ae7f285f7c9901e01083428e3e83932c237eef1e2ce locks two 22x18 emitted matrices and sixteen 40x18 factor/target instances. The verifier exhausts 6,561 {-1,0,1} pair movements per orientation and 25,856 pair selectors through squared pair energy 32. Each orientation has exactly two nonzero bounded kernel moves, one up to sign; the witness has no proper conformal kernel submove. Every legal cell has E=18 and an exact malformed zero-residual attack of squared distance 42<306=17E."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_full_lift_attack.py",
+      "exit_code": 0,
+      "finding": "The deterministic exact Python verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Require proponents to serialize and hash-lock any different full N=8 product-tagged NAND/fusion matrix and both COPY orientations, including every pair-dependent row, factor, target, and legal energy E. Apply the same fixed-witness integer lift and exact below-17E search. A sub-17E exact lift kills that candidate; failure to lift must be accompanied by an SNF or rational left-kernel certificate and clears only this witness, not Q1."
+}

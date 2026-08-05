@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the repaired generic quaternion-product specialization common to surviving Fable Proposal 1 and Pro Proposal 2. The compiled universal Lean lemma proves the local causal mechanism exactly: affine left/right marginal tags annihilate a 2x2 toric exchange, while an ordered product tag factors its transfer as (a0-a1)(b0-b1), which is nonzero in any division ring exactly when both label pairs differ; the criterion also holds after a fixed ring automorphism on the right labels. This is a local algebraic lemma, not Q1: it does not certify a COPY tile, the complete enlarged Graver basis, honest equations, DROP, low-energy sums, or P^3 carries.",
+  "hypothesis": "Genuine quaternionic product tags can move the Q1 frontier because bilinearity breaks the old affine seam grading on the observed rectangular exchange. The expected move is a nonzero initial transfer once honest constraints permit distinct left and right labels. The mechanism is falsified for a candidate if honest calibration forces either label pair equal, or if any primitive in the complete enlarged emitted lattice still has zero transfer or cancels below the 17E threshold.",
+  "changed_files": [
+    "lean/Verify_product_tag_rectangle.lean",
+    "gen-3/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_product_tag_rectangle.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_product_tag_rectangle.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal affine-annihilation, noncommutative factorization, division-ring nonvanishing, and skew-automorphism theorems with no output."
+    },
+    {
+      "command": "! grep -nE '\\b(sorry|admit|axiom)\\b' lean/Verify_product_tag_rectangle.lean",
+      "exit_code": 0,
+      "finding": "The new Lean verifier contains no sorry, admit, or axiom token."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Hash-lock one saturated COPY seam, serialize the exact pair-selector enlargement, and solve all honest equations over O/P^2 while requiring nonzero mod-P transfer on the complete enlarged integer Graver basis, false boundaries, DROP, and internal zero-boundary kernels; then exhaust both orientations, all vectors below 17E, and every P^3 lift/carry. The Lean criterion identifies immediate failure whenever a required rectangular move is forced to repeat a left or right label."
+}

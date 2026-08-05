@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the only proposal endorsed by both cross-reviews: Fable 2 / Pro 2, the incidence-separator and treewidth-minor route for U0. The frozen candidate layer C_S is the union of three affine reconvergence matchings. Independent HiGHS and CBC MILPs found exact 2/3-balanced-separator optima 4, 6, and 9 for S=8,16,32, meeting the preregistered strict-growth and S/4 finite gates. Faithful one-subdivision equality expansions contract back to each detector graph. An exact signed {-1,0,1} search covered 654384 low-weight defects modulo global sign and found detector image energy at least support in every searched case. This is finite evidence for the frozen candidate separator layer only; it is not a universal-circuit serialization, a hereditary-profile result, a fixed-class closure theorem, U0, or an asymptotic claim.",
+  "hypothesis": "Three affine reconvergence matchings create growing marked detector separators, and faithful local equality subdivisions preserve the resulting treewidth obstruction by contraction; falsify the frozen mechanism if exact separator optima do not grow strictly and remain at least S/4, or if a searched sparse signed defect has detector energy below its support.",
+  "changed_files": [
+    "experiments/verify_gen8_affine_detector_separator.py",
+    "gen-8/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_gen8_affine_detector_separator.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_gen8_affine_detector_separator.py",
+      "exit_code": 0,
+      "finding": "Hash-frozen S=8,16,32 factors passed two independent exact MILP audits with separator optima 4,6,9; all 654384 enumerated sparse signed defects had detector image energy at least support."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_gen8_affine_detector_separator.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles as Python."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Replace the affine detector surrogate with the hash-frozen actual U1 universal-circuit C_8,C_16,C_32 including selectors, fanout, reconvergence, target/DROP coordinates, and precise admissible equality gadgets. Compute a certified hereditary recursive separator profile, test generated examples of each of the four frozen fixed-block grammars, and only after that finite pass formulate separate Lean minor-preservation and class-side treewidth closure lemmas."
+}

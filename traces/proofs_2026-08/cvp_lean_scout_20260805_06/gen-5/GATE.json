@@ -1,0 +1,42 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/gen-5/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The serialized mutation fails the Q1 soundness gate: every tested legal fiber has a malformed physical-selector flip of squared distance 20, far below 17E=306, while every appended product-transfer component remains zero.",
+      "For the fixed 18-variable skeleton, adding any number of further rows supported only on pair selectors cannot detect an attack that leaves the pair block unchanged. Escape requires transfer rows touching physical selectors or sufficiently scaled non-transfer rows, and no such hash-locked mutation is supplied.",
+      "The actual maximal-order NAND/fusion/COPY tile required by ROADMAP's frontier is still absent. Common legal energy, DROP and false-fiber bounds, complete emitted rows, the projected-fiber Graver basis, and P-adic lift data therefore remain uncertified.",
+      "The proposed next experiment is not one executable bounded experiment: it first requests an unavailable tile and then bundles Hamming-one, Hamming-two, unrestricted-shell, and Graver computations. Under the stated continuation rule, this run has no admissible next step.",
+      "The SOL_RESULT label claimed_progress=LEMMA cannot denote progress on Q1 or hardness. The Lean result is only conditional linear algebra and constructs neither a tile nor an energy, carry, recursion, or dimension-gap certificate."
+    ],
+    "evidence": [
+      "The supplied physical-flip verifier passed and reports 640 candidates across r=1..4, two orientations, and 64 legal fibers; every fiber has a zero-transfer attack at energy 20<306.",
+      "The pair-shell verifier genuinely establishes rank three for two channels, detects the old witness, and finds no zero-syndrome malformed point among 7,152 same-margin candidates. Its own scope excludes physical deviations, DROP, false fibers, the full Graver basis, and the maximal-order tile.",
+      "The Lean verifier passed without sorry, admit, or added axioms and proves transport preservation plus the 2r rank bound. Those statements are conditional and provide no Q1 or asymptotic soundness theorem.",
+      "ROADMAP, STATUS, IDEAS, and NOTES consistently retain Q1 as open and explicitly deny any hardness or dimension-dependent gap. The packet appropriately limits the counterexample to the tested unscaled serializations.",
+      "The stronger prose claim that every fiber has a NAND-selector flip is not fully certified by the aggregate verifier output: the code searches NAND and COPY physical coordinates and only the representative attack is explicitly NAND. The weaker physical-selector claim is fully sufficient to kill the candidate."
+    ],
+    "next_experiment": "Stop this run. Restart only after supplying hash-locked actual maximal-order matrices, targets, both orientations, and common E for a mutation whose transfer rows touch physical selectors or whose scaled residual rows preserve completeness; then perform exactly the exhaustive binary Hamming-one-and-two physical-selector audit with the pair block fixed, killing the mutation on any zero-transfer state below 17E.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Every appended product-transfer row is supported only on pair selectors, so physical NAND/COPY selector deviations are structurally invisible to all channel counts in this serialization. A one-coordinate physical flip has squared distance 20<306=17E and zero vector-transfer residual in every tested fiber.",
+      "The rank-three seam result addresses only the frozen three-dimensional same-margin pair subspace. It does not establish Q1’s required separation of unrestricted malformed states, DROP, false fibers, or the complete projected-fiber Graver/Markov basis.",
+      "No actual maximal-order NAND/fusion/COPY tile, P-adic lift, complete factor/targets, or physical-selector transfer coupling was supplied. The proposed follow-up is therefore contingent on a new candidate and cannot rescue or further test the present pair-only serialization.",
+      "The Lean file proves only conditional linear-algebra and transport facts. It neither constructs an injective syndrome on the full defect space nor proves any energy, Q1, Q2, recursion, dimension-gap, or hardness statement."
+    ],
+    "evidence": [
+      "The machine verifier reports 640 exact Hamming-one candidates across r=1..4, both orientations, and 64 legal fibers; every fiber has an attack of energy 20 with zero transfer residual, while legal energy is 18 and the threshold is 306.",
+      "The restricted verifier genuinely finds seam rank three, syndrome (1,0,16,16) for the old witness, and no zero-syndrome malformed point among 7,152 same-margin pair selectors. Its own scope explicitly excludes changed physical blocks, DROP, false fibers, the complete Graver basis, Q1, Q2, and recursion.",
+      "ROADMAP.md, STATUS.md, IDEAS.md, and NOTES.md consistently record the physical-flip counterexample as operative and state that the four hash-locked unscaled channel-prefix factors are killed. None promotes the finite searches to asymptotic hardness.",
+      "Lean compilation and the no-sorry/admit/axiom check support the stated conditional theorems only. Finite rank and shell checks provide no all-size or hardness conclusion."
+    ],
+    "next_experiment": "No further experiment is authorized on this candidate. Resume only with a new hash-locked maximal-order tile whose emitted or explicitly scaled rows cover physical NAND/COPY coordinates while preserving common legal energy; then perform one bounded exact audit enumerating all Hamming-one and Hamming-two physical deviations in both orientations, all legal, false, and DROP fibers, killing the mutation upon any zero-transfer state below 17E.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

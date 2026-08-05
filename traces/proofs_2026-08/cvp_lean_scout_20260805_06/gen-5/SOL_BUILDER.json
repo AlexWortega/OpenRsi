@@ -1,0 +1,30 @@
+{
+  "summary": "Selected the sole cross-review overlap: Fable Proposal 2 / Pro Proposal 1, a direct sum of rank-one F_289 product transfers. The verifier hash-locks the two Generation-4 18-variable margin-completion orientations, exhausts 81 one-channel arrays over {0,1,u}, and deterministically finds the first two-channel array of seam rank three after 97 ordered pairs. It then performs exact low-weight search in all 16 legal cell/orientation fibers. The old channel still has 80 zero-initial malformed states in the searched shell, with minimum squared energy 42 < 306 = 17E. The two-channel mutation sends the certified weight-8 witness to syndrome (1,0,16,16) and has no zero-initial malformed state among all 7,152 same-margin pair selectors below 17E. This is a finite pass only for the frozen margin-preserving pair shell, not Q1 or an asymptotic result.",
+  "hypothesis": "Causal mechanism: two rank-one F_289 product channels supply four F_17 coordinates and can inject the frozen three-dimensional zero-margin seam, whereas one channel has rank at most two. Expected frontier move: remove the known one-channel attack and every zero-initial movement in the exact same-margin sub-17E pair shell. Falsification condition: any malformed same-margin selector below 17E with zero componentwise transfer. The bounded experiment does not trigger that falsifier, but changed NAND/COPY blocks, DROP, false fibers, the complete Graver basis, and the unavailable maximal-order tile are not covered.",
+  "changed_files": [
+    "experiments/verify_multichannel_product_shell.py",
+    "gen-5/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_multichannel_product_shell.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_multichannel_product_shell.py",
+      "exit_code": 0,
+      "finding": "The hash-locked finite audit exhausts 7,152 same-margin shell vectors. The old one-channel factor has 80 zero-initial malformed states with minimum energy 42, while the synthesized rank-three two-channel factor has none below 17E=306 and gives the old witness syndrome (1,0,16,16)."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_multichannel_product_shell.py",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles as Python."
+    },
+    {
+      "command": "python3 experiments/verify_multichannel_product_shell.py > /tmp/gen5_builder.json && python3 - <<'PY'\nimport json\nwith open('/tmp/gen5_builder.json') as f: d = json.load(f)\nassert d['new_zero_initial_malformed_count'] == 0\nassert d['old_minimum_bad_energy'] == 42\nassert d['new_seam_rank_over_F17'] == 3\nassert d['same_margin_shell_vectors_checked'] == 7152\nprint(d['serialization_sha256'])\nPY",
+      "exit_code": 0,
+      "finding": "Machine-readable regression confirms the finite finding and serialization SHA-256 51b52cbfbce97be25caca9706508386ddbc53bea75ba5f7883e59edcdaac74d1."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "First require and hash-lock the actual maximal-order N=8 NAND/fusion/COPY tile; do not infer it from this margin completion. Add the synthesized two channels with explicit centered lifts, calibration, factors, targets, both orientations, common legal energy, and saturation data. Test the fixed witness first, then exactly enumerate changed NAND/COPY blocks, DROP, false fibers, and all unrestricted states below 17E and recompute the complete enlarged Graver basis. Any zero-vector-syndrome primitive or subthreshold malformed state kills this two-channel candidate; a finite pass would still authorize only a separate Q2 section-stabilization experiment."
+}

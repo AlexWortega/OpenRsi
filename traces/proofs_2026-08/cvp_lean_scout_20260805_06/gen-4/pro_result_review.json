@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The experiment does not test ROADMAP.md's Q1 candidate. Both Python verifiers invent margin-only completions because no maximal-order O/P^2 NAND/fusion/COPY tile, pair-dependent rows, DROP encoding, or common-energy specification was supplied.",
+    "The internal hashes certify reproducibility only, not fidelity to an upstream construction. Consequently the energy-42 witnesses kill exactly the two serialized completions and cannot reject or validate the missing Q1 tile.",
+    "The Lean theorem is conditional on three integrally independent directions surviving every non-transfer row. The packet establishes neither that premise for a complete tile nor that its coefficient-weight bound implies CVP energy below 17E.",
+    "Nothing establishes Q1's complete projected-fiber Markov/Graver separation, saturation, false-fiber and DROP bounds, or maximal-order transfer behavior. Q2-Q5 and every asymptotic hardness or dimension-gap conclusion therefore remain unavailable.",
+    "The bounded searches cover 16 constant-size fibers and a finite shell only. Promoting these results to general single-tag impossibility, recursive growth, or asymptotic GapCVP hardness would be invalid."
+  ],
+  "evidence": [
+    "Machine verification passed for the supplied artifacts. For the hash-locked 18-variable margin-only matrices, the fixed pair movement preserves every emitted row and gives squared distance 42 below 17E=306 in all 16 cell/orientation fibers.",
+    "The stronger verifier enumerates 25,856 pair selectors through pair energy 32; the related decoded-margin verifier searches all 3^8 pair movements. These are exact finite counterexamples for their stated serializations.",
+    "The Lean file compiles without sorry, admit, or added axioms and proves the stated residue-dependency lemma. Its own statement and documentation explicitly leave row survival and the CVP threshold unproved.",
+    "ROADMAP.md, STATUS.md, IDEAS.md, and NOTES.md consistently record that Q1 remains open and that no hardness lemma or dimension-dependent gap follows."
+  ],
+  "next_experiment": "Stop this candidate. Resume only after an independently specified, hash-locked maximal-order O/P^2 NAND/fusion/COPY tile is supplied with every anchor, legality, normalization, glue, pair-dependent and transfer row, both COPY orientations, exact factors, targets, DROP fibers, and common legal energy E; then use SNF to decide extension of the fixed witness and exact bounded enumeration of every such lift with energy below 17E, returning either a concrete counterexample or a checkable left-kernel nonextension certificate.",
+  "confidence": 0.99
+}

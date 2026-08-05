@@ -1,0 +1,32 @@
+{
+  "summary": "Selected the overlap of cross-review-surviving Fable Proposal 1 and Pro Proposal 2: the generic single-product-tag specialization, strengthened as the reviews require by auditing enlarged internal kernels. Its causal mechanism is that one leading product value a_j b_k in O/P = F_289 should separate every non-honest all-pairs movement. The exact breaker is a rectangle-kernel cancellation. Lean proves that any three proposed F_289 leading symbols, viewed as the two-dimensional F_17 space, have a nonzero F_17 linear dependency. In the deterministic asymmetric N=8 stress labeling, exact low-weight search finds an even shorter two-rectangle movement with centered coefficients (2,-1), integer row and column sums zero, product initial symbol (0,0), squared Frobenius weight 12, and support 6. Thus bare all-pairs marginals plus one F_289 leading coordinate fail the corrected internal-kernel gate. This does not establish reachability in an unspecified full Euclidean tile and does not refute extra independent tag coordinates or higher-grade constraints.",
+  "hypothesis": "Causal mechanism: a genuine product tag should refine the old affine grading enough that every non-honest enlarged-seam movement has nonzero initial transfer. Expected frontier move: passing the complete enlarged-kernel audit would support Q1 construction. Falsification condition: a nonzero integer combination of independent pair-table rectangles preserves both marginals while its F_289 product transfer vanishes. The verifier exhibits exactly this condition, and the Lean lemma certifies the underlying three-symbol dimension obstruction.",
+  "changed_files": [
+    "experiments/verify_product_tag_rectangle_kernel.py",
+    "lean/Verify_three_transfer_kernel.lean",
+    "gen-3/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_rectangle_kernel.py",
+    "lean/Verify_three_transfer_kernel.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_rectangle_kernel.py",
+      "exit_code": 0,
+      "finding": "For distinct asymmetric power labels on an 8x8 all-pairs table, exact search found a nonzero two-rectangle movement with coefficients (2,-1), zero integer marginals, zero F_289 product transfer, squared weight 12, and support 6."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_rectangle_kernel.py",
+      "exit_code": 0,
+      "finding": "The deterministic Python verifier compiles successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && ~/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_three_transfer_kernel.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the theorem that every three F_289 leading symbols, modeled as F_17^2, admit a nonzero F_17 coefficient combination with zero leading symbol; the file contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Serialize the actual proposed enlarged NAND/COPY integer matrix, not only its all-pairs marginal submatrix, and test whether its extra honest equations eliminate the certified rectangle directions. If any rectangle-kernel combination lifts, compute a conformally primitive low-energy witness in both COPY orientations and kill the single-coordinate family. If all are eliminated, rerun the complete Graver and below-17E search; only then consider multiple independent product coordinates or higher-grade tags."
+}

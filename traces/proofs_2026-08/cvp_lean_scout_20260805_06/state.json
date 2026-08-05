@@ -1,0 +1,16 @@
+{
+  "run_id": "cvp_lean_scout_20260805_06",
+  "phase": "done",
+  "generation": 9,
+  "outcome": "budget_exhausted",
+  "models": {
+    "fable": "azure/gpt-5.6-sol",
+    "pro": "azure/gpt-5.6-sol:pro",
+    "sol": "azure/gpt-5.6-sol"
+  },
+  "budget_usd": 100,
+  "spent_usd": 90.22192300000002,
+  "kills_since_progress": 0,
+  "reason": "insufficient reserve for Sol implementation turn",
+  "decision": "CONTINUE_IDEA"
+}

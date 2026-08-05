@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the shared Fable/Pro Proposal 2 (support-graph separator/treewidth obstruction), the only proposal both opponent reviews retained for one bounded experiment. The universal Lean verifier proves two exact pieces of its mechanism: for every integer matrix C, the support graph of C is an induced copy in the support graph of [I | -C] and each added identity column is only a leaf; and every equality expansion equipped with an onto contraction, internally connected fibers, and an edge lift yields a branch-set minor model of the original graph. Therefore the identity augmentation and any expansion satisfying this explicit certificate cannot erase a minor-monotone obstruction. This does not prove growing treewidth, any fixed-class upper bound, U0, signed soundness, a CVP gap, or hardness.",
+  "hypothesis": "Causal mechanism: a growing detector minor in the support graph of C_S should survive both D_S = [I | -C_S] and certified equality contraction, while each frozen fixed-template normal form should have template-bounded treewidth. Expected frontier move: the proved universal plumbing lemmas isolate the remaining U0 obligations to a concrete serializer, increasing minor certificates, and four separate class-side treewidth bounds. Falsification condition: kill this mechanism if the frozen C_8,C_16,C_32 family has a reusable bounded-width decomposition, if a permitted equality gadget lacks the stated faithful contraction certificate, or if any precisely defined fixed-template class violates its proposed template-dependent treewidth bound.",
+  "changed_files": [
+    "lean/Verify_support_minor_channel.lean",
+    "gen-8/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_support_minor_channel.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_support_minor_channel.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal induced-support and identity-leaf theorems, the explicit original-support minor model, and the faithful-equality-expansion minor theorem."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_support_minor_channel.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The new Lean verifier contains none of the forbidden proof placeholders or declarations."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Hash-freeze precise U0 grammars, allowed equality gadgets, markings, and one concrete serializer for C_8,C_16,C_32. For every gadget, emit the collapse, fiber-connectivity, and edge-lift data required by the Lean definition. Then compute exact or certified treewidth bounds and predeclared strictly increasing bramble/grid-minor certificates for the three support graphs, while generating counterexamples against each proposed fixed-template bound. Treat all three sizes only as FINITE evidence; attempt asymptotic promotion only after a separate Lean induction for the serializer and four class-side closure theorems."
+}

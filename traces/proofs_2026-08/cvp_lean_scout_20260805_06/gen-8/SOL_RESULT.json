@@ -1,0 +1,49 @@
+{
+  "summary": "The operative synthesis is a finite separator pass constrained by the breaker's support-degeneracy warning, plus a compiled minor-plumbing lemma. The frozen affine-detector surrogate passes its preregistered finite gates: independent HiGHS and CBC MILPs certify top-level 2/3-balanced separator optima 4, 6, and 9 for S=8,16,32, and 654384 sparse signed defects have detector image energy at least support in the searched ranges. This is not the actual universal-circuit C_S, a hereditary recursive profile, a fixed-class closure theorem, U0, or an asymptotic result. The breaker uses a different synthetic cumulative family and therefore does not refute the surrogate, but it exhibits a real cheat against support-only inference: certified K_{n/2,n/2} support subgraphs coexist with support-2/3 kernel moves and a unimodular row-equivalent tree-incidence presentation. Thus displayed support growth alone supplies neither signed soundness nor a row-basis-robust tractability exclusion. Lean proves that G(C) is induced in and is a minor of G([I|-C]), identity columns are leaves, and explicitly faithful equality expansions preserve the old graph as a minor. It proves no growing separator, treewidth theorem, fixed-class upper bound, or U0. No hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected the only direction retained by both opponent reviews, Fable Proposal 2 / Pro Proposal 2: incidence separators and treewidth minors for U0. Causal mechanism: a growing detector support minor should survive identity augmentation and certified equality contraction, while each precisely defined fixed-template class should have template-bounded width. Expected frontier move: finite evidence authorizing separate serializer-growth and class-side Lean theorems. Falsification condition: bounded-width decomposition of the actual family, failed faithful contraction, failed predeclared separator growth, or a target fixed-template class violating its proposed bound. The surrogate passes its finite growth gate, while the breaker demonstrates that support growth by itself is insufficient and basis-sensitive.",
+  "changed_files": [
+    "experiments/verify_gen8_affine_detector_separator.py",
+    "experiments/verify_gen8_separator_kernel_degeneracy.py",
+    "lean/Verify_support_minor_channel.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-8/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_gen8_affine_detector_separator.py",
+    "experiments/verify_gen8_separator_kernel_degeneracy.py",
+    "lean/Verify_support_minor_channel.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_gen8_affine_detector_separator.py",
+      "exit_code": 0,
+      "finding": "The hash-frozen affine-detector surrogates have independently certified top-level balanced-separator optima 4, 6, and 9 at S=8,16,32; all 654384 searched sparse signed defects have image energy at least support."
+    },
+    {
+      "command": "python3 experiments/verify_gen8_separator_kernel_degeneracy.py",
+      "exit_code": 0,
+      "finding": "Synthetic cumulative controls at n=8,16,32 contain K_{n/2,n/2} support subgraphs while admitting support-two/three kernel moves and unimodular row-equivalent tree-incidence presentations."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_gen8_affine_detector_separator.py experiments/verify_gen8_separator_kernel_degeneracy.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_support_minor_channel.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the induced-support theorem, identity-leaf theorem, explicit original-support minor model, and faithful-equality-expansion minor theorem."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_support_minor_channel.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The Lean verifier contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Hash-freeze the actual U1 universal-circuit serializers C_8,C_16,C_32, all markings, targets, DROP coordinates, and a precise grammar of admissible bounded-width equality gadgets and the four target fixed-template classes. For every equality gadget, emit the onto collapse, connected-fiber, and edge-lift data consumed by the Lean minor theorem. Compute the hereditary recursive balanced-separator profile rather than only the top-level separator, certify predeclared increasing minors or brambles, and separately generate/test each class-side template-width bound. In parallel search bounded unimodular row rebasings, reusable bounded-width decompositions, and exact low-weight signed kernels on the actual matrices. Any bounded decomposition, nonfaithful allowed expansion, or failed class-side bound kills this U0 mechanism; three finite sizes remain FINITE until separate Lean induction and closure theorems compile."
+}

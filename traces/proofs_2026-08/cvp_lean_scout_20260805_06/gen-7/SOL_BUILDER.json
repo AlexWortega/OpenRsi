@@ -1,0 +1,30 @@
+{
+  "summary": "Selected the only proposal surviving opponent review, Pro 2 (quadratic-character equal-radius switch encoding), and froze a 74x44 three-COPY-cycle realization containing physical 0/1/DROP selectors, four-state pair selectors, straight and swapped COPY orientations, transport of all four characters, one NAND, output and transfer selectors, normalization/glue rows, and explicit DROP auxiliaries. Exact search of all 531441 signed {-1,0,1} movements on the 12 COPY coordinates finds exactly two minimum-support kernel vectors: the signed support-12 movement that applies the mixed rectangle at every cycle vertex. Exhaustion of all proper conformal subsets certifies that the movement is primitive for this frozen full matrix. In each of four honest fibers, one sign reflects the quadratic character at all three vertices and has squared energy exactly 885, equal to legal energy. This persists even though the frozen all-zero DROP energy is 120000>17*885. This is finite evidence killing only the hash-locked realization; it is not a claim about all quadratic-character compilers or sizes.",
+  "hypothesis": "Causal mechanism: transporting q(a,b)=(1,(-1)^a,(-1)^b,17(-1)^(ab)) along every COPY edge should make the old mixed rectangle visible while keeping all honest states at one radius. Expected frontier move: a complete marked COPY/NAND brick escaping the Generation-6 common-fibre exchange would become eligible for L1 depth-1/2/3 serialization. Falsification condition: an exact low-weight malformed kernel movement survives full character transport with energy at most legal energy, or DROP costs less than 17 times legal energy. The synchronized three-rectangle primitive meets the first falsifier at ratio 1 while DROP clears its gate.",
+  "changed_files": [
+    "experiments/verify_quadratic_character_copy_cycle.py",
+    "gen-7/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_quadratic_character_copy_cycle.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_quadratic_character_copy_cycle.py",
+      "exit_code": 0,
+      "finding": "Hash-locked 74x44 matrix; complete 3^12 search finds exactly the two signed support-12 synchronized rectangle primitives, all four honest fibers have malformed energy 885 equal to legal energy, 882 physical Hamming-one/two movements are nonkernel, and DROP is 120000>15045."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_quadratic_character_copy_cycle.py",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles without syntax errors."
+    },
+    {
+      "command": "a=$(mktemp); b=$(mktemp); python3 experiments/verify_quadratic_character_copy_cycle.py > \"$a\" && python3 experiments/verify_quadratic_character_copy_cycle.py > \"$b\" && cmp \"$a\" \"$b\"; code=$?; rm -f \"$a\" \"$b\"; exit $code",
+      "exit_code": 0,
+      "finding": "Two independent verifier runs produced byte-identical output."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not attempt the L1 depth recursion for this realization. A changed quadratic-character mutation must first add an explicit phase or anchor transport on the smallest fanout diamond and three-COPY cycle, then rerun the complete signed box search; the new row must be nonzero on the synchronized rectangle while every honest cycle state retains the same radius and DROP stays above 17E."
+}

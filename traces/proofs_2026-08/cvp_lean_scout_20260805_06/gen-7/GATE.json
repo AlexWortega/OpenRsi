@@ -1,0 +1,40 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/gen-7/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen quadratic-character objective admits three normalized support-three malformed selectors with honest mark norm. The representative (-1,1,1,0) is unaffected by normalization and remains below the adverse threshold in every tested scale case, so the advertised local cure fails its own falsification gate.",
+      "The 74x44 three-COPY realization has a synchronized support-12 kernel movement preserving all 74 emitted rows. It is conformally primitive and attains malformed energy 885, exactly legal energy, despite DROP costing 120000; this directly fails the ROADMAP pre-gate for cycle composition.",
+      "L1 remains untouched: there is no complete fanout brick, depth-1/2/3 serialization, higher-Lawrence kernel identity, honest-affine Graver classification, or full-selector compatibility certificate. The Lean result proves only local character geometry and cannot be promoted to compiler structure or hardness.",
+      "The proposed next experiment is a multi-stage conditional recipe, not one frozen mutation with one bounded discriminator. Without explicit added rows that charge all three ghosts while preserving common honest energy and marked routing, another run would not move the frontier."
+    ],
+    "evidence": [
+      "The local verifier exhausts all 81 selectors in {-1,0,1}^4, finds 12 normalized malformed candidates and three equal-radius ghosts, and checks 65 mark scales. This is finite evidence against the frozen objective only, not an impossibility theorem for augmented quadratic-character compilers.",
+      "The cycle verifier exhausts 3^12=531441 COPY-box movements and reports exactly the two signs of the synchronized rectangle at minimum support within that box; subset enumeration finds no proper conformal kernel summand. The attack-to-legal ratio is exactly 1 in all four tested honest fibers.",
+      "Lean compilation with no sorry, admit, or added axiom verifies common radius, mixed derivative -2, integer linear independence, and marked wire swap. None of those statements excludes equal-norm non-honest images or glued cycle cancellation.",
+      "ROADMAP, STATUS, IDEAS, and NOTES consistently state that this realization is dead, L1 is open, and no hardness or dimension-dependent gap follows. The packet appropriately avoids promoting its finite searches to an asymptotic theorem."
+    ],
+    "next_experiment": "None authorized for this candidate/run. Reopen only after supplying a hash-frozen explicit added-row mutation that provably preserves common honest energy and marked routing; its first gate must exhaustively retest the three listed ghosts and the synchronized rectangle before any depth serialization.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The candidate meets its own falsification condition: three normalized support-three selectors produce non-honest words with honest mark norm. The frozen quadratic-character local objective therefore cannot separate malformed selectors even after DROP is raised above the prescribed threshold.",
+      "The fuller 74x44 realization contains a synchronized support-12 kernel movement whose malformed energy is exactly the legal energy 885 in every tested honest fiber. DROP control and physical Hamming-one/two checks do not repair this ratio-one failure.",
+      "No ROADMAP frontier lemma is advanced. There are no depth-1/2/3 full compiler matrices, exact higher-Lawrence kernel identities, fanout-diamond audit, complete full-matrix Graver basis, or honest-affine compatibility classification; the Lean result proves only local character identities.",
+      "The proposed next experiment is not one bounded experiment but an unspecified repair program followed by several gates. No concrete added-row mutation is supplied, and common-target linear rows cannot charge a normalized affine ghost while taking the same value on every honest selector."
+    ],
+    "evidence": [
+      "The local verifier exhausts all 81 selectors in {-1,0,1}^4 and reports three equal-radius ghosts, including (-1,1,1,0) mapping to (1,-1,-1,1). Its scale audit covers only the finite range 0 through 64 and is correctly insufficient for any asymptotic conclusion.",
+      "The cycle verifier exhausts all 3^12 COPY-selector movements and exhibits the synchronized rectangle in the kernel of all 74 serialized rows. It verifies equal attack/legal energy 885, DROP energy 120000>17*885, and no proper conformal kernel summand of that witness.",
+      "The supplied Lean file compiles without sorry, admit, or added axioms and proves common radius, mixed derivative, integer linear independence, and marked wire swap. None of those statements excludes equal-norm non-honest images, glued cycle kernels, or establishes L1 or hardness.",
+      "STATUS, IDEAS, NOTES, and ROADMAP consistently classify these results as finite kills of the frozen local objective and hash-locked cycle brick. They explicitly leave L1 and every dimension-dependent hardness claim open."
+    ],
+    "next_experiment": "Stop this realization. Resume only after supplying a concrete hash-locked mutation, then perform one bounded audit on the smallest full brick containing both a fanout diamond and a straight/swap/swap three-COPY cycle: include every physical, pair, NAND, COPY, transfer, anchor, normalization, glue, and DROP row; compute the complete Graver basis of the full matrix; and reject if any embedded support-three ghost or synchronized rectangle has energy at most 17E while DROP exceeds 17E. Only a pass may authorize depth-1/2/3 Lawrence testing.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

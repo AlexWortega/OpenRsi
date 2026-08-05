@@ -1,0 +1,21 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole survivor, but only after mutation. No actual parametric U1 serializer currently exists, and the asserted fixed-class branch-width bounds and equality-expansion matroid-minor closure are unproved; graph-minor plumbing from Generation 8 does not establish either claim.",
+    "Finite branch-width values for C_8 or even C_8,C_16 cannot prove unbounded width, U0, or hardness. Any pass authorizes only class-side and serializer-growth theorem development.",
+    "Proposal 2 is killed for this run: no width functional, threshold, or class-side interface-module bound is specified, and identity augmentation may trivialize its torsion. Enumerating cuts of C_8 without those commitments cannot distinguish U0 from an invariant that is bounded on both actual and tractable families.",
+    "Proposal 3 is killed because its class-side mechanism is false without severe extra restrictions. Fixed tree-fold instances may use asymmetric trees or markings, and faithful equality expansions can destroy visible automorphism orbits while preserving tractability.",
+    "Proposal 4 is killed because the promised recognizer/certificate dichotomy is unsupported. Searching widths 1–4 and a bounded subset of unimodular rebasings cannot certify nonmembership in any fixed-template grammar, while finite no-parses imply nothing asymptotic.",
+    "Proposal 5 is killed because row-HNF support is not a tractability invariant and may densify easy fixed-template systems. U0* changes the roadmap statement, and canonical-form recognition would neither prove nor refute literal U0 without a closure theorem already known to be doubtful.",
+    "Proposal 6 is killed at the current frontier because U0 explicitly excludes only four classes and does not claim exclusion of every tractable formulation. TU or network tests under vaguely described variable transformations do not preserve the marked Euclidean objective unless transformations are restricted to signed permutations.",
+    "All signed-soundness, DROP, affine-collision, splice, ghost, COPY-cycle, carry/lumpability, and Markov-versus-Graver obstructions remain untouched. Structural progress on U0 cannot be presented as progress on U2, U3, amplification, or the target hardness theorem."
+  ],
+  "evidence": [
+    "Generation 8 tested only affine-matching surrogates, with solver-reported separator values 4,6,9 and bounded signed searches. It supplied no actual universal-circuit matrix, hereditary profile, class theorem, or asymptotic result.",
+    "The cumulative control has large displayed support while admitting a unimodular row-equivalent tree presentation. This directly motivates Proposal 1's row-space matroid invariant and blocks renewed reliance on displayed support.",
+    "Unimodular row rebasing is invertible modulo every prime, so the represented column matroid of D is row-basis invariant. This does not by itself prove that allowed equality expansions retain the old matroid as a deletion/contraction minor.",
+    "The compiled Lean evidence proves only support inclusion and conditional graph-minor preservation under explicit faithful contractions. It proves no linear-matroid minor, branch-width growth, fixed-class ceiling, U0, or hardness statement."
+  ],
+  "next_experiment": "Run only mutated Proposal 1. Hash-freeze deterministic complete actual serializers C_8 and C_16, including fanout, reconvergence, marks, selectors and DROP, and form D=[I|-C]; reject immediately if this is not one restriction of a specified parametric serializer. Over p=2,3, compute exact matroid branch-width with replayable decomposition upper certificates and independently checkable tangle or obstruction lower certificates, and explicitly test deletion/contraction minor certificates for the finite allowed equality-gadget library. Preregister KILL if either serializer is incomplete, any claimed expansion lacks a matroid-minor certificate, or a reusable common bounded-width decomposition explains both sizes; strict certified growth at either field yields only finite authorization for four separate class-bound and asymptotic-growth proofs.",
+  "confidence": 0.97
+}

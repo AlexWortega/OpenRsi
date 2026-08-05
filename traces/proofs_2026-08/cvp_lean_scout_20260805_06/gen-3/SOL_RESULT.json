@@ -1,0 +1,56 @@
+{
+  "summary": "The operative verdict is the breaker's enlarged-kernel cheat against the bare single-product-tag seam. The local product mechanism is genuine and Lean-verified: one rectangle factors to (a0-a1)(b0-b1) and is separated by distinct labels in a division ring. But separation of old rectangles individually does not survive recomputation of the signed kernel. In the frozen 4x2 specialization, all six old rectangles and false 111 have nonzero tags, yet exhaustive search finds an exact conformally primitive zero-margin, zero-tag move of squared coefficient weight 8. A distinct asymmetric 8x8 stress labeling has a two-rectangle movement with coefficients (2,-1), exact zero integer margins, zero F_289 leading transfer, squared weight 12, and support 6. Lean additionally proves the structural reason: any three F_289 symbols, viewed in the two-dimensional F_17 space, have a nonzero linear dependency. These results do not establish full-tile reachability or CVP energy and do not refute extra emitted equations, multiple independent tags, or higher grades. Q1 and Q2 remain open; no hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected the corrected overlap of Fable Proposal 1 and Pro Proposal 2, the generic quaternion-product specialization. Causal mechanism: ordered product tags refine affine seam grading because a rectangular exchange transfers as (a0-a1)(b0-b1), nonzero for distinct left and right labels in a division ring. Expected frontier move: one exact O/P^2 specialization should give nonzero initial transfer on every primitive of the complete enlarged NAND/COPY seam. Falsification condition: after pair selectors and tags are emitted, any nonzero signed combination preserves all required margins while its product transfer cancels. The tested bare seams meet this falsification condition.",
+  "changed_files": [
+    "experiments/verify_product_tag_enlarged_kernel.py",
+    "experiments/verify_product_tag_rectangle_kernel.py",
+    "lean/Verify_product_tag_rectangle.lean",
+    "lean/Verify_three_transfer_kernel.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-3/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_enlarged_kernel.py",
+    "experiments/verify_product_tag_rectangle_kernel.py",
+    "lean/Verify_product_tag_rectangle.lean",
+    "lean/Verify_three_transfer_kernel.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_enlarged_kernel.py",
+      "exit_code": 0,
+      "finding": "The frozen 4x2 labels detect all six old rectangles and false 111, but exhaustive search of 6561 vectors finds one enlarged-kernel move up to sign with zero margins, exact zero tag, l1 8, squared coefficient weight 8, and no proper conformal zero-tag submove."
+    },
+    {
+      "command": "python3 experiments/verify_product_tag_rectangle_kernel.py",
+      "exit_code": 0,
+      "finding": "For distinct asymmetric labels on an 8x8 table, exact search finds a two-rectangle movement with coefficients (2,-1), zero integer margins, zero F_289 transfer, squared weight 12, and support 6."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_enlarged_kernel.py experiments/verify_product_tag_rectangle_kernel.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_product_tag_rectangle.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the affine-annihilation, noncommutative factorization, division-ring nonvanishing, and skew-automorphism rectangle theorems."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_three_transfer_kernel.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the theorem that every three F_289 leading symbols, modeled as F_17^2, have a nonzero coefficient combination with zero leading symbol."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_product_tag_rectangle.lean lean/Verify_three_transfer_kernel.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "Neither Lean verifier contains sorry, admit, or an added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Serialize the actual enlarged NAND/COPY integer matrix, including every honest calibration and glue row, rather than only its all-pairs marginal submatrix. Test whether the certified 4x2 and 8x8 rectangle-kernel combinations lift through those extra equations in both COPY orientations. If one lifts, compute its exact Euclidean energy and kill the single-coordinate candidate when it lies below 17E. If all are eliminated, recompute a complete independently checkable Graver basis of the enlarged matrix and exhaust false, DROP, malformed, internal zero-boundary, and all below-17E fibers over O/P^2 with every P^3 lift/carry. Only after that finite gate should multiple independent product coordinates or higher-grade tags be considered."
+}

@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not specify an integral CVP tile: the boundary lifts, selector columns, targets, maximal-order basis, cocycle-to-prime map, rank, and finite search domain are absent. An ordinary linear selector row cannot enforce the nonlinear Heisenberg composition law, so the claimed escape from G13 and the current false-111 splice is unproved.",
+    "Proposal 2 assumes that reversing legal COPY induces inverse endomorphisms on one adverse defect module. Q2 neither supplies that identification nor requires reverse adverse transfers to compose to identity; the elementary contradiction is valid only under an unsupported premise and therefore does not constrain the frontier.",
+    "Proposal 3 assigns path words through a nonlinear history operation without showing how unrestricted integral selectors emit exactly one such history in an ordinary lattice. Linearizing it as flow or transition selectors reopens G19 signed splicing, while the depth-two shell, weights, radius, and exact lattice are unspecified.",
+    "Proposal 4 confuses polynomial scheme certificates with linear CVP soundness. Moreover, a forbidden idempotent equal to one at an adverse Boolean point cannot equal a uniformizer multiple modulo a saturated ideal there, since reduction modulo P gives 1=0; excluding that point would merely remove the adverse state rather than prove Q2.",
+    "Proposal 5 only detects nonzero syndrome streams, but the verified false-111 NAND fiber and bidirectional COPY splice have zero leading syndrome. No enlarged syndrome map is supplied that escapes the honest-affine-span collision, and the Toeplitz matrix dimensions and lifted interface are not fixed.",
+    "Proposal 6 proves path lifting only for honest walks, whereas CVP coefficients form signed integral chains. Nonabelian deck multiplication is not enforced by incidence rows, so G19/diagonal splices can have legal boundary and trivial linear residue without representing any path; the proposed cover and ILP encoding are also not serialized.",
+    "None of the six experiments is a fully specified bounded test of ROADMAP's Q1/COPY and Q2 frontier. Several could test conditional algebraic statements, but no pass would establish even a finite transition table for an emitted NAND/COPY lattice."
+  ],
+  "evidence": [
+    "The current NAND verifier certifies exact grade-zero false fibers 010, 100, and 111 at energies 64, 56, and 56. The COPY verifier exhausts 378 declared affine codes and finds a zero-residual false111-COPY11-false111 splice in both orientations.",
+    "The existing Lean theorem proves only that supplied local potential inequalities telescope and that one gain per four levels beats binary scaling at 17. No proposal supplies the required complete transition relation, lift independence, potential, or local inequalities.",
+    "G13 already shows that compatible affine rows vanish on the honest-affine-span pseudosection, while G19 and Goal G1 show that path/flow and diagonal coherence do not control signed integral combinations. Proposals 1, 3, 5, and 6 do not provide a concrete nonlinear emitted mechanism escaping those attacks.",
+    "G28, G30, and G37 show that finite separation, tagging, or coding does not imply strict recursive growth. No proposed experiment computes a complete legal/adverse recurrence with lambda greater than mu.",
+    "All existing positive bag, Walsh, and redundant-NAND results are explicitly finite-only. They provide no evidence for the all-depth claims made here."
+  ],
+  "next_experiment": "None for these proposals. A mutation may restart only after serializing one fixed enlarged non-affine NAND/COPY lattice with complete integer columns, targets, maximal-order and prime-ideal data, fixed rank, and finite P^2/P^3 state sets; first verify that its emitted rows reject the exact false-111 affine witness, then exhaust both glue orientations, all lifts, DROP, malformed boundaries, carries, and internal zero-boundary kernels.",
+  "confidence": 0.99
+}

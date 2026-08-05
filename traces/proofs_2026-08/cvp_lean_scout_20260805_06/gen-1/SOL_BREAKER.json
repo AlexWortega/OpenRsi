@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the cross-review-surviving mutated finite adverse-transducer/COPY audit and attacked its first explicit realization. Exact search found a diagonal signed splice: the N=8 false-111 NAND selector (0,1,2,2,2,2,2,-1), of energy 56, can occur on both sides of a legal 11 COPY fiber. Exhaustion of all 378 saturated binary-signature COPY multisets of ranks 2 through 8 and both port orientations gives zero affine-span/boundary/glue residual and total anchor energy 112+N, between 114 and 120. Thus plain affine gluing has no strict transfer mechanism; this is finite evidence only and does not refute an augmented quaternionic coupling.",
+  "hypothesis": "Causal mechanism: a complete P-adic transducer should force every repeated adverse state through COPY to gain valuation. Expected frontier move: exclude grade-zero/zero-gain NAND-COPY-NAND transitions and eventually certify sufficient P-adic gain. Falsification condition: a reachable signed adverse selector passes through a legal COPY state without any emitted transfer residual. The explicit affine-only realization meets that falsification condition via the false111-COPY11-false111 splice.",
+  "changed_files": [
+    "experiments/verify_quaternion_copy_diagonal_splice.py",
+    "gen-1/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_quaternion_copy_diagonal_splice.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_quaternion_copy_diagonal_splice.py",
+      "exit_code": 0,
+      "finding": "Enumerated 378 saturated COPY codes through rank 8 in both orientations; every code admits the exact zero-residual diagonal splice with energy in [114,120]."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_quaternion_copy_diagonal_splice.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles as valid Python."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Require any proposed quaternionic NAND-COPY coupling to emit an explicit transfer coordinate that is nonzero on the repeated false-111 selector. For each candidate, enumerate all P^3 lifts of its normalized P^2 class, including DROP and internal zero-boundary kernels, and return either a carry/lumpability counterexample or an exact positive-gain certificate; do not infer all-depth transfer from a finite pass."
+}

@@ -1,0 +1,30 @@
+{
+  "summary": "Selected only the cross-review-surviving Proposal 1, the hash-locked fixed-witness lift-or-kill audit. Because no complete maximal-order product-tagged NAND/COPY candidate was supplied, the experiment serializes the smallest completion fixed by the available data: the N=8 redundant NAND module, determinant-one rank-2 COPY module, 4x2 pair selectors, all row/column marginal rows, and both integer coordinates of the current product tag. Its exact factor has shape 36x18 and is checked in both COPY orientations. All 16 frozen legal fibers have squared energy E=18. Exhaustive search of all 3^8 pair movements finds the prior witness and its negative; each leaves every non-anchor row unchanged. For every legal pair, one sign yields a malformed signed selector of squared energy 42, below 17E=306. This finitely kills only this newly serialized margin-only completion. The intended maximal-order O/P^2 tile, fusion, Q1, Q2, and all-depth soundness remain open.",
+  "hypothesis": "Causal mechanism: the certified zero-product movement refutes the current tag only if it lifts through every emitted NAND, COPY, glue, and transfer row. Expected frontier move: either a complete serialization blocks that movement, or an exact lift below 17E kills the candidate. Falsification condition: inability to serialize the intended maximal-order candidate, or a malformed signed lift preserving all non-anchor rows with squared energy below 17E. The smallest explicit margin-only completion meets the second condition, while the intended maximal-order candidate remains unavailable.",
+  "changed_files": [
+    "experiments/verify_product_tag_full_seam_lift.py",
+    "gen-4/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_full_seam_lift.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_full_seam_lift.py",
+      "exit_code": 0,
+      "finding": "The hash-locked 36x18 factors for both COPY orientations have 16 legal fibers of squared energy 18. Among 6561 exact pair movements, two nonzero kernel movements survive; the certified witness gives energy 42 < 306 for every legal pair."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_full_seam_lift.py",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles as Python."
+    },
+    {
+      "command": "python3 experiments/verify_product_tag_enlarged_kernel.py >/tmp/gen4_prior.json && python3 - <<'PY'\nimport json\nwith open('/tmp/gen4_prior.json') as f: d=json.load(f)\nassert d['zero_transfer_witness'] == [-1,1,1,-1,1,-1,-1,1]\nprint('prior witness matches:', d['zero_transfer_witness'])\nPY",
+      "exit_code": 0,
+      "finding": "The lifted movement exactly matches the previously certified 4x2 zero-transfer witness."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not infer Q1 from this finite kill. Supply and hash-lock the actual maximal-order single-product-tag NAND/fusion tile and both COPY orientations, including every anchor, normalization, legality, calibration, port, glue, pair-selector, and O/P^2 tag row, exact factor, targets, and legal energy E. Re-run the fixed witness against that matrix. If it lifts, exactly evaluate its full Euclidean energy and kill the candidate below 17E; if it does not lift, emit an exact left-kernel or SNF nonextension certificate and stop without adding tags or claiming Q1."
+}

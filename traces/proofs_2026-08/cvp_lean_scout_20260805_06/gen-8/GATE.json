@@ -1,0 +1,45 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/gen-8/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The tested affine-matching matrices are surrogates, not the actual universal-circuit factors C_S required by ROADMAP U0. Their separator behavior therefore establishes no property of the proposed reduction family.",
+      "Only three top-level separator values were tested. Values 4, 6, and 9 cannot establish hereditary growth, unbounded treewidth, fixed-class exclusion, or any asymptotic statement.",
+      "No precise grammar or class-side width theorem is supplied for fixed-block n-fold, generalized n-fold, tree-fold, or two-stage form. Without those definitions, a support minor cannot imply U0, especially given the demonstrated sensitivity to equation rebasing.",
+      "The claimed “exact” separator optima rely on floating-point MILP solver status from HiGHS and CBC. The verifier checks primal partitions but emits no independently checkable lower-bound, branch-and-bound, or proof certificate, so exact optimality is not formally certified.",
+      "The sparse signed audit covers only coefficients in {-1,0,1} through support 6 or 4 and only the surrogate detector map. It provides neither unrestricted signed soundness nor evidence about actual serializer kernels.",
+      "The proposed next experiment is an omnibus research program rather than one bounded discriminator: it combines serializer construction, four grammar analyses, hereditary profiles, gadget certification, rebasings, decompositions, and kernel searches."
+    ],
+    "evidence": [
+      "Both MILP implementations report separator objectives 4, 6, and 9 for the frozen surrogate at S=8,16,32, and the emitted primal partitions pass direct feasibility checks.",
+      "The signed search exhausts 654,384 vectors only within its declared support and coefficient bounds; the packet correctly labels this finite evidence.",
+      "The synthetic cumulative family verifies that large support witnesses can coexist with support-2/3 kernel moves and a unimodular row-equivalent tree presentation. It is not a counterexample to the affine surrogate but blocks support-only or basis-robust inference.",
+      "Lean compilation establishes only the induced-support embedding, identity-column leaves, an explicit minor model, and a conditional faithful-expansion minor construction. It proves no separator, treewidth, class-recognition, U0, or hardness result.",
+      "ROADMAP, STATUS, IDEAS, and NOTES consistently state that U0 remains open and that no hardness lemma or dimension-dependent gap follows."
+    ],
+    "next_experiment": "Run one hash-frozen actual-serializer audit: generate the same compiler’s complete marked C_8,C_16,C_32, including fanout, reconvergence, selectors and DROP, and freeze exact grammars for the four U0 classes plus the allowed equality gadgets. For each graph, compute the full recursive 2/3-separator profile and the minimum representation width in each grammar, emitting independently checkable integer certificates; also test unimodular rebasings with both U and U^{-1} entries in {-1,0,1}. KILL if serializer output is incomplete, any faithful-gadget certificate fails, separator profile does not strictly grow, or one reusable bounded-width representation covers all three sizes; otherwise retain only finite authorization for separate asymptotic and class-closure proofs.",
+    "confidence": 0.97
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The tested matrices are affine-matching surrogates, not the actual universal-circuit factors C_S required by ROADMAP’s U0 frontier. Consequently the separator results do not yet bear on the proposed reduction family.",
+      "Values 4, 6, and 9 at three sizes are only finite top-level separator measurements. They establish neither a hereditary recursive profile nor unbounded treewidth or separator growth.",
+      "No precise grammar or class-side width theorem is supplied for fixed-block n-fold, generalized n-fold, tree-fold, or two-stage forms. Without those bounds, even genuine growing support minors would not prove U0.",
+      "Support incidence is not invariant under unimodular row rebasing; the synthetic control explicitly exhibits a dense-support presentation row-equivalent to tree incidence. Unless admissible reformulations are justified or the invariant is made row-lattice robust, support separators cannot exclude tractable equivalent presentations.",
+      "HiGHS and CBC agree, but the verifier checks primal partitions and trusts floating-point solver optimal-status reports rather than replaying exact lower-bound certificates. The sparse signed search also concerns C-image energy only and is neither a full D_S kernel audit nor CVP soundness evidence."
+    ],
+    "evidence": [
+      "The verifier source defines C_S solely by the three affine matchings i, 3i+1, and 5i+2 modulo S. It explicitly states that no universal circuit, selectors, targets, DROP coordinates, or fixed-block grammars are serialized.",
+      "The finite runs report separator objectives 4, 6, and 9 for S=8,16,32 and search signed supports only through 6,6,4 respectively. No finite observation is promoted to asymptotic hardness in SOL_RESULT, ROADMAP, STATUS, IDEAS, or NOTES.",
+      "The breaker verifies, on a different cumulative family, K_{n/2,n/2} support witnesses together with support-2/3 kernel moves and a unimodular row-equivalent tree presentation. This does not refute the affine surrogate but directly validates the stated basis-sensitivity obstruction.",
+      "The Lean file proves induced support inclusion, identity-column leaves, and a branch-set minor from explicitly supplied faithful contractions. It contains no separator-growth, treewidth-monotonicity application, fixed-class bound, U0 statement, or hardness theorem.",
+      "ROADMAP and STATUS consistently leave U0 open and require actual C_8,C_16,C_32 serializers, hereditary separator evidence, precise admissible transformations, and four separate class-side analyses."
+    ],
+    "next_experiment": "Run one hash-frozen actual-family U0 falsification audit: commit a deterministic generator for the real U1 serializers C_8,C_16,C_32, including all marks, targets, DROP coordinates, and a finite preregistered grammar for allowed equality gadgets and bounded row-rebasis/decomposition attacks. For each matrix, emit replayable exact certificates for the defined hereditary 2/3-separator profile, Lean-checkable contraction data for every allowed gadget, and recognition/decomposition results for separately specified finite instances of all four target classes; kill on any missing serialization, nonfaithful contraction, bounded-width decomposition/rebasis, failed preregistered growth, or failed class-side finite bound. A pass remains finite evidence only and authorizes theorem development, not U0 or hardness.",
+    "confidence": 0.96
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

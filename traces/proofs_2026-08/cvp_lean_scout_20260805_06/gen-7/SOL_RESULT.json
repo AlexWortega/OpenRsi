@@ -1,0 +1,49 @@
+{
+  "summary": "The operative verdict is the breaker's equal-radius signed ghost against the quadratic-character switch objective. The advertised local mechanism is real and Lean-verified: q(a,b)=(1,(-1)^a,(-1)^b,(-1)^(ab)) has common squared radius 4, nonzero mixed derivative -2 in the quadratic coordinate, integer-linearly independent honest columns, and marked wire swap. Nevertheless, exhaustive local search finds three normalized support-three malformed selectors whose images are non-honest words on the same sphere. The representative (-1,1,1,0) maps to (1,-1,-1,1). For each of the 65 tested mark scales 0 through 64, normalization is raised minimally so DROP reaches at least 17E, but the ghost remains below threshold. A fuller hash-locked 74x44 three-COPY-cycle serialization independently fails: complete search of 531441 COPY movements finds a conformally primitive synchronized support-12 rectangle with malformed energy exactly 885, equal to legal energy in all four fibers, while DROP is 120000>15045=17E. These are finite kills of the frozen local objective and cycle brick, not every augmented quadratic-character compiler. L1 remains open and no hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected the only opponent-review-surviving direction, Pro Proposal 2's quadratic-character equal-radius switch encoding. Causal mechanism: the quadratic character makes the Generation-6 mixed rectangle visible while keeping honest states cospherical and allowing wire swap by a marked coordinate permutation. Expected frontier move: a complete marked COPY/NAND brick with no low-energy malformed signed orbit and no synchronized cycle kernel. Falsification condition: any normalized signed selector maps to a non-honest equal-radius word, or any full-brick primitive has malformed energy at most legal energy after DROP clears threshold. The support-three ghosts meet the first condition and the synchronized three-COPY primitive meets the second.",
+  "changed_files": [
+    "experiments/verify_quadratic_character_copy_cycle.py",
+    "experiments/verify_quadratic_character_ghost.py",
+    "lean/Verify_quadratic_character_switch.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-7/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_quadratic_character_copy_cycle.py",
+    "experiments/verify_quadratic_character_ghost.py",
+    "lean/Verify_quadratic_character_switch.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_quadratic_character_copy_cycle.py",
+      "exit_code": 0,
+      "finding": "The hash-locked 74x44 cycle matrix has exactly two minimum support-12 signed COPY-kernel movements. The synchronized rectangle is conformally primitive and gives malformed energy 885 equal to legal energy in all four fibers, while DROP costs 120000."
+    },
+    {
+      "command": "python3 experiments/verify_quadratic_character_ghost.py",
+      "exit_code": 0,
+      "finding": "Exhaustive 3^4 local search finds three support-three equal-radius ghosts. All 65 tested mark scales retain a ghost below 17E after normalization is tuned minimally to clear DROP."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_quadratic_character_copy_cycle.py experiments/verify_quadratic_character_ghost.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_quadratic_character_switch.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the common-radius, exact mixed-derivative, integer-linear-independence, and marked wire-swap theorems."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_quadratic_character_switch.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The Lean verifier contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Do not attempt an L1 depth induction for this realization. Any changed quadratic-character brick must first serialize every physical, pair, NAND, COPY, transfer, anchor, normalization, glue, and DROP row and embed all three support-three ghosts as mandatory tests. Added rows must charge every ghost while preserving one honest radius and marked routing. Then test the synchronized rectangle on the smallest fanout diamond and three-COPY cycle with DROP above 17E, followed by complete signed-box and Graver search. Only if those finite pre-gates pass should depths 1 through 3 and exact marked higher-Lawrence identities be tested."
+}

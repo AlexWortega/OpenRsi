@@ -1,0 +1,49 @@
+{
+  "summary": "The operative verdict is the breaker's exact low-energy lift against the hash-locked canonical margin-only single-product-tag completion. No intended maximal-order O/P^2 NAND/fusion/COPY candidate was supplied, so this does not settle such an unspecified tile. In the serialized 18-variable completion, each COPY orientation has a 22x18 emitted matrix and a 40x18 factor. All 16 legal cell/orientation fibers have squared energy E=18. The known pair movement (-1,1,1,-1,1,-1,-1,1) is conformally primitive in the emitted kernel, preserves every residual and both tag components, and yields a malformed vector of squared distance 42 in every fiber, below 306=17E. Exact shell search covers 25856 pair selectors through pair energy 32. A separate 36x18 decoded-margin serialization independently gives the same 42-energy lifts. Lean proves the conditional structural obstruction: whenever three integrally independent seam directions survive every non-transfer row, one bounded nonzero integer combination also survives, has zero F_17^2 leading transfer, coefficients in [-8,8], and squared coefficient weight at most 192. The theorem does not establish survival or CVP energy for the missing full tile. Q1 and Q2 remain open; no hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected only the cross-review-authorized Fable Proposal 1 / Pro Proposal 1 fixed-witness lift-or-kill audit. Causal mechanism: extra emitted NAND/COPY rows can rescue one product tag only by obstructing the certified zero-tag pair movement or forcing every exact lift to cost at least 17E. Expected frontier move: produce an SNF/left-kernel nonextension certificate or an exact full-factor counterexample. Falsification condition: a conformally primitive malformed movement survives every emitted row and has squared distance below 17E. Both serialized margin-only completions meet this condition in both COPY orientations, while the intended maximal-order candidate remains unavailable.",
+  "changed_files": [
+    "experiments/verify_product_tag_full_seam_lift.py",
+    "experiments/verify_product_tag_full_lift_attack.py",
+    "lean/Verify_single_transfer_lift_obstruction.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-4/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_full_seam_lift.py",
+    "experiments/verify_product_tag_full_lift_attack.py",
+    "lean/Verify_single_transfer_lift_obstruction.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_full_seam_lift.py",
+      "exit_code": 0,
+      "finding": "The hash-locked 36x18 decoded-margin factors in both orientations have 16 legal fibers at E=18; the exact pair movement survives every non-anchor row and gives malformed energy 42<306 in every fiber."
+    },
+    {
+      "command": "python3 experiments/verify_product_tag_full_lift_attack.py",
+      "exit_code": 0,
+      "finding": "The canonical completion has two 22x18 emitted matrices and sixteen 40x18 factor/target instances. Exact search finds a conformally primitive zero-residual movement and malformed distance 42<17E in all 16 fibers, after enumerating 25856 pair selectors through pair energy 32."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_full_seam_lift.py experiments/verify_product_tag_full_lift_attack.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_single_transfer_lift_obstruction.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the universal residue-dependency, balanced-lift bounds, nonzero movement, row-survival, zero-transfer, and coefficient-weight theorems."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_single_transfer_lift_obstruction.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The Lean verifier contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Require any proponent of a different single-product-tag construction to serialize and hash-lock the actual maximal-order NAND/fusion tile and both COPY orientations, including every anchor, normalization, legality, calibration, port, glue, pair-selector, pair-dependent, and O/P^2 tag row, together with the exact factor, targets, and common legal energy E. Apply the fixed movement first. A sub-17E exact lift kills that candidate. Failure to lift must be certified by SNF or an exact rational left-kernel witness and clears only this movement; an above-threshold extension requires exact minimization. Do not add tags, compute P^3 transitions, or claim Q1 before this discriminator is resolved on an actual candidate."
+}

@@ -1,0 +1,49 @@
+{
+  "summary": "The operative verdict is the breaker's physical-selector cheat against the serialized multi-channel product factors. The builder's restricted pair-shell pass is genuine: two F_289 channels have rank three over F_17 on the frozen zero-margin transportation seam, detect the old weight-8 witness with syndrome (1,0,16,16), and leave no zero-syndrome malformed state among 7152 same-margin pair selectors below 17E. But every appended channel row is supported only on pair selectors. Holding the pair table fixed and flipping one physical NAND selector leaves all vector-transfer components zero. Exact search over r=1,2,3,4, both orientations, all legal cells, and 640 Hamming-one candidates finds such an attack in every one of 64 fibers at squared distance 20<306=17E, with E=18. This finitely kills the four unscaled 18-variable channel-prefix serializations, not unspecified extra/scaled rows or an absent maximal-order tile. Lean proves the universal conditional multi-channel algebra: nonzero componentwise division-ring transport preserves zero/nonzero syndrome, injective syndrome detects defects, r channels have exact F_17 dimension 2r, and above that capacity every linear syndrome has a nonzero kernel. Q1 and Q2 remain open; no hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected the sole cross-review overlap, Fable Proposal 2 / corrected Pro Proposal 1: a direct sum of rank-one F_289 product transfers. Causal mechanism: r channels provide 2r residue coordinates, so two channels can inject the frozen three-dimensional pair-seam defect space and componentwise division-ring transport cannot erase a nonzero vector syndrome. Expected frontier move: remove every zero-syndrome malformed vector below 17E in the fully serialized tile. Falsification condition: any unrestricted subthreshold malformed state with zero residual in every channel. The same-margin pair shell passes, but a physical-selector Hamming-one flip meets the falsification condition in every tested factor.",
+  "changed_files": [
+    "experiments/verify_multichannel_product_shell.py",
+    "experiments/verify_multichannel_physical_flip_attack.py",
+    "lean/Verify_multichannel_transfer.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-5/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_multichannel_product_shell.py",
+    "experiments/verify_multichannel_physical_flip_attack.py",
+    "lean/Verify_multichannel_transfer.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_multichannel_product_shell.py",
+      "exit_code": 0,
+      "finding": "The synthesized two-channel map has seam rank three, detects the old witness, and has no zero-syndrome malformed state among 7152 same-margin sub-17E pair selectors; the old one-channel map has 80, with minimum energy 42."
+    },
+    {
+      "command": "PYTHONPATH=experiments python3 experiments/verify_multichannel_physical_flip_attack.py",
+      "exit_code": 0,
+      "finding": "Across r=1 through 4, both orientations, and 64 legal fibers, exact search of 640 physical Hamming-one candidates finds in every fiber a zero-vector-transfer NAND-selector flip at squared distance 20<306=17E."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_multichannel_product_shell.py experiments/verify_multichannel_physical_flip_attack.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_multichannel_transfer.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the transport equivalence, injective-syndrome detection theorem, exact 2r channel finrank, injective rank bound, and above-capacity kernel theorem."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_multichannel_transfer.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The Lean verifier contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Require the actual maximal-order multi-channel NAND/fusion/COPY tile before further synthesis. Its emitted transfer or sufficiently scaled Euclidean rows must cover physical NAND/COPY deviations as well as pair selectors while preserving saturated equal-energy legal fibers. Hash-lock all rows, centered lifts, factors, targets, both orientations, DROP and false targets, and common E. Run exact physical Hamming-one and Hamming-two searches first, then enumerate the complete unrestricted shell below 17E and recompute the enlarged zero-syndrome Graver basis. Any zero-vector-syndrome subthreshold state kills the serialization; a finite pass would authorize only a separate Q2 section/carry experiment."
+}

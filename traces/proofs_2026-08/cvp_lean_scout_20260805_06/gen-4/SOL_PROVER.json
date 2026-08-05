@@ -1,0 +1,25 @@
+{
+  "summary": "Selected only Proposal 1, the full-matrix rank obstruction and fixed-witness lift-or-kill audit, because both opponent reviews reject every architecture-changing alternative and require this discriminator first. The compiled universal Lean theorem proves its sharp algebraic kernel: if three integrally independent seam directions survive every emitted non-transfer integer row and their leading symbols lie in one F_17^2 transfer coordinate, then a nonzero integral combination also survives every such row, has zero leading transfer, has each coefficient in [-8,8], and has squared coefficient weight at most 192. This is not Q1 and does not assert that the campaign's three directions survive the missing full NAND/COPY rows or that the combination has CVP energy below 17E.",
+  "hypothesis": "The current single-coordinate product-tag candidate is structurally vulnerable if three independent adverse seam directions lift through all omitted non-transfer rows. The causal mechanism is the dimension-three to dimension-two residue dependency, centered-lifted to a bounded integer combination; linearity then preserves every emitted row. The expected frontier move is to turn that certified combination into an exact full-tile low-energy witness. The candidate is falsified if the hash-locked full matrix admits an adverse extension below 17E; this particular discriminator is cleared, without proving Q1, if an SNF/left-kernel certificate shows no extension or exact minimization proves every extension reaches the threshold.",
+  "changed_files": [
+    "lean/Verify_single_transfer_lift_obstruction.lean",
+    "gen-4/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_single_transfer_lift_obstruction.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_single_transfer_lift_obstruction.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal residue-dependency, balanced-lift bounds, row-survival, nonzero-movement, zero-transfer, and coefficient-weight theorems with no output."
+    },
+    {
+      "command": "! grep -nE '\\b(sorry|admit|axiom)\\b' lean/Verify_single_transfer_lift_obstruction.lean",
+      "exit_code": 0,
+      "finding": "The new Lean verifier contains no sorry, admit, or axiom token."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Hash-lock the exact N=8 single-product-tag NAND/fusion tile and both COPY orientations, including every emitted row, factor, target, and legal energy E. Use SNF or an exact rational left-kernel certificate to test whether each sign of the certified seam dependency extends through all non-transfer rows; for every extension, exactly minimize the full positive-definite integral objective with a proved finite bound below 17E. A sub-17E adverse extension kills the candidate; failure to extend or an above-threshold minimum clears only this witness and must not be reported as Q1."
+}

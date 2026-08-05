@@ -1,0 +1,25 @@
+{
+  "summary": "Selected mutated Pro Proposal 2, the finite adverse transducer/zero-gain-cycle route. Its causal mechanism requires every adverse seed to have a nonzero leading P-class before P^2 normalization can define transitions. The smallest prerequisite audit freezes the only integral defect map actually emitted by the N=8 NAND survivor. Exact SNF and a 334592-vector signed shell search find false boundaries 010, 100, and 111 with exact zero residual at anchor energies 64, 56, and 56. These witnesses are zero modulo P and P^2 and Frobenius-fixed. Thus the natural emitted-map instantiation is finitely falsified before COPY or cycle-mean construction; no claim is made about other quaternionic lifts or any asymptotic regime.",
+  "hypothesis": "For the known saturated N=8 redundant NAND module, using its emitted consistency/normalization/port residual as the transducer defect should give every false boundary a nonzero leading P-class. Expected frontier move: a pass would authorize COPY and P^2 transition construction. Falsification condition: any signed false-boundary selector with exact zero emitted residual.",
+  "changed_files": [
+    "experiments/verify_redundant_nand_grade_zero_seed.py",
+    "gen-1/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_redundant_nand_grade_zero_seed.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_redundant_nand_grade_zero_seed.py",
+      "exit_code": 0,
+      "finding": "Determinant-one/SNF saturation holds, and exhaustive exact signed search through squared energy 64 finds three Frobenius-fixed false NAND fibers with zero integer, mod-P, and mod-P^2 residual; minimum energy is 56."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_redundant_nand_grade_zero_seed.py",
+      "exit_code": 0,
+      "finding": "The verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Do not build COPY transitions from this defect map. First freeze a different explicit integral maximal-order NAND defect map and quaternionic lift, including all glue rows and Euclidean weights, then rerun the same exact false/DROP/malformed seed audit over O/P^2. Only a seed with a certified nonzero adverse leading class should enter the exhaustive N<=8 COPY and P^3-lumpability search."
+}

@@ -1,0 +1,42 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/gen-1/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The instantiated affine NAND/COPY route is falsified before ROADMAP Q2: three false NAND boundaries have exact grade-zero realizations, and the tested COPY family preserves a repeated zero-gain splice. Without a nonzero initial defect, no valuation transition graph or potential certificate can establish transfer.",
+      "The suggested escape—adding an affine-linear emitted coordinate that is nonzero on the same false-111 selector—is impossible on the frozen selector space. The witness satisfies s111 = -s001 + s011 + s101 with coefficients summing to one, so every affine row compatible with the legal fibers gives the corresponding affine value on s111; this is the G13 honest-affine-span collision that the ROADMAP incorrectly treats as escaped by merely invoking quaternionic valuation.",
+      "No augmented maximal-order NAND/COPY coupling is actually specified: there is no basis, target, coupling matrix, selector set, prime-ideal action, or fixed candidate search domain. “For each candidate” is an open-ended design program, not one bounded experiment.",
+      "The COPY verifier covers only 378 binary-signature affine codes with row counts 2–8 and plain boundary gluing. It supplies no evidence about an augmented quaternionic coupling, P-adic transfer, carries, DROP kernels, or the complete Q2 transition relation.",
+      "The Lean result is purely conditional and uninstantiated. It proves telescoping after a complete edge relation, weights, bounded potential, and local inequalities are supplied, none of which exists for the surviving frontier."
+    ],
+    "evidence": [
+      "The first verifier exactly inverts a determinant-one integer map and certifies false 010, 100, and 111 zero-residual fibers at energies 64, 56, and 56. This is stronger than its finite shell search for that frozen map but says nothing about a different enlarged tile.",
+      "The second verifier exhausts its declared finite affine COPY family and exhibits false111–COPY11–false111 splices of energy 114–120 in both orientations. Its scope statement correctly limits this to affine-only gluing.",
+      "The Lean file compiles without sorry, admit, or added axioms, and its telescope and 17-versus-four-level statements appear consistent with the source. Compilation does not instantiate Q1, Q2, Q4, or any hardness reduction.",
+      "STATUS, IDEAS, NOTES, and SOL_RESULT consistently state that no hardness lemma or dimension-dependent gap follows. The justified frontier remains the missing COPY portion of Q1 and all of Q2; finite evidence must not be promoted beyond the frozen families."
+    ],
+    "next_experiment": "None for this candidate. A new run is admissible only after serializing one explicit enlarged, non-affine-state coupling as an ordinary integral CVP lattice and first proving that its added rows break s111 = -s001+s011+s101; only then may it exhaust all P^2 states and P^3 lifts, both orientations, DROP, malformed boundaries, carries, and internal zero-boundary kernels for that single fixed tile.",
+    "confidence": 0.98
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen affine NAND realization is dead: false boundaries 010, 100, and 111 have exact zero residual, so the required nonzero leading P-class does not exist. No transducer or potential search is authorized for this realization.",
+      "Plain affine NAND/COPY composition is also dead within the enumerated family because the false111-COPY11-false111 selector passes with zero residual. This directly violates the required strict valuation transfer.",
+      "The proposed mutation is not one precise bounded experiment: it supplies no explicit maximal-order basis, augmented rows, target, rank, candidate count, or finite state set. “For each candidate” leaves an unbounded synthesis problem and therefore cannot justify CONTINUE.",
+      "No construction shows how the new transfer coordinate escapes the honest-affine-span collision while preserving all legal fibers. An append-only linear coordinate constant on legal realizations would also vanish on their normalized affine pseudosection, so an enlarged coupling must be specified and checked rather than asserted.",
+      "Q1 and Q2 remain uninstantiated: there is no COPY tile, complete P^2/P^3 transition table, lift-independence proof, DROP/internal-kernel closure, or potential certificate. Consequently no hardness lemma, recursive gain, or dimension-dependent approximation gap follows."
+    ],
+    "evidence": [
+      "The determinant-one NAND verifier gives unique exact fibers and explicitly checks zero integer residual for 010, 100, and 111 at squared energies 64, 56, and 56. This is stronger than its bounded shell search for those witnesses but applies only to the frozen emitted map.",
+      "The COPY verifier enumerates 378 saturated binary-signature codes with N=2 through 8 and constructs affine diagonal witnesses of energy 114–120. Its orientation loop labels the same symmetric payload rather than emitting distinct quaternionic glue systems, so it supports only the scoped affine-glue kill.",
+      "The Lean file proves a valid conditional telescoping theorem, bounded-potential corollary, and the numerical implication 2^depth<17^gain when depth≤4gain. It provides no transition relation, potential, or certificate for the current tiles.",
+      "The packet correctly refuses to promote these finite results to Q2 or asymptotic hardness. That restraint does not rescue the candidate because the only explicit realization is falsified and the replacement is unspecified."
+    ],
+    "next_experiment": "None is authorized for this run. Restart only after preregistering one concrete enlarged integral quaternionic NAND/COPY tile with full basis, targets, maximal-order and prime-ideal data, fixed rank, and an explicit finite P^2/P^3 state list; one verifier must then check legal completeness, SNF saturation, all false/DROP/malformed/internal-kernel fibers, both actual glue orientations, every P^3 lift, and return the first carry split or reachable zero-gain cycle.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

@@ -1,0 +1,30 @@
+{
+  "summary": "Selected the sole cross-review survivor, Fable 1 / Pro 1 marked oblivious Beneš routing, and froze the smallest standard width-four pair-linearized switch matrix. Exact search found a support-eight primitive toric exchange with zero residual in every emitted normalization, marginal, routing, glue, and DROP row. The movement equals h000 - h011 - h100 + h111, so it lies in the honest affine-difference lattice and cannot be separated by a detector required to vanish on honest differences. The same finite cheat occurs in all 384 tested permutation/input fibers. This kills only the frozen serialization, not an unspecified full brick or any all-size construction.",
+  "hypothesis": "The frozen marked width-four pair-linearized Beneš switch admits a low-energy malformed primitive in its honest affine-difference lattice: adding the same 2x2 rectangle to both port tables preserves every emitted row because its marginals vanish and its two product changes cancel.",
+  "changed_files": [
+    "experiments/verify_benes_switch_toric_exchange.py",
+    "gen-6/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_benes_switch_toric_exchange.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_benes_switch_toric_exchange.py",
+      "exit_code": 0,
+      "finding": "Hash-locked 54x76 matrix; exact search over 6560 local {-1,0,1} candidates found minimum kernel support 8 and exactly the two signed rectangle moves. All 24 permutations times 16 inputs admit zero-residual malformed energy 92 or 108 versus legal energy 76."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_benes_switch_toric_exchange.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles as Python."
+    },
+    {
+      "command": "a=$(mktemp); b=$(mktemp); python3 experiments/verify_benes_switch_toric_exchange.py > \"$a\" && python3 experiments/verify_benes_switch_toric_exchange.py > \"$b\" && cmp \"$a\" \"$b\"; code=$?; rm -f \"$a\" \"$b\"; exit $code",
+      "exit_code": 0,
+      "finding": "Two independent runs produced byte-identical output."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze the proposers' missing full switch brick with every transfer/anchor row, then rerun the same marked exact-kernel and honest-affine test. The necessary discriminator is whether any added row can be nonzero on this exchange while still vanishing on all honest affine differences; if not, the Beneš mutation fails L2 before a Lean L1 induction is attempted."
+}

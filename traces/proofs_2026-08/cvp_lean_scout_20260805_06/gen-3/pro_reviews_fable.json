@@ -1,0 +1,22 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole selectable direction, but its stated test is insufficient: passing the old projected-fiber basis over F_289 does not audit new kernel moves created by pair selectors, cancellation among primitive transfers, or P^3 carry splits. Its claim toward Q1 survives only after replacing the experiment by a complete enlarged-lattice Graver and low-energy fiber audit.",
+    "Proposal 2 can at most refute one fixed coordinate realization. Radical nonmembership does not show that the exchange is separable or kill the mechanism, and the proposal does not specify the coordinate polynomial encoding of skew quaternion multiplication.",
+    "Proposal 3's raw commutator is zero in the commutative residue field O/P congruent to F_289. A nonzero skew commutator would require explicit uniformizer placements, lifts, and multiplication tables; searching labels in F_17^2 does not supply them.",
+    "Proposal 4 assumes that adverse splices raise coupling rank, but signed rank-one or canceling defects are not excluded. Linear joint-selector consistency also admits fake joints unless the complete enlarged integral lattice, rather than only the old Markov basis, is audited.",
+    "Proposal 5 uses positivity-dependent semigroup holes against unrestricted signed coefficients. Group completion forgets hole membership, so an emitted additive class cannot distinguish two signed representations of the same boundary without a new concrete coordinate mechanism.",
+    "Proposal 6 defines a nonlinear function of unrestricted coefficients. Pair selectors cannot enforce products c_i c_j using ordinary linear lattice equations, and treating them as independent variables reopens G19-style signed splicing.",
+    "Proposal 7 is weaker than Proposal 1 and does not produce an emitted equal-energy tile. A bounded MILP cannot certify infeasibility of the unbounded valuation system without a proved normalization bound, and unique valuation minima do not audit residue cancellation or P^3 carries.",
+    "Proposal 8 is verification infrastructure, not a frontier discriminator. Formalizing the already-known affine witness and a toy COPY rejection cannot produce or falsify the missing nonzero quaternionic transfer."
+  ],
+  "evidence": [
+    "The supplied verifiers certify zero-residual false NAND fibers 010, 100, and 111 at squared energies 64, 56, and 56. They also find the false111-COPY11-false111 splice in both orientations for all 378 tested saturated affine COPY signatures of ranks 2–8.",
+    "The only positive tile evidence is finite: the redundant N=8 NAND has legal energy 8 and false energies 160, 64, 56, 56. No COPY tile, product-tag assignment, enlarged Graver basis, or P^3 transition certificate has been supplied.",
+    "G13, G19, Goal G1, and the current splice show that compatible affine rows, path coherence, and named-move testing do not control unrestricted signed combinations. Nonzero values on individual primitives therefore cannot replace an audit of low-energy sums and internal zero-boundary kernels.",
+    "The compiled Lean theorem proves only conditional telescoping once a complete lift-independent transition table and local potential inequalities are supplied. It provides no evidence that any proposed tag has a nonzero initial class.",
+    "No proposal includes new verifier output, so none of its expected finite outcomes is established. Any successful search must remain finite until its exact arithmetic and generation certificates are kernel-checked."
+  ],
+  "next_experiment": "Run only a corrected Proposal 1 gate: hash-lock the current N=8 NAND and the 378 rank-2–8 COPY signatures, serialize one exact all-pairs selector enlargement using the certified maximal order and prime, and SAT-search its complete finite O/P^2 tag alphabet. For every candidate, compute the complete Graver basis of the enlarged emitted integral matrix and exhaust all vectors below the 17E threshold, both glue orientations, false fibers, DROP, malformed boundaries, internal zero-boundary kernels, and every P^3 lift/carry; accept only a proof-carrying candidate with common legal energy and nonzero initial transfer everywhere required, otherwise kill this bounded family.",
+  "confidence": 0.97
+}

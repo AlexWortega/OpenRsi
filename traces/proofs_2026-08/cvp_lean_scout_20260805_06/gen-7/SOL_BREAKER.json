@@ -1,0 +1,30 @@
+{
+  "summary": "Selected the only cross-review-surviving direction, Pro 2's quadratic-character equal-radius switch encoding. Its intended mechanism works on the old attack: the mixed derivative is exactly (0,0,0,-2), not zero. Exact signed search nevertheless finds a shorter degeneracy. The normalized selector (-1,1,1,0) maps to -c(0,0)+c(0,1)+c(1,0)=(1,-1,-1,1), a non-honest word with the same squared radius 4 as every honest codeword. Under the frozen standard binary anchor its energy is 12+4m^2 versus legal energy 4+4m^2. For each of the 65 integral mark scales m=0,...,64, the verifier first raises normalization to the least integral scale clearing local DROP at 17 times legal energy; the ghost remains exactly normalized and below threshold. This is a finite kill of this local objective only, not of an unspecified augmented full brick or of L1 in general.",
+  "hypothesis": "Causal mechanism: the quadratic coordinate is intended to replace a common-fibre syndrome with a cospherical honest orbit while allowing wire swap by a marked coordinate permutation. Expected frontier move: preserve common legal energy and expose the old toric rectangle without formula-dependent matrix rows. Falsification condition: a short normalized signed selector combination reaches a non-honest point on the same sphere and remains below the preregistered adverse threshold even after normalization clears DROP. The support-three equal-radius ghost satisfies that condition in the tested local realization.",
+  "changed_files": [
+    "experiments/verify_quadratic_character_ghost.py",
+    "gen-7/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_quadratic_character_ghost.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_quadratic_character_ghost.py",
+      "exit_code": 0,
+      "finding": "Hash-locked four-word orbit; exhaustive 3^4 search found 12 normalized malformed selectors, minimum support 3, and exactly three equal-radius ghosts. All 65 tested mark scales retain a ghost after local DROP is raised to at least 17 times legal energy."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_quadratic_character_ghost.py",
+      "exit_code": 0,
+      "finding": "The deterministic verifier compiles as Python."
+    },
+    {
+      "command": "a=$(mktemp); b=$(mktemp); python3 experiments/verify_quadratic_character_ghost.py > \"$a\" && python3 experiments/verify_quadratic_character_ghost.py > \"$b\" && cmp \"$a\" \"$b\"; code=$?; rm -f \"$a\" \"$b\"; exit $code",
+      "exit_code": 0,
+      "finding": "Two independent verifier runs produced byte-identical output."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze the proposed complete quadratic-character brick and embed all three support-three ghosts before any depth serialization. Every added physical, pair, NAND, COPY, transfer, anchor, and DROP row must be evaluated on the ghosts. If a ghost remains equal-radius or below 17E, kill the brick; if rows charge all ghosts while every honest encoding keeps one radius, then rerun exact low-weight search because a higher-support signed affine combination may replace them. Only after that finite pre-gate should depths 1-3 and higher-Lawrence identities be tested."
+}

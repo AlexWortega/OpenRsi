@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the only cross-review-surviving construction, Proposal 1 (oblivious marked Beneš routing), and froze the smallest complete width-four local serialization with physical 0/1/DROP selectors, pair-transition selectors, normalization/glue rows, two NAND gates, and explicit transfer auxiliaries. The 136x142 matrix is identical for all 24 permutations (the marked column map is the identity), and all 384 permutation/input encodings have common squared energy 142. Exact signed search of the full {-1,0,1}^12 local switch box finds six conformally primitive rectangle moves of squared coefficient weight 8; all 13,824 embeddings are detected on forbidden full-coordinate pair entries and have minimum squared energy 158. All 5,832 physical-only Hamming-one/two perturbations fail the kernel equations. The frozen residual scale 5 is nevertheless killed by explicit DROP: the zero vector has squared distance 692, below the required adverse threshold 17*142=2414. This is finite evidence about this serialization only; no depth-independent Lawrence identity or hardness result is claimed.",
+  "hypothesis": "Causal mechanism: a fixed width-four Beneš topology should move formula-specific wiring entirely into switch targets while preserving marked physical/anchor columns and common legal energy. Expected frontier move: a target-only, marked local normal form that can be extended to the ROADMAP L1 depth-1/2/3 kernel identity. Falsification condition: unequal legal energy, setting-dependent matrix/kernel data, an undetected low-weight signed or physical-selector move, or any DROP/adverse vector below 17 times legal squared energy. The experiment passes the local target-only and marked low-weight checks but meets the DROP falsifier at the frozen scale.",
+  "changed_files": [
+    "experiments/verify_marked_benes_local_audit.py",
+    "gen-6/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_marked_benes_local_audit.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_marked_benes_local_audit.py",
+      "exit_code": 0,
+      "finding": "Hash-locked 136x142 matrix covers 24 permutations and 384 legal vectors; exact 3^12 switch search finds six minimum weight-8 primitives, 13,824 embeddings are full-coordinate detectable, 5,832 physical-only Hamming-one/two changes are nonkernel, and DROP has exact squared distance 692<2414."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_marked_benes_local_audit.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles as Python without syntax errors."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Raise the frozen residual scale to the minimum integral value that clears DROP, then serialize the requested depth-1/2/3 marked compiler with occurrence expansion, a COPY tree, fanout diamond, and three-COPY cycle. Check exact marked kernel equivalence and run the same complete low-weight physical/pair search before attempting any Lean L1 induction."
+}

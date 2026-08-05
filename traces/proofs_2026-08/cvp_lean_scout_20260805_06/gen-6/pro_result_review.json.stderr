@@ -1,0 +1,2 @@
+
+[ask_pro] mode=review model=azure/gpt-5.6-sol:pro cost=$1.40887 time=103.1s

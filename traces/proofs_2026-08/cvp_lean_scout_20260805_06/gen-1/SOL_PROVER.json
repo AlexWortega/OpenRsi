@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the cross-review-surviving, mutated finite adverse-transducer proposal (Pro Proposal 2, closely aligned with Fable Proposal 1). Its causal mechanism is a complete finite transition relation equipped with an integer potential certificate: the local inequalities telescope, forcing an all-depth gain lower bound up to the fixed potential width. The expected frontier move is to reduce Q2 to a finite certificate after COPY existence and P^2/P^3 lumpability are established. The Lean file proves the universal telescoping theorem, its bounded-potential corollary, and the exact threshold fact that one valuation gain per four binary levels beats the binary scale because 17 > 2^4. It does not assert that the current NAND seed has a COPY tile, a lumpable transducer, or such a certificate.",
+  "hypothesis": "If exhaustive NAND-COPY analysis yields a transition state space that is complete under all P^3 lifts and admits a potential certificate with rate at least 1/4 valuation per gate, then the proved telescoping lemma supplies the all-depth transfer bound needed by the ramified-prime route, up to a constant transient. Falsification is a P^2 class with P^3 lifts having different successors, any omitted signed/DROP/internal-kernel state, or a reachable cycle whose gain prevents a 1/4-rate potential certificate.",
+  "changed_files": [
+    "lean/Verify_transducer_potential.lean",
+    "gen-1/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_transducer_potential.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_transducer_potential.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal potential-certificate telescope theorem, bounded-potential corollary, and the 17-versus-four-binary-level threshold theorem without errors."
+    },
+    {
+      "command": "grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_transducer_potential.lean",
+      "exit_code": 1,
+      "finding": "No forbidden proof placeholders or added axioms occur in the verifier; grep exit 1 means no match."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Execute the reviewed bounded frontier experiment: exhaust saturated redundant COPY signature multisets for N <= 8; glue each survivor to the verified NAND in both orientations; enumerate every signed, DROP, boundary, and internal-kernel grade-zero/grade-one fiber with SNF checks. For each depth-two survivor, form normalized P^2 classes and exhaust all P^3 lifts to test lumpability. Only then search for a potential certificate with rate p/q >= 1/4, or emit a carry/cycle counterexample."
+}

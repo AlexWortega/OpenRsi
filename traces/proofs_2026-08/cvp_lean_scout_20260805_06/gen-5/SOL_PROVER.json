@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the only cross-review-surviving mutation: Fable Proposal 2 / corrected Pro Proposal 1, a direct sum of independent product-transfer channels. Its causal mechanism is that r F_289 leading symbols provide an F_17 ambient syndrome space of dimension 2r, potentially escaping the proved one-channel dimension-two obstruction. The new universal Lean lemma proves the exact conditional core: an injective direct-sum syndrome detects every nonzero defect, componentwise two-sided multiplication by nonzero division-ring elements preserves and reflects nonzeroness, an injective r-channel linear syndrome forces defect-space finrank at most 2r, and above that bound every such syndrome has a nonzero kernel element. This does not construct rank-one product labels or a full NAND/COPY tile, and it proves no Q1, shell-energy, carry, recursion, or hardness claim.",
+  "hypothesis": "Causal mechanism: several independently emitted product symbols replace the killed single F_289 coordinate, and componentwise graded-division transport cannot erase a syndrome once at least one channel is nonzero. Expected frontier move: after a serialized tile proves injectivity on the relevant recomputed defect quotient (or nonzero syndrome for every primitive and sub-17E malformed state), the Lean theorem supplies the algebraic detection-and-transport implication needed by the vector-valued Q1 mutation. Falsification condition: any zero-syndrome non-honest enlarged primitive or sub-17E malformed/DROP state kills the candidate; universally, defect-space finrank greater than 2r guarantees a nonzero kernel for every r-channel linear syndrome.",
+  "changed_files": [
+    "lean/Verify_multichannel_transfer.lean",
+    "gen-5/SOL_PROVER.json"
+  ],
+  "verifiers": [
+    "lean/Verify_multichannel_transfer.lean"
+  ],
+  "tests": [
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_multichannel_transfer.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiled the universal direct-sum transport equivalence, injective-syndrome detection theorem, exact 2r finrank calculation, injective rank bound, and above-capacity kernel theorem."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_multichannel_transfer.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The new Lean verifier contains no sorry, admit, or axiom token."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Hash-lock the actual maximal-order N=8 NAND/fusion/COPY tile before synthesis. For r=2,3,4, emit all product channels, centered lifts, rows, factors, targets, both orientations, legal fibers, and common E; test the fixed weight-8 and (2,-1) witnesses first, recompute the enlarged zero-syndrome Graver basis, and exactly enumerate every unrestricted DROP, false, and malformed state below 17E. A pass is finite Q1 evidence only and still requires separate lift-independent Q2 carry/section verification."
+}

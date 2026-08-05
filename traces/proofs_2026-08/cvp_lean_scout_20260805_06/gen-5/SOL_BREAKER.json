@@ -1,0 +1,25 @@
+{
+  "summary": "Selected the sole cross-review-surviving mutation, Fable Proposal 2 / Pro Proposal 1: r=1..4 direct-sum product transfers on the hash-locked 18-variable NAND/COPY skeleton. Its causal mechanism is extra residue dimension: the first two explicit product channels have rank three modulo 17 on the full 4x2 zero-margin transportation seam and detect the prior pair-only witness. The expected frontier move was then to survive unrestricted low-energy search. The falsification condition is a malformed vector below 17E with zero residual in every appended transfer coordinate. Exact Hamming-one search finds that condition in every tested serialization: keeping the pair table fixed and flipping one physical NAND selector gives energy 20<306=17E and exact vector-transfer residual zero. This finitely kills the four unscaled serialized channel-prefix factors, not unspecified scaled/extra rows or Q1.",
+  "hypothesis": "Direct-sum product tags can repair the old pair-selector kernel but remain blind in the tested factors to low-weight physical-selector deviations because every transfer row is supported only on the pair block. The first two channels are the exact lexicographically first rank-three pair synthesized by the bounded builder audit, so the exhibited physical flip directly attacks that finite survivor and is distinct from the Generation-4 witness. A tested candidate is falsified when such a flip has total squared distance below 17E and zero residual in all of its transfer rows.",
+  "changed_files": [
+    "experiments/verify_multichannel_physical_flip_attack.py",
+    "gen-5/SOL_BREAKER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_multichannel_physical_flip_attack.py"
+  ],
+  "tests": [
+    {
+      "command": "PYTHONPATH=experiments python3 experiments/verify_multichannel_physical_flip_attack.py",
+      "exit_code": 0,
+      "finding": "SHA-256 98b128c26ac87c4db6df5c6c2a174ce0dbe8c04d98e26ad7476f182b649ccd04 locks eight r/orientation matrices. The first two channels have transportation-seam rank 3 modulo 17 and detect the old pair-only witness. Across 64 legal fibers and 640 exact physical Hamming-one candidates, every fiber has a malformed zero-vector-transfer attack of energy 20<306; E=18."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_multichannel_physical_flip_attack.py",
+      "exit_code": 0,
+      "finding": "The deterministic exact verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Require an actual maximal-order r-channel tile serialization. Before any Graver claim, include transfer or sufficiently scaled Euclidean rows that cover physical NAND/COPY deviations as well as pair selectors, preserve common legal energy, and hash-lock both orientations and DROP/false targets. Re-run exact Hamming-one and Hamming-two physical searches first, then enumerate the complete unrestricted shell below 17E. Any zero-transfer subthreshold deviation kills that serialization; a finite pass does not establish Q1 or Q2."
+}

@@ -1,0 +1,35 @@
+{
+  "summary": "Selected the cross-review-surviving generic quaternion-product specialization (Fable 1 / Pro 2) and applied the reviewers' enlarged-kernel correction to its smallest frozen 4x2 seam. The labels a=(0,1,u,1+u), b=(0,1) over Z[u]/(u^2-3) give nonzero mod-17 tags to all six tested old transportation quadratics and to the false-111 coefficient vector in both COPY orientations. Exact enumeration of all 3^8 coefficient vectors in {-1,0,1}^8 nevertheless finds a conformally primitive signed move of L1 and squared coefficient weight 8 with zero row margins, column margins, and product tag over Z, hence also modulo 17 and 289. This is only a finite kill of that label specialization; it is not CVP-energy evidence and does not settle other O/P^2 assignments, Q1, Q2, or any asymptotic claim.",
+  "hypothesis": "Genuine product tags can move Q1 only if separation survives recomputation of the enlarged signed kernel: passing each old primitive individually is insufficient because their transfers can cancel in a new low-weight pair-selector move. The discriminating falsification condition is an exact nonzero signed all-pairs move with zero old margins and zero product transfer after the named old moves pass.",
+  "changed_files": [
+    "experiments/verify_product_tag_enlarged_kernel.py",
+    "gen-3/SOL_BUILDER.json"
+  ],
+  "verifiers": [
+    "experiments/verify_product_tag_enlarged_kernel.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_product_tag_enlarged_kernel.py",
+      "exit_code": 0,
+      "finding": "The frozen specialization detects all six tested old 4x2 quadratics and false 111, but exactly two bounded enlarged-kernel moves (one up to sign) survive; the witness has coefficient L1=8, squared coefficient weight=8, and exact tag (0,0)."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_product_tag_enlarged_kernel.py",
+      "exit_code": 0,
+      "finding": "The new deterministic verifier compiles as Python."
+    },
+    {
+      "command": "python3 experiments/verify_redundant_nand_grade_zero_seed.py",
+      "exit_code": 0,
+      "finding": "The prior frozen N=8 NAND seed audit still passes."
+    },
+    {
+      "command": "python3 experiments/verify_quaternion_copy_diagonal_splice.py",
+      "exit_code": 0,
+      "finding": "The prior rank-2 through rank-8 affine COPY splice audit still passes."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Hash-lock one complete N=8 all-pairs enlargement and solve over the actual maximal-order O/P^2 multiplication tables, not the commutative toy lift. For each candidate that separates every certified old primitive, recompute the enlarged integral Graver basis and perform exact low-CVP-energy search, including false boundaries, DROP, malformed boundaries, internal zero-boundary kernels, both COPY orientations, and P^3 lift/carry splits; return either a complete finite certificate or the first exact zero-transfer witness."
+}

@@ -1,0 +1,49 @@
+{
+  "summary": "The operative verdict is the breaker's toric-exchange cheat against the frozen marked pair-linearized Beneš switch brick. Its hash-locked matrix has shape 54x76. Exact search of 6560 nonzero local {-1,0,1} vectors finds the conformally primitive support-eight movement (1,-1,-1,1,1,-1,-1,1), which preserves every emitted row and equals the honest affine difference h000-h011-h100+h111. Therefore any detector required to vanish on honest affine differences also misses it. All 384 permutation/input fibers admit a zero-residual malformed vector at energy 92 or 108 versus legal energy 76. A separate larger 136x142 target-only serialization has common legal energy 142 and passes its local physical Hamming-one/two kernel checks, but its frozen residual scale 5 is killed by all-zero DROP at energy 692<2414=17*142. These are finite kills of the two serialized local bricks, not every Beneš compiler. Lean proves the universal marking restriction that a square integer matrix with Gram identity is exactly a signed permutation matrix; it does not prove L1, a compiler, or soundness. The pair-supported quaternion strategy remains retired, L1 remains open, and no hardness or dimension-gap claim follows.",
+  "hypothesis": "Selected the sole cross-review survivor, Fable Proposal 1 / Pro Proposal 1 marked oblivious Beneš routing, with the mandatory restriction that physical and anchor columns move only by color-preserving signed permutations. Causal mechanism: one fixed routing topology should move formula dependence into switch targets while preserving marked coordinates and common legal energy, enabling a full-brick higher-Lawrence L1 induction. Expected frontier move: a target-only marked normal form with no incompatible low-weight kernel class. Falsification condition: any honest-affine malformed primitive, setting-dependent matrix, unequal legal energy, low-weight physical/kernel shortcut, or DROP below threshold. The breaker brick meets the honest-affine falsifier, and the builder brick meets the DROP falsifier.",
+  "changed_files": [
+    "experiments/verify_marked_benes_local_audit.py",
+    "experiments/verify_benes_switch_toric_exchange.py",
+    "lean/Verify_integral_euclidean_isometry.lean",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-6/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_marked_benes_local_audit.py",
+    "experiments/verify_benes_switch_toric_exchange.py",
+    "lean/Verify_integral_euclidean_isometry.lean"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_marked_benes_local_audit.py",
+      "exit_code": 0,
+      "finding": "The hash-locked 136x142 target-only matrix has 384 legal vectors at energy 142, six local weight-eight primitives, and no physical-only Hamming-one/two kernel move among 5832 tests, but all-zero DROP costs 692<2414."
+    },
+    {
+      "command": "python3 experiments/verify_benes_switch_toric_exchange.py",
+      "exit_code": 0,
+      "finding": "The hash-locked 54x76 switch matrix has a conformally primitive support-eight zero-residual movement equal to h000-h011-h100+h111; all 384 fibers admit attack energy 92 or 108 against legal energy 76."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_marked_benes_local_audit.py experiments/verify_benes_switch_toric_exchange.py",
+      "exit_code": 0,
+      "finding": "Both deterministic Python verifiers compile successfully."
+    },
+    {
+      "command": "cd /home/alexw/leanverify && /home/alexw/.elan/bin/lake env lean /home/alexw/autoresearch-runs/cvp_lean_scout_20260805_06/lean/Verify_integral_euclidean_isometry.lean",
+      "exit_code": 0,
+      "finding": "Mathlib compiles the integer unit-vector lemma, orthonormal-column signed-permutation classification, and direct Gram-identity corollary."
+    },
+    {
+      "command": "if grep -En '\\b(sorry|admit|axiom)\\b' lean/Verify_integral_euclidean_isometry.lean; then exit 1; else exit 0; fi",
+      "exit_code": 0,
+      "finding": "The Lean verifier contains no sorry, admit, or added axiom."
+    }
+  ],
+  "claimed_progress": "LEMMA",
+  "next_experiment": "Freeze one actual full marked width-four brick rather than another local proxy. Include every physical, pair, normalization, glue, DROP, transfer, anchor, NAND, both COPY orientations, occurrence expansion, COPY tree, fanout diamond, and three-COPY cycle through depths 1, 2, and 3, with exact targets, residual Grams, and common legal energy. Use only signed color-preserving permutations on semantic columns and transport residual metrics explicitly. Raise the builder residual scale enough to clear its exact DROP gate, then test the support-eight honest-affine exchange first: any added detector must be nonzero on it without violating honest-equivalence semantics. Compute exact marked kernel identities and complete low-weight/Graver audits including DROP and physical Hamming-one/two changes. Any failed marked identity, surviving honest-affine primitive, or cheap DROP kills the serialization; a finite pass authorizes only an L1 induction attempt."
+}

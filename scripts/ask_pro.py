@@ -144,6 +144,8 @@ def ask_azure(model, mode, prompt):
         "reasoning": reasoning,
         "max_output_tokens": MAX_TOKENS,
     }
+    if mode == "scout":
+        payload["tools"] = [{"type": "web_search"}]
     if mode == "review":
         payload["text"] = {"format": {"type": "json_object"}}
     req = urllib.request.Request(

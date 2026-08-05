@@ -1,0 +1,35 @@
+{
+  "summary": "Selected repaired Pro proposal 5, the sole cross-review survivor. The verifier freezes three scaled D4 triality blocks, all 3072 class/orientation truth labelings, all eight symmetric off-block sign orbits, and every reduced t=p/q with |p|<=16 and 1<=q<=16. Exact Sylvester tests retain 952 positive-definite Gram parameters, giving 2924544 candidates. Every candidate fails before factor construction: legal COPY points 000 and 111 are antipodes whose allowed lattice midpoint zero lies strictly inside any common sphere, while legal NAND points 011 and 101 have the allowed malformed midpoint (0,0,output-1) strictly inside. Minimum exact inward deficits are 3/4 and 17/4. This is a finite rejection of the declared family, not a general Voronoi-tile theorem.",
+  "hypothesis": "Causal mechanism: D4 triality and a symmetric nonorthogonal coupling Q=I+tS might give NAND/COPY legal ports an empty equal-radius Delaunay shell and separate every malformed transfer strongly enough for the 65/64 frontier. Expected move: pass exact equal-radius and outside-shell certification before constructing complete depth-two tables. Falsification condition: DROP, affine parity, signed splice, additive-copy, malformed port, control mismatch, or any uncertified outside state. The explicit COPY and NAND lattice midpoints satisfy the malformed-port condition for every retained positive-definite candidate.",
+  "changed_files": [
+    "experiments/verify_d4_triality_midpoint_obstruction.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-3/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_d4_triality_midpoint_obstruction.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_d4_triality_midpoint_obstruction.py",
+      "exit_code": 0,
+      "finding": "Enumerated 3072 labelings and 952 positive-definite Gram parameters via eight exact cross-dot signatures, covering 2924544 candidates; certified COPY and NAND malformed midpoints with minimum inward deficits 3/4 and 17/4."
+    },
+    {
+      "command": "python3 experiments/verify_d4_triality_midpoint_obstruction.py > /tmp/d4-run1.json && python3 experiments/verify_d4_triality_midpoint_obstruction.py > /tmp/d4-run2.json && cmp -s /tmp/d4-run1.json /tmp/d4-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_d4_triality_midpoint_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze a non-antipodal NAND/COPY port codebook in a declared rational lattice and Gram family. Before any transfer search, require exact equal-radius solvability and prove that every midpoint and short affine combination of legal representatives is either legal or outside the legal sphere; only then construct emitted gluing rows and unrestricted depth-two tables."
+}

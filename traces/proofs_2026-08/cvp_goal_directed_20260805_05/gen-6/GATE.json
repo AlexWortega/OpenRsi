@@ -1,0 +1,40 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-6/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The prescribed E6 construction is dead: no affine port map with linear part in {-1,0,1}^{3x6} can classify the 27 shell vertices surjectively as NAND states. Consequently no NAND tile, COPY tile, gluing rule, transfer operator, or lambda/mu growth ratio is established.",
+      "The proposed nonlinear or redundant orbit-valued codebook is underspecified. Arbitrarily labeling 27 vertices is not a lattice-emitted port mechanism and gives no determinism, unrestricted-coefficient control, or outside-codebook Voronoi certificate.",
+      "The ROADMAP frontier remains untouched beyond obtaining one empty Delaunay shell. Nothing supplied addresses complete unrestricted min-plus closure, malformed states outside the shell, COPY, or the required lambda/mu >= 65/64 inequality.",
+      "The verifier only rejects a bounded integral linear family; it cannot support claims about larger coefficients, rational affine maps, nonlinear encodings, other cells, or asymptotic hardness."
+    ],
+    "evidence": [
+      "The exact dual-coordinate bound confines every E6 lattice point through squared radius 4/3 to [-3,3]^6. Enumeration of all 117649 points finds exactly the 27 Weyl-orbit vertices and no interior point, so the empty-shell claim is supported.",
+      "All 729 rows in {-1,0,1}^6 are checked, and only the zero row is compatible with a two-valued translated bit on all shell vertices. Since each NAND coordinate varies, the rowwise argument validly excludes all 3^18 bounded matrices without explicitly iterating them.",
+      "The machine verifier exits successfully, emits deterministic byte-identical output, and its source matches the stated finite classification. The packet consistently stops COPY and transfer testing after the port-map failure.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp.md all correctly retain the frontier as open and explicitly deny any hardness lemma or dimension-dependent gap."
+    ],
+    "next_experiment": "Freeze the same 27 vertices and remove the artificial coefficient box for affine linear ports. Select six Q-linearly independent translated vertices, enumerate all 2^6 normalized binary value assignments on that basis, solve exactly for every resulting rational row, retain rows taking values only in {0,1} on all 27 vertices, include sign/base translations, and exhaust all triples against the 32 translated NAND relations; emit exact rational certificates. Stop after this classification: if none survive, kill every affine rational port projection of this E6 shell; if one survives, report only the map and defer COPY and transfer tests.",
+    "confidence": 0.96
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The tested E6 construction fails before the ROADMAP frontier: no bounded integral port map realizes NAND, so COPY, unrestricted min-plus closure, outside-codebook coercivity, and the required lambda/mu >= 65/64 test are unauthorized.",
+      "The claimed coverage is only for 3x6 linear parts with entries in {-1,0,1}. It gives no result for larger coefficients, rational affine maps, auxiliary feature lifts, other cells, or asymptotic hardness.",
+      "The proposed nonlinear or redundant codebook mutation is underspecified. An arbitrary labeling of 27 vertices is trivial and is not a lattice mechanism unless its ports, auxiliary variables, gluing equations, and behavior for unrestricted integer coefficients are explicitly emitted.",
+      "No full-dimensional affine-rank check is present in the verifier, although that is needed to certify the shell explicitly as a six-dimensional Delaunay cell rather than merely 27 co-spherical empty-shell points."
+    ],
+    "evidence": [
+      "The verifier's exact bound confines every lattice point of cost at most 4/3 to [-3,3]^6, and enumeration finds exactly the 27 shell vertices with none strictly inside. This supports the fixed-shell emptiness claim only.",
+      "Enumeration of all 729 bounded rows finds only the zero row with values contained in {0,1} or {0,-1}. The rowwise necessity argument therefore logically covers all 3^18 bounded maps without actually enumerating each matrix.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp consistently describe this as a finite family rejection and leave the Voronoi-coercive tile lemma open. No document promotes the result to a dimension-dependent gap or hardness theorem.",
+      "The repeat run and source hash support reproducibility, but compilation and byte-identical output do not independently validate the mathematics."
+    ],
+    "next_experiment": "Perform one exact, coefficient-unbounded affine-map classification on this fixed E6 shell: first certify affine rank 6, choose six independent translated vertices, enumerate every {0,1} and {0,-1} value assignment on them, solve exactly over Q for the unique row, and test each resulting rational row on all 27 vertices. Then enumerate triples of surviving rows against all 32 translated/relabelled NAND relations; this finitely decides every rational affine 3x6 port map with no coefficient box and either finds a genuine local map or closes the entire affine-map mutation before any nonlinear lift.",
+    "confidence": 0.98
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

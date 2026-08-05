@@ -1,0 +1,38 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-2/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen A5 tile fails its required depth-two 33/32 gate. The explicit integral bicyclic-unit vector has legal leaves and ACCEPT output, zero emitted residual, and squared cost 10936a^2<33·10800a^2/32, so changing b cannot repair this construction.",
+      "Neither ROADMAP frontier lemma advances: there is no signed-flow amplification theorem, coercive all-port tile certificate, recursive min-plus inequality, or scaling law. This finite counterexample cannot be promoted to asymptotic hardness or to a general impossibility theorem for nonabelian gadgets.",
+      "The proposed next experiment is not executable as specified. It gives no explicit coercifier matrix, selector/port definition, emitted rows, bounded parameter family, coefficient shell, or exact unrestricted optimization procedure, so it does not authorize one more bounded run."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION passed and checks all 423 generated rows on the attack, reporting zero residual, 17 negative coefficients, cost 10936 at a=1, and the exact comparison 32·10936<33·10800.",
+      "The matched control attains the coordinatewise anchor lower bound 10800 with zero residual, establishing its exact minimum for this fixed factor. The source also gives a direct argument that the NO boundary instance has no Boolean zero-residual vector.",
+      "The 243- and 2187-point searches are exhaustive only on two frozen sparse supports; they are not an unrestricted optimum computation or complete transfer-table classification. The shell bound [-5,6] is only a bound, not an exhaustive shell search.",
+      "ROADMAP, STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently describe this as a finite kill of the explicit tile and state that no hardness lemma or dimension-dependent gap is established."
+    ],
+    "next_experiment": "No further experiment is authorized for this run. Reopen only with a fully explicit mutation specifying an integer factor/target, at most 4096 selectors per tile, complete emitted ports, equal-radius controls, a coercive finite shell, and an exact unrestricted search that includes both the G19 diagonal splice and the A5 bicyclic-unit attack before any growth test.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen A5 multiplication tile fails its required 33/32 growth gate. The emitted legal-boundary integral vector has zero residual and cost 10936a^2, with 32*10936 < 33*10800, so changing residual weight b or fitting a potential cannot repair this tile.",
+      "Nothing establishes either ROADMAP frontier lemma. The result concerns one depth-two A5 construction and the verifier tests only 144 factor pairs; it supplies no unrestricted transfer inequality, recursive growth law, or asymptotic hardness consequence.",
+      "The proposed next experiment is not executable as specified. “Uniform nonseparable coefficient coercifier” and “compressed G19 support” define no columns, rows, coefficient bounds, port classification, or exact acceptance criterion, while testing only the named diagonal and bicyclic attacks would not cover all unrestricted integer vectors."
+    ],
+    "evidence": [
+      "MACHINE_VERIFICATION passed with source hash a6cd674603eaa78b148355da3810ed4517dfc401a5dbb33ac9a30df3fb0f7abb. It reports 10,800 selectors, 423 emitted rows, zero attack residual, control squared minimum 10,800 at a=1, and attack cost 10,936.",
+      "The verifier checks x^2=0, (1+x)(1-x)=1, the shifted ACCEPT product, and every generated NO/control row. The resulting attack uses 17 negative coefficients and satisfies all emitted equations exactly.",
+      "The searches over 243 and 2,187 assignments are complete only on two frozen sparse supports; they are not unrestricted optimization of the full NO fiber. The packet correctly refrains from claiming an exact NO minimum.",
+      "ROADMAP.md, STATUS.md, IDEAS.md, NOTES.md, and proof_cvp.md consistently describe this as a finite kill of the explicit tile and state that both frontier lemmas and the hardness theorem remain open. No finite result is legitimately promoted to asymptotic hardness."
+    ],
+    "next_experiment": "No further experiment is authorized for this run. Resubmit only after freezing an explicit at-most-4096-column tile or coercifier with all emitted equations, equal-radius control, a provable finite unrestricted coefficient shell, complete port classes, and exact enumeration or certification of every integer state in that shell—not merely the known diagonal and bicyclic attacks.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

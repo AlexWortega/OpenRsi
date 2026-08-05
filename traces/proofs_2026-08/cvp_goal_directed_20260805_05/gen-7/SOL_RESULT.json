@@ -1,0 +1,35 @@
+{
+  "summary": "Selected proposal 1, the sole mechanism surviving both cross-reviews: coefficient-unbounded rational affine classification of the certified 27-point E6 shell. The verifier certifies affine dimension six, chooses seven independent vertices, and solves all 128 binary assignments exactly over Q. Exactly 126 assignments produce a nonbinary value on another shell vertex; the only surviving rows are constants zero and one. Exhausting their eight triples against all 32 translated, signed, and per-port-relabelled NAND relations yields no map. This completely closes rational affine port projections of this finite shell, but does not address nonlinear/redundant ports, COPY, transfer growth, or hardness.",
+  "hypothesis": "Causal mechanism: affine rank six makes every unbounded rational affine row finitely classifiable from seven shell values. Expected move: either find a nonconstant binary row triple realizing NAND or prove every binary-valued affine row constant. Falsification condition for the no-go: any surviving row triple whose complete 27-vertex image is one of the four-word translated/relabelled NAND relations. No such triple exists.",
+  "changed_files": [
+    "experiments/verify_e6_unbounded_affine_port_no_go.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-7/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_e6_unbounded_affine_port_no_go.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_e6_unbounded_affine_port_no_go.py",
+      "exit_code": 0,
+      "finding": "Certified affine rank six, solved all 128 exact binary interpolation systems, rejected 126 with hashed nonbinary witnesses, and proved the two constant survivors yield no NAND row triple."
+    },
+    {
+      "command": "python3 experiments/verify_e6_unbounded_affine_port_no_go.py > /tmp/e6aff-run1.json && python3 experiments/verify_e6_unbounded_affine_port_no_go.py > /tmp/e6aff-run2.json && cmp -s /tmp/e6aff-run1.json /tmp/e6aff-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_e6_unbounded_affine_port_no_go.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Retain the certified E6 shell only if a frozen redundant or nonlinear emitted port encoding is specified. The next discriminator should color all 27 vertices by legal NAND words, enforce class sums with charged selectors, and immediately search unrestricted signed selector combinations for G13-style affine collisions before attempting COPY or depth-two growth."
+}

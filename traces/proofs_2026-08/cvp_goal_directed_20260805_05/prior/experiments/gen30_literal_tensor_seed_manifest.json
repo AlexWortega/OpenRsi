@@ -1,0 +1,887 @@
+{
+  "ambient_permutation_YES_rows_to_NO_rows": [
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    0,
+    15,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    8,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    29,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    22
+  ],
+  "attack_shell_reason": "first radius containing a diagonal representative of DROP, G13, G19, and rank-two MALFORMED classes",
+  "attack_shell_squared_radius": 31285,
+  "coefficient_bound": {
+    "derivation": "if |Z_ij|>=61 then ||(C tensor C)Z-y tensor y|| >= 4*61-66=178",
+    "inclusive_interval": [
+      -60,
+      60
+    ],
+    "product_singular_value_lower_bound": 4,
+    "product_target_norm": 66,
+    "strict_exclusion_check": "178^2=31684>31285"
+  },
+  "coefficient_domain": "all integer 16-by-16 matrices",
+  "coefficient_permutation_NO_to_YES": [
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    0,
+    15,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    8
+  ],
+  "complete_unrestricted_shell_pairing": "Z_YES=(P tensor P)Z_NO bijects every integer matrix in both directions and preserves squared objective exactly",
+  "expected_move": "R_2>R_1 for R_k=D_NO(k)/D_YES(k)",
+  "external_filters": [],
+  "falsification_condition": "R_2<=R_1 or an unrestricted entangled shortcut",
+  "finite_claim_only": true,
+  "isometry_identity_k1": "C_YES P = Q C_NO and y_YES = Q y_NO",
+  "isometry_identity_k2": "(C_YES tensor C_YES)(P tensor P)=(Q tensor Q)(C_NO tensor C_NO)",
+  "mechanism": "literal Kronecker products should increase the NO/YES squared-distance ratio",
+  "ratio_audit": {
+    "D_2_common_upper_bound": 1888,
+    "D_2_exact_common_lower_bound": 256,
+    "D_NO_1": 16,
+    "D_NO_2_equals_D_YES_2": true,
+    "D_YES_1": 16,
+    "R_1": "1",
+    "R_2": "1",
+    "R_2_strictly_greater_than_R_1": false
+  },
+  "schema": "gen30-literal-tensor-g28-depth1-v1",
+  "seeds": [
+    {
+      "allowed_honest_assignments": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "ambient_dimension": 30,
+      "attack_audit": {
+        "DROP_zero_matrix_squared": 4356,
+        "G13_best_diagonal_squared": 31285,
+        "G13_best_port": [
+          -1,
+          1,
+          1,
+          -1,
+          1,
+          -1,
+          0,
+          1
+        ],
+        "G13_diagonal_count": 8,
+        "G19_best_diagonal_squared": 11749,
+        "G19_best_port": [
+          -1,
+          -1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "G19_diagonal_count": 560,
+        "MALFORMED_rank_two_best_squared": 4420,
+        "MALFORMED_rank_two_count": 6,
+        "rank_one_legal_squared": 1888
+      },
+      "exact_one_copy_minimum_squared": 16,
+      "factor_rows": [
+        [
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ]
+        ],
+        [
+          [
+            5,
+            2
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ]
+        ],
+        [
+          [
+            7,
+            2
+          ]
+        ],
+        [
+          [
+            8,
+            2
+          ]
+        ],
+        [
+          [
+            9,
+            2
+          ]
+        ],
+        [
+          [
+            10,
+            2
+          ]
+        ],
+        [
+          [
+            11,
+            2
+          ]
+        ],
+        [
+          [
+            12,
+            2
+          ]
+        ],
+        [
+          [
+            13,
+            2
+          ]
+        ],
+        [
+          [
+            14,
+            2
+          ]
+        ],
+        [
+          [
+            15,
+            2
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        [
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            15,
+            5
+          ]
+        ],
+        [
+          [
+            14,
+            5
+          ]
+        ],
+        [
+          [
+            15,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            8,
+            -5
+          ]
+        ],
+        [
+          [
+            1,
+            5
+          ],
+          [
+            9,
+            -5
+          ]
+        ],
+        [
+          [
+            2,
+            5
+          ],
+          [
+            10,
+            -5
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ],
+          [
+            11,
+            -5
+          ]
+        ],
+        [
+          [
+            4,
+            5
+          ],
+          [
+            12,
+            -5
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ],
+          [
+            13,
+            -5
+          ]
+        ],
+        [
+          [
+            6,
+            5
+          ],
+          [
+            14,
+            -5
+          ]
+        ],
+        [
+          [
+            7,
+            5
+          ],
+          [
+            15,
+            -5
+          ]
+        ]
+      ],
+      "factor_rule": "C=[2I;5A]",
+      "gram_eigenvalue_lower_bound": 4,
+      "low_l1_search": {
+        "matrix_count": 131585,
+        "minimum_squared": 4356,
+        "witness": []
+      },
+      "name": "generation28_depth1_alleged_NO",
+      "rank": 16,
+      "row_names": [
+        "anchor_0",
+        "anchor_1",
+        "anchor_2",
+        "anchor_3",
+        "anchor_4",
+        "anchor_5",
+        "anchor_6",
+        "anchor_7",
+        "anchor_8",
+        "anchor_9",
+        "anchor_10",
+        "anchor_11",
+        "anchor_12",
+        "anchor_13",
+        "anchor_14",
+        "anchor_15",
+        "normalization_0",
+        "legality_0_4",
+        "legality_0_5",
+        "normalization_1",
+        "legality_1_6",
+        "legality_1_7",
+        "full_port_glue_0",
+        "full_port_glue_1",
+        "full_port_glue_2",
+        "full_port_glue_3",
+        "full_port_glue_4",
+        "full_port_glue_5",
+        "full_port_glue_6",
+        "full_port_glue_7"
+      ],
+      "target": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target_rule": "y=[1;5b]",
+      "target_squared_norm": 66,
+      "tensor_ambient_dimension": 900,
+      "tensor_factor_rule": "C tensor C",
+      "tensor_factor_target_sha256": "53948b8c59140e33c86d3c782159b12c278092634f114abf22290812c1d096ad",
+      "tensor_rank": 256,
+      "tensor_target_rule": "y tensor y",
+      "tile_forbidden_assignments": [
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          7
+        ]
+      ]
+    },
+    {
+      "allowed_honest_assignments": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "ambient_dimension": 30,
+      "attack_audit": {
+        "DROP_zero_matrix_squared": 4356,
+        "G13_best_diagonal_squared": 31285,
+        "G13_best_port": [
+          -1,
+          1,
+          1,
+          -1,
+          1,
+          -1,
+          0,
+          1
+        ],
+        "G13_diagonal_count": 8,
+        "G19_best_diagonal_squared": 11749,
+        "G19_best_port": [
+          -1,
+          -1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "G19_diagonal_count": 560,
+        "MALFORMED_rank_two_best_squared": 4420,
+        "MALFORMED_rank_two_count": 6,
+        "rank_one_legal_squared": 1888
+      },
+      "exact_one_copy_minimum_squared": 16,
+      "factor_rows": [
+        [
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            2
+          ]
+        ],
+        [
+          [
+            5,
+            2
+          ]
+        ],
+        [
+          [
+            6,
+            2
+          ]
+        ],
+        [
+          [
+            7,
+            2
+          ]
+        ],
+        [
+          [
+            8,
+            2
+          ]
+        ],
+        [
+          [
+            9,
+            2
+          ]
+        ],
+        [
+          [
+            10,
+            2
+          ]
+        ],
+        [
+          [
+            11,
+            2
+          ]
+        ],
+        [
+          [
+            12,
+            2
+          ]
+        ],
+        [
+          [
+            13,
+            2
+          ]
+        ],
+        [
+          [
+            14,
+            2
+          ]
+        ],
+        [
+          [
+            15,
+            2
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        [
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ]
+        ],
+        [
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            15,
+            5
+          ]
+        ],
+        [
+          [
+            14,
+            5
+          ]
+        ],
+        [
+          [
+            8,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            8,
+            -5
+          ]
+        ],
+        [
+          [
+            1,
+            5
+          ],
+          [
+            9,
+            -5
+          ]
+        ],
+        [
+          [
+            2,
+            5
+          ],
+          [
+            10,
+            -5
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ],
+          [
+            11,
+            -5
+          ]
+        ],
+        [
+          [
+            4,
+            5
+          ],
+          [
+            12,
+            -5
+          ]
+        ],
+        [
+          [
+            5,
+            5
+          ],
+          [
+            13,
+            -5
+          ]
+        ],
+        [
+          [
+            6,
+            5
+          ],
+          [
+            14,
+            -5
+          ]
+        ],
+        [
+          [
+            7,
+            5
+          ],
+          [
+            15,
+            -5
+          ]
+        ]
+      ],
+      "factor_rule": "C=[2I;5A]",
+      "gram_eigenvalue_lower_bound": 4,
+      "low_l1_search": {
+        "matrix_count": 131585,
+        "minimum_squared": 4356,
+        "witness": []
+      },
+      "name": "generation28_depth1_matched_control",
+      "rank": 16,
+      "row_names": [
+        "anchor_0",
+        "anchor_1",
+        "anchor_2",
+        "anchor_3",
+        "anchor_4",
+        "anchor_5",
+        "anchor_6",
+        "anchor_7",
+        "anchor_8",
+        "anchor_9",
+        "anchor_10",
+        "anchor_11",
+        "anchor_12",
+        "anchor_13",
+        "anchor_14",
+        "anchor_15",
+        "normalization_0",
+        "legality_0_4",
+        "legality_0_5",
+        "normalization_1",
+        "legality_1_6",
+        "legality_1_0",
+        "full_port_glue_0",
+        "full_port_glue_1",
+        "full_port_glue_2",
+        "full_port_glue_3",
+        "full_port_glue_4",
+        "full_port_glue_5",
+        "full_port_glue_6",
+        "full_port_glue_7"
+      ],
+      "target": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "target_rule": "y=[1;5b]",
+      "target_squared_norm": 66,
+      "tensor_ambient_dimension": 900,
+      "tensor_factor_rule": "C tensor C",
+      "tensor_factor_target_sha256": "edbbf4f394f87bb5295e8f71f886b0b88b0f418ffb7ff8f2a9315ebf5a71d650",
+      "tensor_rank": 256,
+      "tensor_target_rule": "y tensor y",
+      "tile_forbidden_assignments": [
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          0
+        ]
+      ]
+    }
+  ],
+  "selected_proposal": "Fable proposal 3: literal tensoring of a deep-hole seed"
+}

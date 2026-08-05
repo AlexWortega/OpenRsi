@@ -1,0 +1,19 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not escape the Generation-5 hybrid obstruction. With A and C fixed, all dependence on B outside Q_BB is linear; since Q_BB=I, h+h'=b0+b1 and the coordinate splice preserves the sum of squared norms, the two hybrid energies still sum to 2R² for every u,v,w and every center.",
+    "Proposal 2 does not define a finite exhaustive target search: targets modulo a Construction-A lattice form a continuum, not merely a finite set of code cosets. Systematic [9,4] codes with one fixed information set also do not cover all port-partitioned codes, and syndrome minima alone do not certify the full glued depth-two transfer.",
+    "Proposal 3's proposed multigraph enumeration is not bounded because six vertices and edge weights 1,2,3 do not bound parallel-edge multiplicity or total edges. Exhaustive 0/1 cuts also do not by itself certify minima over arbitrary signed integer cut-lattice combinations, precisely where G19-type states must be controlled.",
+    "Proposal 4 lacks the integral port maps and finite codebook needed to turn four primitive points into a NAND/COPY transfer tile. Its stated LP in (Q,c) is not linear without reparameterizing Qc, positive definiteness is not an LP constraint as written, and unspecified alternating column generation has no bounded completeness guarantee.",
+    "Proposal 5 omits the target/center family, port embeddings, and normalization slice; coset theta minima relative to an unspecified target cannot certify a CVP gate. States sharing a discriminant syndrome are invisible to the proposed penalty, leaving the G13 affine-collision mechanism unresolved rather than tested.",
+    "Proposal 6 specifies neither bounds on integral port-map entries nor Gram numerators and denominators, so its experiment is not finite. Finite rank-4 observations cannot establish the proposed universal exchange inequality, while a violating Gram without NAND/COPY port closure would not advance ROADMAP's frontier."
+  ],
+  "evidence": [
+    "The Generation-5 verifier already certifies for every relevant non-antipodal D4 pair that the coordinate-spliced hybrids are distinct malformed points of 2D4*. Proposal 1 changes only off-diagonal port blocks, which cannot affect the pair-sum argument when the other two ports are fixed.",
+    "Explicitly, writing the energy with fixed A,C as f(b)=bᵀb+2ℓᵀb+constant gives f(h)+f(h')=f(b0)+f(b1)=2R². Therefore at least one malformed hybrid is on or inside the legal shell for all 125 proposed Grams that are positive definite.",
+    "The supplied verifier evidence establishes only finite rejection of the separable D4 grid and leaves genuinely nonseparable within-port Grams open. It supplies no NAND shell, COPY shell, unrestricted transfer closure, or λ/μ≥65/64 certificate for any new proposal.",
+    "ROADMAP requires an exact all-integer outside-codebook certificate before transfer amplification. Proposals 2–6 either omit a finite search domain, omit the emitted port geometry, or rely on finite observations that cannot support that certificate."
+  ],
+  "next_experiment": "Do not implement any proposal as written. A mutation that escapes the Proposal-1 identity may be tested once: freeze the lexicographically first Generation-5 strict labeling, retain its proposed 125 off-diagonal blocks, but replace Q_BB by I+s(P+P^T) for s∈{-2,-1,1,2}/16, giving exactly 500 Grams before exact-PD filtering. For each retained Gram, use the unique rational circumcenter in the affine span of the four legal NAND points and exact LDL branch-and-bound over all of (2D4*)^3; continue only if the closed shell contains exactly those four points, and interpret total failure only as rejection of this 500-Gram canonical-center mutation.",
+  "confidence": 0.99
+}

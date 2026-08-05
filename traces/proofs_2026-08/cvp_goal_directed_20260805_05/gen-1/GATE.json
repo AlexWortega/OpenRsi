@@ -1,0 +1,40 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-1/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen Strategy-1 realization is refuted by an explicit unrestricted integral vector: diag(s) has zero residual and cost 224330, far below the required 16R_2^2/9 threshold. Strong diagonal coherence blocks the literal tensor but not the G19 signed-flow obstruction.",
+      "The proposed next experiment is not specified. “Add a genuinely enlarged, non-diagonal coherence mechanism” gives no coordinates, emitted equations, equal-radius completeness certificate, rank bound, search threshold, or complete unrestricted search method, so it is not an executable bounded mutation.",
+      "No arbitrary-k construction or signed-flow growth argument is supplied. The verified k=2 counterexample cannot support any asymptotic hardness or dimension-dependent gap claim."
+    ],
+    "evidence": [
+      "The supplied machine verifier passed and hash-locked the Generation-19 inputs. It emitted 224282 coordinates and 348451 rows, then checked the diagonal signed splice against every emitted row with residual squared zero.",
+      "The exact comparisons are decisive: R_2^2=224282, the attack costs 224330, and 9·224330 < 16·224282; it also lies below 4R_2^2/3. Computing the exact unrestricted k=2 optimum is unnecessary to falsify the claimed lower bound.",
+      "The packet correctly labels the result finite and does not promote it to a general impossibility theorem. STATUS, IDEAS, NOTES, ROADMAP, and proof_cvp.md consistently record that the explicit linear pair lift is killed while the FRONTIER lemma remains unproved.",
+      "The experiment searches unrestricted integer coefficients and emits consistency as lattice rows, so it does not invoke an external filter or rank-one assumption. It therefore directly addresses the G6, G19, and G30 audit requirements for this frozen instance."
+    ],
+    "next_experiment": "None authorized for this run. Reopen only after freezing a concrete non-diagonal encoding with explicit coordinates and rows, an equal-radius control proof, a bounded complete unrestricted-integer search threshold, and a preregistered test against both diag(s) and newly optimized low-weight accepting flows.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen linear k=2 construction fails the ROADMAP frontier inequality on the hash-locked G19 obstruction. The zero-residual diagonal embedding has cost 224330, far below both required thresholds, so this realization cannot support signed-flow amplification.",
+      "The proposed continuation is not a specified mechanism or bounded experiment. “Genuinely enlarged, non-diagonal coherence” gives no coordinates, emitted equations, completeness-radius proof, coefficient/search bound, or reason the linear diagonal closure is broken.",
+      "The ROADMAP requested an exact unrestricted k=2 minimum, but the verifier only constructs a violating vector. That is sufficient to kill the inequality, but supplies no optimum or shell structure from which a replacement amplification mechanism follows.",
+      "Nothing in the finite witness supports an asymptotic lower bound, iteration law, or polynomial GapCVP hardness. The packet correctly disclaims those conclusions, leaving the FRONTIER lemma wholly unproved."
+    ],
+    "evidence": [
+      "Machine verification reports rank 224282, 348451 emitted rows, zero residual for diag(s), and exact attack cost 224330. The integer comparisons 3*224330 < 4*224282 and 9*224330 < 16*224282 directly falsify both tested bounds.",
+      "The matched control attains squared cost 224282, which is exact because every integral odd-anchor coordinate contributes at least one and residual energy is nonnegative.",
+      "The pure tensor violates 14 diagonal rows, but the diagonal signed embedding satisfies every emitted row. Thus the added diagonal coherence blocks the wrong representation while preserving the underlying G19 signed-flow obstruction.",
+      "ROADMAP, STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently classify the result as a finite counterexample only. No improper promotion from finite evidence to an asymptotic theorem appears.",
+      "Two verifier runs were byte-identical and the supplied machine execution exited successfully. This supports reproducibility of the finite certificate, not completeness of any general lift family."
+    ],
+    "next_experiment": "None authorized for this run. Reopen only after preregistering one explicit enlarged coordinate system and complete row set, proving equal-radius honest completeness and showing algebraically why s -> diag(s) is not a feasible linear embedding, then specifying a finite unrestricted-integer search bound and matched control before execution.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

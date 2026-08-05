@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole bounded survivor, but graded exactness controls filtration valuation, not the claimed Archimedean selector-energy dichotomy. A spectral-sequence argument would additionally require strictness, completeness, and uniform all-depth exactness; a depth-two pass remains finite evidence only.",
+    "Proposal 2 does not meet the FRONTIER scale: h charged unit digits have only linear cost, whereas a nonzero element of P^h has exponentially growing trace energy unless exponentially weighted digit coordinates are added and legal-energy growth is reanalyzed. Noncatastrophicity also does not exclude the verified affine zero-syndrome mechanism.",
+    "Proposal 3 cannot enforce determinants or quasideterminants of unrestricted adverse matrices merely by emitting linear selector coordinates; arbitrary matrix multiplication is bilinear. Singular low-cost couplings leave the determinant identically zero, and passing to matrix algebras reintroduces nilpotent directions despite division in D.",
+    "Proposal 4 applies tree displacement to points or positive paths, while CVP soundness quantifies over signed integral chains. Busemann and Cartan displacement are nonlinear and can cancel under signed combinations, so no tree filling inequality or valuation-to-emitted-energy map has been supplied.",
+    "Proposal 5 uses [U^r,U^s] contained in U^(r+s), which is an upper-depth containment, not a lower bound forcing every false word to have that depth. Commuting root directions, vanishing commutators, and signed Hall-coordinate cancellation remain direct fatal cases.",
+    "Proposal 6 is not a gate mechanism and cannot presently form the claimed automaton: global integral coefficients with an Archimedean trace-energy bound are not captured by p-adic cell decomposition over the local order alone. Stabilization through depths one to four would not be a pumping theorem without an exact finite-state quotient and certified transition bisimulation.",
+    "Proposal 7 changes the fixed ROADMAP frontier and gives no implication from separate local tests to one defect lying in P17^h P19^h P23^h. CRT compatibility of legal tables does not force simultaneous adverse valuation, and neither legal-energy growth nor integral coefficient size after CRT is accounted for."
+  ],
+  "evidence": [
+    "The supplied G13 verifier establishes an exact honest-affine collision annihilating every compatible linear syndrome, and G15 lifts that collision with zero residual through every tested hierarchy level. These directly threaten Proposals 1 and 2 at grade zero.",
+    "G19 and the ordered-pair verifier exhibit exact signed and diagonal zero-residual states despite extensive emitted coherence equations. Any quaternion candidate must eliminate them in the complete minimum, not merely seed them as named attacks.",
+    "G28, G32, and G37 respectively verify adverse growth below legal growth, exact additive parity, and a universal zero-margin cut. They rule out inferring recursion from finite transfer, spectral, or additive evidence.",
+    "The A5 verifier confirms the zero-divisor attack for convolution, while division plausibly removes that specific mechanism. No supplied verifier has yet tested a ramified quaternion gate library, so Proposal 1 is neither validated nor already falsified."
+  ],
+  "next_experiment": "Authorize only Proposal 1's ROADMAP-aligned bounded gate. Freeze a canonical at-most-eight-selector NAND/COPY template over F_289 with every normalization, port, product, glue, carry, and boundary row explicit; exhaust its grade-zero and grade-one adverse homology, rejecting every false-boundary affine class. Lift every survivor to one explicit maximal-order basis, compose exactly to depth two, and compute the complete unrestricted adverse minimum by SNF plus a rigorously derived coefficient bound and branch-and-bound, with matched legal controls and DROP, G13, G15, G19, diagonal-splice, and bicyclic-style seeds. A pass creates only a bounded survivor; failure kills this selector/template family.",
+  "confidence": 0.97
+}

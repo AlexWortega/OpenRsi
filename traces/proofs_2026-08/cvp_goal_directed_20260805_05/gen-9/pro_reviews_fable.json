@@ -1,0 +1,21 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 exposes a real conditional obstruction: any additive lift preserving disjoint unions violates the stated multiplicative rho inequality after enough satisfiable padding. However, its experiment has no specified lift, k<=32 is unjustified, and the G38 obstruction minimum is not known exactly.",
+    "ROADMAP's FRONTIER quantifies over every emitted legal-label sheaf, including disconnected padded instances, but does not state whether global cross-component coupling is permitted. Proposals 2-6 appear local or componentwise and therefore inherit the dilution blocker unless the theorem is restricted or changed to amplify excess rho-1.",
+    "Proposal 2 does not define the replacement complex, boundary matrix, charge map, legal radius multiplier, or factor/target. Total unimodularity alone neither charges harmonic signed cycles nor proves the required quantitative conformal decomposition.",
+    "Proposal 3 is not a finite search: quadratic embeddings have no coefficient, denominator, or equivalence bounds. Finitely many residue layers cannot detect exact affine collisions, and no quantitative divisibility-versus-anchor inequality or 4096-rank accounting is supplied.",
+    "Proposal 4 supplies no exact quadratic forms or map from spectral contraction to the normalized CVP inequality. A real generalized eigenvalue does not by itself certify the shifted integral minimum, legal-radius equality, or absence of harmonic zero-growth modules.",
+    "Proposal 5 applies nonnegative affine-semigroup and Markov-basis language to a CVP quantified over arbitrary signed integer coefficients. Searching moves only through degree eight cannot certify normality, bounded Markov degree, constant-size normalization, or unrestricted soundness.",
+    "Proposal 6 is structurally defective for S3, A4, and A5 regular fibers: a single nontrivial group element fixes nonconstant vectors in the augmentation representation because its cyclic subgroup is not transitive on the group. Finite voltages also leave trivial-holonomy kernel cycles, so nontrivial monodromy does not imply the claimed all-coefficient gap.",
+    "None of proposals 2-6 specifies a complete rational factor and target, canonical honest lift, exact mu, emitted equations, rank bound, or complete depth-two unrestricted minimization. Their obstruction audits rename known attacks without proving that the proposed mechanism covers them."
+  ],
+  "evidence": [
+    "The supplied G38 verifier proves only control minimum 119 and exclusion of obstruction vectors through 181; it does not compute the obstruction minimum or any lifted minimum. Thus the exact ratios required by Proposal 1 are unavailable.",
+    "Verified G13/G15 and G19 results show that zero-residual affine combinations and signed cycles survive complete-looking local consistency systems. Verified G32/G37 results further show exact additive parity under composition, so finite spectral or move-list checks cannot be promoted to growth theorems.",
+    "For a componentwise lift, both rho(U disjoint-union S^k) and rho(LU disjoint-union (LS)^k) tend to 1, while the required right side tends to 257/256. This is an asymptotic contradiction derived from the proposed assumptions, not from finite experimental evidence.",
+    "No verifier evidence accompanies any Fable proposal. All claimed TU, residue, spectral, toric, and monodromy behavior remains conjectural."
+  ],
+  "next_experiment": "None authorized. Reopen only after amending FRONTIER either to amplify rho-1, restrict inputs to a precisely defined connected robust-unsatisfiable class, or explicitly permit and define non-componentwise coupling; then freeze one complete lift with exact factor, target, mu, and rank accounting, and run an analytically bounded satisfiable-padding audit with K chosen from the exact rational inequality rather than the arbitrary cutoff 32.",
+  "confidence": 0.98
+}

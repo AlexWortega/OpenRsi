@@ -1,0 +1,35 @@
+{
+  "summary": "Selected Fable proposal 1, identical in mechanism to the sole surviving Pro proposal and prescribed by both reviews. The verifier covers all six D4 triality-class assignments, all 48 ordered distinct non-antipodal truth pairs per port, and the same 952 positive-definite symmetric Grams. A machine-checked reduction compresses 663552 labelings to 43 interaction signatures, giving 40936 exact tests for 631701504 candidates. Equal legal NAND radius forces false-port excesses -A+B+C, -A+B, -A+C, A; their minimum is never positive. A false Boolean port is strictly inside in 528417792 candidates and tied in 103283712. The best possible minimum excess is zero. This is a finite rejection of the prescribed non-antipodal D4 grid, not a general Voronoi impossibility theorem.",
+  "hypothesis": "Causal mechanism: ordered distinct non-antipodal D4 truth pairs might remove the antipodal midpoint obstruction and permit an empty equal-radius NAND/COPY shell with eventual lambda/mu at least 65/64. Expected move: pass exact common-sphere and global outside-point certification before constructing depth-two transfers. Falsification condition: any false Boolean, DROP, signed, or malformed lattice point on or inside the legal shell. Every retained candidate has at least one false Boolean point with nonpositive excess, so the prerequisite fails.",
+  "changed_files": [
+    "experiments/verify_nonantipodal_d4_nand_obstruction.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-4/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_nonantipodal_d4_nand_obstruction.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_nonantipodal_d4_nand_obstruction.py",
+      "exit_code": 0,
+      "finding": "Covered 631701504 candidates through 40936 exact signature/Gram tests and certified that every equal-radius NAND candidate has a false Boolean port on or inside its shell; the best possible minimum excess is zero."
+    },
+    {
+      "command": "python3 experiments/verify_nonantipodal_d4_nand_obstruction.py > /tmp/d4na-run1.json && python3 experiments/verify_nonantipodal_d4_nand_obstruction.py > /tmp/d4na-run2.json && cmp -s /tmp/d4na-run1.json /tmp/d4na-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_nonantipodal_d4_nand_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Retire the frozen D4 triality Gram grid. Freeze a bounded non-D4 codebook/Gram family whose NAND legal representatives are not constrained by the three pair-interaction pattern above. Before transfer construction, symbolically derive all affine Boolean-cube cost identities and require every false port to have a strictly positive exact excess, followed by a global lattice-point certificate."
+}

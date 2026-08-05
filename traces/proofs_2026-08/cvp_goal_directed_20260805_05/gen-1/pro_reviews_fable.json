@@ -1,0 +1,22 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 does not yet define s tensor k correctly for a layered flow: the certified G19 vector has unit mass per layer, not unit mass as one global vector. Only a layerwise tuple construction could work, and diagonal or repeated-query rows may invalidate even that construction.",
+    "Proposal 1's claimed symbolic all-k counterexample is unsupported until tensor closure and the affine CVP energy are proved exactly. A k=2 pass would be finite evidence only; it cannot establish closure or asymptotic failure.",
+    "KILL Proposal 2. Projection angles do not directly control an affine unrestricted integer fiber, any unremoved common constraint direction gives singular value one, and the repeated-query tuple operators are not shown to be Kronecker products whose contractions tensorize.",
+    "KILL Proposal 3. Graver elements are kernel directions, whereas the frontier inequality concerns costs of points in an affine accepting fiber; sign-compatible decomposition does not make the squared Euclidean objective additive because of cross terms and the target. Enumerating one k=2 Graver basis supplies no uniform support or energy theorem.",
+    "KILL Proposal 4. Multiplication identities and 2-by-2 minors are nonlinear and cannot merely be emitted as ordinary lattice rows; Macaulay variables admit pseudomoments rather than forcing rank one. No complete equal-radius CVP construction or polynomial-rank bound is supplied.",
+    "KILL Proposal 5. The proposed higher cells are exactly the missing expansion mechanism rather than a construction. Smith normal form detects homology but not an integral Euclidean cosystolic lower bound, and arbitrary filling can also erase honest completeness.",
+    "KILL Proposal 6. Polynomial-calculus infeasibility does not imply the required quantitative CVP distance bound or controlled coefficient norm over unrestricted integer vectors. Generic degree O(log L) Macaulay systems can have quasipolynomial rank, and degree 1-4 behavior on one splice cannot resolve logarithmic scaling."
+  ],
+  "evidence": [
+    "The supplied G19 verifier already gives an exact zero-residual accepting signed flow with two coefficients equal to -1 and squared cost only 16 above the anchor baseline. This is the strongest concrete seed for trying to refute the current signed-flow amplification frontier.",
+    "ROADMAP.md explicitly makes the complete k=2 unrestricted accepting-fiber minimum on this splice the first frontier experiment. Proposal 1 is the only proposal that can be reduced to that exact test without first inventing an unspecified new construction.",
+    "Proposal 1 avoids G1, G7, G12, and G6 only if every normalization and coherence row is physically emitted and the search is unrestricted; an explicit zero-residual witness would also bypass residual amplification. It does not rely on the killed bag, min-plus, exterior-tag, or metric-repair mechanisms.",
+    "G32 and G37 show that compatible parity witnesses can remain exactly additive despite cross-copy rows. Thus no multiplicative or spectral claim may be inferred from a finite ratio; the k=2 calculation must directly test strict growth.",
+    "G30 shows that tensor constructions can conceal exact seed isometries. The k=2 verifier must therefore compare fully emitted obstruction and control factors and targets, not only symbolic coefficient tensors.",
+    "G31 and G38 are only finite shell passes with no scaling law. They provide no support for Proposals 2-6 or for promoting any favorable k=2 result to the frontier theorem."
+  ],
+  "next_experiment": "Select Proposal 1 only, replacing its loose test by ROADMAP.md's exact frontier audit. On the hash-verified G19 program and matched satisfiable control, build the complete k=2 ordered-tuple lift with every transition, marginal, repeated-query, source, sink, normalization, and ACCEPT row; construct the layerwise s tensor 2 candidate; verify all rows and its exact energy; then compute the unrestricted integer accepting-fiber minimum using only a rigorously derived exhaustive coefficient bound. Compare it with 4R_2^2/3 and reconstruct any minimizer: a value below threshold refutes FRONTIER, while a value above threshold is only a finite pass and kills no asymptotic obstruction.",
+  "confidence": 0.97
+}

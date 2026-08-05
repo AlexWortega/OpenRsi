@@ -1,0 +1,17 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "The prescribed E6 construction is dead: no affine port map with linear part in {-1,0,1}^{3x6} can classify the 27 shell vertices surjectively as NAND states. Consequently no NAND tile, COPY tile, gluing rule, transfer operator, or lambda/mu growth ratio is established.",
+    "The proposed nonlinear or redundant orbit-valued codebook is underspecified. Arbitrarily labeling 27 vertices is not a lattice-emitted port mechanism and gives no determinism, unrestricted-coefficient control, or outside-codebook Voronoi certificate.",
+    "The ROADMAP frontier remains untouched beyond obtaining one empty Delaunay shell. Nothing supplied addresses complete unrestricted min-plus closure, malformed states outside the shell, COPY, or the required lambda/mu >= 65/64 inequality.",
+    "The verifier only rejects a bounded integral linear family; it cannot support claims about larger coefficients, rational affine maps, nonlinear encodings, other cells, or asymptotic hardness."
+  ],
+  "evidence": [
+    "The exact dual-coordinate bound confines every E6 lattice point through squared radius 4/3 to [-3,3]^6. Enumeration of all 117649 points finds exactly the 27 Weyl-orbit vertices and no interior point, so the empty-shell claim is supported.",
+    "All 729 rows in {-1,0,1}^6 are checked, and only the zero row is compatible with a two-valued translated bit on all shell vertices. Since each NAND coordinate varies, the rowwise argument validly excludes all 3^18 bounded matrices without explicitly iterating them.",
+    "The machine verifier exits successfully, emits deterministic byte-identical output, and its source matches the stated finite classification. The packet consistently stops COPY and transfer testing after the port-map failure.",
+    "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp.md all correctly retain the frontier as open and explicitly deny any hardness lemma or dimension-dependent gap."
+  ],
+  "next_experiment": "Freeze the same 27 vertices and remove the artificial coefficient box for affine linear ports. Select six Q-linearly independent translated vertices, enumerate all 2^6 normalized binary value assignments on that basis, solve exactly for every resulting rational row, retain rows taking values only in {0,1} on all 27 vertices, include sign/base translations, and exhaust all triples against the 32 translated NAND relations; emit exact rational certificates. Stop after this classification: if none survive, kill every affine rational port projection of this E6 shell; if one survives, report only the map and defer COPY and transfer tests.",
+  "confidence": 0.96
+}

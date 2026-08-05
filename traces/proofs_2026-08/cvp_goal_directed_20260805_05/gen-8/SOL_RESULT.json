@@ -1,0 +1,35 @@
+{
+  "summary": "Selected repaired Fable proposal 3, the sole cross-review survivor. The frozen D=8 family uses four canonical one-hot legal NAND selectors, four zero-port auxiliary columns, an extended rational Gram H with every entry bounded by 64, legal squared energy 64, and required adverse ratio 65/64. The unrestricted zero coefficient vector has emitted port 000, false for NAND, and exact energy equal to the bottom-right entry s. The entry bound gives s<=64 while soundness requires s>=65, yielding the exact infeasibility certificate 0>=1. Therefore the Gram search is empty before COPY or depth-two transfer construction. This rejects only the prescribed normalization, not rescaled augmented tiles.",
+  "hypothesis": "Causal mechanism: a free extended Gram with strict diagonal dominance might jointly enforce equal legal radius, global tail coercivity, and 65/64 adverse separation. Expected move: find a feasible bounded H and then compute complete NAND/COPY transfer tables. Falsification condition: any unrestricted false, DROP, signed, or malformed state below energy 65. The zero selector is such a DROP for every H in the frozen family.",
+  "changed_files": [
+    "experiments/verify_augmented_gram_drop_obstruction.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-8/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_augmented_gram_drop_obstruction.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_augmented_gram_drop_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verified the canonical port map, the unrestricted zero-selector DROP, and the exact contradiction s>=65 with s<=64."
+    },
+    {
+      "command": "python3 experiments/verify_augmented_gram_drop_obstruction.py > /tmp/gramdrop-run1.json && python3 experiments/verify_augmented_gram_drop_obstruction.py > /tmp/gramdrop-run2.json && cmp -s /tmp/gramdrop-run1.json /tmp/gramdrop-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_augmented_gram_drop_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "If augmented-Gram synthesis is revisited, freeze a scale-invariant compact normalization that does not cap the target constant below the required DROP threshold. Specify the complete factor, target, NAND/COPY port maps, and gluing first, then test z=0 and all unit/signed selectors before any expensive Gram or transfer search."
+}

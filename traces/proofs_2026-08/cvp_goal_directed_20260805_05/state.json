@@ -1,0 +1,16 @@
+{
+  "run_id": "cvp_goal_directed_20260805_05",
+  "phase": "done",
+  "generation": 13,
+  "outcome": "budget_exhausted",
+  "models": {
+    "fable": "azure/gpt-5.6-sol",
+    "pro": "azure/gpt-5.6-sol:pro",
+    "sol": "azure/gpt-5.6-sol"
+  },
+  "budget_usd": 100,
+  "spent_usd": 96.99188924999997,
+  "kills_since_progress": 0,
+  "decision": "KILL_IDEA",
+  "reason": "insufficient reserve for parallel cross-review"
+}

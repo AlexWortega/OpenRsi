@@ -1,0 +1,22 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "A2 is an unproved soundness lemma, not routine bookkeeping. A finite LEGAL/ILLEGAL/DROP/MALFORMED partition supports exact min-plus gluing only if it is a contextual congruence for every unrestricted integer boundary value; grouping all malformed values generally loses distinctions that later seams can exploit.",
+    "The proposed A3 search is not actually bounded: rank at most 12 does not bound matrix entries, row count, targets, topology, or the amplifier search space. The unspecified coefficient shell from an anchor eigenvalue certifies only a chosen cost threshold, not the claimed complete unrestricted transfer table.",
+    "A depth-one/depth-two inequality is not discriminating for A3's universal iteration claim. A tile can pass two depths and fail at a later depth or in another surrounding transfer context unless a finite invariant cone or exact transition theorem proves closure and the inequality for every admissible input table.",
+    "A4 assumes every NO computation necessarily retains an adverse marker through all seams and that its cost obeys the same recurrence. Neither A2 nor the experiment proves that markers cannot merge, cancel, or be reclassified under unrestricted signed coefficients.",
+    "The obstruction checks mostly replace mechanisms with quantifiers. Saying that A3 covers affine, parity, DROP, malformed, and signed-splicing states does not provide a structural reason preventing the G5, G13, G19, G32, or G37 attacks.",
+    "B3 is the entire missing asymptotic soundness theorem: splitters and a constant-degree overlap graph do not imply a polynomial integral cosystole. Testing two or three copies of one nine-clause obstruction cannot distinguish polynomial growth from a finite shell effect or later affine lifts.",
+    "C2 similarly assumes overlap-stable exponential Graver growth for arbitrary factor graphs. Depth-three Graver computations on one- and two-variable overlaps cannot certify all depths or larger overlap circuits, so C4 has no supported recurrence."
+  ],
+  "evidence": [
+    "The closest verified predecessor to Strategy 1, G28, had complete named port classes but failed the required inequality: adverse growth was 57/32 while legal growth was 2. This is finite evidence against that frozen rule, not a general impossibility theorem.",
+    "G30 found an exact seed isometry, showing why a colored-isomorphism audit is necessary, but excluding such an isometry does not establish asymmetric growth. Other signed or affine contextual equivalences remain possible.",
+    "G5 showed that all tested locally certified affine-isolation gadgets acquired short kernel moves after overlap. G19 likewise produced a zero-residual accepting signed flow despite all intended consistency rows being emitted.",
+    "G13 and G15 exhibited harmful affine combinations that survive every compatible linear syndrome or lift through an entire hierarchy. G32 and G37 gave exact additive parity witnesses, demonstrating that finite one-level separation need not yield strict composition growth.",
+    "G38 passed only a fixed B+64 shell; its verifier explicitly established no splitter scaling or polynomial gap. Thus it supplies no evidence for B3 beyond the bounded instance.",
+    "No supplied verifier executes the proposed A3 enumeration, proves A2 contextual closure, or certifies any dimension-dependent gap. All positive results in the record are explicitly finite."
+  ],
+  "next_experiment": "Stop the current search specification. To reopen it, freeze a finite tile grammar with explicit bounds on rows, entries, targets, and topology; prove that its port partition is an exact contextual min-plus congruence for all integer coefficients; then use an exact finite-state or rational-polyhedral computation to decide lambda>mu for every admissible input transfer table, with depth-three composition only as a cross-check.",
+  "confidence": 0.98
+}

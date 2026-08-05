@@ -1,0 +1,42 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-7/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The fixed E6 affine-port branch is exhausted negatively: every rational affine binary-valued row is constant, so this shell cannot even realize NAND under the tested mechanism. Without NAND, COPY, transfer closure, and growth are unauthorized and the ROADMAP frontier is not reached.",
+      "The proposed next experiment is not a frozen bounded lattice experiment. It specifies no emitted integer columns, factor/target, nonlinear encoding, selector charging, coefficient bound, COPY tile, finite codebook, gluing rule, or exact outside-shell certificate; an “unrestricted” search cannot be justified by finite enumeration without such coercivity.",
+      "Arbitrarily coloring shell vertices is not itself an emitted lattice port map. Introducing redundant selectors changes the lattice and shell, so the Generation-6 E6 empty-sphere certificate cannot automatically certify the mutated construction.",
+      "The supplied verifier hashes only the Generation-7 wrapper while importing the Generation-6 vertex and NAND definitions from an unhashed, unprovided module. The reported classification is therefore conditional on that mutable dependency rather than a self-contained locked certificate."
+    ],
+    "evidence": [
+      "The executed verifier reports affine rank six, all 128 binary basis assignments solved exactly, 126 rejected, and only constant rows zero and one surviving. Their eight triples have singleton images and realize none of the 32 normalized NAND relations.",
+      "Interpolation on seven affinely independent vertices is sufficient for the stated coefficient-unbounded rational-affine classification; this is stronger than the bounded Generation-6 row search but remains confined to one 27-point shell.",
+      "ROADMAP, STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently state that the result is finite and that no COPY, transfer-growth, hardness, or dimension-dependent gap follows. No supplied evidence supports promotion to the Voronoi-coercive tile lemma or any asymptotic hardness claim.",
+      "The ROADMAP frontier requires complete unrestricted min-plus closure, a Voronoi certificate for every outside-codebook integer state, and λ/μ≥65/64 for NAND and COPY. Generation 7 supplies none of these prerequisites."
+    ],
+    "next_experiment": "None for the current affine E6 branch. Reopen only with a frozen redundant/nonlinear mutation of rank at most 256 specifying the complete integer factor, target, NAND/COPY codebooks, selector charges, and gluing; then run one exact depth-two Fincke–Pohst transfer audit with a proved global coefficient/outside-shell bound, rejecting unless control radii match, the codebook is closed, and λ/μ≥65/64 over all integer coefficients.",
+    "confidence": 0.98
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The coefficient-unbounded affine branch on the fixed E6 shell is closed: every rational affine row that is binary on all 27 vertices is constant, so no affine port triple can realize NAND. This is fatal to the selected mechanism, although not to unrelated cells or genuinely augmented encodings.",
+      "The proposed nonlinear/redundant follow-up is not a frozen lattice construction. No selector columns, factor, target, charging rows, codebook, gluing equations, legal radius, collision predicate, or exhaustive coloring domain is specified, so it is not one precise bounded experiment.",
+      "A nonlinear coloring cannot be treated as an emitted lattice coordinate without an explicit auxiliary-variable lift. Such a lift changes the coefficient lattice and geometry, so the existing E6 empty-shell certificate cannot certify outside-codebook coercivity for it.",
+      "None of the ROADMAP frontier requirements beyond the local affine rejection is supplied: there is no NAND tile, COPY tile, unrestricted transfer closure, outside-K Voronoi certificate, or exact lambda/mu comparison. Consequently no recursion, dimension-dependent gap, or hardness conclusion is authorized.",
+      "The supplied verifier source imports the Generation-6 shell module without emitting its source or vertex hash. The execution evidence supports the classification in that environment, but does not independently bind the claimed 27 vertices to the previously certified shell."
+    ],
+    "evidence": [
+      "The verifier certifies augmented affine rank seven and exactly solves all 128 binary assignments on an affine basis. It rejects 126 and leaves only the constant-zero and constant-one rows.",
+      "All eight triples of surviving rows have singleton image and match none of the 32 translated/relabelled NAND relations. This proves the stated no-go for rational affine ports on this finite shell.",
+      "Machine verification reports exit code 0, exact rational arithmetic, zero NAND survivors, and two byte-identical complete runs. Compilation also succeeds.",
+      "SOL_RESULT, ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp consistently limit the conclusion to the fixed finite shell and expressly disclaim COPY, transfer growth, and hardness. No finite result is legitimately promoted to an asymptotic theorem.",
+      "No verifier or manifest is supplied for the proposed coloring, charged-selector lift, G13 collision search, COPY behavior, or depth-two transfer behavior."
+    ],
+    "next_experiment": "None is authorized for this run. Reopen only after freezing one augmented integer E6 construction with the complete factor, target, selector columns, charging rows, finite redundant codebook, NAND/COPY gluing, and legal radius; then run one exact unrestricted SNF plus Fincke–Pohst audit through that radius, with a new covering certificate for the augmented lattice, rejecting on any G13 affine collision or non-codeword point at or below the legal radius.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

@@ -1,0 +1,35 @@
+{
+  "summary": "Selected repaired Pro proposal 1, the sole cross-review survivor, and froze the canonical eight-selector NAND module over F_289. The verifier emits normalization, all three port rows, four forbidden-label rows, and the NAND product-table row, then exhausts all four false boundaries. Because the legal NAND columns form a unimodular affine simplex, every false word has a unique integral legal-selector pseudosection. False 010, 100, and 111 have zero residual, one negative coefficient, and anchor energy 16. Their coefficients lie in F_17 and are Frobenius-fixed, so they remain grade-zero classes after the skew grade-one copy. Since a nonzero element of the quaternion prime above 17 has trace energy at least 34, the canonical module fails adverse graded injectivity at depth one. This is a finite kill of the template, not a general quaternion no-go.",
+  "hypothesis": "Causal mechanism: exactness of the skew-Rees associated graded might eliminate all false-boundary classes below positive filtration and thereby seed the ramified adverse-filtration lemma. Expected move: reject every grade-zero false affine class before maximal-order lifting. Falsification condition: any false boundary with zero emitted defect, valuation-zero/Frobenius-fixed coefficients, and energy below the nonzero-P trace threshold. Three such classes occur at energy 16<34.",
+  "changed_files": [
+    "experiments/verify_f289_nand_affine_grade_zero_attack.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-11/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_f289_nand_affine_grade_zero_attack.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_f289_nand_affine_grade_zero_attack.py",
+      "exit_code": 0,
+      "finding": "Verified F_289 arithmetic, the rank-eight emitted NAND system, all four unique integral false-boundary pseudosections, Frobenius invariance, zero residuals, and minimum energy 16<34."
+    },
+    {
+      "command": "python3 experiments/verify_f289_nand_affine_grade_zero_attack.py > /tmp/f289-run1.json && python3 experiments/verify_f289_nand_affine_grade_zero_attack.py > /tmp/f289-run2.json && cmp -s /tmp/f289-run1.json /tmp/f289-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_f289_nand_affine_grade_zero_attack.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Retire the canonical one-selector-per-truth-triple residue module. Any next quaternion candidate must freeze an enlarged nonlinear/redundant selector support whose grade-zero false affine fibers are empty over F_289 and over the saturated integers before maximal-order or depth-two work begins."
+}

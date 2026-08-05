@@ -1,0 +1,37 @@
+{
+  "decision": "CONTINUE_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-5/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The selected mechanism is dead beyond the enumerated coupling box: for every positive-definite Q=K tensor I4, coordinate separability gives the same two-hybrid energy identity. No refinement of the scalar coupling grid can produce an empty legal NAND shell.",
+      "No NAND tile, COPY tile, unrestricted transfer closure, or lambda/mu bound was constructed. The 24,344,064 Boolean survivors pass only a preliminary finite Boolean-port test and provide no hardness or asymptotic evidence.",
+      "The packet’s proposed next experiment is under-specified: it freezes neither a nonseparable Gram parameterization nor a center rule, search range, or exact global-lattice stopping certificate. Promotion on that proposal alone is refused."
+    ],
+    "evidence": [
+      "The supplied source exactly iterates 43 interaction signatures against 3,375 rational positive-definite Grams, giving 145,125 compressed tests representing 663,552 times 3,375 = 2,239,488,000 candidates. The machine verifier reports exit code 0 and the claimed counts, including 24,344,064 strict Boolean survivors and best margin 3.",
+      "For all 144 ordered triality-class pairs, the verifier checks that the two hybrids belong to 2D4*, differ from both selected labels, and preserve each coordinate’s unordered value pair. Since Q=K tensor I4, this yields the center-independent energy-sum identity and an on-or-inside malformed point whenever legal 001 and 011 have equal radius.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp consistently classify the result as a finite family rejection, leave the Voronoi-coercive tile lemma open, and do not claim COPY, transfer growth, or hardness.",
+      "MACHINE_VERIFICATION substantiates one verifier execution but does not independently record the claimed byte-identical double run or separate py_compile command. Those auxiliary claims are not credited, although they do not affect the structural obstruction."
+    ],
+    "next_experiment": "Freeze one nonseparable 125-Gram mutation. Let P be the 4-cycle permutation matrix and use the lexicographically first existing labeling with interaction signature (-8,-8,8); set diagonal blocks to I4 and off-diagonal blocks AB=-I4/4+uP, AC=-7I4/16+vP, BC=7I4/16+wP, with transpose reverse blocks and u,v,w in {-2,-1,0,1,2}/16. Retain exactly positive-definite Grams, compute the exact rational circumcenter in the affine span of the four legal NAND points, require all four false Boolean points to be strictly outside, and then enumerate every point of (2D4*)^3 with energy at most the legal radius using exact rational LDL branch-and-bound with a proved coefficient bound; continue only if some shell contains exactly the four legal NAND points, and make no COPY or transfer claim yet.",
+    "confidence": 0.96
+  },
+  "pro": {
+    "verdict": "CONTINUE",
+    "fatal_blockers": [
+      "The current K(x,y,z) tensor I4 mechanism is dead: coordinate separability gives malformed lattice hybrids h,h' with energies summing to 2R^2, so every equal-radius NAND shell contains an intruder on or inside it. The 24,344,064 Boolean survivors therefore provide no usable tile.",
+      "The ROADMAP frontier is untouched: no COPY tile, unrestricted min-plus transfer table, exact outside-codebook Voronoi certificate, or lambda/mu >= 65/64 result exists. G2/G3 and G28 remain unresolved, and no hardness lemma or dimension-dependent gap follows.",
+      "The packet's proposed next experiment is too vague as written: it specifies neither a nonseparable Gram parametrization nor finite ranges, centers, or an exact all-lattice certification algorithm. Short-recombination searches alone would repeat the forbidden finite-shell extrapolation of G14/G31."
+    ],
+    "evidence": [
+      "The supplied verifier passed and deterministically enumerated 663,552 labelings and 3,375 exact positive-definite coupling triples, compressed to 145,125 signature/Gram tests. Its reported counts are internally consistent: 24,344,064 survivors plus the four first-failure counts equal 2,239,488,000 candidates.",
+      "The obstruction is stronger than the finite grid count for this separable form: for any center and any K tensor I4, swapping one changed coordinate between b0 and b1 preserves the unordered coordinatewise triples and hence the exact two-energy sum. The code verifies that all 144 oriented non-antipodal pairs yield distinct hybrids in 2D4*.",
+      "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp consistently label the result a finite rejection of the frozen family and explicitly leave nonseparable Grams open. No supplied claim promotes the finite Boolean enumeration to asymptotic CVP hardness or to a general Voronoi impossibility theorem."
+    ],
+    "next_experiment": "Freeze K0=K(-1/4,-7/16,7/16), the lexicographically first labeling with signature (-8,-8,8), and Q_t=K0 tensor I4+t I3 tensor (J4-I4) for t in {±1,…,±8}/128, retaining only exact-PD cases. For each t, use exact rational Voronoi-relevant-vector enumeration on (2D4*)^3 to decide feasibility of a center making precisely the four legal NAND points co-spherical and every other lattice point strictly farther; emit a finite all-lattice certificate, and stop without COPY/transfer work if every t has an intruder.",
+    "confidence": 0.97
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

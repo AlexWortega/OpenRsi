@@ -1,0 +1,19 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is killed as stated. Gray decoding is nonlinear and no emitted integral lift makes decoded-port equality a lattice gluing condition; bent correlation and Construction-A coset leaders also do not certify the augmented NAND/COPY lattice against unrestricted signed combinations.",
+    "Proposal 2 is killed as stated. Cut descriptions of Voronoi-relevant vectors do not by themselves define NAND/COPY selectors, centers, gluing, or the complete composed transfer operator, and the proposed K6 search leaves those objects unspecified.",
+    "Proposal 3 is the sole continuation, but only after repair. Variables Q and h describe squared distances only if the extended Gram containing the target is positive semidefinite, and the proposed enumeration of arbitrary subsets of {-1,0,1}^8 is not an executable bounded search.",
+    "Proposal 4 is killed. Primitive configurations modulo GL_d(Z) are not finite without determinant or coordinate bounds, and evidence through rank four could not establish the claimed unrestricted Cartesian-port no-go.",
+    "Proposal 5 is killed by a mechanism error. Positive minimum cycle mean gives additive excess linear in path length; it does not yield the multiplicative squared-energy recurrence or exponential ratio required by the recursive shell theorem.",
+    "Proposal 6 is killed as stated. Total unimodularity gives conformal circuit decomposition for kernel vectors, not for DROP, wrong-port, or nonzero-residual states, and nonorthogonal quadratic energy is not lower-bounded merely by decomposing a vector into circuits."
+  ],
+  "evidence": [
+    "The supplied verifiers leave arbitrary nonseparable Gram synthesis open: Generation 5 rejected only coordinate-separable D4 metrics, while Generations 33–34 rejected only one exterior-tag family. Generation 7 closes affine ports on one E6 shell but expressly leaves augmented encodings open.",
+    "No supplied verifier tests any of the six new proposals. Consequently none has experimental support, and prior finite passes or failures cannot be promoted to a general Voronoi or hardness statement.",
+    "For a fixed finite codebook and emitted linear port map, Proposal 3's distance constraints are linear in an extended Gram. Exact diagonal-dominance bounds can provide positive definiteness and a uniform finite tail bound, after which unrestricted minima and depth-two transfer tables are genuinely decidable.",
+    "Only repaired Proposal 3 directly tests the ROADMAP frontier requirements of equal completeness, global outside-codebook coercivity, unrestricted transfer closure, and the exact 65/64 ratio in one bounded experiment."
+  ],
+  "next_experiment": "Freeze repaired Proposal 3 at D=8: use canonical one-hot legal selectors for the four NAND words and two COPY words, four zero-port auxiliary columns, and explicit integral port maps with emitted equality gluing. Search exact rational extended Grams H=[[Q,-h],[-h^T,s]] with entries bounded by 64, strict diagonal-dominance margin at least 1, and legal squared energy 64; the uniform coercive bound must determine the complete finite Fincke–Pohst core before optimization. Build exact transfer tables for every Boolean port and certify every nonbinary port by the tail bound; reject unless both tiles have matching legal radii, unrestricted closure, and exact depth-two lambda/mu at least 65/64. A pass authorizes only a subsequent symbolic tile proof, not recursion or hardness.",
+  "confidence": 0.95
+}

@@ -1,0 +1,17 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Every candidate in the declared non-antipodal D4/common-t Gram grid fails the mandatory NAND shell gate: at least one false Boolean lattice point is on or inside the legal radius. COPY construction, transfer tables, lambda/mu analysis, recursion, and hardness promotion are therefore unauthorized.",
+    "The result is only a finite rejection of a narrowly frozen family. It establishes neither the ROADMAP's Voronoi-coercive tile lemma nor any asymptotic or dimension-dependent GapCVP hardness statement.",
+    "SOL_RESULT's proposed next experiment is not executable as written: it specifies no non-D4 codebook, Gram parameter set, bounds, or exact acceptance test. Merely changing codebooks cannot remove the three-interaction identity, which applies to every quadratic distance restricted to three independently encoded Boolean ports; an escape must instead realize interactions for which all four false gaps are strictly positive.",
+    "The verifier covers only bijective assignments of the three D4 triality classes and Grams with one common coupling magnitude t and three signs. It does not reject repeated-class labels, independent off-block couplings, E8 codebooks, or arbitrary positive-definite Grams."
+  ],
+  "evidence": [
+    "The supplied verifier loops over 6 class permutations, 48^3 ordered non-antipodal labelings, and 952 positive-definite parameter tuples. Its 43-signature compression is sufficient for this Gram family because the false gaps depend only on the three cross-dot products.",
+    "The pseudo-Boolean calculation is correct: equal costs on legal NAND words 001, 011, 101, and 110 force false excesses -A+B+C, -A+B, -A+C, and A. Thus any enumerated nonpositive minimum is a center-independent obstruction whenever a common legal sphere exists.",
+    "Machine evidence reports 528417792 strict-interior cases and 103283712 tie cases, totaling all 631701504 parameter tuples, with best minimum gap zero. Repeated execution was byte-identical, although it is not an independent verifier.",
+    "ROADMAP, STATUS, IDEAS, NOTES, and proof_cvp.md consistently describe this as finite evidence, keep the Voronoi-coercive tile lemma open, and make no asymptotic promotion."
+  ],
+  "next_experiment": "Run one exact bounded escape test on the same 663552 non-antipodal D4 labelings but replace the common-t Gram by K(x,y,z) tensor I4, where x,y,z independently range over {k/16: -7<=k<=7} and K=[[1,x,y],[x,1,z],[y,z,1]] is exactly positive definite. First retain only tuples with all four symbolic false NAND gaps strictly positive; for each survivor, compute the complete exact Voronoi-relevant-vector set of L=(2D4*)^3 under K and solve the resulting rational linear feasibility system for a center at which exactly 001,011,101,110 are co-nearest, rejecting every tie with any other lattice point. Report complete counts and an exact center/margin certificate for any survivor; do not construct COPY or claim transfer growth unless this NAND gate passes.",
+  "confidence": 0.98
+}

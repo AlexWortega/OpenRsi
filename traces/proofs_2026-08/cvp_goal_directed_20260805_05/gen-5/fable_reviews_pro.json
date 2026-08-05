@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the only selectable candidate, but its claimed 43-signature reuse is unverified for three independent couplings. The symbolic example A=1, B=C=2 proves only that the prior Boolean identity is not a no-go; it does not prove any D4 labeling and positive-definite Gram realizes those interactions.",
+    "Proposal 2 is killed as specified: “all small integral port projections” has no bound or canonical enumeration, and neither Reeve emptiness nor nonnormality implies a Delaunay shell gap. Cayley ports, COPY compatibility, and the unrestricted selector lattice are not concretely defined.",
+    "Proposal 3 is killed as specified: an [8,4,4] binary Construction-A lattice has 16 lattice cosets in Z^8, not 256, and no emitted construction enforces the nonlinear phase relation for unrestricted coefficients. Coset-leader tables alone do not certify complete ports, affine fibers, or depth-two transfer.",
+    "Proposal 4 is killed as specified: resistance weights, demand codebooks, and automorphism-derived NAND/COPY maps are unbounded or undefined. Enumerating only small demands cannot establish the required statement over all integral circulations, especially the G19 signed-cancellation fiber.",
+    "Proposal 5 does not test the FRONTIER lemma and explicitly omits the unrestricted auxiliary and signed fibers central to G2/G3, G7, G13, G15, and G19. Moreover, generic SDP infeasibility need not yield the promised elementary rational Farkas certificate without additional regularity.",
+    "Proposal 6 is killed as specified: Graver decomposition controls moves within a fixed A-fiber, not adverse ports outside that fiber or min-plus composition. No concrete NAND/COPY port map shows that “gate-violating” primitive moves are algebraically distinguishable from legal exchanges.",
+    "Proposal 7 is killed in its present form: selecting nearest E8 orbit points does not define the full selector columns, finite port codebook, COPY tile, or enumeration of orbit maps. Shell classification cannot substitute for checking every unrestricted coefficient and every composed port state."
+  ],
+  "evidence": [
+    "The current verifier rejects only the common-coupling non-antipodal D4 grid: 631701504 candidates all have a false Boolean point on or inside the NAND sphere. It supplies no evidence against independently varying the three couplings.",
+    "Equal legal NAND costs give false excesses -A+B+C, -A+B, -A+C, and A. These can all be positive abstractly, so independent coupling is a genuine escape from the exact obstruction that killed Generation 4.",
+    "Proposal 1 matches the bounded mutation prescribed by the prior gate and remains within the ROADMAP's Voronoi-coercive frontier. It still must pass common-center, COPY, global lattice-point, transfer-closure, G28, G32/G37, DROP, affine, parity, and signed-state tests.",
+    "No supplied verifier supports any proposal's claimed shell, λ/μ ratio, recursive growth, or asymptotic GapCVP consequence. Existing evidence authorizes only a new bounded discriminator."
+  ],
+  "next_experiment": "Run only Proposal 1, with K(x,y,z) explicitly frozen as the 3-by-3 unit-diagonal matrix with off-diagonals x,y,z, tensored with I4, for x,y,z in {-7/16,...,7/16}. Recompute and machine-check signature coverage rather than assuming 43; filter by exact positive definiteness and strict false-Boolean excess, then solve exact NAND and COPY common-center systems. For survivors, certify global shell emptiness using a complete exact Voronoi-relevant-vector or equivalent exhaustive CVP certificate over the full integer selector lattice; only then build the complete depth-two min-plus table, including DROP, G13, G15, G19, parity, signed, malformed, and outside-K states, and require closure plus λ/μ≥65/64. Stop at the first failed gate and make no asymptotic claim.",
+  "confidence": 0.99
+}

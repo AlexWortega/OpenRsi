@@ -1,0 +1,35 @@
+{
+  "summary": "Selected surviving Fable proposal 1 and froze a complete linear k=2 ordered-pair lift of the hash-locked Generation-19 Barrington program. The pure tensor is rejected by 14 strong diagonal rows, but the same exact two-negative accepting flow embeds on the diagonal and satisfies all 348451 emitted rows. Its squared cost is 224330 against exact control radius squared 224282, so exact integer comparisons place it below both 4R_2^2/3 and the displayed FRONTIER threshold 16R_2^2/9. This is a finite counterexample to the explicit lift, not an exact k=2 optimum or an asymptotic theorem.",
+  "hypothesis": "Causal mechanism: a signed accepting flow can survive linear tuple coherence through either layerwise moments or a diagonal embedding. Expected move against FRONTIER: produce a zero-residual unrestricted integral k=2 accepting vector below 16R_2^2/9, while recording the first row that blocks the literal tensor. Falsification condition for amplification: any such vector; the diagonal embedding meets it even after off-diagonal-zero and diagonal-idempotence rows are emitted.",
+  "changed_files": [
+    "experiments/verify_k2_barrington_tensor_splice.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-1/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_k2_barrington_tensor_splice.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_k2_barrington_tensor_splice.py",
+      "exit_code": 0,
+      "finding": "Reconstructed the exact G19 seed search, emitted and hashed the rank-224282 lift with 348451 rows, checked the honest control at 224282, and verified the zero-residual diagonal signed splice at 224330 below both thresholds."
+    },
+    {
+      "command": "python3 experiments/verify_k2_barrington_tensor_splice.py > /tmp/k2-run1.json && python3 experiments/verify_k2_barrington_tensor_splice.py > /tmp/k2-run2.json && cmp -s /tmp/k2-run1.json /tmp/k2-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete runs produced byte-identical JSON, including emitted-row hashes."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_k2_barrington_tensor_splice.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Specify a genuinely enlarged, non-diagonal coherence mechanism that does not admit the linear map s -> diag(s), preserve equal-radius completeness, and rerun exact unrestricted low-weight search first on the two-layer G19 splice support and then on the hash-locked full program. Stop immediately if a zero-residual signed embedding remains below 16R_2^2/9."
+}

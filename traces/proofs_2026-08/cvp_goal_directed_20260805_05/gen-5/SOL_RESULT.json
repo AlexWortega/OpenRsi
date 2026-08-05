@@ -1,0 +1,35 @@
+{
+  "summary": "Selected proposal 1, the sole mechanism surviving both cross-reviews: the independent-coupling non-antipodal D4 grid Q=K(x,y,z) tensor I4. The verifier covers all 663552 labelings and 3375 positive-definite coupling triples, or 2239488000 candidates, via 145125 exact signature/Gram tests. It finds 24344064 candidates with all false Boolean NAND excesses strictly positive, with best minimum excess 3. Every such survivor still fails global shell emptiness: coordinatewise recombination of legal 001 and 011 produces two malformed 2D4* points whose energies sum to 2R^2 for every center, so at least one lies on or inside the legal radius. This is a finite rejection of the frozen independent grid, not a theorem about nonseparable Grams or arbitrary Voronoi tiles.",
+  "hypothesis": "Causal mechanism: independently varying the three D4 port couplings can realize strict positive values for all four false Boolean excesses and might yield an empty NAND/COPY Delaunay shell with eventual lambda/mu at least 65/64. Expected move: retain strict Boolean survivors and certify global all-lattice emptiness before COPY and transfer construction. Falsification condition: any nonlegal lattice point on or inside a surviving legal shell. Coordinate separability supplies such a malformed recombination for every strict Boolean survivor.",
+  "changed_files": [
+    "experiments/verify_independent_d4_recombination_obstruction.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-5/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_independent_d4_recombination_obstruction.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_independent_d4_recombination_obstruction.py",
+      "exit_code": 0,
+      "finding": "Covered 2239488000 candidates through 145125 exact Boolean tests, found 24344064 strict Boolean survivors, and certified a malformed coordinate-recombination point on or inside every surviving legal shell."
+    },
+    {
+      "command": "python3 experiments/verify_independent_d4_recombination_obstruction.py > /tmp/d4ind-run1.json && python3 experiments/verify_independent_d4_recombination_obstruction.py > /tmp/d4ind-run2.json && cmp -s /tmp/d4ind-run1.json /tmp/d4ind-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_independent_d4_recombination_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Retire all Q=K tensor I4 triality grids. Freeze a bounded nonseparable 12-dimensional Gram family with explicit cross-coordinate or charged joint coordinates. Before COPY or transfer search, require strict false-Boolean excess and exhaust short coordinate recombinations and affine hybrids with an exact global lattice certificate."
+}

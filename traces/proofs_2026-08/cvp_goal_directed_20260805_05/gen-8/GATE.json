@@ -1,0 +1,40 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-8/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The selected D=8 augmented-Gram candidate is exactly infeasible. The unrestricted selector z=0 emits false NAND port 000 and has energy s<=64, while the required 65/64 separation demands s>=65.",
+      "Uniform rescaling does not escape this obstruction: scaling the entry cap and legal energy together preserves s/E<=1<65/64. An escape must change the dimensionless cap-to-legal-energy ratio, centering, or port map, not merely rescale the same family.",
+      "The proposed next experiment is not a bounded executable experiment. It specifies no replacement normalization, dimension, coefficient or denominator bounds, complete NAND/COPY maps, gluing, search domain, or exact outside-shell certificate.",
+      "No FRONTIER component is established: there is no NAND or COPY tile, unrestricted transfer closure, Voronoi outside-codebook certificate, depth-two table, or lambda/mu growth result. The fixed-family rejection supplies no asymptotic hardness evidence."
+    ],
+    "evidence": [
+      "The verifier exactly checks that z=0 maps to 000, which is absent from the four legal NAND words 001, 011, 101, and 110.",
+      "For H=[[Q,-h],[-h^T,s]], the zero selector has energy [0;1]^T H[0;1]=s. The hardcoded family constraints give s<=64 and required adverse energy 65, yielding the valid contradiction 0>=1.",
+      "Machine verification exited successfully, compiled, and produced byte-identical output across two runs. It verifies only the stated symbolic obstruction; it constructs no Gram, factor, COPY gadget, or transfer table.",
+      "ROADMAP.md, STATUS.md, IDEAS.md, NOTES.md, and proof_cvp.md consistently limit the result to the frozen normalization and explicitly leave the Voronoi-coercive tile lemma and hardness target open.",
+      "The packet labels the progress FINITE and does not itself promote the result to a dimension-dependent gap. No finite observation here supports an asymptotic theorem."
+    ],
+    "next_experiment": "None authorized for this run. Reopen only with a separately frozen mutation that demonstrably evades the scale-invariant zero-DROP inequality and already specifies complete rational factor/target data, NAND/COPY ports and gluing, bounded synthesis parameters, and an exact all-integer outside-shell certification procedure.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The frozen family is empty. For the unrestricted selector z=0, the emitted NAND port is 000 and E(0)=s≤64, while the required 65/64 separation from legal energy 64 demands E(0)≥65.",
+      "Nothing reaches ROADMAP.md’s FRONTIER lemma: no feasible NAND tile, COPY tile, factor/target, complete port codebook, unrestricted transfer operator, outside-shell certificate, gluing construction, or depth-two growth table exists.",
+      "The proposed continuation is not a precise bounded experiment. Mere uniform rescaling does not escape the obstruction because it preserves s/E_legal≤1; only a non-scale-equivalent change in the relative target-entry bound or centering could do so."
+    ],
+    "evidence": [
+      "The supplied verifier exits successfully and checks the exact inequalities s≤64 and s≥65, producing the contradiction 0≥1. Positive definiteness or diagonal dominance cannot invalidate this upper-bound obstruction.",
+      "ROADMAP.md, STATUS.md, IDEAS.md, NOTES.md, and proof_cvp.md consistently classify Generation 8 as a rejection of only the frozen augmented-Gram family. They explicitly state that the general Voronoi-coercive tile lemma and all asymptotic hardness claims remain open.",
+      "The verifier is a small symbolic assumption checker with hard-coded constants and port columns, not an enumeration or emitted-lattice audit. That is sufficient for this conditional contradiction but supplies no evidence for any repaired family, transfer behavior, or scaling law.",
+      "SOL_RESULT.json correctly labels the progress FINITE and does not promote the rejection to an asymptotic impossibility theorem. No hardness lemma or dimension-dependent gap follows."
+    ],
+    "next_experiment": "None for this run. Reopen only as a new mutation after freezing a non-scale-equivalent compact normalization with s/E_legal≥65/64, complete NAND and COPY port maps, rational factor/target, equality gluing, and a rigorous global coefficient bound; then perform one exact bounded audit of all low-energy unrestricted selectors followed by complete depth-two min-plus tables.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

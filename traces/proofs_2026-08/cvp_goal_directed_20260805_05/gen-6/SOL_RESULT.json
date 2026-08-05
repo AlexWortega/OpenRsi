@@ -1,0 +1,35 @@
+{
+  "summary": "Selected repaired Fable proposal 3, the sole cross-review survivor. The verifier freezes an explicit E6 Cartan basis, constructs the 27-vertex minuscule Gosset Delaunay cell, and certifies that these are exactly all lattice points at squared distance at most 4/3 from center (2,1,0,-1,-2,0)/3. It then classifies all integral 3x6 port maps with entries in {-1,0,1}. A complete 729-row search proves that only the zero row takes values contained in {0,1} or {0,-1} on all shell vertices. Since every legal NAND port bit varies, no three-row map can hit all four legal words. The rowwise reduction covers all 3^18=387420489 maps. This is finite rejection of the prescribed E6 map family, not a theorem about larger maps or other Delaunay cells.",
+  "hypothesis": "Causal mechanism: an irreducible already-empty E6 Gosset shell might avoid D4 recombination attacks and admit an integral projection whose complete 27-vertex image consists exactly of the four legal NAND words. Expected move: certify the empty shell and find a surjective legal port map before COPY or transfer testing. Falsification condition: any malformed shell image or failure to realize all four legal words. Exact row classification proves the latter for every bounded map.",
+  "changed_files": [
+    "experiments/verify_e6_gosset_port_map_obstruction.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-6/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_e6_gosset_port_map_obstruction.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_e6_gosset_port_map_obstruction.py",
+      "exit_code": 0,
+      "finding": "Certified the exact 27-point empty E6 shell by enumerating the derived [-3,3]^6 bound, then covered all 387420489 bounded 3x6 maps through exhaustive enumeration of 729 rows and found no NAND port-map survivor."
+    },
+    {
+      "command": "python3 experiments/verify_e6_gosset_port_map_obstruction.py > /tmp/e6-run1.json && python3 experiments/verify_e6_gosset_port_map_obstruction.py > /tmp/e6-run2.json && cmp -s /tmp/e6-run1.json /tmp/e6-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_e6_gosset_port_map_obstruction.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Keep the certified E6 shell but freeze a bounded nonlinear or redundant orbit-valued port codebook rather than a single integral 3x6 projection. Require every one of the 27 vertices to receive a legal NAND state, all four states to occur, and gluing determinism to be emitted before attempting COPY or transfer growth."
+}

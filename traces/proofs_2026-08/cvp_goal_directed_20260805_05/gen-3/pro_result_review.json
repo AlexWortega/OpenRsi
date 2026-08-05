@@ -1,0 +1,17 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "The frozen antipodal D4 family is dead: COPY and NAND each have an allowed non-codebook lattice midpoint strictly inside any equal-radius legal shell under every retained positive-definite Gram. No parameter choice in the enumerated family can escape this obstruction.",
+    "Nothing required by the FRONTIER tile lemma has been constructed: there is no factor/target, unrestricted transfer operator, closure proof, outside-shell certificate, depth-two table, or lambda/mu bound. The result is only a finite family rejection and gives no hardness or asymptotic progress.",
+    "The proposed phrase \"every midpoint and short affine combination\" is not an unrestricted certificate. Any successor must certify all lattice points by exact Voronoi/Delaunay or exhaustive bounded-ellipsoid machinery with a proved global bound, not extrapolate from finitely many named combinations."
+  ],
+  "evidence": [
+    "MACHINE_VERIFICATION passed the supplied verifier, whose output reports 3072 labelings, 952 positive-definite Gram parameters, and 2924544 candidates. The source uses exact Fractions and Sylvester tests rather than floating-point decisions.",
+    "The midpoint identity is applied correctly. The source also verifies that zero and the NAND midpoint belong to (2D4*)^3 and that the corresponding legal chords are nonzero, giving strict inward deficits for every retained candidate.",
+    "The reported minimum deficits 3/4 and 17/4 agree with the exact formulas and emitted witnesses. These minima concern only the finite rational Gram grid, while the midpoint obstruction itself is structural within the frozen antipodal codebook.",
+    "ROADMAP, STATUS, IDEAS, NOTES, proof_cvp, and SOL_RESULT consistently state that this is a finite rejection and that no hardness lemma or dimension-dependent gap follows.",
+    "The byte-identical rerun and py_compile checks are claimed in SOL_RESULT but are not separately recorded in MACHINE_VERIFICATION; only the primary verifier execution has supplied independent machine evidence."
+  ],
+  "next_experiment": "Run exactly one non-antipodal D4 mutation: keep L=(2D4*)^3, the six triality-class assignments, eight off-block sign patterns, and reduced t=p/q with |p|<=16 and q<=16, but enumerate every ordered distinct non-antipodal Boolean pair in each assigned 8-set. For each NAND and COPY labeling, use exact Voronoi-relevant-vector enumeration to decide whether its complete legal truth table lies on an empty common Delaunay sphere, rejecting any extra lattice point on or inside the sphere; for survivors only, emit the depth-two glued factor and compute the complete unrestricted min-plus transfer table with a proved ellipsoid bound, accepting only closure and lambda/mu>=65/64. If no candidate passes, kill this D4 triality direction rather than enlarging another finite shell.",
+  "confidence": 0.97
+}

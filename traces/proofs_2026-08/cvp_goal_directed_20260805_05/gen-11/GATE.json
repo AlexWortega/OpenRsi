@@ -1,0 +1,41 @@
+{
+  "decision": "KILL_IDEA",
+  "verifier_passed": true,
+  "machine_verification": "/home/alexw/autoresearch-runs/cvp_goal_directed_20260805_05/gen-11/MACHINE_VERIFICATION.json",
+  "fable": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "The canonical eight-selector NAND module is dead. Every false boundary has an exact integral zero-defect pseudosection; energies are 16 for 010, 100, and 111 and 32 for 000, all below the asserted threshold 34.",
+      "The proposed escape requiring empty false affine fibers is impossible for a common affine-linear encoding of all four legal NAND words. Integer affine combinations of legal configurations produce false-port configurations while preserving every shared linear equation, e.g. 111 = -001 + 011 + 101.",
+      "The quaternion-specific depth-one conclusion is not verified. The program hardcodes 34 and does not instantiate a maximal order, prime ideal, trace lattice, skew-Rees module, or emitted grade-one map.",
+      "The run does not complete the prescribed bounded Strategy-2 frontier: it checks only one NAND matrix, without alternative-module enumeration, COPY, maximal-order lifting, adverse quotients, or depth-two optimization. Finite failure of this template cannot establish a general or asymptotic no-go."
+    ],
+    "evidence": [
+      "The verifier directly checks rank eight, unique integral selectors, and zero residual in all nine emitted rows for all four false boundaries. Reweighting emitted defect rows cannot penalize an exactly zero residual.",
+      "Three false selectors have energy 16 and one negative coefficient; the fourth has energy 32. Their displayed coefficients are integral and the field-level Frobenius checks pass, but those checks do not establish survival in an actual quaternionic skew complex.",
+      "The threshold comparison is conditional: `TRACE_THRESHOLD_P` is assigned `2*17` rather than derived from an explicit order and trace form. Deterministic reruns and compilation validate only the finite matrix computation.",
+      "SOL_RESULT and both reviews agree that no hardness lemma, recursive filtration theorem, or dimension-dependent gap follows. The supplied evidence supports retiring this canonical template only."
+    ],
+    "next_experiment": "Do not rerun or lift this template. The only admissible escape mutation is one bounded exact audit for N<=16 over multisets of the 16 binary coordinate signatures of four legal NAND codewords: retain affine-difference rank three with SNF-certified saturation and a linear port decoder, then compute unrestricted signed-integer minimum energy in every false fiber, including DROP, while independently deriving 34 from an explicit maximal-order prime basis. Continue only if every false minimum is at least 34 and min_false/N>17/16; otherwise kill this bounded binary-redundant family.",
+    "confidence": 0.99
+  },
+  "pro": {
+    "verdict": "KILL",
+    "fatal_blockers": [
+      "Fable supplies no rebuttal to the exact finite counterexamples. For the canonical eight-selector matrix, false boundaries 010, 100, and 111 have zero emitted defect and energy 16, so no reweighting of defect rows can restore the claimed separation.",
+      "The quaternion and skew-grade conclusions exceed the verifier evidence. Frobenius-fixed field coefficients do not by themselves prove survival through an instantiated skew complex, and the threshold 34 is hardcoded rather than derived from an explicit maximal order, prime ideal, trace form, and minimum computation.",
+      "An equality-only linear encoding containing all four legal NAND configurations necessarily contains their integral affine combinations, including false-boundary pseudosections. Therefore the proposed requirement of empty false affine fibers is impossible without genuinely nonlinear or noncommon constraints; redundancy can only attempt to raise their energy.",
+      "The run audits only one NAND matrix and omits COPY, alternative modules, maximal-order lifting, adverse quotients, and depth-two optimization. It neither completes the prescribed bounded frontier nor supports any asymptotic hardness or all-depth filtration claim.",
+      "Fable's proposed search condition 'affine rank four' is malformed for four codewords, whose affine dimension is at most three. The usable condition is augmented homogeneous rank four, equivalently affine dimension three, and must be specified explicitly."
+    ],
+    "evidence": [
+      "The reported verifier establishes rank eight and exact integral zero residuals for all four displayed false-boundary selectors. Uniqueness applies only to this emitted matrix.",
+      "For 010, 100, and 111, the reported selectors have one negative coefficient, zero residual, and anchor energy 16; 000 has energy 32. Their coefficients are reported to lie in F_17 and be Frobenius-fixed.",
+      "Compilation and deterministic reruns support reproducibility of the finite matrix computation. They do not supply the absent quaternion-order, skew-module, COPY, or recursive calculations.",
+      "Both reviews agree that the evidence retires the canonical template and proves no dimension-dependent estimate. Fable's CONTINUE recommendation rests solely on a new bounded redundancy search, not on rehabilitation of the tested candidate."
+    ],
+    "next_experiment": "Stop the canonical template. The only admissible escape mutation is one exact bounded audit for N<=16: enumerate multiplicity vectors of the 16 binary coordinate signatures across four legal codewords, require augmented rank four and SNF-certified saturation, enforce legal energy at most 16, and compute by exact SNF plus branch-and-bound the unrestricted minima in all four forced false fibers including DROP and signed affine points. Independently certify the threshold from an explicit maximal-order prime basis; resurrect only a bounded redundant candidate whose every false minimum meets that certified threshold, with no asymptotic inference.",
+    "confidence": 0.99
+  },
+  "rule": "CONTINUE_IDEA requires a passing verifier and two CONTINUE verdicts; all other states KILL_IDEA, then the campaign advances to a fresh generation"
+}

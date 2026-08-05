@@ -1,0 +1,23 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "None of the proposals specifies a complete lift: coefficient modules, emitted equations, weights, factor/target, canonical honest lift, exact mu, rank accounting, and an unrestricted search bound are missing. Merely asserting that DROP, normalization, overlaps, or cycles are emitted cannot be checked against the obstruction map.",
+    "Proposal 1 changes ROADMAP's theorem rather than satisfying it, and the amended excess recurrence is not sufficient under the current iteration count. With t=floor(log2 m), (257/256)^t=m^0.0056, while the initial relative excess may be only inverse-polynomial such as m^-4; no polynomial approximation ratio follows without many more levels and revised rank accounting.",
+    "Proposal 1 also has no defined operator L, so its padded-G38 experiment has no object to execute and requires an unknown exact G38 obstruction minimum. Positive finite-shell results could not establish the unrestricted recurrence, while a G32-style additive witness would immediately force equality rather than strict excess growth.",
+    "Proposal 2 remains linear in selector coefficients after the nonlinear label coding. Constant weight and complements do not prevent G13/G15 honest-affine combinations from mapping functorially, and no quantitative argument defeats the verified G32/G37 additive parity modes; the code enumeration omits the actual lift, weights, graph rule, and exact DP state space.",
+    "Proposal 3 is structurally blocked by its admitted simultaneous kernel. Hodge, co-Hodge, and saturated harmonic rows act on disagreement cochains, whereas zero-disagreement affine pseudosections lie in the stalk kernel; SNF saturation removes torsion, not this primitive affine mode.",
+    "Proposal 4 supplies neither an all-measure inequality nor a recurrence against honest-affine measures. Evaluation maps preserve affine combinations, the proposed four-bag subinstance need not retain the G38 obstruction, and P1(F5) has only six rational points for sixteen labels unless an additional encoding is specified.",
+    "Proposal 5 leaves the scalar/trivial representation carrying G13/G15 unchanged, regardless of whether the two matrices have a trivial common fixed space on another module. Real spectral behavior also does not certify an integral shifted-CVP inequality, legal-radius equality, or unrestricted tail control.",
+    "Proposal 6 does not define the class quantified by 'every label-natural linear lift Gram'; a rank multiplier alone does not parameterize enlarged selectors, auxiliary rows, or sheaf-dependent maps. Its no-go would exclude only a restricted linear-natural class not required by FRONTIER, and the underlying G13 affine-hull fact is already verified.",
+    "Proposal 7 does not define the K3,3 lift or its transition table, so no rational LP can presently be formed. Moreover, an augmented recurrence with |Phi|<=eta Delta yields at best a degraded factor gamma(1-eta)/(1+eta) absent a stronger inequality or boundary cancellation, and a certificate for one G38 instance would not prove the uniform all-sheaf lemma."
+  ],
+  "evidence": [
+    "Generation 38 verifies only control minimum 119 and exclusion of obstruction vectors through 181. It provides no exact obstruction minimum, depth-two lift, or recurrence.",
+    "Generation 13 proves the harmful selector is an integral affine combination of sixteen honest encodings, and Generation 15 lifts it through a hierarchy with zero residual. These directly obstruct Proposals 2, 3, 4, and 5 unless a genuinely non-affine mechanism is specified.",
+    "Generation 19 and goal-directed Generation 1 verify signed-flow and diagonal zero-residual kernels surviving extensive emitted linear coherence rows. SNF, harmonic bookkeeping, and additional linear transports do not by themselves charge them.",
+    "Generations 32 and 37 verify exact additive parity and a universal zero-margin cut. Thus curvature, spectral, or potential language cannot support strict recurrence without a concrete nonadditive escape.",
+    "No new verifier evidence accompanies any proposal, and every proposed positive experiment is underspecified or tests only a finite instance rather than a frozen uniform rule."
+  ],
+  "next_experiment": "None authorized. Reopen only after freezing one genuinely non-affine uniform lift with exact factor/target, mu, rank bound, emitted coordinates, and a proved unrestricted shell reduction; first symbolically show that the exact G13 affine pseudosection and G19 signed cycle acquire positive excess, then prescribe one complete depth-two G38 falsification.",
+  "confidence": 0.99
+}

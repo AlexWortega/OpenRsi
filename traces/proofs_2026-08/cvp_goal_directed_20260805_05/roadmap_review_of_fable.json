@@ -1,0 +1,25 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Strategy 1's frontier lemma is already contradicted at k=1 if its lift specializes to the stated transition, repeated-query, source, and ACCEPT encoding. Generation 19 gives squared ratio 22770/22754, far below the required 4/3.",
+    "No alternative k=1 construction is specified precisely enough to escape that contradiction: C_k, y_k, R_k, tuple marginals, weights, and the accepting fiber are undefined. Consequently the proposed k=2 instance and its threshold are not reproducibly determined.",
+    "Ordered-tuple variables with linear marginal equations do not by themselves escape G13, G15, or G19. Integral affine combinations and tensor powers remain legal candidates, and the roadmap provides no mechanism proving their norm must grow; calling the representation a nonlinear lift is insufficient.",
+    "The claimed equivalence in Strategy 1 is false as stated. A global norm lower bound is not equivalent to an integral path-decomposition dichotomy or to per-level multiplicative growth.",
+    "Strategy 2 does not provide a finite certificate for all integral port vectors. Enumerating bounded auxiliary designs or named port classes cannot establish an unrestricted transfer table without a coercive tail theorem, so G2/G3 remain open.",
+    "Strategy 2's potential inequality does not establish the asserted Euclidean distance ratio. Bounds and telescoping conditions for Phi are absent, and no accounting shows that one adverse chain overcomes the additive honest energy of the entire circuit.",
+    "Strategy 3's Lemma 3 promises growth at some level, but Lemma 4 iterates it over all t levels. One growth event cannot yield a factor (17/16)^t.",
+    "The splitter citation does not establish the claimed nested parent-bag hierarchy, O(log m) clauses per bag, constant rank expansion, and isolation of supports as large as m simultaneously. Those structural properties require a separate construction proof.",
+    "Strategy 3's linear normalization and marginal system remains vulnerable to signed affine pseudodistributions. It supplies no extension obstruction excluding the exact affine lifts seen in G13/G15, and it omits baseline and residual-weight accounting needed to turn level norms into a CVP ratio."
+  ],
+  "evidence": [
+    "The supplied Generation-19 verifier evidence reports an exact zero-residual accepting signed flow with two coefficients -1, NO minimum 22770, and honest control radius squared 22754. This directly defeats the k=1 factor claimed by Strategy 1.",
+    "Generation 30 shows that literal tensoring can preserve an exact NO/YES isometry for every unrestricted integer coefficient matrix. Thus finite tensor structure cannot be promoted to amplification without a proved non-isometric mechanism.",
+    "Generations 13 and 15 exhibit an integral affine collision and its exact zero-residual propagation through every level of a hierarchy. The proposed tuple and bag marginal equations do not identify a demonstrated escape.",
+    "Generation 28's complete bounded tile audit found adverse growth 57/32 below legal growth 2. Strategy 2 proposes a broader search but supplies neither a candidate tile nor an unrestricted tail certificate.",
+    "Generations 32 and 37 give compatible parity copies with exactly additive cost despite cross-copy consistency rows. Merely classifying parity as adverse does not establish strict recursion.",
+    "Generation 38 certifies only a finite B+64 shell for 12 bags and explicitly establishes no splitter scaling law. The roadmap improperly treats the missing scaling law as a lemma rather than evidence.",
+    "The assertion that the proposed Barrington splice instance is the smallest is unsupported by the supplied verifier evidence, which only specifies a 3250-layer instance."
+  ],
+  "next_experiment": "Do not run k=2. As the only admissible mutation gate, fully serialize the proposed k=1 factor C_1, target y_1, honest radius R_1, and unrestricted accepting fiber on the verified Generation-19 program, then exactly test whether its NO minimum is at least 4R_1^2/3; if it reproduces the existing encoding or fails the threshold, abandon Strategy 1.",
+  "confidence": 0.99
+}

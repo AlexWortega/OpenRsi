@@ -1,0 +1,16 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "The tested common-|t| D4 family is dead: every candidate has a false Boolean point on or inside the legal NAND shell, so COPY, transfer analysis, recursion, and hardness promotion remain unauthorized.",
+    "The result is only a finite rejection of one restricted family. It proves neither the Voronoi-coercive tile lemma nor any asymptotic GapCVP statement.",
+    "Independent couplings are wholly untested, and positive Boolean-port gaps alone would not establish a valid gadget. Any survivor still requires an exact common-center certificate and global exclusion of all other lattice points."
+  ],
+  "evidence": [
+    "The reported exhaustive computation represents 631701504 candidates by 40936 exact signature/Gram tests and finds 528417792 strict intrusions plus 103283712 ties, with best minimum gap zero.",
+    "Equal legal costs force false excesses -A+B+C, -A+B, -A+C, and A. This identity does not itself forbid strict positivity: for example A=1, B=2, C=2 makes all four positive, so independent off-block couplings are a genuine bounded escape rather than a refuted restatement.",
+    "The existing verifier covers only six bijective triality-class assignments, ordered non-antipodal labels, and Grams with one common coupling magnitude and three signs. It supplies no evidence against independently varying the three couplings.",
+    "Byte-identical reruns establish determinism, not independent verification, but the stated algebra and counts consistently support the finite rejection claimed."
+  ],
+  "next_experiment": "Run exactly one frozen escape test using the same 663552 D4 labelings and K(x,y,z) tensor I4 with x,y,z in {k/16: -7<=k<=7} and exact positive-definiteness. Compress exact interaction signatures, retain only cases where all four symbolic false NAND excesses are strictly positive, then solve the exact legal equal-distance center system and certify global emptiness using a complete exact Voronoi-relevant-vector enumeration for (2D4*)^3; accept only an exact rational center with positive margin against every nonlegal lattice point.",
+  "confidence": 0.98
+}

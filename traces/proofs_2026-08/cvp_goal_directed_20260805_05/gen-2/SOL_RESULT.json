@@ -1,0 +1,35 @@
+{
+  "summary": "Selected surviving Fable proposal 3, the only cross-review-authorized bounded construction. The verifier freezes three complete A5 multiplication tiles with 10800 unrestricted selectors and 423 emitted normalization, leaf, COPY/glue, and ACCEPT rows. A bicyclic element x with x^2=0 gives virtual units u=1+x and v=(1-x)ACCEPT. Exact signed child couplings produce u and v from four identity leaves, and their root coupling produces the hash-locked G19 ACCEPT cycle with zero residual. The attack costs 10936a^2 versus exact matched-control radius 10800a^2, so 32*10936 < 33*10800 rejects every C=[aI;bA] with 1<=a,b<=12. This is a finite kill of the frozen tile, not a general nonabelian theorem.",
+  "hypothesis": "Causal mechanism: complete nonabelian multiplication ports and group-algebra energy might force every virtual ACCEPT composition to grow by at least 33/32. Expected move: one of the 144 tested factors admits strict depth-two adverse growth and a rational potential. Falsification condition: any unrestricted integral legal-boundary fusion below 33/32, a control mismatch, or a NO/YES isometry. The bicyclic virtual-unit fusion meets the first condition with every emitted residual equal to zero.",
+  "changed_files": [
+    "experiments/verify_a5_bicyclic_fusion_attack.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-2/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_a5_bicyclic_fusion_attack.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_a5_bicyclic_fusion_attack.py",
+      "exit_code": 0,
+      "finding": "Verified the A5 table, x^2=0, the shifted inverse identity, exact support searches over 243 and 2187 assignments, all 423 NO/control rows, exact control radius 10800 at a=1, zero-residual attack cost 10936, the [-5,6] shell bound, and rejection of all 144 factor pairs."
+    },
+    {
+      "command": "python3 experiments/verify_a5_bicyclic_fusion_attack.py > /tmp/a5-run1.json && python3 experiments/verify_a5_bicyclic_fusion_attack.py > /tmp/a5-run2.json && cmp -s /tmp/a5-run1.json /tmp/a5-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete runs produced byte-identical JSON and factor/target hashes."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_a5_bicyclic_fusion_attack.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze one uniform nonseparable coefficient coercifier on the compressed G19 support that explicitly blocks both s -> diag(s) and bicyclic units 1+x in integral group rings. Require emitted equations, equal-radius control, a positive anchor/recession bound, and exact unrestricted search against the known diagonal and A5 attacks before testing any recursive growth constant."
+}

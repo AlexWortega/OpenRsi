@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the only admissible continuation, and only as the bounded gate prescribed by gen-11/GATE.json. Its claimed 34 threshold, ratio, and obstruction escape are not established; success would certify only a depth-one redundant NAND seed, not COPY, depth-two composition, the adverse-filtration lemma, or an asymptotic gap.",
+    "Proposal 2 is killed as stated. Maltsev closure is essentially automatic for affine relations but gives no norm or negative-density bound, while “every N<=12 redundant module” is not a finite search space without a frozen parametrization; depth-three attacks could not establish a universal refuter.",
+    "Proposal 3 is killed. A contracting homotopy proves algebraic fillability, not that every filling has large Euclidean energy, and exactness over F_289 or O/P^2 cannot supply the required integral norm inequality; it may instead expose cheap adverse fillings.",
+    "Proposal 4 is killed before implementation. The nonlinear cylinders, integral Haar normalization, emitted lattice, selector count, and NAND/COPY semantics are unspecified, and a depth-two minimum cannot validate level-h uncertainty or favorable energy normalization.",
+    "Proposal 5 is killed because a singular affine pseudosection makes the reduced determinant zero, which is divisible by every power of 17 and yields no nonzero valuation or energy lower bound. The proposal supplies no mechanism excluding singular pencils on the complete saturated fiber.",
+    "Proposal 6 is killed in its concrete form. The displayed M has an explicit unit-eigenvalue direction that can carry affine false sections without exponential cost, the prerequisite universal quaternion obstruction is absent, and searching “all constant-size encodings” is not a bounded specification.",
+    "Proposal 7 is not a standalone frontier candidate and is premature until Proposal 1 produces a surviving module. Depth-one through depth-three Graver data remain finite evidence; only a separately verified symbolic block recurrence could support an all-depth counterexample."
+  ],
+  "evidence": [
+    "The supplied verifier proves the canonical module has exact zero-defect false pseudosections of energies 16, 16, 16, and 32. This kills that template and shows that defect-row reweighting cannot replace a complete saturated affine-fiber audit.",
+    "gen-11/GATE.json explicitly authorizes one escape mutation over multiplicities of the 16 binary coordinate signatures, with augmented rank four, SNF-certified saturation, unrestricted false-fiber minima, and an independently derived prime-ideal threshold. Proposal 1 is substantially the same bounded discrimination.",
+    "G5, G15, G19, GD1, and the ordered-pair splice show that local isolation and finite coherence do not imply composition. Therefore even a Proposal-1 survivor remains unescaped from the current FRONTIER until COPY and exact depth-two coupled optimization pass.",
+    "No verifier evidence supports any experimental-result claim in Proposals 1–7. The only verified quaternion evidence is the finite failure of the canonical eight-selector template, with no maximal-order lift or recursive theorem."
+  ],
+  "next_experiment": "Implement only Proposal 1 as an exact N=8..16 signature-multiplicity audit. Require augmented rank four, an explicit integral linear port decoder, SNF-certified saturation, legal squared energy N, and fully emitted affine equations; compute the unrestricted integer minimum for all four false NAND boundaries, including DROP and all signed kernel directions, by SNF plus certified branch-and-bound. Independently instantiate a maximal order and prime-ideal basis and derive the minimum trace energy rather than hardcoding 34; continue afterward only if some candidate has every false minimum at least that value and min_false/N>17/16, with no asymptotic inference.",
+  "confidence": 0.99
+}

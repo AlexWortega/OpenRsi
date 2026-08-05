@@ -1,0 +1,20 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "Proposal 1 does not specify a center, complete port map, emitted affine rows, COPY tile, or positive-definiteness constraints. Fiberwise M-convexity alone does not certify non-codebook ports or recursive transfer closure, so the proposed Gram-entry search cannot test the FRONTIER lemma.",
+    "Proposal 2 confuses Delaunay emptiness with the required classification of every complete port fiber. Voronoi-relevant vectors do not by themselves prove that every adverse or malformed fiber lies outside the expanded radius, and alternating SDP rationalization has no finite candidate list, denominator bound, or decisive failure outcome.",
+    "Proposal 3's stated norm-centered glue mechanism contains the zero vector, making DROP cheaper than positive-norm legal codewords. Moving to a nonzero target would change the coset-minimum analysis, while the proposed experiment neither defines that target nor computes the complete depth-two transfer ratio.",
+    "Proposal 4 is algebraically blocked for linear cohomology: the four legal NAND boundary vectors integrally affinely generate all of Z^3. If every legal boundary has a flat extension, every false NAND boundary also has trivial cohomology class, so a relative systole cannot provide the claimed separation without a nonlinear enlarged encoding.",
+    "Proposal 5 is not a bounded search because port coordinates, auxiliary dimension, and codebook entries are unbounded. Absence of an l1-at-most-12 relation would be only finite evidence, while a relation for selected codebooks would not establish the advertised broad quadratic impossibility theorem.",
+    "Proposal 6 leaves the two tile species, rational Grams, centers, port labels, and outside-shell certificates unspecified. Certifying only T_B T_A also omits odd-depth and phase-boundary soundness; without complete unrestricted operators, the experiment would repeat the finite-shell error barred by G14/G31/G38."
+  ],
+  "evidence": [
+    "The ROADMAP frontier requires explicit NAND and COPY factors, finite complete ports, equal-radius legality, exact unrestricted outside-shell certification, and lambda/mu at least 65/64 for every integer coefficient vector. None of the proposals supplies an actual factor, target, transfer table, or certificate meeting those gates.",
+    "G28 already found lambda=57/32 below legal growth 2 for a complete frozen min-plus rule. G32 and G37 give compatible parity states with exactly additive two-copy cost, directly defeating any unverified claim that coupling or two phases creates strict growth.",
+    "G12 found a cheaper clause DROP, while G13 and G15 found harmful affine combinations with zero emitted residual. These are direct blockers for the origin-centered glue proposal and the linear cohomology proposal.",
+    "The verified G19 diagonal splice and GD2 bicyclic-unit fusion show that naming attacks in an audit is not an escape; an explicit unrestricted certificate is required. No new verifier evidence accompanies these proposals.",
+    "G31 and G38 are positive finite shell results that still establish no composition or dimension-dependent gap. Therefore another heuristic finite pass without a global certificate would not advance the frontier."
+  ],
+  "next_experiment": "No implementation is authorized. Reopen only with one frozen rational NAND/COPY candidate specifying at most 256 selector columns, center and factor, complete finite port map, all emitted rows, equal-radius control, an exact coercive coefficient bound, and exhaustive unrestricted depth-two transfer certification including DROP, G13/G15 parity, G19 splice, and malformed ports.",
+  "confidence": 0.98
+}

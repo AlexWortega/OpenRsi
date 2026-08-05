@@ -1,0 +1,20 @@
+{
+  "verdict": "CONTINUE",
+  "fatal_blockers": [
+    "Proposal 1 is the sole selectable experiment, but it addresses only coefficient-unbounded affine port realizability on the fixed E6 shell. Even a surviving map would not establish COPY, emitted gluing, unrestricted min-plus closure, or lambda/mu >= 65/64.",
+    "Proposal 2 is not a finite specification: the rational weights are unbounded, the E6-selector coupling and factor/target are not defined, and arbitrary four-coloring supplies no transfer theorem. Its asserted all-integer simplex barrier and resistance to G13, G32, and G37 are unsupported.",
+    "Proposal 3 incorrectly describes a problem containing Q positive semidefinite as an exact rational LP and provides no normalization bounding Q, radius, integral port maps, or the cutting-plane search. Therefore oracle termination, Farkas certification, shared NAND/COPY geometry, and unrestricted G2/G3 coverage do not follow.",
+    "Proposal 4 is structurally dead for exact NAND minima. Partial minimization preserves submodularity, whose minimizers are majority-closed in the corresponding flipped order, whereas NAND is not majority-closed: the majority of 011, 101, and 110 is the false word 111.",
+    "Proposal 5 fails in the stated ordinary coset-leader metric: the zero syndrome has leader weight zero. If it is malformed it beats every positive legal weight; if legal, four distinct legal syndromes cannot all have weight zero, and no shifted-center replacement is specified.",
+    "Proposal 6 does not emit matroid base membership as lattice coordinates; a separable occupancy cost alone also rewards nonbases. Projection, exchange, and unrestricted signed-state claims are asserted without a representation theorem, while the direct one-hot NAND base family already violates basis exchange between 001 and 110.",
+    "Proposal 7 cannot support its claimed classification: bounded dimension and norm-three preimages do not bound HNF representatives or primitive port maps, and no completeness reduction is given. Any resulting circuit search would be another finite family audit, not a structural no-go or a ROADMAP amendment."
+  ],
+  "evidence": [
+    "The supplied E6 verifier exactly bounds all lattice points through squared radius 4/3, enumerates the resulting box, and finds precisely the 27 shell vertices with no interior point. This supports reuse of that fixed empty shell.",
+    "The same verifier rejects all port-map linear parts in {-1,0,1}^{3x6}; only the zero row is binary-compatible on the shell. It explicitly supplies no evidence about larger or rational affine coefficients.",
+    "If affine rank six is certified, seven affine-basis values uniquely determine a rational affine row. Enumerating all 2^7 binary assignments and checking all 27 vertices is therefore a complete finite classification, not bounded-coefficient extrapolation.",
+    "A negative result would close exactly the affine-port E6 branch and force redundant or nonlinear emitted ports; a survivor would remove the current local port-map blocker. Neither outcome may be promoted to the Voronoi-coercive tile lemma."
+  ],
+  "next_experiment": "Run Proposal 1 only: certify affine rank six, choose seven affine-independent shell vertices, solve all 128 value assignments exactly over Q, retain rows binary-valued on all 27 vertices, and test every surviving row triple against all translated, signed, and relabelled NAND relations. Emit exact rank, solution, and rejection certificates; if none survive, kill all rational affine E6 ports, while if one survives, report only the local map and defer COPY and transfer testing.",
+  "confidence": 0.99
+}

@@ -1,0 +1,35 @@
+{
+  "summary": "Selected proposal 1, the sole cross-review survivor, and exhaustively audited the smallest authorized redundant-signature rank N=8. Among 490314 signature multisets, 403973 are SNF-saturated and 13457 pass the local thresholds. The best code uses signatures 0001, 0010, five copies of 0110, and 1001. Its complete emitted 8x8 affine/boundary matrix has determinant one, legal energy 8, and exact unrestricted false-fiber energies 160,64,56,56. Independently, the verifier constructs a multiplication-closed maximal order in the definite quaternion algebra (-3,-17), identifies its two-sided prime above 17, and exactly certifies minimum nonzero trace energy 34. Therefore min_false=56>=34 and 56/8>17/16. This is a finite depth-one NAND survivor only; COPY, depth two, and all-depth filtration remain unproved.",
+  "hypothesis": "Causal mechanism: redundant binary coordinate signatures can increase the norm of every unavoidable integral affine NAND pseudosection while preserving binary legal energy. Expected move: a saturated emitted decoder whose complete false-fiber minima meet the independently derived quaternion-prime threshold and exceed legal energy by 17/16. Falsification condition: any signed, affine, or DROP point below either gate. The best N=8 candidate passes this local discriminator.",
+  "changed_files": [
+    "experiments/verify_redundant_signature_nand_survivor.py",
+    "IDEAS.md",
+    "NOTES.md",
+    "STATUS.md",
+    "proof_cvp.md",
+    "ROADMAP.md",
+    "gen-12/SOL_RESULT.json"
+  ],
+  "verifiers": [
+    "experiments/verify_redundant_signature_nand_survivor.py"
+  ],
+  "tests": [
+    {
+      "command": "python3 experiments/verify_redundant_signature_nand_survivor.py",
+      "exit_code": 0,
+      "finding": "Exhausted all 490314 N=8 signature multisets, certified saturation completeness, found 13457 local survivors, verified the best determinant-one module and exact false energies, and independently derived prime trace minimum 34 from an explicit maximal order and ideal."
+    },
+    {
+      "command": "python3 experiments/verify_redundant_signature_nand_survivor.py > /tmp/redsig-run1.json && python3 experiments/verify_redundant_signature_nand_survivor.py > /tmp/redsig-run2.json && cmp -s /tmp/redsig-run1.json /tmp/redsig-run2.json",
+      "exit_code": 0,
+      "finding": "Two complete verifier runs produced byte-identical JSON."
+    },
+    {
+      "command": "python3 -m py_compile experiments/verify_redundant_signature_nand_survivor.py",
+      "exit_code": 0,
+      "finding": "Verifier compiles successfully."
+    }
+  ],
+  "claimed_progress": "FINITE",
+  "next_experiment": "Freeze the surviving N=8 NAND code and synthesize a matching redundant COPY code with the same explicit maximal-order realization. Then compose exactly to depth two with every glue and carry row emitted, and compute the unrestricted coupled minimum including diagonal, G13/G15/G19, DROP, and affine-parity seeds."
+}

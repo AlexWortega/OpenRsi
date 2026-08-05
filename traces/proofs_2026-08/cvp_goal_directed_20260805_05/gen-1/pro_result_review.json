@@ -1,0 +1,18 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The frozen linear k=2 construction fails the ROADMAP frontier inequality on the hash-locked G19 obstruction. The zero-residual diagonal embedding has cost 224330, far below both required thresholds, so this realization cannot support signed-flow amplification.",
+    "The proposed continuation is not a specified mechanism or bounded experiment. “Genuinely enlarged, non-diagonal coherence” gives no coordinates, emitted equations, completeness-radius proof, coefficient/search bound, or reason the linear diagonal closure is broken.",
+    "The ROADMAP requested an exact unrestricted k=2 minimum, but the verifier only constructs a violating vector. That is sufficient to kill the inequality, but supplies no optimum or shell structure from which a replacement amplification mechanism follows.",
+    "Nothing in the finite witness supports an asymptotic lower bound, iteration law, or polynomial GapCVP hardness. The packet correctly disclaims those conclusions, leaving the FRONTIER lemma wholly unproved."
+  ],
+  "evidence": [
+    "Machine verification reports rank 224282, 348451 emitted rows, zero residual for diag(s), and exact attack cost 224330. The integer comparisons 3*224330 < 4*224282 and 9*224330 < 16*224282 directly falsify both tested bounds.",
+    "The matched control attains squared cost 224282, which is exact because every integral odd-anchor coordinate contributes at least one and residual energy is nonnegative.",
+    "The pure tensor violates 14 diagonal rows, but the diagonal signed embedding satisfies every emitted row. Thus the added diagonal coherence blocks the wrong representation while preserving the underlying G19 signed-flow obstruction.",
+    "ROADMAP, STATUS, IDEAS, NOTES, proof_cvp.md, and SOL_RESULT consistently classify the result as a finite counterexample only. No improper promotion from finite evidence to an asymptotic theorem appears.",
+    "Two verifier runs were byte-identical and the supplied machine execution exited successfully. This supports reproducibility of the finite certificate, not completeness of any general lift family."
+  ],
+  "next_experiment": "None authorized for this run. Reopen only after preregistering one explicit enlarged coordinate system and complete row set, proving equal-radius honest completeness and showing algebraically why s -> diag(s) is not a feasible linear embedding, then specifying a finite unrestricted-integer search bound and matched control before execution.",
+  "confidence": 0.99
+}

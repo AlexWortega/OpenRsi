@@ -1,0 +1,16 @@
+{
+  "verdict": "KILL",
+  "fatal_blockers": [
+    "The frozen A5 multiplication tile fails its required 33/32 growth gate. The emitted legal-boundary integral vector has zero residual and cost 10936a^2, with 32*10936 < 33*10800, so changing residual weight b or fitting a potential cannot repair this tile.",
+    "Nothing establishes either ROADMAP frontier lemma. The result concerns one depth-two A5 construction and the verifier tests only 144 factor pairs; it supplies no unrestricted transfer inequality, recursive growth law, or asymptotic hardness consequence.",
+    "The proposed next experiment is not executable as specified. “Uniform nonseparable coefficient coercifier” and “compressed G19 support” define no columns, rows, coefficient bounds, port classification, or exact acceptance criterion, while testing only the named diagonal and bicyclic attacks would not cover all unrestricted integer vectors."
+  ],
+  "evidence": [
+    "MACHINE_VERIFICATION passed with source hash a6cd674603eaa78b148355da3810ed4517dfc401a5dbb33ac9a30df3fb0f7abb. It reports 10,800 selectors, 423 emitted rows, zero attack residual, control squared minimum 10,800 at a=1, and attack cost 10,936.",
+    "The verifier checks x^2=0, (1+x)(1-x)=1, the shifted ACCEPT product, and every generated NO/control row. The resulting attack uses 17 negative coefficients and satisfies all emitted equations exactly.",
+    "The searches over 243 and 2,187 assignments are complete only on two frozen sparse supports; they are not unrestricted optimization of the full NO fiber. The packet correctly refrains from claiming an exact NO minimum.",
+    "ROADMAP.md, STATUS.md, IDEAS.md, NOTES.md, and proof_cvp.md consistently describe this as a finite kill of the explicit tile and state that both frontier lemmas and the hardness theorem remain open. No finite result is legitimately promoted to asymptotic hardness."
+  ],
+  "next_experiment": "No further experiment is authorized for this run. Resubmit only after freezing an explicit at-most-4096-column tile or coercifier with all emitted equations, equal-radius control, a provable finite unrestricted coefficient shell, complete port classes, and exact enumeration or certification of every integer state in that shell—not merely the known diagonal and bicyclic attacks.",
+  "confidence": 0.99
+}

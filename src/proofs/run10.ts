@@ -54,8 +54,11 @@ const PRIME_TIMEOUT_MS = positiveIntegerEnv("OPENRSI_PRIME_TIMEOUT_MS", 90 * 60_
 const PRIME_MAX_TURNS = positiveIntegerEnv("OPENRSI_PRIME_MAX_TURNS", 120);
 const PRIME_MAX_TOKENS = positiveIntegerEnv("OPENRSI_PRIME_MAX_TOKENS", 2_000_000);
 const WINDDOWN_USD = numberEnv("OPENRSI_WINDDOWN_USD", 6);
-/** USD per 1M tokens for the prime worker model, used to bill its JSON event stream. */
+/** USD per 1M tokens for the prime worker model, used to bill its JSON event stream.
+ * Cache reads are an order of magnitude cheaper than fresh input, and a long autonomous
+ * loop is almost entirely cache reads — conflating the two overstates spend ~6x. */
 const PRIME_RATE_IN = numberEnv("OPENRSI_PRIME_RATE_IN", 5);
+const PRIME_RATE_CACHE_READ = numberEnv("OPENRSI_PRIME_RATE_CACHE_READ", 0.5);
 const PRIME_RATE_OUT = numberEnv("OPENRSI_PRIME_RATE_OUT", 30);
 
 const SOL_SYSTEM = `You are the implementation worker in a goal-directed CVP proof-research loop.
@@ -268,6 +271,7 @@ function workspaceFingerprint(runDir: string): string {
 function primeStreamCost(jsonlPath: string): number {
   if (!existsSync(jsonlPath)) return 0;
   let input = 0;
+  let cacheRead = 0;
   let output = 0;
   for (const line of readFileSync(jsonlPath, "utf8").split("\n")) {
     if (!line.trim()) continue;
@@ -275,13 +279,14 @@ function primeStreamCost(jsonlPath: string): number {
       const record = JSON.parse(line) as { type?: string; message?: { usage?: Record<string, number> } };
       const usage = record.message?.usage;
       if (record.type !== "message_end" || !usage) continue;
-      input += (usage.input || 0) + (usage.cacheRead || 0) + (usage.cacheWrite || 0);
+      input += (usage.input || 0) + (usage.cacheWrite || 0);
+      cacheRead += usage.cacheRead || 0;
       output += usage.output || 0;
     } catch {
       // A truncated final line after a kill is ignored; completed events still bill.
     }
   }
-  return (input * PRIME_RATE_IN + output * PRIME_RATE_OUT) / 1e6;
+  return (input * PRIME_RATE_IN + cacheRead * PRIME_RATE_CACHE_READ + output * PRIME_RATE_OUT) / 1e6;
 }
 
 /**

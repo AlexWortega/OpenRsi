@@ -1,0 +1,246 @@
+{
+  "schema": 1,
+  "entries": {
+    "prompt": {},
+    "memory": {
+      "u0-lean-invariant-counterexamples": {
+        "id": "u0-lean-invariant-counterexamples",
+        "kind": "memory",
+        "title": "U0 compiled Lean counterexamples and limitations",
+        "content": "In project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, `lean/Verify_row_rebasing_support_failure.lean` compiled sorry-free against Mathlib with `cd ~/leanverify && ~/.elan/bin/lake env lean /home/alexw/autoresearch-runs/prime_agent_cvp_07/lean/Verify_row_rebasing_support_failure.lean`. It proves universally that cumulative matrices contain arbitrarily large displayed bicliques, yet invertible integral first-difference row rebasing transforms `[I|-C]` into bidiagonal-plus-leaves support. Thus raw support/separator/treewidth evidence is not robust under integral row-basis changes. Caveat: this does not refute U0 as worded, because U0 currently permits row/column permutations, finite color refinement, and bounded-width equality expansion—not arbitrary unimodular row rebasing—and the theorem does not address the actual U1 detector family. Separately, `lean/Verify_two_stage_neighborhood_counterexample.lean` compiled and proves that the fixed one-by-one two-stage family has `n` distinct row open-neighborhoods. Therefore unbounded row neighborhood types or neighborhood diversity alone cannot exclude fixed-template two-stage form. Any replacement U0 invariant must be proved preserved by the transformations actually admitted in U0 and must be instantiated on the actual factor family.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "status": "machine-checked",
+          "verifierType": "Lean/Mathlib"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T11:52:36.704Z",
+        "updated_at": "2026-08-06T11:52:36.704Z",
+        "version": 1
+      },
+      "u0_semantic_equivalence_blocker_grammar_conventions_and_localized_affine_ghost": {
+        "id": "u0_semantic_equivalence_blocker_grammar_conventions_and_localized_affine_ghost",
+        "kind": "memory",
+        "title": "U0 semantic-equivalence blocker, grammar conventions, and localized affine ghost",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07` (U0a/U0b, local v1):\n\n1. Right-unimodular basis changes are semantically free for the displayed CVP formulation but do not preserve the column matroid of a chosen systematic matrix `D=[I|-C]`. The sorry-free Lean file `lean/Verify_right_unimodular_lattice_image.lean` proves that for integer `Q,P` with `Q*P=I`, `Set.range (C*Q).mulVec = Set.range C.mulVec`; companion theorems prove pointwise attainability, equality of attainable values for every output-only cost, and inverse coefficient changes when both inverse identities hold. It compiled with:\n`cd ~/leanverify && ~/.elan/bin/lake env lean /home/alexw/autoresearch-runs/prime_agent_cvp_07/lean/Verify_right_unimodular_lattice_image.lean`\nwith no `sorry`, `admit`, or `axiom`.\n\n2. `experiments/verify_right_unimodular_column_matroid_failure.py` passes using exact rational Gaussian elimination. For `C=I_2` and `Q=[[1,1],[0,1]]`, the circuits of `[I|-C]` are `{(0,2),(1,3)}`, while those of `[I|-CQ]` are `{(0,2),(0,1,3),(1,2,3)}`; circuit-size multisets `[2,2]` and `[2,3,3]` show even the unlabeled column matroids differ. `experiments/verify_u0b_right_basis_circuit_failure.py` also passes and verifies same-lattice examples at `n=8,16,32` whose selected fundamental-circuit supports change from `2` to `n+1`.\n\nConsequence: U0b cannot use raw circuits, connectivity, or branch-width of one chosen `[I|-C]` presentation as a class-exclusion invariant under the full semantic equivalence closure. Left-row and column-permutation invariance, as formalized by the separately compiled `lean/Verify_column_matroid_grammar.lean`, is insufficient. U0b must seek an invariant intrinsic to the embedded lattice/image or justify restrictions that make right-unimodular coefficient changes nonfree.\n\n3. `experiments/verify_u0a_serialized_gate_kernel_cheat.py` passes against the frozen serializer and certifies a local affine selector ghost. It preserves every nonphysical coordinate, while physical selector rows contain it. Exact honest-to-malformed energies are `72→74` at `W=8`, `176→178` at `W=16`, and `416→418` at `W=32`. This is finite evidence of additive `+2` overhead and a mandatory U2/U3 adverse state only. It is not a soundness kill, recurrence theorem, constant-factor conclusion, or asymptotic theorem; later detectors or amplification may charge the localized physical defect.\n\n4. `U0_GRAMMARS.md` fixes campaign conventions. Semantic equivalence includes signed ambient-coordinate permutations with target transport, right-unimodular basis changes `C→CQ`, left-unimodular equality-row changes, and auxiliary gadgets only with explicit polynomial-bit integer bijections and objective preservation. Kernel preservation alone is insufficient. Fixed n-fold, generalized n-fold, bounded-depth tree-fold, and finite-type two-stage templates, including dimensions, coefficients, and type sets, must be selected independently of `S,F`. Gadget libraries likewise cannot encode the whole instance. Growing stage/lane/selector IDs are serialization metadata, not structural colors; structural colors must come from a fixed finite alphabet, and marks invisible in `(C,t)` cannot obstruct an unmarked algorithm unless intrinsically recoverable. Finite checks at widths `8,16,32` do not prove family serialization or nonmembership.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "version": 1,
+          "status": "machine-checked project constraint"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T12:12:58.040Z",
+        "updated_at": "2026-08-06T12:12:58.040Z",
+        "version": 1
+      },
+      "u0-generation11-parameterized-serializer-routing-and-formula-compiler": {
+        "id": "u0-generation11-parameterized-serializer-routing-and-formula-compiler",
+        "kind": "memory",
+        "title": "U0 Generation 11 parameterized serializer, routing audit, and finite formula compiler",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 11: (1) `lean/Verify_u0a_serializer_dimensions.lean` compiled sorry-free against Mathlib and proves the parameterized serializer formulas `k = 4w + 20wd`, `m = 30wd + 9w - 2d`, and `m+k = 50wd + 13w - 2d`, explicit quadratic bounds with constants 24, 39, and 63, and that canonical strict-chain placement exists exactly when chain depth is at most serializer depth. `experiments/verify_u0a_parameterized_depth_chain.py` passed on actual factors at `(w,d)=(4,5),(8,9),(16,17),(32,33)`. (2) Exact finite routing audits distinguish the frozen/default depth from the parameterized repair: `experiments/verify_u0a_repeated_butterfly_routing_obstruction.py` passed and showed default width 8 realizes only 18,688 of 40,320 coordinate permutations, missing `(0,1,2,4,3,5,6,7)`, while the ninth scheduled stage reaches all 40,320; `experiments/verify_u0a_two_cycle_permutation_routing.py` passed and exhaustively showed two cycles realize all permutations at widths 4 and 8, with an actual reversal program verified in serialized `C,D`. These are finite routing facts, not an all-width theorem. (3) `experiments/verify_u0a_butterfly_formula_compiler.py` passed on actual matrices for all 100 ordered two-variable NAND trees with 2–4 leaves over all 400 assignments and one 8-leaf width-8 case over all eight assignments. It uses one FREE source per variable, COPY fanout for repeated occurrences, hypercube swaps, NAND evaluation, polynomial padding, and final ZERO cleanup; the cleanup makes the formula/program target independent of the chosen assignment. It checks recursive evaluation, exact energies, target-role restrictions, and `D(Cz,z)=0`. Limitation: a false asserted root costs only additive one, unrestricted-integer soundness is unaudited, and no GapCVP soundness or gap follows. Active frontier: prove the generic compiler universally in sorry-free Lean, including repeated-variable fanout, routing/token invariants, NAND evaluation, cleanup/fixed targets, and polynomial emission, then freeze a canonical total `Serialize(S,F)` interface. The newly drafted `lean/Verify_u0a_formula_stack_compiler.lean` is not yet a recorded theorem because it has not yet passed Lean compilation.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "generation": 11,
+          "verification_status": "serializer Lean and listed Python audits passed; formula-stack Lean draft unverified"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T12:33:19.654Z",
+        "updated_at": "2026-08-06T12:33:19.654Z",
+        "version": 1
+      },
+      "u0-generation13-iterative-ssa-streaming-frontier": {
+        "id": "u0-generation13-iterative-ssa-streaming-frontier",
+        "kind": "memory",
+        "title": "U0 Generation 13 iterative repair, SSA compiler, and streaming-emission frontier",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 13: (1) The former 1,101-leaf recursive traversal failure is repaired at the formula front-end and scheduler layers. `experiments/verify_u0a_butterfly_formula_compiler.py` now uses explicit stacks for postorder traversal and evaluation; canonical v1 formula encoding/decoding is iterative; and `compile_formula_dry_run` follows the deterministic lane/token schedule while streaming a framed trace hash and compressing padding to a count. `experiments/verify_u0a_butterfly_deep_formula_iterative_repair.py` passes under recursion limit 50: it fully materializes and simulates a 61-leaf width-64 program, then encode/decode/dry-schedules the former 1,101-leaf witness at width 2048 and depth 991254, with raw stage count 43485 and padding 947768, without allocating 2,030,088,192 padded mode cells. The historical counterexample verifier retains a local copy of the retired recursive walk and confirms the current iterative traversal succeeds. This repairs parsing, evaluation, encoding, and scheduling only; the large dry run does not emit complete C, D, or target data. (2) `lean/Verify_nand_register_compiler.lean` compiles sorry-free against Mathlib. It defines an abstract LOAD/COPY/NAND register machine and canonical postorder SSA compiler and proves universally: instruction count equals syntax-node count; destination registers are the exact consecutive interval from the base, hence fresh and Nodup; all writes remain in that interval and registers outside it are preserved; every generated operand is older than its destination; the compiled root register equals recursive NAND evaluation for every assignment and initial register file; and fresh LOAD/COPY/NAND operations preserve required older/source registers. It does not prove butterfly lane routing, numerical C/D/target realization, CVP energy/completeness, signed soundness, or U0b. (3) `experiments/verify_u0a_eager_materialization_resource_counterexample.py` gives a bounded positive control and exact implementation blocker. Complete eager serialization succeeds at S=4. In a fresh child with `RLIMIT_AS=256 MiB`, iterative dry scheduling succeeds for valid S=16 input but the same complete eager `serialize` interface raises the expected `MemoryError`; S=16 has m=493440 and k=330304. The S=1101 count model gives m=60,900,681,684, k=40,601,772,032, and at least m systematic-D identity triples. These sizes remain polynomial, so the failure is only a resource-capped counterexample to the current eager Python-object implementation, not a mathematical or asymptotic impossibility. Active frontier: implement deterministic canonical streaming emission of padded program records, sparse C triples, systematic D triples, and target coordinates, with online hashing and without eager containers; then prove correspondence from the Lean SSA trace through COPY fanout and butterfly lane placement to the emitted numerical rows. Signed soundness and U0b remain separate open obligations.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "generation": 13,
+          "project": "prime_agent_cvp_07",
+          "frontier": "U0a"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T12:53:57.596Z",
+        "updated_at": "2026-08-06T12:53:57.596Z",
+        "version": 1
+      },
+      "u0-generation15-sparse-factor-program-streaming-frontier": {
+        "id": "u0-generation15-sparse-factor-program-streaming-frontier",
+        "kind": "memory",
+        "title": "U0 Generation 14–15 sparse factor/program streaming and formal semantics",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 14–15: (1) `experiments/verify_u0a_canonical_streaming_emitter.py` emits canonical row/column metadata, complete sparse C, systematic D=[I|-C], and target without retaining matrix triples. It exactly matches eager serialization at S=4 and completes S=16 under a fresh 256 MiB address-space cap (measured child RSS about 22 MiB): C shape 493440×330304 with 4,457,168 nonzeros; D shape 493440×823744 with 4,950,608 nonzeros. Independent small width/depth grids and mixed targets found no ordering or target omission. (2) `lean/Verify_sparse_coo_stream.lean` compiles sorry-free against Mathlib and universally proves that online fold matvec for arbitrary integer COO records—including duplicates, zeros, and negative coefficients—equals dense coordinate-summing materialization followed by `Matrix.mulVec`; append/chunk, permutation, and flatten-count results are included. It does not prove the Python serializer's resource bounds or U0a row enumeration. (3) The eager compiler WAIT trace bug was repaired by capturing the physical butterfly dimension before appending the WAIT stage. `experiments/verify_u0a_dry_full_trace_hash_mismatch.py` now proves eager and dry unpadded trace hashes agree at `75c3037cf242a9d838b54a5d95c4d00b79e59242c8587af3929cda3b773a5d63` and locally reproduces the retired post-append-label hash `d19db47af2a7883dea21b7a92c8bc082848c55a68e41ebcc2914dc85b8c3b85f`. (4) `experiments/verify_u0a_sparse_program_stream.py` implements canonical sparse program representation and APIs `compile_formula_sparse`, `gate_mode_at`, `source_mode_at`, `output_at`, `iter_gate_modes`, `iter_target_sparse`, `dense_equivalent_program_record`, `hash_program_stream_sparse`, and `sparse_program_record`. Raw and padding cells default to COPY_A; sorted unique non-COPY_A raw overrides, counted padding, and cleanup default ZERO with one output-lane COPY_A override replace the dense mode grid. Exact small cases match eager `program_record`, dense modes, streaming target, and `target_y`. At S=128 under 256 MiB it hashes all 3,213,056 logical program cells while retaining zero dense mode cells; raw override count is 2 for the audited formula. C/D/target streams at S=128 were only opened and prefix-consumed (10,000 entries each), not fully traversed or hashed. (5) `lean/Verify_sparse_program_overrides.lean` compiles sorry-free and universally proves sparse default-plus-override lookup equals dense function/list materialization, strict sorted overrides have unique keys and return recorded values, and induced program-row targets agree with eager dense one-hot targets, including total and nonselected-row corollaries. It deliberately proves no routing, placement, serializer completeness, or CVP soundness. (6) `experiments/verify_u0a_sparse_program_breaker.py` passes 204 exact eager comparisons, checks sorted unique coordinates, defaults, padding/cleanup boundaries, and target equality, and under 256 MiB hashes the complete logical width-256 program (depth 65,552; 16,781,312 cells) with about 28 MiB parent-observed maximum RSS. These are finite implementation/resource audits only: no universal space theorem, butterfly routing theorem, compiler-correctness theorem, CVP soundness theorem, or approximation-gap theorem is established. The next frontier is a formal abstract-SSA/butterfly-stage-to-emitted-row correspondence, followed by stronger or complete factor/target streaming validation at larger parameters and an all-parameter serializer correctness theorem.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "version": 1,
+          "generation": "14-15"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T13:14:27.819Z",
+        "updated_at": "2026-08-06T13:14:27.819Z",
+        "version": 1
+      },
+      "u0-generation17-xorevent-certificate-and-breaker-resource-frontier": {
+        "id": "u0-generation17-xorevent-certificate-and-breaker-resource-frontier",
+        "kind": "memory",
+        "title": "U0 Generation 16–17 smart XOR events, token certificates, and breaker resource frontier",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 16–17: (1) `lean/Verify_butterfly_lane_semantics.lean` compiles sorry/admit/axiom-free against Mathlib and now includes valid-by-construction `XorEvent` schedules. It proves XOR-by-`2^d` has no fixed lane, synthesizes opposite endpoints with `dimensionNeighbor`, proves every smart schedule and mapped smart trace satisfies `ScheduledEvent.Valid`, and proves unconditional physical/logical trace equivalence for generated smart XOR traces. This does not yet prove that the Python serializer emits the modeled `XorEvent` trace, that lanes stay within a finite width, numerical row correspondence, energy, or CVP soundness. (2) `experiments/verify_u0a_event_token_certificate.py` passed. Its JSON-round-tripped certificate checker replayed 1,347 events over 408 assignments and 102 exhaustively tested small formulas, checked 3,781,920 projected C rows and 129,136 exact selected physical rows, and completed a width-16 capped case with 16,528 selected columns, 330,304 total columns, and 493,440 rows. The measured run took about 22.86 seconds and 22,656 KB RSS. This remains finite evidence, not a universal compiler theorem. (3) `experiments/verify_u0a_sparse_event_validity_breaker.py` must not be reported as passing: the attempted large adversarial/fuzz run was terminated by signal 9 after about 13:51 with reported peak memory around 87,397,292 KB. Treat this as an implementation/resource blocker. Before rerunning, reduce, shard, or stream its adversarial corpus and add explicit resource limits while preserving host-observable failure evidence. The active universal frontier is the Python-serializer-to-Lean smart-event correspondence, finite-width lane bounds, token-map preservation, and universal selected-column/row realization.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "version": 1,
+          "generation": "16-17"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T13:44:00.373Z",
+        "updated_at": "2026-08-06T13:44:00.373Z",
+        "version": 1
+      },
+      "u0_generation_18_verified_delta_certificates_and_generation_19_partial_concrete_": {
+        "id": "u0_generation_18_verified_delta_certificates_and_generation_19_partial_concrete_",
+        "kind": "memory",
+        "title": "U0 Generation 18 verified delta certificates and Generation 19 partial concrete bridge",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 18–19 local frontier: (1) Generation 18 repaired the full-token-snapshot resource blocker. `compile_formula_sparse(..., certificate_version=\"v2\")` emits canonical event records with one initial and final token map but omits per-event before/after maps; optional checkpoints use domain-separated, length-framed hashes of verifier-owned replay states. (2) `experiments/verify_u0a_delta_event_certificate_breaker.py` passed after JSON round-trip, exhausted 102 small formulas and a width-16 trace, and rejected seven mutants: missing token, duplicate lane, wrong event order, omitted program override, omitted event override, checkpoint state substitution, and missing semantic token. A fresh RLIMIT_AS=256 MiB child passed a 4,097-leaf skew comb with width 8,192, 84,863 events, 20,420 overrides, and approximately 121,760–125,796 KiB maximum RSS. (3) Historical v1 compatibility was preserved: `experiments/verify_u0a_event_token_certificate.py` reran successfully with its original 102-formula/408-assignment result, while the old v1 resource counterexample remains expected evidence that full snapshots fail. (4) `lean/Verify_event_delta_replay.lean` compiled sorry/admit/axiom-free against Mathlib. It proves ordered sparse-delta replay laws and that state-dependent local agreement at verifier-owned reached states composes to logical execution and the claimed final map, including pointwise token equality. Its scope is generic: it does not prove that concrete Python/JSON events implement Lean `XorEvent` transitions, token completeness, finite-width bounds, numerical semantics, or CVP soundness. (5) Generation 19 is partial only. The producer now accepts `certificate_version=\"v3\"` and records explicit `(token, newLaneOrNone)` deltas for WAIT, SWAP, DUPLICATE, and NAND without snapshots. `lean/Verify_concrete_event_deltas.lean` compiles sorry/admit-free and proves concrete WAIT/SWAP/DUPLICATE/NAND delta correctness under explicit validity, occupancy, freshness, and distinctness preconditions, plus trace composition. However, do not claim an end-to-end Python-to-Lean bridge yet: `experiments/verify_u0a_explicit_token_delta_breaker.py` currently fails in `mutation_suite()` with `StopIteration` while selecting a SWAP mutation fixture. A candidate fixture `(1, (1, 0))` at width 4 was found to contain both one-sided and two-sided swaps and was substituted, but the full breaker must be rerun successfully, its mutation coverage audited, and capped resource evidence reconfirmed before Generation 19 is treated as verified.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "version": 1,
+          "generation": "18-19",
+          "status": "gen18-verified-gen19-partial"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T14:04:33.304Z",
+        "updated_at": "2026-08-06T14:04:33.304Z",
+        "version": 1
+      },
+      "u0_generation_20_finite_width_routing_token_invariants_and_v3_boundary_audit": {
+        "id": "u0_generation_20_finite_width_routing_token_invariants_and_v3_boundary_audit",
+        "kind": "memory",
+        "title": "U0 Generation 20 finite-width routing, token invariants, and v3 boundary audit",
+        "content": "Project `/home/alexw/autoresearch-runs/prime_agent_cvp_07`, U0a Generation 20 local frontier: (1) `lean/Verify_butterfly_finite_width.lean` compiles against Mathlib with no `sorry`, `admit`, or `axiom`. It proves that for `lane < 2^k` and `d < k`, `lane XOR 2^d < 2^k`; packages the operation as a finite neighbor on `Fin (2^k)`; proves neighbor involution, fixed-point freeness/distinct endpoints, and reverse pairing; and proves finite `SmartEvent` schedule validity, lifted to traces. (2) `lean/Verify_concrete_event_deltas.lean` again compiles successfully and now additionally proves universal conditional token-state invariants: occupancy injectivity is preserved by valid WAIT, SWAP, DUPLICATE, and NAND logical steps and by valid replay traces. It also proves exact finite active-token counts: WAIT and SWAP preserve the count, DUPLICATE adds one, and NAND removes one. (3) `experiments/verify_u0a_v3_power_boundary_breaker.py` was independently run successfully. It consumes JSON-round-tripped, snapshot-free v3 traces and passes 8,191-, 8,192-, and 8,193-leaf boundary cases, with widths 8,192, 8,192, and 16,384 respectively. It rejects all 12 targeted mutants, including out-of-range lanes/dimensions, non-neighbor endpoints, delta and source collisions, missing explicit deltas, stage gaps, injected snapshots, and forged widths. The run used a 512 MiB child address-space cap, took about 6 minutes 10 seconds, and peaked at approximately 513,140 KiB, close to the cap; avoid rerunning it casually. These results establish conditional routing and token invariants plus finite implementation evidence only. They do not yet prove that the concrete Python scheduler universally satisfies the Lean validity predicates or emits canonical v3 records, nor do they prove Boolean semantics, streamed-row/CVP soundness, an approximation gap, or U0b.",
+        "path": "projects/prime_agent_cvp_07/frontier-u0",
+        "scope": "local",
+        "reference": {},
+        "arguments": {},
+        "metadata": {
+          "scope": "local",
+          "generation": 20,
+          "project": "prime_agent_cvp_07"
+        },
+        "source": "refine",
+        "created_at": "2026-08-06T14:25:02.840Z",
+        "updated_at": "2026-08-06T14:25:02.840Z",
+        "version": 1
+      }
+    },
+    "skill": {},
+    "subagent": {}
+  },
+  "refinements": [
+    {
+      "id": "refine_20260806115229818",
+      "trigger": "Record two compiled Lean results that constrain which invariants can validly advance the current U0 frontier.",
+      "changes": [
+        "create memory:u0-lean-invariant-counterexamples"
+      ],
+      "evidence": "The trajectory established machine-checked counterexamples to row-basis robustness of raw support complexity and to using unbounded row-neighborhood types as a two-stage exclusion criterion. Persisting their exact scope and limitations will prevent overclaiming while the builder and breaker subagents continue.",
+      "outcome": "Subsequent U0 work should avoid unsupported appeals to raw support/treewidth under row rebasing or neighborhood diversity alone, and should instead seek an invariant preserved by U0's explicitly allowed transformations and tied to the actual U1 detector family.",
+      "created_at": "2026-08-06T11:52:36.704Z"
+    },
+    {
+      "id": "refine_20260806121241646",
+      "trigger": "Record the machine-checked U0a/U0b constraints that redirect class-exclusion and later soundness work in prime_agent_cvp_07.",
+      "changes": [
+        "create memory:u0_semantic_equivalence_blocker_grammar_conventions_and_localized_affine_ghost"
+      ],
+      "evidence": "The trajectory established that right-unimodular basis changes preserve the CVP lattice image while changing the column matroid of the chosen systematic presentation, and it quantified a localized affine ghost at all three frozen widths without establishing soundness failure or asymptotic behavior. It also added precise fixed-template and finite-color conventions needed to prevent vacuous class-exclusion claims.",
+      "outcome": "Future work in this session should reject raw circuit/connectivity/branch-width arguments on a chosen [I|-C] basis unless right-basis invariance is proved, treat the affine ghost only as a mandatory U2/U3 adverse state, and formulate class grammars using templates and finite structural colors fixed independently of the instance.",
+      "created_at": "2026-08-06T12:12:58.040Z"
+    },
+    {
+      "id": "refine_20260806123309074",
+      "trigger": "Record the verified Generation 11 U0a serializer, routing, and finite formula-compiler results and the remaining universal-proof frontier.",
+      "changes": [
+        "create memory:u0-generation11-parameterized-serializer-routing-and-formula-compiler"
+      ],
+      "evidence": "The trajectory contains project-local, host-verified advances that materially change the U0a frontier: a sorry-free Lean dimension/depth theorem, exact finite routing obstruction and repairs, and a finite assignment-independent formula-compiler audit. These facts should persist for continued work, while the newly drafted formula-stack Lean file must remain uncredited until it compiles.",
+      "outcome": "Subsequent work in prime_agent_cvp_07 should build on the parameterized serializer and finite compiler rather than revisit the shallow-depth blocker, preserve the routing and soundness scope distinctions, and prioritize a compiled universal Lean compiler-correctness theorem and canonical Serialize(S,F) interface.",
+      "created_at": "2026-08-06T12:33:19.654Z"
+    },
+    {
+      "id": "refine_20260806125345007",
+      "trigger": "Record the verified Generation 13 iterative repair, Lean SSA bridge, and eager-serialization resource blocker for prime_agent_cvp_07.",
+      "changes": [
+        "create memory:u0-generation13-iterative-ssa-streaming-frontier"
+      ],
+      "evidence": "The trajectory adds machine-checked project-specific results that materially redirect the active U0a frontier: recursive formula processing is repaired, abstract register compilation is proved universally, and the remaining Python implementation failure is isolated to eager complete emission under an explicit memory cap.",
+      "outcome": "Future turns should preserve the repaired iterative front end and Lean SSA invariants, avoid mischaracterizing the memory failure as an asymptotic obstruction, and focus on canonical streaming sparse C/D/target emission plus a formal SSA-to-butterfly-row correspondence.",
+      "created_at": "2026-08-06T12:53:57.597Z"
+    },
+    {
+      "id": "refine_20260806131414921",
+      "trigger": "Record the verified Generation 14–15 sparse factor/program streaming repairs, Lean semantic kernels, audits, and remaining U0a frontier.",
+      "changes": [
+        "create memory:u0-generation15-sparse-factor-program-streaming-frontier"
+      ],
+      "evidence": "The trajectory contains durable, machine-checked project progress that subsequent work should build on rather than repeat, including exact resource results, repaired metadata, sparse program APIs, compiled Lean theorems, and explicit limitations.",
+      "outcome": "Future U0a work in this session should preserve the canonical streaming implementations and their scope, avoid revisiting repaired dense-factor/program blockers, and focus on SSA/butterfly-to-emitted-row correspondence plus stronger full-stream validation.",
+      "created_at": "2026-08-06T13:14:27.820Z"
+    },
+    {
+      "id": "refine_20260806134349697",
+      "trigger": "Record Generation 16–17 valid-by-construction event semantics, passing event/token certificate evidence, and the unresolved resource failure in the large event-validity breaker.",
+      "changes": [
+        "create memory:u0-generation17-xorevent-certificate-and-breaker-resource-frontier"
+      ],
+      "evidence": "The trajectory contains new machine-checked and host-observable project evidence needed for continued U0a work: Lean now removes the validity premise for smart XOR-event traces, the independent finite certificate verifier passes at substantial scale, and the attempted large breaker did not pass but was killed after extreme resource use.",
+      "outcome": "Subsequent work should build from the unconditional smart-XorEvent theorem and passing certificate verifier, preserve the Python-to-Lean and finite-width scope limitations, and first reduce or stream the large breaker corpus rather than rerun it unchanged or report it as successful.",
+      "created_at": "2026-08-06T13:44:00.373Z"
+    },
+    {
+      "id": "refine_20260806140420020",
+      "trigger": "Record the verified Generation 18 snapshot-free certificate repair and the incomplete Generation 19 explicit-delta bridge.",
+      "changes": [
+        "create memory:u0_generation_18_verified_delta_certificates_and_generation_19_partial_concrete_"
+      ],
+      "evidence": "The trajectory contains durable, project-specific progress beyond the existing Generation 17 memory: v2 passed independent mutation and capped resource checks and gained a compiled generic Lean theorem, while v3 producer and concrete Lean work landed but its independent breaker has not yet passed end to end.",
+      "outcome": "Subsequent work in prime_agent_cvp_07 should preserve the verified v2 repair, avoid rerunning the obsolete full-snapshot design, and resume Generation 19 by repairing and rerunning the explicit-token-delta breaker before claiming the Python-to-Lean bridge complete.",
+      "created_at": "2026-08-06T14:04:33.304Z"
+    },
+    {
+      "id": "refine_20260806142451982",
+      "trigger": "Record Generation 20’s verified finite-width routing, token-state invariants, and power-boundary v3 breaker results for the current U0a frontier.",
+      "changes": [
+        "create memory:u0_generation_20_finite_width_routing_token_invariants_and_v3_boundary_audit"
+      ],
+      "evidence": "The trajectory contains substantial machine-checked and independently rerun project-local progress beyond Generation 19: two Lean files compile without sorry/admit/axiom, and the new snapshot-free v3 boundary breaker passes three power-of-two boundary cases while rejecting 12 targeted mutants. Persisting the exact scope and resource cost will prevent later turns from repeating these checks or overstating them as a universal scheduler or soundness proof.",
+      "outcome": "Subsequent work in prime_agent_cvp_07 should build on finite XOR-lane closure, conditional trace occupancy/count invariants, and the passing boundary audit, while focusing next on the universal concrete scheduler-to-v3 validity/emission correspondence and avoiding casual reruns of the approximately 6-minute near-cap breaker.",
+      "created_at": "2026-08-06T14:25:02.840Z"
+    }
+  ]
+}

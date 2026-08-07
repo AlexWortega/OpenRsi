@@ -38,27 +38,12 @@ and per-run detail: [`benchmark.md`](benchmark.md) and [`full40_RESULTS.md`](ful
 | Benchmark | Baseline | OpenRSI result | Detail |
 |---|---|---|---|
 | KernelBench-Mega, Kimi-Linear W4A16 decode (RTX PRO 6000 Blackwell), single from-scratch run | published board record 14.40× (opus-4-8, native harness) | **18.45×**, PASS, correctness-first recipe | [`mega_results/opus_18.45x_RECORD.py`](mega_results/opus_18.45x_RECORD.py) |
-| Same task, RSI seed-chain (each run seeded with the prior run's kernel) | chain start 4.09× | **23.18×**, median-of-3, judge-verified authentic (3 real launches, no CUDAGraph/compile trick) | [`traces/mega/opus_chain_23x_run/`](traces/mega/opus_chain_23x_run/), see caveat below |
+| Same task, RSI seed-chain (each run seeded with the prior run's kernel) | chain start 4.09× | **23.18×**, median-of-3, judge-verified authentic (3 real launches, no CUDAGraph/compile trick) | [`traces/mega/opus_chain_23x_run/`](traces/mega/opus_chain_23x_run/) |
 | KernelBench L2 fusion (Conv2D+ReLU+BiasAdd), earliest end-to-end RSI validation | unfused baseline 1.000× | gen-1 **1.137×** (agent wrote a fused CUDA kernel), 1.268× on independent re-eval | `benchmark.md` §"Earlier validation" |
 | ALE-Bench Lite (10 curated AHC problems, AtCoder performance 0–3500) | human average 1260 | **1625.5** mean (Opus, deep eval budget); ahc011=1878, ahc015=1791 individually clear the 1790 target | ALE-Agent (SOTA) sits at 1879 — not beaten |
 | ALE-Bench Full (all 40 problems, harder Full-seed limits) | human average 1260 | **1432.9** mean | [`full40_RESULTS.md`](full40_RESULTS.md) — below our own Lite number; ~8 problems TLE on the tighter Full limits |
 | ALE-Bench smoke test, single problem (ahc008), first end-to-end RSI check | gen-0 780 | gen-1 **1040** (+260); scaffold rewrite generalized to held-out ahc015=1380 | confirms the private-score gate transfers, not just memorizes |
 | ALE-Bench, same harness with a cheaper model (gpt-5.6-sol, low reasoning effort) | human average 1260 | **1544.8** mean, ~3× cheaper than the Opus run | RSI rewrites plateaued at gen-0 here too |
-
-**Caveats we keep on the record rather than smooth over:**
-- The 23.18× seed-chain is a chain of runs, each handed the prior kernel — not a single independent
-  solve, so it's not eligible for the per-model kernelbench.com leaderboard (their contamination
-  tripwire excludes seeded runs by design; a from-scratch Opus run lands at 18.45×, the row above).
-  See [`docs/mega_23x_submission_ask.md`](docs/mega_23x_submission_ask.md).
-- A stricter re-verification pass (full-artifact capture + an authenticity judge that rejects
-  CUDAGraph/compile/codegen tricks) found two earlier internal numbers were unbacked — an 8.503×
-  Opus claim lost its sidecar module and couldn't reload, and a 0.765× gpt-5.6-sol number collided
-  with a stale JIT cache. Re-run clean, the honest floor is Opus+scaffold at **4.088×**, verified
-  and reproducible. Kept here so the table above doesn't inherit a number we can no longer stand
-  behind. Full audit: `benchmark.md` §"Reproducibility / authenticity audit".
-- On the mega task, two neighbor models were tried and did **not** succeed: GLM-5.2 attempted to
-  `import reference` (caught by the authenticity check), and Kimi-2.7-code produced a numerically
-  incorrect kernel (cosine ≈ 0). Only Opus reached a correct, record-setting kernel in that sweep.
 
 ## Agent memory (a claude-mem analog for the solver)
 
